@@ -1,47 +1,61 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 
 interface Props {
-	title: string;
-	description: string;
-	image?: string;
+  title: string;
+  description: string;
+  image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
-<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="theme-color" content="#060a12" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
-
-<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
-<!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
 
-<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+{image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
+
+<!-- Radar favicon (matching IWT) -->
+<script is:inline>
+(function(){
+  var c = document.createElement("canvas");
+  c.width = 32; c.height = 32;
+  var g = c.getContext("2d");
+  g.fillStyle = "#060a12";
+  g.beginPath(); g.arc(16, 16, 16, 0, Math.PI * 2); g.fill();
+  g.strokeStyle = "#22d3ee"; g.lineWidth = 1.5;
+  g.beginPath(); g.arc(16, 16, 13, 0, Math.PI * 2); g.stroke();
+  g.strokeStyle = "#22d3ee60"; g.lineWidth = 1;
+  g.beginPath(); g.arc(16, 16, 8, 0, Math.PI * 2); g.stroke();
+  g.strokeStyle = "#22d3ee90"; g.lineWidth = 1;
+  g.beginPath(); g.moveTo(16, 2); g.lineTo(16, 30); g.stroke();
+  g.beginPath(); g.moveTo(2, 16); g.lineTo(30, 16); g.stroke();
+  g.fillStyle = "#22d3ee";
+  g.beginPath(); g.arc(16, 16, 2.5, 0, Math.PI * 2); g.fill();
+  g.strokeStyle = "#22d3ee50"; g.lineWidth = 2;
+  g.beginPath(); g.arc(16, 16, 10, -Math.PI * 0.15, Math.PI * 0.35); g.stroke();
+  var link = document.createElement("link");
+  link.rel = "icon"; link.type = "image/png";
+  link.href = c.toDataURL("image/png");
+  document.head.appendChild(link);
+})();
+</script>
