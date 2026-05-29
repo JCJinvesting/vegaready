@@ -1,0 +1,21 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+---
+
+<DashboardLayout
+  title="Markets — VegaReady"
+  description="Market sector impact — shipping insurance, vessel attacks, bunker prices, GCC equity selloffs, CDS spread widening, and container freight rates."
+  tab="Markets"
+>
+  <div slot="seo">
+    <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
+      Markets
+    </h1>
+    <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
+      Shipping insurance, war-risk premiums, GCC equities, sovereign CDS spreads, and freight rate disruption.
+    </p>
+  </div>
+
+  <TrackerEmbed tab="Markets" client:only="react" />
+</DashboardLayout>

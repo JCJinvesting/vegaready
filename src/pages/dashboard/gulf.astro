@@ -1,0 +1,21 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+---
+
+<DashboardLayout
+  title="Gulf Countries — VegaReady"
+  description="Cross-country conflict impact tracking across UAE, Qatar, Bahrain, Saudi Arabia, Kuwait, Oman, and Iraq. Daily interception data, damage assessments, and defense system performance."
+  tab="Gulf Countries"
+>
+  <div slot="seo">
+    <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
+      Gulf Countries
+    </h1>
+    <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
+      Cumulative damage, interception rates, and defense system performance across all Gulf states.
+    </p>
+  </div>
+
+  <TrackerEmbed tab="Gulf Countries" client:only="react" />
+</DashboardLayout>

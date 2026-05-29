@@ -1,0 +1,21 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+---
+
+<DashboardLayout
+  title="Iran — Adversary Analysis — VegaReady"
+  description="Iran and IRGC analysis — daily claims, weapon systems identification, disinformation tracking, interceptor depletion, and strategic calculus."
+  tab="Iran"
+>
+  <div slot="seo">
+    <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
+      Iran
+    </h1>
+    <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
+      IRGC claims vs reality, weapon systems, disinformation campaigns, defense inventory depletion, and strategic calculus.
+    </p>
+  </div>
+
+  <TrackerEmbed tab="Iran" client:only="react" />
+</DashboardLayout>

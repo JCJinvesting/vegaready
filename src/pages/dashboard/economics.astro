@@ -1,0 +1,21 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+---
+
+<DashboardLayout
+  title="Economics — VegaReady"
+  description="Economic impact of the Iran conflict — oil prices, refinery shutdowns, force majeure declarations, currency stress, and Hormuz risk premiums."
+  tab="Economics"
+>
+  <div slot="seo">
+    <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
+      Economics
+    </h1>
+    <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
+      Refinery shutdowns, force majeure, oil price trajectory, and economic transmission from conflict to commodity markets.
+    </p>
+  </div>
+
+  <TrackerEmbed tab="Economics" client:only="react" />
+</DashboardLayout>

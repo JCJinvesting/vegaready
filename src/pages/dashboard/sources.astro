@@ -1,0 +1,21 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+---
+
+<DashboardLayout
+  title="Sources — VegaReady"
+  description="Source catalogue, provenance matrix, confidence methodology, and feeder outlet tracking for all intelligence data."
+  tab="Sources"
+>
+  <div slot="seo">
+    <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
+      Sources
+    </h1>
+    <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
+      Source provenance, confidence ratings, feeder outlets, and methodology transparency for all dashboard data.
+    </p>
+  </div>
+
+  <TrackerEmbed tab="Sources" client:only="react" />
+</DashboardLayout>

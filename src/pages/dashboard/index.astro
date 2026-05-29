@@ -1,0 +1,21 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+---
+
+<DashboardLayout
+  title="Live Dashboard — VegaReady"
+  description="Real-time intelligence dashboard tracking the Iran–US–Israel conflict and its market impact across Gulf states, oil, shipping, equities, and credit."
+  tab="War Room"
+>
+  <div slot="seo">
+    <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
+      Live Intelligence Dashboard
+    </h1>
+    <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
+      AI-verified data across 13 scopes, updated 3x daily. Tracking geopolitical events and their market transmission in real time.
+    </p>
+  </div>
+
+  <TrackerEmbed tab="War Room" client:only="react" />
+</DashboardLayout>
