@@ -313,5 +313,28 @@ export const sectors = [
       "https://blogs.worldbank.org/en/peoplemove/in-2024--remittance-flows-to-low--and-middle-income-countries-ar",
       "https://swarajyamag.com/news-brief/india-tops-global-remittance-chart-with-1291-billion-in-2024-while-chinas-share-hits-two-decade-low-world-bank-data"
     ]
+  },
+  {
+    "id": "precious-metals-mining",
+    "title": "Precious Metals Mining",
+    "icon": "13",
+    "summary": "Gold Fields Ltd. (JSE/NYSE: GFI) Q1 2026 company-reported data shows AISC rose 13% YoY to $1,829/oz, with diesel +30-70%, freight +40%, and LNG +30% since February. At $100/bbl oil, Gold Fields estimates $40-50/oz additional AISC across its global portfolio. WPIC projects the platinum market heading for its fourth consecutive annual supply deficit, reducing aboveground stocks to 1.747M oz (< 3 months demand) by year-end 2026.",
+    "trigger": "U.S.-Iran conflict → oil above $100/bbl → diesel/fuel costs at mining sites up 30-70%; LNG up 30% (for mines that converted from coal); freight rates up ~40% from rerouted shipping; explosives and cyanide each up ~10%; sanctions uncertainty on Russian palladium",
+    "mechanism": "Direct cost inflation: fuel/energy is 20-30% of open-pit AISC; freight for dore/reagents/equipment; logistics disruption: longer shipping routes for Australian/West African dore to Asian refiners; refinery bottleneck risk at Singapore, Dubai, and Swiss hubs from rerouted flows; marine insurance premiums increase on Hormuz-related routes",
+    "hormuz": "REALIZED: fuel and freight cost impacts ongoing; Australian miners shipping to Singapore face Malacca-only routing (longer, more expensive); West African dore to Swiss/Dubai refiners faces Red Sea alternative routing costs",
+    "strike": "Additional infrastructure damage → oil spike → further diesel/LNG escalation; Gold Fields sensitivity: $40-50/oz per $100/bbl implies rapidly escalating cost impact at $150+ WTI",
+    "cable": "Impairs refinery fee payment and dore transport contracts; LBMA London gold price is the benchmark — London disruption creates regional price fragmentation and settlement risk",
+    "ceasefire": "Oil normalization → fuel/freight costs decline; Gold Fields AISC guidance ($1,800-$2,000) set with $100/bbl assumption — oil below $80 would bring AISC toward $1,750-$1,900 range; significant margin relief",
+    "fills": "Energy substitutes at mining sites: solar/renewable (limited in remote locations; multi-year capex); generator diversification (multi-fuel setups); coal re-adoption (regulatory/ESG barriers). Supply chain substitutes: regional refining overflow (Swiss, London if Singapore/Dubai congested); dore air transport (expensive but available for small volumes)",
+    "closes": "On ceasefire, oil normalization brings AISC back toward $1,750–$1,900 (Gold Fields guidance assumes $100/bbl); fuel and freight relief is a matter of months. But the structural drags persist regardless of the conflict: WPIC projects platinum's 4th consecutive annual supply deficit (aboveground stocks to ~1.747M oz, <3 months' demand by end-2026), and the Russian central bank's palladium drawdown is a medium-term supply headwind.",
+    "precedent": "2022 Russia-Ukraine: palladium shock drove PD to $3,400/oz (March 2022 peak); Russian metal sanctions created first modern precious metals supply chain stress. 2020 COVID: mine shutdowns reduced gold supply ~4-5% in Q2 2020. 2008: diesel costs doubled at mining sites, AISC estimates rose ~15-20%",
+    "timeline": "Short-term: AISC elevated through at least Q2 2026; medium-term: oil normalization on ceasefire provides relief; structural: WPIC platinum deficit (4 years running) is multi-year; Russian palladium drawdown is a medium-term supply headwind",
+    "confidence": "high",
+    "sources": [
+      "https://sustainableminingsystems.com/gold-fields-cost-increase-us-iran-war-2026/",
+      "https://skillings.net/gold-fields-flags-50-oz-oil-shock-as-energy-costs-surge-across-global-portfolio/",
+      "https://investingnews.com/wpic-platinum-market-forecast/",
+      "https://capital.com/en-int/market-updates/crude-oil-price-forecast-19-05-2026"
+    ]
   }
 ];

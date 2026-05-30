@@ -9,7 +9,7 @@ const icon = i => String(i + 1).padStart(2, '0');
 const clean = t => t.replace(/\s*\([^)]*\)\s*$/, '').trim();
 const toneByNet = n => (n === 'winner' ? '#10b981' : n === 'loser' ? '#ef4444' : '#f59e0b');
 // Canonical descriptive slugs -> the site's existing stable card ids (keeps URLs/anchors unchanged).
-const ID_MAP = { 'fertilizer-ammonia': 'fertilizer', 'agriculture-food': 'agriculture', 'aviation-transportation': 'aviation', 'financial-markets': 'financial', 'technology-digital': 'technology', 'pharmaceuticals': 'pharma', 'construction-materials': 'construction', 'defense-security': 'defense' };
+const ID_MAP = { 'fertilizer-ammonia': 'fertilizer', 'agriculture-food': 'agriculture', 'aviation-transportation': 'aviation', 'financial-markets': 'financial', 'technology-digital': 'technology', 'pharmaceuticals': 'pharma', 'construction-materials': 'construction', 'defense-security': 'defense', 'precious-metals-mining-supply-chain': 'precious-metals-mining' };
 const mapId = id => ID_MAP[id] || id;
 const SCEN = [{"key":"hormuz","label":"Hormuz closure","color":"#ef4444"},{"key":"strike","label":"Oil infrastructure strike","color":"#f59e0b"},{"key":"cable","label":"Cable severance","color":"#6366f1"},{"key":"ceasefire","label":"Ceasefire","color":"#10b981"}];
 const banner = src => '// GENERATED from IranWarTracker/data/cascades/' + src + ' by scripts/build-cascades.cjs.\n// DO NOT EDIT BY HAND. Edit the canonical JSON and re-run: node scripts/build-cascades.cjs\n\n';

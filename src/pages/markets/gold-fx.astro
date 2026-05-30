@@ -116,6 +116,42 @@ const cards = [
     ],
   },
 ];
+
+const sourceUrls = [
+  'https://www.gold.org/goldhub/research/gold-market-commentary-april-2026',
+  'https://www.kitco.com/news/article/2026-05-20/golds-rally-will-resume-after-iran-war-price-reaching-5400oz-h1-2027',
+  'https://www.institutionalinvestor.com/article/sponsored-content/dollar-reasserts-itself-global-tensions-shift-currency-markets',
+  'https://capital.com/en-int/market-updates/crude-oil-price-forecast-19-05-2026',
+  'https://www.blackrock.com/us/financial-professionals/insights/diversify-portfolio-bitcoin-gold-alternatives',
+  'https://www.cnbc.com/2026/05/07/japan-yen-intervention-boj-rate-gap-currency-pressure.html',
+  'https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows',
+  'https://home.treasury.gov/data/us-international-reserve-position/05262026',
+  'https://www.kitco.com/news/off-the-wire/2026-03-24/additional-central-banks-buy-gold-geopolitical-risks-wgc-says',
+  'https://investingnews.com/wgc-gold-market-forecast/',
+  'https://www.tradingkey.com/analysis/commodities/metal/261892590-us-gold-exports-number-one-what-efp-tells-you-tradingkey',
+  'https://www.arabnews.com/node/2644129/business-economy',
+  'https://arabcenterdc.org/resource/vision-2030-and-the-iran-war-saudi-arabias-resilience-under-strain/',
+  'https://gulfnews.com/opinion/op-eds/petrodollar-isnt-collapsing-but-iran-war-is-exposing-its-limits-1.500551553',
+  'https://asiatimes.com/2026/05/uaes-opec-exit-hands-asia-a-petroyuan-moment/',
+  'https://thesoufancenter.org/intelbrief-2026-may-14/',
+  'https://www.bloomberg.com/news/articles/2026-05-04/japan-can-conduct-30-more-yen-interventions-goldman-sachs-says',
+  'https://www.cnbc.com/2026/05/01/yen-steadies-after-japan-intervention-traders-brace-for-more-action.html',
+  'https://money.usnews.com/investing/news/articles/2026-05-29/yen-back-in-danger-zone-as-tokyo-officials-keep-investors-on-edge',
+  'https://www.bis.org/publ/bisbull124.pdf',
+  'https://www.capitaleconomics.com/publications/fx-markets-update/risks-sudden-carry-trade-unwind-are-building',
+  'https://www.actionforex.com/action-insight/market-overview/weekly-report/642307-us-iran-endgame-in-sight-markets-vote-for-peace-as-oil-yields-and-dollar-fall/',
+  'https://www.turkiyetoday.com/business/turkish-central-bank-raises-2026-inflation-forecast-to-26-amid-iran-war-risks-3219928',
+  'https://english.ahram.org.eg/News/569319.aspx',
+  'https://www.bworldonline.com/bloomberg/2026/04/30/746592/record-lows-sweep-asian-currencies-as-oil-spike-revives-risks/',
+  'https://www.nytimes.com/2026/05/22/business/asia-currency-iran-dollar.html',
+  'https://www.janushenderson.com/en-us/investor/article/imf-spring-meetings-emerging-markets-in-a-highly-uncertain-world/',
+  'https://research-center.amundi.com/article/global-investment-views-june-2026',
+  'https://themorningtelegraph.com/41987/',
+  'https://enterpriseam.com/egypt/issues/egypt-files-its-reform-credentials-ahead-of-imfs-last-review/',
+  'https://sustainableminingsystems.com/gold-fields-cost-increase-us-iran-war-2026/',
+  'https://skillings.net/gold-fields-flags-50-oz-oil-shock-as-energy-costs-surge-across-global-portfolio/',
+  'https://investingnews.com/wpic-platinum-market-forecast/'
+];
 ---
 
 <AnalysisLayout
@@ -223,6 +259,18 @@ const cards = [
     </div>
   </details>
 
+  <details class="dqe-section">
+    <summary class="dqe-summary">
+      <span class="dl">Full source list</span>
+      <span style="font-size:11px;color:var(--text-dim);margin-left:8px">({sourceUrls.length} URLs · click to expand)</span>
+    </summary>
+    <div class="dqe-body">
+      <ol class="src-list">
+        {sourceUrls.map((u) => (<li><a href={u} target="_blank" rel="noopener">{u}</a></li>))}
+      </ol>
+    </div>
+  </details>
+
   <div class="sn-box">
     <div class="dl">Sources & methodology</div>
     <p>T1 primary: WGC Gold Demand Trends Q1 2026, WGC Market Commentary April 2026, US Treasury TIC, IMF COFER, BLS CPI/PCE, CME FedWatch, BOJ/MoF balance sheet, CBRT Inflation Report, BIS Bulletin 124, SWIFT messaging data, SNB policy communications, WPIC quarterly update. T2 press: Bloomberg, CNBC, Reuters, Kitco News, Arab News, Capital.com, Action Forex, FXStreet, Trading Economics, Investing News Network. Source-tiered with confidence ratings. T3 claims confined to Data Quality Exceptions section. v2 evidence-hygiene revision: weak/social-media sources removed; all numeric anchors T1/T2 or explicitly flagged.</p>
@@ -277,4 +325,7 @@ const cards = [
   .sb-label{color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700}
   .sb-item{display:inline-flex;align-items:center;gap:6px;color:var(--text-dim)}
   .sb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .src-list{margin:0;padding-left:18px;font-size:11px;line-height:1.7;color:var(--text-dim)}
+  .src-list a{color:#60a5fa;text-decoration:none;word-break:break-all}
+  .src-list a:hover{text-decoration:underline}
 </style>
