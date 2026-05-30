@@ -35,6 +35,9 @@ const navByArea: Record<string, {slug:string, label:string, base:string}[]> = {
   connections: [
     { slug: '', label: 'Connections', base: '/connections' },
   ],
+  profits: [
+    { slug: '', label: 'Who Profits', base: '/profits' },
+  ],
 };
 
 const areaLabels: Record<string, string> = {
@@ -43,6 +46,7 @@ const areaLabels: Record<string, string> = {
   exposure: 'Exposure',
   outlook: 'Outlook',
   connections: 'Connections',
+  profits: 'Who Profits',
 };
 
 const nav = navByArea[area] || navByArea.markets;

@@ -1,0 +1,72 @@
+---
+import AnalysisLayout from '../layouts/AnalysisLayout.astro';
+import { intro, groups } from '../data/analysis/profits.js';
+const tone = { red:'#ef4444', amber:'#f59e0b', green:'#10b981', cyan:'#22d3ee', violet:'#8b5cf6' };
+const phaseTone = { Disruption:'#ef4444', Sustained:'#f59e0b', Return:'#10b981', Structural:'#22d3ee' };
+---
+<AnalysisLayout
+  title="Who Profits — VegaReady"
+  description="The alpha view: a sourced map of who benefits as the Gulf cascade runs, by channel, with the phase it pays off in and the vehicle to express it."
+  section="Who Profits"
+  area="profits"
+>
+  <section class="hero">
+    <div class="label">Who profits</div>
+    <h1>Volatility isn't risk.<br/>It's signal.</h1>
+    <p class="lead">{intro}</p>
+  </section>
+
+  {groups.map(g => (
+    <section class="grp">
+      <div class="grp-h" style={`color:${tone[g.tone]}`}><span class="bar" style={`background:${tone[g.tone]}`}></span>{g.category}</div>
+      <div class="cards">
+        {g.items.map(it => (
+          <div class="bcard">
+            <div class="bc-top">
+              <span class="bc-name">{it.name}</span>
+              <span class="bc-meta">
+                <span class="phase" style={`color:${phaseTone[it.phase]};border-color:${phaseTone[it.phase]}55`}>{it.phase}</span>
+                <span class={`cf cf-${it.conf}`}>{it.conf}</span>
+              </span>
+            </div>
+            <p class="bc-thesis">{it.thesis}</p>
+            <div class="bc-vehicle"><span class="vl">Vehicle</span>{it.vehicle}</div>
+            <div class="bc-links">{it.links.map(l => (<a class="chip" href={l.page}>{l.name}</a>))}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <div class="sn-box"><div class="dl">Method &amp; caveat</div><p>Beneficiaries are drawn from the sector, regional and gap-dynamics analysis. Phase marks when the position pays: Disruption, Sustained gap, Return (ceasefire), or Structural (durable share shift). Confidence reflects the underlying evidence tier. This is analysis, not investment advice - it maps the asymmetry, it does not size or time the trade.</p></div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:700px}
+  .grp{margin-bottom:2rem}
+  .grp-h{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+  .bar{width:14px;height:2px;display:inline-block}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .bcard{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column}
+  .bc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
+  .bc-name{font-size:14px;font-weight:700;color:var(--text);line-height:1.3}
+  .bc-meta{display:flex;gap:6px;flex-shrink:0;align-items:center}
+  .phase{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border:1px solid;border-radius:4px;white-space:nowrap}
+  .cf{font-family:var(--font-mono);font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap}
+  .cf-high{color:#10b981;background:rgba(16,185,129,.1)}
+  .cf-medium{color:#f59e0b;background:rgba(245,158,11,.1)}
+  .cf-low{color:var(--text-dim);background:rgba(148,163,184,.1)}
+  .bc-thesis{font-size:12.5px;color:var(--text-muted);line-height:1.6;margin:0 0 10px}
+  .bc-vehicle{font-size:11px;color:var(--text);margin-bottom:10px}
+  .vl{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-right:8px}
+  .bc-links{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}
+  .chip{font-family:var(--font-mono);font-size:10px;color:var(--text-dim);background:var(--bg-card,#0d1117);border:1px solid var(--border);border-radius:5px;padding:2px 7px;text-decoration:none;white-space:nowrap}
+  .chip:hover{color:var(--text);border-color:var(--cyan)}
+  .sn-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-top:1rem}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .sn-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+</style>
