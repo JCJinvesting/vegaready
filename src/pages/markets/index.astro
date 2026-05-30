@@ -1,0 +1,93 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+---
+
+<AnalysisLayout
+  title="Markets — VegaReady"
+  description="How global markets respond to geopolitical disruption. Gold, FX, energy, crypto, and credit — tracked from event to portfolio impact."
+  section="Overview"
+  area="markets"
+>
+  <section class="hero">
+    <div class="label">Markets</div>
+    <h1>What's moving.<br/>And why.</h1>
+    <p class="lead">Markets are the destination — everything else is context. We track the financial response layer across gold, FX, energy, credit, and crypto, connecting each move back to the geopolitical transmission that caused it.</p>
+  </section>
+
+  <div class="market-grid">
+    <a href="/markets/gold-fx" class="market-card">
+      <div class="market-icon" style="color:#f59e0b">Au</div>
+      <div class="market-title">Gold & FX</div>
+      <div class="market-stat">ATH $5,595 → trough $4,099 (–27%)</div>
+      <div class="market-desc">Safe-haven dynamics inverted: dollar captured the bid, gold corrected on real-yield repricing. Central banks net-purchased 243.7t Q1 2026. Yen carry ¥11.7T intervention. Petrodollar recycling disrupted.</div>
+      <span class="market-status live">Live</span>
+    </a>
+    <a href="/markets/energy" class="market-card">
+      <div class="market-icon" style="color:#ef4444">WTI</div>
+      <div class="market-title">Oil, LNG & Refined Products</div>
+      <div class="market-stat">Hormuz Q1 2026: 14.6M b/d (–30% YoY)</div>
+      <div class="market-desc">Crude, LNG, diesel, and jet fuel gap dynamics. Bypass capacity, substitution timelines, and the structural gap that can't be filled.</div>
+      <span class="market-status">See Outlook</span>
+    </a>
+    <a href="/markets" class="market-card coming">
+      <div class="market-icon" style="color:#6366f1">BTC</div>
+      <div class="market-title">Crypto & Digital Assets</div>
+      <div class="market-stat">Coming soon</div>
+      <div class="market-desc">BTC safe-haven vs risk-asset reality. Stablecoin stress. Exchange connectivity gaps. DeFi oracle latency. JCJ's core domain.</div>
+      <span class="market-status building">In development</span>
+    </a>
+    <a href="/markets" class="market-card coming">
+      <div class="market-icon" style="color:#22d3ee">CDS</div>
+      <div class="market-title">Sovereign Credit & Insurance</div>
+      <div class="market-stat">Coming soon</div>
+      <div class="market-desc">CDS spreads, credit rating actions, war-risk insurance restructuring, IMF program stress, Gulf sukuk markets.</div>
+      <span class="market-status building">In development</span>
+    </a>
+  </div>
+
+  <section class="context-section">
+    <div class="label">Connected analysis</div>
+    <p class="context-text">Markets don't move in isolation. Each market response connects to the physical cascade, regional exposure, and forward outlook:</p>
+    <div class="context-grid">
+      <a href="/transmission" class="context-card">
+        <div class="context-title">Transmission</div>
+        <div class="context-desc">11 sectors showing how the physical disruption flows through energy, petrochemicals, fertilizer, food, manufacturing, and more.</div>
+      </a>
+      <a href="/exposure" class="context-card">
+        <div class="context-title">Exposure</div>
+        <div class="context-desc">12 economies — winners, losers, and asymmetries. Who's on the other side of each trade.</div>
+      </a>
+      <a href="/outlook" class="context-card">
+        <div class="context-title">Outlook</div>
+        <div class="context-desc">Gap dynamics, substitution cycles, historical precedents. What fills the gap and what happens when it reopens.</div>
+      </a>
+    </div>
+  </section>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:640px}
+  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:3rem}
+  .market-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:20px;text-decoration:none;color:inherit;transition:all 0.2s;position:relative}
+  .market-card:hover{border-color:var(--border-light);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.2);opacity:1}
+  .market-card.coming{opacity:0.6}
+  .market-card.coming:hover{transform:none;box-shadow:none}
+  .market-icon{font-family:var(--font-mono);font-size:20px;font-weight:800;margin-bottom:8px}
+  .market-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .market-stat{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:8px}
+  .market-desc{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .market-status{position:absolute;top:16px;right:16px;font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px}
+  .market-status.live{color:#10b981;background:rgba(16,185,129,0.1)}
+  .market-status.building{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .context-section{margin-bottom:2rem}
+  .context-text{font-size:14px;color:var(--text-muted);margin-bottom:1.5rem}
+  .context-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .context-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-decoration:none;color:inherit;transition:all 0.2s}
+  .context-card:hover{border-color:var(--cyan);opacity:1}
+  .context-title{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .context-desc{font-size:11px;color:var(--text-dim);line-height:1.5}
+  @media(max-width:720px){.market-grid{grid-template-columns:1fr}.context-grid{grid-template-columns:1fr}}
+</style>

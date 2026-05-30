@@ -1,0 +1,183 @@
+---
+import AnalysisLayout from "../../layouts/AnalysisLayout.astro";
+
+const flows = [
+  {
+    id:'crude-oil', title:'Crude Oil', icon:'01',
+    summary:'Q1 2026 Hormuz flow: 14.6M b/d (-29.7% YoY, EIA); >95% collapse at peak. Net unfillable gap ~8-10M b/d after bypass pipelines. The 2026 difference vs 1990: Saudi/UAE spare capacity is itself Hormuz-trapped — no clean swing-producer offset.',
+    gap:'Measured Q1 2026: 14.6M b/d (crude 10.7 + liquids 3.9), down from 20.7M b/d Q4 2025. Peak daily >95% collapse Mar-Apr. Iranian crude to China ~1.38M b/d halted. Bypass ceiling ~5.5-6.5M b/d = ~30% of normal 20M b/d.',
+    fills:'Russia ESPO +0.3-0.6M b/d ($5-8 discount, 30-60d). Russian Urals to India/China +0.5-1.0M b/d ($10-15 discount). West Africa +0.3-0.5M b/d. Brazil pre-salt +0.2-0.4M b/d. US shale +0.2-0.5M b/d over 3-6 months (light sweet only). IEA SPR 400M bbl authorized (~1.4M b/d sustained 120 days). China SPR ~1.2B bbl / ~109 days.',
+    ramp:'Days 1-7: SPR draw ~1.4M b/d. Days 7-30: Petroline+Fujairah maxed + reroutes, +3.0-4.5M b/d. Months 2-3: Russian ESPO/Urals + Brazil/West Africa, +1.5-2.5M b/d. Months 3-6: US shale +0.2-0.5M b/d, demand destruction begins. Cumulative ~6-8M b/d fillable within 90 days against ~10-14M b/d removal = structural gap.',
+    contracts:'Gulf crude on Saudi OSP system, ~1-year nominations; force majeure declared Feb 28. Spot vs term ~25-30% / ~70-75% pre-conflict. Iranian crude is all grey-market/shadow-fleet, yuan-denominated.',
+    onReturn:'Goldman: Brent $85-92 on quick reopening vs $100+ extended. Iran reclaims ~0.8-1.0M b/d vs 1.38 pre-conflict over 12-24 months. West African/Brazil term deals signed during disruption create structural displacement.',
+    precedent:'1990: Iraq+Kuwait loss ~4.3-5.2M b/d; Saudi ramped 5.3→8.35M b/d in ~5 months via 146 wells. Price $17→$46 peak. 2022: US shale added only +0.7-0.9M b/d over 6-9 months. 2026 contrast: in 1990 Saudi had free Red Sea access; in 2026 the swing capacity is Hormuz-trapped.',
+    investment:'Disruption: long crude futures, Cape-route VLCC, non-Gulf producers (Petrobras). Sustained: long USGC refinery margins, oilfield services. Return: short crude on SPR refill + reopening oversupply.',
+    confidence:'medium',
+  },
+  {
+    id:'lng', title:'LNG (Qatar)', icon:'02',
+    summary:'Zero laden LNG vessels crossed Hormuz between Mar 1 and Apr 24 2026, removing >10 Bcf/d (~20% of global LNG). Unlike crude, LNG has no pipeline bypass — Qatar export is binary. US terminals at 94% can add only ~0.6 Bcf/d short-term. JKM +51% / TTF +35% by late April; Henry Hub -9% (US insulated).',
+    gap:'>10 Bcf/d removed; 0 laden LNG crossings Mar 1-Apr 24 2026 (EIA). QatarEnergy force majeure Mar 4; Ras Laffan struck by drones Mar 3. Qatar capacity ~77 Mt/yr (~10 Bcf/d), ~93% Hormuz-dependent. LNG carriers cannot reroute — binary. TTF +35%, JKM +51%, Henry Hub -9%. EU storage entered summer at 28% vs 41% 5-yr avg.',
+    fills:'US LNG (21.5% share): 17.9 Bcf/d at 94% utilization; +0.5 Bcf/d Plaquemines + ~2.4 Bcf/d DOE-authorized progressively Apr-Dec. Australia ~+0.5-1.0 Bcf/d spot. US+Australia ceiling ≤4 Bcf/d against ~10 Bcf/d gap. Trinidad/Norway/Algeria +0.5-1.0 Bcf/d spot.',
+    ramp:'Immediate: portfolio players redirect US cargoes, +1-2 Bcf/d. Month 1-2: US terminals + DOE approvals, +0.6 Bcf/d. Month 2-6: ~2.4 Bcf/d DOE-authorized online. Year 1-3: new US FIDs; demand destruction ~-15% European industrial gas at $14+/MMBtu.',
+    contracts:'Qatar term SPAs ~70-75% (15-25yr, oil-indexed, destination clauses), ~25-30% spot. >80% of Qatari buyers are Asian. FM invoked Mar 4 — all delivery obligations suspended.',
+    onReturn:'Goldman: TTF 44/40 EUR/MWh Q3/Q4 without closure vs 65/53 with. Ras Laffan restart 2-4 weeks minimum, 4-8 with damage. Oversupply risk: Qatar full volume + US 2027-28 wave = 15-25 Mt/yr surplus.',
+    precedent:'2022: Russian pipeline gas removed over 18 months; TTF peaked ~€340/MWh; US LNG to Europe surged >100%; ~65 Mt/yr new US term contracts. 2026: Qatar disruption is binary and faster, and EU storage deficit is materially worse (28% vs 41%).',
+    investment:'Disruption: long Henry Hub/TTF spread, US LNG equity (Cheniere). Sustained: accelerated US LNG FIDs. Return: short TTF on normalization.',
+    confidence:'high',
+  },
+  {
+    id:'fertilizer', title:'Fertilizer / Ammonia', icon:'03',
+    summary:'NDSU models Gulf urea at ~40% of global exports with 3-4 Mt/month blocked. The unique 2026 severity: Gulf disrupts ~30-40% of urea trade while Russia (~14-23%) AND China are simultaneously constrained — no swing supplier exists. NDSU scenario floors: urea $532/st (+13%) Quick Reopening to $790+/st (+68%) Extended Conflict. Food-price lag: 6-9 months.',
+    gap:'NDSU: Gulf urea 20.6 Mt/yr (~40%), ammonia 4.1 Mt/yr (~26%), DAP 3.6 Mt/yr (~23%), sulfur 15.3 Mt/yr (~44%). ~3-4 Mt/month disrupted. QAFCO Qatar (world\'s largest single-site urea, 5.6 Mt/yr) fully suspended. Source range for urea share: 30-40% (IFPRI 36%, NDSU 40%).',
+    fills:'Russia (~23% ammonia / ~14% urea): export suspended to Apr 21, sanctions barriers. China (~3.5 Mt/month urea): restrictions through Aug 2026. Both simultaneously constrained. Egypt: ~5-6 Mt/yr, emerging swing, FOB ~$800/MT. Trinidad +0.3-0.5 Mt/yr. US Gulf Coast marginal at $700+ NOLA.',
+    ramp:'Weeks 1-4: spot hoarding + Egypt surge, +0.3-0.5 Mt/month, prices +40-50% immediately. Months 2-3: Russia resumes after Apr 21 + Egypt peak, plateau $700-800/MT. Months 3-6: China lifts Aug ban, easing begins. Months 6-12: structural floor $532/st (NDSU).',
+    contracts:'Urea predominantly spot, 15-30% seasonal forward. QAFCO/SABIC ammonia tolling 1-5yr take-or-pay; FM invoked. Buyers locking 12-month forwards with Egypt/Trinidad/US.',
+    onReturn:'NDSU three-scenario floors: Quick Reopening $532/st (+13%), Contested Transit $610+/st (+30%), Extended Conflict $790+/st (+68%). Demand destruction: Contested 7.0 Mt cumulative (14%), Extended 10.1 Mt (20%). Urea-to-corn affordability: Extended 221 bu/st vs 2022 peak 110 and long-run avg 79. Food security: 6-9 month lag; FAO/IFPRI 37M+ additional at risk.',
+    precedent:'2022: urea peaked ~$910/st FOB NOLA; recovery to $350-450 by late 2023 via demand destruction + Russia/China resume. 2026 contrast: Gulf disrupts ~30-40% (vs Russia 14-23% in 2022) and Russia/China swing suppliers both constrained — structurally more severe per NDSU.',
+    investment:'Disruption: long ex-Gulf nitrogen producers (CF Industries, Nutrien, Yara). Sustained: long ag-commodity futures (corn, wheat) on elevated input floor. Return: short urea if Gulf + Russia + China normalize together.',
+    confidence:'high',
+  },
+  {
+    id:'shipping', title:'Shipping Capacity', icon:'04',
+    summary:'138 container ships / ~470,000 TEU trapped in the Gulf (10.7% of global fleet). Cape rerouting adds 10-14 days, cutting effective Asia-Europe capacity ~15-18% (Maersk). No new fleet available this cycle (2-3yr build lead). Relief valve: blanked sailings, rate spikes, and demand softening.',
+    gap:'138 ships / 470k TEU trapped = 10.7% of global container fleet. Asia-Europe capacity loss 15-18% (Maersk). Cape adds ~3,500-4,000 nm / 10-14 days. 25% of Asia-Middle East sailings withdrawn. Tonne-mile demand +16-19% at same cargo volume. $8B/month aggregate cost estimate.',
+    fills:'Container: Cape reroute + alternate-hub congestion (Salalah, Colombo, Mundra). VLCC: Cape adds ~8-10 days Gulf-Asia, utilization at multi-year high. LNG carriers: Qatar fleet idle, diverting to US/Australia. Dry bulk: fertilizer/grain rerouting +5-8 days, Baltic Dry elevated.',
+    ramp:'Day 1-7: top-4 carriers suspend Hormuz + emergency surcharges; Asia-Europe +20%, Gulf lanes +30-55%. Week 2-4: Cape tightened; Asia-Europe +40-55% spot. Month 2-3: secondary congestion; Drewry/Xeneta model $6,500-8,000/FEU if >60 days. Post-ceasefire: trapped vessels exit 2-4 weeks.',
+    contracts:'Carriers pivoted to weekly rate releases (effectively spot). Surcharge stack: War Risk $1,500/TEU + Emergency Conflict $3,000/FEU + bunker + GRIs. P&I war-risk insurance withdrawn Mar 5 — transit commercially uninsurable.',
+    onReturn:'Red Sea 2024 precedent: Drewry WCI +141%; normalized over 6-9 months. MSI: initial spike then weakening H2 2026 if demand softens. New shipbuilding 2-3yr lead — no fleet increment this cycle.',
+    precedent:'Red Sea Houthi (Dec 2023): WCI +141%, Shanghai-Rotterdam +230% peak, ~$1,500→$5,000/FEU in 6 weeks. 2026 compound: carriers already on Cape from Houthi now face additional Gulf closure — dual-chokepoint closure unprecedented in modern container shipping.',
+    investment:'Disruption: long tanker equity (Cape VLCC) and liner equity on rate spikes. Sustained: long African port infrastructure and Cape-hub bunker suppliers. Return: short liner equity on rate reversal.',
+    confidence:'medium',
+  },
+  {
+    id:'internet', title:'Internet Bandwidth', icon:'05',
+    summary:'Total LEO satellite capacity (~50 Tbps downlink, ~5 Tbps symmetric) vs ~8,750 Tbps submarine cable = 175:1 deficit — satellites cannot replace bulk cable traffic. Only 1 repair vessel inside the Gulf. Repair ships will not enter an active war zone. The binding constraint is post-ceasefire UXO clearance (6+ months).',
+    gap:'Gulf cables at risk: AAE-1, FALCON, Gulf Bridge International. Only 1 repair vessel inside Gulf (e-Marine, UAE). 2Africa Pearls FM declared Mar 13 2026. Global submarine capacity ~8,750 Tbps; total LEO ~50 Tbps / ~5 Tbps usable. Key insight: Asia-Europe backbone routes via Red Sea (~900 mi from Hormuz), so Gulf cable damage is primarily domestic, not global-backbone.',
+    fills:'Starlink ~1-2 Tbps usable (uplink-constrained, no data-center-grade, 20-50ms latency). OneWeb <0.5 Tbps. Amazon Kuiper: years from meaningful deployment. Terrestrial via Oman/Saudi: limited, Gulf-domestic only.',
+    ramp:'Immediate: terrestrial Oman/Saudi + Starlink enterprise, 5-15% Gulf domestic. Days 1-30: emergency satellite + CDN caching, 10-20% consumer-grade. Month 1-to-ceasefire: no repair possible in active conflict. Post-ceasefire: UXO survey required first; full repair 5-12+ months. Year 2+: 2Africa Pearls reconnection + Project Waterworth (bypasses Middle East).',
+    contracts:'Submarine cable IRU (15-25yr); FM on physical severance. Gulf carriers mix cable + terrestrial; Saudi routes majority bandwidth via Red Sea coast, giving partial resilience.',
+    onReturn:'UXO clearance is the binding constraint. Persian Gulf mine-clearing 1987-88 took ~12 months; estimate 6+ months minimum. Halted projects (SMW6, FIG, WorldLink) face 12-24+ month delays. Google Project Waterworth (bypasses Middle East) accelerated but years from completion.',
+    precedent:'Feb 2024: ~25% Asia-Europe traffic degraded; AAE-1 5 months to repair. Sept 2025: 4 cables, 3 repaired in 5 months, 1 still out. 2026: both Gulf AND Red Sea simultaneously inaccessible to repair ships — no precedent for dual-chokepoint cable-maintenance paralysis.',
+    investment:'Disruption: long satellite operators and Gulf telcos with terrestrial diversity. Sustained: long cable-infrastructure suppliers (Nokia/ASN, TE SubCom). Structural: long Project Waterworth beneficiaries and non-ME cable routes.',
+    confidence:'medium',
+  },
+  {
+    id:'refined-products', title:'Refined Products (Diesel & Jet)', icon:'06',
+    summary:'Gulf refineries supplied 60% of Europe\'s jet fuel and 30% of diesel in 2025 — entirely blocked. NW Europe jet cracks hit $100/bbl and diesel $70/bbl (4-5x pre-war). Substitution requires spare REFINING capacity: ~600-900k b/d fillable in 30-60 days against ~2.17M b/d offline = 1.2-1.6M b/d structural middle-distillate gap.',
+    gap:'Gulf seaborne fuel 5.51M b/d (2024 record). Kuwait Al Zour jet ~186k b/d, diesel-to-Europe ~107k b/d. NW Europe cracks: jet $100/bbl, diesel $70/bbl, 4-5x pre-war. Top-3 jet exporters (China, S.Korea, Kuwait) all simultaneously impaired. ~2.17M b/d Gulf refinery offline by Mar 23.',
+    fills:'India (Reliance, HPCL, IOC) ~+300-500k b/d, 30-60d. US Gulf Coast +200-400k b/d at premium, 45-90d. Dangote (Nigeria) +50-100k b/d, 60-90d. European refineries +100-200k b/d. Structural gap ~600-900k b/d fillable vs ~2.17M b/d = 1.2-1.6M b/d unfilled.',
+    ramp:'Day 1-14: crack spike, zero added, jet $100/diesel $70. Week 2-4: India reroutes, +200-300k b/d. Month 1-3: US USGC ramp + European feedstock, +400-600k b/d. Month 3-6: full rerouting, +600-900k b/d, normalizing. Post-ceasefire: undamaged refineries restart 2-4 weeks; damaged 12-36 months.',
+    contracts:'Middle-distillate term contracts 3-12 months priced vs Platts jet CIF NW Europe. Airline hedges 50-80% at 6-12 months forward; pre-war $40-60 hedges deeply underwater vs $100 actuals.',
+    onReturn:'Jet crack reversion likely 4-6 weeks after Gulf refinery restart. If Ras Tanura/Al Zour severely damaged, reconstruction 12-36 months. Permanent: Dangote + India product exports to Europe emerging as structural.',
+    precedent:'1990: Kuwait/Iraq refinery ~750k b/d offline; products market recovered 12-18 months; Kuwait capacity ~3 years. 2022 EU diesel shock: Russian ban removed ~500k b/d; India became structural supplier. 2026 repeats at larger scale.',
+    investment:'Disruption: long complex refinery margins (Valero, Marathon) and Reliance Industries. Sustained: long product tankers (LR2, MR) and Dangote. Return: short USGC margins; assess damage scope.',
+    confidence:'medium',
+  },
+];
+
+const crossFlow = {
+  hormuz:'Crude -14.6M b/d Q1 avg; LNG -10 Bcf/d (0 crossings); fertilizer -30-40% global urea; shipping -15-18% Asia-Europe capacity, 10.7% fleet trapped; cables repair paralysis; refined products -60% EU jet / -30% diesel.',
+  strike:'Crude ~-3M b/d infra offline; LNG -50-70% if Ras Laffan destroyed; fertilizer ammonia at risk; shipping compounding; cables data centers hit; refined ~-2.17M b/d refinery.',
+  cable:'Crude/LNG/fertilizer/refined minimal direct; shipping financial disruption; cables -25% Asia-Europe + Gulf domestic ~40-60%.',
+  ceasefire:'Crude bypass continues; LNG restart 4-8 weeks; fertilizer $532/st floor; shipping normalizes 2-4 weeks; cables UXO 6+ months; refined restart 2-4 weeks if undamaged.',
+};
+---
+
+<AnalysisLayout area="outlook"
+  title="Gap Dynamics — VegaReady Scenario Analysis"
+  description="Supply disruption → substitution → oversupply cycles for 6 critical flows: crude oil, LNG, fertilizer, shipping, internet bandwidth, and refined products."
+  section="Gap Dynamics"
+>
+  <section class="hero">
+    <div class="label">Gap dynamics</div>
+    <h1>What fills the gap.<br/>What happens when it reopens.</h1>
+    <p class="lead">6 critical flows analyzed through the full disruption cycle: the gap, who fills it, how fast, contract structure, what happens on return, and historical precedent. Each flow has a structural gap that cannot be fully filled — understanding the residual is where the edge lives.</p>
+    <div class="callout"><strong>Compounding insight:</strong> Hormuz closure is the only scenario that hits all six flows at once. The defining structural feature: Gulf swing/spare capacity is itself Hormuz-trapped (unlike 1990), so there is no clean producer offset. Cable severance is near-orthogonal to physical commodities. Fertilizer carries the longest tail (6-9 month food-price lag).</div>
+  </section>
+
+  <!-- Cross-flow summary -->
+  <section class="cross-section">
+    <div class="dl">Cross-flow impact by scenario</div>
+    <div class="cross-grid">
+      <div class="cross-card" style="border-left:3px solid #ef4444"><div class="cross-label" style="color:#ef4444">Hormuz closure</div><div class="cross-text">{crossFlow.hormuz}</div></div>
+      <div class="cross-card" style="border-left:3px solid #f59e0b"><div class="cross-label" style="color:#f59e0b">Oil strike</div><div class="cross-text">{crossFlow.strike}</div></div>
+      <div class="cross-card" style="border-left:3px solid #6366f1"><div class="cross-label" style="color:#6366f1">Cable severance</div><div class="cross-text">{crossFlow.cable}</div></div>
+      <div class="cross-card" style="border-left:3px solid #10b981"><div class="cross-label" style="color:#10b981">Ceasefire</div><div class="cross-text">{crossFlow.ceasefire}</div></div>
+    </div>
+  </section>
+
+  <!-- Flow cards -->
+  <div class="flow-list">
+    {flows.map((f) => (
+      <details class="fd">
+        <summary class="fs">
+          <div class="fl">
+            <span class="fn">{f.icon}</span>
+            <div>
+              <div class="ft">{f.title}</div>
+              <div class="fb">{f.summary}</div>
+            </div>
+          </div>
+          <span class={`cf cf-${f.confidence}`}>{f.confidence}</span>
+        </summary>
+        <div class="fy">
+          <div class="ds"><div class="dl">The gap</div><p>{f.gap}</p></div>
+          <div class="ds"><div class="dl">Who fills it</div><p>{f.fills}</p></div>
+          <div class="ds"><div class="dl">Ramp timeline</div><p>{f.ramp}</p></div>
+          <div class="dr">
+            <div class="ds"><div class="dl">Contract structure</div><p>{f.contracts}</p></div>
+            <div class="ds"><div class="dl">What happens on return</div><p>{f.onReturn}</p></div>
+          </div>
+          <div class="dr">
+            <div class="ds"><div class="dl">Historical precedent</div><p>{f.precedent}</p></div>
+            <div class="ds"><div class="dl">Investment implications</div><p class="inv">{f.investment}</p></div>
+          </div>
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <div class="sn-box">
+    <div class="dl">Sources & methodology</div>
+    <p>T1 official (EIA, IEA, GIIGNL, IFPRI, TeleGeography, ICPC, NDSU): primary evidence. T2 press/proprietary (Reuters, Bloomberg, S&P Global, Kpler, Wood Mackenzie, Drewry): directionally reliable. T3 model (Goldman Sachs, Rapidan Energy): flagged as estimates. Wikipedia, LinkedIn, Facebook excluded from primary evidence. 2026 conflict data provisional. Per-flow confidence reflects weakest link in each chain.</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:640px;margin-bottom:1.5rem}
+  .callout{font-size:13px;color:var(--text-muted);line-height:1.6;padding:12px 16px;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;max-width:640px}
+  .callout strong{color:var(--cyan);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+  .cross-section{margin-bottom:2.5rem}
+  .cross-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .cross-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px}
+  .cross-label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+  .cross-text{font-size:11px;color:var(--text-dim);line-height:1.5}
+  .flow-list{display:flex;flex-direction:column;gap:8px;margin-bottom:2rem}
+  .fd{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .fd[open]{border-color:var(--border-light)}
+  .fd[open] .fs{border-bottom:1px solid var(--border)}
+  .fs{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .fs::-webkit-details-marker{display:none}
+  .fs::marker{display:none;content:''}
+  .fs:hover{background:rgba(255,255,255,0.02)}
+  .fl{display:flex;gap:14px;flex:1;min-width:0}
+  .fn{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .ft{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .fb{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .cf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .cf-high{color:#10b981;background:rgba(16,185,129,0.1)}
+  .cf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .fy{padding:16px 20px 20px}
+  .ds{margin-bottom:16px}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .ds p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .dr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .inv{color:var(--text);font-weight:500;border-left:2px solid var(--cyan);padding-left:12px}
+  .sn-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+  .sn-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
+  @media(max-width:720px){.dr{grid-template-columns:1fr}.fb{display:none}.cross-grid{grid-template-columns:1fr}}
+</style>
