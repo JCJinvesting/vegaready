@@ -28,7 +28,31 @@ export const cards = [
       "https://www.reuters.com/world/china/global-markets-flows-graphic-2026-03-06/",
       "https://www.ici.org/research/stats/mmf",
       "https://www.reuters.com/world/china/dollar-funding-stress-eases-middle-east-conflict-de-escalation-hopes-rise-2026-03-04/"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "money-markets",
+        "rates"
+      ],
+      "entities": [
+        "us-treasury",
+        "fed",
+        "mmf",
+        "usd"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "winner",
+        "oil_strike": "winner",
+        "ceasefire": "loser"
+      },
+      "asOf": "2026-05-27"
+    }
   },
   {
     "id": "treasury-safe-haven-vs-gulf-selling",
@@ -56,7 +80,33 @@ export const cards = [
       "https://ticdata.treasury.gov/Publish/mfhhis01.txt",
       "https://www.semafor.com/article/05/19/2026/saudi-arabia-uae-trim-us-debt-holdings-by-nearly-17-billion",
       "https://www.imf.org/en/blogs/articles/2026/04/14/war-in-the-middle-east-challenges-global-financial-stability"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "rates",
+        "sovereign-credit"
+      ],
+      "entities": [
+        "us-treasury",
+        "ust",
+        "saudi-arabia",
+        "uae",
+        "imf",
+        "usd"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "mixed",
+        "oil_strike": "mixed",
+        "ceasefire": "winner"
+      },
+      "asOf": "2026-05-18"
+    }
   },
   {
     "id": "em-sovereign-spread-shock",
@@ -85,7 +135,33 @@ export const cards = [
       "https://www.imf.org/-/media/files/publications/cr/2026/english/1pakea2026001.pdf",
       "https://www.morganstanley.com/im/en-us/institutional-investor/insights/articles/emerging-markets-debt-holds-firm.html",
       "https://www.thenationalnews.com/business/economy/2026/04/18/moodys-changes-bahrain-and-iraqs-outlook-to-negative-over-war-fallout/"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "sovereign-credit"
+      ],
+      "entities": [
+        "egypt",
+        "pakistan",
+        "bahrain",
+        "turkey",
+        "embi",
+        "cds",
+        "imf"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "loser",
+        "oil_strike": "loser",
+        "ceasefire": "winner"
+      },
+      "asOf": "2026-03-31"
+    }
   },
   {
     "id": "gulf-sukuk-and-swf-rebalancing",
@@ -114,7 +190,32 @@ export const cards = [
       "https://www.zawya.com/en/economy/islamic-economy/gcc-sukuk-issuance-to-slow-in-2026-as-middle-east-conflict-drags-on-lktwp4z9",
       "https://www.cfr.org/articles/disappearing-gulf-capital-the-iran-war-risk-wall-street-isnt-watching",
       "https://www.fi-desk.com/us-and-middle-east-bond-issuance-separated-by-iran-war/"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "sukuk",
+        "private-capital"
+      ],
+      "entities": [
+        "pif",
+        "saudi-arabia",
+        "uae",
+        "sukuk",
+        "adia",
+        "qia"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "loser",
+        "ceasefire": "winner"
+      },
+      "asOf": "2026-04-30"
+    }
   },
   {
     "id": "imf-program-stress-corridor",
@@ -143,7 +244,32 @@ export const cards = [
       "https://www.imf.org/en/news/articles/2026/02/26/pr-26064-egypt-imf-completes-5th-and-6th-revs-under-ext-arrange-under-eff-and-1st-rev-under-rsa",
       "https://www.imf.org/en/news/articles/2026/03/20/tr-03192026-imf-regular-press-briefing-march-19-2026",
       "https://www.dawn.com/news/2000334"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "sovereign-credit"
+      ],
+      "entities": [
+        "imf",
+        "egypt",
+        "pakistan",
+        "ukraine",
+        "lebanon",
+        "bahrain"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "loser",
+        "oil_strike": "loser",
+        "ceasefire": "mixed"
+      },
+      "asOf": "2026-05-08"
+    }
   },
   {
     "id": "trade-finance-letters-of-credit-freeze",
@@ -169,7 +295,30 @@ export const cards = [
     "sources": [
       "https://iccwbo.org/news-publications/guide/application-of-icc-trade-finance-rules-in-the-context-of-the-middle-east-conflict/",
       "https://www.fi-desk.com/us-and-middle-east-bond-issuance-separated-by-iran-war/"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "trade-finance"
+      ],
+      "entities": [
+        "icc",
+        "hormuz",
+        "red-sea"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "loser",
+        "oil_strike": "loser",
+        "cable_severance": "loser",
+        "ceasefire": "winner"
+      },
+      "asOf": "2026-04-20"
+    }
   },
   {
     "id": "sanctions-secondary-risk-china-india",
@@ -200,7 +349,34 @@ export const cards = [
       "https://www.usnews.com/news/top-news/articles/2026-04-17/exclusive-indian-refiners-pay-for-iran-oil-in-yuan-via-icici-bank-sources-say",
       "https://asiatimes.com/2026/05/china-invokes-rules-to-blunt-us-sanctions-on-teapot-refiners/",
       "https://www.rferl.org/a/iran-sanctions-waiver-us-financial-pressure/33738030.html"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "trade-finance",
+        "energy"
+      ],
+      "entities": [
+        "ofac",
+        "china",
+        "india",
+        "icici-bank",
+        "fincen",
+        "hormuz",
+        "iran",
+        "cny"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "mixed",
+        "cable_severance": "mixed"
+      },
+      "asOf": "2026-05-27"
+    }
   },
   {
     "id": "correspondent-banking-and-swift-friction",
@@ -228,7 +404,30 @@ export const cards = [
       "https://www.steptoe.com/en/news-publications/international-compliance-blog/weekly-sanctions-update-march-23-2026.html",
       "https://home.treasury.gov/news/press-releases/sb0510",
       "https://home.treasury.gov/news/press-releases/sb0502"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "trade-finance"
+      ],
+      "entities": [
+        "fincen",
+        "ofac",
+        "swift",
+        "mbaer",
+        "uae",
+        "iran"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "cable_severance": "loser"
+      },
+      "asOf": "2026-05-27"
+    }
   },
   {
     "id": "shadow-fleet-financing-risk",
@@ -256,7 +455,33 @@ export const cards = [
       "https://home.treasury.gov/news/press-releases/sb0510",
       "https://www.fincen.gov/system/files/2026-05/FinCEN-Alert-IRGC.pdf",
       "https://www.atlanticcouncil.org/blogs/econographics/what-swap-gulf/"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "shipping-freight",
+        "insurance"
+      ],
+      "entities": [
+        "ofac",
+        "fincen",
+        "iran",
+        "ig-pi-clubs",
+        "vlcc",
+        "hormuz"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "loser",
+        "oil_strike": "loser",
+        "ceasefire": "winner"
+      },
+      "asOf": "2026-05-27"
+    }
   },
   {
     "id": "dollar-swap-lines-and-gulf-liquidity-backstop",
@@ -283,7 +508,32 @@ export const cards = [
       "https://www.nytimes.com/2026/04/22/us/politics/bessent-support-emirates.html",
       "https://www.axios.com/2026/04/24/swap-line-persian-gulf",
       "https://www.atlanticcouncil.org/blogs/econographics/what-swap-gulf/"
-    ]
+    ],
+    "tags": {
+      "assetClass": [
+        "fx",
+        "rates"
+      ],
+      "entities": [
+        "us-treasury",
+        "fed",
+        "uae",
+        "qatar",
+        "esf",
+        "usd"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "oil_strike",
+        "cable_severance",
+        "ceasefire"
+      ],
+      "position": {
+        "hormuz_closure": "mixed",
+        "oil_strike": "mixed"
+      },
+      "asOf": "2026-05-30"
+    }
   }
 ];
 

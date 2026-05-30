@@ -64,7 +64,7 @@ const credit = creditDoc.entries.map((e, i) => ({
   magnitude: e.data.magnitude, beneficiaries: e.data.beneficiaries, losers: e.data.losers,
   substitution: e.data.substitution_cycle, precedent: e.data.historical_precedent,
   timeHorizon: e.data.time_horizon, investment: e.data.investment_implications,
-  staleFlags: e.data.stale_claim_flags || '', sources: e.sources || [],
+  staleFlags: e.data.stale_claim_flags || '', sources: e.sources || [], tags: e.tags || {},
 }));
 out('credit.js', banner('credit.json')
   + 'export const cards = ' + JSON.stringify(credit, null, 2) + ';\n\n'
@@ -73,4 +73,26 @@ out('credit.js', banner('credit.json')
   + 'export const takeaways = ' + JSON.stringify(creditDoc.takeaways || [], null, 2) + ';\n\n'
   + 'export const nextSection = ' + JSON.stringify(creditDoc.nextSection || '', null, 2) + ';\n\n'
   + 'export const methodology = ' + JSON.stringify(creditDoc.methodology || '', null, 2) + ';\n');
+// INSURANCE (Section 3) -> markets/insurance. Data-point schema; generic adapter -> event cards.
+const insMETA = /(_source|_tier|_note|_qualifier|_names|_name)$/;
+const insHuman = (k) => k.replace(/_/g, ' ')
+  .replace(/\bpct\b/gi, '%').replace(/\busd\b/gi, 'USD').replace(/\bbn\b/gi, 'bn')
+  .replace(/\bawrp\b/gi, 'AWRP').replace(/\bvlcc\b/gi, 'VLCC').replace(/\bjkm\b/gi, 'JKM')
+  .replace(/\btce\b/gi, 'TCE').replace(/\blng\b/gi, 'LNG').replace(/\bicc\b/gi, 'ICC')
+  .replace(/\bofac\b/gi, 'OFAC').replace(/\blma\b/gi, 'LMA').replace(/\bq2\b/gi, 'Q2')
+  .trim().replace(/^./, (c) => c.toUpperCase());
+const insDoc = rd('insurance.json');
+const insurance = insDoc.entries.map((e, i) => {
+  const d = e.data || {};
+  const dateKey = Object.keys(d).find((k) => k.endsWith('_date'));
+  const metrics = Object.keys(d)
+    .filter((k) => !insMETA.test(k) && k !== 'confidence' && k !== 'source_tier' && d[k] != null && d[k] !== '')
+    .map((k) => ({ label: insHuman(k), value: Array.isArray(d[k]) ? d[k].join(', ') : String(d[k]) }));
+  return {
+    id: e.id, icon: icon(i), title: e.title, category: e.category, summary: e.summary,
+    date: dateKey ? d[dateKey] : '', metrics,
+    confidence: (e.confidence || '').toLowerCase(), sources: e.sources || [], tags: e.tags || {},
+  };
+});
+out('insurance.js', banner('insurance.json') + 'export const cards = ' + JSON.stringify(insurance, null, 2) + ';\n');
 console.log('done.');

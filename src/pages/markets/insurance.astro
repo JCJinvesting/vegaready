@@ -1,0 +1,87 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import { cards } from '../../data/analysis/insurance.js';
+const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' };
+---
+
+<AnalysisLayout
+  title="Insurance, Shipping Finance & Trade Credit — VegaReady"
+  description="The insurance market is the transmission mechanism for shipping disruption. War-risk premiums, P&I club cancellations, VLCC freight records, Lloyd's capacity, and reinsurance backstops across the 2026 Gulf conflict."
+  section="Insurance"
+  area="markets"
+>
+  <section class="hero">
+    <div class="label">Markets · Insurance & Shipping Finance</div>
+    <h1>When the premium <br/>is the transmission.</h1>
+    <p class="lead">War-risk insurance isn't downstream of the shipping shock — it <em>is</em> the shock's transmission mechanism. When the Joint War Committee re-lists the Gulf and P&I clubs cancel cover, hulls stop moving before a single freight rate prints. These are the dated, hard-number events of that machinery, Feb–May 2026 — each figure carries its source and tier.</p>
+  </section>
+
+  <div class="ev-list">
+    {cards.map((c) => (
+      <details class="ev">
+        <summary class="es">
+          <div class="el">
+            <span class="en">{c.icon}</span>
+            <div>
+              <div class="et">{c.title}<span class="cat" style={`color:${catColor[c.category] || '#9ca3af'};border-color:${(catColor[c.category] || '#9ca3af')}40`}>{c.category}</span></div>
+              <div class="eb">{c.summary}</div>
+            </div>
+          </div>
+          <span class={`conf conf-${c.confidence}`}>{c.confidence}</span>
+        </summary>
+        <div class="ey">
+          <div class="mgrid">
+            {c.metrics.map((mm) => (
+              <div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>
+            ))}
+          </div>
+          <div class="ds"><div class="dl">Sources</div><p>{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <div class="foot-box">
+    <div class="dl">Sources & methodology</div>
+    <p>T1 official (JWC/Lloyd's Market Association, ICC Banking Commission, OFAC, US DFC); T2 market/press (Reuters/LSEG, Baltic Exchange, Spark Commodities, Argus, Signal Ocean/Veson). Each metric is rendered directly from the source-tiered research; unverified single-source fixtures are flagged in-card and never anchored. Section 3 of the VegaReady Phase 2 series.</p>
+    <p class="next"><strong>Related:</strong> the trade-finance, shadow-fleet, and correspondent-banking plumbing sits on <a href="/markets/credit" style="color:var(--cyan)">/markets/credit</a>; the physical Hormuz flow on <a href="/outlook" style="color:var(--cyan)">/outlook</a>.</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:680px}
+  .lead em{color:var(--text);font-style:italic}
+  .ev-list{display:flex;flex-direction:column;gap:8px;margin-bottom:3rem}
+  .ev{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .ev[open]{border-color:var(--border-light)}
+  .ev[open] .es{border-bottom:1px solid var(--border)}
+  .es{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .es::-webkit-details-marker{display:none}
+  .es::marker{content:''}
+  .es:hover{background:rgba(255,255,255,0.02)}
+  .el{display:flex;gap:14px;flex:1;min-width:0}
+  .en{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .et{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cat{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:4px}
+  .eb{font-size:12px;color:var(--text-dim);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .conf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .conf-high{color:#10b981;background:rgba(16,185,129,0.1)}
+  .conf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .conf-low{color:#ef4444;background:rgba(239,68,68,0.1)}
+  .ey{padding:16px 20px 20px}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .metric{padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px}
+  .ml{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .mv{font-size:13px;color:var(--text-muted);line-height:1.45}
+  .ds{margin-bottom:0}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .ds p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
+  .foot-box .next{margin:0}
+  .foot-box strong{color:var(--cyan)}
+  @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}}
+</style>
