@@ -133,12 +133,12 @@ const countries = [
   {
     id:'south-korea', title:'South Korea', gdp:'$1.7T', tag:'loser', tagColor:'#ef4444',
     summary:'~100% crude imported, ~70% via Hormuz (KEIA), ~15-20% LNG exposed. $150/bbl = ~+2.9pp inflation, -0.8pp growth. KOSPI hit circuit breaker (-12%) on 4 Mar 2026. ME crude share fell from 65.2% to 53.1% by Apr 2026. Silver lining: dominant LNG-carrier orderbook ($71.3B).',
-    energy:'~100% crude imported; ~70% via Hormuz. ~19.5% LNG exposed. Power: coal+gas ~58%, nuclear ~31%.',
+    energy:'~100% crude imported; ~70% via Hormuz. ~15-20% LNG exposed. Power: coal+gas ~58%, nuclear ~31%.',
     food:'Net importer but not Gulf-sourced. Lower-tier vulnerability.',
     trade:'Petrochemicals -15.5%. Samsung+SK Hynix 75% global DRAM. Shipbuilding 22% global share, 66% of LNG-carrier orderbook ($71.3B).',
     financial:'$100/bbl: +1.1pp inflation, -0.3pp growth. $150/bbl: +2.9pp, -0.8pp. 5 trillion won supplementary budget (April).',
     substitution:'Australia LNG (31.4%) and US LNG diversify. Nuclear (31%) is non-import buffer. Crude hard to substitute short-term.',
-    hormuz:'~70% crude + ~19.5% LNG at risk. KOSPI -12%. Stagflation risk. Shipbuilding demand surge partially offsets.',
+    hormuz:'~70% crude + ~15-20% LNG at risk. KOSPI -12%. Stagflation risk. Shipbuilding demand surge partially offsets.',
     strike:'$100/bbl: +1.1pp inflation; petrochemical margins squeezed.',
     cable:'Indirect — financial/trading latency; global risk-off.',
     ceasefire:'Relief rally — won recovers, import bill falls; shipbuilding orders may soften as scarcity premium fades.',
@@ -147,7 +147,7 @@ const countries = [
     confidence:'medium',
   },
   {
-    id:'brazil', title:'Brazil', gdp:'$2.2T', tag:'winner', tagColor:'#10b981',
+    id:'brazil', title:'Brazil', gdp:'$2.2T', tag:'mixed', tagColor:'#f59e0b',
     summary:'Structural winner: net crude exporter (record 3.77M b/d, ~80% pre-salt), #1 soy/sugar exporter filling food gaps, ethanol/flex fleet (fuel +10-20% vs 30-40% in US). Cost: fertilizer imports ~70-85%, ~$4.36B/yr Russia-linked. Record April surplus $10.5B.',
     energy:'Net exporter since 2024 (#1 export). 3.77M b/d (+12.3%). Ethanol/flex held fuel to +10-20%. Asian exports +95% to China Q1.',
     food:'#1 net ag exporter; grains >165M tonnes. Fertilizer: imports ~70-85%, 96% potash. Russia 25.8% of imports ($4.36B).',
@@ -206,7 +206,7 @@ const winnerLosers = [
   {name:'UAE',hormuz:'Severe loser',strike:'Moderate loser',cable:'Severe loser',ceasefire:'Strong winner',net:'Hub model at risk',color:'#f59e0b'},
   {name:'Russia',hormuz:'Winner',strike:'Winner',cable:'Minimal',ceasefire:'Moderate loser',net:'Clearest winner',color:'#10b981'},
   {name:'South Korea',hormuz:'Severe loser',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Strong winner',net:'Loser (+shipbuilding)',color:'#ef4444'},
-  {name:'Brazil',hormuz:'Strong winner',strike:'Moderate winner',cable:'Minimal',ceasefire:'Modest loser',net:'Structural winner',color:'#10b981'},
+  {name:'Brazil',hormuz:'Strong winner',strike:'Moderate winner',cable:'Minimal',ceasefire:'Modest loser',net:'Mixed (tilts winner)',color:'#f59e0b'},
   {name:'Egypt',hormuz:'Catastrophic',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Very strong winner',net:'Severe loser',color:'#ef4444'},
   {name:'Pakistan',hormuz:'Catastrophic',strike:'Severe loser',cable:'Significant loser',ceasefire:'Very strong winner',net:'Most vulnerable',color:'#ef4444'},
 ];
@@ -225,9 +225,9 @@ const winnerLosers = [
 
   <section class="summary-section">
     <div class="summary-grid">
-      <div class="summary-card" style="border-left:3px solid #10b981"><div class="summary-label">Net winners</div><div class="summary-list">United States, Russia, Saudi Arabia, Brazil</div></div>
+      <div class="summary-card" style="border-left:3px solid #10b981"><div class="summary-label">Net winners</div><div class="summary-list">United States, Russia, Saudi Arabia</div></div>
       <div class="summary-card" style="border-left:3px solid #ef4444"><div class="summary-label">Net losers</div><div class="summary-list">China, EU, Japan, India, South Korea, Egypt, Pakistan</div></div>
-      <div class="summary-card" style="border-left:3px solid #f59e0b"><div class="summary-label">Mixed</div><div class="summary-list">UAE (Fujairah bypass vs non-relocatable hub)</div></div>
+      <div class="summary-card" style="border-left:3px solid #f59e0b"><div class="summary-label">Mixed</div><div class="summary-list">UAE (Fujairah bypass vs non-relocatable hub), Brazil (oil/ag winner offset by fertilizer-import cost)</div></div>
     </div>
     <div class="callout"><strong>Key asymmetry:</strong> Saudi Arabia is the only economy net-long a Hormuz closure. Egypt is the largest ceasefire-beneficiary. Pakistan carries unique double-Hormuz risk: its energy supplier and ~$38B remittance lifeline are the same region.</div>
   </section>
