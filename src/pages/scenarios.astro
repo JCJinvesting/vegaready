@@ -1,0 +1,618 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Scenario Analysis — VegaReady"
+      description="Threat cascade analysis for the Iran-US-Israel conflict. Historical precedents, infrastructure vulnerabilities, scenario matrix, and market impact projections."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main class="scenarios">
+      <!-- ═══ HERO ═══ -->
+      <section class="sc-hero">
+        <div class="sc-label">Scenario analysis</div>
+        <h1>What happens if<br/>they follow through.</h1>
+        <p class="sc-lead">
+          Every threat has a market cascade. We map the infrastructure at risk,
+          quantify the impact of each scenario, and reference what happened when
+          similar events occurred in the past. This is how you prepare — by
+          understanding every variable before it moves.
+        </p>
+      </section>
+
+      <!-- ═══ HISTORICAL PRECEDENTS ═══ -->
+      <section class="sc-section">
+        <div class="sc-section-label">Historical precedents</div>
+        <h2>What the market did last time</h2>
+        <p class="sc-section-sub">Four events that reshaped energy markets. Each one shows how quickly prices move, how long disruptions last, and what the recovery looked like.</p>
+
+        <div class="precedent-grid">
+          <div class="prec-card">
+            <div class="prec-year">2019</div>
+            <div class="prec-title">Abqaiq-Khurais Attack</div>
+            <div class="prec-stat red">5.7M bbl/day offline</div>
+            <div class="prec-detail">
+              <div class="prec-row"><span class="prec-key">Oil impact</span><span class="prec-val red">+20% overnight ($60 → $72)</span></div>
+              <div class="prec-row"><span class="prec-key">Supply lost</span><span class="prec-val">50% of Saudi production</span></div>
+              <div class="prec-row"><span class="prec-key">Recovery</span><span class="prec-val">2M bbl/day in 48h, full in 2 weeks</span></div>
+              <div class="prec-row"><span class="prec-key">Price recovery</span><span class="prec-val">Retraced within weeks</span></div>
+            </div>
+            <div class="prec-lesson">Rapid Saudi restoration capacity limited duration. A sustained or repeated attack would be structurally different.</div>
+          </div>
+
+          <div class="prec-card">
+            <div class="prec-year">2023-25</div>
+            <div class="prec-title">Houthi Red Sea Campaign</div>
+            <div class="prec-stat amber">2,700% insurance spike</div>
+            <div class="prec-detail">
+              <div class="prec-row"><span class="prec-key">Ships attacked</span><span class="prec-val">130+ vessels, 190+ incidents</span></div>
+              <div class="prec-row"><span class="prec-key">Insurance</span><span class="prec-val amber">0.07% → 2.0% hull value</span></div>
+              <div class="prec-row"><span class="prec-key">Container rates</span><span class="prec-val">5x surge ($1K → $5.2K/FEU)</span></div>
+              <div class="prec-row"><span class="prec-key">Suez Canal</span><span class="prec-val">-57% traffic, still -60% after 100 days</span></div>
+            </div>
+            <div class="prec-lesson">Non-state actors can sustainably disrupt chokepoints. Insurance market impact exceeds direct physical damage.</div>
+          </div>
+
+          <div class="prec-card">
+            <div class="prec-year">1990</div>
+            <div class="prec-title">Iraq Invasion of Kuwait</div>
+            <div class="prec-stat red">Oil doubled: $21 → $46</div>
+            <div class="prec-detail">
+              <div class="prec-row"><span class="prec-key">Supply removed</span><span class="prec-val">4.3M bbl/day (Iraq + Kuwait)</span></div>
+              <div class="prec-row"><span class="prec-key">Peak price</span><span class="prec-val red">$46/bbl (Oct 1990), +119%</span></div>
+              <div class="prec-row"><span class="prec-key">Duration</span><span class="prec-val">~9 month price shock</span></div>
+              <div class="prec-row"><span class="prec-key">Macro effect</span><span class="prec-val">Contributed to US recession</span></div>
+            </div>
+            <div class="prec-lesson">Total supply removal causes sustained, severe price shocks. IEA strategic reserves eventually moderated prices.</div>
+          </div>
+
+          <div class="prec-card">
+            <div class="prec-year">1984-88</div>
+            <div class="prec-title">Iran-Iraq Tanker War</div>
+            <div class="prec-stat amber">411 ships attacked</div>
+            <div class="prec-detail">
+              <div class="prec-row"><span class="prec-key">Casualties</span><span class="prec-val">430+ civilian sailors</span></div>
+              <div class="prec-row"><span class="prec-key">Insurance peak</span><span class="prec-val amber">7.5% hull value (Kharg)</span></div>
+              <div class="prec-row"><span class="prec-key">Oil impact</span><span class="prec-val">Surprisingly stable — flow continued</span></div>
+              <div class="prec-row"><span class="prec-key">Mine threat</span><span class="prec-val">USS Roberts: 13-month repair</span></div>
+            </div>
+            <div class="prec-lesson">Sustained low-level shipping attacks raise insurance dramatically but don't spike oil if flow continues through the chokepoint.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ INFRASTRUCTURE ═══ -->
+      <section class="sc-section">
+        <div class="sc-section-label">Critical infrastructure</div>
+        <h2>What's at risk and what it means</h2>
+        <p class="sc-section-sub">Quantified capacity at each critical node — what each side can credibly threaten, and what the market impact would be if it's hit.</p>
+
+        <div class="infra-list">
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-dot" style="background:#ef4444"></div>
+              <div>
+                <div class="infra-name">Strait of Hormuz</div>
+                <div class="infra-type">Maritime chokepoint</div>
+              </div>
+              <div class="infra-capacity">20.9M bbl/day</div>
+            </div>
+            <div class="infra-body">
+              <div class="infra-facts">
+                <span>25% of seaborne oil</span><span>20% of global LNG</span><span>21nm wide at narrowest</span>
+              </div>
+              <div class="infra-if">
+                <strong>If closed:</strong> Oil +$40-60/bbl within 48h. Bypass capacity: 8.5-9M bbl/day via Saudi Petroline (7M) + UAE ADCOP (1.5-1.8M) — covers ~43% of transit. Clearance timeline: weeks to months depending on mine deployment.
+              </div>
+            </div>
+          </div>
+
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-dot" style="background:#f59e0b"></div>
+              <div>
+                <div class="infra-name">Kharg Island</div>
+                <div class="infra-type">Iran's primary export terminal</div>
+              </div>
+              <div class="infra-capacity">96% of Iran exports</div>
+            </div>
+            <div class="infra-body">
+              <div class="infra-facts">
+                <span>~1.58M bbl/day current</span><span>30-34M bbl storage</span><span>25km offshore</span>
+              </div>
+              <div class="infra-if">
+                <strong>If struck:</strong> Oil +$15-25/bbl, Iran exports to zero. China loses 1.5M bbl/day supply. Iran likely retaliates against Saudi/UAE facilities. 6-18 months to rebuild.
+              </div>
+            </div>
+          </div>
+
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-dot" style="background:#6366f1"></div>
+              <div>
+                <div class="infra-name">Submarine Internet Cables</div>
+                <div class="infra-type">Communications infrastructure</div>
+              </div>
+              <div class="infra-capacity">17-30% of global traffic</div>
+            </div>
+            <div class="infra-body">
+              <div class="infra-facts">
+                <span>17+ cable systems in Red Sea</span><span>~60 repair ships globally</span><span>$30K+/day repair cost</span>
+              </div>
+              <div class="infra-if">
+                <strong>If severed:</strong> ME/Asia latency +300-500ms. Crypto exchange connectivity gaps, DEX arbitrage premium. SWIFT routing delays, FX settlement risk. Repair: 3-8 months. Feb 2024 precedent: AAE-1 took 5 months.
+              </div>
+            </div>
+          </div>
+
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-dot" style="background:#ef4444"></div>
+              <div>
+                <div class="infra-name">Ras Tanura</div>
+                <div class="infra-type">Saudi Arabia's largest oil terminal</div>
+              </div>
+              <div class="infra-capacity">9M bbl/day design</div>
+            </div>
+            <div class="infra-body">
+              <div class="infra-facts">
+                <span>~5.5M bbl/day actual</span><span>16 VLCCs simultaneously</span><span>Offshore berths</span>
+              </div>
+              <div class="infra-if">
+                <strong>If hit (retaliation):</strong> Oil +$20-35/bbl. Saudi exports divert to Yanbu via Petroline. Offshore infrastructure harder to repair than onshore — weeks to months. Combined with Hormuz closure: catastrophic.
+              </div>
+            </div>
+          </div>
+
+          <div class="infra-item">
+            <div class="infra-header">
+              <div class="infra-dot" style="background:#f59e0b"></div>
+              <div>
+                <div class="infra-name">Abqaiq Processing</div>
+                <div class="infra-type">World's largest crude stabilization</div>
+              </div>
+              <div class="infra-capacity">7M bbl/day</div>
+            </div>
+            <div class="infra-body">
+              <div class="infra-facts">
+                <span>Processes most Saudi exports</span><span>Inland facility</span><span>Attacked 2019</span>
+              </div>
+              <div class="infra-if">
+                <strong>If hit again:</strong> Proven impact: +20% oil overnight (2019). Sustained attack: months of disruption. Essentially irreplaceable — no equivalent backup facility exists anywhere.
+              </div>
+            </div>
+          </div>
+
+          <div class="infra-item bypass">
+            <div class="infra-header">
+              <div class="infra-dot" style="background:#10b981"></div>
+              <div>
+                <div class="infra-name">Bypass Infrastructure</div>
+                <div class="infra-type">Hormuz contingency pipelines</div>
+              </div>
+              <div class="infra-capacity">8.5-9M bbl/day combined</div>
+            </div>
+            <div class="infra-body">
+              <div class="infra-facts">
+                <span>Petroline: 7M bbl/day to Yanbu</span><span>ADCOP: 1.5-1.8M to Fujairah</span><span>West-East 1: 2027 (~doubles UAE bypass)</span>
+              </div>
+              <div class="infra-if">
+                <strong>Strategic context:</strong> Combined bypass covers ~43% of Hormuz transit. Gap of ~11-12M bbl/day would need to come from strategic reserves or demand destruction. Both pipelines expanded specifically in response to the 2026 conflict.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ SCENARIO MATRIX ═══ -->
+      <section class="sc-section">
+        <div class="sc-section-label">Scenario matrix</div>
+        <h2>Four paths forward</h2>
+        <p class="sc-section-sub">Each scenario with probability estimate, market cascade, counter-response, and historical parallel. Probabilities are JCJ editorial assessments updated as rhetoric intensifies or de-escalates.</p>
+
+        <div class="scenario-cards">
+          <div class="sc-card">
+            <div class="sc-card-header">
+              <div class="sc-card-title">Iranian oil infrastructure strike</div>
+              <div class="sc-prob medium">35% probability</div>
+            </div>
+            <div class="sc-card-body">
+              <div class="sc-impact-grid">
+                <div class="sc-impact"><span class="sc-impact-label">Oil</span><span class="sc-impact-val red">+$15-25/bbl</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">Iran exports</span><span class="sc-impact-val red">→ zero</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">China supply</span><span class="sc-impact-val amber">-1.5M bbl/day</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">Rebuild</span><span class="sc-impact-val">6-18 months</span></div>
+              </div>
+              <div class="sc-counter"><strong>Counter-response:</strong> Iran retaliates against Saudi/UAE export infrastructure. GCC air defense activation. Potential Hormuz mining.</div>
+              <div class="sc-parallel"><strong>Precedent:</strong> 1986-1988 Kharg War phase — Iran's exports were repeatedly disrupted but never fully eliminated.</div>
+            </div>
+          </div>
+
+          <div class="sc-card">
+            <div class="sc-card-header">
+              <div class="sc-card-title">Submarine cable severance</div>
+              <div class="sc-prob medium">28% probability</div>
+            </div>
+            <div class="sc-card-body">
+              <div class="sc-impact-grid">
+                <div class="sc-impact"><span class="sc-impact-label">Internet</span><span class="sc-impact-val amber">17-30% disrupted</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">Latency</span><span class="sc-impact-val amber">+300-500ms ME/Asia</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">Crypto</span><span class="sc-impact-val">Exchange gaps</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">Repair</span><span class="sc-impact-val red">3-8 months</span></div>
+              </div>
+              <div class="sc-counter"><strong>Counter-response:</strong> Satellite backup activation, traffic rerouting. Only ~60 cable ships exist globally. Permits required for conflict-zone waters.</div>
+              <div class="sc-parallel"><strong>Precedent:</strong> Feb 2024 Yemen cable cuts — 4 cables severed, AAE-1 repair took 5 months in conflict zone.</div>
+            </div>
+          </div>
+
+          <div class="sc-card">
+            <div class="sc-card-header">
+              <div class="sc-card-title">Negotiated ceasefire</div>
+              <div class="sc-prob low-risk">25% probability</div>
+            </div>
+            <div class="sc-card-body">
+              <div class="sc-impact-grid">
+                <div class="sc-impact"><span class="sc-impact-label">Oil</span><span class="sc-impact-val green">-$10-15/bbl</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">GCC equities</span><span class="sc-impact-val green">+8-12% rally</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">War-risk</span><span class="sc-impact-val green">-80% collapse</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">CDS</span><span class="sc-impact-val green">-40-60bp</span></div>
+              </div>
+              <div class="sc-counter"><strong>Framework:</strong> Phased sanctions relief with nuclear/military inspections. Gradual normalization over 3-6 months.</div>
+              <div class="sc-parallel"><strong>Precedent:</strong> 2015 JCPOA — Iran nuclear deal led to $10-15 oil decline over 6 months.</div>
+            </div>
+          </div>
+
+          <div class="sc-card">
+            <div class="sc-card-header">
+              <div class="sc-card-title">Full Hormuz closure</div>
+              <div class="sc-prob high">12% probability</div>
+            </div>
+            <div class="sc-card-body">
+              <div class="sc-impact-grid">
+                <div class="sc-impact"><span class="sc-impact-label">Oil</span><span class="sc-impact-val red">+$40-60/bbl</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">Global trade</span><span class="sc-impact-val red">20M bbl/day blocked</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">BTC</span><span class="sc-impact-val amber">+15-20% (flight)</span></div>
+                <div class="sc-impact"><span class="sc-impact-label">GCC indices</span><span class="sc-impact-val red">-20-30%</span></div>
+              </div>
+              <div class="sc-counter"><strong>Counter-response:</strong> US mine-clearing, 5th Fleet escort. Iran has 5,000+ mines, can deploy within hours. Only 2 US MCM ships in theater.</div>
+              <div class="sc-parallel"><strong>Precedent:</strong> 1988 Tanker War — but at far larger scale. Modern mines are harder to sweep. Clearance: weeks to months.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ MINE WARFARE ═══ -->
+      <section class="sc-section mine-section">
+        <div class="sc-section-label">Mine warfare context</div>
+        <h2>The asymmetric threat</h2>
+        <p class="sc-section-sub">Iran's mine inventory is its most cost-effective deterrent. 5,000+ mines can be deployed in hours; clearing them takes months.</p>
+
+        <div class="mine-grid">
+          <div class="mine-stat">
+            <div class="mine-num">5,000+</div>
+            <div class="mine-label">Naval mines in inventory</div>
+            <div class="mine-detail">Contact mines (M-08), influence mines, Chinese EM-52 rocket-propelled rising mines, Russian and North Korean advanced types</div>
+          </div>
+          <div class="mine-stat">
+            <div class="mine-num">Hours</div>
+            <div class="mine-label">Deployment time (IRGC claim)</div>
+            <div class="mine-detail">Fast attack craft, Kilo-class submarines, indigenous Fateh/Ghadir subs, coast-launched rocket systems, aerial delivery</div>
+          </div>
+          <div class="mine-stat">
+            <div class="mine-num">2</div>
+            <div class="mine-label">US MCM ships in theater</div>
+            <div class="mine-detail">Avenger-class mine countermeasure ships — both in Pacific, not pre-positioned for Hormuz. Coalition allies provide additional MCM assets.</div>
+          </div>
+          <div class="mine-stat">
+            <div class="mine-num">Months</div>
+            <div class="mine-label">Estimated clearance time</div>
+            <div class="mine-detail">Modern rising/influence mines far harder to sweep than WWII-era contact mines. 1988 Earnest Will: months of continuous effort for a smaller event.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ SOURCES ═══ -->
+      <section class="sc-section">
+        <div class="sc-section-label">Sources</div>
+        <p class="sources-text">
+          Data compiled from EIA, BIMCO, Kpler, TeleGeography, CRS, Naval News, Bloomberg, J.P. Morgan, Lloyd's List,
+          Atlas Institute, AGBI, GeoCables, Foreign Policy, and USNI News. Probability estimates are JCJ Investing editorial
+          assessments based on current rhetoric, capability analysis, and historical pattern matching. See the Sources tab
+          in the dashboard for full provenance.
+        </p>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .scenarios {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  /* Hero */
+  .sc-hero {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sc-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .sc-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .sc-lead {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* Sections */
+  .sc-section { margin-bottom: 4rem; }
+  .sc-section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .sc-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .sc-section-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+
+  /* Precedents */
+  .precedent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .prec-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .prec-year {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .prec-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .prec-stat {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  .prec-stat.red { color: #ef4444; background: rgba(239,68,68,0.08); }
+  .prec-stat.amber { color: #f59e0b; background: rgba(245,158,11,0.08); }
+  .prec-detail { margin-bottom: 12px; }
+  .prec-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .prec-key { color: var(--text-dim); }
+  .prec-val { color: var(--text); font-weight: 600; font-family: var(--font-mono); font-size: 11px; }
+  .prec-val.red { color: #ef4444; }
+  .prec-val.amber { color: #f59e0b; }
+  .prec-lesson {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    font-style: italic;
+  }
+
+  /* Infrastructure */
+  .infra-list { display: flex; flex-direction: column; gap: 10px; }
+  .infra-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .infra-item.bypass { border-color: rgba(16,185,129,0.3); }
+  .infra-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    cursor: default;
+  }
+  .infra-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .infra-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .infra-type { font-size: 11px; color: var(--text-dim); }
+  .infra-capacity {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+  .infra-body { padding: 0 20px 16px; }
+  .infra-facts {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .infra-facts span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    padding: 2px 8px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 3px;
+  }
+  .infra-if {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .infra-if strong { color: var(--text); }
+
+  /* Scenario cards */
+  .scenario-cards { display: flex; flex-direction: column; gap: 12px; }
+  .sc-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .sc-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sc-card-title { font-size: 16px; font-weight: 700; color: var(--text); }
+  .sc-prob {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .sc-prob.high { color: #ef4444; background: rgba(239,68,68,0.1); }
+  .sc-prob.medium { color: #f59e0b; background: rgba(245,158,11,0.1); }
+  .sc-prob.low-risk { color: #10b981; background: rgba(16,185,129,0.1); }
+  .sc-card-body { padding: 16px 20px; }
+  .sc-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .sc-impact { text-align: center; }
+  .sc-impact-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .sc-impact-val {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .sc-impact-val.red { color: #ef4444; }
+  .sc-impact-val.amber { color: #f59e0b; }
+  .sc-impact-val.green { color: #10b981; }
+  .sc-counter, .sc-parallel {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .sc-counter strong, .sc-parallel strong { color: var(--text-muted); }
+
+  /* Mine warfare */
+  .mine-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+  .mine-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .mine-stat { text-align: center; }
+  .mine-num {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--cyan);
+    margin-bottom: 4px;
+  }
+  .mine-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .mine-detail {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  /* Sources */
+  .sources-text {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .precedent-grid { grid-template-columns: 1fr; }
+    .sc-impact-grid { grid-template-columns: 1fr 1fr; }
+    .mine-grid { grid-template-columns: 1fr 1fr; }
+    .scenarios { padding: 2rem 1rem; }
+  }
+  @media (max-width: 520px) {
+    .mine-grid { grid-template-columns: 1fr; }
+  }
+</style>
