@@ -731,3 +731,87 @@ export const cards = [
     }
   }
 ];
+
+export const thesis = "The structural fault line this episode exposed: insurance repricing PRECEDED the physical closure of Hormuz. The market's effective foreclosure of standard commercial transit was achieved before any formal military blockade — driven by P&I-club cancellation notices and JWC area expansion operating on contractual 72-hour mechanisms. Simultaneously, OFAC's 'Economic Fury' campaign, ICC guidance that trade-finance rules stay operative regardless of physical disruption, and correspondent-banking compliance delays created a three-layer financial squeeze on commodity traders and LC counterparties that will outlast any ceasefire by months.";
+
+export const premiumTrajectory = [
+  {
+    "phase": "Pre-conflict",
+    "date": "to Feb 27",
+    "awrp": "0.15–0.25%",
+    "cost": "$200–250k / wk",
+    "note": "Baseline on a $100M VLCC; Hormuz HRA designation in place since 2019."
+  },
+  {
+    "phase": "Repricing",
+    "date": "Feb 28 – Mar 5",
+    "awrp": "1.0–7.5%",
+    "cost": "$1M / wk at 1%",
+    "note": "All 12 IG P&I clubs issue 72-hr cancellations; JWC expands Listed Areas. Insurance forecloses transit before any blockade."
+  },
+  {
+    "phase": "Crisis peak",
+    "date": "Mar 10–11",
+    "awrp": "7.5%, up to 10%",
+    "cost": "$5M / wk at 5%",
+    "note": "Strait 2.5% standard, 5% US/UK/Israel-nexus, 10%+ highest-risk (Lloyd's List). 400–4,000% above baseline."
+  },
+  {
+    "phase": "Post-ceasefire",
+    "date": "Apr 14",
+    "awrp": "~1% Gulf / ~3% Strait",
+    "cost": "~$1M / wk",
+    "note": "Ratchet asymmetry: Strait 3% quotes briefly appear then withdraw; full normalization lags 2–4 quarters (Argus/Northern Trust)."
+  }
+];
+
+export const scenarioImpact = [
+  {
+    "scenario": "hormuz_closure",
+    "label": "Hormuz closure",
+    "status": "realized",
+    "tone": "#ef4444",
+    "mechanism": "Insurance-first closure → freight-rate spike → collateral-value inflation → covenant-pressure relief for tanker owners → LC/trade-finance squeeze for commodity traders → OFAC enforcement cascade.",
+    "winners": "Lloyd's specialty war-risk underwriters (premium at repriced rates); tanker owners outside the Gulf (record TCE); vessel sellers (28%+ asset appreciation); US DFC (expanded mandate); Cape-routing bunkering ports (Salalah, Fujairah, Durban).",
+    "losers": "Commodity traders (stranded cargoes, ongoing LC obligations, non-delivery); LNG importers (price shock); Gulf refinery operators; charterers (demurrage, force-majeure disputes); P&I clubs (crew-welfare / repatriation exposure).",
+    "returnDynamics": "Freight normalizes 6–12 weeks post-verified reopening; insurance baseline 2–4 quarters minimum. Requires mine clearance (months, no public timeline), sustained incident-free periods, and sanctions clarity. ADNOC: full capacity no earlier than Q1–Q2 2027."
+  },
+  {
+    "scenario": "oil_strike",
+    "label": "Oil-infra strike",
+    "status": "partially_realized",
+    "tone": "#f59e0b",
+    "mechanism": "Physical facility damage → property-insurance claims (war exclusions in standard energy policies apply; business-interruption cover needs a specific endorsement) → LNG-plant dispute → trade-credit claims for non-delivery of FOB LNG cargoes.",
+    "winners": "Alternative LNG suppliers (US FOB terminals, Australian spot); energy property re/insurers (elevated premiums for non-struck-asset cover); the London energy-insurance market.",
+    "losers": "QatarEnergy JV partners (TOTAL, Shell, ExxonMobil); long-term LNG offtake buyers (Asian utilities, European importers); cargo insurers with in-transit LNG exposure; commodity traders with physical FOB obligations.",
+    "returnDynamics": "LNG supply: months–years (plant-repair timelines undisclosed); cargo-insurance dispute resolution 12–36 months (arbitration). Anchor: QatarEnergy's Ras Laffan halt removed ~80 MTPA (~18.8% of global LNG)."
+  },
+  {
+    "scenario": "cable_severance",
+    "label": "Cable severance",
+    "status": "partially_realized",
+    "tone": "#6366f1",
+    "mechanism": "Gulf cable-cluster severance disrupts SWIFT backup routes for Gulf-region banks. If primary and redundant links sever simultaneously, LC presentment, documentary-credit confirmation, and payment settlement could be disrupted (BIS, May 2026). With ~63 cable-repair ships worldwide and AAE-1's ~5-month repair after the Feb 2024 Red Sea cut, duration risk for financial infrastructure is non-trivial.",
+    "winners": "—",
+    "losers": "Gulf-region banks and LC counterparties (settlement and confirmation disruption).",
+    "returnDynamics": "A structural-risk scenario, not an active event. No public quantitative figure for Gulf cable financial-infrastructure insurance claims exists as of May 30, 2026."
+  },
+  {
+    "scenario": "ceasefire",
+    "label": "Ceasefire",
+    "status": "operational_not_economic",
+    "tone": "#10b981",
+    "mechanism": "Political ceasefire → gradual Hormuz reopening → insurance-premium decline (lagged, ratchet asymmetry) → freight-rate normalization (weeks, not days) → collateral-value softening (scarcity premium erodes) → refinery restocking → LC backlogs clear over months.",
+    "winners": "Commodity traders (delivery resumes, LC disputes resolved); Asian LNG importers (spot prices decline); energy-commodity-linked equity long positions.",
+    "losers": "Tanker owners (TCE declines from extraordinary to elevated-but-lower); specialty war-risk underwriters (premium income declines); vessel sellers (scarcity premium compresses); shadow-fleet operators (OFAC enforcement continues post-ceasefire).",
+    "returnDynamics": "Freight 6–12 weeks post-verified reopening (Xeneta; Northern Trust); insurance 2–4 quarters minimum (Kpler/Howden ratchet analysis). OFAC 'Economic Fury' enforcement explicitly continues under any ceasefire."
+  }
+];
+
+export const dataQuality = {
+  "high": "7 of 10 cards — JWC expansion, IG P&I notices, VLCC TCE record, DFC facility, ICC guidance, OFAC designations, Beazley consortium.",
+  "medium": "3 of 10 — LNG rate spike (Spark via Reuters), vessel collateral dislocation (Signal Ocean T3 peaks / T2 pattern), ceasefire normalization (Argus/Xeneta/Northern Trust).",
+  "quarantined": "Caixin $770k/day VLCC fixture; EnkiAI $200k/day LNG; IWI $30k/wk vs $25k/yr; NPR 300% post-ceasefire; WEF $40B DFC; WEF/JPMorgan 329 vessels / $352B; Octagon AI 54% probability; trade-credit insurer war-exclusion rulings."
+};
+
+export const nextSection = "Section 4 — Real Assets, Construction, Labor & Migration.";

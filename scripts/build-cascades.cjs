@@ -94,5 +94,11 @@ const insurance = insDoc.entries.map((e, i) => {
     confidence: (e.confidence || '').toLowerCase(), sources: e.sources || [], tags: e.tags || {},
   };
 });
-out('insurance.js', banner('insurance.json') + 'export const cards = ' + JSON.stringify(insurance, null, 2) + ';\n');
+out('insurance.js', banner('insurance.json')
+  + 'export const cards = ' + JSON.stringify(insurance, null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(insDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const premiumTrajectory = ' + JSON.stringify(insDoc.premiumTrajectory || [], null, 2) + ';\n\n'
+  + 'export const scenarioImpact = ' + JSON.stringify(insDoc.scenarioImpact || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(insDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const nextSection = ' + JSON.stringify(insDoc.nextSection || '', null, 2) + ';\n');
 console.log('done.');
