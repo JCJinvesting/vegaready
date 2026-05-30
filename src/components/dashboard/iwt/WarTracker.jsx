@@ -6688,7 +6688,7 @@ Rules: B/C/U are DAILY intercepted counts, not cumulative. deaths and inj are of
   const renderUS = () => {
     const cardBg = S_CARD;
     const usColor = "#3b82f6";
-    const b = BRIEF_ADV.b;
+    const b = (BRIEF_ADV && typeof BRIEF_ADV === 'object' && BRIEF_ADV.b) ? BRIEF_ADV.b : {title:"",execSummary:"",kpis:[],keyFindings:[],detailedSections:[]};
     return (
       <div>
         <SectionHeader title="Operation Epic Fury" subtitle="US-led air campaign against Iran — Feb 28 ongoing" color={usColor}/>
@@ -6708,7 +6708,7 @@ Rules: B/C/U are DAILY intercepted counts, not cumulative. deaths and inj are of
         <div style={{...cardBg,background:C.surfaceAlt}}>
           <div style={{fontSize:FONT.label,color:C.textMuted,lineHeight:1.75,marginBottom:14}}>{b.execSummary}</div>
           <div style={{fontSize:FONT.small,fontWeight:700,letterSpacing:1.2,textTransform:"uppercase",color:usColor,fontFamily:"'JetBrains Mono',monospace",marginBottom:10}}>KEY FINDINGS</div>
-          {b.keyFindings.map((f,i) => (
+          {(Array.isArray(b.keyFindings)?b.keyFindings:[]).map((f,i) => (
             <div key={i} style={{display:"flex",gap:8,marginBottom:10,lineHeight:1.6}}>
               <span style={{fontSize:FONT.table,fontWeight:800,color:usColor,fontFamily:"'JetBrains Mono',monospace",flexShrink:0}}>{i+1}.</span>
               <span style={{fontSize:FONT.label,color:C.textMuted}}>{f}</span>
@@ -6718,7 +6718,7 @@ Rules: B/C/U are DAILY intercepted counts, not cumulative. deaths and inj are of
         <div style={cardBg}>
           <div style={{fontSize:FONT.small,fontWeight:700,letterSpacing:1.2,textTransform:"uppercase",color:C.textDim,fontFamily:"'JetBrains Mono',monospace",marginBottom:8}}>RESEARCH SECTIONS</div>
           <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-            {b.detailedSections.map((ds,i) => (
+            {(Array.isArray(b.detailedSections)?b.detailedSections:[]).map((ds,i) => (
               <button key={i} type="button" onClick={()=>setUsSection(usSection===i?null:i)} style={{
                 fontSize:FONT.small,padding:"5px 12px",borderRadius:5,cursor:"pointer",fontFamily:"'JetBrains Mono',monospace",
                 background:usSection===i?usColor+"18":C.surfaceAlt,
@@ -6799,8 +6799,9 @@ Rules: B/C/U are DAILY intercepted counts, not cumulative. deaths and inj are of
   const renderIsrael = () => {
     const cardBg = S_CARD;
     const ilColor = "#60a5fa";
-    const b2b = BRIEF_ADV.b;
-    const b2c = BRIEF_ADV.c;
+    const _ba = (BRIEF_ADV && typeof BRIEF_ADV === 'object') ? BRIEF_ADV : {};
+    const b2b = _ba.b || {title:"",execSummary:"",kpis:[],keyFindings:[],detailedSections:[]};
+    const b2c = _ba.c || {title:"",execSummary:"",kpis:[],keyFindings:[],detailedSections:[]};
     const israelKpis = (() => {
       const bkpis = b2c && b2c.kpis ? b2c.kpis : [];
       const findKpi = (substr) => { const f = bkpis.find(k => k.k && k.k.toLowerCase().includes(substr)); return f ? f.v : null; };
@@ -6832,7 +6833,7 @@ Rules: B/C/U are DAILY intercepted counts, not cumulative. deaths and inj are of
           <div style={{fontSize:FONT.table,fontWeight:700,color:C.text,marginBottom:8}}>Interceptor Depletion</div>
           <div style={{fontSize:FONT.label,color:C.textMuted,lineHeight:1.75,marginBottom:14}}>{b2c.execSummary}</div>
           <div style={{fontSize:FONT.small,fontWeight:700,letterSpacing:1.2,textTransform:"uppercase",color:ilColor,fontFamily:"'JetBrains Mono',monospace",marginBottom:10}}>KEY FINDINGS</div>
-          {b2c.keyFindings.map((f,i) => (
+          {(Array.isArray(b2c.keyFindings)?b2c.keyFindings:[]).map((f,i) => (
             <div key={i} style={{display:"flex",gap:8,marginBottom:10,lineHeight:1.6}}>
               <span style={{fontSize:FONT.table,fontWeight:800,color:ilColor,fontFamily:"'JetBrains Mono',monospace",flexShrink:0}}>{i+1}.</span>
               <span style={{fontSize:FONT.label,color:C.textMuted}}>{f}</span>
