@@ -1175,8 +1175,15 @@ export default function WarTracker({ initialTab = "War Room", embedded = false }
   }, [warDayRef]);
 
   useEffect(() => {
+    // When embedded in Astro with an explicit initialTab prop, clear any stale hash
+    // that might override the prop. The Astro page controls which tab is shown.
+    if (embedded && initialTab !== "War Room") {
+      window.location.replace(window.location.pathname + window.location.search + "#tab=" + encodeURIComponent(initialTab));
+    }
     const parseHash = () => {
       try {
+        // If embedded with an explicit tab, the prop takes priority — skip hash override
+        if (embedded && initialTab !== "War Room") return;
         const raw = (window.location.hash || "").replace(/^#/, "");
         if (!raw) return;
         const p = new URLSearchParams(raw);
