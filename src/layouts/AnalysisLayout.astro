@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { freshness } from '../data/analysis/freshness.js';
 
 interface Props {
   title: string;
@@ -31,6 +32,9 @@ const navByArea: Record<string, {slug:string, label:string, base:string}[]> = {
     { slug: 'precedents', label: 'Precedents', base: '/outlook' },
     { slug: 'infrastructure', label: 'Infrastructure', base: '/outlook' },
   ],
+  connections: [
+    { slug: '', label: 'Connections', base: '/connections' },
+  ],
 };
 
 const areaLabels: Record<string, string> = {
@@ -38,6 +42,7 @@ const areaLabels: Record<string, string> = {
   transmission: 'Transmission',
   exposure: 'Exposure',
   outlook: 'Outlook',
+  connections: 'Connections',
 };
 
 const nav = navByArea[area] || navByArea.markets;
@@ -67,6 +72,14 @@ const areaLabel = areaLabels[area] || 'Markets';
         </div>
       </div>
     </nav>
+
+    <div class="fresh">
+      <div class="fresh-inner">
+        <span class="fresh-asof"><span class="freshdot"></span>Live &middot; as of {freshness.asOf}</span>
+        <div class="freshrow">{freshness.scenarios.map(s => (<span class:list={["freshchip", s.tone]}>{s.label}: <b>{s.status}</b></span>))}</div>
+        <div class="freshrow freshanch">{freshness.anchors.map(a => (<span class="freshanchor" title={a.note}>{a.k} <b>{a.v}</b></span>))}</div>
+      </div>
+    </div>
 
     <main class="sc-main">
       <slot />
@@ -138,4 +151,17 @@ const areaLabel = areaLabels[area] || 'Markets';
     .sc-nav-inner { padding: 0 1rem; gap: 12px; }
     .sc-main { padding: 2rem 1rem; }
   }
-</style>
+  .fresh{background:var(--bg-card,#0d1117);border-bottom:1px solid var(--border)}
+  .fresh-inner{max-width:1080px;margin:0 auto;padding:8px 2rem;display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--font-mono)}
+  .fresh-asof{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--cyan,#22d3ee);display:flex;align-items:center;gap:6px;flex-shrink:0}
+  .freshdot{width:7px;height:7px;border-radius:50%;background:var(--cyan,#22d3ee);animation:freshpulse 2s infinite}
+  @keyframes freshpulse{0%{box-shadow:0 0 0 0 rgba(34,211,238,.5)}70%{box-shadow:0 0 0 6px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+  .freshrow{display:flex;gap:6px;flex-wrap:wrap}
+  .freshchip{font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid;white-space:nowrap}
+  .freshchip.red{color:#ef4444;border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.08)}
+  .freshchip.amber{color:#f59e0b;border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.08)}
+  .freshchip.green{color:#10b981;border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.08)}
+  .freshanchor{font-size:10px;color:var(--text-dim);white-space:nowrap;cursor:help}
+  .freshanchor b{color:var(--text);font-weight:700}
+  @media(max-width:720px){.freshanch{display:none}}
+</style>>

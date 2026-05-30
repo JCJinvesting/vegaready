@@ -1,0 +1,56 @@
+---
+import AnalysisLayout from '../layouts/AnalysisLayout.astro';
+import { intro, themes } from '../data/analysis/connections.js';
+const tone = { red:'#ef4444', amber:'#f59e0b', green:'#10b981', cyan:'#22d3ee', violet:'#8b5cf6' };
+---
+<AnalysisLayout
+  title="Connections — VegaReady"
+  description="The cascade as a network: six cross-cutting threads linking each sector to the countries most exposed, the commodity flow that carries the shock, and who profits."
+  section="Connections"
+  area="connections"
+>
+  <section class="hero">
+    <div class="label">Connections</div>
+    <h1>The cascade is a network,<br/>not three lists.</h1>
+    <p class="lead">{intro}</p>
+  </section>
+
+  <div class="theme-list">
+    {themes.map(t => (
+      <div class="theme" style={`border-left:3px solid ${tone[t.tone]}`}>
+        <div class="tn" style={`color:${tone[t.tone]}`}>{t.name}</div>
+        <p class="thesis">{t.thesis}</p>
+        <div class="links">
+          <div class="lg"><span class="lgl">Sectors</span><div class="chips">{t.sectors.map(x => (<a class="chip" href={x.page}>{x.name}</a>))}</div></div>
+          <div class="lg"><span class="lgl">Countries</span><div class="chips">{t.countries.map(x => (<a class="chip" href={x.page}>{x.name}</a>))}</div></div>
+          <div class="lg"><span class="lgl">Flows</span><div class="chips">{t.flows.map(x => (<a class="chip" href={x.page}>{x.name}</a>))}</div></div>
+        </div>
+        <div class="profits"><span class="pl">Who profits</span>{t.profits.join('  ·  ')}</div>
+      </div>
+    ))}
+  </div>
+
+  <div class="sn-box"><div class="dl">How to read this</div><p>Each thread is one shock viewed across all three analysis pages. Chips link to the relevant section. Beneficiaries are the identifiable winners of that thread - the asymmetry a macro book is built around.</p></div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:680px}
+  .theme-list{display:flex;flex-direction:column;gap:12px;margin-bottom:2rem}
+  .theme{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+  .tn{font-size:15px;font-weight:700;margin-bottom:8px}
+  .thesis{font-size:13px;color:var(--text-muted);line-height:1.65;margin:0 0 14px}
+  .links{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
+  .lgl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .chip{font-family:var(--font-mono);font-size:11px;color:var(--text-dim);background:var(--bg-card,#0d1117);border:1px solid var(--border);border-radius:5px;padding:3px 8px;text-decoration:none;white-space:nowrap}
+  .chip:hover{color:var(--text);border-color:var(--cyan)}
+  .profits{font-size:12px;color:var(--text);line-height:1.6;border-top:1px solid var(--border);padding-top:12px}
+  .pl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;margin-right:10px}
+  .sn-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .sn-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
+  @media(max-width:720px){.links{grid-template-columns:1fr}}
+</style>
