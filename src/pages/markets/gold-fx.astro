@@ -11,6 +11,7 @@ const cards = [
       {label:'Why gold fell (non-obvious)', text:'The conflict did NOT produce standard "risk-off → buy gold." The USD captured the primary safe-haven bid because the US is a net energy exporter. Gold was subordinated to real-yield dynamics — a fundamental departure from 1979 and 1990 precedents. Mirrors the 2022 Russia-Ukraine pattern (gold initially rose then corrected as yields rose) but faster and deeper.'},
       {label:'Scenario impacts', text:'Hormuz closure (realized): oil spike → inflation → higher real yields → gold pressure. Oil strike: additional volatility, competing dollar vs gold bids. Cable severance: physical gold bid surges vs paper — EFP spreads widen, paper-physical divergence becomes existential. Ceasefire: oil normalizes → inflation declining → rate-cut expectations return → removes principal headwind. Lombard Odier targets $5,400/oz within 12 months.'},
       {label:'Historical precedent', text:'1979: gold $226→$850 (+276%) initially, then Volcker tightening collapsed it. 2022: gold +8% then corrected as energy-inflation raised yields. 2026 mirrors 2022 but deeper: ATH→trough –27% is the largest gold correction from a record since the 2013 taper tantrum.'},
+      {label:'Analyst targets (T2)', text:'Lombard Odier (Kiran Kowshik): gold "more than doubled in the year to January 2026," targets $5,400/oz within 12 months. UBS path $5,900 to $5,500; Capital Economics $5,000+ (analyst consensus, T2 — not directly confirmed). WGC full-year 2026 central-bank buying projection: 750–850t.'},
     ],
   },
   {
@@ -31,6 +32,7 @@ const cards = [
       {label:'Physical demand (WGC T1)', text:'Bar and coin Q1 2026: 474t (+42% YoY) — 2nd highest quarterly ever. Total demand including OTC: 1,231t (+2% YoY); in value: record $193B (+74% YoY). Jewelry fabrication: –23% to 335t (record prices reduced volume).'},
       {label:'COMEX positioning', text:'April managed-money net long: ~$1B (~5t) — "firmly in neutral territory" (WGC T1). Significant room for speculative re-entry when macro headwinds ease.'},
       {label:'Cable severance scenario', text:'HIGHEST IMPACT for paper-physical divergence: SWIFT/clearing disruption → paper gold market loses settlement confidence → physical allocated gold in domestic vaults commands substantial premium over unallocated LBMA claims and futures. EFP spreads and lease rates for Feb-May period are NOT confirmed from T1 sources — open data gap.'},
+      {label:'EFP / London–NY dislocation', text:'The tariff-driven EFP dislocation of late 2024–early 2026 moved $135B+ of physical gold from London to New York. Post-conflict EFP spreads and lease rates are the single largest data gap in this analysis. Jewelry fabrication –23% YoY to 335t as record prices cut volume.'},
     ],
   },
   {
@@ -61,6 +63,7 @@ const cards = [
       {label:'Egypt', text:'~10% depreciation since end-February. Capital outflows >$10B (CBE/Fitch via Ahram Online T2). CBE inflation forecast raised to 16-17%. IMF program under stress.'},
       {label:'Asia (Bloomberg T2)', text:'India: record lows; RBI opened oil-refiner dollar-swap window; banned offshore rupee instruments; options: 18% probability 100/USD in 3 months. Indonesia: record lows; BI intensified intervention; 33% probability 18,000/USD. South Korea: –1.80% in May. Sri Lanka: fuel bill +74.7% to $630M/month (CBSL T1).'},
       {label:'Winners', text:'CNY +0.80% in May, 3-year highs vs USD (managed appreciation). AUD, NOK commodity-linked beneficiaries (Amundi June 2026 T2). US dollar: net-exporter safe-haven premium.'},
+      {label:'Asset-manager framing (T2)', text:'Amundi (June 2026): "the Middle East shock should now be treated as an ongoing risk regime." Janus Henderson (IMF Spring Meetings): EM resilience improved since 2013–2018 but Pakistan remains highly vulnerable. Framework: selective long EM with commodity-export exposure vs. short pure oil-importing EM.'},
     ],
   },
   {
@@ -103,6 +106,15 @@ const cards = [
       {label:'CHF structural position', text:'CHF captured the "neutral geopolitical safe haven" bid that gold partially lost to the dollar. SNB is constrained: rate already at 0%, FX intervention is primary tool, but sustained CHF strength creates deflationary pressure on near-zero inflation economy. Unlike USD, CHF has no net-exporter energy advantage — its bid is pure neutrality premium.'},
     ],
   },
+  {
+    id:'gold-btc-bridge', title:'Gold–BTC Bridge: The Safe Haven That Did Not Hold', icon:'11', confidence:'medium',
+    summary:'Gold outperformed Bitcoin substantially YTD as BTC traded like a risk asset, not a safe haven. BTC correlation to the S&P 500 ran ~0.53 vs gold ~0.19 (BlackRock T1/T2) — through the conflict BTC moved with equities, not against them. The "digital gold" thesis did not hold under a real geopolitical shock.',
+    fields: [
+      {label:'Correlation evidence', text:'BTC–S&P 500 correlation ~0.53 vs gold–S&P ~0.19 (BlackRock, T1/T2). Through the Feb–May risk-off, BTC sold off with equities rather than catching the safe-haven bid that the dollar and (later) gold did.'},
+      {label:'Narrative vs reality', text:'Incoming Fed Chair Warsh has floated a "new gold" framing for crypto; the 2026 tape contradicts it — BTC did not act as a crisis hedge. Real safe-haven flow went to dollar cash and Treasuries first, gold second, BTC not at all.'},
+      {label:'Scope note', text:'Full crypto and digital-asset analysis — stablecoin stress, exchange connectivity, DeFi oracle latency — is deferred to the dedicated crypto section of Phase 2 (JCJ core domain). This card bridges the precious-metals safe-haven layer to that work.'},
+    ],
+  },
 ];
 ---
 
@@ -118,6 +130,14 @@ const cards = [
     <p class="lead">Gold, FX, and precious metals are the market's immediate response to geopolitical shocks — they move before equities, before credit, before commodities reprice fully. This section tracks the safe-haven layer: who's buying, who's selling, and why the 2026 pattern broke historical precedent.</p>
     <div class="callout"><strong>Non-obvious finding:</strong> The 2026 conflict did NOT produce standard "risk-off → buy gold." The USD captured the primary safe-haven bid because the US is a net energy exporter. Gold was subordinated to real-yield dynamics — a fundamental inversion of 1979 and 1990 precedents.</div>
   </section>
+
+  <div class="scenario-bar">
+    <span class="sb-label">Scenario status · May 30 2026</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#ef4444"></span>Hormuz: constrained / partially realized</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#f59e0b"></span>Oil strike: partially realized</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#6366f1"></span>Cable: partially realized (2026 cuts unverified)</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#10b981"></span>Ceasefire: military only, not economic</span>
+  </div>
 
   <div class="card-list">
     {cards.map((c) => (
@@ -185,6 +205,8 @@ const cards = [
           <li>Mid-March trough: $4,099 is Lombard Odier T2, not WGC T1</li>
           <li>BOJ April 30 spend: Reuters ¥5.48T vs Goldman ¥5T — both estimates; ¥11.7T total is official</li>
           <li>Turkey 80t gold swap may not appear in IMF IFS official reserves — known reporting gap</li>
+          <li>Silver April–May 2026: $73–85 range — no T1 settlement price confirmed</li>
+          <li>Saudi PIF U.S. equity book: $35.5B → $12B reported — needs 13F verification</li>
         </ul>
       </div>
       <div class="dqe-group">
@@ -251,4 +273,8 @@ const cards = [
   .sn-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
   .sn-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
   @media(max-width:720px){.cb{display:none}}
+  .scenario-bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:10px 14px;margin-bottom:2rem;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;font-family:var(--font-mono);font-size:11px}
+  .sb-label{color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700}
+  .sb-item{display:inline-flex;align-items:center;gap:6px;color:var(--text-dim)}
+  .sb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 </style>

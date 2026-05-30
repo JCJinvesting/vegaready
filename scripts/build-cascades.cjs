@@ -53,4 +53,24 @@ const flows = dyn.entries.map((e, i) => ({
 const cf = dyn.crossFlowMatrix || {};
 const crossFlow = { hormuz: cf.hormuz_closure, strike: cf.oil_strike, cable: cf.cable_severance, ceasefire: cf.ceasefire };
 out('outlook.js', banner('dynamics.json') + 'export const flows = ' + JSON.stringify(flows, null, 2) + ';\n\nexport const crossFlow = ' + JSON.stringify(crossFlow, null, 2) + ';\n');
+// CREDIT -> markets/credit (Phase 2 Section 2; richer schema: scenario_impacts, beneficiaries/losers, investment)
+const creditDoc = rd('credit.json');
+const credit = creditDoc.entries.map((e, i) => ({
+  id: e.id, title: e.title, icon: icon(i), category: e.category, confidence: e.confidence,
+  summary: e.summary,
+  trigger: e.data.upstream_trigger, mechanism: e.data.transmission_mechanism,
+  hormuz: e.data.scenario_impacts.hormuz_closure, strike: e.data.scenario_impacts.oil_strike,
+  cable: e.data.scenario_impacts.cable_severance, ceasefire: e.data.scenario_impacts.ceasefire,
+  magnitude: e.data.magnitude, beneficiaries: e.data.beneficiaries, losers: e.data.losers,
+  substitution: e.data.substitution_cycle, precedent: e.data.historical_precedent,
+  timeHorizon: e.data.time_horizon, investment: e.data.investment_implications,
+  staleFlags: e.data.stale_claim_flags || '', sources: e.sources || [],
+}));
+out('credit.js', banner('credit.json')
+  + 'export const cards = ' + JSON.stringify(credit, null, 2) + ';\n\n'
+  + 'export const cascade = ' + JSON.stringify(creditDoc.cascadeChain || [], null, 2) + ';\n\n'
+  + 'export const winnersLosers = ' + JSON.stringify(creditDoc.beneficiariesLosers || [], null, 2) + ';\n\n'
+  + 'export const takeaways = ' + JSON.stringify(creditDoc.takeaways || [], null, 2) + ';\n\n'
+  + 'export const nextSection = ' + JSON.stringify(creditDoc.nextSection || '', null, 2) + ';\n\n'
+  + 'export const methodology = ' + JSON.stringify(creditDoc.methodology || '', null, 2) + ';\n');
 console.log('done.');
