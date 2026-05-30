@@ -814,4 +814,67 @@ export const dataQuality = {
   "quarantined": "Caixin $770k/day VLCC fixture; EnkiAI $200k/day LNG; IWI $30k/wk vs $25k/yr; NPR 300% post-ceasefire; WEF $40B DFC; WEF/JPMorgan 329 vessels / $352B; Octagon AI 54% probability; trade-credit insurer war-exclusion rulings."
 };
 
+export const precedents = [
+  {
+    "episode": "Iran–Iraq Tanker War",
+    "period": "1984–87",
+    "peak": "3–7.5% (Kharg Island)",
+    "mechanism": "Iraqi airstrikes; Iranian retaliation"
+  },
+  {
+    "episode": "Gulf War",
+    "period": "1990–91",
+    "peak": "0.025% → 0.5%",
+    "mechanism": "Kuwait invasion; threat escalation"
+  },
+  {
+    "episode": "Iraq Invasion",
+    "period": "Mar 2003",
+    "peak": "~3.5%",
+    "mechanism": "Coalition invasion"
+  },
+  {
+    "episode": "Gulf of Oman attacks",
+    "period": "Jun 2019",
+    "peak": "0.05–0.25%",
+    "mechanism": "IRGC tanker attacks; JWC listing"
+  },
+  {
+    "episode": "Red Sea / Houthi",
+    "period": "Jan 2024",
+    "peak": "0.7–1.0%",
+    "mechanism": "Missile/drone strikes on Bab-el-Mandeb"
+  },
+  {
+    "episode": "Hormuz conflict",
+    "period": "2026 (ongoing)",
+    "peak": "1.0–7.5%, up to 10%",
+    "mechanism": "Active conflict; JWC expansion + IG cancellations",
+    "current": true
+  }
+];
+
+export const precedentNote = "The Red Sea episode established the 'ratchet effect': premiums rise fast and fall slowly, because actuarial confidence needs statistical evidence — not political statements — that the risk has genuinely changed. It applies with greater force to 2026 given mines requiring verified clearance, demonstrated IRGC targeting capability, and ongoing sanctions uncertainty (Kpler, Nov 2025).";
+
+export const premiumGeography = "Geographic gradient (Apr 13): Mideast Gulf ~1% · Gulf of Oman ~0.5% · Bab-el-Mandeb / Red Sea ~0.75% · Strait of Hormuz transit ~3% — the differential tracks IRGC offensive-capability concentration inside the Strait.";
+
+export const investmentImplications = [
+  {
+    "stakeholder": "Insurers & reinsurers",
+    "text": "Lloyd's specialty war-risk underwriters are structural income beneficiaries at elevated premiums (claims permitting). Lancashire Q1 2026 GPW $668.4M (+12% in the insurance segment) with 'limited Middle East exposure'; Beazley's $1B consortium signals confidence in the risk-adjusted return. The split: Lloyd's specialists repriced into the risk while diversified US marine insurers exited — Fitch flagged the exits as credit-negative (Mar 9 2026)."
+  },
+  {
+    "stakeholder": "Tanker & LNG owners",
+    "text": "Public tanker owners captured extraordinary TCE rates and vessel-value appreciation simultaneously. TORM Q1 ROIC 18.0% (vs 10.3% YoY), EPS $1.21 (vs $0.64); Hafnia NAV +~$500M to $4.0B. LNG owners (GasLog, Flex LNG, MISC) saw rate spikes but face harder war-risk placement given hull complexity and cargo-hazard classification."
+  },
+  {
+    "stakeholder": "Banks & trade finance",
+    "text": "Shipping loan books at 40–60% LTV were net collateral beneficiaries as vessel values rose — the inversion: war RAISED collateral and improved LTV covenants, so the binding risk was the insurance-continuity covenant, not LTV. Offsetting: OFAC 'Economic Fury' secondary-sanctions exposure, correspondent-banking screening delays, and non-payment risk on Gulf-exposed LCs without a clear insurance backstop."
+  },
+  {
+    "stakeholder": "Commodity traders",
+    "text": "Vitol, Trafigura, Gunvor, Glencore and Shell Trading faced four simultaneous squeezes: disrupted FOB/CIF delivery obligations; LC and trade-credit obligations continuing regardless of physical disruption; mark-to-market losses on long physical Gulf positions; and basis risk between financial hedges and dislocated physical markets. Structural response: Trafigura acquiring a VLCC resale (~$160M) — a shift toward owned freight over spot leasing."
+  }
+];
+
 export const nextSection = "Section 4 — Real Assets, Construction, Labor & Migration.";

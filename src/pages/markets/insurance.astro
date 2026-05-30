@@ -1,6 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { cards, thesis, premiumTrajectory, scenarioImpact, dataQuality, nextSection } from '../../data/analysis/insurance.js';
+import { cards, thesis, premiumTrajectory, scenarioImpact, dataQuality, nextSection, precedents, precedentNote, premiumGeography, investmentImplications } from '../../data/analysis/insurance.js';
 const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' };
 ---
 
@@ -34,6 +34,7 @@ const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' 
         </div>
       ))}
     </div>
+    <p class="geo">{premiumGeography}</p>
   </section>
 
   <div class="ev-list">
@@ -72,6 +73,33 @@ const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' 
           <div class="ds"><div class="dl">Losers</div><p>{sc.losers}</p></div>
         </div>
         <div class="ds"><div class="dl">Return dynamics</div><p>{sc.returnDynamics}</p></div>
+      </div>
+    ))}
+  </section>
+
+  <section class="prec">
+    <div class="dl">Historical episode comparison</div>
+    <div style="overflow-x:auto">
+      <table class="prec-table">
+        <thead><tr><th>Episode</th><th>Period</th><th>Peak AWRP (% hull, 7-day)</th><th>Mechanism</th></tr></thead>
+        <tbody>
+          {precedents.map((p) => (
+            <tr class={p.current ? 'prec-cur' : ''}>
+              <td class="prec-name">{p.episode}</td><td>{p.period}</td><td>{p.peak}</td><td>{p.mechanism}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="prec-note">{precedentNote}</p>
+  </section>
+
+  <section class="inv">
+    <div class="dl">Capital-flow & investment implications</div>
+    {investmentImplications.map((it) => (
+      <div class="inv-block">
+        <div class="inv-name">{it.stakeholder}</div>
+        <p>{it.text}</p>
       </div>
     ))}
   </section>
@@ -138,4 +166,17 @@ const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' 
   .scen-name{font-size:15px;font-weight:700}
   .scen-status{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);border:1px solid var(--border);border-radius:4px;padding:1px 7px}
   .dr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .geo{font-size:12px;color:var(--text-dim);line-height:1.5;margin:12px 0 0;font-family:var(--font-mono)}
+  .prec{margin-bottom:3rem}
+  .prec-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .prec-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .prec-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top}
+  .prec-name{font-weight:700;color:var(--text)}
+  .prec-cur td{color:var(--cyan)}
+  .prec-cur .prec-name{color:var(--cyan)}
+  .prec-note{font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:12px;max-width:760px}
+  .inv{margin-bottom:3rem}
+  .inv-block{margin-top:14px}
+  .inv-name{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+  .inv-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
 </style>

@@ -100,5 +100,9 @@ out('insurance.js', banner('insurance.json')
   + 'export const premiumTrajectory = ' + JSON.stringify(insDoc.premiumTrajectory || [], null, 2) + ';\n\n'
   + 'export const scenarioImpact = ' + JSON.stringify(insDoc.scenarioImpact || [], null, 2) + ';\n\n'
   + 'export const dataQuality = ' + JSON.stringify(insDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const precedents = ' + JSON.stringify(insDoc.precedents || [], null, 2) + ';\n\n'
+  + 'export const precedentNote = ' + JSON.stringify(insDoc.precedentNote || '', null, 2) + ';\n\n'
+  + 'export const premiumGeography = ' + JSON.stringify(insDoc.premiumGeography || '', null, 2) + ';\n\n'
+  + 'export const investmentImplications = ' + JSON.stringify(insDoc.investmentImplications || [], null, 2) + ';\n\n'
   + 'export const nextSection = ' + JSON.stringify(insDoc.nextSection || '', null, 2) + ';\n');
 console.log('done.');
