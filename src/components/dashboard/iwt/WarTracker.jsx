@@ -558,14 +558,14 @@ const BriefingPanel = ({briefings, color, activeBriefing, setActiveBriefing}) =>
             <div style={{fontSize:FONT.label,color:C.textMuted,lineHeight:1.75}}>{b.execSummary}</div>
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:8,marginBottom:16}}>
-            {(b.kpis||[]).map((x,i) => (
+            {(Array.isArray(b.kpis)?b.kpis:[]).map((x,i) => (
               <div key={i} style={{background:C.surface,border:"1px solid "+C.border,borderRadius:6,padding:"10px 12px",borderTop:"2px solid "+color}}>
                 <div style={{fontSize:FONT.small,color:C.textDim,fontFamily:"'JetBrains Mono',monospace",letterSpacing:0.8,textTransform:"uppercase",marginBottom:4}}>{x.k}</div>
                 <div style={{fontSize:FONT.h3,fontWeight:800,color:color,fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{x.v}</div>
               </div>
             ))}
           </div>
-          {b.keyFindings && b.keyFindings.length > 0 && (
+          {Array.isArray(b.keyFindings) && b.keyFindings.length > 0 && (
             <div style={{background:C.surface,border:"1px solid "+C.border,borderRadius:8,padding:16,marginBottom:16}}>
               <SectionHeader title="KEY FINDINGS" color={color}/>
               {b.keyFindings.map((f,i) => (
@@ -704,14 +704,14 @@ const BriefingPanelInline = ({briefings, color}) => {
                   <div style={{fontSize:FONT.label,color:C.textMuted,lineHeight:1.75}}>{b.execSummary}</div>
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:8,marginBottom:16}}>
-                  {(b.kpis||[]).map((x,i) => (
+                  {(Array.isArray(b.kpis)?b.kpis:[]).map((x,i) => (
                     <div key={i} style={{background:C.surface,border:"1px solid "+C.border,borderRadius:6,padding:"10px 12px",borderTop:"2px solid "+color}}>
                       <div style={{fontSize:FONT.small,color:C.textDim,fontFamily:"'JetBrains Mono',monospace",letterSpacing:0.8,textTransform:"uppercase",marginBottom:4}}>{x.k}</div>
                       <div style={{fontSize:FONT.h3,fontWeight:800,color:color,fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{x.v}</div>
                     </div>
                   ))}
                 </div>
-                {b.keyFindings && b.keyFindings.length > 0 && (
+                {Array.isArray(b.keyFindings) && b.keyFindings.length > 0 && (
                   <div style={{background:C.surface,border:"1px solid "+C.border,borderRadius:8,padding:16,marginBottom:16}}>
                     <div style={{fontSize:FONT.small,fontWeight:700,letterSpacing:1.2,textTransform:"uppercase",color:color,fontFamily:"'JetBrains Mono',monospace",marginBottom:10}}>KEY FINDINGS</div>
                     {b.keyFindings.map((f,i) => (
@@ -786,14 +786,14 @@ const BriefingTabbed = ({briefings, color, activeKey, onSelect, lightMode}) => {
               <div style={{fontSize:FONT.label,color:L.textMuted,lineHeight:1.75}}>{b.execSummary}</div>
             </div>
             <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:8,marginBottom:16}}>
-              {(b.kpis||[]).map((x,i) => (
+              {(Array.isArray(b.kpis)?b.kpis:[]).map((x,i) => (
                 <div key={i} style={{background:L.surface,border:"1px solid "+L.border,borderRadius:6,padding:"10px 12px",borderTop:"2px solid "+color}}>
                   <div style={{fontSize:FONT.small,color:L.textDim,fontFamily:"'JetBrains Mono',monospace",letterSpacing:0.8,textTransform:"uppercase",marginBottom:4}}>{x.k}</div>
                   <div style={{fontSize:FONT.h3,fontWeight:800,color:color,fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{x.v}</div>
                 </div>
               ))}
             </div>
-            {b.keyFindings && b.keyFindings.length > 0 && (
+            {Array.isArray(b.keyFindings) && b.keyFindings.length > 0 && (
               <div style={{background:L.surface,border:"1px solid "+L.border,borderRadius:8,padding:16,marginBottom:16}}>
                 <div style={{fontSize:FONT.small,fontWeight:700,letterSpacing:1.2,textTransform:"uppercase",color:color,fontFamily:"'JetBrains Mono',monospace",marginBottom:10}}>KEY FINDINGS</div>
                 {b.keyFindings.map((f,i) => (
@@ -947,7 +947,26 @@ const ProvenanceChain = ({pKey, onClose}) => {
 };
 
 export default function WarTracker({ initialTab = "War Room", embedded = false }) {
-  const [activeTab, setActiveTab] = useState(initialTab);
+  // URL-based tab detection — the URL is the source of truth, not props
+  // Props may fail to serialize on Cloudflare Workers; URL is always correct
+  const getTabFromURL = () => {
+    if (typeof window === 'undefined') return initialTab;
+    const path = window.location.pathname.replace(/\/$/, '');
+    const tabMap = {
+      '/dashboard': 'War Room',
+      '/dashboard/gulf': 'Gulf Countries',
+      '/dashboard/economics': 'Economics',
+      '/dashboard/markets': 'Markets',
+      '/dashboard/casualties': 'Casualties',
+      '/dashboard/iran': 'Iran',
+      '/dashboard/us': 'US',
+      '/dashboard/israel': 'Israel',
+      '/dashboard/analytics': 'Analytics',
+      '/dashboard/sources': 'Sources',
+    };
+    return tabMap[path] || initialTab;
+  };
+  const [activeTab, setActiveTab] = useState(getTabFromURL());
   const [hoveredRow, setHoveredRow] = useState(null);
   const [analyticsSubTab, setAnalyticsSubTab] = useState("scenario");
   const [analyticsRange, setAnalyticsRange] = useState(30); // 30, 60, or 0 (all)
@@ -1175,15 +1194,10 @@ export default function WarTracker({ initialTab = "War Room", embedded = false }
   }, [warDayRef]);
 
   useEffect(() => {
-    // When embedded in Astro with an explicit initialTab prop, clear any stale hash
-    // that might override the prop. The Astro page controls which tab is shown.
-    if (embedded && initialTab !== "War Room") {
-      window.location.replace(window.location.pathname + window.location.search + "#tab=" + encodeURIComponent(initialTab));
-    }
+    // When embedded in Astro, the URL path is the source of truth — skip hash parsing entirely
+    if (embedded) return;
     const parseHash = () => {
       try {
-        // If embedded with an explicit tab, the prop takes priority — skip hash override
-        if (embedded && initialTab !== "War Room") return;
         const raw = (window.location.hash || "").replace(/^#/, "");
         if (!raw) return;
         const p = new URLSearchParams(raw);
@@ -1208,6 +1222,8 @@ export default function WarTracker({ initialTab = "War Room", embedded = false }
   }, []);
 
   useEffect(() => {
+    // When embedded in Astro, don't write hash — the URL path is the tab control
+    if (embedded) return;
     try {
       const p = new URLSearchParams();
       p.set("tab", activeTab);
@@ -6682,7 +6698,7 @@ Rules: B/C/U are DAILY intercepted counts, not cumulative. deaths and inj are of
           <BriefingTabbed briefings={BRIEF_ADV} color={usColor} activeKey={"b"} onSelect={(k) => { if(k==="b") {} else if(k==="a") {setActiveTab("Iran"); setIranSubTab("capacity");} else if(k==="c") {setActiveTab("Iran"); setIranSubTab("depletion");} else if(k==="d") {setActiveTab("Iran"); setIranSubTab("calculus");} }}/>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:8,marginBottom:20}}>
-          {(b.kpis||[]).map((x,i) => (
+          {(Array.isArray(b.kpis)?b.kpis:[]).map((x,i) => (
             <div key={i} style={{background:C.surfaceAlt,border:"1px solid "+C.border,borderRadius:6,padding:"10px 12px",borderTop:"2px solid "+usColor}}>
               <div style={{fontSize:FONT.small,color:C.textDim,fontFamily:"'JetBrains Mono',monospace",letterSpacing:0.8,textTransform:"uppercase",marginBottom:4}}>{x.k}</div>
               <div style={{fontSize:FONT.body,fontWeight:800,color:usColor,fontFamily:"'JetBrains Mono',monospace",lineHeight:1}}>{x.v}</div>
