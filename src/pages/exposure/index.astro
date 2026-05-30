@@ -62,6 +62,7 @@ import { countries, winnerLosers } from '../../data/analysis/exposure.js';
             </div>
           </div>
           <div class="dr"><div class="ds"><div class="dl">Historical behavior</div><p>{c.history}</p></div><div class="ds"><div class="dl">Key second-order effect</div><p class="so">{c.secondOrder}</p></div></div>
+          <div class="ds"><div class="dl">Sources</div><p>{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>
         </div>
       </details>
     ))}

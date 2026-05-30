@@ -52,6 +52,7 @@ import { flows, crossFlow } from '../../data/analysis/outlook.js';
             <div class="ds"><div class="dl">Historical precedent</div><p>{f.precedent}</p></div>
             <div class="ds"><div class="dl">Investment implications</div><p class="inv">{f.investment}</p></div>
           </div>
+          <div class="ds"><div class="dl">Sources</div><p>{f.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>
         </div>
       </details>
     ))}

@@ -30,3 +30,17 @@ The deep, fully-sourced research is in the **IranWarTracker** repo: `data/cascad
 ## Recommended next step (full automation)
 
 To make IWT the *single* source end-to-end, extend `scripts/build-data.cjs` to regenerate `src/data/analysis/*.js` from `IranWarTracker/data/cascades/*.json` at build time (mapping the deep schema → the flat card fields). Then the canonical JSON is the only thing anyone edits and the site regenerates on every build. Verify with a local `npm run build` before relying on it.
+
+## Regenerating from canonical research (`scripts/build-cascades.cjs`)
+
+`transmission.js`, `exposure.js`, and `outlook.js` are **generated** — do not hand-edit them. They are built from the canonical research in `IranWarTracker/data/cascades/{sectors,regions,dynamics}.json` (the single source of truth, with full text, per-card `sources[]`, and `confidence`).
+
+To change card content, edit the canonical JSON, then run:
+
+```
+node scripts/build-cascades.cjs
+```
+
+This rewrites the three modules (each carries a `// GENERATED` banner). Set `CASCADES_DIR` to point elsewhere if the IranWarTracker repo isn't a sibling folder. `connections.js`, `profits.js`, and `freshness.js` are hand-authored synthesis layers and are not generated.
+
+The generated cards are the **expanded** view: each shows the fuller research text plus a numbered `Sources` row linking to the underlying T1/T2/T3 references.
