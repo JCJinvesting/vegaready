@@ -1,0 +1,499 @@
+---
+import ScenariosLayout from '../../layouts/ScenariosLayout.astro';
+---
+
+<ScenariosLayout
+  title="Cascade Framework — VegaReady Scenario Analysis"
+  description="How a single geopolitical event cascades through global markets. Five layers of transmission from trigger event to structural economic shift, mapped across sectors, regions, and time horizons."
+  section="Cascade Framework"
+>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="label">Cascade framework</div>
+    <h1>One event.<br/>Five layers of impact.</h1>
+    <p class="lead">
+      A military strike in the Gulf doesn't just move oil prices. It cascades — through
+      petrochemicals into fertilizer, through fertilizer into food prices, through food prices
+      into sovereign stability. VegaReady maps every transmission path so you see the full
+      picture before the market does.
+    </p>
+  </section>
+
+  <!-- ═══ CASCADE LAYERS ═══ -->
+  <section class="cascade-layers">
+
+    <!-- Layer 0: Triggers -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-num">0</div>
+        <div>
+          <div class="layer-title">Trigger events</div>
+          <div class="layer-time">The initiating action</div>
+        </div>
+      </div>
+      <div class="node-grid">
+        <div class="node trigger">
+          <div class="node-name">Hormuz closure</div>
+          <div class="node-sub">20.9M bbl/day blocked</div>
+        </div>
+        <div class="node trigger">
+          <div class="node-name">Oil infrastructure strike</div>
+          <div class="node-sub">Kharg Island, refineries</div>
+        </div>
+        <div class="node trigger">
+          <div class="node-name">Submarine cable cut</div>
+          <div class="node-sub">17-30% global traffic</div>
+        </div>
+        <div class="node trigger">
+          <div class="node-name">Retaliation strike</div>
+          <div class="node-sub">Saudi/UAE facilities</div>
+        </div>
+        <div class="node trigger">
+          <div class="node-name">Mine deployment</div>
+          <div class="node-sub">5,000+ mines, hours to deploy</div>
+        </div>
+        <div class="node trigger ceasefire">
+          <div class="node-name">Ceasefire agreement</div>
+          <div class="node-sub">De-escalation scenario</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cascade-arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">Hours to days</div>
+      <div class="arrow-line"></div>
+    </div>
+
+    <!-- Layer 1: First Order -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-num">1</div>
+        <div>
+          <div class="layer-title">First order — direct commodity and infrastructure</div>
+          <div class="layer-time">Immediate price discovery, supply gaps open</div>
+        </div>
+      </div>
+      <div class="node-grid">
+        <div class="node first">
+          <div class="node-name">Crude oil supply</div>
+          <div class="node-sub">Brent, WTI, Dubai benchmark</div>
+        </div>
+        <div class="node first">
+          <div class="node-name">LNG / natural gas</div>
+          <div class="node-sub">Qatar exports, Asian JKM spot</div>
+        </div>
+        <div class="node first">
+          <div class="node-name">Shipping & logistics</div>
+          <div class="node-sub">Routes, rates, vessel availability</div>
+        </div>
+        <div class="node first">
+          <div class="node-name">Insurance markets</div>
+          <div class="node-sub">War-risk, cargo, hull & machinery</div>
+        </div>
+        <div class="node first">
+          <div class="node-name">Internet connectivity</div>
+          <div class="node-sub">Submarine cables, latency, routing</div>
+        </div>
+        <div class="node first">
+          <div class="node-name">Strategic reserves</div>
+          <div class="node-sub">SPR releases, IEA coordination</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cascade-arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">Days to weeks</div>
+      <div class="arrow-line"></div>
+    </div>
+
+    <!-- Layer 2: Second Order -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-num">2</div>
+        <div>
+          <div class="layer-title">Second order — sector transmission</div>
+          <div class="layer-time">Supply chain disruption, input cost escalation, demand destruction</div>
+        </div>
+      </div>
+      <p class="layer-desc">This is where most analysis stops. But each of these sectors connects to the next layer — and the connections are what create the real market opportunities.</p>
+      <div class="sector-grid">
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Energy downstream</div>
+          <div class="sector-detail">Refining margins, electricity generation costs, coal substitution, renewable acceleration</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Petrochemicals</div>
+          <div class="sector-detail">Naphtha feedstock, ethylene, plastics, synthetic rubber — $600B global industry dependent on oil/gas inputs</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Fertilizer & agriculture</div>
+          <div class="sector-detail">Natural gas → ammonia → urea → crop yields → food prices. 80% of ammonia production uses natural gas as feedstock</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Food & commodities</div>
+          <div class="sector-detail">Wheat, rice, corn futures. Food inflation in import-dependent nations. Social stability risk in developing economies</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Aviation & transport</div>
+          <div class="sector-detail">Jet fuel costs, route cancellations, freight rates, last-mile delivery pricing</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Manufacturing</div>
+          <div class="sector-detail">Input cost escalation, energy-intensive industries (steel, aluminum, cement, glass), factory output contraction</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Financial markets</div>
+          <div class="sector-detail">Sovereign debt stress, credit spreads, currency pressure, SWF rebalancing, insurance industry losses</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Technology & digital</div>
+          <div class="sector-detail">Cable-dependent services, crypto exchange settlement, cloud provider latency, data center energy costs</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Pharmaceuticals</div>
+          <div class="sector-detail">Petroleum-derived compounds, supply chain delays, cold chain logistics disruption</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Construction & materials</div>
+          <div class="sector-detail">Asphalt (petroleum), steel (energy), cement (energy), lumber shipping costs, project delays</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Defense & security</div>
+          <div class="sector-detail">Procurement acceleration, budget realignment, arms sales, private military demand</div>
+        </a>
+        <a href="/scenarios/sectors" class="sector-card">
+          <div class="sector-name">Tourism & services</div>
+          <div class="sector-detail">Gulf tourism collapse, aviation rerouting, insurance exclusion zones, business travel disruption</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cascade-arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">Weeks to months</div>
+      <div class="arrow-line"></div>
+    </div>
+
+    <!-- Layer 3: Regional -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-num">3</div>
+        <div>
+          <div class="layer-title">Third order — regional and sovereign impact</div>
+          <div class="layer-time">Macro effects on the world's largest economies and most vulnerable nations</div>
+        </div>
+      </div>
+      <p class="layer-desc">Every country has a different exposure profile. Some benefit from disruption (Russia, US shale). Some face existential pressure (Egypt, Pakistan). Understanding the asymmetry is where the edge lives.</p>
+      <div class="region-grid">
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">US</div>
+          <div class="region-body">
+            <div class="region-name">United States</div>
+            <div class="region-gdp">$28.8T GDP</div>
+            <div class="region-exposure">Net energy exporter (buffer), military cost center, reserve currency demand, shale production upside</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">CN</div>
+          <div class="region-body">
+            <div class="region-name">China</div>
+            <div class="region-gdp">$18.5T GDP</div>
+            <div class="region-exposure">Iran's #1 crude customer (1.5M bbl/day), manufacturing input costs, Belt & Road exposure, strategic petroleum reserve</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">EU</div>
+          <div class="region-body">
+            <div class="region-name">European Union</div>
+            <div class="region-gdp">$18.3T GDP</div>
+            <div class="region-exposure">Post-Russia energy pivot incomplete, manufacturing contraction risk, LNG import dependency, ECB rate response</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">JP</div>
+          <div class="region-body">
+            <div class="region-name">Japan</div>
+            <div class="region-gdp">$4.2T GDP</div>
+            <div class="region-exposure">85% oil imported, Gulf-dependent LNG, yen under pressure, semiconductor fab energy costs</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">IN</div>
+          <div class="region-body">
+            <div class="region-name">India</div>
+            <div class="region-gdp">$3.9T GDP</div>
+            <div class="region-exposure">Oil import bill surge, fertilizer subsidy pressure, food inflation (1.4B population), rupee depreciation</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">RU</div>
+          <div class="region-body">
+            <div class="region-name">Russia</div>
+            <div class="region-gdp">$2.0T GDP</div>
+            <div class="region-exposure">Net beneficiary — fills supply gaps, higher energy revenue, increased geopolitical leverage, China dependency deepens</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">BR</div>
+          <div class="region-body">
+            <div class="region-name">Brazil</div>
+            <div class="region-gdp">$2.2T GDP</div>
+            <div class="region-exposure">Agricultural export surge (fills food gaps), but fertilizer import cost spike (Russia + Gulf supply), pre-salt oil upside</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">KR</div>
+          <div class="region-body">
+            <div class="region-name">South Korea</div>
+            <div class="region-gdp">$1.7T GDP</div>
+            <div class="region-exposure">LNG-dependent power grid, petrochemical exports, chip fab energy costs, shipbuilding demand surge</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">SA</div>
+          <div class="region-body">
+            <div class="region-name">Saudi Arabia</div>
+            <div class="region-gdp">$1.1T GDP</div>
+            <div class="region-exposure">Direct conflict zone, retaliation target, oil revenue windfall vs infrastructure risk, Vision 2030 disruption</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">EG</div>
+          <div class="region-body">
+            <div class="region-name">Egypt</div>
+            <div class="region-gdp">$395B GDP</div>
+            <div class="region-exposure">Suez Canal revenue collapse (-60%), world's largest wheat importer, food subsidy fiscal pressure, social stability risk</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">TR</div>
+          <div class="region-body">
+            <div class="region-name">Turkey</div>
+            <div class="region-gdp">$1.1T GDP</div>
+            <div class="region-exposure">Energy corridor (Iraq pipeline), refugee pressure, NATO obligations, lira vulnerability, trade route beneficiary</div>
+          </div>
+        </a>
+        <a href="/scenarios/regions" class="region-card">
+          <div class="region-flag">PK</div>
+          <div class="region-body">
+            <div class="region-name">Pakistan</div>
+            <div class="region-gdp">$338B GDP</div>
+            <div class="region-exposure">LNG import shock, food inflation (230M population), IMF program at risk, border with Iran, remittance flows from Gulf</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cascade-arrow">
+      <div class="arrow-line"></div>
+      <div class="arrow-label">Months to years</div>
+      <div class="arrow-line"></div>
+    </div>
+
+    <!-- Layer 4: Structural -->
+    <div class="layer">
+      <div class="layer-header">
+        <div class="layer-num">4</div>
+        <div>
+          <div class="layer-title">Fourth order — structural shifts</div>
+          <div class="layer-time">Permanent changes to the global economic architecture</div>
+        </div>
+      </div>
+      <p class="layer-desc">These are the changes that don't reverse when the crisis ends. Saudi's 7M bbl/day bypass pipeline doesn't disappear. China's diversified supply contracts have multi-year terms. Shipping routes that moved around the Cape develop permanent port infrastructure. Every disruption creates path dependencies that reshape competition even after peace.</p>
+      <div class="structural-grid">
+        <div class="struct-card">
+          <div class="struct-title">Energy architecture</div>
+          <div class="struct-detail">Bypass pipelines become permanent. Renewable investment accelerates under energy security framing. Nuclear programs fast-tracked. LNG terminal construction booms in Asia and Europe.</div>
+          <div class="struct-question">Who controls the new routes?</div>
+        </div>
+        <div class="struct-card">
+          <div class="struct-title">Trade route permanence</div>
+          <div class="struct-detail">Cape of Good Hope routing develops dedicated infrastructure. Suez loses structural traffic share. New transshipment hubs emerge (Tangier, Colombo). Arctic route interest intensifies.</div>
+          <div class="struct-question">Does Suez ever fully recover?</div>
+        </div>
+        <div class="struct-card">
+          <div class="struct-title">De-globalization</div>
+          <div class="struct-detail">Nearshoring accelerates. Inventory-to-just-in-case replaces just-in-time. Regional supply chains form blocs. Chokepoint dependency becomes a sovereign risk metric.</div>
+          <div class="struct-question">Which industries relocate permanently?</div>
+        </div>
+        <div class="struct-card">
+          <div class="struct-title">Currency & credit</div>
+          <div class="struct-detail">Petrodollar flows shift as Gulf producers diversify reserves. Yuan-denominated oil trades increase. Sovereign credit ratings adjust for energy vulnerability. New swap lines form.</div>
+          <div class="struct-question">Does the petrodollar system survive?</div>
+        </div>
+        <div class="struct-card">
+          <div class="struct-title">Food system restructuring</div>
+          <div class="struct-detail">Fertilizer-independent farming methods accelerate. Strategic grain reserves expand. Food sovereignty becomes national security policy. Vertical farming investment surges.</div>
+          <div class="struct-question">Which countries achieve food independence?</div>
+        </div>
+        <div class="struct-card">
+          <div class="struct-title">Digital sovereignty</div>
+          <div class="struct-detail">Governments invest in cable redundancy and satellite backup. Crypto infrastructure decentralizes away from chokepoint-dependent exchanges. Data center location becomes strategic.</div>
+          <div class="struct-question">Does the internet become geographically fragmented?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GAP DYNAMICS PREVIEW ═══ -->
+  <section class="gap-preview">
+    <div class="label">Gap dynamics</div>
+    <h2>The substitution cycle</h2>
+    <p class="gap-intro">Every disruption triggers the same pattern: supply removed → price spikes → alternatives sought → substitution ramps → gap partially filled. But the critical question is what happens next — when the original supply returns, is there oversupply? Does the substitute become permanent? Does the competitive landscape change forever?</p>
+
+    <div class="gap-flow">
+      <div class="gap-step">
+        <div class="gap-step-num">1</div>
+        <div class="gap-step-title">Supply disrupted</div>
+        <div class="gap-step-desc">Physical flow stops or contracts. Inventories begin drawdown.</div>
+      </div>
+      <div class="gap-connector"></div>
+      <div class="gap-step">
+        <div class="gap-step-num">2</div>
+        <div class="gap-step-title">Price discovery</div>
+        <div class="gap-step-desc">Markets reprice to reflect scarcity. Futures curve shifts to backwardation.</div>
+      </div>
+      <div class="gap-connector"></div>
+      <div class="gap-step">
+        <div class="gap-step-num">3</div>
+        <div class="gap-step-title">Substitution search</div>
+        <div class="gap-step-desc">Buyers seek alternatives. New suppliers ramp. Contracts signed at premium.</div>
+      </div>
+      <div class="gap-connector"></div>
+      <div class="gap-step">
+        <div class="gap-step-num">4</div>
+        <div class="gap-step-title">Gap partially filled</div>
+        <div class="gap-step-desc">New capacity online. Prices stabilize at elevated level. New dependencies form.</div>
+      </div>
+      <div class="gap-connector"></div>
+      <div class="gap-step">
+        <div class="gap-step-num">5</div>
+        <div class="gap-step-title">Original supply returns</div>
+        <div class="gap-step-desc">Crisis resolves. But substitutes have contracts. Buyers now have two sources.</div>
+      </div>
+      <div class="gap-connector"></div>
+      <div class="gap-step">
+        <div class="gap-step-num">6</div>
+        <div class="gap-step-title">Oversupply risk</div>
+        <div class="gap-step-desc">Original + substitute = excess. Prices collapse. Weakest supplier loses share permanently.</div>
+      </div>
+    </div>
+
+    <a href="/scenarios/dynamics" class="section-link">Explore gap dynamics in detail &rarr;</a>
+  </section>
+
+  <!-- ═══ SECTION LINKS ═══ -->
+  <section class="nav-cards">
+    <a href="/scenarios/sectors" class="nav-card">
+      <div class="nav-card-num">12</div>
+      <div class="nav-card-label">Sector transmissions</div>
+      <div class="nav-card-desc">How disruption flows through energy, petrochemicals, fertilizer, food, manufacturing, finance, tech, and more</div>
+    </a>
+    <a href="/scenarios/regions" class="nav-card">
+      <div class="nav-card-num">12</div>
+      <div class="nav-card-label">Regional profiles</div>
+      <div class="nav-card-desc">Country-by-country exposure analysis for the world's largest economies and most vulnerable nations</div>
+    </a>
+    <a href="/scenarios/dynamics" class="nav-card">
+      <div class="nav-card-num">&infin;</div>
+      <div class="nav-card-label">Gap dynamics</div>
+      <div class="nav-card-desc">Disruption → substitution → oversupply cycles. Who fills the gap, what happens when it reopens, and who wins long-term</div>
+    </a>
+    <a href="/scenarios/precedents" class="nav-card">
+      <div class="nav-card-num">4</div>
+      <div class="nav-card-label">Historical precedents</div>
+      <div class="nav-card-desc">Abqaiq 2019, Houthi Red Sea, Kuwait 1990, Tanker War 1988 — with specific market impact data</div>
+    </a>
+  </section>
+
+</ScenariosLayout>
+
+<style>
+  /* Hero */
+  .hero { margin-bottom: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+  .label { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; color: var(--text); line-height: 1.15; margin-bottom: 1.5rem; }
+  .lead { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 640px; }
+
+  /* Layers */
+  .cascade-layers { margin-bottom: 4rem; }
+  .layer { margin-bottom: 0; }
+  .layer-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+  .layer-num { font-family: var(--font-mono); font-size: 20px; font-weight: 800; color: var(--cyan); min-width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: var(--cyan-muted); border-radius: 6px; }
+  .layer-title { font-size: 16px; font-weight: 700; color: var(--text); }
+  .layer-time { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .layer-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; max-width: 640px; }
+
+  /* Cascade arrows */
+  .cascade-arrow { display: flex; align-items: center; gap: 12px; padding: 16px 0; }
+  .arrow-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--border-light), transparent); }
+  .arrow-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
+
+  /* Trigger nodes */
+  .node-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .node { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; min-width: 150px; flex: 1; }
+  .node.trigger { border-left: 3px solid #ef4444; }
+  .node.trigger.ceasefire { border-left-color: #10b981; }
+  .node.first { border-left: 3px solid #f59e0b; }
+  .node-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .node-sub { font-size: 11px; color: var(--text-dim); }
+
+  /* Sector cards */
+  .sector-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+  .sector-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; color: inherit; transition: all 0.2s; border-left: 3px solid #3b82f6; }
+  .sector-card:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); opacity: 1; }
+  .sector-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .sector-detail { font-size: 11px; color: var(--text-dim); line-height: 1.5; }
+
+  /* Region cards */
+  .region-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; }
+  .region-card { display: flex; gap: 12px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; text-decoration: none; color: inherit; transition: all 0.2s; }
+  .region-card:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); opacity: 1; }
+  .region-flag { font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--cyan); background: var(--cyan-muted); border-radius: 4px; padding: 4px 6px; height: fit-content; letter-spacing: 0.5px; }
+  .region-body { flex: 1; }
+  .region-name { font-size: 13px; font-weight: 700; color: var(--text); }
+  .region-gdp { font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); margin-bottom: 4px; }
+  .region-exposure { font-size: 11px; color: var(--text-dim); line-height: 1.5; }
+
+  /* Structural shifts */
+  .structural-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+  .struct-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; border-left: 3px solid #10b981; }
+  .struct-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .struct-detail { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
+  .struct-question { font-family: var(--font-display); font-style: italic; font-size: 13px; color: var(--cyan); }
+
+  /* Gap dynamics preview */
+  .gap-preview { margin-bottom: 4rem; padding: 2.5rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; }
+  .gap-preview h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; color: var(--text); margin-bottom: 10px; }
+  .gap-intro { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; max-width: 640px; }
+  .gap-flow { display: flex; align-items: flex-start; gap: 0; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 8px; }
+  .gap-step { flex: 0 0 140px; text-align: center; }
+  .gap-step-num { font-family: var(--font-mono); font-size: 18px; font-weight: 800; color: var(--cyan); margin-bottom: 4px; }
+  .gap-step-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .gap-step-desc { font-size: 10px; color: var(--text-dim); line-height: 1.4; }
+  .gap-connector { flex: 0 0 20px; height: 2px; background: var(--border-light); align-self: center; margin-top: -20px; position: relative; }
+  .gap-connector::after { content: ''; position: absolute; right: -1px; top: -3px; border: 4px solid transparent; border-left: 5px solid var(--border-light); }
+  .section-link { font-family: var(--font-mono); font-size: 13px; color: var(--cyan); font-weight: 600; }
+
+  /* Nav cards */
+  .nav-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .nav-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-decoration: none; color: inherit; transition: all 0.2s; }
+  .nav-card:hover { border-color: var(--cyan); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); opacity: 1; }
+  .nav-card-num { font-family: var(--font-mono); font-size: 28px; font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 6px; }
+  .nav-card-label { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .nav-card-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .node-grid { flex-direction: column; }
+    .node { min-width: auto; }
+    .sector-grid, .region-grid, .structural-grid { grid-template-columns: 1fr; }
+    .gap-flow { flex-direction: column; align-items: center; }
+    .gap-connector { width: 2px; height: 16px; flex: 0 0 16px; margin-top: 0; }
+    .gap-connector::after { right: -3px; top: auto; bottom: -1px; border: 4px solid transparent; border-top: 5px solid var(--border-light); border-left: 4px solid transparent; }
+    .gap-step { flex: 0 0 auto; }
+  }
+</style>

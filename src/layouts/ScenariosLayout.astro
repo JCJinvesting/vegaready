@@ -1,0 +1,118 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  section?: string;
+}
+
+const { title, description, section } = Astro.props;
+
+const scenarioNav = [
+  { slug: '', label: 'Cascade Framework', short: 'Framework' },
+  { slug: 'sectors', label: 'Sector Transmission', short: 'Sectors' },
+  { slug: 'regions', label: 'Regional Impact', short: 'Regions' },
+  { slug: 'dynamics', label: 'Gap Dynamics', short: 'Dynamics' },
+  { slug: 'precedents', label: 'Historical Precedents', short: 'Precedents' },
+  { slug: 'infrastructure', label: 'Infrastructure', short: 'Infrastructure' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+  <body>
+    <Header />
+
+    <nav class="sc-nav">
+      <div class="sc-nav-inner">
+        <div class="sc-nav-label">Scenarios</div>
+        <div class="sc-nav-tabs">
+          {scenarioNav.map(t => (
+            <a
+              href={t.slug ? `/scenarios/${t.slug}` : '/scenarios'}
+              class:list={['sc-tab', { active: section === t.label }]}
+            >
+              {t.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <main class="sc-main">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .sc-nav {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .sc-nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 44px;
+  }
+  .sc-nav-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    flex-shrink: 0;
+  }
+  .sc-nav-tabs {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .sc-nav-tabs::-webkit-scrollbar { display: none; }
+  .sc-tab {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: all 0.15s;
+    text-decoration: none;
+  }
+  .sc-tab:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.05);
+    opacity: 1;
+  }
+  .sc-tab.active {
+    color: var(--cyan);
+    background: var(--cyan-muted);
+    font-weight: 700;
+  }
+  .sc-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  @media (max-width: 720px) {
+    .sc-nav-inner { padding: 0 1rem; gap: 12px; }
+    .sc-main { padding: 2rem 1rem; }
+  }
+</style>

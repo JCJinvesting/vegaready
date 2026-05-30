@@ -1,21 +1,13 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import ScenariosLayout from '../../layouts/ScenariosLayout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead
-      title="Scenario Analysis — VegaReady"
-      description="Threat cascade analysis for the Iran-US-Israel conflict. Historical precedents, infrastructure vulnerabilities, scenario matrix, and market impact projections."
-    />
-  </head>
-  <body>
-    <Header />
-
-    <main class="scenarios">
+<ScenariosLayout
+  title="Historical Precedents — VegaReady Scenario Analysis"
+  description="Historical precedents for Gulf conflict market disruption. Abqaiq 2019, Houthi Red Sea, Kuwait 1990, Tanker War 1988 — with specific oil price, shipping, and insurance impact data."
+  section="Historical Precedents"
+>
+    <div class="scenarios">
       <!-- ═══ HERO ═══ -->
       <section class="sc-hero">
         <div class="sc-label">Scenario analysis</div>
@@ -329,11 +321,8 @@ import Footer from '../components/Footer.astro';
           in the dashboard for full provenance.
         </p>
       </section>
-    </main>
-
-    <Footer />
-  </body>
-</html>
+    </div>
+</ScenariosLayout>
 
 <style>
   .scenarios {
