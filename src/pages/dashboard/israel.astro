@@ -1,21 +1,23 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
   title="Israel Operations — VegaReady"
-  description="Israel military operations — Operation Roaring Lion, IAF strikes, defense system performance, and interceptor crisis."
-  tab="Israel Operations"
+  description="Israel military operations — Operation Roaring Lion, IAF strikes, defense systems."
+  tab="Israel"
 >
   <div slot="seo">
     <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
-      Israel Operations
+      Israel
     </h1>
     <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
-      Operation Roaring Lion — IAF operations, Iron Dome and Arrow performance, and interceptor depletion tracking.
+      Operation Roaring Lion — IAF operations, interceptor depletion tracking.
     </p>
   </div>
 
-  <TrackerEmbed tab="Israel Operations" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="Israel" embedded={true} client:only="react" />
 </DashboardLayout>

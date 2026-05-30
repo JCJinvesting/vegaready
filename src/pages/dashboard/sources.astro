@@ -1,11 +1,12 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
   title="Sources — VegaReady"
-  description="Source catalogue, provenance matrix, confidence methodology, and feeder outlet tracking for all intelligence data."
+  description="Source catalogue, provenance matrix, confidence methodology."
   tab="Sources"
 >
   <div slot="seo">
@@ -13,9 +14,10 @@ import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
       Sources
     </h1>
     <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
-      Source provenance, confidence ratings, feeder outlets, and methodology transparency for all dashboard data.
+      Source provenance, confidence ratings, feeder outlets.
     </p>
   </div>
 
-  <TrackerEmbed tab="Sources" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="Sources" embedded={true} client:only="react" />
 </DashboardLayout>

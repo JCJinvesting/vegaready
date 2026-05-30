@@ -200,3 +200,6 @@ dist
 
 ### Astro ###
 .astro/
+
+# Generated data bundle (built from IWT at build time)
+src/data/iwt-bundle.json

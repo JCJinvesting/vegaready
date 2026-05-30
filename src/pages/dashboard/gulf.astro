@@ -1,11 +1,12 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
   title="Gulf Countries — VegaReady"
-  description="Cross-country conflict impact tracking across UAE, Qatar, Bahrain, Saudi Arabia, Kuwait, Oman, and Iraq. Daily interception data, damage assessments, and defense system performance."
+  description="Cross-country conflict impact tracking across UAE, Qatar, Bahrain, Saudi Arabia, Kuwait, Oman, and Iraq."
   tab="Gulf Countries"
 >
   <div slot="seo">
@@ -17,5 +18,6 @@ import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
     </p>
   </div>
 
-  <TrackerEmbed tab="Gulf Countries" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="Gulf Countries" embedded={true} client:only="react" />
 </DashboardLayout>

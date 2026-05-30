@@ -1,21 +1,23 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
   title="US Operations — VegaReady"
-  description="US military operations — Operation Epic Fury targets, munitions, air order of battle, naval force disposition, and policy events."
-  tab="US Operations"
+  description="US military operations — Operation Epic Fury, coalition air order, naval forces."
+  tab="US"
 >
   <div slot="seo">
     <h1 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--text); margin-bottom: 4px;">
-      US Operations
+      US
     </h1>
     <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
-      Operation Epic Fury — coalition air order, naval forces, strike targets, and policy timeline.
+      Operation Epic Fury — coalition air order, naval forces, strike targets.
     </p>
   </div>
 
-  <TrackerEmbed tab="US Operations" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="US" embedded={true} client:only="react" />
 </DashboardLayout>

@@ -1,11 +1,12 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
   title="Economics — VegaReady"
-  description="Economic impact of the Iran conflict — oil prices, refinery shutdowns, force majeure declarations, currency stress, and Hormuz risk premiums."
+  description="Economic impact — oil prices, refinery shutdowns, force majeure, currency stress, and Hormuz risk premiums."
   tab="Economics"
 >
   <div slot="seo">
@@ -13,9 +14,10 @@ import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
       Economics
     </h1>
     <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
-      Refinery shutdowns, force majeure, oil price trajectory, and economic transmission from conflict to commodity markets.
+      Refinery shutdowns, force majeure, oil price trajectory, and economic transmission.
     </p>
   </div>
 
-  <TrackerEmbed tab="Economics" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="Economics" embedded={true} client:only="react" />
 </DashboardLayout>

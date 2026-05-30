@@ -1,11 +1,12 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
   title="Markets — VegaReady"
-  description="Market sector impact — shipping insurance, vessel attacks, bunker prices, GCC equity selloffs, CDS spread widening, and container freight rates."
+  description="Market sector impact — shipping insurance, vessel attacks, bunker prices, GCC equity selloffs, CDS spreads."
   tab="Markets"
 >
   <div slot="seo">
@@ -13,9 +14,10 @@ import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
       Markets
     </h1>
     <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
-      Shipping insurance, war-risk premiums, GCC equities, sovereign CDS spreads, and freight rate disruption.
+      Shipping insurance, war-risk premiums, GCC equities, sovereign CDS spreads.
     </p>
   </div>
 
-  <TrackerEmbed tab="Markets" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="Markets" embedded={true} client:only="react" />
 </DashboardLayout>

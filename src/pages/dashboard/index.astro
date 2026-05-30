@@ -1,6 +1,7 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
@@ -17,5 +18,6 @@ import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
     </p>
   </div>
 
-  <TrackerEmbed tab="War Room" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="War Room" embedded={true} client:only="react" />
 </DashboardLayout>

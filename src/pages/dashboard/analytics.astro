@@ -1,11 +1,12 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
+import DataInjector from '../../components/dashboard/iwt/DataInjector.astro';
+import WarTracker from '../../components/dashboard/iwt/WarTracker.jsx';
 ---
 
 <DashboardLayout
   title="Analytics — VegaReady"
-  description="Analytical tools — threat mix analysis, intercept trends, defense stability modeling, scenario planning, and target type classification."
+  description="Analytical tools — threat mix, intercept trends, defense stability, scenario planning."
   tab="Analytics"
 >
   <div slot="seo">
@@ -13,9 +14,10 @@ import TrackerEmbed from '../../components/dashboard/TrackerEmbed.jsx';
       Analytics
     </h1>
     <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
-      Threat mix, intercept trends, defense stability, scenario modeller, and target classification analytics.
+      Threat mix, intercept trends, defense stability, scenario modeller.
     </p>
   </div>
 
-  <TrackerEmbed tab="Analytics" client:only="react" />
+  <DataInjector />
+  <WarTracker initialTab="Analytics" embedded={true} client:only="react" />
 </DashboardLayout>
