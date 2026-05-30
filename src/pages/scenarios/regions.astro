@@ -1,24 +1,332 @@
 ---
 import ScenariosLayout from '../../layouts/ScenariosLayout.astro';
+
+const countries = [
+  {
+    id:'united-states', title:'United States', gdp:'$28.8T', tag:'winner', tagColor:'#10b981',
+    summary:'Net petroleum exporter since 2020 (record 2.8M b/d, 13.6M b/d production). Only ~2% via Hormuz — insulated on physical supply, benefits from reserve-currency safe-haven inflows. SPR ~409M bbl plus >170M bbl exchange program.',
+    energy:'Net exporter; 2025 net exports record ~2.8M b/d; production 13.6M b/d. Only ~0.5M b/d from Gulf (~2% of consumption). Shale ~65% of output.',
+    food:'Large net food/ag exporter. Fertilizer ~12% from Gulf — second-order input-cost channel. Domestic vulnerability LOW.',
+    trade:'Negligible direct Gulf routing. Indirect via global container-rate inflation (+25-35%).',
+    financial:'Reserve-currency safe-haven beneficiary. Key risk: inflation channel forcing Fed tightening. Goldman raised recession probability to 30%.',
+    substitution:'Shale: ~9 months new well. SPR ~409M bbl. >170M bbl exchange program. Substantial cushion.',
+    hormuz:'Brent +55% to ~$112-120; physical supply intact; shale margins expand; SPR deployed. CPI +1-2pp risk.',
+    strike:'Shale + SPR + Canadian supply insulate; price-driven inflation manageable.',
+    cable:'Relatively insulated; transatlantic/transpacific routes unaffected.',
+    ceasefire:'Brent reverts; shale margins compress; SPR refill. Gives back windfall, no lasting damage.',
+    history:'Each cycle the US grows more insulated as production rises. 1973: devastating. 2022: net beneficiary.',
+    secondOrder:'Simultaneously administering the blockade and benefiting from elevated prices. US LNG at 57% of EU imports, locking in long-term market share.',
+    confidence:'high',
+  },
+  {
+    id:'china', title:'China', gdp:'$18.5T', tag:'loser', tagColor:'#ef4444',
+    summary:'Largest Hormuz oil user (26.9% of Q1 2025 flows) and Iran\'s #1 customer (~1.37M b/d). Best-prepared loser: ~1.4B bbl reserves (~121 days) and Russian ESPO pipeline bypass.',
+    energy:'Crude imports 11.6M b/d. 45-50% transit Hormuz. Iran #1 customer ~1.37M b/d. Hedge: Russia (ESPO pipeline bypasses Hormuz), Kazakhstan/Central Asia.',
+    food:'Grain self-sufficient (706.5M tonnes). Soybean ~15% self-sufficient but routes (Brazil/US) non-Hormuz.',
+    trade:'Heavy Gulf energy + Asia-Europe goods. Red Sea rerouting +10-15 days, +40% fuel, freight +149%. Belt & Road exposed.',
+    financial:'CNY pressured by import bill. PBOC manages with ~$3.2T FX reserves. Petroyuan marginally advanced.',
+    substitution:'~1.4B bbl reserves (~121 days). Russia ESPO + Central Asia bypass Hormuz. Reserves cushion ~3-4 months.',
+    hormuz:'~5-5.8M b/d at risk + ~1.37M b/d Iranian crude cut. Draws reserves; ramps Russian ESPO. GDP drag if >3-4 months.',
+    strike:'Reserves + Russian crude backfill; price shock bigger channel than volume.',
+    cable:'Direct hit — SMW4/PEACE systems; ~25% Asia-Europe traffic; latency surge.',
+    ceasefire:'Strong winner: Iranian barrels resume; import bill falls; likely "buys the dip" to restock.',
+    history:'2022: bought discounted Russian/Iranian crude, accelerated stockpiling. $100B+ invested in Iranian infrastructure now at risk — "trapped creditor" dynamic.',
+    secondOrder:'$100B Iranian investment creates trapped-creditor dynamic. Chinese refiners pivot to Brazilian pre-salt; Gulf crude market share in China\'s basket falls structurally.',
+    confidence:'high',
+  },
+  {
+    id:'european-union', title:'European Union', gdp:'$18.3T', tag:'loser', tagColor:'#ef4444',
+    summary:'Incomplete post-Russia pivot: ~7% of LNG via Hormuz (Qatar), gas storage at record low ~28% (Mar 2026). Germany in deepest manufacturing recession. ECB forced to hike into weakness. ECB severe scenario: +6.3pp cumulative inflation.',
+    energy:'>140 bcm LNG in 2025 (US 56-58%, Qatar 8.9%). ~7% via Hormuz. Gas storage 38% vs 55% seasonal norm. France insulated via nuclear.',
+    food:'Broadly cereal-secure. Gas-price spikes hit nitrogen-fertilizer production (ammonia is gas-intensive).',
+    trade:'Most Red Sea/Suez-exposed economy. Cape rerouting: +10-15 days, freight +149% (5x spike).',
+    financial:'ECB held at 2.00%; expected hike June 2026. Growth cut to 1.1%, inflation 3.1%. Italy spread-widening risk.',
+    substitution:'Slowest. US LNG 56-58%, near saturation. Nuclear (France), renewables (48% of EU electricity 2025). Multi-quarter levers.',
+    hormuz:'Loses ~7% LNG; TTF + power spike; German manufacturing recession deepens; ECB forced to hike. Storage deficit -17.6pp.',
+    strike:'Oil-price channel compounds industrial-cost squeeze.',
+    cable:'IMEWE/SMW4/PEACE land in Europe; ~25% Asia-Europe data at risk; Frankfurt/Paris latency.',
+    ceasefire:'Largest relief beneficiary: gas/oil fall, manufacturing recovers, ECB can ease, EUR stabilizes. Most to gain from de-escalation.',
+    history:'1973 drove France\'s nuclear plan. 2022: Russia cut gas, TTF >€300/MWh, REPowerEU €300B. 2026 tests incomplete transition.',
+    secondOrder:'Stagflation trap — energy shock raises inflation while crushing demand. Having diversified from Russian gas into Qatar LNG, EU finds Qatar LNG also transits a war zone.',
+    confidence:'medium',
+  },
+  {
+    id:'japan', title:'Japan', gdp:'$4.2T', tag:'loser', tagColor:'#ef4444',
+    summary:'Highest G7 Hormuz dependency: ~93-96% crude from Middle East. Double-hit via energy bill and weak yen (2022: record ¥20T trade deficit). Deepest strategic stockpile: 483M bbl combined (263M govt + 220M industry). Rice stockpile: only ~15 days.',
+    energy:'2.36M b/d crude; ~94% from Middle East; ~93% via Hormuz — highest of any major economy. LNG: Australia >40%, only ~6-20% via Hormuz.',
+    food:'~38% caloric self-sufficiency. Rice stockpile: only ~15 days (May 2026). Fertilizer/feed-grain import reliance >90%.',
+    trade:'Energy is dominant Gulf-routed flow. Cape rerouting +3,500 nm / 10-14 days.',
+    financial:'Yen is key transmission. 2022: import bill nearly doubled; record ¥20T deficit; yen 109.8→131.4/USD.',
+    substitution:'483M bbl reserves (~166 days combined). Largest-ever SPR release executing. Refinery rigidity caps fast crude-grade switching.',
+    hormuz:'~93% of oil at risk; reserves cover ~166 days but grade-constrained; acute yen pressure. Crude imports fell 50% since onset.',
+    strike:'Import bill flows straight through; SPR cushions volume, not price.',
+    cable:'Lower direct hit; financial-data latency to EU rises.',
+    ceasefire:'Strong relief rally; yen and import bill normalize; SPR-refill demand supports crude.',
+    history:'1973: 90% ME-dependent, 55-day stockpile, GDP -7%. Built 90-day-minimum regime now at 483M bbl. 2026 most severe since 1973.',
+    secondOrder:'Entire petrochemical and LPG supply chain depends on Gulf NGL/LPG (>70% of Japan\'s LPG). Plus rice stockpile depletion to ~15 days — potential political crisis alongside energy crisis.',
+    confidence:'medium',
+  },
+  {
+    id:'india', title:'India', gdp:'$3.9T', tag:'loser', tagColor:'#ef4444',
+    summary:'Triple hit: 88.6% crude-import-dependent (~40% via Hormuz), Gulf supplying 20-30% of urea, fertilizer subsidy blowing to ₹1.92 lakh crore, plus ~$49B Gulf remittance corridor at risk. $691B reserves and Russian-crude hedge (31.5%) mitigate. 220,000+ nationals repatriated.',
+    energy:'88.6% crude-import-dependent. Russia 31.5%. ~40% via Hormuz. Russian crude (non-Hormuz) is structural hedge.',
+    food:'Grain self-sufficient. ~60% edible oil imported. Gulf supplies 20-30% urea, 30% DAP. Subsidy ₹1.92 lakh crore, could breach ₹3 lakh crore.',
+    trade:'Heavy Gulf/Red Sea routing. Cape rerouting +$300/container + 10-14 days.',
+    financial:'Rupee 85.6→93.2/USD. $691B reserves. Remittances $129B, ~38% from GCC (~$49B). 220,000+ repatriated.',
+    substitution:'Moderate-fast on crude (Russia pivot proven). Slow on fertilizer. Remittance = second-order Hormuz transmission unique to India.',
+    hormuz:'~40% crude + 20-30% urea at risk; subsidy spikes; rupee pressure; $49B remittance corridor disrupted.',
+    strike:'Brent >$120 pushes CAD to 2.1%, subsidy +14%; inflation hits 1.4B.',
+    cable:'Directly in Red Sea cut cluster (SMW4, IMEWE, FALCON); 70% of Europe-bound data.',
+    ceasefire:'Sharp relief: rupee stabilizes, subsidy eases, remittances resume.',
+    history:'1990-91: evacuated 175,000+ from Kuwait; BoP crisis — forex $1.2B, pledged 67t gold. 2022: pivoted to Russian crude. Playbook re-run.',
+    secondOrder:'Gulf remittance corridor freeze — ~9M nationals in GCC representing ~$49B/year. If GCC economies collapse, removes India\'s single largest external income source. More macro-significant than direct oil exposure.',
+    confidence:'medium',
+  },
+  {
+    id:'saudi-arabia', title:'Saudi Arabia', gdp:'$1.1T', tag:'winner', tagColor:'#10b981',
+    summary:'Only economy net-long a Hormuz closure: 2-3M b/d spare + East-West pipeline (7M b/d to Yanbu). Captures price windfall while rivals blocked. Offsets: ~$90-96/bbl fiscal breakeven, infrastructure risk (IRGC struck Manifa/Khurais/pumping station April), Yanbu loading bottleneck ~4-4.5M b/d.',
+    energy:'Swing producer. Spare 2-3M b/d. Petroline 7M b/d to Yanbu (Red Sea bypass). Yanbu loads ~4-4.5M b/d (bottleneck). PIF >$1.15T.',
+    food:'Heavy importer (~80%+). Strategic wheat ~4 months. Energy-cost-insulated as producer.',
+    trade:'Crude exits via Red Sea (Yanbu) bypassing Hormuz — structural advantage.',
+    financial:'Riyal pegged 3.75/USD. IMF breakeven ~$90-96/bbl. Revenue captures ~75-80% of each incremental $/bbl.',
+    substitution:'Fastest pivot — output in 30 days, reroute via Petroline. The swing supplier.',
+    hormuz:'Biggest winner — exports via Petroline while rivals blocked. Risk: own infrastructure targeted (proven April 2026).',
+    strike:'Pipeline attacked and restored to full capacity April 2026 — resilience demonstrated but vulnerable.',
+    cable:'Jeddah cut epicenter (SMW4/IMEWE). Vision 2030 data-hub exposed.',
+    ceasefire:'Price normalizes to $60-65; windfall evaporates; fiscal-deficit returns; Vision 2030 gap reopens.',
+    history:'1973: $3→$12. 1990: 5.1M to 8.5M b/d, captured windfall. $25-50B added annual revenue estimated in 2026.',
+    secondOrder:'Yanbu bottleneck caps monopoly power — 2.5-3M b/d arrives with nowhere to load. Creates 6-12 month window for port expansion that would make Saudi structurally more resilient.',
+    confidence:'medium',
+  },
+  {
+    id:'uae', title:'UAE', gdp:'$509B', tag:'mixed', tagColor:'#f59e0b',
+    summary:'Only Gulf producer with material bypass (ADCOP 1.8M b/d to Fujairah, doubling by 2027). Crude egress ~57% insulated. But hub functions (JAFZA = 36% of Dubai GDP, DIFC, Emirates, tourism ~13% GDP) cannot be relocated. High-beta loser on escalation, winner on ceasefire.',
+    energy:'3.4-3.7M b/d production. ADCOP routes ~57% via Fujairah bypass. West-East expansion doubling by 2027.',
+    food:'Imports >90% of food. Russia largest wheat supplier (Black Sea, non-Hormuz). Container leg is the vulnerability.',
+    trade:'Non-oil trade $1.03T (2025). JAFZA 36% of Dubai GDP. Jebel Ali is largest ME port. Closure chokes transshipment.',
+    financial:'Dubai $255.3B GDP (>95% non-oil). DIFC >4,500 firms. DFM foreign investors 50% of trading. Tourism ~13% GDP ($72.8B).',
+    substitution:'HIGH for crude (Fujairah). LOW for hub functions — Jebel Ali, DIFC, Emirates cannot relocate.',
+    hormuz:'~43% crude stranded; JAFZA (36% GDP) severely disrupted; tourism and DFM hit. Net GDP drag large despite bypass.',
+    strike:'ADNOC revenue benefits if spared; downside if targeted directly.',
+    cable:'Acute — regional cloud/data hub; drone strikes on data centers reported. Iran "protection fee" threats.',
+    ceasefire:'Strong rebound — tourism, re-exports, DFM/ADX snap back; risk premium compresses.',
+    history:'2022: fiscal surpluses, sanctions-adjacent conduit. 2026 is first existential shock to diversification model.',
+    secondOrder:'Collapse of Jebel Ali/Dubai re-export model — 36% GDP depends on free goods flow through Hormuz. Sustained closure converts Dubai from global hub to regional destination. 15-24 months to rebuild confidence.',
+    confidence:'medium',
+  },
+  {
+    id:'russia', title:'Russia', gdp:'$2.0T', tag:'winner', tagColor:'#10b981',
+    summary:'Clearest beneficiary, zero Hormuz dependency. #2 crude exporter (~4.8M b/d), #1 wheat exporter (~20%), ~18-21% of global fertilizer. Fills every gap simultaneously. Revenue reverses ~24% oil-and-gas budget decline. Structural cost: deepening China dependency.',
+    energy:'~4.76M b/d exports (#2 globally, ~11%). Urals discount narrows. Power of Siberia to China +25% to 38.8 bcm.',
+    food:'#1 wheat exporter, ~20% share. Fertilizer ~18-21% global, targeting 25% by 2030. Domestic food-secure.',
+    trade:'Offensive beneficiary. Any Gulf shock lifts gas-linked ammonia/urea prices — Russia benefits as low-cost producer. Zero Hormuz dependency.',
+    financial:'2022: $230B current-account surplus. 2025 revenue 8.48T rubles (-23.8%). Gulf price spike is the most plausible reversal.',
+    substitution:'Russia IS the substitute. Constraint is logistics/sanctions, not Hormuz.',
+    hormuz:'Maximum upside — Brent could replicate 1990\'s doubling. Urals discount compresses. Wheat/fertilizer co-spike.',
+    strike:'Moderate-to-large upside via Brent premium.',
+    cable:'Largely insulated; indirect benefit from rival-hub disruption.',
+    ceasefire:'Only loser case — premium unwinds, Brent falls, squeezing budget. Ceasefire is Russia\'s worst scenario.',
+    history:'Every Gulf shock is a Russian windfall. 1973/1979: USSR beneficiary. 2022: $230B surplus, gas revenue doubled to $130B.',
+    secondOrder:'Fertilizer market share surge — with Hormuz disrupting ~50% of global urea/sulfur, Russian fertilizers become the only uncontested alternative. Gives Moscow leverage over India, Egypt, Brazil that reduces sanctions\' political cost.',
+    confidence:'high',
+  },
+  {
+    id:'south-korea', title:'South Korea', gdp:'$1.7T', tag:'loser', tagColor:'#ef4444',
+    summary:'~100% crude imported, ~70% via Hormuz, ~19.5% LNG exposed. $150/bbl = +2.9pp inflation, -0.8pp growth. KOSPI crashed 12% on March 4. Silver lining: 66% of global LNG-carrier orderbook ($71.3B).',
+    energy:'~100% crude imported; ~70% via Hormuz. ~19.5% LNG exposed. Power: coal+gas ~58%, nuclear ~31%.',
+    food:'Net importer but not Gulf-sourced. Lower-tier vulnerability.',
+    trade:'Petrochemicals -15.5%. Samsung+SK Hynix 75% global DRAM. Shipbuilding 22% global share, 66% of LNG-carrier orderbook ($71.3B).',
+    financial:'$100/bbl: +1.1pp inflation, -0.3pp growth. $150/bbl: +2.9pp, -0.8pp. 5 trillion won supplementary budget (April).',
+    substitution:'Australia LNG (31.4%) and US LNG diversify. Nuclear (31%) is non-import buffer. Crude hard to substitute short-term.',
+    hormuz:'~70% crude + ~19.5% LNG at risk. KOSPI -12%. Stagflation risk. Shipbuilding demand surge partially offsets.',
+    strike:'$100/bbl: +1.1pp inflation; petrochemical margins squeezed.',
+    cable:'Indirect — financial/trading latency; global risk-off.',
+    ceasefire:'Relief rally — won recovers, import bill falls; shipbuilding orders may soften as scarcity premium fades.',
+    history:'1973/1979: severely hit, drove nuclear build-out. 2022: inflation 5.09%, won depreciation. ME crude share fell from 65% to 53%.',
+    secondOrder:'Shipbuilding windfall — sustained closure creates massive demand for VLCCs and LNG carriers. Korea dominates (>80% LNG carrier market share). Stark intra-sector divergence: energy consumers lose, shipbuilders win.',
+    confidence:'medium',
+  },
+  {
+    id:'brazil', title:'Brazil', gdp:'$2.2T', tag:'winner', tagColor:'#10b981',
+    summary:'Structural winner: net crude exporter (record 3.77M b/d, ~80% pre-salt), #1 soy/sugar exporter filling food gaps, ethanol/flex fleet (fuel +10-20% vs 30-40% in US). Cost: fertilizer imports ~70-85%, ~$4.36B/yr Russia-linked. Record April surplus $10.5B.',
+    energy:'Net exporter since 2024 (#1 export). 3.77M b/d (+12.3%). Ethanol/flex held fuel to +10-20%. Asian exports +95% to China Q1.',
+    food:'#1 net ag exporter; grains >165M tonnes. Fertilizer: imports ~70-85%, 96% potash. Russia 25.8% of imports ($4.36B).',
+    trade:'Soybeans 108.68M tonnes (~58% global, ~65% to China). Corn #2. Sugar #1. Gap-filler for disrupted channels.',
+    financial:'Free-floating BRL. Commodity boom is BRL-supportive. Record April surplus $10.5B (+37.5%). IMF revised growth upward.',
+    substitution:'HIGH on energy (domestic + ethanol). LOW-MODERATE on fertilizer (96% potash reliance).',
+    hormuz:'Strong winner: Brent lifts export revenue; food disruption diverts demand to Brazilian soy/corn/sugar. Offset: nitrogen-fertilizer bill.',
+    strike:'Winner on oil + ethanol; moderate fertilizer cost rise. Cleanest positive scenario.',
+    cable:'Marginal: risk-off EM outflows; commodity logistics intact.',
+    ceasefire:'Premia unwind — gives back windfall; planting-cost relief is domestic positive.',
+    history:'1973: ~80% oil-dependent, launched Proalcool (1975). Pivot from 1973 victim to 2026 beneficiary is the defining structural shift. Petrobras US exports fell to zero; China at 62%.',
+    secondOrder:'Geopolitical repositioning as Asia\'s "neutral" oil supplier. Chinese NOCs pursuing equity stakes in pre-salt blocks. Brazil-China-India oil trade shift could persist for a decade.',
+    confidence:'medium',
+  },
+  {
+    id:'egypt', title:'Egypt', gdp:'$395B', tag:'loser', tagColor:'#ef4444',
+    summary:'Highest-stress profile. Hit on all four channels: flipped to net LNG importer (+188%), world\'s #1 wheat importer (~74-80% from Russia) feeding 70M bread subsidy, Suez revenue collapsed -60% ($10.25B→$4B), thin reserves ~$35B under IMF. Largest ceasefire beneficiary.',
+    energy:'LNG importer: 9.01M tonnes 2025 (+188%). Domestic gas output -30% since 2021. No export return until ~2030s.',
+    food:'#1 wheat importer: ~12.5-14.7M tonnes, ~74-80% from Russia. Bread subsidy: >70M of 105M people. First price hike in 36 years (+300%).',
+    trade:'Suez collapsed: $4B vs $10.25B (2023), -60%. A closure re-freezes Suez — the single largest downside.',
+    financial:'IMF $8B EFF. ~$35B reserves. External-debt/GDP >42%. 4th currency devaluation since 2022.',
+    substitution:'VERY LOW. Cannot replace Suez revenue. Dependent on Gulf deposits + IMF.',
+    hormuz:'LNG bill spikes, wheat/freight up, Suez further disrupted. Triple FX drain to crisis risk.',
+    strike:'Severe — energy + food inflation; Suez hit.',
+    cable:'Major cables transit Suez corridor; Egypt is a cable landing hub.',
+    ceasefire:'Only relief path — Suez recovery toward $10B, LNG/wheat ease. Single largest ceasefire-beneficiary.',
+    history:'1967: Suez closed, devastated. 2022: wheat dependence exposed, devaluation cycle + IMF. Program predicated on Suez $9B recovery — now invalidated.',
+    secondOrder:'Suez permanent re-collapse risk — if Gulf-to-Europe traffic stays on Cape, persistent near-zero revenue. Egypt\'s fiscal math collapses. Social unrest tail risk.',
+    confidence:'medium',
+  },
+  {
+    id:'pakistan', title:'Pakistan', gdp:'$338B', tag:'loser', tagColor:'#ef4444',
+    summary:'Unique double-Hormuz risk: energy supplier AND ~$38B remittance lifeline are the same region. ~83% oil-import-dependent, Brent-indexed take-or-pay LNG, ~$9.4-14.5B reserves under $7B IMF. KSE-100 -9.57% on March 2. 4-day work week, school closures implemented.',
+    energy:'~83% crude from Gulf (Hormuz). 9 Qatari LNG cargoes/month, Brent-indexed take-or-pay. Both crude AND LNG Brent-indexed AND Hormuz-routed.',
+    food:'~240M population; inflation peaked 38%. IMF forced subsidy removal — fuel spike directly drives food inflation.',
+    trade:'Energy dominant ($15-17B crude + LNG). Deficit financed by remittances.',
+    financial:'IMF $7B EFF. Reserves ~$9.4-14.5B (2-3 months). Remittances record ~$38.3B FY25 (+26.6%). First surplus in 14 years — fragile.',
+    substitution:'LOW. ~83% import-dependent, take-or-pay LNG, thin reserves. No short-term alternative. Remittance = unique double-Hormuz.',
+    hormuz:'Physical supply cut AND price spike on take-or-pay; GCC remittances at risk. 4-day work week, school closures.',
+    strike:'Severe energy-bill inflation + food pass-through to 240M. Remittances may hold if Gulf labor intact.',
+    cable:'Disrupts remittance-transfer and trade-finance — uniquely damaging. NetBlocks confirmed degradation.',
+    ceasefire:'Relief — Brent eases, remittances stabilize, food cools, IMF achievable. Structural fragility persists.',
+    history:'1990: workers evacuated from Kuwait, remittances disrupted. 2022: near-default, inflation 38%. 2026: order-of-magnitude larger exposure.',
+    secondOrder:'Energy-supplier / remittance-source double collapse — GCC supplies both energy AND remittances that finance it. Self-reinforcing external balance collapse unlike any other economy. IMF conditionality becomes impossible without emergency augmentation.',
+    confidence:'medium',
+  },
+];
+
+const winnerLosers = [
+  {name:'United States',hormuz:'Modest winner',strike:'Modest winner',cable:'Moderate loser',ceasefire:'Neutral',net:'Mixed / modest winner',color:'#10b981'},
+  {name:'China',hormuz:'Severe loser',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Strong winner',net:'Loser (best-hedged)',color:'#ef4444'},
+  {name:'European Union',hormuz:'Severe loser',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Strong winner',net:'Loser (stagflation)',color:'#ef4444'},
+  {name:'Japan',hormuz:'Catastrophic',strike:'Severe loser',cable:'Moderate loser',ceasefire:'Very strong winner',net:'Most exposed G7',color:'#ef4444'},
+  {name:'India',hormuz:'Severe loser',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Strong winner',net:'Loser (triple hit)',color:'#ef4444'},
+  {name:'Saudi Arabia',hormuz:'Price winner',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Modest loser',net:'Net-long closure',color:'#10b981'},
+  {name:'UAE',hormuz:'Severe loser',strike:'Moderate loser',cable:'Severe loser',ceasefire:'Strong winner',net:'Hub model at risk',color:'#f59e0b'},
+  {name:'Russia',hormuz:'Winner',strike:'Winner',cable:'Minimal',ceasefire:'Moderate loser',net:'Clearest winner',color:'#10b981'},
+  {name:'South Korea',hormuz:'Severe loser',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Strong winner',net:'Loser (+shipbuilding)',color:'#ef4444'},
+  {name:'Brazil',hormuz:'Strong winner',strike:'Moderate winner',cable:'Minimal',ceasefire:'Modest loser',net:'Structural winner',color:'#10b981'},
+  {name:'Egypt',hormuz:'Catastrophic',strike:'Moderate loser',cable:'Moderate loser',ceasefire:'Very strong winner',net:'Severe loser',color:'#ef4444'},
+  {name:'Pakistan',hormuz:'Catastrophic',strike:'Severe loser',cable:'Significant loser',ceasefire:'Very strong winner',net:'Most vulnerable',color:'#ef4444'},
+];
 ---
 
 <ScenariosLayout
   title="Regional Impact — VegaReady Scenario Analysis"
-  description="Country-by-country exposure analysis for 12 major economies. GDP impact, energy dependency, food security, currency risk, and substitution capacity."
+  description="Country-by-country exposure analysis for 12 major economies under four conflict scenarios. Energy, food, trade, financial exposure with quantified impact projections."
   section="Regional Impact"
 >
-  <div class="label">Regional impact</div>
-  <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--text); margin-bottom: 1rem;">Every economy<br/>has a different exposure.</h1>
-  <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; max-width: 600px; margin-bottom: 3rem;">Some countries benefit from disruption. Some face existential pressure. Understanding the asymmetry across the world's largest economies and most vulnerable nations is where the macro edge lives.</p>
+  <section class="hero">
+    <div class="label">Regional impact</div>
+    <h1>Every economy has a<br/>different exposure.</h1>
+    <p class="lead">12 economies analyzed across energy, food, trade, and financial channels. Some benefit from disruption. Some face existential pressure. Understanding the asymmetry is where the macro edge lives.</p>
+  </section>
 
-  <div style="text-align: center; padding: 4rem 2rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px;">
-    <div style="font-family: var(--font-display); font-style: italic; font-size: 28px; color: var(--text-dim); margin-bottom: 12px;">&nu;</div>
-    <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px;">Regional profiles in development</div>
-    <p style="font-size: 13px; color: var(--text-muted); max-width: 400px; margin: 0 auto 16px; line-height: 1.6;">12 country/region profiles with energy dependency, food security, currency exposure, and scenario-specific impact projections. Publishing progressively.</p>
-    <a href="/scenarios" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); font-weight: 600;">View cascade framework &rarr;</a>
+  <section class="summary-section">
+    <div class="summary-grid">
+      <div class="summary-card" style="border-left:3px solid #10b981"><div class="summary-label">Net winners</div><div class="summary-list">United States, Russia, Saudi Arabia, Brazil</div></div>
+      <div class="summary-card" style="border-left:3px solid #ef4444"><div class="summary-label">Net losers</div><div class="summary-list">China, EU, Japan, India, South Korea, Egypt, Pakistan</div></div>
+      <div class="summary-card" style="border-left:3px solid #f59e0b"><div class="summary-label">Mixed</div><div class="summary-list">UAE (Fujairah bypass vs non-relocatable hub)</div></div>
+    </div>
+    <div class="callout"><strong>Key asymmetry:</strong> Saudi Arabia is the only economy net-long a Hormuz closure. Egypt is the largest ceasefire-beneficiary. Pakistan carries unique double-Hormuz risk: its energy supplier and ~$38B remittance lifeline are the same region.</div>
+  </section>
+
+  <section class="matrix-section">
+    <div class="dl">Scenario impact matrix</div>
+    <div style="overflow-x:auto">
+      <table class="matrix">
+        <thead><tr><th>Economy</th><th style="color:#ef4444">Hormuz</th><th style="color:#f59e0b">Strike</th><th style="color:#6366f1">Cable</th><th style="color:#10b981">Ceasefire</th><th>Net</th></tr></thead>
+        <tbody>{winnerLosers.map(w=>(
+          <tr><td class="mn">{w.name}</td><td>{w.hormuz}</td><td>{w.strike}</td><td>{w.cable}</td><td>{w.ceasefire}</td><td><span class="nt" style={`color:${w.color};border-color:${w.color}30;background:${w.color}10`}>{w.net}</span></td></tr>
+        ))}</tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="country-list">
+    {countries.map((c,i)=>(
+      <details class="cd">
+        <summary class="cs">
+          <div class="cl">
+            <span class="cn">{String(i+1).padStart(2,'0')}</span>
+            <div>
+              <div class="ch"><span class="ct">{c.title}</span><span class="cg">{c.gdp}</span><span class="tg" style={`color:${c.tagColor};border-color:${c.tagColor}30;background:${c.tagColor}10`}>{c.tag}</span></div>
+              <div class="cb">{c.summary}</div>
+            </div>
+          </div>
+          <span class={`cf cf-${c.confidence}`}>{c.confidence}</span>
+        </summary>
+        <div class="cy">
+          <div class="ds"><div class="dl">Energy exposure</div><p>{c.energy}</p></div>
+          <div class="ds"><div class="dl">Food security</div><p>{c.food}</p></div>
+          <div class="dr"><div class="ds"><div class="dl">Trade exposure</div><p>{c.trade}</p></div><div class="ds"><div class="dl">Financial exposure</div><p>{c.financial}</p></div></div>
+          <div class="ds"><div class="dl">Substitution capacity</div><p>{c.substitution}</p></div>
+          <div class="ds"><div class="dl">Scenario impact</div>
+            <div class="sg">
+              <div class="si"><span class="sd" style="background:#ef4444"></span><span class="sn">Hormuz</span><div class="sv">{c.hormuz}</div></div>
+              <div class="si"><span class="sd" style="background:#f59e0b"></span><span class="sn">Strike</span><div class="sv">{c.strike}</div></div>
+              <div class="si"><span class="sd" style="background:#6366f1"></span><span class="sn">Cable</span><div class="sv">{c.cable}</div></div>
+              <div class="si"><span class="sd" style="background:#10b981"></span><span class="sn">Ceasefire</span><div class="sv">{c.ceasefire}</div></div>
+            </div>
+          </div>
+          <div class="dr"><div class="ds"><div class="dl">Historical behavior</div><p>{c.history}</p></div><div class="ds"><div class="dl">Key second-order effect</div><p class="so">{c.secondOrder}</p></div></div>
+        </div>
+      </details>
+    ))}
   </div>
+
+  <div class="sn-box"><div class="dl">Sources & methodology</div><p>Data from EIA, IEA, IMF, World Bank, ECB, RBI, SBP, IEEJ, SIPRI, S&P Global, GIE AGSI+. 2026 conflict figures are provisional. Confidence: HIGH = primary institutional source; MEDIUM = reliable press/proxy; LOW = single source/estimate.</p></div>
 </ScenariosLayout>
 
 <style>
-  .label { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:640px}
+  .summary-section{margin-bottom:2.5rem}
+  .summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+  .summary-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+  .summary-label{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;color:var(--text)}
+  .summary-list{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .callout{font-size:13px;color:var(--text-muted);line-height:1.6;padding:12px 16px;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px}
+  .callout strong{color:var(--cyan);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+  .matrix-section{margin-bottom:2.5rem}
+  .matrix{width:100%;border-collapse:collapse;font-size:11px}
+  .matrix th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .matrix td{padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);font-size:11px}
+  .mn{font-weight:700;color:var(--text);white-space:nowrap}
+  .nt{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;border:1px solid;white-space:nowrap}
+  .country-list{display:flex;flex-direction:column;gap:8px;margin-bottom:2rem}
+  .cd{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .cd[open]{border-color:var(--border-light)}
+  .cd[open] .cs{border-bottom:1px solid var(--border)}
+  .cs{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .cs::-webkit-details-marker{display:none}
+  .cs::marker{display:none;content:''}
+  .cs:hover{background:rgba(255,255,255,0.02)}
+  .cl{display:flex;gap:14px;flex:1;min-width:0}
+  .cn{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .ch{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+  .ct{font-size:15px;font-weight:700;color:var(--text)}
+  .cg{font-family:var(--font-mono);font-size:11px;color:var(--text-dim)}
+  .tg{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;border:1px solid;text-transform:uppercase;letter-spacing:0.5px}
+  .cb{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .cf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .cf-high{color:#10b981;background:rgba(16,185,129,0.1)}
+  .cf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .cy{padding:16px 20px 20px}
+  .ds{margin-bottom:16px}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .ds p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .dr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .sg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .si{padding:10px 14px;background:var(--bg-card);border-radius:6px;border:1px solid var(--border)}
+  .sd{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+  .sn{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text)}
+  .sv{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:4px}
+  .so{color:var(--text);font-weight:500;border-left:2px solid var(--cyan);padding-left:12px}
+  .sn-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+  .sn-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
+  @media(max-width:720px){.dr{grid-template-columns:1fr}.sg{grid-template-columns:1fr}.cb{display:none}.summary-grid{grid-template-columns:1fr}.matrix{font-size:10px}}
 </style>
