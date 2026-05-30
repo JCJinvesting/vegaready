@@ -16,7 +16,22 @@ export default function TrackerEmbed({ tab = 'War Room' }) {
   const [loaded, setLoaded] = useState(false);
 
   // The existing IWT deployment on Cloudflare
-  const iwtUrl = 'https://iranwartracker.royal-rice-7384.workers.dev';
+  // IWT reads #tab=X from the URL hash to set the active tab on load (App.jsx line 1176)
+  const tabMap = {
+    'War Room': 'War Room',
+    'Gulf Countries': 'Gulf Countries',
+    'Economics': 'Economics',
+    'Markets': 'Markets',
+    'Casualties': 'Casualties',
+    'Iran': 'Iran',
+    'US Operations': 'US',
+    'Israel Operations': 'Israel',
+    'Analytics': 'Analytics',
+    'Sources': 'Sources',
+  };
+  const iwtTab = tabMap[tab] || tab;
+  const hash = iwtTab !== 'War Room' ? `#tab=${encodeURIComponent(iwtTab)}` : '';
+  const iwtUrl = `https://iranwartracker.royal-rice-7384.workers.dev${hash}`;
 
   return (
     <div style={{
