@@ -1,0 +1,183 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import { cards, thesis, scenarioMatrix, migrationExposure, migrationNote, humanImpact, precedents, precedentNote, sourceResolution, dataQuality } from '../../data/analysis/labor.js';
+---
+
+<AnalysisLayout
+  title="Labor, Migration & Remittances — VegaReady"
+  description="The human layer of the 2026 Gulf conflict: 24M migrant workers, remittance compression across India, Philippines, Pakistan and Bangladesh, ILO labor-market projections, and the documented human impact."
+  section="Labor & Migration"
+  area="markets"
+>
+  <section class="hero">
+    <div class="label">Markets · Labor, Migration & Remittances</div>
+    <h1>The people who <br/>build the Gulf.</h1>
+    <p class="lead">Twenty-four million migrant workers build and run the Gulf economy, and the earnings they send home are a macro channel in their own right. This is where the Hormuz shock becomes a 7.7% drop in Philippine remittances, a $51.4B Indian exposure, ILO projections of millions of job losses — and, for the workers themselves, a crisis of involuntary immobility.</p>
+  </section>
+
+  <div class="thesis">
+    <div class="thesis-label">The structural finding</div>
+    <p>{thesis}</p>
+  </div>
+
+  <div class="ev-list">
+    {cards.map((c) => (
+      <details class="ev">
+        <summary class="es">
+          <div class="el">
+            <span class="en">{c.icon}</span>
+            <div>
+              <div class="et">{c.title}<span class="cat">{c.category}</span></div>
+              <div class="eb">{c.summary}</div>
+            </div>
+          </div>
+          <span class={`conf conf-${c.confidence}`}>{c.confidence}</span>
+        </summary>
+        <div class="ey">
+          <div class="mgrid">
+            {c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}{mm.tier && <span class="mt">{mm.tier}</span>}</div></div>))}
+          </div>
+          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.join(' · ')}</p></div>}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <section class="mig">
+    <div class="dl">Migrant labor & remittance exposure</div>
+    <div style="overflow-x:auto">
+      <table class="mig-table">
+        <thead><tr><th>Origin</th><th>Workers in Gulf</th><th>Remittance baseline</th><th>Gulf share</th><th>GDP share</th><th>Tier</th></tr></thead>
+        <tbody>
+          {migrationExposure.map((r) => (<tr><td class="mig-c">{r.country}</td><td>{r.workers}</td><td>{r.remittances}</td><td>{r.gulfShare}</td><td>{r.gdpShare}</td><td class="mig-t">{r.tier}</td></tr>))}
+        </tbody>
+      </table>
+    </div>
+    <p class="prec-note">{migrationNote}</p>
+  </section>
+
+  <section class="himp">
+    <div class="dl">Documented human impact</div>
+    <p class="himp-intro">{humanImpact.intro}</p>
+    <div class="himp-deaths">
+      {humanImpact.deaths.map((dd) => (<div class="himp-d"><span class="himp-name">{dd.name}</span> — {dd.detail}</div>))}
+    </div>
+    <ul class="himp-h">{humanImpact.hardship.map((h) => (<li>{h}</li>))}</ul>
+    <p class="himp-risk"><strong>Risk mode:</strong> {humanImpact.riskMode}</p>
+  </section>
+
+  <section class="smx-sec">
+    <div class="dl">Scenario impact</div>
+    <div style="overflow-x:auto">
+      <table class="smx">
+        <thead><tr><th>Scenario</th><th>Migrant labor / remittances</th></tr></thead>
+        <tbody>
+          {scenarioMatrix.map((s) => (
+            <tr><td class="smx-s"><span class="smx-name" style={`color:${s.tone}`}>{s.scenario} — {s.label}</span><span class="smx-def">{s.def}</span></td><td>{s.labor}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prec">
+    <div class="dl">Historical comparison</div>
+    <div style="overflow-x:auto">
+      <table class="prec-table">
+        <thead><tr><th>Episode</th><th>Duration</th><th>Labor / migration</th></tr></thead>
+        <tbody>
+          {precedents.map((p) => (<tr class={p.current ? 'prec-cur' : ''}><td class="prec-name">{p.episode}</td><td>{p.period}</td><td>{p.labor}</td></tr>))}
+        </tbody>
+      </table>
+    </div>
+    <p class="prec-note">{precedentNote}</p>
+  </section>
+
+  <section class="sres">
+    <div class="dl">Source-conflict resolution</div>
+    {sourceResolution.map((r) => (<div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>))}
+  </section>
+
+  <div class="foot-box">
+    <div class="dl">Data quality &amp; methodology</div>
+    <p><strong style="color:#10b981">HIGH (T1 / T2-HIGH)</strong> — {dataQuality.high}</p>
+    <p><strong style="color:#f59e0b">MODERATE</strong> — {dataQuality.moderate}</p>
+    <p><strong style="color:var(--text-dim)">Quarantined (not anchored)</strong> — {dataQuality.quarantined}</p>
+    <p class="next"><strong>Related:</strong> the physical/property side on <a href="/markets/property" style="color:var(--cyan)">/markets/property</a>; country exposure on <a href="/exposure" style="color:var(--cyan)">/exposure</a>.</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:680px}
+  .thesis{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;padding:16px 20px;margin-bottom:2.5rem;max-width:780px}
+  .thesis-label{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .thesis p{font-size:14px;color:var(--text-muted);line-height:1.7;margin:0}
+  .ev-list{display:flex;flex-direction:column;gap:8px;margin-bottom:3rem}
+  .ev{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .ev[open]{border-color:var(--border-light)}
+  .ev[open] .es{border-bottom:1px solid var(--border)}
+  .es{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .es::-webkit-details-marker{display:none}
+  .es::marker{content:''}
+  .es:hover{background:rgba(255,255,255,0.02)}
+  .el{display:flex;gap:14px;flex:1;min-width:0}
+  .en{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .et{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cat{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 7px;border:1px solid var(--border);border-radius:4px;color:var(--text-dim)}
+  .eb{font-size:12px;color:var(--text-dim);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .conf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .conf-high{color:#10b981;background:rgba(16,185,129,0.1)}
+  .conf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .conf-low{color:#ef4444;background:rgba(239,68,68,0.1)}
+  .ey{padding:16px 20px 20px}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .metric{padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px}
+  .ml{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .mv{font-size:13px;color:var(--text-muted);line-height:1.45}
+  .mt{font-family:var(--font-mono);font-size:8px;font-weight:700;color:var(--text-dim);border:1px solid var(--border);border-radius:3px;padding:0 4px;margin-left:6px;white-space:nowrap}
+  .ds{margin-bottom:0}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .srctext{font-size:11px;color:var(--text-dim);line-height:1.6;margin:0}
+  .mig{margin-bottom:3rem}
+  .mig-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .mig-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .mig-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top}
+  .mig-c{font-weight:700;color:var(--text);white-space:nowrap}
+  .mig-t{font-family:var(--font-mono);font-size:10px;color:var(--text-dim);white-space:nowrap}
+  .himp{margin-bottom:3rem}
+  .himp-intro{font-size:13px;color:var(--text-muted);line-height:1.6;margin:12px 0 14px;max-width:780px}
+  .himp-deaths{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .himp-d{font-size:13px;color:var(--text-dim);line-height:1.5;border-left:2px solid #ef4444;padding-left:12px}
+  .himp-name{color:var(--text);font-weight:700}
+  .himp-h{margin:0 0 14px;padding-left:18px;font-size:13px;color:var(--text-muted);line-height:1.6}
+  .himp-h li{margin-bottom:5px}
+  .himp-risk{font-size:13px;color:var(--text-muted);line-height:1.6;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;padding:12px 16px;margin:0;max-width:780px}
+  .himp-risk strong{color:var(--cyan)}
+  .smx-sec{margin-bottom:3rem}
+  .smx{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .smx th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap;vertical-align:bottom}
+  .smx td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.45;vertical-align:top}
+  .smx-s{min-width:160px}
+  .smx-name{display:block;font-weight:700;font-size:13px;margin-bottom:3px}
+  .smx-def{display:block;font-size:11px;color:var(--text-dim)}
+  .prec{margin-bottom:3rem}
+  .prec-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .prec-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .prec-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top}
+  .prec-name{font-weight:700;color:var(--text);white-space:nowrap}
+  .prec-cur td{color:var(--cyan)}
+  .prec-cur .prec-name{color:var(--cyan)}
+  .prec-note{font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:12px;max-width:780px}
+  .sres{margin-bottom:2rem}
+  .sres-block{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid var(--border)}
+  .sres-item{font-size:12px;font-weight:700;color:var(--text);min-width:210px;flex-shrink:0}
+  .sres-res{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
+  .foot-box .next{margin:0}
+  .foot-box strong{color:var(--cyan)}
+  @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
+</style>

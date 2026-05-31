@@ -14,20 +14,15 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
     <p class="lead">Markets are the destination — everything else is context. We track the financial response layer across gold, FX, energy, credit, and crypto, connecting each move back to the geopolitical transmission that caused it.</p>
   </section>
 
-  <div class="market-grid">
+  <div class="market-section">
+    <div class="group-label">Financial markets</div>
+    <div class="market-grid">
     <a href="/markets/gold-fx" class="market-card">
       <div class="market-icon" style="color:#f59e0b">Au</div>
       <div class="market-title">Gold & FX</div>
       <div class="market-stat">ATH $5,595 → trough $4,099 (–27%)</div>
       <div class="market-desc">Safe-haven dynamics inverted: dollar captured the bid, gold corrected on real-yield repricing. Central banks net-purchased 243.7t Q1 2026. Yen carry ¥11.7T intervention. Petrodollar recycling disrupted.</div>
       <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/energy" class="market-card">
-      <div class="market-icon" style="color:#ef4444">WTI</div>
-      <div class="market-title">Oil, LNG & Refined Products</div>
-      <div class="market-stat">Hormuz Q1 2026: 14.6M b/d (–30% YoY)</div>
-      <div class="market-desc">Crude, LNG, diesel, and jet fuel gap dynamics. Bypass capacity, substitution timelines, and the structural gap that can't be filled.</div>
-      <span class="market-status">See Outlook</span>
     </a>
     <a href="/markets" class="market-card coming">
       <div class="market-icon" style="color:#6366f1">BTC</div>
@@ -50,13 +45,34 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
       <div class="market-desc">War-risk premiums, P&I club cancellations, VLCC freight records, Lloyd's marine-war capacity, and reinsurance backstops — the insurance market as the transmission mechanism for shipping disruption.</div>
       <span class="market-status live">Live</span>
     </a>
-    <a href="/markets/real-assets" class="market-card">
+    </div>
+  </div>
+
+  <div class="market-section">
+    <div class="group-label">Real economy</div>
+    <div class="market-grid">
+    <a href="/markets/energy" class="market-card">
+      <div class="market-icon" style="color:#ef4444">WTI</div>
+      <div class="market-title">Oil, LNG & Refined Products</div>
+      <div class="market-stat">Hormuz Q1 2026: 14.6M b/d (–30% YoY)</div>
+      <div class="market-desc">Crude, LNG, diesel, and jet fuel gap dynamics. Bypass capacity, substitution timelines, and the structural gap that can't be filled.</div>
+      <span class="market-status">See Outlook</span>
+    </a>
+    <a href="/markets/property" class="market-card">
       <div class="market-icon" style="color:#a78bfa">RE</div>
-      <div class="market-title">Real Assets, Construction & Labor</div>
-      <div class="market-stat">LME alu $3,546 · NEOM deferred past 2030 · 24M migrant workers</div>
-      <div class="market-desc">Aluminum & metals supply shock, record construction-cost inflation, Gulf real-estate divergence, NEOM megaproject restructuring, and migrant-labor & remittance compression.</div>
+      <div class="market-title">Property, Materials & Megaprojects</div>
+      <div class="market-stat">LME alu $3,546 · 12.6% construction inflation · NEOM deferred</div>
+      <div class="market-desc">Aluminum & metals supply shock, record construction-cost inflation, the Abu Dhabi–Dubai real-estate split, and NEOM megaproject restructuring.</div>
       <span class="market-status live">Live</span>
     </a>
+    <a href="/markets/labor" class="market-card">
+      <div class="market-icon" style="color:#f472b6">L&M</div>
+      <div class="market-title">Labor, Migration & Remittances</div>
+      <div class="market-stat">24M migrant workers · India $51.4B · PH remits −7.7%</div>
+      <div class="market-desc">The 24M migrant workforce, remittance compression across India, the Philippines, Pakistan and Bangladesh, ILO labor projections, and the documented human impact.</div>
+      <span class="market-status live">Live</span>
+    </a>
+    </div>
   </div>
 
   <section class="context-section">
@@ -104,4 +120,6 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
   .context-title{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
   .context-desc{font-size:11px;color:var(--text-dim);line-height:1.5}
   @media(max-width:720px){.market-grid{grid-template-columns:1fr}.context-grid{grid-template-columns:1fr}}
+  .market-section{margin-bottom:2.5rem}
+  .group-label{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 </style>

@@ -109,17 +109,15 @@ out('insurance.js', banner('insurance.json')
   + 'export const premiumGeography = ' + JSON.stringify(insDoc.premiumGeography || '', null, 2) + ';\n\n'
   + 'export const investmentImplications = ' + JSON.stringify(insDoc.investmentImplications || [], null, 2) + ';\n\n'
   + 'export const nextSection = ' + JSON.stringify(insDoc.nextSection || '', null, 2) + ';\n');
-// REAL ASSETS (Section 4) -> markets/real-assets. Nested-metric data-point schema; reuses insHuman.
-const raDoc = rd('realassets.json');
+// SECTION 4 (split) -> markets/property + markets/labor. Nested-metric data-point schema; reuses insHuman.
 const raLabel = (k) => insHuman(k)
   .replace(/\s+(USD per t|USD bn|USD tn|Dh bn|SAR bn|PHP bn|mb d|mn|tn|bn|units|per t|t|%)\s*$/i, '')
   .replace(/\bmom\b/gi, 'MoM').replace(/\bfy(\d{4})\b/gi, 'FY$1').replace(/\bh1\b/gi, 'H1')
   .replace(/\bdfa\b/gi, 'DFA').replace(/\bcif\b/gi, 'CIF').replace(/\bdepdev\b/gi, 'DepDEV')
-  .replace(/\bfeb28\b/gi, 'since Feb 28')
-  .replace(/\bq([1-4])\b/gi, 'Q$1')
+  .replace(/\bfeb28\b/gi, 'since Feb 28').replace(/\bq([1-4])\b/gi, 'Q$1')
   .replace(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, (mo) => mo.charAt(0).toUpperCase() + mo.slice(1).toLowerCase())
   .trim();
-const realAssets = raDoc.cards.map((e, i) => {
+const nestedCard = (e, i) => {
   const d = e.data || {};
   const metrics = Object.keys(d).map((k) => {
     const m = d[k];
@@ -132,19 +130,28 @@ const realAssets = raDoc.cards.map((e, i) => {
   const lo = confs.filter((c) => c === 'LOW').length;
   const confidence = confs.length && hi >= confs.length / 2 ? 'high' : (lo > confs.length / 3 ? 'low' : 'medium');
   const sources = [...new Set(Object.values(d).filter((m) => m && typeof m === 'object' && m.source).map((m) => m.source))];
-  return { id: e.id, icon: icon(i), title: e.title, category: e.category, summary: e.summary || '',
-    metrics, confidence, sources, tags: e.tags || {} };
-});
-out('realassets.js', banner('realassets.json')
-  + 'export const cards = ' + JSON.stringify(realAssets, null, 2) + ';\n\n'
-  + 'export const thesis = ' + JSON.stringify(raDoc.thesis || '', null, 2) + ';\n\n'
-  + 'export const scenarioMatrix = ' + JSON.stringify(raDoc.scenarioMatrix || [], null, 2) + ';\n\n'
-  + 'export const precedents = ' + JSON.stringify(raDoc.precedents || [], null, 2) + ';\n\n'
-  + 'export const precedentNote = ' + JSON.stringify(raDoc.precedentNote || '', null, 2) + ';\n\n'
-  + 'export const dataQuality = ' + JSON.stringify(raDoc.dataQuality || {}, null, 2) + ';\n\n'
-  + 'export const migrationExposure = ' + JSON.stringify(raDoc.migrationExposure || [], null, 2) + ';\n\n'
-  + 'export const migrationNote = ' + JSON.stringify(raDoc.migrationNote || '', null, 2) + ';\n\n'
-  + 'export const substitution = ' + JSON.stringify(raDoc.substitution || [], null, 2) + ';\n\n'
-  + 'export const sourceResolution = ' + JSON.stringify(raDoc.sourceResolution || [], null, 2) + ';\n\n'
-  + 'export const humanImpact = ' + JSON.stringify(raDoc.humanImpact || {}, null, 2) + ';\n');
+  return { id: e.id, icon: icon(i), title: e.title, category: e.category, summary: e.summary || '', metrics, confidence, sources, tags: e.tags || {} };
+};
+const propDoc = rd('property.json');
+out('property.js', banner('property.json')
+  + 'export const cards = ' + JSON.stringify(propDoc.cards.map(nestedCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(propDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(propDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const substitution = ' + JSON.stringify(propDoc.substitution || [], null, 2) + ';\n\n'
+  + 'export const precedents = ' + JSON.stringify(propDoc.precedents || [], null, 2) + ';\n\n'
+  + 'export const precedentNote = ' + JSON.stringify(propDoc.precedentNote || '', null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(propDoc.sourceResolution || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(propDoc.dataQuality || {}, null, 2) + ';\n');
+const labDoc = rd('labor.json');
+out('labor.js', banner('labor.json')
+  + 'export const cards = ' + JSON.stringify(labDoc.cards.map(nestedCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(labDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(labDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const migrationExposure = ' + JSON.stringify(labDoc.migrationExposure || [], null, 2) + ';\n\n'
+  + 'export const migrationNote = ' + JSON.stringify(labDoc.migrationNote || '', null, 2) + ';\n\n'
+  + 'export const humanImpact = ' + JSON.stringify(labDoc.humanImpact || {}, null, 2) + ';\n\n'
+  + 'export const precedents = ' + JSON.stringify(labDoc.precedents || [], null, 2) + ';\n\n'
+  + 'export const precedentNote = ' + JSON.stringify(labDoc.precedentNote || '', null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(labDoc.sourceResolution || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(labDoc.dataQuality || {}, null, 2) + ';\n');
 console.log('done.');

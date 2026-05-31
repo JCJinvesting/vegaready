@@ -1,18 +1,18 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, migrationExposure, migrationNote, substitution, sourceResolution, humanImpact } from '../../data/analysis/realassets.js';
+import { cards, thesis, scenarioMatrix, substitution, precedents, precedentNote, sourceResolution, dataQuality } from '../../data/analysis/property.js';
 ---
 
 <AnalysisLayout
-  title="Real Assets, Construction, Labor & Migration — VegaReady"
-  description="The real-economy layer of the 2026 Gulf conflict: aluminum and metals supply, construction-cost inflation, Gulf real-estate divergence, NEOM megaproject restructuring, and migrant-labor & remittance compression across 24M GCC workers."
-  section="Real Assets"
+  title="Property, Materials & Megaprojects — VegaReady"
+  description="The built-environment layer of the 2026 Gulf conflict: aluminum & metals supply, construction-cost inflation, Gulf real-estate divergence (Abu Dhabi vs Dubai), and NEOM megaproject restructuring."
+  section="Property & Materials"
   area="markets"
 >
   <section class="hero">
-    <div class="label">Markets · Real Assets, Construction & Labor</div>
+    <div class="label">Markets · Property, Materials & Megaprojects</div>
     <h1>Where the shock <br/>hits the ground.</h1>
-    <p class="lead">Past the freight rates and the credit spreads sits the real economy: smelters, building sites, megaprojects, and the 24 million migrant workers who build the Gulf. This is where the Hormuz shock becomes aluminum at a four-year high, a 12.6% construction-cost surge, NEOM deferred past 2030, and remittance channels compressing across South Asia.</p>
+    <p class="lead">The physical economy of the Gulf: smelters, building sites, property markets, and the megaprojects that define the region's capital plan. This is where the Hormuz shock becomes aluminum at a four-year high, a 12.6% construction-cost surge, an Abu Dhabi–Dubai real-estate split, and The Line deferred past 2030.</p>
   </section>
 
   <div class="thesis">
@@ -35,9 +35,7 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
         </summary>
         <div class="ey">
           <div class="mgrid">
-            {c.metrics.map((mm) => (
-              <div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}{mm.tier && <span class="mt">{mm.tier}</span>}</div></div>
-            ))}
+            {c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}{mm.tier && <span class="mt">{mm.tier}</span>}</div></div>))}
           </div>
           {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.join(' · ')}</p></div>}
         </div>
@@ -45,46 +43,16 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
     ))}
   </div>
 
-  <section class="mig">
-    <div class="dl">Migrant labor & remittance exposure</div>
-    <div style="overflow-x:auto">
-      <table class="mig-table">
-        <thead><tr><th>Origin</th><th>Workers in Gulf</th><th>Remittance baseline</th><th>Gulf share</th><th>GDP share</th><th>Tier</th></tr></thead>
-        <tbody>
-          {migrationExposure.map((r) => (
-            <tr><td class="mig-c">{r.country}</td><td>{r.workers}</td><td>{r.remittances}</td><td>{r.gulfShare}</td><td>{r.gdpShare}</td><td class="mig-t">{r.tier}</td></tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-    <p class="prec-note">{migrationNote}</p>
-  </section>
-
-  <section class="himp">
-    <div class="dl">Documented human impact</div>
-    <p class="himp-intro">{humanImpact.intro}</p>
-    <div class="himp-deaths">
-      {humanImpact.deaths.map((dd) => (<div class="himp-d"><span class="himp-name">{dd.name}</span> — {dd.detail}</div>))}
-    </div>
-    <ul class="himp-h">
-      {humanImpact.hardship.map((h) => (<li>{h}</li>))}
-    </ul>
-    <p class="himp-risk"><strong>Risk mode:</strong> {humanImpact.riskMode}</p>
-  </section>
-
   <section class="smx-sec">
     <div class="dl">Scenario impact matrix</div>
     <div style="overflow-x:auto">
       <table class="smx">
-        <thead><tr><th>Scenario</th><th>Construction materials</th><th>Gulf real estate</th><th>Megaprojects</th><th>Migrant labor / remittances</th></tr></thead>
+        <thead><tr><th>Scenario</th><th>Construction materials</th><th>Gulf real estate</th><th>Megaprojects</th></tr></thead>
         <tbody>
           {scenarioMatrix.map((s) => (
             <tr>
               <td class="smx-s"><span class="smx-name" style={`color:${s.tone}`}>{s.scenario} — {s.label}</span><span class="smx-def">{s.def}</span></td>
-              <td>{s.construction}</td>
-              <td>{s.realEstate}</td>
-              <td>{s.megaprojects}</td>
-              <td>{s.labor}</td>
+              <td>{s.construction}</td><td>{s.realEstate}</td><td>{s.megaprojects}</td>
             </tr>
           ))}
         </tbody>
@@ -95,10 +63,7 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
   <section class="subst">
     <div class="dl">Substitution & rerouting</div>
     {substitution.map((sx) => (
-      <div class="subst-block">
-        <div class="subst-area">{sx.area}</div>
-        <p>{sx.text}</p>
-      </div>
+      <div class="subst-block"><div class="subst-area">{sx.area}</div><p>{sx.text}</p></div>
     ))}
   </section>
 
@@ -106,13 +71,9 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
     <div class="dl">Historical comparison</div>
     <div style="overflow-x:auto">
       <table class="prec-table">
-        <thead><tr><th>Episode</th><th>Duration</th><th>Construction</th><th>Labor / migration</th><th>Real estate</th></tr></thead>
+        <thead><tr><th>Episode</th><th>Duration</th><th>Construction</th><th>Real estate</th></tr></thead>
         <tbody>
-          {precedents.map((p) => (
-            <tr class={p.current ? 'prec-cur' : ''}>
-              <td class="prec-name">{p.episode}</td><td>{p.period}</td><td>{p.construction}</td><td>{p.labor}</td><td>{p.realestate}</td>
-            </tr>
-          ))}
+          {precedents.map((p) => (<tr class={p.current ? 'prec-cur' : ''}><td class="prec-name">{p.episode}</td><td>{p.period}</td><td>{p.construction}</td><td>{p.realestate}</td></tr>))}
         </tbody>
       </table>
     </div>
@@ -121,9 +82,7 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
 
   <section class="sres">
     <div class="dl">Source-conflict resolution</div>
-    {sourceResolution.map((r) => (
-      <div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>
-    ))}
+    {sourceResolution.map((r) => (<div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>))}
   </section>
 
   <div class="foot-box">
@@ -131,7 +90,7 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
     <p><strong style="color:#10b981">HIGH (T1 / T2-HIGH)</strong> — {dataQuality.high}</p>
     <p><strong style="color:#f59e0b">MODERATE</strong> — {dataQuality.moderate}</p>
     <p><strong style="color:var(--text-dim)">Quarantined (not anchored)</strong> — {dataQuality.quarantined}</p>
-    <p class="next"><strong>Related:</strong> the physical Hormuz flow on <a href="/outlook" style="color:var(--cyan)">/outlook</a>; sector transmission incl. construction & mining on <a href="/transmission" style="color:var(--cyan)">/transmission</a>.</p>
+    <p class="next"><strong>Related:</strong> the human side on <a href="/markets/labor" style="color:var(--cyan)">/markets/labor</a>; sector transmission on <a href="/transmission" style="color:var(--cyan)">/transmission</a>.</p>
   </div>
 </AnalysisLayout>
 
@@ -176,6 +135,10 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
   .smx-s{min-width:160px}
   .smx-name{display:block;font-weight:700;font-size:13px;margin-bottom:3px}
   .smx-def{display:block;font-size:11px;color:var(--text-dim)}
+  .subst{margin-bottom:3rem}
+  .subst-block{margin-top:12px;border-left:2px solid var(--border);padding-left:14px}
+  .subst-area{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .subst-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
   .prec{margin-bottom:3rem}
   .prec-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
   .prec-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
@@ -184,33 +147,13 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
   .prec-cur td{color:var(--cyan)}
   .prec-cur .prec-name{color:var(--cyan)}
   .prec-note{font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:12px;max-width:780px}
-  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
-  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
-  .foot-box .next{margin:0}
-  .foot-box strong{color:var(--cyan)}
-  @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}}
-  .mig{margin-bottom:3rem}
-  .mig-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
-  .mig-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
-  .mig-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top}
-  .mig-c{font-weight:700;color:var(--text);white-space:nowrap}
-  .mig-t{font-family:var(--font-mono);font-size:10px;color:var(--text-dim);white-space:nowrap}
-  .subst{margin-bottom:3rem}
-  .subst-block{margin-top:12px;border-left:2px solid var(--border);padding-left:14px}
-  .subst-area{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-  .subst-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
   .sres{margin-bottom:2rem}
   .sres-block{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid var(--border)}
   .sres-item{font-size:12px;font-weight:700;color:var(--text);min-width:210px;flex-shrink:0}
   .sres-res{font-size:12px;color:var(--text-dim);line-height:1.5}
-  @media(max-width:720px){.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
-  .himp{margin-bottom:3rem}
-  .himp-intro{font-size:13px;color:var(--text-muted);line-height:1.6;margin:12px 0 14px;max-width:780px}
-  .himp-deaths{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-  .himp-d{font-size:13px;color:var(--text-dim);line-height:1.5;border-left:2px solid #ef4444;padding-left:12px}
-  .himp-name{color:var(--text);font-weight:700}
-  .himp-h{margin:0 0 14px;padding-left:18px;font-size:13px;color:var(--text-muted);line-height:1.6}
-  .himp-h li{margin-bottom:5px}
-  .himp-risk{font-size:13px;color:var(--text-muted);line-height:1.6;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;padding:12px 16px;margin:0;max-width:780px}
-  .himp-risk strong{color:var(--cyan)}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
+  .foot-box .next{margin:0}
+  .foot-box strong{color:var(--cyan)}
+  @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
 </style>

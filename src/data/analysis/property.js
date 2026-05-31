@@ -1,4 +1,4 @@
-// GENERATED from IranWarTracker/data/cascades/realassets.json by scripts/build-cascades.cjs.
+// GENERATED from IranWarTracker/data/cascades/property.json by scripts/build-cascades.cjs.
 // DO NOT EDIT BY HAND. Edit the canonical JSON and re-run: node scripts/build-cascades.cjs
 
 export const cards = [
@@ -454,295 +454,10 @@ export const cards = [
       "position": {},
       "asOf": "2026-05-20"
     }
-  },
-  {
-    "id": "migrant-worker-casualties-and-economic-har",
-    "icon": "07",
-    "title": "Migrant Worker Casualties and Economic Hardship",
-    "category": "Labor / Human Rights",
-    "summary": "GCC: 24M migrant workers (ILO). At least 12 South Asian deaths (BBC). HRW March 2026: 38 worker interviews across 6 GCC states — salary halving for 400+ workers documented; hospitality staffing from 25–30 to 3–4; Kuwait taxi incomes halved. Philippines: 2,000 repatriated by Mar 23. Bangladesh: ~500 repatriated.",
-    "metrics": [
-      {
-        "label": "GCC migrant workers ILO",
-        "value": "24 million",
-        "tier": "T1"
-      },
-      {
-        "label": "South asian migrant deaths bbc",
-        "value": "12 minimum",
-        "tier": "T2-HIGH"
-      },
-      {
-        "label": "Hrw interviews",
-        "value": "38 workers interviewed",
-        "tier": "T2-HIGH"
-      },
-      {
-        "label": "Philippines repatriated by mar23",
-        "value": "2000 workers",
-        "tier": "T2-HIGH"
-      },
-      {
-        "label": "Bangladesh repatriated",
-        "value": "500 workers approx.",
-        "tier": "T2-HIGH"
-      },
-      {
-        "label": "India workers gulf citi estimate",
-        "value": "9 million",
-        "tier": "T2"
-      },
-      {
-        "label": "Philippines middle east workers DFA",
-        "value": "2443700 workers",
-        "tier": "T1 via T2"
-      }
-    ],
-    "confidence": "high",
-    "sources": [
-      "ILO (cited BBC Mar 31, 2026; NPR Mar 17, 2026)",
-      "BBC (Mar 31, 2026)",
-      "HRW (Mar 31, 2026)",
-      "Citi note via CNBC (Mar 5, 2026)",
-      "Philippine DFA via Soufan Center (Apr 15, 2026)"
-    ],
-    "tags": {
-      "assetClass": [
-        "labor"
-      ],
-      "entities": [
-        "bahrain",
-        "india",
-        "pakistan"
-      ],
-      "scenarios": [
-        "hormuz_closure"
-      ],
-      "position": {
-        "hormuz_closure": "loser"
-      },
-      "asOf": "2026-03-31"
-    }
-  },
-  {
-    "id": "remittance-risk-india",
-    "icon": "08",
-    "title": "Remittance Risk: India",
-    "category": "Remittances / Macro",
-    "summary": "India Gulf remittances: $51.4B (FY2025, ~38% of $135.4B total) — Citi/CNBC. Capital Economics (via DW): short conflict −5% remittances; 3+ months −30%. India income risk: $5B–$10B annually at 10–20% decline scenario.",
-    "metrics": [
-      {
-        "label": "India total remittances FY2025",
-        "value": "135.4 USD billion",
-        "tier": "T2-HIGH"
-      },
-      {
-        "label": "India gulf remittances FY2025",
-        "value": "51.4 USD billion",
-        "tier": "T2-HIGH"
-      },
-      {
-        "label": "India gulf share",
-        "value": "38 %",
-        "tier": "T2-HIGH"
-      },
-      {
-        "label": "Capital econ short conflict remittance drop",
-        "value": "5 %",
-        "tier": "T2-MODERATE"
-      },
-      {
-        "label": "Capital econ prolonged conflict remittance drop",
-        "value": "30 %",
-        "tier": "T2-MODERATE"
-      },
-      {
-        "label": "India remittance loss scenario",
-        "value": "5–10 USD billion annual",
-        "tier": "T2-MODERATE"
-      }
-    ],
-    "confidence": "high",
-    "sources": [
-      "Citi note via CNBC (Mar 5, 2026)",
-      "Citi/CNBC (Mar 5, 2026); corroborated NYT (Mar 22, 2026), DW (Mar 24, 2026)",
-      "Capital Economics via DW (Mar 24, 2026)",
-      "DW/Capital Economics (Mar 24, 2026)"
-    ],
-    "tags": {
-      "assetClass": [
-        "labor"
-      ],
-      "entities": [
-        "india",
-        "saudi-arabia",
-        "uae"
-      ],
-      "scenarios": [
-        "hormuz_closure"
-      ],
-      "position": {
-        "hormuz_closure": "loser"
-      },
-      "asOf": "2026-05-01"
-    }
-  },
-  {
-    "id": "remittance-risk-philippines-t1-bsp-data",
-    "icon": "09",
-    "title": "Remittance Risk: Philippines (T1 BSP Data)",
-    "category": "Remittances / Macro",
-    "summary": "BSP official: Feb 2026 bank-channel remittances $2.79B (−7.7% MoM, 9-month low). Jan: $3.02B. Saudi 6.1%, UAE 4.2%, Qatar 2.9% of total inflows. DepDEV: −P167.45B risk if mass repatriation.",
-    "metrics": [
-      {
-        "label": "PH bank remittances Jan 2026",
-        "value": "3.02 USD billion",
-        "tier": "T1-HIGH"
-      },
-      {
-        "label": "PH bank remittances Feb 2026",
-        "value": "2.79 USD billion",
-        "tier": "T1-HIGH"
-      },
-      {
-        "label": "PH Feb MoM change",
-        "value": "-7.7 %",
-        "tier": "T1-HIGH"
-      },
-      {
-        "label": "Saudi share PH remittances",
-        "value": "6.1",
-        "tier": "T1-HIGH"
-      },
-      {
-        "label": "Uae share PH remittances",
-        "value": "4.2",
-        "tier": "T1-HIGH"
-      },
-      {
-        "label": "Qatar share PH remittances",
-        "value": "2.9",
-        "tier": "T1-HIGH"
-      },
-      {
-        "label": "DepDEV remittance risk",
-        "value": "167.45 PHP billion (~$2.9B)",
-        "tier": "T1"
-      }
-    ],
-    "confidence": "high",
-    "sources": [
-      "Bangko Sentral ng Pilipinas (BSP) via Khaleej Times (Apr 17, 2026)",
-      "BSP via Khaleej Times (Apr 17, 2026)",
-      "BSP",
-      "Philippine DepDEV Secretary Balisacan via BSP/Khaleej Times (Apr 17, 2026)"
-    ],
-    "tags": {
-      "assetClass": [
-        "labor"
-      ],
-      "entities": [
-        "philippines",
-        "saudi-arabia",
-        "uae",
-        "qatar",
-        "bsp"
-      ],
-      "scenarios": [
-        "hormuz_closure"
-      ],
-      "position": {
-        "hormuz_closure": "loser"
-      },
-      "asOf": "2026-02-28"
-    }
-  },
-  {
-    "id": "ilo-global-labor-market-projections",
-    "icon": "10",
-    "title": "ILO Global Labor Market Projections",
-    "category": "Labor / Macro",
-    "summary": "ILO May 18, 2026 Employment & Social Trends Update: under ~50% oil price scenario — 14M FTE job losses 2026, 38M in 2027; real labour income −$1.1T (2026) and −$3.0T (2027). Arab States worst hit (−10.2% hours in severe scenario). 4% non-citizen employment multiplier per 1% citizen employment contraction.",
-    "metrics": [
-      {
-        "label": "Global FTE loss 2026",
-        "value": "14 million FTE jobs",
-        "tier": "T1"
-      },
-      {
-        "label": "Global FTE loss 2027",
-        "value": "38 million FTE jobs",
-        "tier": "T1"
-      },
-      {
-        "label": "Global real labour income loss 2026",
-        "value": "1.1 USD trillion",
-        "tier": "T1"
-      },
-      {
-        "label": "Global real labour income loss 2027",
-        "value": "3 USD trillion",
-        "tier": "T1"
-      },
-      {
-        "label": "Arab states hours decline rapid deescalation",
-        "value": "1.3",
-        "tier": "T1"
-      },
-      {
-        "label": "Arab states hours decline prolonged",
-        "value": "3.7",
-        "tier": "T1"
-      },
-      {
-        "label": "Arab states hours decline severe escalation",
-        "value": "10.2",
-        "tier": "T1"
-      },
-      {
-        "label": "Arab states high exposure employment",
-        "value": "40 %",
-        "tier": "T1"
-      },
-      {
-        "label": "Asia pacific high exposure employment",
-        "value": "22 %",
-        "tier": "T1"
-      },
-      {
-        "label": "Non citizen employment multiplier",
-        "value": "4 % fall per 1% citizen contraction",
-        "tier": "T1"
-      }
-    ],
-    "confidence": "medium",
-    "sources": [
-      "ILO Employment & Social Trends May 2026 (published May 18, 2026)",
-      "ILO May 2026"
-    ],
-    "tags": {
-      "assetClass": [
-        "labor"
-      ],
-      "entities": [
-        "bangladesh",
-        "pakistan",
-        "india",
-        "ilo"
-      ],
-      "scenarios": [
-        "hormuz_closure",
-        "oil_strike"
-      ],
-      "position": {
-        "hormuz_closure": "loser"
-      },
-      "asOf": "2026-05-18"
-    }
   }
 ];
 
-export const thesis = "The Hormuz blockade hit four real-economy channels at once: aluminum & metals supply (Gulf smelter shutdowns), construction-cost inflation (a 12.6% annualized rate), Gulf real-estate divergence (Abu Dhabi +161% Q1 transaction value vs a Dubai sentiment pullback), and migrant-labor & remittance compression across 24M GCC workers. The structural distinction from prior episodes: it stacks an energy/material supply shock onto a pre-existing 50% Section 232 metals-tariff shock and a direct migration-vulnerability crisis — three simultaneous stressors without close post-Cold-War precedent.";
+export const thesis = "The Hormuz shock landed on the physical economy as a metals-and-materials squeeze: Gulf smelter shutdowns drove aluminum to a four-year high, construction inputs surged at a 12.6% annualized rate, and Gulf real estate split — Abu Dhabi's transaction value +161% YoY against a Dubai sentiment pullback — while Saudi Arabia deferred The Line past 2030 and terminated megaproject contracts. The binding constraint on recovery is physical: ADNOC's al-Jaber warns even an immediate ceasefire needs a minimum 4 months to restore 80% of pre-conflict flows.";
 
 export const scenarioMatrix = [
   {
@@ -752,8 +467,7 @@ export const scenarioMatrix = [
     "tone": "#10b981",
     "construction": "Price peak passed; 6–12 month normalization. ADNOC warns a minimum 4 months to 80% flows even then.",
     "realEstate": "Abu Dhabi sustains; Dubai volumes recover as confidence rebuilds.",
-    "megaprojects": "NEOM redesign clarified; contract regrants possible 2027+. ADNOC pipeline on track.",
-    "labor": "Repatriated workers attempt return; BSP remittances stabilize above $2.79B/month."
+    "megaprojects": "NEOM redesign clarified; contract regrants possible 2027+. ADNOC pipeline on track."
   },
   {
     "scenario": "S2",
@@ -762,8 +476,7 @@ export const scenarioMatrix = [
     "tone": "#22d3ee",
     "construction": "Sustained elevated pricing: aluminum +10–15%, ex-China deficit continues. Partial Fujairah bypass limits the worst case.",
     "realEstate": "Dubai transactions 15–20% below pre-conflict pace; Abu Dhabi supply constraints support prices.",
-    "megaprojects": "NEOM deferral confirmed through 2030; GCC pivots to security/energy infrastructure.",
-    "labor": "Selective layoffs (tourism, hospitality); remittances declining; ILO 'prolonged crisis' scenario."
+    "megaprojects": "NEOM deferral confirmed through 2030; GCC pivots to security/energy infrastructure."
   },
   {
     "scenario": "S3",
@@ -772,8 +485,7 @@ export const scenarioMatrix = [
     "tone": "#f59e0b",
     "construction": "Aluminum ex-China deficit deepens from 135,000t; non-essential GCC construction halts.",
     "realEstate": "Dubai correction −10–15%; Abu Dhabi resilient but not immune; developer financing stress.",
-    "megaprojects": "PIF balance-sheet defense; megaproject universe shrinks; South Korean/European contractor write-downs.",
-    "labor": "ILO 'severe escalation': Arab States −10.2% working hours; remittances −~30% (Capital Economics scenario, T2-MODERATE)."
+    "megaprojects": "PIF balance-sheet defense; megaproject universe shrinks; South Korean/European contractor write-downs."
   },
   {
     "scenario": "S4",
@@ -782,94 +494,9 @@ export const scenarioMatrix = [
     "tone": "#ef4444",
     "construction": "Gulf production facilities physically damaged; aluminum and petrochemical supply chains break.",
     "realEstate": "Real-estate market freeze; foreign capital exits entirely.",
-    "megaprojects": "All megaprojects indefinitely suspended; Saudi sovereign fiscal crisis.",
-    "labor": "Mass repatriation; ~24M GCC workers face an involuntary-mobility crisis; Bangladesh/Pakistan 5–9% GDP shock."
+    "megaprojects": "All megaprojects indefinitely suspended; Saudi sovereign fiscal crisis."
   }
 ];
-
-export const precedents = [
-  {
-    "episode": "1990–91 Gulf War",
-    "period": "~7 months",
-    "construction": "Kuwait construction halted; Saudi projects deferred",
-    "labor": "Large-scale worker expulsions (historical framing; figures T3)",
-    "realestate": "GCC markets froze; recovered within ~18 months"
-  },
-  {
-    "episode": "2003 Iraq invasion",
-    "period": "Weeks",
-    "construction": "Iraq infrastructure destroyed; regional sentiment cautious",
-    "labor": "Modest Gulf migration disruption; no GCC-wide shock",
-    "realestate": "GCC real estate largely unaffected"
-  },
-  {
-    "episode": "2019–20 COVID-19",
-    "period": "~18 months",
-    "construction": "Construction halted GCC-wide; Dubai prices −10–15%",
-    "labor": "~2M+ workers departed; global remittances −8.1% (World Bank)",
-    "realestate": "Dubai −~10%; Abu Dhabi more stable; strong 2021–23 recovery"
-  },
-  {
-    "episode": "2024 Red Sea / Houthi",
-    "period": "Ongoing",
-    "construction": "Elevated shipping surcharges (+15–20%); delays",
-    "labor": "Minimal direct labor impact",
-    "realestate": "Minimal real-estate impact"
-  },
-  {
-    "episode": "2026 Hormuz blockade",
-    "period": "~3 months",
-    "construction": "12.6% annualized input-cost surge; NEOM deferred; Alba −17% sales",
-    "labor": "≥12 South Asian migrant deaths (BBC); ILO −14M FTE at risk",
-    "realestate": "Abu Dhabi +161% Q1 value (Adrec T1); Dubai volume pullback (T2-MOD)",
-    "current": true
-  }
-];
-
-export const precedentNote = "Structural distinction: the 2026 event combines (1) a primary energy/material supply shock (Hormuz), (2) a pre-existing 50% Section 232 metals-tariff shock, and (3) a direct migration-vulnerability crisis — three simultaneous stressors without close post-Cold-War precedent.";
-
-export const dataQuality = {
-  "high": "Exec-summary figures are T1 / T2-HIGH: Alba Q1 volumes, BLS construction PPI (12.6% annualized), Abu Dhabi Adrec (+161%), Philippines BSP ($2.79B, −7.7%), ILO FTE projections, Hyundai E&C SAR 6.16B disclosure.",
-  "moderate": "Dubai real-estate transaction/price data (T2-MODERATE; no Dubai Land Department primary at report date); Webuild ~$4.7B contract value (reconstructed).",
-  "quarantined": "Capital Economics remittance scenarios (−5%/−30%, via DW secondary); polypropylene +24% (ITI); 15–20% GCC MEP cost (LinkedIn); Bangladesh cement +30–40%; DFM Index −20%; 60% Dubai appreciation; 12–18 month supplier-qualification (vendor blog)."
-};
-
-export const migrationExposure = [
-  {
-    "country": "India",
-    "workers": "~9M",
-    "remittances": "$51.4B (FY2025)",
-    "gulfShare": "~38% of $135.4B total",
-    "gdpShare": "—",
-    "tier": "T2"
-  },
-  {
-    "country": "Pakistan",
-    "workers": "~6M",
-    "remittances": "Gulf-sourced",
-    "gulfShare": "—",
-    "gdpShare": "~5–9% of GDP",
-    "tier": "T2"
-  },
-  {
-    "country": "Bangladesh",
-    "workers": "~5M",
-    "remittances": "Gulf-sourced",
-    "gulfShare": "—",
-    "gdpShare": "~5–9% of GDP",
-    "tier": "T1-via-T2"
-  },
-  {
-    "country": "Philippines",
-    "workers": "~2.44M (Mideast)",
-    "remittances": "$2.79B/mo bank channel (Feb, −7.7%)",
-    "gulfShare": "Saudi 6.1% · UAE 4.2% · Qatar 2.9%",
-    "gdpShare": "~18% of GDP",
-    "tier": "T1 (BSP)"
-  }
-];
-
-export const migrationNote = "GCC migrant-worker anchor: ~24M (ILO, T1). The Coalition on Labor Justice's 31M covers a broader zone (GCC + Jordan/Lebanon/Israel/Palestine/Iran) and is T3 advocacy — noted, not anchored. ≥12 South Asian migrant deaths confirmed (BBC); Saudi Arabia's Oct-2025 kafala abolition covers ~13M.";
 
 export const substitution = [
   {
@@ -890,6 +517,42 @@ export const substitution = [
   }
 ];
 
+export const precedents = [
+  {
+    "episode": "1990–91 Gulf War",
+    "period": "~7 months",
+    "construction": "Kuwait construction halted; Saudi projects deferred",
+    "realestate": "GCC markets froze; recovered within ~18 months"
+  },
+  {
+    "episode": "2003 Iraq invasion",
+    "period": "Weeks",
+    "construction": "Iraq infrastructure destroyed; regional sentiment cautious",
+    "realestate": "GCC real estate largely unaffected"
+  },
+  {
+    "episode": "2019–20 COVID-19",
+    "period": "~18 months",
+    "construction": "Construction halted GCC-wide; Dubai prices −10–15%",
+    "realestate": "Dubai −~10%; Abu Dhabi more stable; strong 2021–23 recovery"
+  },
+  {
+    "episode": "2024 Red Sea / Houthi",
+    "period": "Ongoing",
+    "construction": "Elevated shipping surcharges (+15–20%); delays",
+    "realestate": "Minimal real-estate impact"
+  },
+  {
+    "episode": "2026 Hormuz blockade",
+    "period": "~3 months",
+    "construction": "12.6% annualized input-cost surge; NEOM deferred; Alba −17% sales",
+    "realestate": "Abu Dhabi +161% Q1 value (Adrec T1); Dubai volume pullback (T2-MOD)",
+    "current": true
+  }
+];
+
+export const precedentNote = "Structural distinction: the 2026 event combines (1) a primary energy/material supply shock (Hormuz), (2) a pre-existing 50% Section 232 metals-tariff shock, and (3) a direct migration-vulnerability crisis — three simultaneous stressors without close post-Cold-War precedent.";
+
 export const sourceResolution = [
   {
     "item": "Gulf aluminum share: 7% vs 10%",
@@ -898,38 +561,11 @@ export const sourceResolution = [
   {
     "item": "Dubai real-estate data",
     "resolution": "No Dubai Land Department primary available; all Dubai figures (−25% volume, −4–5% price) are T2-MODERATE and excluded from executive anchors. Abu Dhabi Adrec T1 is the primary real-estate anchor."
-  },
-  {
-    "item": "Migrant counts: 24M vs 31M",
-    "resolution": "Use 24M (ILO, T1) as the GCC anchor; 31M (Coalition on Labor Justice) is T3 advocacy over a broader zone — noted, not anchored."
-  },
-  {
-    "item": "Capital Economics remittance scenarios",
-    "resolution": "−5% / −30% accessed via DW's secondary reporting, not a Capital Economics primary publication — retained in the scenario matrix as T2-MODERATE."
   }
 ];
 
-export const humanImpact = {
-  "intro": "Human Rights Watch interviewed 38 Indian, Nepali and Bangladeshi workers across all six GCC states in March 2026. At least 12 South Asian migrant-worker deaths were confirmed by late March (BBC); ~70 workers from 15+ countries were reported injured (Coalition on Labor Justice, T3).",
-  "deaths": [
-    {
-      "name": "Dibas Shrestha",
-      "detail": "29, Nepali security guard — killed at Zayed International Airport, Abu Dhabi (March 1)."
-    },
-    {
-      "name": "SM Tareq",
-      "detail": "48, Bangladeshi — killed by missile debris at ASRY, Bahrain."
-    },
-    {
-      "name": "Saleh Ahmed",
-      "detail": "Bangladeshi cab driver — killed in the UAE when missile debris pierced his water-tank truck."
-    }
-  ],
-  "hardship": [
-    "A Bahrain supply-company manager was asked by three corporate clients to halve salaries for 400+ workers.",
-    "UAE hotel staffing fell from 25–30 to 3–4 per establishment; workers placed on unpaid leave.",
-    "Kuwait commission taxi drivers reported income down 50%+, some to a fifth of prior earnings.",
-    "Recruitment fees of NPR 300,000–400,000 (~$2,000–$2,700) turn job loss into a household debt crisis."
-  ],
-  "riskMode": "The binding risk is involuntary immobility, not mass exodus: kafala passport retention and visa dependency trap low-wage workers in place. The GRC/GLMM analysis (De Bel-Air, Mar 27) projects selective labor re-stratification rather than a mass departure wave, based on prior Gulf-crisis patterns. HRW received no substantive responses from GCC governments to its written queries as of late March."
+export const dataQuality = {
+  "high": "Alba Q1 volumes, BLS construction PPI (12.6% annualized), Abu Dhabi Adrec (+161%), Hyundai E&C SAR 6.16B disclosure.",
+  "moderate": "Dubai real-estate transaction/price data (T2-MODERATE; no Dubai Land Department primary at report date); Webuild ~$4.7B contract value (reconstructed).",
+  "quarantined": "Polypropylene +24% (ITI); 15–20% GCC MEP cost (LinkedIn); Bangladesh cement +30–40%; DFM Index −20%; 60% Dubai appreciation; 12–18-month supplier-qualification (vendor blog)."
 };
