@@ -305,7 +305,10 @@ export const sectors = [
       "https://www.strategyand.pwc.com/m1/en/reports/the-emerging-gcc-defence-market.pdf",
       "https://www.gartner.com/en/newsroom/press-releases/2025-07-29-gartner-forecasts-worldwide-end-user-spending-on-information-security-to-total-213-billion-us-dollars-in-2025"
     ],
-    "deepDive": null
+    "deepDive": {
+      "url": "/markets/defense",
+      "label": "Defense & Security — deep dive"
+    }
   },
   {
     "id": "tourism-services",

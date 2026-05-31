@@ -197,4 +197,42 @@ out('water.js', banner('water.json')
   + 'export const sourceResolution = ' + JSON.stringify(wDoc.sourceResolution || [], null, 2) + ';\n\n'
   + 'export const dataQuality = ' + JSON.stringify(wDoc.dataQuality || {}, null, 2) + ';\n\n'
   + 'export const investmentImplications = ' + JSON.stringify(wDoc.investmentImplications || [], null, 2) + ';\n');
+
+// SECTION 6 -> markets/energy (transition), markets/defense, outlook/nuclear. Flat data-point cards; reuses flatCard/insHuman.
+const etDoc = rd('energytransition.json');
+out('energytransition.js', banner('energytransition.json')
+  + 'export const cards = ' + JSON.stringify(etDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(etDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const ieaTable = ' + JSON.stringify(etDoc.ieaTable || [], null, 2) + ';\n\n'
+  + 'export const ieaTableNote = ' + JSON.stringify(etDoc.ieaTableNote || '', null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(etDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const investmentImplications = ' + JSON.stringify(etDoc.investmentImplications || [], null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(etDoc.sourceResolution || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(etDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(etDoc.relatedSectors || '', null, 2) + ';\n\n'
+  + 'export const physicalShock = ' + JSON.stringify(etDoc.physicalShock || '', null, 2) + ';\n');
+const defDoc = rd('defense.json');
+out('defense.js', banner('defense.json')
+  + 'export const cards = ' + JSON.stringify(defDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(defDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const drawdownTable = ' + JSON.stringify(defDoc.drawdownTable || [], null, 2) + ';\n\n'
+  + 'export const drawdownNote = ' + JSON.stringify(defDoc.drawdownNote || '', null, 2) + ';\n\n'
+  + 'export const scaleupTable = ' + JSON.stringify(defDoc.scaleupTable || [], null, 2) + ';\n\n'
+  + 'export const spendingNote = ' + JSON.stringify(defDoc.spendingNote || '', null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(defDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const investmentImplications = ' + JSON.stringify(defDoc.investmentImplications || [], null, 2) + ';\n\n'
+  + 'export const resilience = ' + JSON.stringify(defDoc.resilience || {}, null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(defDoc.sourceResolution || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(defDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(defDoc.relatedSectors || '', null, 2) + ';\n');
+const nucDoc = rd('nuclear.json');
+out('nuclear.js', banner('nuclear.json')
+  + 'export const cards = ' + JSON.stringify(nucDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(nucDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const fuelCycle = ' + JSON.stringify(nucDoc.fuelCycle || {}, null, 2) + ';\n\n'
+  + 'export const cascadeChain = ' + JSON.stringify(nucDoc.cascadeChain || [], null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(nucDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(nucDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(nucDoc.relatedSectors || '', null, 2) + ';\n');
+
 console.log('done.');

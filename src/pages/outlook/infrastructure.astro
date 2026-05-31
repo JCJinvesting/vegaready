@@ -1,24 +1,42 @@
 ---
 import AnalysisLayout from "../../layouts/AnalysisLayout.astro";
+import { resilience } from "../../data/analysis/defense.js";
 ---
 
 <AnalysisLayout area="outlook"
   title="Critical Infrastructure — VegaReady Scenario Analysis"
-  description="Quantified vulnerability assessment of Persian Gulf critical infrastructure: Hormuz, Kharg Island, submarine cables, Ras Tanura, Abqaiq, and bypass pipelines."
+  description="Persian Gulf critical-infrastructure vulnerability and the post-conflict reconstruction & resilience premium: desalination hardening, subsea-cable redundancy, air defense as permanent infrastructure, and nuclear baseload."
   section="Infrastructure"
 >
   <div class="label">Critical infrastructure</div>
-  <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--text); margin-bottom: 1rem;">What's at risk and<br/>what it means.</h1>
-  <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; max-width: 600px; margin-bottom: 3rem;">Quantified capacity at each critical node — what each side can credibly threaten, what the market impact would be, and what bypass capacity exists. Includes mine warfare capability assessment.</p>
+  <h1 style="font-family: var(--font-display); font-size: 2rem; font-weight: 400; color: var(--text); margin-bottom: 1rem;">What's at risk and<br/>what it takes to rebuild.</h1>
+  <p style="font-size: 15px; color: var(--text-muted); line-height: 1.7; max-width: 640px; margin-bottom: 2.5rem;">Quantified capacity at each critical node — what each side can credibly threaten and what bypass capacity exists — and the reconstruction premium the damage profile is now generating. The conflict is producing a resilience-rebuild, not a like-for-like repair.</p>
 
-  <div style="text-align: center; padding: 4rem 2rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px;">
+  <section class="res">
+    <div class="dl">The reconstruction &amp; resilience premium</div>
+    <p class="res-thesis">{resilience.thesis}</p>
+    <div class="res-grid">{resilience.winners.map((w) => (<div class="res-block"><div class="res-name">{w.area}</div><p>{w.text}</p></div>))}</div>
+    <p class="res-time"><strong style="color:var(--text)">Timeline:</strong> {resilience.timeline}</p>
+    <p class="res-time" style="margin-top:6px"><strong style="color:var(--text)">Cross-refs:</strong> the defense procurement supercycle on <a href="/markets/defense" style="color:var(--cyan)">/markets/defense</a>; desalination dependence on <a href="/markets/water" style="color:var(--cyan)">/markets/water</a>; civilian nuclear on <a href="/markets/energy" style="color:var(--cyan)">/markets/energy</a>.</p>
+  </section>
+
+  <div style="text-align: center; padding: 3rem 2rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px;">
     <div style="font-family: var(--font-display); font-style: italic; font-size: 28px; color: var(--text-dim); margin-bottom: 12px;">&nu;</div>
-    <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px;">Full infrastructure analysis migrating here</div>
-    <p style="font-size: 13px; color: var(--text-muted); max-width: 400px; margin: 0 auto 16px; line-height: 1.6;">Infrastructure vulnerability data, mine warfare context, and scenario matrix currently available on the precedents page. Being expanded and reorganized.</p>
-    <a href="/scenarios/precedents" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); font-weight: 600;">View current data on precedents page &rarr;</a>
+    <div style="font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px;">Node-level vulnerability analysis</div>
+    <p style="font-size: 13px; color: var(--text-muted); max-width: 440px; margin: 0 auto 16px; line-height: 1.6;">Hormuz, Kharg Island, submarine cables, Ras Tanura, Abqaiq and bypass-pipeline capacity, with mine-warfare context and the scenario matrix, currently live on the precedents page. Being expanded and reorganized here.</p>
+    <a href="/outlook/precedents" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); font-weight: 600;">View current node data on precedents &rarr;</a>
   </div>
 </AnalysisLayout>
 
 <style>
   .label { font-family: var(--font-mono); font-size: 11px; color: var(--cyan); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .res{margin-bottom:3rem}
+  .res-thesis{font-size:14px;color:var(--text-muted);line-height:1.7;margin:0 0 16px;max-width:820px}
+  .res-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .res-block{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:12px 16px}
+  .res-name{font-family:var(--font-mono);font-size:11px;font-weight:700;color:#22d3ee;margin-bottom:5px}
+  .res-block p{font-size:12px;color:var(--text-dim);line-height:1.55;margin:0}
+  .res-time{font-size:12px;color:var(--text-dim);line-height:1.6;margin:14px 0 0;max-width:820px}
+  @media(max-width:720px){.res-grid{grid-template-columns:1fr}}
 </style>
