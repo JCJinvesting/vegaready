@@ -1,6 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossShockNote, regionalHunger, regionalHungerNote, gccFood, gccFoodNote, scenarioMatrix, sourceResolution, dataQuality, relatedSectors } from '../../data/analysis/foodag.js';
+import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossShockNote, regionalHunger, regionalHungerNote, gccFood, gccFoodNote, scenarioMatrix, sourceResolution, dataQuality, relatedSectors, policyResponse, cropCalendar, cropCalendarNote, sulfurPhosphateNote, investmentImplications } from '../../data/analysis/foodag.js';
 ---
 
 <AnalysisLayout
@@ -45,6 +45,7 @@ import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossSh
       {priceTrajectory.map((p) => (<div class="traj-step"><div class="traj-phase">{p.phase}</div><div class="traj-awrp">{p.level}</div><div class="traj-cost">{p.change}</div><div class="traj-note">{p.note}</div></div>))}
     </div>
     <p class="geo">{forwardProjections}</p>
+    <p class="geo">{sulfurPhosphateNote}</p>
   </section>
 
   <section class="prec">
@@ -74,6 +75,22 @@ import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossSh
     <p class="prec-note">{gccFoodNote}</p>
   </section>
 
+  <section class="mig">
+    <div class="dl">Policy response landscape</div>
+    <div style="overflow-x:auto"><table class="mig-table">
+      <thead><tr><th>Actor</th><th>Action</th><th>Date</th></tr></thead>
+      <tbody>{policyResponse.map((p) => (<tr><td class="mig-c">{p.actor}</td><td>{p.action}</td><td class="mig-t">{p.date}</td></tr>))}</tbody>
+    </table></div>
+  </section>
+
+  <section class="cal">
+    <div class="dl">Crop-calendar timeline · the binding constraint</div>
+    <ol class="cal-list">
+      {cropCalendar.map((c) => (<li class={`cal-step${c.current ? ' cal-cur' : ''}`}><span class="cal-period">{c.period}</span><span class="cal-event">{c.event}</span></li>))}
+    </ol>
+    <p class="prec-note">{cropCalendarNote}</p>
+  </section>
+
   <section class="scen">
     <div class="dl">Scenario impact</div>
     {scenarioMatrix.map((s) => (
@@ -82,6 +99,11 @@ import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossSh
         <p class="scen-impact">{s.impact}</p>
       </div>
     ))}
+  </section>
+
+  <section class="inv">
+    <div class="dl">Investment implications</div>
+    {investmentImplications.map((it) => (<div class="inv-block"><div class="inv-name">{it.stakeholder}</div><p>{it.text}</p></div>))}
   </section>
 
   <section class="sres">
@@ -166,4 +188,15 @@ import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossSh
   .foot-box .next{margin:0}
   .foot-box strong{color:var(--cyan)}
   @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}.traj-row{grid-template-columns:1fr 1fr}.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
+  .mig-t{font-family:var(--font-mono);font-size:10px;color:var(--text-dim);white-space:nowrap}
+  .cal{margin-bottom:3rem}
+  .cal-list{list-style:none;margin:12px 0 0;padding:0}
+  .cal-step{display:flex;gap:14px;align-items:flex-start;padding:8px 0 8px 14px;border-left:2px solid var(--border);margin-left:6px}
+  .cal-cur{border-left-color:var(--cyan)}
+  .cal-period{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);min-width:100px;flex-shrink:0}
+  .cal-event{font-size:13px;color:var(--text-muted);line-height:1.5}
+  .inv{margin-bottom:3rem}
+  .inv-block{margin-top:14px}
+  .inv-name{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+  .inv-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
 </style>

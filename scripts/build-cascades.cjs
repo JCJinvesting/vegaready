@@ -24,6 +24,7 @@ const sectors = rd('sectors.json').entries.map((e, i) => ({
   fills: e.data.who_fills_gap, closes: e.data.gap_closes,
   precedent: e.data.historical_precedent, timeline: e.data.time_horizon,
   confidence: e.confidence, sources: e.sources || [],
+  deepDive: e.deepDive || null,
 }));
 out('transmission.js', banner('sectors.json') + 'export const scenarios = ' + JSON.stringify(SCEN, null, 2) + ';\n\nexport const sectors = ' + JSON.stringify(sectors, null, 2) + ';\n');
 
@@ -179,6 +180,11 @@ out('foodag.js', banner('foodag.json')
   + 'export const scenarioMatrix = ' + JSON.stringify(faDoc.scenarioMatrix || [], null, 2) + ';\n\n'
   + 'export const sourceResolution = ' + JSON.stringify(faDoc.sourceResolution || [], null, 2) + ';\n\n'
   + 'export const dataQuality = ' + JSON.stringify(faDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const policyResponse = ' + JSON.stringify(faDoc.policyResponse || [], null, 2) + ';\n\n'
+  + 'export const cropCalendar = ' + JSON.stringify(faDoc.cropCalendar || [], null, 2) + ';\n\n'
+  + 'export const cropCalendarNote = ' + JSON.stringify(faDoc.cropCalendarNote || '', null, 2) + ';\n\n'
+  + 'export const sulfurPhosphateNote = ' + JSON.stringify(faDoc.sulfurPhosphateNote || '', null, 2) + ';\n\n'
+  + 'export const investmentImplications = ' + JSON.stringify(faDoc.investmentImplications || [], null, 2) + ';\n\n'
   + 'export const relatedSectors = ' + JSON.stringify(faDoc.relatedSectors || '', null, 2) + ';\n');
 const wDoc = rd('water.json');
 out('water.js', banner('water.json')
@@ -189,5 +195,6 @@ out('water.js', banner('water.json')
   + 'export const reserveNote = ' + JSON.stringify(wDoc.reserveNote || '', null, 2) + ';\n\n'
   + 'export const scenarioMatrix = ' + JSON.stringify(wDoc.scenarioMatrix || [], null, 2) + ';\n\n'
   + 'export const sourceResolution = ' + JSON.stringify(wDoc.sourceResolution || [], null, 2) + ';\n\n'
-  + 'export const dataQuality = ' + JSON.stringify(wDoc.dataQuality || {}, null, 2) + ';\n');
+  + 'export const dataQuality = ' + JSON.stringify(wDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const investmentImplications = ' + JSON.stringify(wDoc.investmentImplications || [], null, 2) + ';\n');
 console.log('done.');

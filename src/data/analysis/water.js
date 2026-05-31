@@ -219,3 +219,14 @@ export const dataQuality = {
   "moderate": "Attack status (real-time, some claims disputed); reserve-day estimates (planning-grade).",
   "quarantined": "100M population figure (CNN, includes non-GCC); unverified attack-extent claims (Pars/desal)."
 };
+
+export const investmentImplications = [
+  {
+    "stakeholder": "Desalination & water infrastructure (winners)",
+    "text": "A prolonged threat accelerates the desal-resilience buildout — capacity, storage and redundancy. Beneficiaries: large desal developers/operators (ACWA Power, Veolia, IDE Technologies) and the integrated power-and-water EPC chain. Storage — the binding gap at <2 days — is the under-built segment most likely to attract capital."
+  },
+  {
+    "stakeholder": "Gulf sovereigns (contingent risk, not a trade)",
+    "text": "With 62–73M people dependent and under two days of reserve, a successful strike is a societal-stability event, not a tradeable one. The investable signal is the buildout it forces — and the gas-supply linkage, since Qatar's desalination depends on the same at-risk LNG."
+  }
+];

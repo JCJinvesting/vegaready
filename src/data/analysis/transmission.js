@@ -48,7 +48,8 @@ export const sectors = [
       "https://oilprice.com/Latest-Energy-News/World-News/Goldman-Another-Month-of-Hormuz-Closure-Means-Over-100-Brent-Throughout-2026.html",
       "https://www.dallasfed.org/~/media/documents/research/efr/2000/efr0003b.pdf",
       "https://ieefa.org/resources/europes-electricity-prices-are-still-tied-gas-making-geopolitics-structural-vulnerability"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "petrochemicals",
@@ -72,7 +73,8 @@ export const sectors = [
       "https://eastdaley.com/daley-note/ethane-crackers-gain-as-hormuz-disruption-lifts-global-feedstock-costs",
       "https://www.chemicalonline.com/doc/impact-of-arabian-gulf-ethane-on-the-global-p-0001",
       "https://www.iom3.org/resource/strait-of-hormuz-closure-affects-chemicals-and-plastics-exports.html"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "fertilizer",
@@ -96,7 +98,11 @@ export const sectors = [
       "https://blogs.worldbank.org/en/opendata/fertilizer-prices-expected-remain-higher-longer",
       "https://www.ers.usda.gov/amber-waves/2023/september/global-fertilizer-market-challenged-by-russia-s-invasion-of-ukraine",
       "https://www.stlouisfed.org/publications/regional-economist/2022/oct/russia-ukraine-war-record-fertilizer-prices"
-    ]
+    ],
+    "deepDive": {
+      "url": "/markets/food-agriculture",
+      "label": "Food & Agriculture — deep dive"
+    }
   },
   {
     "id": "agriculture",
@@ -120,7 +126,11 @@ export const sectors = [
       "https://ourworldindata.org/how-many-people-does-synthetic-fertilizer-feed",
       "https://en.wikipedia.org/wiki/2007%E2%80%932008_world_food_price_crisis",
       "https://www.profarmer.com/news/agriculture-news/why-strait-hormuz-fertilizer-shock-could-hurt-worse-2022-spike"
-    ]
+    ],
+    "deepDive": {
+      "url": "/markets/food-agriculture",
+      "label": "Food & Agriculture — deep dive"
+    }
   },
   {
     "id": "aviation",
@@ -144,7 +154,8 @@ export const sectors = [
       "https://enotrans.org/eno-resources/jet-fuel-prices-dropped-significantly-havent-ticket-prices/",
       "https://www.freightwaves.com/news/russian-invasion-propels-price-of-ship-fuel-to-historic-high",
       "https://www.khaleejtimes.com/business/aviation/airfares-set-to-rise-up-to-10-due-to-higher-jet-fuel-middle-east-airspace-closures"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "manufacturing",
@@ -168,7 +179,8 @@ export const sectors = [
       "https://thundersaidenergy.com/downloads/cement-costs-and-energy-economics/",
       "https://think.ing.com/articles/aluminium-smelter-shutdowns-threaten-europes-green-transition/",
       "https://www.statista.com/chart/28047/aluminum-production-in-europe/"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "financial",
@@ -192,7 +204,8 @@ export const sectors = [
       "https://english.aawsat.com/business/5226421-saudi-pif-tops-list-sovereign-funds-worldwide-2025",
       "https://www.federalreservehistory.org/essays/oil-shock-of-1973-74",
       "https://english.ahram.org.eg/News/537603.aspx"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "technology",
@@ -216,7 +229,8 @@ export const sectors = [
       "https://www.submarinenetworks.com/en/systems/asia-europe-africa/peace/peace-cable-cut-in-the-red-sea,-repair-to-be-prolonged",
       "https://www.networkworld.com/article/4052813/red-sea-cable-cuts-trigger-latency-for-azure-cloud-services-across-asia-and-the-middle-east.html",
       "https://capacityglobal.com/news/the-gulf-gamble-could-the-war-in-the-middle-east-drive-a-data-centre-exodus-to-india/"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "pharma",
@@ -240,7 +254,8 @@ export const sectors = [
       "https://gulfnews.com/amp/story/business/retail/global-medicine-supply-chains-face-growing-pressure-moodys-warns-1.500555280",
       "https://accessiblemeds.org/resources/press-releases/pharmaceutical-shipping-costs-spike-response-global-covid-19-pandemic/",
       "https://psnet.ahrq.gov/issue/drug-shortages-amid-covid-19-pandemic"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "construction",
@@ -264,7 +279,8 @@ export const sectors = [
       "https://www.newcivilengineer.com/latest/anticipated-cost-of-saudi-arabias-neom-gigaproject-explodes-from-500bn-to-8-8-trillion-12-03-2025/",
       "https://www.dubaiproperty.news/market-updates/uae-construction-sector-flourishes-despite-global-challenges-holds-590-billion-project-pipeline-report",
       "https://www.coface.com/news-economy-and-insights/houthi-attacks-in-the-red-sea-why-maritime-trade-is-still-not-smooth-sailing"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "defense",
@@ -288,7 +304,8 @@ export const sectors = [
       "https://www.cnn.com/2025/11/18/middleeast/f35-trump-saudi-arabia-israel-latam-intl",
       "https://www.strategyand.pwc.com/m1/en/reports/the-emerging-gcc-defence-market.pdf",
       "https://www.gartner.com/en/newsroom/press-releases/2025-07-29-gartner-forecasts-worldwide-end-user-spending-on-information-security-to-total-213-billion-us-dollars-in-2025"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "tourism-services",
@@ -312,7 +329,8 @@ export const sectors = [
       "https://aerospaceglobalnews.com/news/airlines-fuel-costs-rerouting-airfares-middle-east/",
       "https://blogs.worldbank.org/en/peoplemove/in-2024--remittance-flows-to-low--and-middle-income-countries-ar",
       "https://swarajyamag.com/news-brief/india-tops-global-remittance-chart-with-1291-billion-in-2024-while-chinas-share-hits-two-decade-low-world-bank-data"
-    ]
+    ],
+    "deepDive": null
   },
   {
     "id": "precious-metals-mining",
@@ -335,6 +353,7 @@ export const sectors = [
       "https://skillings.net/gold-fields-flags-50-oz-oil-shock-as-energy-costs-surge-across-global-portfolio/",
       "https://investingnews.com/wpic-platinum-market-forecast/",
       "https://capital.com/en-int/market-updates/crude-oil-price-forecast-19-05-2026"
-    ]
+    ],
+    "deepDive": null
   }
 ];

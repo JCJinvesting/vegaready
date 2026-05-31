@@ -53,6 +53,7 @@ import { scenarios, sectors } from '../../data/analysis/transmission.js';
             <div class="ds"><div class="dl">Time horizon</div><p>{s.timeline}</p></div>
           </div>
           <div class="ds"><div class="dl">Sources</div><p>{s.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>
+          {s.deepDive && <div class="dd"><a href={s.deepDive.url} class="ddlink">{s.deepDive.label} →</a></div>}
         </div>
       </details>
     ))}
@@ -101,4 +102,7 @@ import { scenarios, sectors } from '../../data/analysis/transmission.js';
   .winners{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #10b981;border-radius:8px;padding:16px 20px}
   .winners p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
   @media(max-width:720px){.dr{grid-template-columns:1fr}.sg{grid-template-columns:1fr}.sector-blurb{display:none}}
+  .dd{margin-top:6px}
+  .ddlink{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none;border:1px solid var(--cyan);border-radius:5px;padding:3px 9px;display:inline-block}
+  .ddlink:hover{background:rgba(34,211,238,0.1)}
 </style>

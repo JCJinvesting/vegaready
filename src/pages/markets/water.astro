@@ -1,6 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, sourceResolution, dataQuality } from '../../data/analysis/water.js';
+import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, sourceResolution, dataQuality, investmentImplications } from '../../data/analysis/water.js';
 ---
 
 <AnalysisLayout
@@ -21,11 +21,17 @@ import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, s
   </div>
 
   <section class="mig">
-    <div class="dl">Desalination dependency by country</div>
-    <div style="overflow-x:auto"><table class="mig-table">
-      <thead><tr><th>Country</th><th>Desal share of total water</th><th>Drinking water from desal</th></tr></thead>
-      <tbody>{dependencyTable.map((r) => (<tr><td class="mig-c">{r.country}</td><td>{r.desalShare}</td><td class="mig-hi">{r.drinking}</td></tr>))}</tbody>
-    </table></div>
+    <div class="dl">Drinking water from desalination</div>
+    <div class="bars">
+      {dependencyTable.map((r) => (
+        <div class="bar-row">
+          <span class="bar-label">{r.country}</span>
+          <div class="bar-track"><div class="bar-fill" style={`width:${parseInt(r.drinking)}%;background:${parseInt(r.drinking) >= 80 ? '#ef4444' : parseInt(r.drinking) >= 50 ? '#f59e0b' : '#22d3ee'}`}></div></div>
+          <span class="bar-val">{r.drinking}</span>
+        </div>
+      ))}
+    </div>
+    <p class="prec-note">Desal share of total water: Qatar 77% · Bahrain 68% · UAE 52% · Kuwait 42% · Oman 31% · Saudi 18%. The drinking-water dependence (bars) is the binding number — a strike that takes a plant offline hits the tap directly.</p>
   </section>
 
   <section class="prec">
@@ -67,6 +73,11 @@ import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, s
         <p class="scen-impact">{s.impact}</p>
       </div>
     ))}
+  </section>
+
+  <section class="inv">
+    <div class="dl">Investment implications</div>
+    {investmentImplications.map((it) => (<div class="inv-block"><div class="inv-name">{it.stakeholder}</div><p>{it.text}</p></div>))}
   </section>
 
   <section class="sres">
@@ -144,4 +155,15 @@ import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, s
   .foot-box .next{margin:0}
   .foot-box strong{color:var(--cyan)}
   @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
+  .inv{margin-bottom:3rem}
+  .inv-block{margin-top:14px}
+  .inv-name{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+  .inv-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .bars{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .bar-row{display:grid;grid-template-columns:96px 1fr 56px;align-items:center;gap:10px}
+  .bar-label{font-size:12px;font-weight:700;color:var(--text);white-space:nowrap}
+  .bar-track{height:18px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:3px 0 0 3px}
+  .bar-val{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-dim);text-align:right}
+  @media(max-width:720px){.bar-row{grid-template-columns:72px 1fr 48px}}
 </style>

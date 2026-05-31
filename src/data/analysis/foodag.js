@@ -632,4 +632,85 @@ export const dataQuality = {
   "quarantined": "~21Mt Gulf urea export-capacity-at-risk (Serrari/Oxford proxy); ~4Mt DAP-at-risk; industry-video / LinkedIn cost claims."
 };
 
+export const policyResponse = [
+  {
+    "actor": "US Government",
+    "action": "60-day Jones Act suspension for fertilizer transport; DFC cargo/hull reinsurance (up to $20B); lifted sanctions on 3 Belarusian potash producers; suspended sanctions on Russian oil",
+    "date": "Mar 2026"
+  },
+  {
+    "actor": "Turkey",
+    "action": "Removed urea import duty to protect spring fertilizer availability",
+    "date": "Mar 7"
+  },
+  {
+    "actor": "India",
+    "action": "Front-loaded imports via Russia/Morocco/Cape route; +23% domestic urea production; govt DAP consortium (1.3Mt IPL tender)",
+    "date": "Mar–May"
+  },
+  {
+    "actor": "Kuwait",
+    "action": "Froze basic-food prices; subsidized meat imports; temporarily banned food exports",
+    "date": "Mar 2026"
+  },
+  {
+    "actor": "China",
+    "action": "Maintains phosphate-fertilizer export restrictions (set to expire Aug 2026)",
+    "date": "Ongoing"
+  },
+  {
+    "actor": "FAO",
+    "action": "Proposed converting the IMF shock facility into an input-financing facility; country-level fertilizer-need prioritization; fast-track MDB financing",
+    "date": "Apr–May"
+  },
+  {
+    "actor": "WFP",
+    "action": "Extended the Sudan supply route by 9,000 km via alternate corridors",
+    "date": "Mar–Apr"
+  }
+];
+
+export const cropCalendar = [
+  {
+    "period": "Mar–Apr 2026",
+    "event": "Fertilizer prices spike; N-hemisphere farmers make spring planting decisions under cost and supply uncertainty",
+    "current": true
+  },
+  {
+    "period": "Jun–Jul 2026",
+    "event": "India's Kharif (monsoon) planting — the critical window for rice and pulses"
+  },
+  {
+    "period": "Aug–Sep 2026",
+    "event": "China's phosphate export restrictions set to expire — potential supply release"
+  },
+  {
+    "period": "Oct–Nov 2026",
+    "event": "Kharif harvest — first full data on the yield impact of reduced fertilizer application"
+  },
+  {
+    "period": "2027",
+    "event": "FAO/World Bank project continued elevated prices even under partial normalization"
+  }
+];
+
+export const cropCalendarNote = "FAO's Torero frames the crop calendar — not stocks — as the binding constraint. Purdue's test: a conflict resolved in 4–6 weeks (before spring planting finishes) is 'unlikely to produce a sustained shock'; one extending through the planting season into summer harvest — the realized path, with Hormuz effectively closed Feb 28 through at least May 30 — has 'structural food-price parallels to 2022.' Negotiation status (May 30): a draft circulated (Iran pledging to restore Hormuz traffic within a month) but Trump rejected it and no deal is signed — and economists warn a reprieve may come too late for the 2026 N-hemisphere season. A strong El Niño is a flagged compounding risk.";
+
+export const sulfurPhosphateNote = "Beyond nitrogen, a secondary shock runs through sulfur — a byproduct of Gulf oil-and-gas processing and the feedstock for phosphate fertilizer. The Gulf is ~50% of globally traded sulfur; CSIS estimates ~45% of sulfur trade and ~20% of global phosphate trade are affected, with Saudi Arabia + Israel alone at 17% of phosphate exports. The nitrogen squeeze and the sulfur/phosphate squeeze compound.";
+
+export const investmentImplications = [
+  {
+    "stakeholder": "Fertilizer producers (winners)",
+    "text": "Non-Gulf nitrogen and phosphate producers capture the price spike: CF Industries, Nutrien, Yara, OCI (nitrogen); Mosaic, OCP Morocco (phosphate); Nutrien, K+S and now-unsanctioned Belarusian potash. US producers are insulated (65% of US nitrogen is domestic), yet NOLA prices still rose on global arbitrage."
+  },
+  {
+    "stakeholder": "Ag-commodity & logistics (mixed)",
+    "text": "Grain/oilseed traders (ADM, Bunge, Cargill) gain from volatility and basis dislocation; Cape-of-Good-Hope rerouting adds freight. Yara flagged ~0.5Mt of nitrogen not being produced — a supply-side tightener that supports prices into H2."
+  },
+  {
+    "stakeholder": "Food importers & downstream (losers)",
+    "text": "Protein and feed margins compress on higher input costs; packaged-food makers face input inflation; and food-import-dependent sovereigns (Egypt, Pakistan — see /credit and /exposure) face fiscal and FX stress as the subsidy bill climbs. The delayed-fuse yield hit lands 6–12 months out."
+  }
+];
+
 export const relatedSectors = "This is the deep dive of the /transmission Fertilizer & Ammonia and Agriculture & Food sectors — the same cascade, fully resolved.";
