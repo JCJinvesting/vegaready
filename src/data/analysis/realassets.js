@@ -10,42 +10,42 @@ export const cards = [
     "summary": "Alba (world's largest single-site smelter, 1.6 Mt/yr) shut Lines 1–3 (19% capacity) on March 15–16; declared force majeure. Q1 2026 sales −17% YoY, production −14% YoY. LME hit $3,546.50/t (4-yr high Mar 16). +19% YTD through May. Ex-China markets in 135,000t deficit.",
     "metrics": [
       {
-        "label": "Alba capacity idled %",
+        "label": "Alba capacity idled",
         "value": "19 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Alba q1 sales t",
+        "label": "Alba Q1 sales",
         "value": "312563 tonnes",
         "tier": "T2-HIGH (company disclosure)"
       },
       {
-        "label": "Alba q1 sales YoY %",
+        "label": "Alba Q1 sales YoY",
         "value": "-17 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Alba q1 production t",
+        "label": "Alba Q1 production",
         "value": "339734 tonnes",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Alba q1 production YoY %",
+        "label": "Alba Q1 production YoY",
         "value": "-14 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "LME peak price USD per t",
+        "label": "LME peak price",
         "value": "3546.5 $/tonne",
         "tier": "T2-HIGH"
       },
       {
-        "label": "LME price YTD change %",
+        "label": "LME price YTD change",
         "value": "19 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "LME price post feb28 %",
+        "label": "LME price post since Feb 28",
         "value": "13 %",
         "tier": "T2-HIGH"
       },
@@ -60,12 +60,12 @@ export const cards = [
         "tier": "T2-HIGH"
       },
       {
-        "label": "Ex china market deficit t",
+        "label": "Ex china market deficit",
         "value": "135000 tonnes",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Ubs 2026 supply growth revised %",
+        "label": "Ubs 2026 supply growth revised",
         "value": "0.3 %",
         "tier": "T2-HIGH"
       }
@@ -109,47 +109,47 @@ export const cards = [
     "summary": "US construction input prices: 12.6% annualized Jan–Feb 2026 (ABC/BLS); 6.2% cumulative Jan–Apr; +7.4% YoY nonresidential. Diesel +73.8% YoY (April). Aluminum mill shapes +39.1% YoY. ACA: US cement demand −2.5% 2026; real construction spending −3.1%. Platts cement CIF Houston $88/t (Apr 30).",
     "metrics": [
       {
-        "label": "Construction inputs annualized jan feb %",
+        "label": "Construction inputs annualized Jan Feb",
         "value": "12.6 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Construction inputs jan apr cumulative %",
+        "label": "Construction inputs Jan Apr cumulative",
         "value": "6.2 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Nonres inputs YoY apr %",
+        "label": "Nonres inputs YoY Apr",
         "value": "7.4 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Diesel YoY apr %",
+        "label": "Diesel YoY Apr",
         "value": "73.8 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Aluminum mill shapes YoY %",
+        "label": "Aluminum mill shapes YoY",
         "value": "39.1 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Steel mill products YoY %",
+        "label": "Steel mill products YoY",
         "value": "20.9 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Us cement demand 2026 %",
+        "label": "Us cement demand 2026",
         "value": "-2.5 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Us real construction spending 2026 %",
+        "label": "Us real construction spending 2026",
         "value": "-3.1 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Cement cif houston USD per t",
+        "label": "Cement CIF houston",
         "value": "88 $/metric ton",
         "tier": "T1/T2-HIGH"
       }
@@ -190,27 +190,27 @@ export const cards = [
     "summary": "Trade-press data (no DLD primary available at report date): early-March transactions ~6,129 units vs ~8,199 prior period (−25% vol); prices reported −4–5% from peak. No broad collapse is confirmed, but all Dubai-specific shock figures require source caveats — see Data Quality Exceptions.",
     "metrics": [
       {
-        "label": "Dubai early mar transactions units",
+        "label": "Dubai early Mar transactions",
         "value": "6129 units (2-week period)",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Dubai prior period transactions units",
+        "label": "Dubai prior period transactions",
         "value": "8199 units (2-week period)",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Dubai volume decline %",
+        "label": "Dubai volume decline",
         "value": "25 %",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Dubai price decline from peak %",
+        "label": "Dubai price decline from peak",
         "value": "4-5 %",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Uae cash transaction share %",
+        "label": "Uae cash transaction share",
         "value": "not anchored n/a",
         "tier": "T3"
       }
@@ -244,12 +244,12 @@ export const cards = [
     "summary": "Q1 2026 (Adrec official): total transactions Dh66B (+161% YoY), 13,518 deals (+96%), FDI +423%, repeat lease +16%. Caveat: Q1 spans Jan–Mar; majority pre-dates Feb 28 conflict. Supply pipeline only +3.3% for 2026.",
     "metrics": [
       {
-        "label": "Total transaction value dh bn",
+        "label": "Total transaction value",
         "value": "66 Dh billion",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Total transaction value YoY %",
+        "label": "Total transaction value YoY",
         "value": "161 %",
         "tier": "T1-HIGH"
       },
@@ -259,27 +259,27 @@ export const cards = [
         "tier": "T1-HIGH"
       },
       {
-        "label": "Deals YoY %",
+        "label": "Deals YoY",
         "value": "96 %",
         "tier": "T1-HIGH"
       },
       {
-        "label": "FDI individuals dh bn",
+        "label": "FDI individuals",
         "value": "8.27 Dh billion",
         "tier": "T1-HIGH"
       },
       {
-        "label": "FDI YoY %",
+        "label": "FDI YoY",
         "value": "423 %",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Repeat lease price YoY %",
+        "label": "Repeat lease price YoY",
         "value": "16 %",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Supply pipeline growth 2026 %",
+        "label": "Supply pipeline growth 2026",
         "value": "3.3 %",
         "tier": "T1-HIGH"
       },
@@ -329,17 +329,17 @@ export const cards = [
         "tier": "T2-HIGH"
       },
       {
-        "label": "Webuild trojena reported contract USD bn",
+        "label": "Webuild trojena reported contract",
         "value": "~4.7 USD billion",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Webuild trojena completion at termination %",
+        "label": "Webuild trojena completion at termination",
         "value": "30 %",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Hyundai E&C tunnel SAR bn",
+        "label": "Hyundai E&C tunnel",
         "value": "6.16 SAR billion (~$1.6B)",
         "tier": "T2-HIGH"
       },
@@ -349,7 +349,7 @@ export const cards = [
         "tier": "T2-HIGH"
       },
       {
-        "label": "Oxagon continued investment USD bn",
+        "label": "Oxagon continued investment",
         "value": "~3",
         "tier": "T2-HIGH"
       },
@@ -359,7 +359,7 @@ export const cards = [
         "tier": "T2-HIGH"
       },
       {
-        "label": "Korea overseas construction h1 2025 decline %",
+        "label": "Korea overseas construction H1 2025 decline",
         "value": "20 %",
         "tier": "T2"
       }
@@ -400,7 +400,7 @@ export const cards = [
     "summary": "New West-East pipeline 50% complete (ADNOC CEO May 20, Atlantic Council); operational 2027. Existing Habshan-Fujairah pipeline: 1.8 Mb/d capacity, currently rerouting volumes. ADNOC CEO: minimum 4 months to 80% flows after ceasefire; full normalization not before Q1–Q2 2027.",
     "metrics": [
       {
-        "label": "New pipeline completion %",
+        "label": "New pipeline completion",
         "value": "50 %",
         "tier": "T1/T2-HIGH"
       },
@@ -410,7 +410,7 @@ export const cards = [
         "tier": "T1/T2-HIGH"
       },
       {
-        "label": "Existing habshan fujairah capacity mb d",
+        "label": "Existing habshan fujairah capacity",
         "value": "1.8 Mb/d maximum",
         "tier": "T2-HIGH"
       },
@@ -425,7 +425,7 @@ export const cards = [
         "tier": "T1/T2-HIGH"
       },
       {
-        "label": "Cumulative barrels lost bn",
+        "label": "Cumulative barrels lost",
         "value": "1 billion barrels",
         "tier": "T2-HIGH"
       }
@@ -463,7 +463,7 @@ export const cards = [
     "summary": "GCC: 24M migrant workers (ILO). At least 12 South Asian deaths (BBC). HRW March 2026: 38 worker interviews across 6 GCC states — salary halving for 400+ workers documented; hospitality staffing from 25–30 to 3–4; Kuwait taxi incomes halved. Philippines: 2,000 repatriated by Mar 23. Bangladesh: ~500 repatriated.",
     "metrics": [
       {
-        "label": "GCC migrant workers ILO mn",
+        "label": "GCC migrant workers ILO",
         "value": "24 million",
         "tier": "T1"
       },
@@ -493,7 +493,7 @@ export const cards = [
         "tier": "T2"
       },
       {
-        "label": "Philippines middle east workers dfa",
+        "label": "Philippines middle east workers DFA",
         "value": "2443700 workers",
         "tier": "T1 via T2"
       }
@@ -532,32 +532,32 @@ export const cards = [
     "summary": "India Gulf remittances: $51.4B (FY2025, ~38% of $135.4B total) — Citi/CNBC. Capital Economics (via DW): short conflict −5% remittances; 3+ months −30%. India income risk: $5B–$10B annually at 10–20% decline scenario.",
     "metrics": [
       {
-        "label": "India total remittances fy2025 USD bn",
+        "label": "India total remittances FY2025",
         "value": "135.4 USD billion",
         "tier": "T2-HIGH"
       },
       {
-        "label": "India gulf remittances fy2025 USD bn",
+        "label": "India gulf remittances FY2025",
         "value": "51.4 USD billion",
         "tier": "T2-HIGH"
       },
       {
-        "label": "India gulf share %",
+        "label": "India gulf share",
         "value": "38 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Capital econ short conflict remittance drop %",
+        "label": "Capital econ short conflict remittance drop",
         "value": "5 %",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Capital econ prolonged conflict remittance drop %",
+        "label": "Capital econ prolonged conflict remittance drop",
         "value": "30 %",
         "tier": "T2-MODERATE"
       },
       {
-        "label": "India remittance loss scenario USD bn",
+        "label": "India remittance loss scenario",
         "value": "5–10 USD billion annual",
         "tier": "T2-MODERATE"
       }
@@ -595,37 +595,37 @@ export const cards = [
     "summary": "BSP official: Feb 2026 bank-channel remittances $2.79B (−7.7% MoM, 9-month low). Jan: $3.02B. Saudi 6.1%, UAE 4.2%, Qatar 2.9% of total inflows. DepDEV: −P167.45B risk if mass repatriation.",
     "metrics": [
       {
-        "label": "PH bank remittances jan 2026 USD bn",
+        "label": "PH bank remittances Jan 2026",
         "value": "3.02 USD billion",
         "tier": "T1-HIGH"
       },
       {
-        "label": "PH bank remittances feb 2026 USD bn",
+        "label": "PH bank remittances Feb 2026",
         "value": "2.79 USD billion",
         "tier": "T1-HIGH"
       },
       {
-        "label": "PH feb mom change %",
+        "label": "PH Feb MoM change",
         "value": "-7.7 %",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Saudi share PH remittances %",
+        "label": "Saudi share PH remittances",
         "value": "6.1",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Uae share PH remittances %",
+        "label": "Uae share PH remittances",
         "value": "4.2",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Qatar share PH remittances %",
+        "label": "Qatar share PH remittances",
         "value": "2.9",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Depdev remittance risk php bn",
+        "label": "DepDEV remittance risk",
         "value": "167.45 PHP billion (~$2.9B)",
         "tier": "T1"
       }
@@ -665,47 +665,47 @@ export const cards = [
     "summary": "ILO May 18, 2026 Employment & Social Trends Update: under ~50% oil price scenario — 14M FTE job losses 2026, 38M in 2027; real labour income −$1.1T (2026) and −$3.0T (2027). Arab States worst hit (−10.2% hours in severe scenario). 4% non-citizen employment multiplier per 1% citizen employment contraction.",
     "metrics": [
       {
-        "label": "Global FTE loss 2026 mn",
+        "label": "Global FTE loss 2026",
         "value": "14 million FTE jobs",
         "tier": "T1"
       },
       {
-        "label": "Global FTE loss 2027 mn",
+        "label": "Global FTE loss 2027",
         "value": "38 million FTE jobs",
         "tier": "T1"
       },
       {
-        "label": "Global real labour income loss 2026 USD tn",
+        "label": "Global real labour income loss 2026",
         "value": "1.1 USD trillion",
         "tier": "T1"
       },
       {
-        "label": "Global real labour income loss 2027 USD tn",
+        "label": "Global real labour income loss 2027",
         "value": "3 USD trillion",
         "tier": "T1"
       },
       {
-        "label": "Arab states hours decline rapid deescalation %",
+        "label": "Arab states hours decline rapid deescalation",
         "value": "1.3",
         "tier": "T1"
       },
       {
-        "label": "Arab states hours decline prolonged %",
+        "label": "Arab states hours decline prolonged",
         "value": "3.7",
         "tier": "T1"
       },
       {
-        "label": "Arab states hours decline severe escalation %",
+        "label": "Arab states hours decline severe escalation",
         "value": "10.2",
         "tier": "T1"
       },
       {
-        "label": "Arab states high exposure employment %",
+        "label": "Arab states high exposure employment",
         "value": "40 %",
         "tier": "T1"
       },
       {
-        "label": "Asia pacific high exposure employment %",
+        "label": "Asia pacific high exposure employment",
         "value": "22 %",
         "tier": "T1"
       },
@@ -878,7 +878,7 @@ export const substitution = [
   },
   {
     "area": "Petcoke & cement",
-    "text": "Indian cement producers substitute US petcoke at a premium or switch to coal; imported coal +~22% YoY to ~$110/t FOB (Global Cement). Thermal substitution provides a partial medium-term offset."
+    "text": "Gulf petcoke exports to India (~0.4–0.6 Mt/month) transit the Strait directly. Indian cement producers substitute US petcoke at a premium or switch to coal; imported coal +~22% YoY to ~$110/t FOB (Global Cement). Thermal substitution provides a partial medium-term offset."
   },
   {
     "area": "ADNOC pipeline",
@@ -908,3 +908,28 @@ export const sourceResolution = [
     "resolution": "−5% / −30% accessed via DW's secondary reporting, not a Capital Economics primary publication — retained in the scenario matrix as T2-MODERATE."
   }
 ];
+
+export const humanImpact = {
+  "intro": "Human Rights Watch interviewed 38 Indian, Nepali and Bangladeshi workers across all six GCC states in March 2026. At least 12 South Asian migrant-worker deaths were confirmed by late March (BBC); ~70 workers from 15+ countries were reported injured (Coalition on Labor Justice, T3).",
+  "deaths": [
+    {
+      "name": "Dibas Shrestha",
+      "detail": "29, Nepali security guard — killed at Zayed International Airport, Abu Dhabi (March 1)."
+    },
+    {
+      "name": "SM Tareq",
+      "detail": "48, Bangladeshi — killed by missile debris at ASRY, Bahrain."
+    },
+    {
+      "name": "Saleh Ahmed",
+      "detail": "Bangladeshi cab driver — killed in the UAE when missile debris pierced his water-tank truck."
+    }
+  ],
+  "hardship": [
+    "A Bahrain supply-company manager was asked by three corporate clients to halve salaries for 400+ workers.",
+    "UAE hotel staffing fell from 25–30 to 3–4 per establishment; workers placed on unpaid leave.",
+    "Kuwait commission taxi drivers reported income down 50%+, some to a fifth of prior earnings.",
+    "Recruitment fees of NPR 300,000–400,000 (~$2,000–$2,700) turn job loss into a household debt crisis."
+  ],
+  "riskMode": "The binding risk is involuntary immobility, not mass exodus: kafala passport retention and visa dependency trap low-wage workers in place. The GRC/GLMM analysis (De Bel-Air, Mar 27) projects selective labor re-stratification rather than a mass departure wave, based on prior Gulf-crisis patterns. HRW received no substantive responses from GCC governments to its written queries as of late March."
+};

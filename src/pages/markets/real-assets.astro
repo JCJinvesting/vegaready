@@ -1,6 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, migrationExposure, migrationNote, substitution, sourceResolution } from '../../data/analysis/realassets.js';
+import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, migrationExposure, migrationNote, substitution, sourceResolution, humanImpact } from '../../data/analysis/realassets.js';
 ---
 
 <AnalysisLayout
@@ -58,6 +58,18 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
       </table>
     </div>
     <p class="prec-note">{migrationNote}</p>
+  </section>
+
+  <section class="himp">
+    <div class="dl">Documented human impact</div>
+    <p class="himp-intro">{humanImpact.intro}</p>
+    <div class="himp-deaths">
+      {humanImpact.deaths.map((dd) => (<div class="himp-d"><span class="himp-name">{dd.name}</span> — {dd.detail}</div>))}
+    </div>
+    <ul class="himp-h">
+      {humanImpact.hardship.map((h) => (<li>{h}</li>))}
+    </ul>
+    <p class="himp-risk"><strong>Risk mode:</strong> {humanImpact.riskMode}</p>
   </section>
 
   <section class="smx-sec">
@@ -192,4 +204,13 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, 
   .sres-item{font-size:12px;font-weight:700;color:var(--text);min-width:210px;flex-shrink:0}
   .sres-res{font-size:12px;color:var(--text-dim);line-height:1.5}
   @media(max-width:720px){.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
+  .himp{margin-bottom:3rem}
+  .himp-intro{font-size:13px;color:var(--text-muted);line-height:1.6;margin:12px 0 14px;max-width:780px}
+  .himp-deaths{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .himp-d{font-size:13px;color:var(--text-dim);line-height:1.5;border-left:2px solid #ef4444;padding-left:12px}
+  .himp-name{color:var(--text);font-weight:700}
+  .himp-h{margin:0 0 14px;padding-left:18px;font-size:13px;color:var(--text-muted);line-height:1.6}
+  .himp-h li{margin-bottom:5px}
+  .himp-risk{font-size:13px;color:var(--text-muted);line-height:1.6;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;padding:12px 16px;margin:0;max-width:780px}
+  .himp-risk strong{color:var(--cyan)}
 </style>

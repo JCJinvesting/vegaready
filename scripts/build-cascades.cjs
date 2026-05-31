@@ -111,13 +111,21 @@ out('insurance.js', banner('insurance.json')
   + 'export const nextSection = ' + JSON.stringify(insDoc.nextSection || '', null, 2) + ';\n');
 // REAL ASSETS (Section 4) -> markets/real-assets. Nested-metric data-point schema; reuses insHuman.
 const raDoc = rd('realassets.json');
+const raLabel = (k) => insHuman(k)
+  .replace(/\s+(USD per t|USD bn|USD tn|Dh bn|SAR bn|PHP bn|mb d|mn|tn|bn|units|per t|t|%)\s*$/i, '')
+  .replace(/\bmom\b/gi, 'MoM').replace(/\bfy(\d{4})\b/gi, 'FY$1').replace(/\bh1\b/gi, 'H1')
+  .replace(/\bdfa\b/gi, 'DFA').replace(/\bcif\b/gi, 'CIF').replace(/\bdepdev\b/gi, 'DepDEV')
+  .replace(/\bfeb28\b/gi, 'since Feb 28')
+  .replace(/\bq([1-4])\b/gi, 'Q$1')
+  .replace(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/gi, (mo) => mo.charAt(0).toUpperCase() + mo.slice(1).toLowerCase())
+  .trim();
 const realAssets = raDoc.cards.map((e, i) => {
   const d = e.data || {};
   const metrics = Object.keys(d).map((k) => {
     const m = d[k];
     const obj = m && typeof m === 'object';
     const val = obj ? [m.value, m.unit].filter((x) => x != null && x !== '').join(' ') : String(m);
-    return { label: insHuman(k), value: val, tier: (obj && m.tier) || '' };
+    return { label: raLabel(k), value: val, tier: (obj && m.tier) || '' };
   });
   const confs = Object.values(d).filter((m) => m && typeof m === 'object').map((m) => (m.confidence || '').toUpperCase());
   const hi = confs.filter((c) => c === 'HIGH').length;
@@ -137,5 +145,6 @@ out('realassets.js', banner('realassets.json')
   + 'export const migrationExposure = ' + JSON.stringify(raDoc.migrationExposure || [], null, 2) + ';\n\n'
   + 'export const migrationNote = ' + JSON.stringify(raDoc.migrationNote || '', null, 2) + ';\n\n'
   + 'export const substitution = ' + JSON.stringify(raDoc.substitution || [], null, 2) + ';\n\n'
-  + 'export const sourceResolution = ' + JSON.stringify(raDoc.sourceResolution || [], null, 2) + ';\n');
+  + 'export const sourceResolution = ' + JSON.stringify(raDoc.sourceResolution || [], null, 2) + ';\n\n'
+  + 'export const humanImpact = ' + JSON.stringify(raDoc.humanImpact || {}, null, 2) + ';\n');
 console.log('done.');
