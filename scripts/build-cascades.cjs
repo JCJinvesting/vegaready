@@ -105,4 +105,29 @@ out('insurance.js', banner('insurance.json')
   + 'export const premiumGeography = ' + JSON.stringify(insDoc.premiumGeography || '', null, 2) + ';\n\n'
   + 'export const investmentImplications = ' + JSON.stringify(insDoc.investmentImplications || [], null, 2) + ';\n\n'
   + 'export const nextSection = ' + JSON.stringify(insDoc.nextSection || '', null, 2) + ';\n');
+// REAL ASSETS (Section 4) -> markets/real-assets. Nested-metric data-point schema; reuses insHuman.
+const raDoc = rd('realassets.json');
+const realAssets = raDoc.cards.map((e, i) => {
+  const d = e.data || {};
+  const metrics = Object.keys(d).map((k) => {
+    const m = d[k];
+    const obj = m && typeof m === 'object';
+    const val = obj ? [m.value, m.unit].filter((x) => x != null && x !== '').join(' ') : String(m);
+    return { label: insHuman(k), value: val, tier: (obj && m.tier) || '' };
+  });
+  const confs = Object.values(d).filter((m) => m && typeof m === 'object').map((m) => (m.confidence || '').toUpperCase());
+  const hi = confs.filter((c) => c === 'HIGH').length;
+  const lo = confs.filter((c) => c === 'LOW').length;
+  const confidence = confs.length && hi >= confs.length / 2 ? 'high' : (lo > confs.length / 3 ? 'low' : 'medium');
+  const sources = [...new Set(Object.values(d).filter((m) => m && typeof m === 'object' && m.source).map((m) => m.source))];
+  return { id: e.id, icon: icon(i), title: e.title, category: e.category, summary: e.summary || '',
+    metrics, confidence, sources, tags: e.tags || {} };
+});
+out('realassets.js', banner('realassets.json')
+  + 'export const cards = ' + JSON.stringify(realAssets, null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(raDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(raDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const precedents = ' + JSON.stringify(raDoc.precedents || [], null, 2) + ';\n\n'
+  + 'export const precedentNote = ' + JSON.stringify(raDoc.precedentNote || '', null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(raDoc.dataQuality || {}, null, 2) + ';\n');
 console.log('done.');
