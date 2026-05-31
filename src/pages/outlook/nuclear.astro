@@ -1,6 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { cards, thesis, fuelCycle, cascadeChain, scenarioMatrix, dataQuality, relatedSectors } from '../../data/analysis/nuclear.js';
+import { cards, thesis, fuelCycle, cascadeChain, scenarioMatrix, sourceResolution, dataQuality, relatedSectors } from '../../data/analysis/nuclear.js';
 ---
 
 <AnalysisLayout
@@ -67,6 +67,11 @@ import { cards, thesis, fuelCycle, cascadeChain, scenarioMatrix, dataQuality, re
     ))}
   </section>
 
+  <section class="sres">
+    <div class="dl">Source-conflict resolution</div>
+    {sourceResolution.map((r) => (<div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>))}
+  </section>
+
   <div class="foot-box">
     <div class="dl">Data quality &amp; methodology</div>
     <p><strong style="color:#10b981">HIGH</strong> — {dataQuality.high}</p>
@@ -128,4 +133,9 @@ import { cards, thesis, fuelCycle, cascadeChain, scenarioMatrix, dataQuality, re
   .foot-box .next{margin:0}
   .foot-box strong{color:var(--cyan)}
   @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}}
+  .sres{margin-bottom:2rem}
+  .sres-block{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid var(--border)}
+  .sres-item{font-size:12px;font-weight:700;color:var(--text);min-width:230px;flex-shrink:0}
+  .sres-res{font-size:12px;color:var(--text-dim);line-height:1.5}
+  @media(max-width:720px){.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
 </style>

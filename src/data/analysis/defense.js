@@ -52,6 +52,14 @@ export const cards = [
       {
         "label": "Denmark sampt",
         "value": "€1.47bn / 4 SAMP/T NG batteries (April 21, 2026; rejected Patriot on timelines)"
+      },
+      {
+        "label": "Sm3 sm6",
+        "value": "SM-3 firings >80; inventories not to prewar until early 2029"
+      },
+      {
+        "label": "Diehl iris t",
+        "value": "€1.5bn expansion → 16 batteries/yr by 2028 (near-100% over 250+ engagements)"
       }
     ],
     "confidence": "high",
@@ -85,11 +93,14 @@ export const cards = [
         "mbda",
         "mhi",
         "denmark",
-        "israel"
+        "israel",
+        "rheinmetall",
+        "diehl"
       ],
       "scenarios": [
         "hormuz_closure",
-        "ceasefire"
+        "ceasefire",
+        "oil_strike"
       ],
       "position": {
         "hormuz_closure": "winner",
@@ -183,6 +194,86 @@ export const cards = [
         "cable_severance": "winner"
       },
       "asOf": "2026-05-27"
+    }
+  },
+  {
+    "id": "S6-DEF-003",
+    "icon": "03",
+    "title": "Global Defense Spending — Record $2.887tn and the NATO 5% Pivot",
+    "category": "Defense / Macro",
+    "summary": "Global military expenditure hit a record ~$2.887tn in 2025 (+2.9% real, 2.5% of GDP — the highest share since 2009), the 11th straight year of growth. US spending fell 7.5% to $954bn in 2025 but Congress approved >$1tn for FY2026, with Trump's FY2027 proposal at $1.5tn (Golden Dome, AI, new battleships). The EU drove ~50% of 2025 global growth; NATO's June 2025 Hague Summit set a 5%-of-GDP target (3.5% core + 1.5% related) by 2035. Named order flow underscores the pull: a $24.3bn / 300-aircraft Lockheed F-35 contract and a $3.7bn RTX GEM-T order to Ukraine (April 2026).",
+    "metrics": [
+      {
+        "label": "Global milex 2025",
+        "value": "$2.887tn (+2.9% real; 2.5% of GDP — highest since 2009)"
+      },
+      {
+        "label": "Us spending 2025",
+        "value": "$954bn (−7.5%)"
+      },
+      {
+        "label": "Us fy2026",
+        "value": ">$1tn approved"
+      },
+      {
+        "label": "Us fy2027 proposal",
+        "value": "$1.5tn (Golden Dome, AI, battleships)"
+      },
+      {
+        "label": "Eu share 2025 growth",
+        "value": "~50% of global growth"
+      },
+      {
+        "label": "Nato target",
+        "value": "5% of GDP by 2035 (3.5% core + 1.5% related)"
+      },
+      {
+        "label": "Lockheed f35 contract",
+        "value": "$24.3bn / 300 aircraft"
+      },
+      {
+        "label": "Rtx gemt contract",
+        "value": "$3.7bn GEM-T to Ukraine (April 2026)"
+      }
+    ],
+    "confidence": "high",
+    "sources": [
+      {
+        "name": "Green Social Thought / SIPRI",
+        "url": "https://www.greensocialthought.org/labor-economics/global-military-spending-surges-to-record-2-887-trillion/",
+        "tier": "T1 (SIPRI)"
+      },
+      {
+        "name": "BBVA Research / SIPRI",
+        "url": "https://www.bbvaresearch.com/en/publicaciones/the-state-of-global-military-spending-in-2025/",
+        "tier": "T2 citing SIPRI"
+      },
+      {
+        "name": "Kavout (contract context)",
+        "url": "https://www.kavout.com/market-lens/why-are-defense-stocks-surging-amidst-global-turmoil",
+        "tier": "T2"
+      }
+    ],
+    "tags": {
+      "assetClass": [
+        "defense",
+        "equity"
+      ],
+      "entities": [
+        "sipri",
+        "nato",
+        "united-states",
+        "european-union",
+        "lockheed-martin",
+        "rtx",
+        "ukraine"
+      ],
+      "scenarios": [
+        "hormuz_closure",
+        "ceasefire"
+      ],
+      "position": {},
+      "asOf": "2026-05-10"
     }
   }
 ];

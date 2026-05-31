@@ -23,7 +23,7 @@ export const cards = [
       },
       {
         "label": "Renewables",
-        "value": "~$665bn (solar $365bn, wind $200bn, hydro $75bn)"
+        "value": "~$665bn (solar $365bn ≈$1bn/day, wind $200bn, hydro $75bn)"
       },
       {
         "label": "Grids",
@@ -96,7 +96,7 @@ export const cards = [
     "icon": "02",
     "title": "Transition Bifurcation — Renewables Accelerate, Gas/Coal Lock In at Decade Highs",
     "category": "Energy Transition / Dynamic",
-    "summary": "The conflict pushed both directions at once. Acceleration: 23 countries across 5 continents announced clean-energy/electrification measures by May 1; renewable-energy ETFs drew >$3bn in April (largest monthly inflow since Jan 2021); a UKSIF survey found 87% of investment firms expect a surge in renewables financing; Norway's NBIM implied ≥$12.6bn of new unlisted-renewables investment by 2030. Lock-in: 2026 gas investment hit $330bn (highest in a decade, LNG-driven in the US and Qatar) and coal supply $180bn (highest since 2012). The binding constraint is cost of capital — emerging-market renewables WACC was 12.95% vs Europe's 5.02% (Jan 2026), and WACC is 20–50% of utility-scale solar LCOE, trapping the most import-exposed economies.",
+    "summary": "The conflict pushed both directions at once. Acceleration: 23 countries across 5 continents announced clean-energy/electrification measures by May 1; renewable-energy ETFs drew >$3bn in April (largest monthly inflow since Jan 2021); a UKSIF survey found 87% of investment firms expect a surge in renewables financing; Norway's NBIM implied ≥$12.6bn of new unlisted-renewables investment by 2030. Lock-in: 2026 gas investment hit $330bn (highest in a decade, LNG-driven in the US and Qatar) and coal supply $180bn (highest since 2012). The binding constraint is cost of capital — emerging-market renewables WACC was 12.95% vs Europe's 5.02% (Jan 2026), and WACC is 20–50% of utility-scale solar LCOE, trapping the most import-exposed economies. IRENA (May 26) stated the next phase \"must focus on electrification, renewable energy expansion and a faster move away from fossil fuels.\"",
     "metrics": [
       {
         "label": "Countries clean announcements",
@@ -137,6 +137,10 @@ export const cards = [
       {
         "label": "Em renewables wacc",
         "value": "12.95% (Jan 2026) vs Europe 5.02%"
+      },
+      {
+        "label": "Cost of capital share lcoe",
+        "value": "20–50% of utility-scale solar LCOE"
       }
     ],
     "confidence": "medium",
@@ -182,7 +186,8 @@ export const cards = [
       ],
       "scenarios": [
         "hormuz_closure",
-        "oil_strike"
+        "oil_strike",
+        "ceasefire"
       ],
       "position": {
         "hormuz_closure": "winner"
@@ -252,12 +257,16 @@ export const cards = [
       ],
       "entities": [
         "european-union",
-        "rhodium"
+        "rhodium",
+        "united-states",
+        "imo"
       ],
       "scenarios": [
         "hormuz_closure"
       ],
-      "position": {},
+      "position": {
+        "hormuz_closure": "loser"
+      },
       "asOf": "2026-05-20"
     }
   },
@@ -372,6 +381,10 @@ export const cards = [
       {
         "label": "Global nuclear investment 2026",
         "value": ">$80bn/yr; 15 countries"
+      },
+      {
+        "label": "Reactors proposed",
+        "value": "305 (+~285 GW potential)"
       }
     ],
     "confidence": "medium",
@@ -482,7 +495,8 @@ export const cards = [
       ],
       "entities": [
         "european-union",
-        "ec"
+        "ec",
+        "italy"
       ],
       "scenarios": [
         "hormuz_closure",
@@ -490,6 +504,62 @@ export const cards = [
       ],
       "position": {},
       "asOf": "2026-05-13"
+    }
+  },
+  {
+    "id": "S6-ESG-001",
+    "icon": "07",
+    "title": "Sustainable Fund Flows Turn Positive — Europe Leads on Security Framing",
+    "category": "Energy Transition / Capital",
+    "summary": "ESG/sustainable flows turned positive again in Q1 2026, led by Europe and energy-security framing. Global sustainable funds saw +$3.5bn net inflows in Q1 2026 (vs −$27bn in Q4 2025), with Europe +$9.1bn — its first positive quarter since Q3 2024 — even as total sustainable-fund AUM eased ~10% QoQ to $3.51tn. Renewable-energy ETFs drew >$3bn in April 2026 alone, the largest monthly inflow since January 2021. The turn is flow/sentiment, not a blanket equity re-rating — some clean and defense equities consolidated after large 2025 run-ups.",
+    "metrics": [
+      {
+        "label": "Sustainable flows q1 2026",
+        "value": "+$3.5bn (vs −$27bn Q4 2025)"
+      },
+      {
+        "label": "Europe flows q1 2026",
+        "value": "+$9.1bn (first positive since Q3 2024)"
+      },
+      {
+        "label": "Sustainable aum q1 2026",
+        "value": "$3.51tn (−~10% QoQ)"
+      },
+      {
+        "label": "Renewable etf inflows",
+        "value": ">$3bn (April 2026 — largest since Jan 2021)"
+      }
+    ],
+    "confidence": "high",
+    "sources": [
+      {
+        "name": "Morningstar Sustainalytics via ESG.Guide",
+        "url": "https://esg.guide/insight/5767/european-sustainable-fund-flows-turn-positive",
+        "tier": "T2 citing Morningstar"
+      },
+      {
+        "name": "Zero Carbon Analytics",
+        "url": "https://zerocarbon-analytics.org/energy/clean-energy-stocks-gain-in-value-during-iran-war/",
+        "tier": "T2"
+      }
+    ],
+    "tags": {
+      "assetClass": [
+        "renewables",
+        "equity"
+      ],
+      "entities": [
+        "morningstar",
+        "european-union"
+      ],
+      "scenarios": [
+        "ceasefire",
+        "hormuz_closure"
+      ],
+      "position": {
+        "hormuz_closure": "winner"
+      },
+      "asOf": "2026-05-28"
     }
   }
 ];
@@ -541,6 +611,11 @@ export const ieaTable = [
     "category": "Coal supply",
     "value": "~$180bn",
     "detail": "highest since 2012; China ~70%, India #2"
+  },
+  {
+    "category": "Low-emissions fuels",
+    "value": "~$30bn",
+    "detail": "modest rise; policy-dependent"
   }
 ];
 

@@ -7,7 +7,7 @@ export const cards = [
     "icon": "01",
     "title": "Iran Stockpile Risk and IAEA Verification Collapse",
     "category": "Nuclear / Proliferation",
-    "summary": "The conflict's nuclear core is the fate of Iran's enriched-uranium stockpile and the collapse of IAEA verification. Iran is assessed to hold >440 kg (cited 440.9 kg) of 60%-enriched uranium — the last figure verified before Iran terminated agency access in February 2026 — with most HEU likely at the Isfahan complex (~200 kg in 18 containers moved into a tunnel June 9, 2025, now possibly under rubble). The FDD estimates US/Israeli strikes extended crude-device breakout from ~6 months to as much as 2.5 years absent foreign assistance, citing 9,000+ kg of enriched UF6 including 440 kg HEU (sufficient for ~11 weapons). Carnegie assesses known enrichment infrastructure is largely inoperable but Iran retains capacity to reconstitute clandestinely, with IAEA access effectively curtailed. [PROVISIONAL-2026]",
+    "summary": "The conflict's nuclear core is the fate of Iran's enriched-uranium stockpile and the collapse of IAEA verification. Iran is assessed to hold >440 kg (cited 440.9 kg) of 60%-enriched uranium — the last figure verified before Iran terminated agency access in February 2026. IAEA Director-General Grossi assessed in late April 2026 that most of Iran's HEU likely remains at the Isfahan complex (~200 kg in 18 containers moved into a tunnel June 9, 2025); separately, the Partnership for Global Security assesses ~400 kg of weapon-grade uranium now likely buried under rubble at Isfahan. The FDD estimates US/Israeli strikes extended crude-device breakout from ~6 months to as much as 2.5 years absent foreign assistance, citing 9,000+ kg of enriched UF6 including 440 kg HEU (sufficient for ~11 weapons). Carnegie assesses known enrichment infrastructure is largely inoperable but Iran retains capacity to reconstitute clandestinely, with IAEA access effectively curtailed. [PROVISIONAL-2026]",
     "metrics": [
       {
         "label": "Heu 60pct",
@@ -36,6 +36,10 @@ export const cards = [
       {
         "label": "Weapon grade estimate",
         "value": "~400 kg weapon-grade likely buried at Isfahan (PGS)"
+      },
+      {
+        "label": "Grossi assessment",
+        "value": "late April 2026 — most HEU likely remains at Isfahan"
       }
     ],
     "confidence": "medium",
@@ -72,7 +76,10 @@ export const cards = [
         "partnership-global-security",
         "carnegie",
         "united-states",
-        "israel"
+        "israel",
+        "china",
+        "saudi-arabia",
+        "kazatomprom"
       ],
       "scenarios": [
         "ceasefire",
@@ -133,7 +140,8 @@ export const cards = [
     ],
     "tags": {
       "assetClass": [
-        "uranium"
+        "uranium",
+        "defense"
       ],
       "entities": [
         "saudi-arabia",
@@ -181,6 +189,17 @@ export const cascadeChain = [
   {
     "step": "Cascade risk to Egypt, Turkey, Jordan",
     "detail": "regional baseline for enrichment rights resets upward"
+  }
+];
+
+export const sourceResolution = [
+  {
+    "item": "Conflict duration — \"Twelve-Day War\" vs \"39-day campaign\"",
+    "resolution": "The source uses both: \"Twelve-Day War\" (Carnegie, §4) for the kinetic nuclear-strike phase and \"39-day campaign\" (CSIS, §5) for the broader air campaign. They describe different windows, not a contradiction — each is retained in its original context rather than reconciled into one figure."
+  },
+  {
+    "item": "Iran HEU figure — 440 vs 440.9 kg",
+    "resolution": ">440 kg is the last IAEA-verified 60% stock; 440.9 kg is the precise figure cited in ceasefire-surrender terms; FDD uses 440 kg HEU. Same stockpile, different rounding/context — preserved as \">440 (cited 440.9).\""
   }
 ];
 

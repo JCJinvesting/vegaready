@@ -231,6 +231,7 @@ out('nuclear.js', banner('nuclear.json')
   + 'export const thesis = ' + JSON.stringify(nucDoc.thesis || '', null, 2) + ';\n\n'
   + 'export const fuelCycle = ' + JSON.stringify(nucDoc.fuelCycle || {}, null, 2) + ';\n\n'
   + 'export const cascadeChain = ' + JSON.stringify(nucDoc.cascadeChain || [], null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(nucDoc.sourceResolution || [], null, 2) + ';\n\n'
   + 'export const scenarioMatrix = ' + JSON.stringify(nucDoc.scenarioMatrix || [], null, 2) + ';\n\n'
   + 'export const dataQuality = ' + JSON.stringify(nucDoc.dataQuality || {}, null, 2) + ';\n\n'
   + 'export const relatedSectors = ' + JSON.stringify(nucDoc.relatedSectors || '', null, 2) + ';\n');
