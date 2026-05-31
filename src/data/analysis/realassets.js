@@ -20,7 +20,7 @@ export const cards = [
         "tier": "T2-HIGH (company disclosure)"
       },
       {
-        "label": "Alba q1 sales yoy %",
+        "label": "Alba q1 sales YoY %",
         "value": "-17 %",
         "tier": "T2-HIGH"
       },
@@ -30,22 +30,22 @@ export const cards = [
         "tier": "T2-HIGH"
       },
       {
-        "label": "Alba q1 production yoy %",
+        "label": "Alba q1 production YoY %",
         "value": "-14 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Lme peak price USD per t",
+        "label": "LME peak price USD per t",
         "value": "3546.5 $/tonne",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Lme price ytd change %",
+        "label": "LME price YTD change %",
         "value": "19 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Lme price post feb28 %",
+        "label": "LME price post feb28 %",
         "value": "13 %",
         "tier": "T2-HIGH"
       },
@@ -87,7 +87,9 @@ export const cards = [
       ],
       "entities": [
         "bahrain",
-        "china"
+        "china",
+        "alba",
+        "wef"
       ],
       "scenarios": [
         "hormuz_closure",
@@ -117,22 +119,22 @@ export const cards = [
         "tier": "T2-HIGH"
       },
       {
-        "label": "Nonres inputs yoy apr %",
+        "label": "Nonres inputs YoY apr %",
         "value": "7.4 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Diesel yoy apr %",
+        "label": "Diesel YoY apr %",
         "value": "73.8 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Aluminum mill shapes yoy %",
+        "label": "Aluminum mill shapes YoY %",
         "value": "39.1 %",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Steel mill products yoy %",
+        "label": "Steel mill products YoY %",
         "value": "20.9 %",
         "tier": "T2-HIGH"
       },
@@ -169,7 +171,8 @@ export const cards = [
         "real-estate"
       ],
       "entities": [
-        "united-states"
+        "united-states",
+        "bls"
       ],
       "scenarios": [
         "hormuz_closure",
@@ -246,7 +249,7 @@ export const cards = [
         "tier": "T1-HIGH"
       },
       {
-        "label": "Total transaction value yoy %",
+        "label": "Total transaction value YoY %",
         "value": "161 %",
         "tier": "T1-HIGH"
       },
@@ -256,22 +259,22 @@ export const cards = [
         "tier": "T1-HIGH"
       },
       {
-        "label": "Deals yoy %",
+        "label": "Deals YoY %",
         "value": "96 %",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Fdi individuals dh bn",
+        "label": "FDI individuals dh bn",
         "value": "8.27 Dh billion",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Fdi yoy %",
+        "label": "FDI YoY %",
         "value": "423 %",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Repeat lease price yoy %",
+        "label": "Repeat lease price YoY %",
         "value": "16 %",
         "tier": "T1-HIGH"
       },
@@ -321,7 +324,7 @@ export const cards = [
         "tier": "T2-HIGH"
       },
       {
-        "label": "Neom 2030 population target",
+        "label": "NEOM 2030 population target",
         "value": "100000 people (max)",
         "tier": "T2-HIGH"
       },
@@ -336,12 +339,12 @@ export const cards = [
         "tier": "T2-MODERATE"
       },
       {
-        "label": "Hyundai ec tunnel sar bn",
+        "label": "Hyundai E&C tunnel SAR bn",
         "value": "6.16 SAR billion (~$1.6B)",
         "tier": "T2-HIGH"
       },
       {
-        "label": "Hyundai ec tunnel km",
+        "label": "Hyundai E&C tunnel km",
         "value": "12.5 km",
         "tier": "T2-HIGH"
       },
@@ -375,7 +378,10 @@ export const cards = [
       ],
       "entities": [
         "saudi-arabia",
-        "pif"
+        "pif",
+        "neom",
+        "webuild",
+        "hyundai-ec"
       ],
       "scenarios": [
         "hormuz_closure"
@@ -457,7 +463,7 @@ export const cards = [
     "summary": "GCC: 24M migrant workers (ILO). At least 12 South Asian deaths (BBC). HRW March 2026: 38 worker interviews across 6 GCC states — salary halving for 400+ workers documented; hospitality staffing from 25–30 to 3–4; Kuwait taxi incomes halved. Philippines: 2,000 repatriated by Mar 23. Bangladesh: ~500 repatriated.",
     "metrics": [
       {
-        "label": "Gcc migrant workers ilo mn",
+        "label": "GCC migrant workers ILO mn",
         "value": "24 million",
         "tier": "T1"
       },
@@ -589,32 +595,32 @@ export const cards = [
     "summary": "BSP official: Feb 2026 bank-channel remittances $2.79B (−7.7% MoM, 9-month low). Jan: $3.02B. Saudi 6.1%, UAE 4.2%, Qatar 2.9% of total inflows. DepDEV: −P167.45B risk if mass repatriation.",
     "metrics": [
       {
-        "label": "Ph bank remittances jan 2026 USD bn",
+        "label": "PH bank remittances jan 2026 USD bn",
         "value": "3.02 USD billion",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Ph bank remittances feb 2026 USD bn",
+        "label": "PH bank remittances feb 2026 USD bn",
         "value": "2.79 USD billion",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Ph feb mom change %",
+        "label": "PH feb mom change %",
         "value": "-7.7 %",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Saudi share ph remittances %",
+        "label": "Saudi share PH remittances %",
         "value": "6.1",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Uae share ph remittances %",
+        "label": "Uae share PH remittances %",
         "value": "4.2",
         "tier": "T1-HIGH"
       },
       {
-        "label": "Qatar share ph remittances %",
+        "label": "Qatar share PH remittances %",
         "value": "2.9",
         "tier": "T1-HIGH"
       },
@@ -639,7 +645,8 @@ export const cards = [
         "philippines",
         "saudi-arabia",
         "uae",
-        "qatar"
+        "qatar",
+        "bsp"
       ],
       "scenarios": [
         "hormuz_closure"
@@ -658,12 +665,12 @@ export const cards = [
     "summary": "ILO May 18, 2026 Employment & Social Trends Update: under ~50% oil price scenario — 14M FTE job losses 2026, 38M in 2027; real labour income −$1.1T (2026) and −$3.0T (2027). Arab States worst hit (−10.2% hours in severe scenario). 4% non-citizen employment multiplier per 1% citizen employment contraction.",
     "metrics": [
       {
-        "label": "Global fte loss 2026 mn",
+        "label": "Global FTE loss 2026 mn",
         "value": "14 million FTE jobs",
         "tier": "T1"
       },
       {
-        "label": "Global fte loss 2027 mn",
+        "label": "Global FTE loss 2027 mn",
         "value": "38 million FTE jobs",
         "tier": "T1"
       },
@@ -720,7 +727,8 @@ export const cards = [
       "entities": [
         "bangladesh",
         "pakistan",
-        "india"
+        "india",
+        "ilo"
       ],
       "scenarios": [
         "hormuz_closure",
@@ -825,3 +833,78 @@ export const dataQuality = {
   "moderate": "Dubai real-estate transaction/price data (T2-MODERATE; no Dubai Land Department primary at report date); Webuild ~$4.7B contract value (reconstructed).",
   "quarantined": "Capital Economics remittance scenarios (−5%/−30%, via DW secondary); polypropylene +24% (ITI); 15–20% GCC MEP cost (LinkedIn); Bangladesh cement +30–40%; DFM Index −20%; 60% Dubai appreciation; 12–18 month supplier-qualification (vendor blog)."
 };
+
+export const migrationExposure = [
+  {
+    "country": "India",
+    "workers": "~9M",
+    "remittances": "$51.4B (FY2025)",
+    "gulfShare": "~38% of $135.4B total",
+    "gdpShare": "—",
+    "tier": "T2"
+  },
+  {
+    "country": "Pakistan",
+    "workers": "~6M",
+    "remittances": "Gulf-sourced",
+    "gulfShare": "—",
+    "gdpShare": "~5–9% of GDP",
+    "tier": "T2"
+  },
+  {
+    "country": "Bangladesh",
+    "workers": "~5M",
+    "remittances": "Gulf-sourced",
+    "gulfShare": "—",
+    "gdpShare": "~5–9% of GDP",
+    "tier": "T1-via-T2"
+  },
+  {
+    "country": "Philippines",
+    "workers": "~2.44M (Mideast)",
+    "remittances": "$2.79B/mo bank channel (Feb, −7.7%)",
+    "gulfShare": "Saudi 6.1% · UAE 4.2% · Qatar 2.9%",
+    "gdpShare": "~18% of GDP",
+    "tier": "T1 (BSP)"
+  }
+];
+
+export const migrationNote = "GCC migrant-worker anchor: ~24M (ILO, T1). The Coalition on Labor Justice's 31M covers a broader zone (GCC + Jordan/Lebanon/Israel/Palestine/Iran) and is T3 advocacy — noted, not anchored. ≥12 South Asian migrant deaths confirmed (BBC); Saudi Arabia's Oct-2025 kafala abolition covers ~13M.";
+
+export const substitution = [
+  {
+    "area": "Aluminum",
+    "text": "150,000+ tonnes pulled from LME warehouses during the disruption (WEF). Aluminum is one of nine non-oil commodities WEF flagged as significantly Hormuz-disrupted — with methanol, sulfur, fertilizers and graphite. Alternative-supplier qualification is slow for aerospace, automotive and packaging grades."
+  },
+  {
+    "area": "Petcoke & cement",
+    "text": "Indian cement producers substitute US petcoke at a premium or switch to coal; imported coal +~22% YoY to ~$110/t FOB (Global Cement). Thermal substitution provides a partial medium-term offset."
+  },
+  {
+    "area": "ADNOC pipeline",
+    "text": "The existing Habshan–Fujairah line (1.8 Mb/d) provides partial rerouting now; a second pipeline (50% complete, 2027 target) augments capacity. But al-Jaber's 4-month-minimum recovery and Q1–Q2 2027 full-normalization estimate remain the binding constraint."
+  },
+  {
+    "area": "Megaproject capital",
+    "text": "Saudi PIF redirects capital to (a) the sovereign balance sheet, (b) OXAGON port/data-center infrastructure (~$3B), and (c) Expo 2030 and 2034 FIFA World Cup critical-path commitments (Semafor)."
+  }
+];
+
+export const sourceResolution = [
+  {
+    "item": "Gulf aluminum share: 7% vs 10%",
+    "resolution": "Both T2 analyst estimates — Bernstein 7% (GCC/Hormuz-specific) vs CRU 10% (broader Middle East). Use a 7–10% range; neither is T1-confirmed."
+  },
+  {
+    "item": "Dubai real-estate data",
+    "resolution": "No Dubai Land Department primary available; all Dubai figures (−25% volume, −4–5% price) are T2-MODERATE and excluded from executive anchors. Abu Dhabi Adrec T1 is the primary real-estate anchor."
+  },
+  {
+    "item": "Migrant counts: 24M vs 31M",
+    "resolution": "Use 24M (ILO, T1) as the GCC anchor; 31M (Coalition on Labor Justice) is T3 advocacy over a broader zone — noted, not anchored."
+  },
+  {
+    "item": "Capital Economics remittance scenarios",
+    "resolution": "−5% / −30% accessed via DW's secondary reporting, not a Capital Economics primary publication — retained in the scenario matrix as T2-MODERATE."
+  }
+];

@@ -80,6 +80,10 @@ const insHuman = (k) => k.replace(/_/g, ' ')
   .replace(/\bawrp\b/gi, 'AWRP').replace(/\bvlcc\b/gi, 'VLCC').replace(/\bjkm\b/gi, 'JKM')
   .replace(/\btce\b/gi, 'TCE').replace(/\blng\b/gi, 'LNG').replace(/\bicc\b/gi, 'ICC')
   .replace(/\bofac\b/gi, 'OFAC').replace(/\blma\b/gi, 'LMA').replace(/\bq2\b/gi, 'Q2')
+  .replace(/\blme\b/gi, 'LME').replace(/\bbsp\b/gi, 'BSP').replace(/\bilo\b/gi, 'ILO')
+  .replace(/\bgcc\b/gi, 'GCC').replace(/\bfte\b/gi, 'FTE').replace(/\bfdi\b/gi, 'FDI')
+  .replace(/\badnoc\b/gi, 'ADNOC').replace(/\bneom\b/gi, 'NEOM').replace(/\byoy\b/gi, 'YoY')
+  .replace(/\bsar\b/gi, 'SAR').replace(/\bytd\b/gi, 'YTD').replace(/\bph\b/gi, 'PH').replace(/\bec\b/gi, 'E&C')
   .trim().replace(/^./, (c) => c.toUpperCase());
 const insDoc = rd('insurance.json');
 const insurance = insDoc.entries.map((e, i) => {
@@ -129,5 +133,9 @@ out('realassets.js', banner('realassets.json')
   + 'export const scenarioMatrix = ' + JSON.stringify(raDoc.scenarioMatrix || [], null, 2) + ';\n\n'
   + 'export const precedents = ' + JSON.stringify(raDoc.precedents || [], null, 2) + ';\n\n'
   + 'export const precedentNote = ' + JSON.stringify(raDoc.precedentNote || '', null, 2) + ';\n\n'
-  + 'export const dataQuality = ' + JSON.stringify(raDoc.dataQuality || {}, null, 2) + ';\n');
+  + 'export const dataQuality = ' + JSON.stringify(raDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const migrationExposure = ' + JSON.stringify(raDoc.migrationExposure || [], null, 2) + ';\n\n'
+  + 'export const migrationNote = ' + JSON.stringify(raDoc.migrationNote || '', null, 2) + ';\n\n'
+  + 'export const substitution = ' + JSON.stringify(raDoc.substitution || [], null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(raDoc.sourceResolution || [], null, 2) + ';\n');
 console.log('done.');

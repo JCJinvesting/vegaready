@@ -687,7 +687,7 @@ export const cards = [
         "value": "Higher insurance costs set to linger well past ceasefire"
       },
       {
-        "label": "Adnoc capacity projection",
+        "label": "ADNOC capacity projection",
         "value": "Q1–Q2 2027 at earliest"
       },
       {

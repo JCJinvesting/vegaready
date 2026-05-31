@@ -1,6 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality } from '../../data/analysis/realassets.js';
+import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality, migrationExposure, migrationNote, substitution, sourceResolution } from '../../data/analysis/realassets.js';
 ---
 
 <AnalysisLayout
@@ -45,6 +45,21 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality }
     ))}
   </div>
 
+  <section class="mig">
+    <div class="dl">Migrant labor & remittance exposure</div>
+    <div style="overflow-x:auto">
+      <table class="mig-table">
+        <thead><tr><th>Origin</th><th>Workers in Gulf</th><th>Remittance baseline</th><th>Gulf share</th><th>GDP share</th><th>Tier</th></tr></thead>
+        <tbody>
+          {migrationExposure.map((r) => (
+            <tr><td class="mig-c">{r.country}</td><td>{r.workers}</td><td>{r.remittances}</td><td>{r.gulfShare}</td><td>{r.gdpShare}</td><td class="mig-t">{r.tier}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="prec-note">{migrationNote}</p>
+  </section>
+
   <section class="smx-sec">
     <div class="dl">Scenario impact matrix</div>
     <div style="overflow-x:auto">
@@ -65,6 +80,16 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality }
     </div>
   </section>
 
+  <section class="subst">
+    <div class="dl">Substitution & rerouting</div>
+    {substitution.map((sx) => (
+      <div class="subst-block">
+        <div class="subst-area">{sx.area}</div>
+        <p>{sx.text}</p>
+      </div>
+    ))}
+  </section>
+
   <section class="prec">
     <div class="dl">Historical comparison</div>
     <div style="overflow-x:auto">
@@ -80,6 +105,13 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality }
       </table>
     </div>
     <p class="prec-note">{precedentNote}</p>
+  </section>
+
+  <section class="sres">
+    <div class="dl">Source-conflict resolution</div>
+    {sourceResolution.map((r) => (
+      <div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>
+    ))}
   </section>
 
   <div class="foot-box">
@@ -145,4 +177,19 @@ import { cards, thesis, scenarioMatrix, precedents, precedentNote, dataQuality }
   .foot-box .next{margin:0}
   .foot-box strong{color:var(--cyan)}
   @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}}
+  .mig{margin-bottom:3rem}
+  .mig-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .mig-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .mig-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top}
+  .mig-c{font-weight:700;color:var(--text);white-space:nowrap}
+  .mig-t{font-family:var(--font-mono);font-size:10px;color:var(--text-dim);white-space:nowrap}
+  .subst{margin-bottom:3rem}
+  .subst-block{margin-top:12px;border-left:2px solid var(--border);padding-left:14px}
+  .subst-area{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .subst-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .sres{margin-bottom:2rem}
+  .sres-block{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid var(--border)}
+  .sres-item{font-size:12px;font-weight:700;color:var(--text);min-width:210px;flex-shrink:0}
+  .sres-res{font-size:12px;color:var(--text-dim);line-height:1.5}
+  @media(max-width:720px){.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
 </style>
