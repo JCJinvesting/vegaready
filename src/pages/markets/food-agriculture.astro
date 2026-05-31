@@ -1,0 +1,169 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossShockNote, regionalHunger, regionalHungerNote, gccFood, gccFoodNote, scenarioMatrix, sourceResolution, dataQuality, relatedSectors } from '../../data/analysis/foodag.js';
+---
+
+<AnalysisLayout
+  title="Food & Agriculture — VegaReady"
+  description="The deep dive of the fertilizer→food cascade: Gulf fertilizer export blackout, urea +80% to $850, the FAO Food Price Index, the WFP 45M hunger projection, GCC food-reserve adequacy, and the delayed-fuse yield risk."
+  section="Food & Agriculture"
+  area="markets"
+>
+  <section class="hero">
+    <div class="label">Markets · Food & Agriculture</div>
+    <h1>The delayed fuse.</h1>
+    <p class="lead">The Gulf is 36% of the world's urea exports — and that flow stopped on February 28. Unlike Ukraine, which removed grain directly, this shock works through input-cost inflation: fertilizer that doesn't get applied now becomes a harvest that doesn't arrive in 6–12 months. This is the deep dive of the <a href="/transmission" style="color:var(--cyan)">transmission</a> Fertilizer and Agriculture sectors — fully resolved.</p>
+    <div class="callout"><strong>Related:</strong> {relatedSectors}</div>
+  </section>
+
+  <div class="thesis">
+    <div class="thesis-label">The structural finding</div>
+    <p>{thesis}</p>
+  </div>
+
+  <div class="ev-list">
+    {cards.map((c) => (
+      <details class="ev">
+        <summary class="es">
+          <div class="el"><span class="en">{c.icon}</span><div>
+            <div class="et">{c.title}<span class="cat">{c.category}</span></div>
+            <div class="eb">{c.summary}</div>
+          </div></div>
+          <span class={`conf conf-${c.confidence}`}>{c.confidence}</span>
+        </summary>
+        <div class="ey">
+          <div class="mgrid">{c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>))}</div>
+          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <section class="traj">
+    <div class="dl">Urea price trajectory · global benchmark</div>
+    <div class="traj-row">
+      {priceTrajectory.map((p) => (<div class="traj-step"><div class="traj-phase">{p.phase}</div><div class="traj-awrp">{p.level}</div><div class="traj-cost">{p.change}</div><div class="traj-note">{p.note}</div></div>))}
+    </div>
+    <p class="geo">{forwardProjections}</p>
+  </section>
+
+  <section class="prec">
+    <div class="dl">Vs. the 2022 Ukraine shock</div>
+    <div style="overflow-x:auto"><table class="prec-table">
+      <thead><tr><th>Metric</th><th>Ukraine 2022</th><th>Hormuz 2026</th><th>Why the difference</th></tr></thead>
+      <tbody>{crossShock.map((r) => (<tr><td class="prec-name">{r.metric}</td><td>{r.ukraine}</td><td class="prec-cur">{r.hormuz}</td><td>{r.why}</td></tr>))}</tbody>
+    </table></div>
+    <p class="prec-note">{crossShockNote}</p>
+  </section>
+
+  <section class="mig">
+    <div class="dl">WFP hunger projection by region</div>
+    <div style="overflow-x:auto"><table class="mig-table">
+      <thead><tr><th>Region</th><th>Additional food-insecure</th><th>% increase</th></tr></thead>
+      <tbody>{regionalHunger.map((r) => (<tr><td class="mig-c">{r.region}</td><td>{r.people}</td><td>{r.pct}</td></tr>))}</tbody>
+    </table></div>
+    <p class="prec-note">{regionalHungerNote}</p>
+  </section>
+
+  <section class="mig">
+    <div class="dl">GCC food-reserve adequacy</div>
+    <div style="overflow-x:auto"><table class="mig-table">
+      <thead><tr><th>Country</th><th>Import dependency</th><th>Reserve depth</th><th>Alt. route</th><th>Vulnerability</th></tr></thead>
+      <tbody>{gccFood.map((r) => (<tr><td class="mig-c">{r.country}</td><td>{r.dependency}</td><td>{r.reserve}</td><td>{r.route}</td><td>{r.vuln}</td></tr>))}</tbody>
+    </table></div>
+    <p class="prec-note">{gccFoodNote}</p>
+  </section>
+
+  <section class="scen">
+    <div class="dl">Scenario impact</div>
+    {scenarioMatrix.map((s) => (
+      <div class="scen-block" style={`border-left:3px solid ${s.tone}`}>
+        <div class="scen-name" style={`color:${s.tone}`}>{s.scenario} — {s.label}</div>
+        <p class="scen-impact">{s.impact}</p>
+      </div>
+    ))}
+  </section>
+
+  <section class="sres">
+    <div class="dl">Source-conflict resolution</div>
+    {sourceResolution.map((r) => (<div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>))}
+  </section>
+
+  <div class="foot-box">
+    <div class="dl">Data quality &amp; methodology</div>
+    <p><strong style="color:#10b981">HIGH (T1)</strong> — {dataQuality.high}</p>
+    <p><strong style="color:#f59e0b">MODERATE</strong> — {dataQuality.moderate}</p>
+    <p><strong style="color:var(--text-dim)">Quarantined (not anchored)</strong> — {dataQuality.quarantined}</p>
+    <p class="next"><strong>Related:</strong> the water side on <a href="/markets/water" style="color:var(--cyan)">/markets/water</a>; the Fertilizer & Agriculture sectors on <a href="/transmission" style="color:var(--cyan)">/transmission</a>.</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:680px;margin-bottom:1.25rem}
+  .callout{font-size:13px;color:var(--text-muted);line-height:1.6;padding:12px 16px;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;max-width:680px}
+  .callout strong{color:var(--cyan);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+  .thesis{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;padding:16px 20px;margin-bottom:2.5rem;max-width:780px}
+  .thesis-label{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .thesis p{font-size:14px;color:var(--text-muted);line-height:1.7;margin:0}
+  .ev-list{display:flex;flex-direction:column;gap:8px;margin-bottom:3rem}
+  .ev{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .ev[open]{border-color:var(--border-light)}
+  .ev[open] .es{border-bottom:1px solid var(--border)}
+  .es{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .es::-webkit-details-marker{display:none}
+  .es::marker{content:''}
+  .es:hover{background:rgba(255,255,255,0.02)}
+  .el{display:flex;gap:14px;flex:1;min-width:0}
+  .en{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .et{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cat{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 7px;border:1px solid var(--border);border-radius:4px;color:var(--text-dim)}
+  .eb{font-size:12px;color:var(--text-dim);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .conf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .conf-high{color:#10b981;background:rgba(16,185,129,0.1)}
+  .conf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .conf-low{color:#ef4444;background:rgba(239,68,68,0.1)}
+  .ey{padding:16px 20px 20px}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .metric{padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px}
+  .ml{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .mv{font-size:13px;color:var(--text-muted);line-height:1.45}
+  .ds{margin-bottom:0}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .srctext{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .traj{margin-bottom:3rem}
+  .traj-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+  .traj-step{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+  .traj-phase{font-size:13px;font-weight:700;color:var(--text)}
+  .traj-awrp{font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--cyan);line-height:1.1;margin-top:6px}
+  .traj-cost{font-size:12px;color:var(--text-muted);margin:2px 0 8px}
+  .traj-note{font-size:11px;color:var(--text-dim);line-height:1.45}
+  .geo{font-size:12px;color:var(--text-dim);line-height:1.6;margin:14px 0 0;max-width:820px}
+  .prec{margin-bottom:3rem}
+  .prec-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .prec-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .prec-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top;min-width:120px}
+  .prec-name{font-weight:700;color:var(--text)}
+  .prec-cur{color:var(--cyan);font-weight:600}
+  .prec-note{font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:12px;max-width:820px}
+  .mig{margin-bottom:3rem}
+  .mig-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .mig-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .mig-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top}
+  .mig-c{font-weight:700;color:var(--text);white-space:nowrap}
+  .scen{margin-bottom:3rem}
+  .scen-block{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:10px}
+  .scen-name{font-size:14px;font-weight:700;margin-bottom:6px}
+  .scen-impact{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .sres{margin-bottom:2rem}
+  .sres-block{display:flex;gap:14px;padding:8px 0;border-bottom:1px solid var(--border)}
+  .sres-item{font-size:12px;font-weight:700;color:var(--text);min-width:230px;flex-shrink:0}
+  .sres-res{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
+  .foot-box .next{margin:0}
+  .foot-box strong{color:var(--cyan)}
+  @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}.traj-row{grid-template-columns:1fr 1fr}.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
+</style>

@@ -154,4 +154,40 @@ out('labor.js', banner('labor.json')
   + 'export const precedentNote = ' + JSON.stringify(labDoc.precedentNote || '', null, 2) + ';\n\n'
   + 'export const sourceResolution = ' + JSON.stringify(labDoc.sourceResolution || [], null, 2) + ';\n\n'
   + 'export const dataQuality = ' + JSON.stringify(labDoc.dataQuality || {}, null, 2) + ';\n');
+// SECTION 5 (split) -> markets/food-agriculture + markets/water. Flat data-point cards; reuses insHuman.
+const normConf = (c) => { const m = (c || '').toUpperCase().match(/HIGH|MEDIUM|LOW/); return m ? m[0].toLowerCase() : 'medium'; };
+const flatCard = (e, i) => {
+  const d = e.data || {};
+  const META = /(_source|_tier|_note|_qualifier|_names|_name)$/;
+  const metrics = Object.keys(d)
+    .filter((k) => !META.test(k) && k !== 'confidence' && k !== 'source_tier' && d[k] != null && d[k] !== '')
+    .map((k) => ({ label: insHuman(k), value: Array.isArray(d[k]) ? d[k].join(', ') : String(d[k]) }));
+  return { id: e.id, icon: icon(i), title: e.title, category: e.category, summary: e.summary || '', metrics, confidence: normConf(e.confidence), sources: e.sources || [], tags: e.tags || {} };
+};
+const faDoc = rd('foodag.json');
+out('foodag.js', banner('foodag.json')
+  + 'export const cards = ' + JSON.stringify(faDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(faDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const priceTrajectory = ' + JSON.stringify(faDoc.priceTrajectory || [], null, 2) + ';\n\n'
+  + 'export const forwardProjections = ' + JSON.stringify(faDoc.forwardProjections || '', null, 2) + ';\n\n'
+  + 'export const crossShock = ' + JSON.stringify(faDoc.crossShock || [], null, 2) + ';\n\n'
+  + 'export const crossShockNote = ' + JSON.stringify(faDoc.crossShockNote || '', null, 2) + ';\n\n'
+  + 'export const regionalHunger = ' + JSON.stringify(faDoc.regionalHunger || [], null, 2) + ';\n\n'
+  + 'export const regionalHungerNote = ' + JSON.stringify(faDoc.regionalHungerNote || '', null, 2) + ';\n\n'
+  + 'export const gccFood = ' + JSON.stringify(faDoc.gccFood || [], null, 2) + ';\n\n'
+  + 'export const gccFoodNote = ' + JSON.stringify(faDoc.gccFoodNote || '', null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(faDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(faDoc.sourceResolution || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(faDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(faDoc.relatedSectors || '', null, 2) + ';\n');
+const wDoc = rd('water.json');
+out('water.js', banner('water.json')
+  + 'export const cards = ' + JSON.stringify(wDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(wDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const dependencyTable = ' + JSON.stringify(wDoc.dependencyTable || [], null, 2) + ';\n\n'
+  + 'export const attacks = ' + JSON.stringify(wDoc.attacks || [], null, 2) + ';\n\n'
+  + 'export const reserveNote = ' + JSON.stringify(wDoc.reserveNote || '', null, 2) + ';\n\n'
+  + 'export const scenarioMatrix = ' + JSON.stringify(wDoc.scenarioMatrix || [], null, 2) + ';\n\n'
+  + 'export const sourceResolution = ' + JSON.stringify(wDoc.sourceResolution || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(wDoc.dataQuality || {}, null, 2) + ';\n');
 console.log('done.');
