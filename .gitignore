@@ -203,3 +203,9 @@ dist
 
 # Generated data bundle (built from IWT at build time)
 src/data/iwt-bundle.json
+
+### Repo backups & stray files (keep on disk, out of git) ###
+# Full-repo git bundle backups (e.g. vega.bundle) — belong outside the working tree
+*.bundle
+# Empty stray file from a shell redirect typo
+powershell
