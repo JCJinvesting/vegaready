@@ -1,6 +1,7 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
 import { metrics, summary, byScenario, signalCatalog, scenarioKeys, lastUpdated } from '../../data/analysis/watchmetrics.js';
+import { catalysts } from '../../data/analysis/catalysts.js';
 const stCol = { critical: '#ef4444', alert: '#f59e0b', watch: '#eab308', ok: '#10b981' };
 const clsCol = { predictive: '#22d3ee', confirming: '#f59e0b', coincident: '#8892a4' };
 const sc = { hormuz_closure: '#ef4444', oil_strike: '#f59e0b', cable_severance: '#22d3ee', ceasefire: '#10b981' };
@@ -8,6 +9,7 @@ const fmt = (v) => (typeof v === 'number' ? (Math.abs(v) >= 1000 ? v.toLocaleStr
 const scenLabel = (k) => k.replace('_', ' ');
 const scenMeta = { hormuz_closure: 'Hormuz closure', oil_strike: 'Oil-infra strike', cable_severance: 'Cable severance', ceasefire: 'Ceasefire / deal' };
 const catalogCount = signalCatalog.length;
+const catCol = { discussed:'#8892a4', 'reported-unconfirmed':'#eab308', announced:'#22d3ee', negotiating:'#f59e0b', 'in-progress':'#10b981' };
 ---
 <AnalysisLayout
   title="Watch Board — Live Signal Registry — VegaReady"
@@ -46,7 +48,7 @@ const catalogCount = signalCatalog.length;
           <tr data-scenarios={(m.scenario_mapping||[]).join(' ')}>
             <td class="mono dim">{m.signalNo || '·'}</td>
             <td class="nm">{m.metric}{m.confidence ? <span class="conf"> {m.confidence}</span> : null}</td>
-            <td class="mono">{fmt(m.value)}{m.unit && m.unit!=='count' ? ' '+m.unit : ''}</td>
+            <td class="mono">{fmt(m.value)}{m.unit && m.unit!=='count' ? ' '+m.unit : ''}{m.value_type && m.value_type!=='current' ? <span class="vt">{m.value_type.replace('_',' ')}</span> : null}{m.baseline!=null ? <span class="dim"> · base {fmt(m.baseline)}</span> : null}</td>
             <td class="mono dim">{fmt(m.thresholds.watch)}</td>
             <td class="mono dim">{fmt(m.thresholds.alert)}</td>
             <td class="mono dim">{fmt(m.thresholds.critical)}</td>
@@ -60,6 +62,24 @@ const catalogCount = signalCatalog.length;
       </tbody>
     </table></div>
     <p class="note">Status is computed at build time and re-derived in-browser by the directional comparator: <b>above</b> trips as the value rises (premiums, tariffs, depletion %), <b>below</b> as it falls (chokepoint throughput, reserve days, negative YoY flows). Catalog signals (§ numbered) carry a predictive/confirming/coincident classification; the three supplementary rows extend coverage. Full field specs — input data, lead/lag, affected assets and false positives — live on each section page&rsquo;s signal panel and in the signal catalog.</p>
+  </section>
+
+  <section class="sec catsec">
+    <div class="dl">Forward catalysts — discussed / announced, not committed</div>
+    <p class="catnote">Tracked as upcoming triggers, never scored as facts. Each shows what would confirm it and what it would move if it does.</p>
+    <div class="catgrid">
+      {catalysts.map((c) => (
+        <div class="catcard" style={`--cc:${catCol[c.status]||'#8892a4'}`}>
+          <div class="cathead">
+            <span class="catitem">{c.item}</span>
+            <span class="catstatus" style={`color:${catCol[c.status]||'#8892a4'};border-color:${catCol[c.status]||'#8892a4'}66`}>{c.status}</span>
+          </div>
+          <div class="catmeta"><span class="catk">Confirm</span>{c.whatWouldConfirm}</div>
+          <div class="catmeta"><span class="catk">If confirmed</span>{c.ifConfirmed}</div>
+          <div class="catfoot"><a href={c.page} class="mono">{c.section}</a> · <span class="mono dim">{c.asOf}</span></div>
+        </div>
+      ))}
+    </div>
   </section>
 
   <section class="sec">
@@ -121,5 +141,17 @@ const catalogCount = signalCatalog.length;
   .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-family:var(--font-mono);font-size:12px}
   .related span{color:var(--text-dim);text-transform:uppercase;font-size:10px;letter-spacing:1px}
   .related a{color:var(--cyan)}
+  .vt{font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:.5px;color:#eab308;border:1px solid #eab30855;border-radius:3px;padding:0 4px;margin-left:5px}
+  .catsec{margin-top:2rem}
+  .catnote{font-size:12px;color:var(--text-dim);line-height:1.55;margin:0 0 12px;max-width:880px}
+  .catgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px}
+  .catcard{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--cc);border-radius:8px;padding:12px 14px}
+  .cathead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+  .catitem{font-size:13px;font-weight:650;color:var(--text);line-height:1.3}
+  .catstatus{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border:1px solid;border-radius:4px;padding:1px 6px;white-space:nowrap}
+  .catmeta{font-size:11.5px;color:var(--text-muted);line-height:1.5;margin-bottom:4px}
+  .catk{font-family:var(--font-mono);font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);margin-right:7px}
+  .catfoot{font-size:10px;color:var(--text-dim);margin-top:6px}
+  .catfoot a{color:var(--cyan)}
   @media(max-width:720px){.counts{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:2rem}}
 </style>

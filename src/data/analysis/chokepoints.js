@@ -187,7 +187,7 @@ export const throughput = [
     "volume": "~20 mb/d oil (~20% global liquids); ~1/5 global LNG",
     "period": "2024",
     "commodities": "Crude (Saudi 38%≈5.5mb/d, Iraq ~22%, UAE ~13%), LNG (Qatar), fertilizer",
-    "bypass": "Very low — only Saudi East-West & UAE Habshan-Fujairah pipelines (~few mb/d)",
+    "bypass": "Very low — Saudi East-West ~7.0 + UAE Habshan-Fujairah ~1.8 = ~8.5–9.0 mb/d nameplate, but only ~5.5–6.5 usable after Yanbu/Fujairah loading limits (vs ~20 baseline)",
     "source": "EIA"
   },
   {

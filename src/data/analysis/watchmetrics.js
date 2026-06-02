@@ -52,6 +52,8 @@ export const metrics = [
     "assets": "Defense primes, EV/grid/magnet, ex-China REE miners (MP/Lynas/Arafura)",
     "false_positive": "Export-license noise vs genuine supply cut; China dependence pre-dates the conflict",
     "classification": "predictive",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -75,7 +77,7 @@ export const metrics = [
       "tier": "T2"
     },
     "confidence": "HIGH",
-    "as_of": "2025",
+    "as_of": "2025-05-12",
     "page": "/structural/deglobalization",
     "vertical": "De-globalization",
     "section": "§7",
@@ -86,6 +88,8 @@ export const metrics = [
     "assets": "Autos/consumer-disc/semis equities, CBAM importers, connector economies",
     "false_positive": "Announced vs effective rate (exemptions/substitution); the pre/post gap is the real gauge",
     "classification": "confirming",
+    "stale_after": "100d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -113,6 +117,8 @@ export const metrics = [
     "page": "/structural/deglobalization",
     "vertical": "De-globalization",
     "section": "§7",
+    "stale_after": "100d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -149,6 +155,8 @@ export const metrics = [
     "assets": "Tanker equities (FRO/NAT/DHT), crude term structure, refiners, oil-importer cost base",
     "false_positive": "Decoupled from equity beta (idiosyncratic) — Hormuz nowcast only, not a broad signal",
     "classification": "coincident",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -186,6 +194,8 @@ export const metrics = [
     "assets": "GCC sovereign CDS, TASI/DFM/ADX, water-tech EPCs — highest-severity unpriced tail",
     "false_positive": "Deep Gulf fiscal cushions may absorb a strike without transmission — jump risk, not a continuous gauge",
     "classification": "predictive",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -222,6 +232,8 @@ export const metrics = [
     "assets": "Defense primes (LMT/RTX/MBDA/Diehl/Rheinmetall), replenishment backlog, magnet/REE inputs",
     "false_positive": "Drawdown % figures are T2; European defense already cooled on valuation — demand ≠ price",
     "classification": "confirming",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -258,6 +270,8 @@ export const metrics = [
     "assets": "Gold/GVZ-OVX vol, regional risk premium, energy-security hedges, broad risk-off",
     "false_positive": "Assessments made during active conflict (PROVISIONAL); stockpile location disputed",
     "classification": "predictive",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -294,6 +308,8 @@ export const metrics = [
     "as_of": "2026 ($70.7bn single week)",
     "page": "/markets/credit",
     "vertical": "Credit",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -330,6 +346,8 @@ export const metrics = [
     "as_of": "2026-05-27 (−$733.4M; 8-session −$2.6bn)",
     "page": "/markets/crypto",
     "vertical": "Crypto",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -360,6 +378,8 @@ export const metrics = [
     "page": "/structural/chokepoints",
     "vertical": "Chokepoints",
     "section": "§7",
+    "stale_after": "8d",
+    "value_type": "baseline",
     "status": "alert"
   },
   {
@@ -397,6 +417,8 @@ export const metrics = [
     "assets": "Soft commodities, food-importer fiscal/FX (Egypt/Pakistan), WFP-exposed",
     "false_positive": "Ample grain stocks muted 2026 vs 2022; level alone understates forward yield risk",
     "classification": "coincident",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -433,6 +455,8 @@ export const metrics = [
     "assets": "Aluminium, construction-materials equities, autos/manufacturing input cost, GCC megaprojects",
     "false_positive": "LME moves on global demand/China stimulus too — isolate the Gulf-supply component",
     "classification": "coincident",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -469,6 +493,8 @@ export const metrics = [
     "assets": "GCC construction/real-estate equities, megaproject timelines, property REITs",
     "false_positive": "Structural (labor/land) inflation vs conflict-driven energy/materials inflation — separate",
     "classification": "confirming",
+    "stale_after": "100d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -506,6 +532,8 @@ export const metrics = [
     "assets": "PKR/INR/PHP FX, EM external balances (compounds §2), recipient-EM staples",
     "false_positive": "Seasonality (Eid/holiday) and FX-conversion effects mask the labor signal",
     "classification": "confirming",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -542,6 +570,8 @@ export const metrics = [
     "assets": "Fertilizer producers (CF/Nutrien/Yara/OCP), grains, food-importer sovereigns",
     "false_positive": "N-hemisphere pre-buying mutes immediate pass-through; the hit is forward, not spot",
     "classification": "predictive",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -578,6 +608,8 @@ export const metrics = [
     "as_of": "2026-03 (−$12.7bn, largest in ≥5yr)",
     "page": "/markets/gold-fx",
     "vertical": "Gold & FX",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -614,6 +646,8 @@ export const metrics = [
     "as_of": "2026 (−$16.6bn print)",
     "page": "/markets/credit",
     "vertical": "Credit",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -650,6 +684,8 @@ export const metrics = [
     "as_of": "2026 (EM crowding −1%, 4-sigma)",
     "page": "/markets/equities",
     "vertical": "Equities",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -686,6 +722,8 @@ export const metrics = [
     "as_of": "2026",
     "page": "/markets/equities",
     "vertical": "Equities",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -722,6 +760,8 @@ export const metrics = [
     "as_of": "2026 (TASI +5% vs DFM −16%)",
     "page": "/markets/equities",
     "vertical": "Equities",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -758,6 +798,8 @@ export const metrics = [
     "as_of": "2026 (turned POSITIVE / diversification failed)",
     "page": "/markets/cross-asset",
     "vertical": "Cross-Asset",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -794,6 +836,8 @@ export const metrics = [
     "as_of": "2026 (17.2→40.8 peak; stuck 35.3)",
     "page": "/markets/cross-asset",
     "vertical": "Cross-Asset",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -830,6 +874,8 @@ export const metrics = [
     "as_of": "2026 (−5%/−7%, IV 35/43%)",
     "page": "/markets/crypto",
     "vertical": "Crypto",
+    "stale_after": "1d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -866,7 +912,49 @@ export const metrics = [
     "as_of": "2026 ($61→$49bn, neg funding through +14%)",
     "page": "/markets/crypto",
     "vertical": "Crypto",
+    "stale_after": "1d",
+    "value_type": "current",
     "status": "alert"
+  },
+  {
+    "id": "chokepoint.hormuz.transit",
+    "metric": "Strait of Hormuz oil transit",
+    "geography": "Strait of Hormuz",
+    "unit": "mb/d",
+    "value": 14.6,
+    "direction": "below",
+    "type": "numeric",
+    "thresholds": {
+      "watch": 18,
+      "alert": 12,
+      "critical": 6
+    },
+    "update_frequency": "daily/event",
+    "scenario_mapping": [
+      "hormuz_closure",
+      "oil_strike"
+    ],
+    "source": {
+      "name": "EIA",
+      "url": "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+      "tier": "T1"
+    },
+    "confidence": "HIGH",
+    "as_of": "2026-Q1 (realized, -29.7% YoY; EIA, PROVISIONAL)",
+    "page": "/structural/chokepoints",
+    "vertical": "Chokepoints",
+    "section": "§7",
+    "signalNo": "7.1",
+    "signalName": "Strait of Hormuz oil transit",
+    "input": "EIA / Kpler-Vortexa tanker tracking throughput",
+    "lead_lag": "Leading→coincident — the master physical gauge the whole corpus hangs on",
+    "assets": "Brent, GCC equity/credit, LNG, fertilizer, EM importers, crypto (via §9)",
+    "false_positive": "Weather/maintenance/seasonality dips ≠ closure; pair with transit count + AWRP",
+    "classification": "predictive",
+    "baseline": 20,
+    "value_type": "current_period",
+    "stale_after": "2d",
+    "status": "watch"
   },
   {
     "id": "credit.embi_spread",
@@ -891,8 +979,8 @@ export const metrics = [
       "url": "/markets/credit",
       "tier": "T2"
     },
-    "confidence": "MEDIUM",
-    "as_of": "2026",
+    "confidence": "HIGH",
+    "as_of": "2026-05-28",
     "page": "/markets/credit",
     "vertical": "Credit",
     "section": "§2",
@@ -903,6 +991,8 @@ export const metrics = [
     "assets": "EM sovereign debt, EM FX, EM-importer equity, food-import sovereigns",
     "false_positive": "Global-rate beta vs idiosyncratic conflict stress — decompose vs UST",
     "classification": "predictive",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -940,6 +1030,8 @@ export const metrics = [
     "assets": "Brent (delivered-cost floor), tanker equities, marine reinsurers, Gulf exporters",
     "false_positive": "Quotes are proprietary/venue-varying; a single broker print isn’t the market",
     "classification": "predictive",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -976,6 +1068,8 @@ export const metrics = [
     "as_of": "2026 peak 100.53 (+3.12%)",
     "page": "/markets/gold-fx",
     "vertical": "Gold & FX",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1012,6 +1106,8 @@ export const metrics = [
     "as_of": "2026 (¥11.7tn intervened)",
     "page": "/markets/gold-fx",
     "vertical": "Gold & FX",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1048,6 +1144,8 @@ export const metrics = [
     "as_of": "2026-03 (occurred)",
     "page": "/markets/insurance",
     "vertical": "Insurance",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1084,44 +1182,9 @@ export const metrics = [
     "as_of": "2026 (28→120.9 peak; ~58 May)",
     "page": "/markets/cross-asset",
     "vertical": "Cross-Asset",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "watch"
-  },
-  {
-    "id": "chokepoint.hormuz.transit",
-    "metric": "Strait of Hormuz oil transit",
-    "geography": "Strait of Hormuz",
-    "unit": "mb/d",
-    "value": 20,
-    "direction": "below",
-    "type": "numeric",
-    "thresholds": {
-      "watch": 18,
-      "alert": 12,
-      "critical": 6
-    },
-    "update_frequency": "daily/event",
-    "scenario_mapping": [
-      "hormuz_closure",
-      "oil_strike"
-    ],
-    "source": {
-      "name": "EIA",
-      "url": "https://www.eia.gov/todayinenergy/detail.php?id=65504",
-      "tier": "T1"
-    },
-    "confidence": "HIGH",
-    "as_of": "2024",
-    "page": "/structural/chokepoints",
-    "vertical": "Chokepoints",
-    "section": "§7",
-    "signalNo": "7.1",
-    "signalName": "Strait of Hormuz oil transit",
-    "input": "EIA / Kpler-Vortexa tanker tracking throughput",
-    "lead_lag": "Leading→coincident — the master physical gauge the whole corpus hangs on",
-    "assets": "Brent, GCC equity/credit, LNG, fertilizer, EM importers, crypto (via §9)",
-    "false_positive": "Weather/maintenance/seasonality dips ≠ closure; pair with transit count + AWRP",
-    "classification": "predictive",
-    "status": "ok"
   },
   {
     "id": "digital.redsea.cable_faults",
@@ -1157,6 +1220,8 @@ export const metrics = [
     "assets": "Regional connectivity, telecom resilience, EM fintech, crypto venue latency",
     "false_positive": "Documented FP — cable cuts historically did NOT move VIX/MOVE; do not size broad-vol hedge to this",
     "classification": "predictive",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "ok"
   },
   {
@@ -1187,6 +1252,8 @@ export const metrics = [
     "page": "/markets/gold-fx",
     "vertical": "Gold & FX",
     "section": "§1",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "ok"
   }
 ];
@@ -1194,8 +1261,8 @@ export const metrics = [
 export const summary = {
   "critical": 9,
   "alert": 15,
-  "watch": 6,
-  "ok": 3,
+  "watch": 7,
+  "ok": 2,
   "total": 33
 };
 
@@ -1220,13 +1287,13 @@ export const byScenario = {
     "crossasset.vxeem",
     "crypto.deribit_skew",
     "crypto.perp_funding_oi",
+    "chokepoint.hormuz.transit",
     "credit.embi_spread",
     "insurance.awrp_hull",
     "fx.dxy_dollar_vix",
     "fx.usdjpy_carry",
     "insurance.pi_war_cover",
     "crossasset.ovx",
-    "chokepoint.hormuz.transit",
     "gold.spot"
   ],
   "oil_strike": [
@@ -1241,11 +1308,11 @@ export const byScenario = {
     "crossasset.vxeem",
     "crypto.deribit_skew",
     "crypto.perp_funding_oi",
+    "chokepoint.hormuz.transit",
     "credit.embi_spread",
     "insurance.awrp_hull",
     "fx.dxy_dollar_vix",
     "crossasset.ovx",
-    "chokepoint.hormuz.transit",
     "gold.spot"
   ],
   "cable_severance": [
@@ -1298,6 +1365,8 @@ export const signalCatalog = [
     "as_of": "2026-03 (−$12.7bn, largest in ≥5yr)",
     "page": "/markets/gold-fx",
     "vertical": "Gold & FX",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -1334,6 +1403,8 @@ export const signalCatalog = [
     "as_of": "2026 peak 100.53 (+3.12%)",
     "page": "/markets/gold-fx",
     "vertical": "Gold & FX",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1370,6 +1441,8 @@ export const signalCatalog = [
     "as_of": "2026 (¥11.7tn intervened)",
     "page": "/markets/gold-fx",
     "vertical": "Gold & FX",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1395,8 +1468,8 @@ export const signalCatalog = [
       "url": "/markets/credit",
       "tier": "T2"
     },
-    "confidence": "MEDIUM",
-    "as_of": "2026",
+    "confidence": "HIGH",
+    "as_of": "2026-05-28",
     "page": "/markets/credit",
     "vertical": "Credit",
     "section": "§2",
@@ -1407,6 +1480,8 @@ export const signalCatalog = [
     "assets": "EM sovereign debt, EM FX, EM-importer equity, food-import sovereigns",
     "false_positive": "Global-rate beta vs idiosyncratic conflict stress — decompose vs UST",
     "classification": "predictive",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1443,6 +1518,8 @@ export const signalCatalog = [
     "as_of": "2026 ($70.7bn single week)",
     "page": "/markets/credit",
     "vertical": "Credit",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -1479,6 +1556,8 @@ export const signalCatalog = [
     "as_of": "2026 (−$16.6bn print)",
     "page": "/markets/credit",
     "vertical": "Credit",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -1516,6 +1595,8 @@ export const signalCatalog = [
     "assets": "Brent (delivered-cost floor), tanker equities, marine reinsurers, Gulf exporters",
     "false_positive": "Quotes are proprietary/venue-varying; a single broker print isn’t the market",
     "classification": "predictive",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1552,6 +1633,8 @@ export const signalCatalog = [
     "assets": "Tanker equities (FRO/NAT/DHT), crude term structure, refiners, oil-importer cost base",
     "false_positive": "Decoupled from equity beta (idiosyncratic) — Hormuz nowcast only, not a broad signal",
     "classification": "coincident",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -1588,6 +1671,8 @@ export const signalCatalog = [
     "as_of": "2026-03 (occurred)",
     "page": "/markets/insurance",
     "vertical": "Insurance",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -1624,6 +1709,8 @@ export const signalCatalog = [
     "assets": "Aluminium, construction-materials equities, autos/manufacturing input cost, GCC megaprojects",
     "false_positive": "LME moves on global demand/China stimulus too — isolate the Gulf-supply component",
     "classification": "coincident",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -1660,6 +1747,8 @@ export const signalCatalog = [
     "assets": "GCC construction/real-estate equities, megaproject timelines, property REITs",
     "false_positive": "Structural (labor/land) inflation vs conflict-driven energy/materials inflation — separate",
     "classification": "confirming",
+    "stale_after": "100d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -1697,6 +1786,8 @@ export const signalCatalog = [
     "assets": "PKR/INR/PHP FX, EM external balances (compounds §2), recipient-EM staples",
     "false_positive": "Seasonality (Eid/holiday) and FX-conversion effects mask the labor signal",
     "classification": "confirming",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -1733,6 +1824,8 @@ export const signalCatalog = [
     "assets": "Fertilizer producers (CF/Nutrien/Yara/OCP), grains, food-importer sovereigns",
     "false_positive": "N-hemisphere pre-buying mutes immediate pass-through; the hit is forward, not spot",
     "classification": "predictive",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -1770,6 +1863,8 @@ export const signalCatalog = [
     "assets": "Soft commodities, food-importer fiscal/FX (Egypt/Pakistan), WFP-exposed",
     "false_positive": "Ample grain stocks muted 2026 vs 2022; level alone understates forward yield risk",
     "classification": "coincident",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -1807,6 +1902,8 @@ export const signalCatalog = [
     "assets": "GCC sovereign CDS, TASI/DFM/ADX, water-tech EPCs — highest-severity unpriced tail",
     "false_positive": "Deep Gulf fiscal cushions may absorb a strike without transmission — jump risk, not a continuous gauge",
     "classification": "predictive",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -1841,6 +1938,8 @@ export const signalCatalog = [
     "assets": "Defense primes, EV/grid/magnet, ex-China REE miners (MP/Lynas/Arafura)",
     "false_positive": "Export-license noise vs genuine supply cut; China dependence pre-dates the conflict",
     "classification": "predictive",
+    "stale_after": "40d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -1877,6 +1976,8 @@ export const signalCatalog = [
     "assets": "Defense primes (LMT/RTX/MBDA/Diehl/Rheinmetall), replenishment backlog, magnet/REE inputs",
     "false_positive": "Drawdown % figures are T2; European defense already cooled on valuation — demand ≠ price",
     "classification": "confirming",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -1913,6 +2014,8 @@ export const signalCatalog = [
     "assets": "Gold/GVZ-OVX vol, regional risk premium, energy-security hedges, broad risk-off",
     "false_positive": "Assessments made during active conflict (PROVISIONAL); stockpile location disputed",
     "classification": "predictive",
+    "stale_after": "event",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -1920,7 +2023,7 @@ export const signalCatalog = [
     "metric": "Strait of Hormuz oil transit",
     "geography": "Strait of Hormuz",
     "unit": "mb/d",
-    "value": 20,
+    "value": 14.6,
     "direction": "below",
     "type": "numeric",
     "thresholds": {
@@ -1939,7 +2042,7 @@ export const signalCatalog = [
       "tier": "T1"
     },
     "confidence": "HIGH",
-    "as_of": "2024",
+    "as_of": "2026-Q1 (realized, -29.7% YoY; EIA, PROVISIONAL)",
     "page": "/structural/chokepoints",
     "vertical": "Chokepoints",
     "section": "§7",
@@ -1950,7 +2053,10 @@ export const signalCatalog = [
     "assets": "Brent, GCC equity/credit, LNG, fertilizer, EM importers, crypto (via §9)",
     "false_positive": "Weather/maintenance/seasonality dips ≠ closure; pair with transit count + AWRP",
     "classification": "predictive",
-    "status": "ok"
+    "baseline": 20,
+    "value_type": "current_period",
+    "stale_after": "2d",
+    "status": "watch"
   },
   {
     "id": "deglobalization.us.tariff_rate",
@@ -1973,7 +2079,7 @@ export const signalCatalog = [
       "tier": "T2"
     },
     "confidence": "HIGH",
-    "as_of": "2025",
+    "as_of": "2025-05-12",
     "page": "/structural/deglobalization",
     "vertical": "De-globalization",
     "section": "§7",
@@ -1984,6 +2090,8 @@ export const signalCatalog = [
     "assets": "Autos/consumer-disc/semis equities, CBAM importers, connector economies",
     "false_positive": "Announced vs effective rate (exemptions/substitution); the pre/post gap is the real gauge",
     "classification": "confirming",
+    "stale_after": "100d",
+    "value_type": "current",
     "status": "critical"
   },
   {
@@ -2020,6 +2128,8 @@ export const signalCatalog = [
     "assets": "Regional connectivity, telecom resilience, EM fintech, crypto venue latency",
     "false_positive": "Documented FP — cable cuts historically did NOT move VIX/MOVE; do not size broad-vol hedge to this",
     "classification": "predictive",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "ok"
   },
   {
@@ -2056,6 +2166,8 @@ export const signalCatalog = [
     "as_of": "2026 (EM crowding −1%, 4-sigma)",
     "page": "/markets/equities",
     "vertical": "Equities",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -2092,6 +2204,8 @@ export const signalCatalog = [
     "as_of": "2026",
     "page": "/markets/equities",
     "vertical": "Equities",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -2128,6 +2242,8 @@ export const signalCatalog = [
     "as_of": "2026 (TASI +5% vs DFM −16%)",
     "page": "/markets/equities",
     "vertical": "Equities",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -2164,6 +2280,8 @@ export const signalCatalog = [
     "as_of": "2026 (28→120.9 peak; ~58 May)",
     "page": "/markets/cross-asset",
     "vertical": "Cross-Asset",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "watch"
   },
   {
@@ -2200,6 +2318,8 @@ export const signalCatalog = [
     "as_of": "2026 (turned POSITIVE / diversification failed)",
     "page": "/markets/cross-asset",
     "vertical": "Cross-Asset",
+    "stale_after": "8d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -2236,6 +2356,8 @@ export const signalCatalog = [
     "as_of": "2026 (17.2→40.8 peak; stuck 35.3)",
     "page": "/markets/cross-asset",
     "vertical": "Cross-Asset",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -2272,6 +2394,8 @@ export const signalCatalog = [
     "as_of": "2026 (−5%/−7%, IV 35/43%)",
     "page": "/markets/crypto",
     "vertical": "Crypto",
+    "stale_after": "1d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -2308,6 +2432,8 @@ export const signalCatalog = [
     "as_of": "2026 ($61→$49bn, neg funding through +14%)",
     "page": "/markets/crypto",
     "vertical": "Crypto",
+    "stale_after": "1d",
+    "value_type": "current",
     "status": "alert"
   },
   {
@@ -2344,6 +2470,8 @@ export const signalCatalog = [
     "as_of": "2026-05-27 (−$733.4M; 8-session −$2.6bn)",
     "page": "/markets/crypto",
     "vertical": "Crypto",
+    "stale_after": "2d",
+    "value_type": "current",
     "status": "critical"
   }
 ];

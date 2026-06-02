@@ -456,4 +456,20 @@ out('crypto.js', banner('crypto.json')
   + 'export const lowLatencyRefresh = ' + JSON.stringify(crDoc.lowLatencyRefresh || '', null, 2) + ';\n\n'
   + 'export const relatedSectors = ' + JSON.stringify(crDoc.relatedSectors || '', null, 2) + ';\n');
 
+
+// P2 SCENARIO-STATE LEDGER -> scenariostates.js
+const ssDoc = rd('scenario-states.json');
+out('scenariostates.js', banner('scenario-states.json')
+  + 'export const stateDefs = ' + JSON.stringify(ssDoc.stateDefs || {}, null, 2) + ';\n\n'
+  + 'export const statusValues = ' + JSON.stringify(ssDoc.statusValues || [], null, 2) + ';\n\n'
+  + 'export const scenarios = ' + JSON.stringify(ssDoc.scenarios || [], null, 2) + ';\n\n'
+  + 'export const purpose = ' + JSON.stringify(ssDoc.purpose || '', null, 2) + ';\n');
+
+// P5 FORWARD-CATALYST REGISTER -> catalysts.js
+const catDoc = rd('catalysts.json');
+out('catalysts.js', banner('catalysts.json')
+  + 'export const catalysts = ' + JSON.stringify(catDoc.catalysts || [], null, 2) + ';\n\n'
+  + 'export const statusValues = ' + JSON.stringify(catDoc.statusValues || [], null, 2) + ';\n\n'
+  + 'export const purpose = ' + JSON.stringify(catDoc.purpose || '', null, 2) + ';\n');
+
 console.log('done.');

@@ -1,5 +1,8 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import { scenarios as scenStates, stateDefs } from '../../data/analysis/scenariostates.js';
+const stCol = { realized:'#ef4444', partial:'#f59e0b', elevated:'#f59e0b', normalizing:'#10b981', latent:'#8892a4', 'not-realized':'#22d3ee' };
+const stateKeys = ['physical','legal','insurance','market','economic'];
 ---
 
 <AnalysisLayout
@@ -12,6 +15,24 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
     <div class="label">Markets</div>
     <h1>What's moving.<br/>And why.</h1>
     <p class="lead">Markets are the destination — everything else is context. We track the financial response layer across gold, FX, energy, credit, and crypto, connecting each move back to the geopolitical transmission that caused it.</p>
+  </section>
+
+  <section class="scenstate">
+    <div class="ss-label">Scenario state ledger — a scenario is never one switch</div>
+    <div style="overflow-x:auto"><table class="ss-tbl">
+      <thead><tr><th>Scenario</th>{stateKeys.map(k => (<th title={stateDefs[k]}>{k}</th>))}</tr></thead>
+      <tbody>
+        {scenStates.map(s => (
+          <tr>
+            <td class="ss-scn"><span class="ss-tag" style={`color:${s.tone};border-color:${s.tone}66`}>{s.label}</span><span class="ss-head">{s.headline}</span></td>
+            {stateKeys.map(k => (
+              <td class="ss-cell" title={s.states[k].note}><span class="ss-st" style={`color:${stCol[s.states[k].status]};border-color:${stCol[s.states[k].status]}55;background:${stCol[s.states[k].status]}11`}>{s.states[k].status}</span></td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table></div>
+    <p class="ss-foot">Each scenario decomposed across five states. A ceasefire can end kinetic/physical risk while insurance and economic closure persist — note the ceasefire row's <b style="color:#22d3ee">not-realized</b> economic state. Hover any cell for detail.</p>
   </section>
 
   <div class="market-section">
@@ -167,4 +188,15 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
   @media(max-width:720px){.market-grid{grid-template-columns:1fr}.context-grid{grid-template-columns:1fr}}
   .market-section{margin-bottom:2.5rem}
   .group-label{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  .scenstate{margin:0 0 2.5rem}
+  .ss-label{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  .ss-tbl{width:100%;border-collapse:collapse;font-size:12px}
+  .ss-tbl th{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);text-align:left;padding:7px 9px;border-bottom:1px solid var(--border-light);cursor:help}
+  .ss-tbl td{padding:9px;border-bottom:1px solid var(--border);vertical-align:top}
+  .ss-scn{min-width:180px}
+  .ss-tag{font-family:var(--font-mono);font-size:10px;font-weight:700;border:1px solid;border-radius:4px;padding:2px 8px;white-space:nowrap;display:inline-block;margin-bottom:5px}
+  .ss-head{display:block;font-size:11px;color:var(--text-muted);line-height:1.4}
+  .ss-cell{cursor:help}
+  .ss-st{font-family:var(--font-mono);font-size:10px;font-weight:700;border:1px solid;border-radius:4px;padding:2px 7px;white-space:nowrap}
+  .ss-foot{font-size:11px;color:var(--text-dim);line-height:1.55;margin-top:10px;max-width:880px}
 </style>
