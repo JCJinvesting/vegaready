@@ -14,8 +14,8 @@ export default defineConfig({
 		sitemap(),
 	],
 	adapter: cloudflare({
-		platformProxy: {
-			enabled: true,
-		},
+		// v13: keep build-time image handling (previous default) so no Cloudflare Images
+		// binding is required. The v13 default changed to 'cloudflare-binding'.
+		imageService: "compile",
 	}),
 });

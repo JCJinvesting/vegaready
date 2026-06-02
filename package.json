@@ -12,12 +12,12 @@
 		"publish": true
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "12.6.12",
-		"@astrojs/mdx": "4.3.13",
+		"@astrojs/cloudflare": "^13.6.0",
+		"@astrojs/mdx": "^6.0.1",
 		"@astrojs/react": "^5.0.6",
-		"@astrojs/rss": "4.0.14",
-		"@astrojs/sitemap": "3.6.1",
-		"astro": "5.16.9",
+		"@astrojs/rss": "^4.0.18",
+		"@astrojs/sitemap": "^3.7.3",
+		"astro": "^6.4.2",
 		"react": "^19.2.6",
 		"react-dom": "^19.2.6",
 		"typescript": "5.9.3"
