@@ -1,5 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
 import { cards, thesis, scenarioMatrix, migrationExposure, migrationNote, humanImpact, precedents, precedentNote, sourceResolution, dataQuality } from '../../data/analysis/labor.js';
 ---
 
@@ -14,6 +15,8 @@ import { cards, thesis, scenarioMatrix, migrationExposure, migrationNote, humanI
     <h1>The people who <br/>build the Gulf.</h1>
     <p class="lead">Twenty-four million migrant workers build and run the Gulf economy, and the earnings they send home are a macro channel in their own right. This is where the Hormuz shock becomes a 7.7% drop in Philippine remittances, a $51.4B Indian exposure, ILO projections of millions of job losses — and, for the workers themselves, a crisis of involuntary immobility.</p>
   </section>
+
+  <SignalPanel page="/markets/labor" />
 
   <div class="thesis">
     <div class="thesis-label">The structural finding</div>

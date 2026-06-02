@@ -1,5 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
 import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossShockNote, regionalHunger, regionalHungerNote, gccFood, gccFoodNote, scenarioMatrix, sourceResolution, dataQuality, relatedSectors, policyResponse, cropCalendar, cropCalendarNote, sulfurPhosphateNote, investmentImplications } from '../../data/analysis/foodag.js';
 ---
 
@@ -15,6 +16,8 @@ import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossSh
     <p class="lead">The Gulf is 36% of the world's urea exports — and that flow stopped on February 28. Unlike Ukraine, which removed grain directly, this shock works through input-cost inflation: fertilizer that doesn't get applied now becomes a harvest that doesn't arrive in 6–12 months. This is the deep dive of the <a href="/transmission" style="color:var(--cyan)">transmission</a> Fertilizer and Agriculture sectors — fully resolved.</p>
     <div class="callout"><strong>Related:</strong> {relatedSectors}</div>
   </section>
+
+  <SignalPanel page="/markets/food-agriculture" />
 
   <div class="thesis">
     <div class="thesis-label">The structural finding</div>
@@ -33,7 +36,7 @@ import { cards, thesis, priceTrajectory, forwardProjections, crossShock, crossSh
         </summary>
         <div class="ey">
           <div class="mgrid">{c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>))}</div>
-          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
+          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u.url} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
         </div>
       </details>
     ))}

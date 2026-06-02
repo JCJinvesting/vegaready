@@ -24,12 +24,19 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
       <div class="market-desc">Safe-haven dynamics inverted: dollar captured the bid, gold corrected on real-yield repricing. Central banks net-purchased 243.7t Q1 2026. Yen carry ¥11.7T intervention. Petrodollar recycling disrupted.</div>
       <span class="market-status live">Live</span>
     </a>
-    <a href="/markets" class="market-card coming">
+    <a href="/markets/equities" class="market-card">
+      <div class="market-icon" style="color:#818cf8">EQ</div>
+      <div class="market-title">Global Equities &amp; Sector Rotation</div>
+      <div class="market-stat">S&P −8%→ATH · TASI +5% vs DFM −16% · MSCI EM −11%</div>
+      <div class="market-desc">The first-order equity layer: index shock map, sector winner/loser rotation, earnings transmission, factor rotation, country matrix, GCC asymmetry, flows, and a four-scenario trade map. Upstream of Cross-Asset.</div>
+      <span class="market-status live">Live</span>
+    </a>
+    <a href="/markets/crypto" class="market-card">
       <div class="market-icon" style="color:#6366f1">BTC</div>
       <div class="market-title">Crypto & Digital Assets</div>
-      <div class="market-stat">Coming soon</div>
-      <div class="market-desc">BTC safe-haven vs risk-asset reality. Stablecoin stress. Exchange connectivity gaps. DeFi oracle latency. JCJ's core domain.</div>
-      <span class="market-status building">In development</span>
+      <div class="market-stat">BTC −11% YTD · ~0.50 equity beta · $344M USDT freeze · NOT a haven</div>
+      <div class="market-desc">JCJ's core domain — the terminal node of the risk chain. Tested safe-haven verdict, the scenario grid, stablecoins as shadow dollar rails, market-structure stress, mining, ETF flows, and a JCJ trading-signal framework.</div>
+      <span class="market-status live">Live</span>
     </a>
     <a href="/markets/credit" class="market-card">
       <div class="market-icon" style="color:#22d3ee">CDS</div>
@@ -96,6 +103,19 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
     </div>
   </div>
 
+  <div class="market-section">
+    <div class="group-label">Cross-asset</div>
+    <div class="market-grid">
+    <a href="/markets/cross-asset" class="market-card">
+      <div class="market-icon" style="color:#818cf8">CX</div>
+      <div class="market-title">Cross-Asset · Correlation &amp; Volatility</div>
+      <div class="market-stat">OVX 28→121 · stock-bond flip · vol bifurcated</div>
+      <div class="market-desc">The market-derivative layer: how correlations, volatility, term structure and positioning re-priced — plus a hedging playbook by scenario. The synthesis that sits across every asset page.</div>
+      <span class="market-status live">Live</span>
+    </a>
+    </div>
+  </div>
+
   <section class="context-section">
     <div class="label">Connected analysis</div>
     <p class="context-text">Markets don't move in isolation. Each market response connects to the physical cascade, regional exposure, and forward outlook:</p>
@@ -111,6 +131,10 @@ import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
       <a href="/outlook" class="context-card">
         <div class="context-title">Outlook</div>
         <div class="context-desc">Gap dynamics, substitution cycles, historical precedents. What fills the gap and what happens when it reopens.</div>
+      </a>
+      <a href="/structural" class="context-card">
+        <div class="context-title">Structural Risk</div>
+        <div class="context-desc">The standing-watch layer: chokepoint, weaponization, de-globalization, digital and food indices — the slow fault lines beneath the market response.</div>
       </a>
     </div>
   </section>

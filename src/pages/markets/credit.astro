@@ -1,6 +1,13 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
 import { cards, cascade, winnersLosers, takeaways, nextSection, methodology } from '../../data/analysis/credit.js';
+import { positioning, correlationMap, termMap } from '../../data/analysis/crossasset.js';
+const ca_cash = positioning.find(p => p.channel.startsWith('Cash'));
+const ca_short = positioning.find(p => p.channel.startsWith('Short'));
+const ca_em = positioning.find(p => p.channel.startsWith('EM'));
+const ca_bondeq = correlationMap.find(c => c.pair.startsWith('Bonds'));
+const ca_ust = termMap.find(t => t.curve.startsWith('US Treasuries'));
 
 const scenarios = [
   { key: 'hormuz',    label: 'Hormuz closure',  color: '#ef4444' },
@@ -23,6 +30,8 @@ const posColor = { Beneficiary: '#10b981', Loser: '#ef4444', Mixed: '#f59e0b', '
     <h1>Where the money went.<br/>And what it broke.</h1>
     <p class="lead">The second-order financial architecture of the Feb–May 2026 Gulf conflict: where capital fled, which sovereigns cracked, and the plumbing — correspondent banking, sanctions, swap lines — straining underneath. Every figure carries a source tier; T3 claims were quarantined, not anchored.</p>
   </section>
+
+  <SignalPanel page="/markets/credit" />
 
   <section class="cascade">
     <div class="dl">Physical → financial cascade</div>
@@ -102,6 +111,19 @@ const posColor = { Beneficiary: '#10b981', Loser: '#ef4444', Mixed: '#f59e0b', '
     </ol>
   </section>
 
+  <section class="mdr">
+    <div class="mdr-h">Market-derivative read <span>· Cross-Asset</span></div>
+    <div class="mdr-rows">
+      <div class="mdr-row"><span class="mdr-k">Flight to cash</span><span class="mdr-v">{ca_cash.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Short-duration USTs</span><span class="mdr-v">{ca_short.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">EM debt / equity</span><span class="mdr-v">{ca_em.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">EM stress (durable)</span><span class="mdr-v">VXEEM stuck ~2× (35.30) vs VIX below baseline; CDX.EM +69bps; importer FX (rupee 94+) vs exporter (BRL +10%)</span></div>
+      <div class="mdr-row"><span class="mdr-k">Bonds ↔ equities</span><span class="mdr-v">{ca_bondeq.verdict} — diversification failed; both fall on inflation surprises</span></div>
+      <div class="mdr-row"><span class="mdr-k">Treasuries term</span><span class="mdr-v">{ca_ust.shape} — {ca_ust.substitution}</span></div>
+    </div>
+    <a href="/markets/cross-asset" class="mdr-link">Full cross-asset view →</a> <span style="color:var(--text-dim)">·</span> <a href="/markets/equities" class="mdr-link">EM equities →</a>
+  </section>
+
   <div class="foot-box">
     <div class="dl">Sources & methodology</div>
     <p>{methodology}</p>
@@ -163,4 +185,14 @@ const posColor = { Beneficiary: '#10b981', Loser: '#ef4444', Mixed: '#f59e0b', '
   .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
   .foot-box .next{margin:0}
   .foot-box strong{color:var(--cyan)}
+  .mdr{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #818cf8;border-radius:8px;padding:14px 18px;margin:0 0 2rem;max-width:860px}
+  .mdr-h{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .mdr-h span{color:var(--text-dim)}
+  .mdr-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+  .mdr-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline}
+  .mdr-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px}
+  .mdr-v{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .mdr-note{font-size:11px;color:#f59e0b;margin:0 0 10px;line-height:1.4}
+  .mdr-link{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none}
+  @media(max-width:720px){.mdr-row{grid-template-columns:1fr;gap:2px}}
 </style>

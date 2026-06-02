@@ -26,6 +26,8 @@ const navByArea: Record<string, {slug:string, label:string, base:string}[]> = {
     { slug: 'food-agriculture', label: 'Food & Ag', base: '/markets' },
     { slug: 'water', label: 'Water', base: '/markets' },
     { slug: 'defense', label: 'Defense', base: '/markets' },
+    { slug: 'equities', label: 'Equities', base: '/markets' },
+    { slug: 'cross-asset', label: 'Cross-Asset', base: '/markets' },
   ],
   transmission: [
     { slug: '', label: 'Sector Cascade', base: '/transmission' },
@@ -39,6 +41,16 @@ const navByArea: Record<string, {slug:string, label:string, base:string}[]> = {
     { slug: 'infrastructure', label: 'Infrastructure', base: '/outlook' },
     { slug: 'nuclear', label: 'Nuclear', base: '/outlook' },
   ],
+  structural: [
+    { slug: '', label: 'Overview', base: '/structural' },
+    { slug: 'chokepoints', label: 'Chokepoints', base: '/structural' },
+    { slug: 'weaponization', label: 'Weaponization', base: '/structural' },
+    { slug: 'deglobalization', label: 'De-globalization', base: '/structural' },
+    { slug: 'digital', label: 'Digital', base: '/structural' },
+    { slug: 'food', label: 'Food', base: '/structural' },
+    { slug: 'watch', label: 'Watch Board', base: '/structural' },
+  ],
+
   connections: [
     { slug: '', label: 'Connections', base: '/connections' },
   ],
@@ -52,6 +64,7 @@ const areaLabels: Record<string, string> = {
   transmission: 'Transmission',
   exposure: 'Exposure',
   outlook: 'Outlook',
+  structural: 'Structural Risk',
   connections: 'Connections',
   profits: 'Who Profits',
 };

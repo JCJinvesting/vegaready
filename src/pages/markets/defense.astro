@@ -1,6 +1,10 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
 import { cards, thesis, drawdownTable, drawdownNote, scaleupTable, spendingNote, scenarioMatrix, investmentImplications, resilience, sourceResolution, dataQuality, relatedSectors } from '../../data/analysis/defense.js';
+import { positioning, hedgingPlaybook } from '../../data/analysis/crossasset.js';
+const ca_def = positioning.find(p => p.channel.startsWith('Defense'));
+const ca_hpb = hedgingPlaybook.find(h => h.scenario === 'hormuz_closure');
 ---
 
 <AnalysisLayout
@@ -14,6 +18,8 @@ import { cards, thesis, drawdownTable, drawdownNote, scaleupTable, spendingNote,
     <h1>The arsenal ran<br/>low. The order book didn't.</h1>
     <p class="lead">The 39-day campaign structurally drew down the US and allied arsenal and opened a multi-year procurement supercycle a ceasefire does not close. CSIS found ~50% of Patriot and &gt;50% of THAAD expended; replenishment runs to 2029–2030. The investable edge is durability — order books are ceasefire-insensitive — tempered by a caveat that some defense equities ran ahead of confirmed demand.</p>
   </section>
+
+  <SignalPanel page="/markets/defense" />
 
   <div class="thesis">
     <div class="thesis-label">The structural finding</div>
@@ -54,7 +60,7 @@ import { cards, thesis, drawdownTable, drawdownNote, scaleupTable, spendingNote,
         </summary>
         <div class="ey">
           <div class="mgrid">{c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>))}</div>
-          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
+          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u.url} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
         </div>
       </details>
     ))}
@@ -85,6 +91,17 @@ import { cards, thesis, drawdownTable, drawdownNote, scaleupTable, spendingNote,
   <section class="sres">
     <div class="dl">Source-conflict resolution</div>
     {sourceResolution.map((r) => (<div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>))}
+  </section>
+
+  <section class="mdr">
+    <div class="mdr-h">Market-derivative read <span>· Cross-Asset</span></div>
+    <div class="mdr-rows">
+      <div class="mdr-row"><span class="mdr-k">Defense-equity flows</span><span class="mdr-v">{ca_def.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">As a hedge</span><span class="mdr-v">Long-defense was among the most reliable conflict hedges; order books are backlogged to 2029–2030, making demand ceasefire-insensitive</span></div>
+      <div class="mdr-row"><span class="mdr-k">Failure mode</span><span class="mdr-v">Ceasefire-whipsaw — energy/defense unwind fast on de-escalation (the cyclical component)</span></div>
+      <div class="mdr-row"><span class="mdr-k">Upstream (equities)</span><span class="mdr-v">A §8 sector winner: PPA +37.8% / ITA +38.3% / SHLD +47.8% (12-mo)</span></div>
+    </div>
+    <a href="/markets/cross-asset" class="mdr-link">Full cross-asset view →</a> <span style="color:var(--text-dim)">·</span> <a href="/markets/equities" class="mdr-link">Defense sector (equities) →</a>
   </section>
 
   <div class="foot-box">
@@ -162,4 +179,14 @@ import { cards, thesis, drawdownTable, drawdownNote, scaleupTable, spendingNote,
   .foot-box .next{margin:0}
   .foot-box strong{color:var(--cyan)}
   @media(max-width:720px){.mgrid{grid-template-columns:1fr}.res-grid{grid-template-columns:1fr}.eb{display:none}.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
+  .mdr{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #818cf8;border-radius:8px;padding:14px 18px;margin:0 0 2rem;max-width:860px}
+  .mdr-h{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .mdr-h span{color:var(--text-dim)}
+  .mdr-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+  .mdr-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline}
+  .mdr-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px}
+  .mdr-v{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .mdr-note{font-size:11px;color:#f59e0b;margin:0 0 10px;line-height:1.4}
+  .mdr-link{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none}
+  @media(max-width:720px){.mdr-row{grid-template-columns:1fr;gap:2px}}
 </style>

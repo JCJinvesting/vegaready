@@ -1,5 +1,12 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
+import { volRegime, volSurface, correlationMap, positioning } from '../../data/analysis/crossasset.js';
+const ca_gvz = volRegime.find(v => v.index === 'GVZ');
+const ca_gvzsurf = volSurface.find(v => v.dimension.startsWith('Gold'));
+const ca_oilgold = correlationMap.find(c => c.pair.startsWith('Oil') && c.pair.includes('gold'));
+const ca_realrates = correlationMap.find(c => c.pair.startsWith('Gold') && c.pair.includes('real'));
+const ca_goldetf = positioning.find(p => p.channel.includes('gold'));
 
 const cards = [
   {
@@ -167,6 +174,8 @@ const sourceUrls = [
     <div class="callout"><strong>Non-obvious finding:</strong> The 2026 conflict did NOT produce standard "risk-off → buy gold." The USD captured the primary safe-haven bid because the US is a net energy exporter. Gold was subordinated to real-yield dynamics — a fundamental inversion of 1979 and 1990 precedents.</div>
   </section>
 
+  <SignalPanel page="/markets/gold-fx" />
+
   <div class="scenario-bar">
     <span class="sb-label">Scenario status · May 30 2026</span>
     <span class="sb-item"><span class="sb-dot" style="background:#ef4444"></span>Hormuz: constrained / partially realized</span>
@@ -213,6 +222,19 @@ const sourceUrls = [
         </tbody>
       </table>
     </div>
+  </section>
+
+    <section class="mdr">
+    <div class="mdr-h">Market-derivative read <span>· Cross-Asset</span></div>
+    <div class="mdr-rows">
+      <div class="mdr-row"><span class="mdr-k">Gold vol · GVZ</span><span class="mdr-v">{ca_gvz.current} — {ca_gvz.verdict}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Vol surface (gold)</span><span class="mdr-v">{ca_gvzsurf.read}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Oil ↔ gold</span><span class="mdr-v">{ca_oilgold.verdict} — gold fell as Brent +55%, a monetary (not dollar) override</span></div>
+      <div class="mdr-row"><span class="mdr-k">Gold ↔ real rates</span><span class="mdr-v">{ca_realrates.verdict} — rising real yields crushed gold despite the war</span></div>
+      <div class="mdr-row"><span class="mdr-k">Western gold ETFs</span><span class="mdr-v">{ca_goldetf.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Safe-haven rank</span><span class="mdr-v">USD cash &gt; short USTs &gt; gold — yet central banks net-bought 243.7t in Q1, so the weakness was monetary, not a lost structural bid</span></div>
+    </div>
+    <a href="/markets/cross-asset" class="mdr-link">Full cross-asset view →</a> <span style="color:var(--text-dim)">·</span> <a href="/markets/equities" class="mdr-link">Gold miners (equities) →</a>
   </section>
 
   <!-- Data quality transparency -->
@@ -328,4 +350,14 @@ const sourceUrls = [
   .src-list{margin:0;padding-left:18px;font-size:11px;line-height:1.7;color:var(--text-dim)}
   .src-list a{color:#60a5fa;text-decoration:none;word-break:break-all}
   .src-list a:hover{text-decoration:underline}
+  .mdr{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #818cf8;border-radius:8px;padding:14px 18px;margin:0 0 2rem;max-width:860px}
+  .mdr-h{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .mdr-h span{color:var(--text-dim)}
+  .mdr-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+  .mdr-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline}
+  .mdr-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px}
+  .mdr-v{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .mdr-note{font-size:11px;color:#f59e0b;margin:0 0 10px;line-height:1.4}
+  .mdr-link{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none}
+  @media(max-width:720px){.mdr-row{grid-template-columns:1fr;gap:2px}}
 </style>

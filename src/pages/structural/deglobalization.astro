@@ -1,0 +1,105 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
+import { cards, thesis, fdiNote, reshoring, connectorNote, tariff, dataQuality, relatedSectors } from '../../data/analysis/deglobalization.js';
+---
+<AnalysisLayout title="De-globalization Metrics — VegaReady" description="The gap between announced reshoring and measured relocation: FDI fragmentation, the sectoral reshoring scorecard, connector-economy gains, and the US tariff index at a 90-year high." section="De-globalization" area="structural">
+  <section class="hero">
+    <div class="label">Structural Risk · De-globalization</div>
+    <h1>Announced everywhere.<br/>Delivered slowly.</h1>
+    <p class="lead">De-globalization is real in trade flows but largely unrealized in capital relocation. The announcement-vs-delivery gap is the signal — and US tariffs have re-priced trade exposure to a ~90-year high.</p>
+  </section>
+
+  <SignalPanel page="/structural/deglobalization" />
+  <div class="thesis"><div class="thesis-label">The structural finding</div><p>{thesis}</p></div>
+  <div class="callout"><div class="callout-label">FDI &amp; bloc fragmentation</div><p>{fdiNote}</p></div>
+  <section class="sec">
+    <div class="dl">Sectoral reshoring scorecard — announced vs delivered</div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Sector</th><th>Announced</th><th>Measured delivery</th><th>Lead policy</th><th>Source</th></tr></thead>
+      <tbody>{reshoring.map((r) => (<tr><td class="nm">{r.sector}</td><td>{r.announced}</td><td style="color:var(--text-muted)">{r.delivered}</td><td>{r.policy}</td><td class="mono">{r.source}</td></tr>))}</tbody>
+    </table></div>
+  </section>
+  <div class="callout"><div class="callout-label">Connector economies &amp; the announcement gap</div><p>{connectorNote}</p></div>
+  <section class="sec">
+    <div class="dl">Tariff escalation index</div>
+    <div class="tgrid">
+      <div class="tcard"><div class="tk">Pre-substitution</div><div class="tv" style="color:#ef4444">{tariff.preSub}</div></div>
+      <div class="tcard"><div class="tk">Post-substitution</div><div class="tv" style="color:#f97316">{tariff.postSub}</div></div>
+      <div class="tcard"><div class="tk">Increase</div><div class="tv" style="color:#eab308">{tariff.increasePp}</div></div>
+      <div class="tcard"><div class="tk">China avg tariff</div><div class="tv" style="color:#ef4444">{tariff.chinaAvg}</div></div>
+    </div>
+    <p class="note"><strong style="color:var(--text)">Signal:</strong> {tariff.signal} <span class="mono">({tariff.source})</span></p>
+  </section>
+  <div class="ev-list">
+    {cards.map((c) => (
+      <details class="ev"><summary class="es"><div class="el"><span class="en">{c.icon}</span><div>
+        <div class="et">{c.title}<span class="cat">{c.category}</span></div><div class="eb">{c.summary}</div></div></div>
+        <span class={`conf conf-${c.confidence}`}>{c.confidence}</span></summary>
+        <div class="ey"><div class="mgrid">{c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>))}</div>
+        {c.sources.length > 0 && <div><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u.url} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}</div>
+      </details>
+    ))}
+  </div>
+  <div class="foot-box"><div class="dl">Data quality</div>
+    <p><strong style="color:#10b981">HIGH</strong> — {dataQuality.high}</p>
+    <p><strong style="color:#f59e0b">MODERATE</strong> — {dataQuality.moderate}</p>
+    <p><strong style="color:var(--text-dim)">Quarantined</strong> — {dataQuality.quarantined}</p>
+    <p class="next"><strong>Related:</strong> {relatedSectors}</p>
+  </div>
+</AnalysisLayout>
+<style>
+.hero{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:760px}
+  .thesis{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #22d3ee;border-radius:8px;padding:16px 20px;margin-bottom:2.5rem;max-width:860px}
+  .thesis-label{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#22d3ee;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .thesis p{font-size:14px;color:var(--text-muted);line-height:1.7;margin:0}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .sec{margin-bottom:3rem}
+  .tbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  .tbl th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .tbl td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.45;vertical-align:top;min-width:80px}
+  .nm{font-weight:700;color:var(--text)}
+  .sc{font-family:var(--font-mono);font-weight:700;text-align:center;min-width:34px}
+  .comp{font-family:var(--font-mono);font-weight:800;text-align:center}
+  .note{font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:10px;max-width:860px}
+  .ev-list{display:flex;flex-direction:column;gap:8px;margin-bottom:3rem}
+  .ev{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .ev[open]{border-color:var(--border-light)}
+  .ev[open] .es{border-bottom:1px solid var(--border)}
+  .es{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .es::-webkit-details-marker{display:none}.es::marker{content:''}
+  .es:hover{background:rgba(255,255,255,0.02)}
+  .el{display:flex;gap:14px;flex:1;min-width:0}
+  .en{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .et{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cat{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 7px;border:1px solid var(--border);border-radius:4px;color:var(--text-dim)}
+  .eb{font-size:12px;color:var(--text-dim);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .conf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .conf-high{color:#10b981;background:rgba(16,185,129,0.1)}.conf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}.conf-low{color:#ef4444;background:rgba(239,68,68,0.1)}
+  .ey{padding:16px 20px 20px}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+  .metric{padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px}
+  .ml{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .mv{font-size:13px;color:var(--text-muted);line-height:1.45}
+  .srctext{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .take{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .take-row{display:flex;gap:12px;align-items:flex-start}
+  .take-n{font-family:var(--font-mono);font-size:13px;font-weight:800;color:var(--cyan);min-width:22px}
+  .take-row p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
+  .foot-box .next{margin:0}.foot-box strong{color:var(--cyan)}
+  @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}}
+  .callout{font-size:13px;color:var(--text-muted);line-height:1.65;padding:14px 18px;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;max-width:860px;margin-bottom:2rem}
+  .callout-label{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .callout p{margin:0}
+  .mono{font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+  .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+  .tcard{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+  .tk{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+  .tv{font-family:var(--font-mono);font-size:15px;font-weight:800;line-height:1.2}
+  @media(max-width:720px){.tgrid{grid-template-columns:1fr 1fr}}
+</style>

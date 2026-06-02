@@ -1,6 +1,12 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
 import { cards, thesis, ieaTable, ieaTableNote, scenarioMatrix, investmentImplications, sourceResolution, dataQuality, relatedSectors, physicalShock } from '../../data/analysis/energytransition.js';
+import { volRegime, volSurface, termMap, positioning } from '../../data/analysis/crossasset.js';
+const ca_ovx = volRegime.find(v => v.index === 'OVX');
+const ca_ovxsurf = volSurface.find(v => v.dimension.startsWith('Crude'));
+const ca_brent = termMap.find(t => t.curve.startsWith('Brent'));
+const ca_gas = termMap.find(t => t.curve.startsWith('TTF'));
+const ca_enetf = positioning.find(p => p.channel.startsWith('Energy'));
 ---
 
 <AnalysisLayout
@@ -47,7 +53,7 @@ import { cards, thesis, ieaTable, ieaTableNote, scenarioMatrix, investmentImplic
         </summary>
         <div class="ey">
           <div class="mgrid">{c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>))}</div>
-          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
+          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u.url} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
         </div>
       </details>
     ))}
@@ -71,6 +77,20 @@ import { cards, thesis, ieaTable, ieaTableNote, scenarioMatrix, investmentImplic
   <section class="sres">
     <div class="dl">Source-conflict resolution</div>
     {sourceResolution.map((r) => (<div class="sres-block"><span class="sres-item">{r.item}</span><span class="sres-res">{r.resolution}</span></div>))}
+  </section>
+
+  <section class="mdr">
+    <div class="mdr-h">Market-derivative read <span>· Cross-Asset</span></div>
+    <div class="mdr-rows">
+      <div class="mdr-row"><span class="mdr-k">Crude vol · OVX</span><span class="mdr-v">{ca_ovx.peak}; now {ca_ovx.current} — the shock’s epicentre</span></div>
+      <div class="mdr-row"><span class="mdr-k">Vol surface (crude)</span><span class="mdr-v">{ca_ovxsurf.read}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Term structure · Brent</span><span class="mdr-v">{ca_brent.shape} — {ca_brent.duration}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Gas / LNG · TTF/JKM</span><span class="mdr-v">{ca_gas.shape} — {ca_gas.duration}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Oil → rates → dollar</span><span class="mdr-v">Energy-driven inflation forces higher-for-longer rates and a stronger dollar — the oil-shock paradox that decoupled gold</span></div>
+      <div class="mdr-row"><span class="mdr-k">Energy ETF flows</span><span class="mdr-v">{ca_enetf.data}</span></div>
+    </div>
+    <p class="mdr-note">⚠ Backwardation ≠ reopening optimism — it reflects "oil now vs later" (Minneapolis Fed).</p>
+    <a href="/markets/cross-asset" class="mdr-link">Full cross-asset view →</a> <span style="color:var(--text-dim)">·</span> <a href="/markets/equities" class="mdr-link">Energy sector (equities) →</a>
   </section>
 
   <div class="foot-box">
@@ -142,4 +162,14 @@ import { cards, thesis, ieaTable, ieaTableNote, scenarioMatrix, investmentImplic
   .foot-box .next{margin:0}
   .foot-box strong{color:var(--cyan)}
   @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}.sres-block{flex-direction:column;gap:4px}.sres-item{min-width:0}}
+  .mdr{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #818cf8;border-radius:8px;padding:14px 18px;margin:0 0 2rem;max-width:860px}
+  .mdr-h{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .mdr-h span{color:var(--text-dim)}
+  .mdr-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+  .mdr-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline}
+  .mdr-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px}
+  .mdr-v{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .mdr-note{font-size:11px;color:#f59e0b;margin:0 0 10px;line-height:1.4}
+  .mdr-link{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none}
+  @media(max-width:720px){.mdr-row{grid-template-columns:1fr;gap:2px}}
 </style>

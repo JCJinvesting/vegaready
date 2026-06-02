@@ -1,0 +1,291 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
+import { cards, thesis, verdict, keyTakeaways, scenarioRegime, scenarioConclusion, priceArc, crossAssetCompare, havenTest, havenVerdict, havenAdversarial, stablecoinSupply, stablecoinsTable, stablecoinPeg, gulfRegulatory, microNote, oct2025Proxy, namedVenues, gulfCable, defiNote, rwa, miningNote, minerMargins, minerEquities, sanctionsFreeze, sanctionsContest, iranianRail, sanctionsVerdict, regulatoryAccel, etfFlows, optionsSkew, cryptoEquities, adoptionBifurcated, signalHierarchy, leadingIndicators, scenarioTrades, failureModes, lowLatencyRefresh, sourceConflict, highAnchors, proxyOnly, adversarialClose, dataQuality, relatedSectors } from '../../data/analysis/crypto.js';
+const sct = { hormuz_closure: '#ef4444', oil_strike: '#f59e0b', cable_severance: '#22d3ee', ceasefire: '#10b981' };
+const cf = (c) => c.startsWith('HIGH') ? '#10b981' : c.startsWith('LOW') ? '#ef4444' : '#f59e0b';
+---
+
+<AnalysisLayout
+  title="Crypto & Digital Assets — VegaReady"
+  description="The terminal node of the risk chain: tested safe-haven verdict (high-beta, not gold), the scenario grid, stablecoins as shadow dollar rails, the $344M USDT freeze, market-structure stress, mining, ETF flows, and a JCJ trading-signal framework."
+  section="Crypto"
+  area="markets"
+>
+  <section class="hero">
+    <div class="label">Markets · Crypto &amp; Digital Assets</div>
+    <h1>The terminal node.<br/>Not the safe haven.</h1>
+    <p class="lead">Crypto is the most downstream layer of the entire report — physical shock (§1–7) → equities (<a href="/markets/equities" style="color:var(--cyan)">§8</a>) → cross-asset regime (<a href="/markets/cross-asset" style="color:var(--cyan)">§9</a>) → crypto. It doesn't re-derive any of it; it inherits the equity beta and the dollar/rates/vol regime, and adds one channel no other asset has: the stablecoin sanctions rail. For an event-driven crypto firm, the alpha is in knowing what <em>moves</em> crypto — and §8–9 are the engine.</p>
+  </section>
+
+  <SignalPanel page="/markets/crypto" />
+
+  <div class="verdict">
+    <div class="verdict-tag">The central question — tested, not assumed</div>
+    <div class="verdict-text">{verdict}</div>
+  </div>
+
+  <section class="sec kt-sec">
+    <div class="dl">The answer, first — ten quantified takeaways</div>
+    <div class="kt-grid">
+      {keyTakeaways.map((t) => (<div class="kt"><span class="kt-n">{t.n}</span><div><div class="kt-claim">{t.claim}</div><div class="kt-anchor">{t.anchor}</div></div></div>))}
+    </div>
+  </section>
+
+  <div class="bridge-wrap">
+    <div class="bridge">
+      <div class="bnode">Physical shock<span>§1–7</span></div>
+      <div class="barrow">→</div>
+      <a class="bnode link" href="/markets/equities">Equity beta<span>§8</span></a>
+      <div class="barrow">→</div>
+      <a class="bnode link" href="/markets/cross-asset">Cross-asset regime<span>§9</span></a>
+      <div class="barrow">→</div>
+      <div class="bnode now">Crypto beta<span>§10 · here</span></div>
+    </div>
+    <p class="bridge-cap">Crypto inherits, it does not originate — what moves it is upstream. The single highest-value, lowest-latency trigger is OVX + DXY + 10Y from Cross-Asset (§9); crypto re-prices after these move.</p>
+  </div>
+
+  <div class="thesis"><div class="thesis-label">The finding</div><p>{thesis}</p></div>
+
+  <section class="sec">
+    <div class="dl">Safe-haven vs risk-asset test — five comparators</div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Comparator</th><th>What a haven would do</th><th>What BTC did (Feb–May 2026)</th><th>Provable?</th></tr></thead>
+      <tbody>{havenTest.map((r) => (<tr><td class="nm">{r.comparator}</td><td style="color:var(--text-dim)">{r.haven}</td><td>{r.btc}</td><td class="mono" style="white-space:normal">{r.provable}</td></tr>))}</tbody>
+    </table></div>
+    <p class="note">{havenVerdict}</p>
+    <div class="callout" style="border-left-color:#f59e0b"><div class="callout-label" style="color:#f59e0b">Adversarial source conflict (flagged, not buried)</div><p>{havenAdversarial}</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="dl">Price path (W0 → W2) &amp; the cross-asset comparison</div>
+    <p class="lead2">{priceArc}</p>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Asset</th><th>W1 shock</th><th>W2 (late May)</th><th>YTD-ish</th><th>Verdict</th></tr></thead>
+      <tbody>{crossAssetCompare.map((r) => (<tr><td class="nm">{r.asset}</td><td>{r.w1}</td><td>{r.w2}</td><td class="mono">{r.ytd}</td><td style="color:var(--text-muted)">{r.verdict}</td></tr>))}</tbody>
+    </table></div>
+  </section>
+
+  <section class="sec">
+    <div class="dl">Scenario framework — crypto across the four reference scenarios</div>
+    <div style="overflow-x:auto"><table class="tbl grid">
+      <thead><tr><th>Dimension</th>
+        <th style="color:#ef4444">hormuz_closure</th><th style="color:#f59e0b">oil_strike</th><th style="color:#22d3ee">cable_severance</th><th style="color:#10b981">ceasefire</th></tr></thead>
+      <tbody>{scenarioRegime.map((r) => (<tr><td class="nm">{r.dim}</td><td>{r.hormuz_closure}</td><td>{r.oil_strike}</td><td>{r.cable_severance}</td><td>{r.ceasefire}</td></tr>))}</tbody>
+    </table></div>
+    <p class="note"><strong style="color:var(--text)">Cross-scenario conclusion:</strong> {scenarioConclusion}</p>
+  </section>
+
+  <section class="sec">
+    <div class="dl">Stablecoins as shadow dollar rails</div>
+    <p class="lead2">{stablecoinSupply}</p>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Stablecoin</th><th>Supply / share</th><th>Mechanism</th><th>Conflict-period behaviour</th></tr></thead>
+      <tbody>{stablecoinsTable.map((r) => (<tr><td class="nm">{r.coin}</td><td class="mono">{r.supply}</td><td>{r.mechanism}</td><td>{r.behaviour}</td></tr>))}</tbody>
+    </table></div>
+    <p class="note">{stablecoinPeg}</p>
+    <div class="callout" style="border-left-color:#a78bfa"><div class="callout-label" style="color:#a78bfa">Gulf / UAE regulatory angle (JCJ-relevant)</div><p>{gulfRegulatory}</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="dl">CEX vs DEX liquidity &amp; market microstructure</div>
+    <p class="lead2">{microNote}</p>
+    <div class="callout"><div class="callout-label">The Oct-2025 structural proxy</div><p>{oct2025Proxy}</p></div>
+    <div style="overflow-x:auto;margin-top:14px"><table class="tbl">
+      <thead><tr><th>Venue</th><th>Role</th><th>2026 conflict-period data</th><th>Tier</th></tr></thead>
+      <tbody>{namedVenues.map((r) => (<tr><td class="nm">{r.venue}</td><td class="mono">{r.role}</td><td>{r.data}</td><td class="mono">{r.tier}</td></tr>))}</tbody>
+    </table></div>
+    <p class="note">{gulfCable}</p>
+  </section>
+
+  <section class="sec">
+    <div class="dl">DeFi, oracle &amp; RWA</div>
+    <p class="lead2">{defiNote}</p>
+    <div class="callout" style="border-left-color:#10b981"><div class="callout-label" style="color:#10b981">RWA / tokenized T-bills — the settlement-stress beneficiary</div><p>{rwa}</p></div>
+  </section>
+
+  <section class="sec">
+    <div class="dl">Mining &amp; energy-cost transmission</div>
+    <p class="lead2">{miningNote}</p>
+    <p class="note">{minerMargins}</p>
+    <p class="note">{minerEquities}</p>
+  </section>
+
+  <section class="sec">
+    <div class="dl">Sanctions, compliance &amp; illicit finance <span style="color:var(--text-dim)">(the sharpest T1 signals)</span></div>
+    <div class="callout" style="border-left-color:#ef4444"><div class="callout-label" style="color:#ef4444">The headline — the ~$344.15M USDT freeze</div><p>{sanctionsFreeze}</p></div>
+    <p class="note">{sanctionsContest}</p>
+    <p class="note">{iranianRail}</p>
+    <p class="note"><strong style="color:var(--text)">The verdict:</strong> {sanctionsVerdict}</p>
+    <p class="note">{regulatoryAccel}</p>
+  </section>
+
+  <section class="sec">
+    <div class="dl">Institutional products &amp; flows (the §8/§9 bridge)</div>
+    <p class="lead2">{etfFlows}</p>
+    <p class="note">{optionsSkew}</p>
+    <p class="note">{cryptoEquities}</p>
+    <p class="note">{adoptionBifurcated}</p>
+  </section>
+
+  <section class="sec jcj">
+    <div class="dl" style="color:#818cf8">JCJ trading-signal framework <span style="color:var(--text-dim)">— what moves crypto, ordered</span></div>
+    <div class="cascade">
+      {signalHierarchy.map((r) => (
+        <div class="casc-row">
+          <span class="casc-n">{r.order}</span>
+          <div class="casc-body">
+            <div class="casc-metric">{r.metric} <span class="casc-ll">{r.leadlag}</span> <span class="casc-rf">{r.refresh}</span></div>
+            <p class="casc-beh">{r.behaviour}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="callout" style="border-left-color:#818cf8;margin-top:6px"><div class="callout-label" style="color:#818cf8">The single highest-value, lowest-latency trigger</div><p>{lowLatencyRefresh}</p></div>
+
+    <div class="dl" style="margin-top:24px">Leading indicators to monitor</div>
+    <div class="chan">{leadingIndicators.map((r) => (<div class="chan-row"><div class="chan-k">{r.indicator}</div><p>{r.detail}</p></div>))}</div>
+
+    <div class="dl" style="margin-top:24px">Scenario trade map</div>
+    {scenarioTrades.map((s) => (
+      <div class="pb" style={`border-left:3px solid ${s.tone}`}>
+        <div class="pb-head" style={`color:${s.tone}`}>{s.scenario} — {s.label}</div>
+        <p class="pb-text">{s.text}</p>
+      </div>
+    ))}
+
+    <div class="fail">
+      <div class="fail-h">Failure modes &amp; stale signals — do NOT trade these as haven signals</div>
+      <ol class="fail-list">{failureModes.map((f) => (<li>{f}</li>))}</ol>
+    </div>
+  </section>
+
+  <div class="ev-list">
+    {cards.map((c) => (
+      <details class="ev"><summary class="es"><div class="el"><span class="en">{c.icon}</span><div>
+        <div class="et">{c.title}<span class="cat">{c.category}</span></div><div class="eb">{c.summary}</div></div></div>
+        <span class={`conf conf-${c.confidence}`}>{c.confidence}</span></summary>
+        <div class="ey"><div class="mgrid">{c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>))}</div>
+        {c.sources.length > 0 && <div><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u.url} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}</div>
+      </details>
+    ))}
+  </div>
+
+  <section class="sec">
+    <div class="dl">Source conflict &amp; data-quality exceptions</div>
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr><th>Figure / claim</th><th>Contested value</th><th>Issue</th><th>Preferred anchor</th><th>Tier</th></tr></thead>
+      <tbody>{sourceConflict.map((r) => (<tr><td class="nm">{r.figure}</td><td class="mono" style="white-space:normal">{r.contested}</td><td>{r.issue}</td><td>{r.anchor}</td><td class="mono">{r.tier}</td></tr>))}</tbody>
+    </table></div>
+    <details class="reg"><summary class="reg-s">High-confidence anchors ({highAnchors.length})</summary><ol class="reg-list">{highAnchors.map((x) => (<li>{x}</li>))}</ol></details>
+    <details class="reg"><summary class="reg-s">Could not verify / proxy only ({proxyOnly.length})</summary><ol class="reg-list">{proxyOnly.map((x) => (<li>{x}</li>))}</ol></details>
+  </section>
+
+  <section class="sec">
+    <div class="adv">
+      <div class="adv-h">Gaps to attack — falsifiable by design</div>
+      <p class="adv-sub">This section is deliberately falsifiable. The highest-value attacks for external agents:</p>
+      <ol class="adv-list">{adversarialClose.map((x) => (<li>{x}</li>))}</ol>
+    </div>
+  </section>
+
+  <div class="foot-box">
+    <div class="dl">Data quality &amp; methodology</div>
+    <p><strong style="color:#10b981">HIGH</strong> — {dataQuality.high}</p>
+    <p><strong style="color:#f59e0b">MODERATE</strong> — {dataQuality.moderate}</p>
+    <p><strong style="color:var(--text-dim)">Quarantined</strong> — {dataQuality.quarantined}</p>
+    <p class="next"><strong>Related:</strong> {relatedSectors}</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:760px}
+  .lead2{font-size:14px;color:var(--text-muted);line-height:1.7;max-width:880px;margin:0 0 14px}
+  .verdict{background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(239,68,68,0.08));border:1px solid var(--border-light);border-radius:12px;padding:20px 24px;margin-bottom:2rem;max-width:880px}
+  .verdict-tag{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+  .verdict-text{font-family:var(--font-display);font-size:clamp(1.2rem,2.4vw,1.6rem);font-weight:500;color:var(--text);line-height:1.3}
+  .thesis{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #6366f1;border-radius:8px;padding:16px 20px;margin-bottom:2.5rem;max-width:880px}
+  .thesis-label{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .thesis p{font-size:14px;color:var(--text-muted);line-height:1.7;margin:0}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .sec{margin-bottom:3rem}
+  .tbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  .tbl th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .tbl td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.45;vertical-align:top;min-width:70px}
+  .tbl.grid td{min-width:150px}
+  .nm{font-weight:700;color:var(--text)}
+  .mono{font-family:var(--font-mono);font-size:11px;color:var(--text-muted)}
+  .note{font-size:12.5px;color:var(--text-dim);line-height:1.65;margin-top:10px;max-width:880px}
+  .callout{font-size:13px;color:var(--text-muted);line-height:1.65;padding:13px 17px;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;max-width:880px;margin-top:14px}
+  .callout-label{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:7px}
+  .callout p{margin:0}
+  .jcj{background:rgba(99,102,241,0.04);border:1px solid rgba(129,140,248,0.2);border-radius:12px;padding:20px 22px}
+  .cascade{display:flex;flex-direction:column;gap:0;border-left:2px solid rgba(129,140,248,0.4);padding-left:16px;margin-top:8px}
+  .casc-row{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--border)}
+  .casc-n{font-family:var(--font-mono);font-size:11px;font-weight:800;color:#818cf8;min-width:54px;padding-top:2px}
+  .casc-metric{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+  .casc-ll{font-family:var(--font-mono);font-size:10px;font-weight:600;color:var(--cyan);margin-left:6px}
+  .casc-rf{font-family:var(--font-mono);font-size:9px;color:var(--text-dim);border:1px solid var(--border);border-radius:4px;padding:1px 6px;margin-left:6px}
+  .casc-beh{font-size:12px;color:var(--text-muted);line-height:1.5;margin:0}
+  .chan{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .chan-row{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px}
+  .chan-k{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);margin-bottom:3px}
+  .chan-row p{font-size:12px;color:var(--text-muted);line-height:1.5;margin:0}
+  .pb{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:13px 17px;margin-top:10px}
+  .pb-head{font-family:var(--font-mono);font-size:13px;font-weight:800;margin-bottom:6px;letter-spacing:.3px}
+  .pb-text{font-size:12.5px;color:var(--text-muted);line-height:1.55;margin:0}
+  .fail{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.25);border-radius:8px;padding:14px 18px;margin-top:24px}
+  .fail-h{font-family:var(--font-mono);font-size:11px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+  .fail-list{margin:0;padding-left:20px}.fail-list li{font-size:12.5px;color:var(--text-muted);line-height:1.55;margin-bottom:6px}
+  .ev-list{display:flex;flex-direction:column;gap:8px;margin:3rem 0}
+  .ev{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .ev[open]{border-color:var(--border-light)}.ev[open] .es{border-bottom:1px solid var(--border)}
+  .es{display:flex;justify-content:space-between;align-items:flex-start;padding:15px 20px;cursor:pointer;list-style:none;gap:12px}
+  .es::-webkit-details-marker{display:none}.es::marker{content:''}
+  .es:hover{background:rgba(255,255,255,0.02)}
+  .el{display:flex;gap:14px;flex:1;min-width:0}
+  .en{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:18px;padding-top:2px}
+  .et{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cat{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 7px;border:1px solid var(--border);border-radius:4px;color:var(--text-dim)}
+  .eb{font-size:12px;color:var(--text-dim);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .conf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .conf-high{color:#10b981;background:rgba(16,185,129,0.1)}.conf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}.conf-low{color:#ef4444;background:rgba(239,68,68,0.1)}
+  .ey{padding:14px 20px 18px}
+  .mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+  .metric{padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px}
+  .ml{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .mv{font-size:13px;color:var(--text-muted);line-height:1.45}
+  .srctext{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .reg{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;margin-top:10px;overflow:hidden}
+  .reg-s{padding:13px 18px;cursor:pointer;font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;list-style:none}
+  .reg-s::-webkit-details-marker{display:none}
+  .reg-list{margin:0;padding:0 20px 16px 38px}.reg-list li{font-size:12px;color:var(--text-dim);line-height:1.55;margin-bottom:6px}
+  .adv{background:rgba(245,158,11,0.05);border:1px dashed rgba(245,158,11,0.4);border-radius:10px;padding:16px 20px}
+  .adv-h{font-family:var(--font-mono);font-size:12px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .adv-sub{font-size:12px;color:var(--text-dim);margin:0 0 10px}
+  .adv-list{margin:0;padding-left:20px}.adv-list li{font-size:12.5px;color:var(--text-muted);line-height:1.6;margin-bottom:8px}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
+  .foot-box .next{margin:0}.foot-box strong{color:var(--cyan)}
+  @media(max-width:720px){.mgrid{grid-template-columns:1fr}.eb{display:none}.casc-row{flex-direction:column;gap:2px}}
+  .kt-sec{margin-bottom:2rem}
+  .kt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .kt{display:flex;gap:12px;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:11px 14px;align-items:flex-start}
+  .kt-n{font-family:var(--font-mono);font-size:14px;font-weight:800;color:#818cf8;min-width:20px}
+  .kt-claim{font-size:12.5px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:3px}
+  .kt-anchor{font-family:var(--font-mono);font-size:11px;color:var(--cyan);line-height:1.4}
+  .bridge-wrap{margin-bottom:2.5rem;max-width:880px}
+  .bridge{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap}
+  .bnode{flex:1;min-width:120px;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:12px;font-weight:700;color:var(--text-muted);text-decoration:none;display:flex;flex-direction:column;gap:3px}
+  .bnode span{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px}
+  .bnode.link{border-color:rgba(34,211,238,0.4);color:var(--text)}
+  .bnode.link:hover{border-color:var(--cyan);background:var(--cyan-muted)}
+  .bnode.now{border-color:#6366f1;background:rgba(99,102,241,0.1);color:var(--text)}
+  .bnode.now span{color:#818cf8}
+  .barrow{display:flex;align-items:center;color:var(--text-dim);font-size:16px}
+  .bridge-cap{font-size:12px;color:var(--text-dim);line-height:1.5;margin:10px 0 0}
+  @media(max-width:720px){.kt-grid{grid-template-columns:1fr}.bridge{flex-direction:column}.barrow{transform:rotate(90deg);justify-content:center}}
+</style>

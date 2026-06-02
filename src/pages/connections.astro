@@ -1,7 +1,8 @@
 ---
 import AnalysisLayout from '../layouts/AnalysisLayout.astro';
-import { intro, themes } from '../data/analysis/connections.js';
+import { intro, themes, causalIntro, causalLinks } from '../data/analysis/connections.js';
 const tone = { red:'#ef4444', amber:'#f59e0b', green:'#10b981', cyan:'#22d3ee', violet:'#8b5cf6' };
+const mat = (m) => m === 'built' ? '#22d3ee' : '#f59e0b';
 ---
 <AnalysisLayout
   title="Connections — VegaReady"
@@ -30,6 +31,25 @@ const tone = { red:'#ef4444', amber:'#f59e0b', green:'#10b981', cyan:'#22d3ee', 
     ))}
   </div>
 
+  <section class="causal">
+    <div class="dl">Cross-section causal map — the horizontal edges (Phase 3)</div>
+    <p class="causal-intro">{causalIntro}</p>
+    <div class="cl-list">
+      {causalLinks.map(c => (
+        <div class="cl" style={`border-left:3px solid ${mat(c.maturity)}`}>
+          <div class="cl-head">
+            <span class="cl-chain"><a href={c.fromPage}>{c.from}</a> <span class="cl-arrow">→</span> <a href={c.toPage}>{c.to}</a></span>
+            <span class="cl-badge" style={`color:${mat(c.maturity)};border-color:${mat(c.maturity)}`}>{c.maturity === 'built' ? 'Built' : 'Data-pending'}</span>
+          </div>
+          <p class="cl-why">{c.why}</p>
+          <div class="cl-ind"><span class="cl-k">Indicator</span><span>{c.indicator}</span></div>
+          <div class="cl-meta"><span class={`conf conf-${c.confidence}`}>{c.confidence}</span>{c.scenarios.map(sc => (<span class="sc-chip">{sc}</span>))}</div>
+        </div>
+      ))}
+    </div>
+    <p class="causal-foot">Data-pending edges have a defined indicator awaiting external primary data — see the Phase-3 research brief. They are flagged, never anchored.</p>
+  </section>
+
   <div class="sn-box"><div class="dl">How to read this</div><p>Each thread is one shock viewed across all three analysis pages. Chips link to the relevant section. Beneficiaries are the identifiable winners of that thread - the asymmetry a macro book is built around.</p></div>
 </AnalysisLayout>
 
@@ -53,4 +73,24 @@ const tone = { red:'#ef4444', amber:'#f59e0b', green:'#10b981', cyan:'#22d3ee', 
   .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
   .sn-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
   @media(max-width:720px){.links{grid-template-columns:1fr}}
+  .causal{margin:2.5rem 0 2rem}
+  .causal-intro{font-size:13px;color:var(--text-muted);line-height:1.65;max-width:820px;margin:0 0 16px}
+  .cl-list{display:flex;flex-direction:column;gap:10px}
+  .cl{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:14px 18px}
+  .cl-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+  .cl-chain{font-size:14px;font-weight:700;color:var(--text)}
+  .cl-chain a{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--text-dim)}
+  .cl-chain a:hover{color:var(--cyan);border-color:var(--cyan)}
+  .cl-arrow{color:var(--text-dim);margin:0 4px}
+  .cl-badge{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border:1px solid;border-radius:4px;white-space:nowrap}
+  .cl-why{font-size:12.5px;color:var(--text-muted);line-height:1.6;margin:0 0 10px;max-width:840px}
+  .cl-ind{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:baseline;background:var(--bg-card,#0d1117);border:1px solid var(--border);border-radius:6px;padding:8px 12px}
+  .cl-k{font-family:var(--font-mono);font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px}
+  .cl-ind span:last-child{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);line-height:1.5}
+  .cl-meta{display:flex;align-items:center;gap:6px;margin-top:10px;flex-wrap:wrap}
+  .conf{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 7px;border-radius:4px}
+  .conf-high{color:#10b981;background:rgba(16,185,129,0.1)}.conf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .sc-chip{font-family:var(--font-mono);font-size:9px;color:var(--text-dim);border:1px solid var(--border);border-radius:4px;padding:2px 7px}
+  .causal-foot{font-size:11px;color:var(--text-dim);line-height:1.5;margin-top:12px}
+  @media(max-width:720px){.cl-ind{grid-template-columns:1fr;gap:3px}}
 </style>

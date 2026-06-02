@@ -1,0 +1,125 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import { metrics, summary, byScenario, signalCatalog, scenarioKeys, lastUpdated } from '../../data/analysis/watchmetrics.js';
+const stCol = { critical: '#ef4444', alert: '#f59e0b', watch: '#eab308', ok: '#10b981' };
+const clsCol = { predictive: '#22d3ee', confirming: '#f59e0b', coincident: '#8892a4' };
+const sc = { hormuz_closure: '#ef4444', oil_strike: '#f59e0b', cable_severance: '#22d3ee', ceasefire: '#10b981' };
+const fmt = (v) => (typeof v === 'number' ? (Math.abs(v) >= 1000 ? v.toLocaleString('en-US') : v) : v);
+const scenLabel = (k) => k.replace('_', ' ');
+const scenMeta = { hormuz_closure: 'Hormuz closure', oil_strike: 'Oil-infra strike', cable_severance: 'Cable severance', ceasefire: 'Ceasefire / deal' };
+const catalogCount = signalCatalog.length;
+---
+<AnalysisLayout
+  title="Watch Board — Live Signal Registry — VegaReady"
+  description="The live cross-section watch board: 33 monitored metrics (30 tradable signals + supplementary gauges) with directional thresholds, computed status, classification (predictive/confirming/coincident) and scenario mapping. The numeric layer beneath every section card."
+  section="Watch Board"
+  area="structural"
+>
+  <section class="hero">
+    <div class="label">Structural Risk · Live Watch Board</div>
+    <h1>One board.<br/>Every signal.</h1>
+    <p class="lead">The numeric layer beneath the whole platform: {metrics.length} monitored metrics — {catalogCount} of them the cross-section <a href="/connections" style="color:var(--cyan)">tradable signals</a> — each with directional thresholds, a status computed live from the comparator, a predictive/confirming/coincident classification, and a scenario mapping. Filter by scenario to see what trips first.</p>
+  </section>
+
+  <div class="counts">
+    <div class="ct" style="--c:#ef4444"><span class="ctn">{summary.critical}</span><span class="ctl">Critical</span></div>
+    <div class="ct" style="--c:#f59e0b"><span class="ctn">{summary.alert}</span><span class="ctl">Alert</span></div>
+    <div class="ct" style="--c:#eab308"><span class="ctn">{summary.watch}</span><span class="ctl">Watch</span></div>
+    <div class="ct" style="--c:#10b981"><span class="ctn">{summary.ok}</span><span class="ctl">Nominal</span></div>
+    <div class="ct" style="--c:#8892a4"><span class="ctn">{summary.total}</span><span class="ctl">Tracked</span></div>
+  </div>
+
+  <div class="filters">
+    <span class="flabel">Scenario lens</span>
+    <button class="fbtn active" data-scen="all">All</button>
+    {scenarioKeys.map((k) => (<button class="fbtn" data-scen={k} style={`--sc:${sc[k]}`}>{scenMeta[k] || scenLabel(k)} <b>{(byScenario[k]||[]).length}</b></button>))}
+  </div>
+
+  <section class="sec">
+    <div style="overflow-x:auto"><table class="tbl">
+      <thead><tr>
+        <th>§</th><th>Signal / metric</th><th>Now</th><th>Watch</th><th>Alert</th><th>Crit</th>
+        <th>Status</th><th>Class</th><th>Cadence</th><th>Scenario</th><th>Page</th>
+      </tr></thead>
+      <tbody>
+        {metrics.map((m) => (
+          <tr data-scenarios={(m.scenario_mapping||[]).join(' ')}>
+            <td class="mono dim">{m.signalNo || '·'}</td>
+            <td class="nm">{m.metric}{m.confidence ? <span class="conf"> {m.confidence}</span> : null}</td>
+            <td class="mono">{fmt(m.value)}{m.unit && m.unit!=='count' ? ' '+m.unit : ''}</td>
+            <td class="mono dim">{fmt(m.thresholds.watch)}</td>
+            <td class="mono dim">{fmt(m.thresholds.alert)}</td>
+            <td class="mono dim">{fmt(m.thresholds.critical)}</td>
+            <td><span class="badge" style={`color:${stCol[m.status]};border-color:${stCol[m.status]}66`}>{m.status}</span></td>
+            <td>{m.classification ? <span class="cls" style={`color:${clsCol[m.classification]}`}>{m.classification}</span> : <span class="dim">—</span>}</td>
+            <td class="mono dim">{m.update_frequency}</td>
+            <td>{(m.scenario_mapping||[]).map((k)=>(<span class="sdot" title={scenMeta[k]||k} style={`background:${sc[k]}`}></span>))}</td>
+            <td>{m.page ? <a href={m.page} class="mono">{m.page.split('/').pop()}</a> : <span class="dim">—</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table></div>
+    <p class="note">Status is computed at build time and re-derived in-browser by the directional comparator: <b>above</b> trips as the value rises (premiums, tariffs, depletion %), <b>below</b> as it falls (chokepoint throughput, reserve days, negative YoY flows). Catalog signals (§ numbered) carry a predictive/confirming/coincident classification; the three supplementary rows extend coverage. Full field specs — input data, lead/lag, affected assets and false positives — live on each section page&rsquo;s signal panel and in the signal catalog.</p>
+  </section>
+
+  <section class="sec">
+    <div class="dl">The cascade — read top to bottom</div>
+    <p class="prose">The board is an early-warning chain, not a flat list. <b style="color:#22d3ee">Predictive</b> signals lead the move (Hormuz transit, AWRP, OVX, EMBI, urea, Deribit skew, factor crowding) — they fire before price. <b style="color:#f59e0b">Confirming</b> signals validate a regime already in motion (interceptor drawdown, TASI&ndash;DFM spread, perp funding/OI, VXEEM, construction inflation) — size with conviction once they print. <b style="color:#8892a4">Coincident</b> signals nowcast the event itself (VLCC rates, flight-to-quality cash, LME aluminium, FAO index, BTC ETF flows) — confirmation, not edge. The single highest-value, lowest-latency upstream trigger is the OVX&ndash;DXY&ndash;10Y complex (§9): every downstream financial signal — equities (§8), then crypto (§10) — re-prices <em>after</em> these move. Crypto re-prices last.</p>
+  </section>
+
+  <div class="related">
+    <span>Signal specs by section:</span>
+    <a href="/markets/gold-fx">Gold &amp; FX</a><a href="/markets/credit">Credit</a><a href="/markets/insurance">Insurance</a><a href="/markets/equities">Equities</a><a href="/markets/cross-asset">Cross-Asset</a><a href="/markets/crypto">Crypto</a><a href="/structural">Structural overview</a><a href="/connections">Connections</a>
+  </div>
+</AnalysisLayout>
+
+<script>
+  const btns = document.querySelectorAll('.fbtn');
+  const rows = document.querySelectorAll('tbody tr');
+  btns.forEach((b) => b.addEventListener('click', () => {
+    btns.forEach((x) => x.classList.remove('active'));
+    b.classList.add('active');
+    const s = b.getAttribute('data-scen');
+    rows.forEach((r) => {
+      const sm = (r.getAttribute('data-scenarios') || '').split(' ');
+      r.style.display = (s === 'all' || sm.includes(s)) ? '' : 'none';
+    });
+  }));
+</script>
+
+<style>
+  .hero{margin-bottom:1.5rem}
+  .hero .label{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem}
+  .hero h1{font-size:2.6rem;line-height:1.05;font-weight:800;margin:0 0 1rem;letter-spacing:-1px}
+  .hero .lead{font-size:1.05rem;line-height:1.6;color:var(--text-muted);max-width:60ch}
+  .counts{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:1.5rem 0}
+  .ct{border:1px solid var(--border);border-top:3px solid var(--c);border-radius:8px;background:var(--bg-card);padding:14px 12px;text-align:center}
+  .ctn{display:block;font-family:var(--font-mono);font-size:1.9rem;font-weight:800;color:var(--c);line-height:1}
+  .ctl{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-top:5px;display:block}
+  .filters{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:1.5rem 0}
+  .flabel{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-right:4px}
+  .fbtn{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:5px 11px;cursor:pointer;transition:all .15s}
+  .fbtn b{color:var(--sc,var(--text))}
+  .fbtn:hover{color:var(--text);border-color:var(--border-light)}
+  .fbtn.active{color:var(--cyan);border-color:var(--cyan);background:var(--cyan-muted)}
+  .sec{margin:2rem 0}
+  .dl{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:.9rem}
+  .tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .tbl th{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);text-align:left;padding:8px 9px;border-bottom:1px solid var(--border-light);white-space:nowrap}
+  .tbl td{padding:9px;border-bottom:1px solid var(--border);vertical-align:middle}
+  .tbl tr:hover td{background:rgba(255,255,255,.02)}
+  .nm{font-weight:600;color:var(--text);min-width:200px}
+  .conf{font-family:var(--font-mono);font-size:9px;color:var(--text-dim);font-weight:400}
+  .mono{font-family:var(--font-mono)}
+  .dim{color:var(--text-dim)}
+  .badge{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border:1px solid;border-radius:4px;padding:1px 7px;white-space:nowrap}
+  .cls{font-family:var(--font-mono);font-size:10px;font-weight:600;text-transform:capitalize}
+  .sdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px}
+  .note{font-size:12px;line-height:1.6;color:var(--text-dim);margin-top:1rem;max-width:80ch}
+  .note b{color:var(--text-muted)}
+  .prose{font-size:14px;line-height:1.7;color:var(--text-muted);max-width:75ch}
+  .related{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-family:var(--font-mono);font-size:12px}
+  .related span{color:var(--text-dim);text-transform:uppercase;font-size:10px;letter-spacing:1px}
+  .related a{color:var(--cyan)}
+  @media(max-width:720px){.counts{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:2rem}}
+</style>

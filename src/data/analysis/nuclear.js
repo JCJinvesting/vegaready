@@ -236,4 +236,4 @@ export const dataQuality = {
   "quarantined": "Uranium-demand and Kazatomprom −10% figures sourced to a promotional YouTube video (T3) — used only as context; China fleet figures separately corroborated by CSIS/WNA."
 };
 
-export const relatedSectors = "Civilian nuclear as an energy-security hedge (reactor counts, Barakah, the >$80bn/yr investment pipeline) is tracked on /markets/energy; the defense-industrial supercycle on /markets/defense; regional exposure on /exposure.";
+export const relatedSectors = "Civilian nuclear as an energy-security hedge (reactor counts, Barakah, the >$80bn/yr investment pipeline) is tracked on /markets/energy; the defense-industrial supercycle on /markets/defense; regional exposure on /exposure. Cross-section causal link: a proliferation-escalation would reprice gold and the volatility regime — see /markets/gold-fx, /markets/cross-asset and the causal map on /connections.";

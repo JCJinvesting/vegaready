@@ -1,0 +1,126 @@
+---
+import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import { execSummary, keyFindings, pillars, methodology, schemaFields, thresholds, thresholdsNote, jsonTemplate, sourceConflict } from '../../data/analysis/structuraloverview.js';
+const tcolor = (i) => i === 0 ? '#f59e0b' : i === 1 ? '#fb923c' : '#ef4444';
+---
+
+<AnalysisLayout
+  title="Structural Risk — VegaReady"
+  description="The platform's permanent standing-watch layer: six structural tracking verticals — chokepoints, commodity weaponization, de-globalization, digital fragmentation, food resilience — scored, tiered, and mapped to scenarios, plus the monitoring schema and trigger thresholds."
+  section="Overview"
+  area="structural"
+>
+  <section class="hero">
+    <div class="label">Structural Risk</div>
+    <h1>The fault lines beneath<br/>the market response.</h1>
+    <p class="lead">{execSummary}</p>
+  </section>
+
+  <section class="findings">
+    <div class="dl">Standing findings</div>
+    <ul class="find-list">{keyFindings.map((f) => (<li>{f}</li>))}</ul>
+  </section>
+
+  <section class="pillars">
+    <div class="dl">The six verticals</div>
+    <div class="pillar-grid">
+      {pillars.map((p) => (
+        <a href={`/structural/${p.slug}`} class="pillar">
+          <div class="pillar-name">{p.name}</div>
+          <div class="pillar-metric">{p.metric}</div>
+          <div class="pillar-sum">{p.summary}</div>
+        </a>
+      ))}
+      <div class="pillar pillar-meta">
+        <div class="pillar-name">Monitoring Schema</div>
+        <div class="pillar-metric">watch · alert · critical</div>
+        <div class="pillar-sum">The production schema + trigger thresholds — below on this page. Live watch-state graduates to the Dashboard.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="meth">
+    <div class="dl">Methodology</div>
+    <div class="meth-block"><span class="meth-k">Scoring</span><p>{methodology.scoring}</p></div>
+    <div class="meth-block"><span class="meth-k">Source tiers</span><p>{methodology.tiers}</p></div>
+    <div class="meth-block"><span class="meth-k">Confidence</span><p>{methodology.confidence}</p></div>
+    <div class="meth-block"><span class="meth-k">Update cadence</span><p>{methodology.cadence}</p></div>
+    <div class="meth-block"><span class="meth-k">Scenario mapping</span><p>{methodology.scenarioMapping}</p></div>
+  </section>
+
+  <section class="prec">
+    <div class="dl">Monitoring schema — field definitions</div>
+    <div style="overflow-x:auto"><table class="prec-table">
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>{schemaFields.map((r) => (<tr><td class="mono">{r.field}</td><td class="prec-name">{r.type}</td><td>{r.description}</td></tr>))}</tbody>
+    </table></div>
+  </section>
+
+  <section class="prec">
+    <div class="dl">Example trigger thresholds</div>
+    <div style="overflow-x:auto"><table class="prec-table">
+      <thead><tr><th>Metric</th><th>Watch</th><th>Alert</th><th>Critical</th><th>Cadence</th></tr></thead>
+      <tbody>{thresholds.map((r) => (<tr>
+        <td class="prec-name">{r.metric}</td>
+        <td class="th-watch">{r.watch}</td>
+        <td class="th-alert">{r.alert}</td>
+        <td class="th-crit">{r.critical}</td>
+        <td class="mono">{r.cadence}</td>
+      </tr>))}</tbody>
+    </table></div>
+    <p class="prec-note">{thresholdsNote}</p>
+    <pre class="json"><code>{jsonTemplate}</code></pre>
+  </section>
+
+  <section class="sres">
+    <div class="dl">Source conflict &amp; data-quality exceptions</div>
+    <div style="overflow-x:auto"><table class="prec-table">
+      <thead><tr><th>Figure</th><th>Contested value</th><th>Resolution</th><th>Anchor</th><th>Tier</th></tr></thead>
+      <tbody>{sourceConflict.map((r) => (<tr><td class="prec-name">{r.figure}</td><td class="mono">{r.contested}</td><td>{r.issue}</td><td>{r.anchor}</td><td class="mono">{r.tier}</td></tr>))}</tbody>
+    </table></div>
+  </section>
+
+  <div class="foot-box">
+    <p class="next"><strong>How to read this lens:</strong> Structural Risk sits above the deep dives and points down into them. The chokepoint index connects to <a href="/outlook/infrastructure" style="color:var(--cyan)">Infrastructure</a>; food resilience to <a href="/markets/food-agriculture" style="color:var(--cyan)">Food &amp; Agriculture</a> and <a href="/markets/water" style="color:var(--cyan)">Water</a>; digital/cables to <a href="/markets/defense" style="color:var(--cyan)">Defense</a>; weaponization to <a href="/transmission" style="color:var(--cyan)">Transmission</a>.</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:760px}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .findings{margin-bottom:3rem}
+  .find-list{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;max-width:860px}
+  .find-list li{font-size:13px;color:var(--text-muted);line-height:1.6;padding-left:18px;position:relative}
+  .find-list li::before{content:'▸';position:absolute;left:0;color:var(--cyan)}
+  .pillars{margin-bottom:3rem}
+  .pillar-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .pillar{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;text-decoration:none;color:inherit;transition:all .2s;display:block}
+  .pillar:hover{border-color:var(--cyan);transform:translateY(-2px);opacity:1}
+  .pillar-meta{opacity:.78}
+  .pillar-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.25}
+  .pillar-metric{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);margin-bottom:8px}
+  .pillar-sum{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .meth{margin-bottom:3rem;max-width:860px}
+  .meth-block{margin-bottom:12px}
+  .meth-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:3px}
+  .meth-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .prec{margin-bottom:3rem}
+  .prec-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+  .prec-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .prec-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.45;vertical-align:top;min-width:80px}
+  .prec-name{font-weight:700;color:var(--text)}
+  .mono{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);white-space:nowrap}
+  .th-watch{font-family:var(--font-mono);font-size:11px;color:#eab308;font-weight:700}
+  .th-alert{font-family:var(--font-mono);font-size:11px;color:#f97316;font-weight:700}
+  .th-crit{font-family:var(--font-mono);font-size:11px;color:#ef4444;font-weight:700}
+  .prec-note{font-size:12px;color:var(--text-dim);line-height:1.6;margin-top:10px;max-width:860px}
+  .json{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-top:14px;overflow-x:auto;font-family:var(--font-mono);font-size:11px;color:var(--text-muted);line-height:1.6;white-space:pre-wrap;word-break:break-word}
+  .sres{margin-bottom:2.5rem}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box .next{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
+  .foot-box strong{color:var(--cyan)}
+  @media(max-width:720px){.pillar-grid{grid-template-columns:1fr}}
+</style>

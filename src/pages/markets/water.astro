@@ -1,5 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
 import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, sourceResolution, dataQuality, investmentImplications } from '../../data/analysis/water.js';
 ---
 
@@ -14,6 +15,8 @@ import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, s
     <h1>Two days of water.</h1>
     <p class="lead">No part of this conflict carries a starker tail risk. The Gulf runs 33% of the world's desalination capacity, its drinking water is near-totally dependent on it, and most states hold under two days in reserve. Plants have already been struck. A CIA assessment once called disrupting Gulf desalination worse than the loss of any other commodity.</p>
   </section>
+
+  <SignalPanel page="/markets/water" />
 
   <div class="thesis">
     <div class="thesis-label">The structural finding</div>
@@ -59,7 +62,7 @@ import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, s
         </summary>
         <div class="ey">
           <div class="mgrid">{c.metrics.map((mm) => (<div class="metric"><div class="ml">{mm.label}</div><div class="mv">{mm.value}</div></div>))}</div>
-          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
+          {c.sources.length > 0 && <div class="ds"><div class="dl">Sources</div><p class="srctext">{c.sources.map((u, i) => (<a href={u.url} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>}
         </div>
       </details>
     ))}
@@ -90,7 +93,7 @@ import { cards, thesis, dependencyTable, attacks, reserveNote, scenarioMatrix, s
     <p><strong style="color:#10b981">HIGH</strong> — {dataQuality.high}</p>
     <p><strong style="color:#f59e0b">MODERATE</strong> — {dataQuality.moderate}</p>
     <p><strong style="color:var(--text-dim)">Quarantined (not anchored)</strong> — {dataQuality.quarantined}</p>
-    <p class="next"><strong>Related:</strong> the food side on <a href="/markets/food-agriculture" style="color:var(--cyan)">/markets/food-agriculture</a>; country exposure on <a href="/exposure" style="color:var(--cyan)">/exposure</a>.</p>
+    <p class="next"><strong>Related:</strong> the food side on <a href="/markets/food-agriculture" style="color:var(--cyan)">/markets/food-agriculture</a>; country exposure on <a href="/exposure" style="color:var(--cyan)">/exposure</a>. Cross-section causal link: a desalination strike would reprice GCC sovereign credit and equity (TASI/DFM) — see <a href="/markets/equities" style="color:var(--cyan)">/markets/equities</a> and the causal map on <a href="/connections" style="color:var(--cyan)">/connections</a>.</p>
   </div>
 </AnalysisLayout>
 

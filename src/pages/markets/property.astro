@@ -1,5 +1,6 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
 import { cards, thesis, scenarioMatrix, substitution, precedents, precedentNote, sourceResolution, dataQuality } from '../../data/analysis/property.js';
 ---
 
@@ -14,6 +15,8 @@ import { cards, thesis, scenarioMatrix, substitution, precedents, precedentNote,
     <h1>Where the shock <br/>hits the ground.</h1>
     <p class="lead">The physical economy of the Gulf: smelters, building sites, property markets, and the megaprojects that define the region's capital plan. This is where the Hormuz shock becomes aluminum at a four-year high, a 12.6% construction-cost surge, an Abu Dhabi–Dubai real-estate split, and The Line deferred past 2030.</p>
   </section>
+
+  <SignalPanel page="/markets/property" />
 
   <div class="thesis">
     <div class="thesis-label">The structural finding</div>

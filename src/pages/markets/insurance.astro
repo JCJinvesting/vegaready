@@ -1,6 +1,10 @@
 ---
 import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../components/SignalPanel.astro';
 import { cards, thesis, premiumTrajectory, scenarioImpact, dataQuality, nextSection, precedents, precedentNote, premiumGeography, investmentImplications } from '../../data/analysis/insurance.js';
+import { termStructure, termMap } from '../../data/analysis/crossasset.js';
+const ca_freight = termStructure.find(t => t.curve.startsWith('Freight'));
+const ca_vlcc = termMap.find(t => t.curve.startsWith('VLCC'));
 const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' };
 ---
 
@@ -15,6 +19,8 @@ const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' 
     <h1>When the premium <br/>is the transmission.</h1>
     <p class="lead">War-risk insurance isn't downstream of the shipping shock — it <em>is</em> the shock's transmission mechanism. When the Joint War Committee re-lists the Gulf and P&I clubs cancel cover, hulls stop moving before a single freight rate prints. These are the dated, hard-number events of that machinery, Feb–May 2026 — each figure carries its source and tier.</p>
   </section>
+
+  <SignalPanel page="/markets/insurance" />
 
   <div class="thesis">
     <div class="thesis-label">The structural finding</div>
@@ -104,12 +110,22 @@ const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' 
     ))}
   </section>
 
+  <section class="mdr">
+    <div class="mdr-h">Market-derivative read <span>· Cross-Asset</span></div>
+    <div class="mdr-rows">
+      <div class="mdr-row"><span class="mdr-k">Freight as volatility</span><span class="mdr-v">{ca_freight.detail}</span></div>
+      <div class="mdr-row"><span class="mdr-k">VLCC term structure</span><span class="mdr-v">{ca_vlcc.shape} — {ca_vlcc.duration}</span></div>
+      <div class="mdr-row"><span class="mdr-k">War-risk premium</span><span class="mdr-v">AWRP peaked ~2.5% hull/7-day (now ~1%) — among the highest realized-vol instruments of the conflict</span></div>
+    </div>
+    <a href="/markets/cross-asset" class="mdr-link">Full cross-asset view →</a> <span style="color:var(--text-dim)">·</span> <a href="/markets/equities" class="mdr-link">Insurers (equities) →</a>
+  </section>
+
   <div class="foot-box">
     <div class="dl">Data quality &amp; methodology</div>
     <p><strong style="color:#10b981">HIGH</strong> — {dataQuality.high}</p>
     <p><strong style="color:#f59e0b">MEDIUM</strong> — {dataQuality.medium}</p>
     <p><strong style="color:var(--text-dim)">Quarantined (not anchored)</strong> — {dataQuality.quarantined}</p>
-    <p class="next"><strong>Next:</strong> {nextSection} Trade-finance, shadow-fleet, and correspondent-banking plumbing sits on <a href="/markets/credit" style="color:var(--cyan)">/markets/credit</a>.</p>
+    <p class="next"><strong>Next:</strong> {nextSection} Trade-finance, shadow-fleet, and correspondent-banking plumbing sits on <a href="/markets/credit" style="color:var(--cyan)">/markets/credit</a>. Cross-section causal link: war-risk premiums and freight surcharge the delivered oil barrel and the structural floor — see <a href="/markets/cross-asset" style="color:var(--cyan)">/markets/cross-asset</a> and the causal map on <a href="/connections" style="color:var(--cyan)">/connections</a>.</p>
   </div>
 </AnalysisLayout>
 
@@ -179,4 +195,14 @@ const catColor = { structural: '#a78bfa', sector: '#f59e0b', dynamic: '#22d3ee' 
   .inv-block{margin-top:14px}
   .inv-name{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
   .inv-block p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .mdr{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #818cf8;border-radius:8px;padding:14px 18px;margin:0 0 2rem;max-width:860px}
+  .mdr-h{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .mdr-h span{color:var(--text-dim)}
+  .mdr-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+  .mdr-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline}
+  .mdr-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px}
+  .mdr-v{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .mdr-note{font-size:11px;color:#f59e0b;margin:0 0 10px;line-height:1.4}
+  .mdr-link{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none}
+  @media(max-width:720px){.mdr-row{grid-template-columns:1fr;gap:2px}}
 </style>

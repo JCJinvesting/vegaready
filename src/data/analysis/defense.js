@@ -432,4 +432,4 @@ export const dataQuality = {
   "quarantined": "Point-in-time defense-equity snapshots and intraday moves (Kavout/CNBC, context only); Patriot \"~25% of plan\" assessed figure; reconstruction \"double-digit % capex premium\" (analytical estimate, no public 2026 figure)."
 };
 
-export const relatedSectors = "This is the investment deep dive of the /transmission Defense & Security sector. Critical-mineral and magnet inputs connect to /markets/energy (transition) and /markets/property (materials); the proliferation/arms-control driver to /outlook/nuclear; the resilience-capex linkages to /outlook/infrastructure.";
+export const relatedSectors = "This is the investment deep dive of the /transmission Defense & Security sector. Critical-mineral and magnet inputs connect to /markets/energy (transition) and /markets/property (materials); the proliferation/arms-control driver to /outlook/nuclear; the resilience-capex linkages to /outlook/infrastructure. Cross-section causal link: REE/magnet procurement competes with the energy transition for one constrained input — the loop is mapped on /connections.";

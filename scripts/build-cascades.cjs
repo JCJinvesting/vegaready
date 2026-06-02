@@ -236,4 +236,224 @@ out('nuclear.js', banner('nuclear.json')
   + 'export const dataQuality = ' + JSON.stringify(nucDoc.dataQuality || {}, null, 2) + ';\n\n'
   + 'export const relatedSectors = ' + JSON.stringify(nucDoc.relatedSectors || '', null, 2) + ';\n');
 
+
+// SECTION 7 -> /structural lens (Structural Risk). Scored-index + flat-card schema; reuses flatCard.
+const ckDoc = rd('chokepoints.json');
+out('chokepoints.js', banner('chokepoints.json')
+  + 'export const cards = ' + JSON.stringify(ckDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(ckDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const throughput = ' + JSON.stringify(ckDoc.throughput || [], null, 2) + ';\n\n'
+  + 'export const throughputNote = ' + JSON.stringify(ckDoc.throughputNote || '', null, 2) + ';\n\n'
+  + 'export const scorecard = ' + JSON.stringify(ckDoc.scorecard || [], null, 2) + ';\n\n'
+  + 'export const scorecardNote = ' + JSON.stringify(ckDoc.scorecardNote || '', null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(ckDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(ckDoc.relatedSectors || '', null, 2) + ';\n');
+const wpDoc = rd('weaponization.json');
+out('weaponization.js', banner('weaponization.json')
+  + 'export const cards = ' + JSON.stringify(wpDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(wpDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const episodes = ' + JSON.stringify(wpDoc.episodes || [], null, 2) + ';\n\n'
+  + 'export const takeaways = ' + JSON.stringify(wpDoc.takeaways || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(wpDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(wpDoc.relatedSectors || '', null, 2) + ';\n');
+const dgDoc = rd('deglobalization.json');
+out('deglobalization.js', banner('deglobalization.json')
+  + 'export const cards = ' + JSON.stringify(dgDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(dgDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const fdiNote = ' + JSON.stringify(dgDoc.fdiNote || '', null, 2) + ';\n\n'
+  + 'export const reshoring = ' + JSON.stringify(dgDoc.reshoring || [], null, 2) + ';\n\n'
+  + 'export const connectorNote = ' + JSON.stringify(dgDoc.connectorNote || '', null, 2) + ';\n\n'
+  + 'export const tariff = ' + JSON.stringify(dgDoc.tariff || {}, null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(dgDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(dgDoc.relatedSectors || '', null, 2) + ';\n');
+const diDoc = rd('digital.json');
+out('digital.js', banner('digital.json')
+  + 'export const cards = ' + JSON.stringify(diDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(diDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const physicalNote = ' + JSON.stringify(diDoc.physicalNote || '', null, 2) + ';\n\n'
+  + 'export const leoNote = ' + JSON.stringify(diDoc.leoNote || '', null, 2) + ';\n\n'
+  + 'export const policyNote = ' + JSON.stringify(diDoc.policyNote || '', null, 2) + ';\n\n'
+  + 'export const scorecard = ' + JSON.stringify(diDoc.scorecard || [], null, 2) + ';\n\n'
+  + 'export const scorecardNote = ' + JSON.stringify(diDoc.scorecardNote || '', null, 2) + ';\n\n'
+  + 'export const sabotage = ' + JSON.stringify(diDoc.sabotage || [], null, 2) + ';\n\n'
+  + 'export const sabotageNote = ' + JSON.stringify(diDoc.sabotageNote || '', null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(diDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(diDoc.relatedSectors || '', null, 2) + ';\n');
+const frDoc = rd('foodresilience.json');
+out('foodresilience.js', banner('foodresilience.json')
+  + 'export const cards = ' + JSON.stringify(frDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(frDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const scorecard = ' + JSON.stringify(frDoc.scorecard || [], null, 2) + ';\n\n'
+  + 'export const signalNote = ' + JSON.stringify(frDoc.signalNote || '', null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(frDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(frDoc.relatedSectors || '', null, 2) + ';\n');
+const soDoc = rd('structuraloverview.json');
+out('structuraloverview.js', banner('structuraloverview.json')
+  + 'export const execSummary = ' + JSON.stringify(soDoc.execSummary || '', null, 2) + ';\n\n'
+  + 'export const keyFindings = ' + JSON.stringify(soDoc.keyFindings || [], null, 2) + ';\n\n'
+  + 'export const pillars = ' + JSON.stringify(soDoc.pillars || [], null, 2) + ';\n\n'
+  + 'export const methodology = ' + JSON.stringify(soDoc.methodology || {}, null, 2) + ';\n\n'
+  + 'export const schemaFields = ' + JSON.stringify(soDoc.schemaFields || [], null, 2) + ';\n\n'
+  + 'export const thresholds = ' + JSON.stringify(soDoc.thresholds || [], null, 2) + ';\n\n'
+  + 'export const thresholdsNote = ' + JSON.stringify(soDoc.thresholdsNote || '', null, 2) + ';\n\n'
+  + 'export const jsonTemplate = ' + JSON.stringify(soDoc.jsonTemplate || '', null, 2) + ';\n\n'
+  + 'export const sourceConflict = ' + JSON.stringify(soDoc.sourceConflict || [], null, 2) + ';\n');
+
+
+// OPTION B BACKEND -> watchmetrics.js (status board registry). Directional comparator is single-source: used to precompute AND shipped in the module.
+const statusOf = (m) => {
+  if (m.type === 'boolean') return m.value ? 'critical' : 'ok';
+  if (m.type === 'regime') return m.status || 'ok';
+  const t = m.thresholds || {};
+  const v = m.value;
+  if (m.direction === 'above') {
+    if (v >= t.critical) return 'critical';
+    if (v >= t.alert) return 'alert';
+    if (v >= t.watch) return 'watch';
+    return 'ok';
+  }
+  if (v <= t.critical) return 'critical';
+  if (v <= t.alert) return 'alert';
+  if (v <= t.watch) return 'watch';
+  return 'ok';
+};
+const wmDoc = rd('watch-metrics.json');
+const _order = { critical: 0, alert: 1, watch: 2, ok: 3 };
+const wmMetrics = wmDoc.metrics
+  .map((m) => Object.assign({}, m, { status: statusOf(m) }))
+  .sort((a, b) => _order[a.status] - _order[b.status]);
+const wmSummary = wmMetrics.reduce((acc, m) => { acc[m.status]++; acc.total++; return acc; }, { critical: 0, alert: 0, watch: 0, ok: 0, total: 0 });
+const wmByScenario = {};
+for (const k of (wmDoc.scenarioKeys || [])) wmByScenario[k] = wmMetrics.filter((m) => (m.scenario_mapping || []).includes(k)).map((m) => m.id);
+// Signal catalog = the 30 cross-section tradable signals (metrics carrying a signalNo), grouped by section, in catalog order.
+const wmCatalog = wmMetrics.filter((m) => m.signalNo).slice().sort((a, b) => String(a.signalNo).localeCompare(String(b.signalNo), undefined, { numeric: true }));
+const wmBySection = {};
+for (const m of wmCatalog) (wmBySection[m.section] = wmBySection[m.section] || []).push(m.id);
+// byPage = which signal ids surface on each section page (powers SignalPanel).
+const wmByPage = {};
+for (const m of wmMetrics) { if (!m.page) continue; (wmByPage[m.page] = wmByPage[m.page] || []).push(m.id); }
+out('watchmetrics.js', banner('watch-metrics.json')
+  + '// Status comparator (also used at build time to precompute each metric.status).\n'
+  + 'export const statusOf = ' + statusOf.toString() + ';\n\n'
+  + 'export const metrics = ' + JSON.stringify(wmMetrics, null, 2) + ';\n\n'
+  + 'export const summary = ' + JSON.stringify(wmSummary, null, 2) + ';\n\n'
+  + 'export const byScenario = ' + JSON.stringify(wmByScenario, null, 2) + ';\n\n'
+  + 'export const signalCatalog = ' + JSON.stringify(wmCatalog, null, 2) + ';\n\n'
+  + 'export const bySection = ' + JSON.stringify(wmBySection, null, 2) + ';\n\n'
+  + 'export const byPage = ' + JSON.stringify(wmByPage, null, 2) + ';\n\n'
+  + 'export const scenarioKeys = ' + JSON.stringify(wmDoc.scenarioKeys || [], null, 2) + ';\n\n'
+  + '// signalsForPage(page) -> the status-stamped metrics that surface on a given section page.\n'
+  + 'export const signalsForPage = (page) => (byPage[page] || []).map((id) => metrics.find((m) => m.id === id)).filter(Boolean);\n\n'
+  + 'export const lastUpdated = ' + JSON.stringify(wmDoc.lastUpdated || '', null, 2) + ';\n');
+
+
+// SECTION 8 -> /markets/cross-asset (the market-derivative hub; spokes import slices from this module).
+const caDoc = rd('crossasset.json');
+out('crossasset.js', banner('crossasset.json')
+  + 'export const cards = ' + JSON.stringify(caDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(caDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const correlationMap = ' + JSON.stringify(caDoc.correlationMap || [], null, 2) + ';\n\n'
+  + 'export const correlationNote = ' + JSON.stringify(caDoc.correlationNote || '', null, 2) + ';\n\n'
+  + 'export const volRegime = ' + JSON.stringify(caDoc.volRegime || [], null, 2) + ';\n\n'
+  + 'export const volNote = ' + JSON.stringify(caDoc.volNote || '', null, 2) + ';\n\n'
+  + 'export const termStructure = ' + JSON.stringify(caDoc.termStructure || [], null, 2) + ';\n\n'
+  + 'export const termNote = ' + JSON.stringify(caDoc.termNote || '', null, 2) + ';\n\n'
+  + 'export const positioning = ' + JSON.stringify(caDoc.positioning || [], null, 2) + ';\n\n'
+  + 'export const positioningVerdict = ' + JSON.stringify(caDoc.positioningVerdict || '', null, 2) + ';\n\n'
+  + 'export const hedgingPlaybook = ' + JSON.stringify(caDoc.hedgingPlaybook || [], null, 2) + ';\n\n'
+  + 'export const signalQuality = ' + JSON.stringify(caDoc.signalQuality || [], null, 2) + ';\n\n'
+  + 'export const signalVerdict = ' + JSON.stringify(caDoc.signalVerdict || '', null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(caDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const volSurface = ' + JSON.stringify(caDoc.volSurface || [], null, 2) + ';\n\n'
+  + 'export const volSurfaceNote = ' + JSON.stringify(caDoc.volSurfaceNote || '', null, 2) + ';\n\n'
+  + 'export const termMap = ' + JSON.stringify(caDoc.termMap || [], null, 2) + ';\n\n'
+  + 'export const dollarFunding = ' + JSON.stringify(caDoc.dollarFunding || '', null, 2) + ';\n\n'
+  + 'export const upgradedConfidence = ' + JSON.stringify(caDoc.upgradedConfidence || [], null, 2) + ';\n\n'
+  + 'export const proxyOnly = ' + JSON.stringify(caDoc.proxyOnly || [], null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(caDoc.relatedSectors || '', null, 2) + ';\n');
+
+
+// SECTION 8 -> /markets/equities (first-order equity layer; upstream of cross-asset).
+const eqDoc = rd('equities.json');
+out('equities.js', banner('equities.json')
+  + 'export const cards = ' + JSON.stringify(eqDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(eqDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const scenarioRegime = ' + JSON.stringify(eqDoc.scenarioRegime || [], null, 2) + ';\n\n'
+  + 'export const indexShock = ' + JSON.stringify(eqDoc.indexShock || [], null, 2) + ';\n\n'
+  + 'export const indexNote = ' + JSON.stringify(eqDoc.indexNote || '', null, 2) + ';\n\n'
+  + 'export const sectorMap = ' + JSON.stringify(eqDoc.sectorMap || [], null, 2) + ';\n\n'
+  + 'export const sectorScenario = ' + JSON.stringify(eqDoc.sectorScenario || [], null, 2) + ';\n\n'
+  + 'export const sectorPrecedent = ' + JSON.stringify(eqDoc.sectorPrecedent || '', null, 2) + ';\n\n'
+  + 'export const earningsSummary = ' + JSON.stringify(eqDoc.earningsSummary || '', null, 2) + ';\n\n'
+  + 'export const passThrough = ' + JSON.stringify(eqDoc.passThrough || [], null, 2) + ';\n\n'
+  + 'export const earningsScenario = ' + JSON.stringify(eqDoc.earningsScenario || [], null, 2) + ';\n\n'
+  + 'export const factorRotation = ' + JSON.stringify(eqDoc.factorRotation || [], null, 2) + ';\n\n'
+  + 'export const factorObservations = ' + JSON.stringify(eqDoc.factorObservations || [], null, 2) + ';\n\n'
+  + 'export const countryMatrix = ' + JSON.stringify(eqDoc.countryMatrix || [], null, 2) + ';\n\n'
+  + 'export const countryScenario = ' + JSON.stringify(eqDoc.countryScenario || [], null, 2) + ';\n\n'
+  + 'export const gcc = ' + JSON.stringify(eqDoc.gcc || {}, null, 2) + ';\n\n'
+  + 'export const gccScenario = ' + JSON.stringify(eqDoc.gccScenario || [], null, 2) + ';\n\n'
+  + 'export const gccHedge = ' + JSON.stringify(eqDoc.gccHedge || '', null, 2) + ';\n\n'
+  + 'export const flows = ' + JSON.stringify(eqDoc.flows || [], null, 2) + ';\n\n'
+  + 'export const flowsNote = ' + JSON.stringify(eqDoc.flowsNote || '', null, 2) + ';\n\n'
+  + 'export const volOptions = ' + JSON.stringify(eqDoc.volOptions || [], null, 2) + ';\n\n'
+  + 'export const deleveraging = ' + JSON.stringify(eqDoc.deleveraging || '', null, 2) + ';\n\n'
+  + 'export const gccFlows = ' + JSON.stringify(eqDoc.gccFlows || '', null, 2) + ';\n\n'
+  + 'export const cryptoSpillover = ' + JSON.stringify(eqDoc.cryptoSpillover || '', null, 2) + ';\n\n'
+  + 'export const scenarioTrades = ' + JSON.stringify(eqDoc.scenarioTrades || [], null, 2) + ';\n\n'
+  + 'export const precedents = ' + JSON.stringify(eqDoc.precedents || [], null, 2) + ';\n\n'
+  + 'export const upgradedConfidence = ' + JSON.stringify(eqDoc.upgradedConfidence || [], null, 2) + ';\n\n'
+  + 'export const proxyOnly = ' + JSON.stringify(eqDoc.proxyOnly || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(eqDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(eqDoc.relatedSectors || '', null, 2) + ';\n');
+
+
+// SECTION 10 -> /markets/crypto (terminal node; consumes §8 equities + §9 cross-asset).
+const crDoc = rd('crypto.json');
+out('crypto.js', banner('crypto.json')
+  + 'export const cards = ' + JSON.stringify(crDoc.cards.map(flatCard), null, 2) + ';\n\n'
+  + 'export const keyTakeaways = ' + JSON.stringify(crDoc.keyTakeaways || [], null, 2) + ';\n\n'
+  + 'export const scenarioRegime = ' + JSON.stringify(crDoc.scenarioRegime || [], null, 2) + ';\n\n'
+  + 'export const crossAssetCompare = ' + JSON.stringify(crDoc.crossAssetCompare || [], null, 2) + ';\n\n'
+  + 'export const havenTest = ' + JSON.stringify(crDoc.havenTest || [], null, 2) + ';\n\n'
+  + 'export const stablecoinsTable = ' + JSON.stringify(crDoc.stablecoinsTable || [], null, 2) + ';\n\n'
+  + 'export const namedVenues = ' + JSON.stringify(crDoc.namedVenues || [], null, 2) + ';\n\n'
+  + 'export const signalHierarchy = ' + JSON.stringify(crDoc.signalHierarchy || [], null, 2) + ';\n\n'
+  + 'export const leadingIndicators = ' + JSON.stringify(crDoc.leadingIndicators || [], null, 2) + ';\n\n'
+  + 'export const scenarioTrades = ' + JSON.stringify(crDoc.scenarioTrades || [], null, 2) + ';\n\n'
+  + 'export const failureModes = ' + JSON.stringify(crDoc.failureModes || [], null, 2) + ';\n\n'
+  + 'export const sourceConflict = ' + JSON.stringify(crDoc.sourceConflict || [], null, 2) + ';\n\n'
+  + 'export const highAnchors = ' + JSON.stringify(crDoc.highAnchors || [], null, 2) + ';\n\n'
+  + 'export const proxyOnly = ' + JSON.stringify(crDoc.proxyOnly || [], null, 2) + ';\n\n'
+  + 'export const adversarialClose = ' + JSON.stringify(crDoc.adversarialClose || [], null, 2) + ';\n\n'
+  + 'export const dataQuality = ' + JSON.stringify(crDoc.dataQuality || {}, null, 2) + ';\n\n'
+  + 'export const thesis = ' + JSON.stringify(crDoc.thesis || '', null, 2) + ';\n\n'
+  + 'export const verdict = ' + JSON.stringify(crDoc.verdict || '', null, 2) + ';\n\n'
+  + 'export const scenarioConclusion = ' + JSON.stringify(crDoc.scenarioConclusion || '', null, 2) + ';\n\n'
+  + 'export const priceArc = ' + JSON.stringify(crDoc.priceArc || '', null, 2) + ';\n\n'
+  + 'export const havenVerdict = ' + JSON.stringify(crDoc.havenVerdict || '', null, 2) + ';\n\n'
+  + 'export const havenAdversarial = ' + JSON.stringify(crDoc.havenAdversarial || '', null, 2) + ';\n\n'
+  + 'export const stablecoinSupply = ' + JSON.stringify(crDoc.stablecoinSupply || '', null, 2) + ';\n\n'
+  + 'export const stablecoinPeg = ' + JSON.stringify(crDoc.stablecoinPeg || '', null, 2) + ';\n\n'
+  + 'export const gulfRegulatory = ' + JSON.stringify(crDoc.gulfRegulatory || '', null, 2) + ';\n\n'
+  + 'export const microNote = ' + JSON.stringify(crDoc.microNote || '', null, 2) + ';\n\n'
+  + 'export const oct2025Proxy = ' + JSON.stringify(crDoc.oct2025Proxy || '', null, 2) + ';\n\n'
+  + 'export const gulfCable = ' + JSON.stringify(crDoc.gulfCable || '', null, 2) + ';\n\n'
+  + 'export const defiNote = ' + JSON.stringify(crDoc.defiNote || '', null, 2) + ';\n\n'
+  + 'export const rwa = ' + JSON.stringify(crDoc.rwa || '', null, 2) + ';\n\n'
+  + 'export const miningNote = ' + JSON.stringify(crDoc.miningNote || '', null, 2) + ';\n\n'
+  + 'export const minerMargins = ' + JSON.stringify(crDoc.minerMargins || '', null, 2) + ';\n\n'
+  + 'export const minerEquities = ' + JSON.stringify(crDoc.minerEquities || '', null, 2) + ';\n\n'
+  + 'export const sanctionsFreeze = ' + JSON.stringify(crDoc.sanctionsFreeze || '', null, 2) + ';\n\n'
+  + 'export const sanctionsContest = ' + JSON.stringify(crDoc.sanctionsContest || '', null, 2) + ';\n\n'
+  + 'export const iranianRail = ' + JSON.stringify(crDoc.iranianRail || '', null, 2) + ';\n\n'
+  + 'export const sanctionsVerdict = ' + JSON.stringify(crDoc.sanctionsVerdict || '', null, 2) + ';\n\n'
+  + 'export const regulatoryAccel = ' + JSON.stringify(crDoc.regulatoryAccel || '', null, 2) + ';\n\n'
+  + 'export const etfFlows = ' + JSON.stringify(crDoc.etfFlows || '', null, 2) + ';\n\n'
+  + 'export const optionsSkew = ' + JSON.stringify(crDoc.optionsSkew || '', null, 2) + ';\n\n'
+  + 'export const cryptoEquities = ' + JSON.stringify(crDoc.cryptoEquities || '', null, 2) + ';\n\n'
+  + 'export const adoptionBifurcated = ' + JSON.stringify(crDoc.adoptionBifurcated || '', null, 2) + ';\n\n'
+  + 'export const lowLatencyRefresh = ' + JSON.stringify(crDoc.lowLatencyRefresh || '', null, 2) + ';\n\n'
+  + 'export const relatedSectors = ' + JSON.stringify(crDoc.relatedSectors || '', null, 2) + ';\n');
+
 console.log('done.');

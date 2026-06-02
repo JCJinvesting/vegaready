@@ -684,6 +684,6 @@ export const dataQuality = {
   "quarantined": "EU ETS broad €65–95/tCO2 range (LinkedIn analyst note, T3); voluntary-carbon-market spot ranges (vendor academy content, no conflict-specific move); reconstruction capex-premium estimates (no public 2026 figure)."
 };
 
-export const relatedSectors = "This is the transition and civilian-nuclear deep dive sitting above the /transmission Energy Downstream sector. The hydrogen/ammonia thread connects to /markets/food-agriculture (Gulf fertilizer); critical minerals to /markets/property; proliferation and the Iran stockpile to /outlook/nuclear; the defense procurement supercycle to /markets/defense.";
+export const relatedSectors = "This is the transition and civilian-nuclear deep dive sitting above the /transmission Energy Downstream sector. The hydrogen/ammonia thread connects to /markets/food-agriculture (Gulf fertilizer); critical minerals to /markets/property; proliferation and the Iran stockpile to /outlook/nuclear; the defense procurement supercycle to /markets/defense. Cross-section causal link: critical minerals are a shared, contested input to BOTH the energy transition and the defense supercycle — the competition loop, mapped on /connections.";
 
 export const physicalShock = "The physical oil, LNG and refined-products shock — Hormuz throughput down ~30% YoY, the structural supply gap, bypass capacity and substitution timelines — is tracked in depth on /outlook (Gap Dynamics) and the /transmission Energy Downstream sector. This page covers the capital-and-transition layer that sits on top of it.";

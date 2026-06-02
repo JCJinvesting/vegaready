@@ -1,0 +1,73 @@
+---
+// Reusable per-page tradable/monitorable signal panel.
+// Single-source: reads the status-stamped watch registry (generated from watch-metrics.json).
+// Drop <SignalPanel page="/markets/gold-fx" /> onto any section page.
+import { signalsForPage, lastUpdated } from '../data/analysis/watchmetrics.js';
+interface Props { page: string; title?: string; }
+const { page, title = 'Tradable & monitorable signals' } = Astro.props;
+const sigs = signalsForPage(page).filter((s) => s.signalNo);
+const sc = { hormuz_closure: '#ef4444', oil_strike: '#f59e0b', cable_severance: '#22d3ee', ceasefire: '#10b981' };
+const stCol = { critical: '#ef4444', alert: '#f59e0b', watch: '#eab308', ok: '#10b981' };
+const clsCol = { predictive: '#22d3ee', confirming: '#f59e0b', coincident: '#8892a4' };
+const fmt = (v) => (typeof v === 'number' ? (Math.abs(v) >= 1000 ? v.toLocaleString('en-US') : v) : v);
+const scenLabel = (k) => k.replace('_', ' ');
+---
+{sigs.length > 0 && (
+  <section class="sigpanel">
+    <div class="sp-head">
+      <div class="sp-title"><span class="sp-dot"></span>{title}</div>
+      <a class="sp-board" href="/structural/watch">Watch board &rarr;</a>
+    </div>
+    <div class="sp-grid">
+      {sigs.map((s) => (
+        <div class="sp-card" style={`--st:${stCol[s.status] || '#8892a4'}`}>
+          <div class="sp-row1">
+            <span class="sp-no">{s.signalNo}</span>
+            <span class="sp-name">{s.signalName}</span>
+            <span class="sp-status">{s.status}</span>
+          </div>
+          <div class="sp-chips">
+            <span class="sp-cls" style={`color:${clsCol[s.classification]};border-color:${clsCol[s.classification]}55`}>{s.classification}</span>
+            <span class="sp-freq">{s.update_frequency}</span>
+            {(s.scenario_mapping || []).map((k) => (<span class="sp-scen" style={`color:${sc[k]};border-color:${sc[k]}55`}>{scenLabel(k)}</span>))}
+          </div>
+          <div class="sp-ladder">
+            <span class="sp-now">now <b>{fmt(s.value)}{s.unit && s.unit !== 'count' ? ' ' + s.unit : ''}</b></span>
+            <span class="sp-th">watch {fmt(s.thresholds.watch)}</span>
+            <span class="sp-th">alert {fmt(s.thresholds.alert)}</span>
+            <span class="sp-th">crit {fmt(s.thresholds.critical)}</span>
+          </div>
+          <div class="sp-ll"><b>{s.classification === 'predictive' ? 'Leads' : s.classification === 'confirming' ? 'Confirms' : 'Coincident'}:</b> {s.lead_lag}</div>
+          <div class="sp-meta"><b>Assets:</b> {s.assets}</div>
+          <div class="sp-fp"><b>False positive:</b> {s.false_positive}</div>
+        </div>
+      ))}
+    </div>
+    <div class="sp-foot">Status computed live from directional thresholds &middot; registry {lastUpdated} &middot; full spec in the <a href="/structural/watch">watch board</a></div>
+  </section>
+)}
+<style>
+  .sigpanel{margin:2.5rem 0;border:1px solid var(--border);border-radius:10px;background:var(--bg-card);overflow:hidden}
+  .sp-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg-surface)}
+  .sp-title{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:8px}
+  .sp-dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:sppulse 2s infinite}
+  @keyframes sppulse{0%{box-shadow:0 0 0 0 rgba(34,211,238,.5)}70%{box-shadow:0 0 0 6px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+  .sp-board{font-family:var(--font-mono);font-size:11px;color:var(--cyan)}
+  .sp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--border)}
+  .sp-card{background:var(--bg-card);padding:14px 16px;border-left:3px solid var(--st)}
+  .sp-row1{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+  .sp-no{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-dim)}
+  .sp-name{font-size:13px;font-weight:650;color:var(--text);flex:1;line-height:1.3}
+  .sp-status{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--st);border:1px solid var(--st);border-radius:4px;padding:1px 6px;white-space:nowrap}
+  .sp-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+  .sp-cls{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border:1px solid;border-radius:4px;padding:1px 6px}
+  .sp-freq{font-family:var(--font-mono);font-size:10px;color:var(--text-dim);border:1px solid var(--border-light);border-radius:4px;padding:1px 6px}
+  .sp-scen{font-family:var(--font-mono);font-size:10px;border:1px solid;border-radius:4px;padding:1px 6px;text-transform:capitalize}
+  .sp-ladder{display:flex;flex-wrap:wrap;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);padding:7px 0;border-top:1px dashed var(--border);border-bottom:1px dashed var(--border);margin-bottom:9px}
+  .sp-now{color:var(--text-muted)}.sp-now b{color:var(--st)}
+  .sp-ll,.sp-meta,.sp-fp{font-size:11.5px;line-height:1.45;color:var(--text-muted);margin-bottom:5px}
+  .sp-ll b,.sp-meta b,.sp-fp b{color:var(--text);font-weight:650}
+  .sp-fp{color:var(--text-dim)}
+  .sp-foot{padding:9px 16px;font-family:var(--font-mono);font-size:10px;color:var(--text-dim);border-top:1px solid var(--border);background:var(--bg-surface)}
+  @media(max-width:720px){.sp-grid{grid-template-columns:1fr}}
+</style>
