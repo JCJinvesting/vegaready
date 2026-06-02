@@ -54,6 +54,13 @@ export const metrics = [
     "classification": "predictive",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "MP·Lynas·Arafura; magnet/EV; defense input",
+      "direction": "Long ex-China REE",
+      "hedge": "License noise vs real cut; driver is China not Iran",
+      "horizon": "monthly",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -90,6 +97,13 @@ export const metrics = [
     "classification": "confirming",
     "stale_after": "100d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Short autos/discretionary/semis; long connector econ (MX/VN)",
+      "direction": "Short tariff-exposed sectors",
+      "hedge": "Announced ≠ effective; driver is US policy",
+      "horizon": "quarterly",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -157,6 +171,13 @@ export const metrics = [
     "classification": "coincident",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "FRO·NAT·DHT; freight FFAs; refiners",
+      "direction": "Long tankers",
+      "hedge": "Idiosyncratic — not a broad-market proxy",
+      "horizon": "days–weeks",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -196,6 +217,13 @@ export const metrics = [
     "classification": "predictive",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GCC sovereign CDS protection; short TASI/DFM; water-tech EPC",
+      "direction": "Long CDS protection (jump hedge)",
+      "hedge": "Jump risk, not continuous — fiscal cushion may absorb",
+      "horizon": "event/tail",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -234,6 +262,13 @@ export const metrics = [
     "classification": "confirming",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "LMT·RTX·ITA; replenishment backlog",
+      "direction": "Long defense (ceasefire-insensitive)",
+      "hedge": "Valuation-cooled — demand ≠ price",
+      "horizon": "multi-quarter",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -272,6 +307,13 @@ export const metrics = [
     "classification": "predictive",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GLD; GVZ/OVX vol; broad risk-off",
+      "direction": "Long gold/vol on proliferation jump",
+      "hedge": "Discrete jump — assessments PROVISIONAL",
+      "horizon": "event/jump",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -310,6 +352,13 @@ export const metrics = [
     "vertical": "Credit",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BIL/SHV; MMF; USD",
+      "direction": "Long front-end UST / cash",
+      "hedge": "The de-risking itself (coincident)",
+      "horizon": "days",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -348,6 +397,13 @@ export const metrics = [
     "vertical": "Crypto",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BTC; COIN/MSTR; crypto beta",
+      "direction": "Short crypto beta on outflow streak",
+      "hedge": "Single-day noisy — trade the streak",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -419,6 +475,13 @@ export const metrics = [
     "classification": "coincident",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "DBA; short Egypt/Pakistan FX",
+      "direction": "Long softs / short importer FX",
+      "hedge": "Ample stocks muted the pass-through",
+      "horizon": "monthly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -457,6 +520,13 @@ export const metrics = [
     "classification": "coincident",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "LME alu / JJU; AA; short auto input-cost",
+      "direction": "Long aluminium",
+      "hedge": "Isolate Gulf-supply vs China-demand",
+      "horizon": "weeks",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -495,6 +565,13 @@ export const metrics = [
     "classification": "confirming",
     "stale_after": "100d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GCC construction/RE eq; property REITs",
+      "direction": "Short GCC build margins",
+      "hedge": "Separate structural vs conflict inflation",
+      "horizon": "quarters",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -534,6 +611,13 @@ export const metrics = [
     "classification": "confirming",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Short PKR/INR/PHP; recipient-EM banks",
+      "direction": "Short recipient-EM FX",
+      "hedge": "Seasonality (Eid/holiday) adjust",
+      "horizon": "months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -572,6 +656,13 @@ export const metrics = [
     "classification": "predictive",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "CF·NTR·MOS·YARA; wheat/corn futures",
+      "direction": "Long fertilizer + grains (6–12mo fuse)",
+      "hedge": "The tradeable lag; vs China export policy",
+      "horizon": "6–12 months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -610,6 +701,13 @@ export const metrics = [
     "vertical": "Gold & FX",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GDX/GDXJ; GLD vs physical/EFP",
+      "direction": "Long structural gold (miners); watch paper-physical premium",
+      "hedge": "Not gold-bearish — CB buying offsets paper outflow",
+      "horizon": "weeks–months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -648,6 +746,13 @@ export const metrics = [
     "vertical": "Credit",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "TLT duration; USD",
+      "direction": "Short UST duration / watch term premium",
+      "hedge": "TIC custody noisy, ~2mo lag",
+      "horizon": "months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -686,6 +791,13 @@ export const metrics = [
     "vertical": "Equities",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "USMV/QUAL long; MTUM/EM-AI short",
+      "direction": "Long defensive factors / short momentum",
+      "hedge": "Confirm with breadth; one-week unwinds reverse",
+      "horizon": "weekly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -724,6 +836,13 @@ export const metrics = [
     "vertical": "Equities",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "RSP vs SPY; dispersion trades",
+      "direction": "Long equal-weight vs cap-weight (fragility)",
+      "hedge": "Narrow leadership can persist — flag not trigger",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -762,6 +881,13 @@ export const metrics = [
     "vertical": "Equities",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Long TASI energy / short DFM RE+banks (pair); GCC CDS",
+      "direction": "Pair: long TASI / short DFM",
+      "hedge": "Domestic-investor floors distort short-term",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -800,6 +926,13 @@ export const metrics = [
     "vertical": "Cross-Asset",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Cut 60/40 duration reliance; equity beta",
+      "direction": "Reduce diversification reliance (corr positive)",
+      "hedge": "Confirm with inflation-surprise, not the coefficient",
+      "horizon": "weekly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -838,6 +971,13 @@ export const metrics = [
     "vertical": "Cross-Asset",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "EEM puts / EM vol; EM FX·credit",
+      "direction": "Long EM vol / short EM beta",
+      "hedge": "Less timely than OVX — durable-regime confirm",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -876,6 +1016,13 @@ export const metrics = [
     "vertical": "Crypto",
     "stale_after": "1d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BTC/ETH options (Deribit); risk reversals",
+      "direction": "Long downside skew / protective puts pre-steepening",
+      "hedge": "Low ATM IV = controlled hedging, not panic",
+      "horizon": "intraday",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -914,6 +1061,13 @@ export const metrics = [
     "vertical": "Crypto",
     "stale_after": "1d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BTC/ETH perps & futures; CME basis",
+      "direction": "Fade leveraged longs / basis",
+      "hedge": "CEX OI self-reported (lower bound)",
+      "horizon": "hourly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -954,6 +1108,13 @@ export const metrics = [
     "baseline": 20,
     "value_type": "current_period",
     "stale_after": "2d",
+    "trade_expression": {
+      "instrument": "Brent; short EM importers; LNG/fertilizer",
+      "direction": "Long crude / short importers (master gauge)",
+      "hedge": "Weather/maintenance dips ≠ closure",
+      "horizon": "days–event",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -993,6 +1154,13 @@ export const metrics = [
     "classification": "predictive",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "EMB/EMHY short; CDX.EM protection; short EM-importer eq",
+      "direction": "Short EM credit / long protection",
+      "hedge": "Decompose vs UST beta",
+      "horizon": "weeks",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1032,6 +1200,13 @@ export const metrics = [
     "classification": "predictive",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BNO/Brent; FRO·NAT·DHT; reinsurers",
+      "direction": "Long crude floor + tankers",
+      "hedge": "Insurer leads the oil premium",
+      "horizon": "weeks",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1070,6 +1245,13 @@ export const metrics = [
     "vertical": "Gold & FX",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "UUP; short EEM/EM-FX; short BTC",
+      "direction": "Long USD / short EM-FX & BTC",
+      "hedge": "Consensus = mean-reverting; don’t chase",
+      "horizon": "days–weeks",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1108,6 +1290,13 @@ export const metrics = [
     "vertical": "Gold & FX",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "FXY (short USDJPY); EWJ short; TLT",
+      "direction": "Long JPY, risk-off",
+      "hedge": "Size only off confirmed intervention",
+      "horizon": "event",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1146,6 +1335,13 @@ export const metrics = [
     "vertical": "Insurance",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Tanker equities; freight FFAs",
+      "direction": "Long freight; risk to importers",
+      "hedge": "Restriction ≠ total withdrawal",
+      "horizon": "event",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1184,6 +1380,13 @@ export const metrics = [
     "vertical": "Cross-Asset",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Crude vol / oil options; Brent; energy eq",
+      "direction": "Long crude vol / energy",
+      "hedge": "Cleanest, low-noise; leads Brent spot",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1222,6 +1425,13 @@ export const metrics = [
     "classification": "predictive",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Telecom-resilience/satellite; EM fintech",
+      "direction": "Long resilience (narrow)",
+      "hedge": "NOT a broad-vol trade (documented false positive)",
+      "horizon": "event",
+      "status": "first-pass"
+    },
     "status": "ok"
   },
   {
@@ -1367,6 +1577,13 @@ export const signalCatalog = [
     "vertical": "Gold & FX",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GDX/GDXJ; GLD vs physical/EFP",
+      "direction": "Long structural gold (miners); watch paper-physical premium",
+      "hedge": "Not gold-bearish — CB buying offsets paper outflow",
+      "horizon": "weeks–months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -1405,6 +1622,13 @@ export const signalCatalog = [
     "vertical": "Gold & FX",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "UUP; short EEM/EM-FX; short BTC",
+      "direction": "Long USD / short EM-FX & BTC",
+      "hedge": "Consensus = mean-reverting; don’t chase",
+      "horizon": "days–weeks",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1443,6 +1667,13 @@ export const signalCatalog = [
     "vertical": "Gold & FX",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "FXY (short USDJPY); EWJ short; TLT",
+      "direction": "Long JPY, risk-off",
+      "hedge": "Size only off confirmed intervention",
+      "horizon": "event",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1482,6 +1713,13 @@ export const signalCatalog = [
     "classification": "predictive",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "EMB/EMHY short; CDX.EM protection; short EM-importer eq",
+      "direction": "Short EM credit / long protection",
+      "hedge": "Decompose vs UST beta",
+      "horizon": "weeks",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1520,6 +1758,13 @@ export const signalCatalog = [
     "vertical": "Credit",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BIL/SHV; MMF; USD",
+      "direction": "Long front-end UST / cash",
+      "hedge": "The de-risking itself (coincident)",
+      "horizon": "days",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -1558,6 +1803,13 @@ export const signalCatalog = [
     "vertical": "Credit",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "TLT duration; USD",
+      "direction": "Short UST duration / watch term premium",
+      "hedge": "TIC custody noisy, ~2mo lag",
+      "horizon": "months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -1597,6 +1849,13 @@ export const signalCatalog = [
     "classification": "predictive",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BNO/Brent; FRO·NAT·DHT; reinsurers",
+      "direction": "Long crude floor + tankers",
+      "hedge": "Insurer leads the oil premium",
+      "horizon": "weeks",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1635,6 +1894,13 @@ export const signalCatalog = [
     "classification": "coincident",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "FRO·NAT·DHT; freight FFAs; refiners",
+      "direction": "Long tankers",
+      "hedge": "Idiosyncratic — not a broad-market proxy",
+      "horizon": "days–weeks",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -1673,6 +1939,13 @@ export const signalCatalog = [
     "vertical": "Insurance",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Tanker equities; freight FFAs",
+      "direction": "Long freight; risk to importers",
+      "hedge": "Restriction ≠ total withdrawal",
+      "horizon": "event",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -1711,6 +1984,13 @@ export const signalCatalog = [
     "classification": "coincident",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "LME alu / JJU; AA; short auto input-cost",
+      "direction": "Long aluminium",
+      "hedge": "Isolate Gulf-supply vs China-demand",
+      "horizon": "weeks",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -1749,6 +2029,13 @@ export const signalCatalog = [
     "classification": "confirming",
     "stale_after": "100d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GCC construction/RE eq; property REITs",
+      "direction": "Short GCC build margins",
+      "hedge": "Separate structural vs conflict inflation",
+      "horizon": "quarters",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -1788,6 +2075,13 @@ export const signalCatalog = [
     "classification": "confirming",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Short PKR/INR/PHP; recipient-EM banks",
+      "direction": "Short recipient-EM FX",
+      "hedge": "Seasonality (Eid/holiday) adjust",
+      "horizon": "months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -1826,6 +2120,13 @@ export const signalCatalog = [
     "classification": "predictive",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "CF·NTR·MOS·YARA; wheat/corn futures",
+      "direction": "Long fertilizer + grains (6–12mo fuse)",
+      "hedge": "The tradeable lag; vs China export policy",
+      "horizon": "6–12 months",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -1865,6 +2166,13 @@ export const signalCatalog = [
     "classification": "coincident",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "DBA; short Egypt/Pakistan FX",
+      "direction": "Long softs / short importer FX",
+      "hedge": "Ample stocks muted the pass-through",
+      "horizon": "monthly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -1904,6 +2212,13 @@ export const signalCatalog = [
     "classification": "predictive",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GCC sovereign CDS protection; short TASI/DFM; water-tech EPC",
+      "direction": "Long CDS protection (jump hedge)",
+      "hedge": "Jump risk, not continuous — fiscal cushion may absorb",
+      "horizon": "event/tail",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -1940,6 +2255,13 @@ export const signalCatalog = [
     "classification": "predictive",
     "stale_after": "40d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "MP·Lynas·Arafura; magnet/EV; defense input",
+      "direction": "Long ex-China REE",
+      "hedge": "License noise vs real cut; driver is China not Iran",
+      "horizon": "monthly",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -1978,6 +2300,13 @@ export const signalCatalog = [
     "classification": "confirming",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "LMT·RTX·ITA; replenishment backlog",
+      "direction": "Long defense (ceasefire-insensitive)",
+      "hedge": "Valuation-cooled — demand ≠ price",
+      "horizon": "multi-quarter",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -2016,6 +2345,13 @@ export const signalCatalog = [
     "classification": "predictive",
     "stale_after": "event",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "GLD; GVZ/OVX vol; broad risk-off",
+      "direction": "Long gold/vol on proliferation jump",
+      "hedge": "Discrete jump — assessments PROVISIONAL",
+      "horizon": "event/jump",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -2056,6 +2392,13 @@ export const signalCatalog = [
     "baseline": 20,
     "value_type": "current_period",
     "stale_after": "2d",
+    "trade_expression": {
+      "instrument": "Brent; short EM importers; LNG/fertilizer",
+      "direction": "Long crude / short importers (master gauge)",
+      "hedge": "Weather/maintenance dips ≠ closure",
+      "horizon": "days–event",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -2092,6 +2435,13 @@ export const signalCatalog = [
     "classification": "confirming",
     "stale_after": "100d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Short autos/discretionary/semis; long connector econ (MX/VN)",
+      "direction": "Short tariff-exposed sectors",
+      "hedge": "Announced ≠ effective; driver is US policy",
+      "horizon": "quarterly",
+      "status": "first-pass"
+    },
     "status": "critical"
   },
   {
@@ -2130,6 +2480,13 @@ export const signalCatalog = [
     "classification": "predictive",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Telecom-resilience/satellite; EM fintech",
+      "direction": "Long resilience (narrow)",
+      "hedge": "NOT a broad-vol trade (documented false positive)",
+      "horizon": "event",
+      "status": "first-pass"
+    },
     "status": "ok"
   },
   {
@@ -2168,6 +2525,13 @@ export const signalCatalog = [
     "vertical": "Equities",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "USMV/QUAL long; MTUM/EM-AI short",
+      "direction": "Long defensive factors / short momentum",
+      "hedge": "Confirm with breadth; one-week unwinds reverse",
+      "horizon": "weekly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -2206,6 +2570,13 @@ export const signalCatalog = [
     "vertical": "Equities",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "RSP vs SPY; dispersion trades",
+      "direction": "Long equal-weight vs cap-weight (fragility)",
+      "hedge": "Narrow leadership can persist — flag not trigger",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -2244,6 +2615,13 @@ export const signalCatalog = [
     "vertical": "Equities",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Long TASI energy / short DFM RE+banks (pair); GCC CDS",
+      "direction": "Pair: long TASI / short DFM",
+      "hedge": "Domestic-investor floors distort short-term",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -2282,6 +2660,13 @@ export const signalCatalog = [
     "vertical": "Cross-Asset",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Crude vol / oil options; Brent; energy eq",
+      "direction": "Long crude vol / energy",
+      "hedge": "Cleanest, low-noise; leads Brent spot",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "watch"
   },
   {
@@ -2320,6 +2705,13 @@ export const signalCatalog = [
     "vertical": "Cross-Asset",
     "stale_after": "8d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "Cut 60/40 duration reliance; equity beta",
+      "direction": "Reduce diversification reliance (corr positive)",
+      "hedge": "Confirm with inflation-surprise, not the coefficient",
+      "horizon": "weekly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -2358,6 +2750,13 @@ export const signalCatalog = [
     "vertical": "Cross-Asset",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "EEM puts / EM vol; EM FX·credit",
+      "direction": "Long EM vol / short EM beta",
+      "hedge": "Less timely than OVX — durable-regime confirm",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -2396,6 +2795,13 @@ export const signalCatalog = [
     "vertical": "Crypto",
     "stale_after": "1d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BTC/ETH options (Deribit); risk reversals",
+      "direction": "Long downside skew / protective puts pre-steepening",
+      "hedge": "Low ATM IV = controlled hedging, not panic",
+      "horizon": "intraday",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -2434,6 +2840,13 @@ export const signalCatalog = [
     "vertical": "Crypto",
     "stale_after": "1d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BTC/ETH perps & futures; CME basis",
+      "direction": "Fade leveraged longs / basis",
+      "hedge": "CEX OI self-reported (lower bound)",
+      "horizon": "hourly",
+      "status": "first-pass"
+    },
     "status": "alert"
   },
   {
@@ -2472,6 +2885,13 @@ export const signalCatalog = [
     "vertical": "Crypto",
     "stale_after": "2d",
     "value_type": "current",
+    "trade_expression": {
+      "instrument": "BTC; COIN/MSTR; crypto beta",
+      "direction": "Short crypto beta on outflow streak",
+      "hedge": "Single-day noisy — trade the streak",
+      "horizon": "daily",
+      "status": "first-pass"
+    },
     "status": "critical"
   }
 ];
