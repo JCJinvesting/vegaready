@@ -1,0 +1,104 @@
+{
+  "program": "VegaReady Redesign",
+  "generated": "2026-06-03",
+  "source_of_truth": "audit (data-*.js Top-20 + element findings) + DESIGN-CONTRACT.md",
+  "note": "Immutable scope. New ideas go to LEDGER.open_questions, not into code, until promoted into a step by Opus. Order is dependency-resolved, not Top-20 rank order.",
+  "phases": [
+    {
+      "id": "P0", "theme": "Foundations & Design System",
+      "goal": "Stand up the locked design tokens and the shared component kit so every later page composes from them.",
+      "unlocks": "All feature work; the dual-mode spine.",
+      "discharges": ["Top20#8", "DESIGN-CONTRACT"],
+      "effort": "L",
+      "steps": [
+        {"id":"P0-S01","title":"Port DESIGN-CONTRACT tokens into the Astro app as a theme layer (data-theme ready)","why":"One source for colour/type/spacing; enables the user theme slider.","traces":["DESIGN-CONTRACT","global.css"],"accept":["all tokens are CSS vars under a theme scope","no colour/font literals outside the token layer","Ivory-Grey/Almanac grounds, Cream card, muted-main/accent split present"],"effort":"M","depends":[]},
+        {"id":"P0-S02","title":"Build the standardized finding-first analysis card component","why":"One archetype fixes twelve market pages; the corpus's worst inconsistency.","traces":["Top20#8","/markets card archetype"],"accept":["finding-first layout","single H/M/L confidence pill (hover for nuance)","2-3 hero metrics + collapsed detail/sources","renders in both modes"],"effort":"M","depends":["P0-S01"]},
+        {"id":"P0-S03","title":"Confidence chip + source-tier hook","why":"Unify HIGH/sentence/blank chaos into one pill linked to a tier explainer.","traces":["Top20#8","Top20#13"],"accept":["single H/M/L pill","links to one-time T1/T2/T3 explainer"],"effort":"S","depends":["P0-S01"]},
+        {"id":"P0-S04","title":"Reality badge + status tokens (Realized/Anticipated/Latent) + reality filter","why":"Separate realized fact from forward risk everywhere (owner-approved model).","traces":["reality-model","DESIGN-CONTRACT"],"accept":["badge renders on cards + causal edges","global filter: realized / +anticipated / +latent","latent never red"],"effort":"M","depends":["P0-S01"]},
+        {"id":"P0-S05","title":"Honest freshness banner — kill the hardcoded May-29 stamp","why":"A stale 'Live' date destroys the credibility the product projects.","traces":["Top20#4","freshness.js"],"accept":["date computed from real data timestamps or labelled 'Last reviewed'","no hardcoded date in freshness.js"],"effort":"S","depends":["P0-S01"]},
+        {"id":"P0-S06","title":"Scaffold shared parts: cascade rail, situation strip, trust badges, band, report surface","why":"Reusable parts the registry depends on; templated once.","traces":["Top20#10","Top20#15","DESIGN-CONTRACT registry"],"accept":["each part is a reusable component","situation strip separates realized vs latent","report surface uses the Almanac ground"],"effort":"M","depends":["P0-S01"]},
+        {"id":"P0-S07","title":"CI gates + preview workflow (token-lint, trace-grep, dual-mode assertion)","why":"Anti-drift for a multi-model build; preview-not-live discipline.","traces":["protocol-s4","protocol-s10"],"accept":["token-lint fails on off-system literals","trace-comment grep for orphans","local preview documented; deploy only on phase approval"],"effort":"M","depends":["P0-S01"]}
+      ]
+    },
+    {
+      "id": "P1", "theme": "The Simple ⇄ Analyst spine",
+      "goal": "Ship the persistent, remembered toggle; every page renders meaningfully in both modes.",
+      "unlocks": "All dual-mode page work downstream.",
+      "discharges": ["Top20#1"],
+      "effort": "M",
+      "steps": [
+        {"id":"P1-S01","title":"Persistent, remembered Simple/Analyst toggle (top-right, localStorage)","why":"The keystone decision resolving expert-vs-newcomer across all routes.","traces":["Top20#1"],"accept":["persists across pages","defaults to Simple","present on every page"],"effort":"M","depends":["P0-S02"]},
+        {"id":"P1-S02","title":"Dual-mode contract + drill-down: Simple=answer, Analyst=answer+apparatus+trade","why":"Analyst must add depth, not just reformat (owner feedback).","traces":["Top20#1","analyst-depth"],"accept":["Analyst exposes source chains/positioning/registries Simple hides","both modes have an expand/drill-down to deeper detail"],"effort":"M","depends":["P1-S01"]}
+      ]
+    },
+    {
+      "id": "P2", "theme": "Comprehension layer",
+      "goal": "Make the depth legible to the newcomer without weakening the analyst view.",
+      "unlocks": "Front-door credibility; markets at scale.",
+      "discharges": ["Top20#2","Top20#3","Top20#12","Top20#13","Top20#14"],
+      "effort": "L",
+      "steps": [
+        {"id":"P2-S01","title":"Wire the 209-term glossary as inline tooltips on first use","why":"Hardest comprehension barrier; the fix already ships in the data.","traces":["Top20#3","GLOSSARY_ENTRIES"],"accept":["dotted-underline first occurrence","hover/tap plain definition","term/meaning/in-practice template"],"effort":"M","depends":["P0-S01"]},
+        {"id":"P2-S02","title":"TL;DR + key-asymmetry band on every analysis page","why":"Thesis blocks exist but are long and below the fold.","traces":["Top20#2"],"accept":["1-sentence plain TL;DR at top","one bolded asymmetry","all market + synthesis pages"],"effort":"M","depends":["P0-S02"]},
+        {"id":"P2-S03","title":"Collapsible thesis (TL;DR → expandable detail)","why":"Same content, two reading speeds.","traces":["Top20#14"],"accept":["1-2 sentence summary visible","'read full thesis' expands","collapsed by default"],"effort":"M","depends":["P2-S02"]},
+        {"id":"P2-S04","title":"Source-tier + confidence explainer (one-time, dismissible)","why":"A genuine strength shown without explanation.","traces":["Top20#13"],"accept":["inline legend on first encounter","linked from every tier chip"],"effort":"S","depends":["P0-S03"]},
+        {"id":"P2-S05","title":"Outcome-renamed nav (plain glosses in Simple, precise nouns in Analyst)","why":"Transmission/Exposure/Connections are cold to newcomers.","traces":["Top20#12"],"accept":["Simple shows 'How it spreads' etc.","Analyst keeps precise names"],"effort":"S","depends":["P1-S01"]}
+      ]
+    },
+    {
+      "id": "P3", "theme": "Front-door credibility",
+      "goal": "Make the homepage and About convert a cold visitor and an LP.",
+      "unlocks": "Public showcase readiness.",
+      "discharges": ["Top20#4","Top20#6","Top20#7","Top20#10"],
+      "effort": "M",
+      "steps": [
+        {"id":"P3-S01","title":"Rewrite the homepage hero for a cold non-specialist","why":"'Sensitivity to volatility.' is a pun a newcomer can't parse.","traces":["Top20#6","/"],"accept":["leads with concrete outcome + worked example","pun demoted to reward"],"effort":"S","depends":["P0-S01"]},
+        {"id":"P3-S02","title":"Demote 'Coming soon' to one honest roadmap line","why":"3-of-4 'coming soon' signals an unfinished product on a billboard.","traces":["Top20#7","/"],"accept":["unshipped cards removed/collapsed","single roadmap line; live corpus foregrounded"],"effort":"S","depends":["P0-S01"]},
+        {"id":"P3-S03","title":"Promote the cascade diagram into the interactive nav spine","why":"The site's mental model, currently decorative.","traces":["Top20#10","/"],"accept":["cascade rail is real navigation","'where am I / next' on analysis pages"],"effort":"M","depends":["P0-S06"]},
+        {"id":"P3-S04","title":"Make About the canonical #methodology anchor (show, don't tell)","why":"The confidence system is the deepest credibility asset.","traces":["/about","Top20#13"],"accept":["T1/T2/T3 + attribution shown with a worked example","linked from tier chips"],"effort":"S","depends":["P2-S04"]},
+        {"id":"P3-S05","title":"Verify freshness fix renders honestly site-wide","why":"Close the Tier-1 credibility defect everywhere.","traces":["Top20#4"],"accept":["no page shows a stale 'Live' date"],"effort":"S","depends":["P0-S05"]}
+      ]
+    },
+    {
+      "id": "P4", "theme": "Markets at scale",
+      "goal": "Roll the standardized card + dual-mode + mobile-safe tables across all 12 sections.",
+      "unlocks": "The bulk of the analysis corpus.",
+      "discharges": ["Top20#5","Top20#8","Top20#14"],
+      "effort": "L",
+      "steps": [
+        {"id":"P4-S01","title":"Apply the standardized card across the 12 market pages","why":"One archetype, twelve pages.","traces":["Top20#8","/markets/*"],"accept":["every market page uses the card","humanized metric labels","one confidence pill pattern"],"effort":"L","depends":["P0-S02","P1-S02"]},
+        {"id":"P4-S02","title":"Make wide tables mobile-safe (summary band + sticky first column)","why":"19x9 tables scroll-clip on the device an LP opens links on.","traces":["Top20#5"],"accept":["2-3 stat headline per table","sticky first column","key-columns collapse on mobile"],"effort":"M","depends":["P0-S02"]},
+        {"id":"P4-S03","title":"Add charts/maps where the audit flagged them","why":"Density is all-text; visuals carry the story.","traces":["audit-visuals","/markets/*"],"accept":["price/correlation charts + geographic maps where flagged"],"effort":"L","depends":["P4-S01"]},
+        {"id":"P4-S04","title":"Scenario-state as a situation section (realized vs latent separated)","why":"Promote scenario state out of global chrome into its own clear section.","traces":["Top20#15","scenario-states"],"accept":["realized vs latent visually separated","not in the global header"],"effort":"M","depends":["P0-S06"]}
+      ]
+    },
+    {
+      "id": "P5", "theme": "Synthesis showcase",
+      "goal": "Turn the most compelling, most under-designed pages into the showcase.",
+      "unlocks": "The differentiated thesis surfaces.",
+      "discharges": ["Top20#10","Top20#16","Top20#17","Top20#20"],
+      "effort": "L",
+      "steps": [
+        {"id":"P5-S01","title":"Connections: render themes + 9 edges as a navigable causal graph","why":"The intellectual core, currently walls of text.","traces":["Top20#16","/connections"],"accept":["navigable weighted edges","attribution + residual visible","Tracked/Proposed + reality status"],"effort":"L","depends":["P4-S01"]},
+        {"id":"P5-S02","title":"Exposure: winners/losers world map + sortable matrix","why":"The most LP-legible content, presented as text profiles today.","traces":["/exposure"],"accept":["color-coded map","sortable 8-dimension matrix","key-asymmetry up top"],"effort":"M","depends":["P4-S01"]},
+        {"id":"P5-S03","title":"Who Profits: channel→beneficiary→phase/vehicle cards; name the blank groups","why":"Most commercial content in its weakest packaging; 8 blank titles is a hard defect.","traces":["Top20#16","Top20#17","/profits"],"accept":["all 8 groups named","channel/phase/vehicle card structure"],"effort":"M","depends":["P4-S01"]},
+        {"id":"P5-S04","title":"Cascade rail everywhere + breadcrumbs + templated related-sections footer","why":"Universalize the spine and cross-navigation.","traces":["Top20#10","Top20#20"],"accept":["rail on every analysis page","uniform 3-link footer"],"effort":"M","depends":["P3-S03"]}
+      ]
+    },
+    {
+      "id": "P6", "theme": "Live layer & dashboard + consistency QA",
+      "goal": "Make the densest layer welcoming and close the credibility punch-list.",
+      "unlocks": "Program done (audit Top-20 as a checklist).",
+      "discharges": ["Top20#9","Top20#11","Top20#18","Top20#19"],
+      "effort": "L",
+      "steps": [
+        {"id":"P6-S01","title":"Dashboard: Simple-default 'War Room briefing' tab + SSR/static fallback","why":"The plain-English on-ramp already exists in the data; client-only shell is empty without JS.","traces":["Top20#11","WAR_ROOM_BRIEFS"],"accept":["War Room briefing is the Simple landing","server-rendered non-empty shell"],"effort":"L","depends":["P1-S02"]},
+        {"id":"P6-S02","title":"Gloss dashboard codes inline (B/C/U, BDA, operations)","why":"Most jargon-dense surface, almost none glossed.","traces":["dashboard-jargon"],"accept":["codes spelled out / glossed on first use"],"effort":"M","depends":["P2-S01"]},
+        {"id":"P6-S03","title":"Human /signals board (rendered preview + schema + copy-endpoint)","why":"Raw JSON is hostile to the curious LP.","traces":["Top20#18","/signals.json"],"accept":["readable signals board","links to the machine endpoint"],"effort":"M","depends":["P0-S02"]},
+        {"id":"P6-S04","title":"Reconcile contradictory anchor figures [research lane]","why":"Urea 36% vs 30-40%; defense $2.887tn vs $2.718tn undermine rigor.","traces":["Top20#9","RESEARCH/"],"accept":["one canonical figure each + a single reconciliation note","edited in canonical JSON then regenerated"],"effort":"M","depends":[]},
+        {"id":"P6-S05","title":"Unify the conflict's five names + two day-counts","why":"The glossary alone carries five names.","traces":["Top20#19"],"accept":["one canonical name + duration; aliases mapped"],"effort":"S","depends":[]},
+        {"id":"P6-S06","title":"Consistency QA close-out (full-site smoke + Top-20 checklist)","why":"Program definition-of-done.","traces":["Top20#20","consistency-punch-list"],"accept":["every route loads, no console errors","mobile reflow intact","Top-20 passes as a checklist"],"effort":"M","depends":["P5-S04"]}
+      ]
+    }
+  ]
+}
