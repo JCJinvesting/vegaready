@@ -1,10 +1,10 @@
 {
   "updated": "2026-06-03",
-  "updated_by": "Cowork Opus · bootstrap",
+  "updated_by": "Cowork Opus · P0-S01 in progress",
   "current_phase": 0,
   "phase_gate": "preview-first: each step reviewed in local preview; deploy to live only on owner approval of a phase",
   "steps": [
-    {"id":"P0-S01","title":"Port DESIGN-CONTRACT tokens into Astro theme layer","status":"todo","owner":null,"branch":"p0-s01-design-tokens","depends":[],"notes":"first build step; deliver as local preview"},
+    {"id":"P0-S01","title":"Port DESIGN-CONTRACT tokens into Astro theme layer","status":"in_progress","owner":"Cowork Opus","branch":"p0-s01-design-tokens","depends":[],"notes":"global.css token values remapped to locked palette + new tokens + data-theme; awaiting local-preview review"},
     {"id":"P0-S02","title":"Standardized finding-first analysis card","status":"todo","owner":null,"branch":"p0-s02-analysis-card","depends":["P0-S01"],"notes":""},
     {"id":"P0-S03","title":"Confidence chip + tier hook","status":"todo","owner":null,"branch":"p0-s03-confidence-chip","depends":["P0-S01"],"notes":""},
     {"id":"P0-S04","title":"Reality badge + status tokens + filter","status":"todo","owner":null,"branch":"p0-s04-reality-badge","depends":["P0-S01"],"notes":""},

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VegaReady — Brand &amp; Colour Guide v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0E1217; --bg2:#121821; --card:#161D27; --card2:#1A222E; --line:#232C38; --line2:#313C4A;
+    --ink:#E8EAEE; --inksoft:#B3BCC7; --muted:#7E8896; --faint:#5C6675;
+    --main:#46C8DE; --accent:#E0A24A;
+    --realized:#46C9A0; --anticipated:#E0B262; --latent:#84909E; --alert:#E16470;
+    --display:'Playfair Display'; --body:'Fraunces'; --num:'Lora'; --mono:'IBM Plex Mono';
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body),Georgia,serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:var(--display),serif;letter-spacing:-.01em;color:var(--ink);}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 30px;}
+  a{color:var(--main);text-decoration:none;}
+
+  header.hd{padding:54px 0 20px;border-bottom:1px solid var(--line);}
+  .ey{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:16px;}
+  header.hd h1{font-size:clamp(2.1rem,4.4vw,2.9rem);line-height:1.05;font-weight:600;max-width:24ch;}
+  header.hd .sub{font-size:16px;color:var(--inksoft);max-width:76ch;margin-top:16px;line-height:1.7;}
+  header.hd .sub b{color:var(--ink);}
+  .lineage{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px;}
+  .lin{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line2);border-radius:100px;padding:4px 10px;}
+
+  .sec{padding:40px 0 6px;}
+  .sec .sh{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--main);font-weight:600;margin-bottom:8px;}
+  .sec h2{font-size:1.85rem;font-weight:600;margin-bottom:10px;}
+  .sec .sl{font-size:14.5px;color:var(--inksoft);max-width:80ch;margin-bottom:22px;line-height:1.7;}
+  .sec .sl b{color:var(--ink);}
+  .q{font-family:var(--display);font-style:italic;font-size:18px;color:var(--ink);border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:18px 0;max-width:74ch;}
+  .q .qa{display:block;font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px;}
+
+  .prin{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:11px;margin:16px 0;}
+  .pc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:15px 17px;}
+  .pc h4{font-size:15px;margin-bottom:5px;}
+  .pc p{font-size:12.5px;color:var(--inksoft);line-height:1.55;}
+  .pc p b{color:var(--ink);}
+
+  .fam{margin:6px 0 30px;}
+  .fam-h{display:flex;align-items:baseline;gap:12px;margin:18px 0 12px;flex-wrap:wrap;}
+  .fam-h h3{font-size:18px;}
+  .fam-h .fn{font-size:12.5px;color:var(--muted);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:10px;}
+  .sw{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card);}
+  .sw .demo{height:86px;position:relative;}
+  .sw .body{padding:9px 12px 11px;}
+  .sw .top{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;}
+  .sw .nm{font-size:13px;font-weight:600;font-family:var(--display);}
+  .sw .hx{font-family:var(--mono);font-size:9.5px;color:var(--muted);}
+  .sw .ps{font-size:11.5px;color:var(--inksoft);line-height:1.5;margin-top:6px;}
+  .sw .meta{display:flex;gap:4px;margin-top:7px;flex-wrap:wrap;}
+  .tag{font-family:var(--mono);font-size:8px;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:100px;border:1px solid var(--line2);color:var(--muted);}
+  .tag.t1{color:var(--realized);border-color:var(--realized);}
+  .tag.t2{color:var(--main);border-color:var(--main);}
+  .tag.t3{color:var(--anticipated);border-color:var(--anticipated);}
+  .tag.tu{color:var(--inksoft);}
+  .tag.risk{color:var(--alert);border-color:var(--alert);}
+  .crp{font-family:var(--mono);font-size:8.5px;padding:2px 7px;border-radius:100px;border:1px solid var(--line2);color:var(--muted);}
+  .crp.aa{color:var(--realized);border-color:var(--realized);}
+  .crp.aal{color:var(--anticipated);border-color:var(--anticipated);}
+  .crp.no{color:var(--alert);border-color:var(--alert);}
+
+  .elev{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:12px;}
+  .ed{border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,.07);}
+  .ed .edn{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:9px;}
+  .ed .l1{border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,.08);}
+  .ed .l2{border-radius:6px;padding:10px;margin-top:9px;border:1px solid rgba(255,255,255,.09);}
+  .ed p{font-size:12px;line-height:1.5;opacity:.85;}
+
+  /* gradients */
+  .gradrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:11px;}
+  .gr{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card);}
+  .gr .bar{height:52px;display:flex;align-items:center;padding:0 14px;}
+  .gr .bar span{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;}
+  .gr .gb{padding:9px 13px;}
+  .gr .gn{font-size:12.5px;font-weight:600;font-family:var(--display);}
+  .gr .ge{font-size:11.5px;color:var(--inksoft);margin-top:3px;line-height:1.45;}
+  .gr .gu{font-family:var(--mono);font-size:8.5px;color:var(--faint);margin-top:5px;text-transform:uppercase;letter-spacing:.04em;}
+
+  /* forbidden */
+  .forb{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:10px;}
+  .fb{border:1px solid var(--alert);border-radius:8px;overflow:hidden;background:var(--card);}
+  .fb .demo{height:58px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:16px;font-weight:600;}
+  .fb .body{padding:8px 12px;}
+  .fb .fn2{font-size:11.5px;color:var(--inksoft);line-height:1.45;}
+  .fb .fr{font-family:var(--mono);font-size:9px;color:var(--alert);margin-top:4px;}
+
+  /* CTA row */
+  .ctarow{display:grid;grid-template-columns:repeat(auto-fill,minmax(236px,1fr));gap:10px;}
+  .cta{background:#FAFAFA;border-radius:8px;border:1px solid var(--line);padding:16px 14px;}
+  .cta .btn{display:inline-block;font-family:var(--body);font-weight:700;font-size:13px;padding:9px 16px;border-radius:6px;}
+  .cta .cl{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;color:#76756A;margin-top:10px;line-height:1.6;}
+
+  /* type specimens */
+  .typ{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 22px;}
+  .trow{display:grid;grid-template-columns:1fr 190px;gap:16px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);}
+  .trow:last-child{border-bottom:none;}
+  .trow .tm{font-family:var(--mono);font-size:9.5px;color:var(--muted);text-align:right;line-height:1.7;}
+  .trow .tm b{color:var(--ink);font-weight:500;display:block;}
+
+  table.roles{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0;}
+  table.roles th{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 11px;border-bottom:2px solid var(--line2);}
+  table.roles td{padding:9px 11px;border-bottom:1px solid var(--line);color:var(--inksoft);vertical-align:top;line-height:1.5;}
+  table.roles td:first-child{font-weight:600;color:var(--ink);white-space:nowrap;font-family:var(--display);}
+  table.roles .chip{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1px solid rgba(255,255,255,.18);}
+
+  .rules{counter-reset:r;max-width:86ch;}
+  .rule{display:grid;grid-template-columns:32px 1fr;gap:13px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .rule::before{counter-increment:r;content:counter(r,decimal-leading-zero);font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:2px;}
+  .rule h4{font-size:14.5px;margin-bottom:3px;}
+  .rule p{font-size:13px;color:var(--inksoft);line-height:1.6;}
+  .rule p b{color:var(--ink);}
+  .seqdemo{display:flex;border-radius:6px;overflow:hidden;margin-top:8px;border:1px solid var(--line2);}
+  .seqdemo div{flex:1;padding:7px 4px;text-align:center;font-family:var(--mono);font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;}
+
+  .next{background:var(--card);border:1px solid var(--line2);border-radius:10px;padding:20px 24px;margin:32px 0 60px;}
+  .next h3{font-size:17px;margin-bottom:8px;}
+  .next p{font-size:13.5px;color:var(--inksoft);line-height:1.65;max-width:82ch;}
+  .next p b{color:var(--ink);}
+  footer{padding:0 0 60px;color:var(--faint);font-size:12px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hd">
+    <div class="ey">VegaReady · A JCJ Investing product · Guide v2</div>
+    <h1>The VegaReady Brand &amp; Colour Guide</h1>
+    <p class="sub">The complete colour and tone system for VegaReady — every colour from the JCJ corpus rendered <b>in its actual function</b> (canvas, panel, overlay, accent, CTA, text, risk), with tier, coverage ratio, regional note, and live WCAG scoring. Built from the JCJ Brand Guidelines v13, the Colour Psychology Dictionary &amp; Transition Map, the Master Colour Guide (60-colour reference · practical application · 55-colour sequential matrix), and the VegaReady design-session ledger.</p>
+    <div class="lineage">
+      <span class="lin">JCJ Brand Guidelines v13</span><span class="lin">Colour Dictionary + Transitions</span><span class="lin">Sequential Matrix · 55</span><span class="lin">Practical Application</span><span class="lin">Session ledger</span><span class="lin">v2 · full atlas + functions</span>
+    </div>
+  </header>
+
+  <!-- 01 -->
+  <section class="sec">
+    <div class="sh">01 · Brand foundation</div>
+    <h2>Quiet confidence, translated to the web</h2>
+    <p class="sl"><b>"Our materials are not designed to persuade through flash, but to clarify through precision."</b> Every VegaReady decision serves the allocator's lens — simplifying complexity, signalling control, reducing emotional friction.</p>
+    <div class="prin">
+      <div class="pc"><h4>Structure over flair</h4><p>Hierarchy and rhythm persuade. <b>"A gradient is not a background; it's a behavioural cue."</b></p></div>
+      <div class="pc"><h4>Emotional friction-aware</h4><p>Every tone answers a reader anxiety. Colour asks: <b>what does this reader fear here?</b></p></div>
+      <div class="pc"><h4>Calm tone, serious execution</h4><p>"No hype — just trust and alignment." Sentence-case CTAs; honest, never alarmist risk.</p></div>
+      <div class="pc"><h4>Show, don't sell</h4><p>"Let stats lead." Figures get their own typographic role and a controlled glow on dark.</p></div>
+    </div>
+    <div class="q">"Institutional design isn't decoration — it's decision-making at 24px spacing."<span class="qa">JCJ Brand Guidelines v13</span></div>
+  </section>
+
+  <!-- 02 -->
+  <section class="sec">
+    <div class="sh">02 · The operating system</div>
+    <h2>Tiers, layers, ratios, transitions</h2>
+    <div class="prin">
+      <div class="pc"><h4>Tiers</h4><p><b>T1</b> core anchors — first choice, always. <b>T2</b> structural — only when T1 doesn't fit, <b>document why</b>. <b>T3</b> behavioural — one purpose, never full backgrounds, never stacked. <b>Utility</b> — the neutral connective tissue.</p></div>
+      <div class="pc"><h4>The 5 layers + coverage</h4><p><b>Canvas</b> 70–100% · <b>Overlay/Surface</b> 20–40% · <b>Structural</b> 15–30% · <b>Text</b> — · <b>CTA/Accent 1–5%</b>. Coverage discipline is the anti-distraction mechanism.</p></div>
+      <div class="pc"><h4>Transitions</h4><p>Tones enter/exit through neutrals. <b>Never fear ↔ hope adjacency</b>. <b>No same-emotion stacking</b> ("optimism → optimism = saturation"). <b>Risk quarantined</b>.</p></div>
+      <div class="pc"><h4>Contrast floor</h4><p><b>4.5:1</b> body text (WCAG 2.1, JCJ standard). White on darks, charcoal on lights, never light-on-light. Every demo below is live-scored.</p></div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="sec">
+    <div class="sh">03 · Why blue-black</div>
+    <h2>The JCJ system already chose your dark</h2>
+    <p class="sl">JCJ's approved dark canvases are <b>all blue-blacks</b>: Navy #0B2E4E, Oxford Blue #14213D (tagged <b>"dark-mode covers"</b>), Federal Blue #2C3E50, Payne's Gray #404E5C, Deep Custody Green #1C6357 — and <b>"Off Black #111111: text/lines only; avoid all-black slides."</b> VegaReady's dark is the brand's own dark register, deepened for screen.</p>
+  </section>
+
+  <!-- 04 DARK SYSTEM -->
+  <section class="sec">
+    <div class="sh">04 · The dark system — trial candidates</div>
+    <h2>Canvases: ten shades of blue-black</h2>
+    <p class="sl">Ordered deep → lifted, plus two wildcards. Deeper = focused/terminal; lifted = softer/editorial. These go to the side-by-side trial.</p>
+    <div class="grid" id="darkCanvas"></div>
+    <div class="fam"><div class="fam-h"><h3>Elevation — canvas → surface → raised</h3><span class="fn">depth by lightening ~4–6% per layer</span></div><div class="elev" id="elev"></div></div>
+    <div class="fam"><div class="fam-h"><h3>Ink on dark</h3><span class="fn">scored vs Deep Desk #0E1217</span></div><div class="grid" id="darkInk"></div></div>
+    <div class="fam"><div class="fam-h"><h3>Structural mains</h3><span class="fn">labels · links · rules — muted at scale</span></div><div class="grid" id="darkMain"></div></div>
+    <div class="fam"><div class="fam-h"><h3>Accents</h3><span class="fn">buttons · marks · hero figures — the 1–5% layer</span></div><div class="grid" id="darkAccent"></div></div>
+    <div class="fam"><div class="fam-h"><h3>Status &amp; reality</h3><span class="fn">semantics, theme-independent</span></div><div class="grid" id="darkStatus"></div></div>
+  </section>
+
+  <!-- 05 FULL ATLAS -->
+  <section class="sec">
+    <div class="sh">05 · The full JCJ colour atlas — every colour, in its function</div>
+    <h2>56 colours, rendered doing their jobs</h2>
+    <p class="sl">The complete inventory from your guides. Each card <b>demonstrates the colour in its documented function</b> on its native light canvas: canvases render as canvases, panels as panels on ground, overlays as bands, accents as marks, CTAs as buttons, text-tones as type, risk as alert strips. Chips show <b>tier · function · coverage limit · region</b>; pills show measured contrast. Where a colour also serves the dark theme, the note says so.</p>
+    <div id="atlas"></div>
+  </section>
+
+  <!-- 06 CTA SYSTEM -->
+  <section class="sec">
+    <div class="sh">06 · The CTA system — four verbs, four tones</div>
+    <h2>Track · Ask · Commit · Refer</h2>
+    <p class="sl">JCJ maps CTA <b>verbs</b> to tones by emotional risk. Translated to VegaReady's web actions — and honouring the law that <b>the action colour lives on buttons, never as a theme</b>.</p>
+    <div class="ctarow">
+      <div class="cta"><span class="btn" style="background:#3BAFDA;color:#fff">Track this signal</span><div class="cl">Sky Blue #3BAFDA · passive · zero pressure<br/>watchlists, follows, alerts</div></div>
+      <div class="cta"><span class="btn" style="background:#36BBA6;color:#fff">Ask about the method</span><div class="cl">Teal #36BBA6 · low risk · "clarity and soft action"<br/>contact, methodology, glossary</div></div>
+      <div class="cta"><span class="btn" style="background:#5CD0BE;color:#10312B">Open the desk</span><div class="cl">Approval Green #5CD0BE · commit point<br/>subscribe, request access</div></div>
+      <div class="cta"><span class="btn" style="background:#E6E6FA;color:#2A2A3C">Share this brief</span><div class="cl">Fog Purple #E6E6FA · minimal risk · soft handoff<br/>share, export, refer</div></div>
+    </div>
+    <p class="sl" style="margin-top:14px">On the dark theme the same verbs map to the dark accents: Track → Desk Cyan · Ask → Teal Mist · Commit → Desk Amber / JCJ Gold · Share → Steel. One CTA per view (JCJ law); sentence case always.</p>
+  </section>
+
+  <!-- 07 GRADIENTS -->
+  <section class="sec">
+    <div class="sh">07 · Approved gradients — behavioural cues, not decoration</div>
+    <h2>The sanctioned transitions</h2>
+    <p class="sl">Rules, verbatim in spirit: <b>exactly 2 stops · left→right</b> (top→bottom for footers only; diagonal/radial = "too decorative") · <b>always fade to a neutral</b> · one per view · never under dense text · content sits in the emotional zones (entry 0–30%, pivot 30–70%, resolution 70–100%).</p>
+    <div class="gradrow" id="grads"></div>
+  </section>
+
+  <!-- 08 FORBIDDEN -->
+  <section class="sec">
+    <div class="sh">08 · Forbidden combinations — rendered, so they're never repeated</div>
+    <h2>The blocked list, with the proof</h2>
+    <p class="sl">Your guides name these explicitly. Each tile shows the failure with its measured ratio.</p>
+    <div class="forb" id="forb"></div>
+  </section>
+
+  <!-- 09 TYPOGRAPHY -->
+  <section class="sec">
+    <div class="sh">09 · Typography — the web stack and its JCJ lineage</div>
+    <h2>Playfair · Fraunces · Lora · Plex Mono</h2>
+    <p class="sl"><b>Playfair Display Italic is JCJ's own pull-quote face</b> — the website's headline serif descends directly from the deck system (Georgia/Playfair quote lineage). The web stack keeps JCJ's layer logic: one hero figure per view, sentence-case CTAs, left-aligned reasoning, footnotes never under 12px.</p>
+    <div class="typ">
+      <div class="trow"><div style="font-family:var(--display);font-size:38px;font-weight:600;line-height:1.08">How it all moved — and apart.</div><div class="tm"><b>Headline · Playfair Display</b>H1 40–48px · 600 · −.01em</div></div>
+      <div class="trow"><div style="font-family:var(--display);font-style:italic;font-size:19px;color:var(--inksoft)">"Volatility isn't risk. It's signal."</div><div class="tm"><b>Pull quote · Playfair Italic</b>JCJ quote lineage · 18–22px</div></div>
+      <div class="trow"><div style="font-family:var(--body);font-size:16px;color:var(--inksoft);max-width:60ch">The reading face. An inflationary supply shock broke the diversification relationships of the 2010s — set at a 62–72 character measure.</div><div class="tm"><b>Body · Fraunces</b>16px · 1.6–1.65 · 62–72ch</div></div>
+      <div class="trow"><div class="num" style="font-family:var(--num);font-size:30px;font-weight:600;color:var(--accent)">28.4 → 120.9</div><div class="tm"><b>Figures · Lora</b>hero stats · tabular-nums · one per view</div></div>
+      <div class="trow"><div style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--main)">Markets · Cross-Asset · T1 · CBOE/FRED</div><div class="tm"><b>Labels · IBM Plex Mono</b>10–11px · caps · tiers/routes/IDs</div></div>
+    </div>
+  </section>
+
+  <!-- 10 ROLES -->
+  <section class="sec">
+    <div class="sh">10 · The functional map</div>
+    <h2>Roles, ratios, rules</h2>
+    <table class="roles">
+      <thead><tr><th>Role</th><th>Dark theme</th><th>Light theme</th><th>Rule</th></tr></thead>
+      <tbody>
+        <tr><td>Canvas</td><td><span class="chip" style="background:#0E1217"></span>blue-black (trial)</td><td><span class="chip" style="background:#F4F3EE"></span>Ivory-Grey / JCJ Off White</td><td>70–100%; never pure black ("avoid all-black")</td></tr>
+        <tr><td>Surface / card</td><td><span class="chip" style="background:#161D27"></span>canvas +5%</td><td><span class="chip" style="background:#FBF7EF"></span>Cream</td><td>20–40%; one elevation step</td></tr>
+        <tr><td>Overlay / container</td><td><span class="chip" style="background:#1A222E"></span>raised step</td><td><span class="chip" style="background:#E9EDF2"></span>Modal Gray — "the universal primer"</td><td>info panels, zebra rows, neutral framing</td></tr>
+        <tr><td>Structural main</td><td><span class="chip" style="background:#46C8DE"></span>desk cyan family</td><td><span class="chip" style="background:#2F4853"></span>muted petrol</td><td>15–30%; muted at scale; bands use deepened mix</td></tr>
+        <tr><td>Text</td><td><span class="chip" style="background:#E8EAEE"></span>cool paper</td><td><span class="chip" style="background:#33302A"></span>soft warm ink</td><td>≥4.5:1; never coloured body text</td></tr>
+        <tr><td>CTA / accent</td><td><span class="chip" style="background:#E0A24A"></span>amber / JCJ Gold</td><td><span class="chip" style="background:#B5532E"></span>terracotta</td><td><b style="color:var(--ink)">1–5%</b>; buttons, ν, one hero figure; verb→tone per §06</td></tr>
+        <tr><td>Quote / framing</td><td><span class="chip" style="background:#F4C37D"></span>JCJ Gold text</td><td><span class="chip" style="background:#E6E6FA"></span>Fog Purple / Bone fill</td><td>JCJ quote law: Gold/Fog/Bone framing; never quote + CTA together</td></tr>
+        <tr><td>Realized / positive</td><td colspan="2"><span class="chip" style="background:#46C9A0"></span>green family</td><td>observed fact, gains</td></tr>
+        <tr><td>Anticipated / caution</td><td colspan="2"><span class="chip" style="background:#E0B262"></span>amber family</td><td>forward, unobserved; never bright orange at scale</td></tr>
+        <tr><td>Latent / dormant</td><td colspan="2"><span class="chip" style="background:#84909E"></span>steel grey</td><td>deliberately not red</td></tr>
+        <tr><td>Alert (reserved)</td><td colspan="2"><span class="chip" style="background:#E16470"></span>Crimson lineage</td><td>live alerts/losses only; ≤10%; never near optimism; never animated</td></tr>
+        <tr><td>Data-viz series</td><td colspan="2"><span class="chip" style="background:#46C8DE"></span><span class="chip" style="background:#E0A24A"></span><span class="chip" style="background:#46C9A0"></span><span class="chip" style="background:#9A8CC9"></span><span class="chip" style="background:#84909E"></span>cyan · amber · green · violet · steel</td><td>max 3 per chart (JCJ law); red = loss data only</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 11 ADJACENCY -->
+  <section class="sec">
+    <div class="sh">11 · Adjacency &amp; sequencing</div>
+    <h2>How sections may follow each other</h2>
+    <div class="rules">
+      <div class="rule"><div><h4>Neutrals are the connective tissue</h4><p>Coloured bands are entered and exited through canvas/surface neutrals — the "Modal Gray primer" pattern. <b>Canvas = the universal reset.</b></p>
+        <div class="seqdemo"><div style="background:#FAFAFA;color:#525C66">neutral</div><div style="background:#0B2E4E;color:#fff">statement</div><div style="background:#E9EDF2;color:#525C66">container</div><div style="background:#2B50AA;color:#fff">structure</div><div style="background:#FAFAFA;color:#525C66">neutral</div></div></div></div>
+      <div class="rule"><div><h4>Never fear ↔ hope adjacency</h4><p>Risk <b>never</b> sits against optimism in either direction ("optimism whiplash" · "hope → legal alarm collapses tone"). Route through neutral explanation.</p>
+        <div class="seqdemo"><div style="background:#D44D5C;color:#fff">risk ✕</div><div style="background:#F4C37D;color:#3A2E10">gold ✕</div><div style="background:#FAFAFA;color:#525C66">→ instead:</div><div style="background:#D44D5C;color:#fff">risk</div><div style="background:#E9EDF2;color:#525C66">neutral</div><div style="background:#F4C37D;color:#3A2E10">gold ✓</div></div></div></div>
+      <div class="rule"><div><h4>No same-emotion stacking</h4><p>"Optimism → optimism = saturation" · "double risk = allocator exit" · "interactive → interactive = overload." One accent moment per view; <b>one hero figure per view.</b></p></div></div>
+      <div class="rule"><div><h4>Risk is quarantined</h4><p>Alert red: live alerts and realized losses only, neutral-framed, ≤10%, <b>never animated, never decorative</b> — your Crimson laws verbatim. Latent risk is grey so the hypothetical never wears the alarm.</p></div></div>
+      <div class="rule"><div><h4>Muted at scale, saturated at point</h4><p>Large areas: muted/deepened tones. Saturated colour: small attention surfaces, matched to the tone of the content. The web form of "Tier 3 never full background."</p></div></div>
+      <div class="rule"><div><h4>Gradients are behavioural, rare</h4><p>2 stops · L→R · fade to neutral · one per view · meaning a tone transition (structure → action), never decoration. See §07 for the sanctioned set.</p></div></div>
+    </div>
+  </section>
+
+  <div class="next">
+    <h3>What happens next</h3>
+    <p><b>The dark trial:</b> the ten blue-black canvases (× ink × main × accent) go onto the real dense Cross-Asset page, side-by-side, instant switching — you pick by eye. <b>Then the light trial</b> on the §05 whites/grays. Winners land in DESIGN-CONTRACT.md; this guide is the canonical brand reference — same tiers, ratios, transitions and quarantines as the JCJ mothership.</p>
+  </div>
+
+  <footer>VegaReady Brand &amp; Colour Guide · v2 · compiled 2026-06-03 from JCJ Brand Guidelines v13 · Colour Dictionary + Transition Map · Master Colour Guide (quick ref · practical application · sequential matrix) · session ledger. All contrast computed live (WCAG 2.1).</footer>
+</div>
+
+<script>
+function lum(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(x=>x+x).join('');var r=parseInt(h.slice(0,2),16)/255,g=parseInt(h.slice(2,4),16)/255,b=parseInt(h.slice(4,6),16)/255;var f=v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);return .2126*f(r)+.7152*f(g)+.0722*f(b);}
+function ratio(a,b){var L1=lum(a),L2=lum(b),hi=Math.max(L1,L2),lo=Math.min(L1,L2);return (hi+.05)/(lo+.05);}
+function tg(r){return r>=4.5?'aa':r>=3?'aal':'no';}
+function lb(r){return r>=4.5?'AA':r>=3?'AA·lg':'low';}
+var LIGHT='#FAFAFA', DESK='#0E1217', CH='#33302A';
+
+/* ===== 04 dark canvases ===== */
+var DARKC=[
+ {n:'Abyss',h:'#0A0F1A',ps:'Deepest blue-black; maximum focus and glow.',lng:'navy lineage · deepest'},
+ {n:'Deep Desk',h:'#0E1217',ps:'The session pick — near-black, cool cast, crisp and alive.',lng:'baseline'},
+ {n:'Oxford Black',h:'#0D1626',ps:'Oxford deepened; the most institutional-cover.',lng:'JCJ Oxford, deepened'},
+ {n:'Oxford Blue',h:'#14213D',ps:'JCJ "dark-mode covers", verbatim. Bluest, most brand-literal.',lng:'JCJ T2 verbatim'},
+ {n:'Charcoal Blue',h:'#13171D',ps:'Warm-leaning; softest dark, easiest long read.',lng:'session, blue-shifted'},
+ {n:'Ink Slate',h:'#161A20',ps:'Between charcoal and desk; quiet, neutral-cool.',lng:'new · v2'},
+ {n:'Federal Slate',h:'#1B2531',ps:'Federal deepened; governance-serious, lifted panels.',lng:'JCJ Federal, deepened'},
+ {n:'Payne’s Deep',h:'#222D3A',ps:'Payne’s deepened; greyest blue, compliance-calm.',lng:'JCJ Payne’s, deepened'},
+ {n:'Midnight Custody',h:'#0F1D19',ps:'Wildcard: Deep Custody Green as a green-black canvas.',lng:'JCJ Custody lineage · wildcard'},
+ {n:'Navy Anchor',h:'#0B2E4E',ps:'JCJ Navy verbatim — band/surface duty on deeper grounds.',lng:'JCJ T1 · band duty'}
+];
+document.getElementById('darkCanvas').innerHTML=DARKC.map(function(c){
+ var r=ratio('#E8EAEE',c.h);
+ return '<div class="sw"><div class="demo" style="background:'+c.h+';display:flex;align-items:flex-end;justify-content:space-between;padding:10px 12px"><span style="font-family:var(--display);font-weight:600;font-size:17px;color:#E8EAEE">Vega ν</span><span style="font-family:var(--num);font-size:13px;color:#E8EAEE">120.9</span></div>'+
+ '<div class="body"><div class="top"><span class="nm">'+c.n+'</span><span class="hx">'+c.h+'</span></div><div class="ps">'+c.ps+'</div>'+
+ '<div class="meta"><span class="tag">'+c.lng+'</span><span class="crp '+tg(r)+'">ink '+r.toFixed(1)+' '+lb(r)+'</span></div></div></div>';
+}).join('');
+var STACKS=[{n:'Deep Desk',c:['#0E1217','#161D27','#1C2530']},{n:'Oxford',c:['#0D1626','#152034','#1B2942']},{n:'Charcoal Blue',c:['#13171D','#1A2029','#212834']}];
+document.getElementById('elev').innerHTML=STACKS.map(function(s){return '<div class="ed" style="background:'+s.c[0]+'"><div class="edn" style="color:#cfd6df">'+s.n+' · '+s.c[0]+'</div><div class="l1" style="background:'+s.c[1]+'"><p style="color:#E8EAEE">Surface '+s.c[1]+'</p><div class="l2" style="background:'+s.c[2]+'"><p style="color:#E8EAEE">Raised '+s.c[2]+'</p></div></div></div>';}).join('');
+var DINK=[{n:'Cool Paper',h:'#E8EAEE',ps:'Crispest on blue-blacks; the default.'},{n:'Warm Parchment',h:'#EAE7DF',ps:'Softens the desk; warm canvases.'},{n:'Ivory',h:'#EFE7D8',ps:'Warmest, editorial; reporting surfaces.'},{n:'Bright',h:'#F2F4F7',ps:'Maximum contrast; headlines only.'}];
+document.getElementById('darkInk').innerHTML=DINK.map(function(c){var r=ratio(c.h,DESK);return '<div class="sw"><div class="demo" style="background:'+DESK+';display:flex;align-items:center;padding:0 14px"><span style="font-family:var(--display);font-size:16px;color:'+c.h+'">Body text reads like this. <span class="num" style="font-family:var(--num)">58.3</span></span></div><div class="body"><div class="top"><span class="nm">'+c.n+'</span><span class="hx">'+c.h+'</span></div><div class="ps">'+c.ps+'</div><div class="meta"><span class="tag">text</span><span class="crp '+tg(r)+'">'+r.toFixed(1)+' '+lb(r)+'</span></div></div></div>';}).join('');
+var DMAIN=[{n:'Desk Cyan',h:'#46C8DE',ps:'Crisp, current, "live system" — the Deep Desk pick.'},{n:'Teal Mist',h:'#5AA6B5',ps:'Calmer; editorial.'},{n:'JCJ Teal',h:'#36BBA6',ps:'House CTA teal on dark duty; reads "action".'},{n:'Cobalt Lift',h:'#5E83D9',ps:'JCJ Cobalt brightened; structure & confidence.'},{n:'Steel Blue',h:'#7C97B8',ps:'Most muted; analyst-grade; calmest at scale.'}];
+document.getElementById('darkMain').innerHTML=DMAIN.map(function(c){var r=ratio(c.h,DESK);return '<div class="sw"><div class="demo" style="background:'+DESK+';padding:12px 14px"><div style="font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:'+c.h+'">Markets · Cross-Asset</div><div style="margin-top:7px;font-size:13px;color:#B3BCC7">A <span style="border-bottom:1px dotted '+c.h+';color:#E8EAEE">linked term</span> and a <span style="color:'+c.h+'">structural link</span>.</div></div><div class="body"><div class="top"><span class="nm">'+c.n+'</span><span class="hx">'+c.h+'</span></div><div class="ps">'+c.ps+'</div><div class="meta"><span class="tag">structural 15–30%</span><span class="crp '+tg(r)+'">'+r.toFixed(1)+' '+lb(r)+'</span></div></div></div>';}).join('');
+var DACC=[{n:'Desk Amber',h:'#E0A24A',ps:'Warm, premium, glows on blue-black.'},{n:'JCJ Gold',h:'#F4C37D',ps:'The house gold, verbatim — most on-brand.'},{n:'Brass',h:'#C9A24A',ps:'Deepest, quietest warm accent.'},{n:'Terracotta Ember',h:'#E0915A',ps:'Light-theme terracotta lifted; ties themes together.'}];
+document.getElementById('darkAccent').innerHTML=DACC.map(function(c){var r=ratio(c.h,DESK),rb=ratio('#10141A',c.h);return '<div class="sw"><div class="demo" style="background:'+DESK+';display:flex;align-items:center;justify-content:space-between;padding:0 14px"><span class="num" style="font-family:var(--num);font-weight:600;font-size:21px;color:'+c.h+'">28.4 → 120.9</span><span style="background:'+c.h+';color:#10141A;font-family:var(--body);font-weight:700;font-size:11px;padding:6px 12px;border-radius:6px">Open desk</span></div><div class="body"><div class="top"><span class="nm">'+c.n+'</span><span class="hx">'+c.h+'</span></div><div class="ps">'+c.ps+'</div><div class="meta"><span class="tag">cta/accent 1–5%</span><span class="crp '+tg(r)+'">fig '+r.toFixed(1)+'</span><span class="crp '+tg(rb)+'">btn '+rb.toFixed(1)+'</span></div></div></div>';}).join('');
+var DST=[{n:'Realized',h:'#46C9A0',ps:'Observed fact, gains, success.'},{n:'Anticipated',h:'#E0B262',ps:'Forward, sound mechanism, unobserved.'},{n:'Latent',h:'#84909E',ps:'May never happen — deliberately grey.'},{n:'Alert (reserved)',h:'#E16470',ps:'Live alerts & losses only; quarantined.'}];
+document.getElementById('darkStatus').innerHTML=DST.map(function(c){var r=ratio(c.h,DESK);return '<div class="sw"><div class="demo" style="background:'+DESK+';display:flex;align-items:center;padding:0 14px;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:'+c.h+'"></span><span style="font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:'+c.h+'">'+c.n+'</span></div><div class="body"><div class="top"><span class="nm">'+c.n+'</span><span class="hx">'+c.h+'</span></div><div class="ps">'+c.ps+'</div><div class="meta"><span class="tag">status</span><span class="crp '+tg(r)+'">'+r.toFixed(1)+' '+lb(r)+'</span></div></div></div>';}).join('');
+
+/* ===== 05 FULL ATLAS — function-aware rendering ===== */
+function demoFor(c){
+  var t=c.tx==='w'?'#FFFFFF':CH;
+  switch(c.tag){
+    case 'Canvas': return '<div class="demo" style="background:'+c.h+';display:flex;align-items:flex-end;justify-content:space-between;padding:10px 12px"><span style="font-family:var(--display);font-weight:600;font-size:16px;color:'+t+'">Vega ν canvas</span><span style="font-family:var(--num);font-size:12px;color:'+t+'">120.9</span></div>';
+    case 'Panel': return '<div class="demo" style="background:'+LIGHT+';padding:10px 12px"><div style="background:'+c.h+';border-radius:6px;height:100%;display:flex;align-items:center;padding:0 12px"><span style="font-size:12px;color:'+t+'">Panel on ground — 20–40%</span></div></div>';
+    case 'Overlay': return '<div class="demo" style="background:'+LIGHT+';padding:0"><div style="height:30%;"></div><div style="background:'+c.h+';height:40%;display:flex;align-items:center;padding:0 12px"><span style="font-size:11.5px;color:'+t+'">overlay band / container row</span></div></div>';
+    case 'Accent': return '<div class="demo" style="background:'+LIGHT+';padding:12px 12px"><div style="font-size:13px;color:#33302A">A key <b style="color:'+c.h+'">accented figure 4.6</b> and a <span style="border-bottom:2px solid '+c.h+'">marked term</span>.</div><div style="margin-top:8px"><span style="display:inline-block;background:'+c.h+';width:34px;height:6px;border-radius:3px"></span></div></div>';
+    case 'CTA': return '<div class="demo" style="background:'+LIGHT+';display:flex;align-items:center;padding:0 12px"><span style="background:'+c.h+';color:'+t+';font-family:var(--body);font-weight:700;font-size:12px;padding:8px 14px;border-radius:6px">Sentence-case action</span></div>';
+    case 'Text': return '<div class="demo" style="background:'+LIGHT+';display:flex;align-items:center;padding:0 14px"><span style="color:'+c.h+';font-size:13.5px">Text duty: headings, lines, micro-labels — never large fills.</span></div>';
+    case 'Risk': return '<div class="demo" style="background:'+LIGHT+';padding:12px"><div style="border-left:3px solid '+c.h+';background:'+c.h+'18;padding:8px 11px;border-radius:4px"><span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:'+c.h+'">⚠ risk / disclosure strip</span></div></div>';
+    case 'Quote': return '<div class="demo" style="background:'+c.h+';display:flex;align-items:center;padding:0 14px"><span style="font-family:var(--display);font-style:italic;font-size:14px;color:'+t+'">"Framing and emphasis."</span></div>';
+    default: return '<div class="demo" style="background:'+c.h+'"></div>';
+  }
+}
+function atlasCard(c){
+  var r=(c.tag==='Accent'||c.tag==='Text')?ratio(c.h,LIGHT):ratio(c.tx==='w'?'#FFFFFF':CH,c.h);
+  var rl=(c.tag==='Accent'||c.tag==='Text')?'on canvas':'text on it';
+  return '<div class="sw">'+demoFor(c)+'<div class="body"><div class="top"><span class="nm">'+c.n+'</span><span class="hx">'+c.h+'</span></div>'+
+  '<div class="ps">'+c.ps+'</div>'+
+  '<div class="meta"><span class="tag '+(c.t==='1'?'t1':c.t==='2'?'t2':c.t==='3'?'t3':c.t==='R'?'risk':'tu')+'">'+(c.t==='R'?'T1 · risk':'T'+c.t)+'</span><span class="tag">'+c.tag+'</span>'+(c.pct?'<span class="tag">'+c.pct+'</span>':'')+(c.rg?'<span class="tag">'+c.rg+'</span>':'')+
+  '<span class="crp '+tg(r)+'">'+rl+' '+r.toFixed(1)+' '+lb(r)+'</span></div>'+
+  (c.dk?'<div class="ps" style="margin-top:6px;color:var(--muted)">dark duty: '+c.dk+'</div>':'')+
+  '</div></div>';
+}
+var ATLAS=[
+ {f:'Blues — the institutional spectrum (19)',note:'from near-black gravitas to glacier-light diagram grounds',cs:[
+  {n:'Navy',h:'#0B2E4E',t:'1',tag:'Canvas',tx:'w',pct:'80–100%',rg:'global',ps:'Deep institutional trust & authority; hero covers, quotes, team.',dk:'band/surface on deeper grounds'},
+  {n:'Cobalt Blue',h:'#2B50AA',t:'1',tag:'Panel',tx:'w',pct:'20–30%',rg:'global',ps:'Structural logic & clarity; section headers, performance anchors.',dk:'lifted to #5E83D9'},
+  {n:'Signal Blue',h:'#3C61C5',t:'1',tag:'Accent',tx:'w',pct:'≤10%',rg:'global',ps:'Data highlight; precise, energetic emphasis. Not for running text.'},
+  {n:'Oxford Blue',h:'#14213D',t:'2',tag:'Canvas',tx:'w',pct:'80–100%',rg:'US/EU covers',ps:'Deep formality — JCJ’s "dark-mode covers".',dk:'canvas candidate, verbatim'},
+  {n:'Federal Blue',h:'#2C3E50',t:'2',tag:'Canvas',tx:'w',pct:'80–100%',rg:'US/EU',ps:'Governance/"official" seriousness.',dk:'deepened to #1B2531'},
+  {n:'Steel Blue',h:'#5E7CA5',t:'2',tag:'Panel',tx:'w',pct:'20–30%',ps:'Analyst depth; reduces perceived volatility; dense tables.',dk:'main candidate #7C97B8'},
+  {n:'Cadet Blue',h:'#5F9EA0',t:'2',tag:'Panel',tx:'w',pct:'≤60%',ps:'Trusted progress; cool steady narrative; macro diagrams.'},
+  {n:'Denim',h:'#1560BD',t:'2',tag:'Accent',tx:'w',pct:'≤10–20%',ps:'Confident data pop without gloss; overlay lines, emphasis bars.'},
+  {n:'Slate Blue',h:'#6A5ACD',t:'2',tag:'Panel',tx:'w',pct:'≤50%',ps:'Analyst clarity in dense data; violet-leaning; appendices.',dk:'data-viz violet #9A8CC9'},
+  {n:'Air Force Blue',h:'#5D8AA8',t:'2',tag:'Panel',tx:'w',pct:'≤60%',ps:'Tactical clarity between core blue and gray; strategy sections.'},
+  {n:'French Blue',h:'#0072BB',t:'3',tag:'Accent',tx:'w',pct:'one-off',rg:'avoid GCC/India',ps:'Assertive calm, tactical energy; outperformance lines.'},
+  {n:'Royal Blue',h:'#4169E1',t:'3',tag:'Accent',tx:'w',pct:'≤10%',rg:'screen-first',ps:'Dynamic stat emphasis; never full background ("over-saturated").'},
+  {n:'Blue Gray',h:'#6699CC',t:'3',tag:'Panel',tx:'w',pct:'≤40%',ps:'Passive structure, cool tint; infographic fills, mobile cards.'},
+  {n:'Light Slate Blue',h:'#8470FF',t:'3',tag:'Panel',tx:'w',pct:'≤40%',rg:'western/casual',ps:'Soft interactive flourish; modern calm accent.'},
+  {n:'Columbia Blue',h:'#C4D8E2',t:'3',tag:'Overlay',tx:'c',pct:'20–60%',ps:'Airy info-box backdrop; sidebars, summary notes.'},
+  {n:'Pale Steel Blue',h:'#A5B8CF',t:'3',tag:'Overlay',tx:'c',pct:'≤40%',ps:'Gentle quote/callout backdrop; pacing.'},
+  {n:'Ice Blue',h:'#C5E8F5',t:'3',tag:'Overlay',tx:'c',pct:'≤50%',ps:'Clarity & flow in diagrams/steps; alternating fills. "Prints faint."'},
+  {n:'Glacier Blue',h:'#E3F2FD',t:'3',tag:'Canvas',tx:'c',pct:'≤100%',ps:'Ultra-light cool canvas for large diagrams; org charts.'},
+  {n:'Sky Blue',h:'#3BAFDA',t:'3',tag:'CTA',tx:'w',pct:'≤10%',rg:'informal',ps:'Lively interactive accent; the passive "Track" CTA.'}
+ ]},
+ {f:'Grays & blacks — structure and restraint (7)',note:'"Off Black: text/lines only — avoid all-black slides"',cs:[
+  {n:'Off Black',h:'#111111',t:'U',tag:'Text',tx:'w',pct:'text/lines',ps:'Controlled intensity; titles, lines. NEVER a canvas.'},
+  {n:'Slate Gray',h:'#525C66',t:'2',tag:'Overlay',tx:'w',pct:'accents',ps:'Divider logic; quiet structure; table borders, subtitle anchors.'},
+  {n:'Payne’s Gray',h:'#404E5C',t:'2',tag:'Canvas',tx:'w',pct:'≤100%',rg:'GCC/EU diligence',ps:'Legal clarity; compliance calm; print-safe.',dk:'deepened to #222D3A'},
+  {n:'Soft Gray',h:'#7B7B7B',t:'U',tag:'Text',tx:'w',pct:'micro only',ps:'Microtext de-emphasis; timestamps, metadata. Fails body contrast.'},
+  {n:'Dust Gray',h:'#C9C9C9',t:'U',tag:'Overlay',tx:'c',pct:'5–30%',ps:'Row shading, chart guttering, sub-layer tone.'},
+  {n:'Modal Fill Gray',h:'#E9EDF2',t:'U',tag:'Overlay',tx:'c',pct:'20–40%',ps:'THE universal container/primer — most-cited "best after" in the matrix.'},
+  {n:'Mint Gray',h:'#ECECEC',t:'U',tag:'Overlay',tx:'c',pct:'5–30%',ps:'Subtle separation; breathes without borders; near-white on screen.'}
+ ]},
+ {f:'Whites & off-whites (3)',note:'JCJ: Off White = "minimum 40% of design — the canvas"',cs:[
+  {n:'Off White',h:'#FAFAFA',t:'1',tag:'Canvas',tx:'c',pct:'≥40%',rg:'universal',ps:'The default institutional canvas; mental space for decisions.'},
+  {n:'Bone',h:'#F9F6F0',t:'U',tag:'Canvas',tx:'c',pct:'≤100%',rg:'GCC/India-safe',ps:'Warm human canvas — intros, referrals, trust.'},
+  {n:'Off Gray / Soft White',h:'#DDE2E6',t:'U',tag:'Canvas',tx:'c',pct:'sections',ps:'Cooler off-white; neutrality with tone; PDF/print ideal.'}
+ ]},
+ {f:'Greens & teals — action, security, legacy (6)',note:'Teal is the CTA: "lives on buttons, never as a theme"',cs:[
+  {n:'Teal (CTA)',h:'#36BBA6',t:'1',tag:'CTA',tx:'w',pct:'≤10%',rg:'global',ps:'Calm action without pressure; the "Ask" verb.',dk:'dark CTA duty'},
+  {n:'Deep Custody Green',h:'#1C6357',t:'2',tag:'Panel',tx:'w',pct:'30–70%',ps:'Secure storage, regulatory grounding; custody flows.',dk:'wildcard canvas #0F1D19'},
+  {n:'Forest Green',h:'#228B22',t:'2',tag:'Panel',tx:'w',pct:'≤40%',rg:'conservative US',ps:'Heritage continuity, stewardship.'},
+  {n:'Sage Green',h:'#B5C9A9',t:'3',tag:'Canvas',tx:'c',pct:'≤100%',ps:'Long-term alignment; succession calm; GP-capital contexts.'},
+  {n:'Pale Mint',h:'#C1E1C1',t:'3',tag:'CTA',tx:'c',pct:'≤100%',ps:'Passive opt-in; low-pressure progress; watchlist grounds.'},
+  {n:'Approval Green',h:'#5CD0BE',t:'2',tag:'Accent',tx:'c',pct:'≤10%',ps:'Success/confirmation states; checkmarks, chips; the "Commit" verb.',dk:'realized lineage'}
+ ]},
+ {f:'Golds, ambers & oranges — optimism, caution, scarcity (8)',note:'one highlight per view; "caution → cheer is dissonant"',cs:[
+  {n:'Gold',h:'#F4C37D',t:'1',tag:'Quote',tx:'c',pct:'≤30%',rg:'extra-effective GCC',ps:'Optimistic reframing; quotes & framing. The house gold.',dk:'accent candidate, verbatim'},
+  {n:'ETF Yellow',h:'#FFD89A',t:'2',tag:'Overlay',tx:'c',pct:'≤30%',ps:'Familiar benchmarking; timelines, comparisons. Never white text on it.'},
+  {n:'Amber',h:'#E9B56C',t:'2',tag:'Accent',tx:'c',pct:'≤20%',ps:'Timeline logic; soft urgency; cadence markers.',dk:'anticipated lineage'},
+  {n:'Light Mustard',h:'#FFE082',t:'3',tag:'Canvas',tx:'c',pct:'low-stakes',ps:'Soft clarification; FAQ grounds; "being walked through, not called out".'},
+  {n:'Dijon',h:'#F4B400',t:'3',tag:'Accent',tx:'c',pct:'≤15%',rg:'western',ps:'Institutional caution without red; inflection alerts.'},
+  {n:'Burnt Orange',h:'#D2691E',t:'3',tag:'CTA',tx:'w',pct:'≤20%',rg:'restrained GCC/India',ps:'Scarcity/finality; closing urgency only; "heat with context".'},
+  {n:'Warm Clay',h:'#DAA06D',t:'3',tag:'Canvas',tx:'c',pct:'pivots',ps:'Post-skepticism re-engagement; humanizes after technical content.'},
+  {n:'Institutional Orange',h:'#F57C00',t:'3',tag:'Accent',tx:'c',pct:'≤5%',ps:'Deadline/critical-date emphasis; tiny flags only — "too promo at scale".'}
+ ]},
+ {f:'Reds — the quarantined risk family (7)',note:'"never near optimism · never animated · ≤10% · never full surfaces"',cs:[
+  {n:'Crimson',h:'#D44D5C',t:'R',tag:'Risk',tx:'w',pct:'≤10%',ps:'Compliance risk alert; the universal "never-adjacent" colour in your matrix.',dk:'alert lineage #E16470'},
+  {n:'Coral Red',h:'#FF6B6B',t:'3',tag:'Risk',tx:'w',pct:'≤15%',ps:'Transparent empathy; volatility without panic; honest-risk pages.'},
+  {n:'Brick Red',h:'#8B0000',t:'3',tag:'Risk',tx:'w',pct:'≤10%',ps:'Weight and consequence; "do not use unless policy requires".'},
+  {n:'Terracotta',h:'#E2725B',t:'3',tag:'Risk',tx:'w',pct:'≤20%',ps:'Honest underperformance; humble reality check.',dk:'light-theme accent lineage'},
+  {n:'Soft Alert Red',h:'#F36A7A',t:'3',tag:'Overlay',tx:'c',pct:'≤30%',ps:'Quiet caution; shaded chart regions; non-alarming.'},
+  {n:'Pale Blush',h:'#FCE6E6',t:'3',tag:'Overlay',tx:'c',pct:'≤40%',ps:'Whisper caution; inline risk note boxes.'},
+  {n:'Rose Rust',h:'#C94C4C',t:'3',tag:'Accent',tx:'w',pct:'≤10%',ps:'Comparative caution — "we’re not like that"; competitor pitfalls.'}
+ ]},
+ {f:'Purples & plums — closure, memory, distinction (4)',note:'the soft-exit and lessons-learned register',cs:[
+  {n:'Fog Purple',h:'#E6E6FA',t:'3',tag:'Canvas',tx:'c',pct:'exit views',ps:'Soft closure, no-pressure exits; the "Share/Refer" verb; hello & goodbye only.'},
+  {n:'Dusty Plum',h:'#9B6A6C',t:'3',tag:'Canvas',tx:'w',pct:'1–2 views',ps:'Cycle memory, lessons learned; post-mortems; never in cold contexts.'},
+  {n:'Steel Orchid',h:'#6E5D94',t:'3',tag:'Accent',tx:'w',pct:'≤15%',ps:'High-logic precision with distinctiveness; analytic labels.'},
+  {n:'Lavender Gray',h:'#D8B7DD',t:'3',tag:'Overlay',tx:'c',pct:'≤40%',ps:'Academic pacing; footnote overlays, scholarly sidebars.'}
+ ]},
+ {f:'Taupes & warm neutrals (2)',note:'legacy comfort; very safe in tradition-valuing cultures',cs:[
+  {n:'Warm Taupe',h:'#D2B48C',t:'3',tag:'Canvas',tx:'c',pct:'sections',rg:'GCC-safe',ps:'Legacy comfort, intergenerational trust; values/team surfaces.'},
+  {n:'Bone (warm)',h:'#E3DAC9',t:'2',tag:'Canvas',tx:'c',pct:'≤30%',ps:'Warm organic neutrality; never beside Off White (too similar).'}
+ ]}
+];
+document.getElementById('atlas').innerHTML=ATLAS.map(function(F){
+ return '<div class="fam"><div class="fam-h"><h3>'+F.f+'</h3><span class="fn">'+F.note+'</span></div><div class="grid">'+F.cs.map(atlasCard).join('')+'</div></div>';
+}).join('');
+
+/* ===== 07 gradients ===== */
+var GRADS=[
+ {a:'#003366',b:'#F5F5F3',n:'Navy → Bone',e:'Trust → Calm',u:'covers · summaries · CTA rows',tx:'#fff'},
+ {a:'#B8B0C8',b:'#6C7A89',n:'Fog Purple → Slate',e:'Reassurance → Authority',u:'testimonials · quotes',tx:'#fff'},
+ {a:'#004C99',b:'#EAF4FB',n:'Cobalt → Ice Blue',e:'Precision → Transparency',u:'metric headers · fund stats',tx:'#fff'},
+ {a:'#317773',b:'#F5DE8E',n:'Teal → ETF Yellow',e:'Innovation → Logic',u:'strategy flow · timelines',tx:'#fff'},
+ {a:'#D9A66B',b:'#F5F5F3',n:'Warm Clay → Bone',e:'Planning → Simplicity',u:'onboarding CTA',tx:'#3A2E1A'},
+ {a:'#F4C37D',b:'#6E5D94',n:'Gold → Steel Purple',e:'Insight → Structural clarity',u:'thesis handoffs · macro exits',tx:'#2A2118'},
+ {a:'#E9EDF2',b:'#2B50AA',n:'Modal Gray → Cobalt',e:'Neutrality → Conviction',u:'section dividers · anchors',tx:'#2A3340'},
+ {a:'#C1E1C1',b:'#E6E6FA',n:'Mint → Fog Purple',e:'Calm inquiry → Soft closure',u:'end-of-page referral',tx:'#2E3A2E'},
+ {a:'#1C6357',b:'#F4C37D',n:'Custody Green → Gold',e:'Regulatory depth → Optimism',u:'compliance · audit · method',tx:'#fff'}
+];
+document.getElementById('grads').innerHTML=GRADS.map(function(g){
+ return '<div class="gr"><div class="bar" style="background:linear-gradient(90deg,'+g.a+','+g.b+')"><span style="color:'+g.tx+'">entry · pivot · resolution</span></div>'+
+ '<div class="gb"><div class="gn">'+g.n+'</div><div class="ge">'+g.e+'</div><div class="gu">'+g.u+'</div></div></div>';
+}).join('');
+
+/* ===== 08 forbidden ===== */
+var FORB=[
+ {t:'#FFFFFF',b:'#FFD89A',n:'White on ETF Yellow',w:'"fails ADA" — the canonical violation'},
+ {t:'#F4C37D',b:'#FFFFFF',n:'Gold on White',w:'"nearly invisible — not screen safe"'},
+ {t:'#36BBA6',b:'#C1E1C1',n:'Teal on Pale Mint',w:'"blurs in print and on boards"'},
+ {t:'#909FAD',b:'#F4C37D',n:'Steel on Gold',w:'fails at 3.9:1 / 3.4:1'},
+ {t:'#E6E6FA',b:'#F9F6F0',n:'Fog Purple on Bone',w:'2.8:1 — light-on-light'},
+ {t:'#D44D5C',b:'#708090',n:'Red on Slate',w:'"emotional noise in low light"'},
+ {t:'#1C1C1E',b:'#D2691E',n:'Charcoal on Burnt Orange',w:'"bleeds under projection"'},
+ {t:'#003366',b:'#36454F',n:'Navy beside Charcoal',w:'forbidden pairing — depth mud'}
+];
+document.getElementById('forb').innerHTML=FORB.map(function(f){
+ var r=ratio(f.t,f.b);
+ return '<div class="fb"><div class="demo" style="background:'+f.b+';color:'+f.t+'">Unreadable</div><div class="body"><div class="fn2">'+f.n+'</div><div class="fr">measured '+r.toFixed(1)+':1 · ✕ '+f.w+'</div></div></div>';
+}).join('');
+</script>
+</body>
+</html>

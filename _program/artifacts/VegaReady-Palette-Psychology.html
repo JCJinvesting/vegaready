@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VegaReady — Palette Psychology · Ranking & Scenario Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Lora:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#0D1626;--card:#17202F;--card2:#1C2536;--line:#243048;--ink:#EAE7DF;--inksoft:#BDB9AF;--muted:#8B8980;--faint:#6A6960;--main:#36BBA6;--accent:#F4C37D;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:'Fraunces',Georgia,serif;font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Playfair Display',serif;letter-spacing:-.01em;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
+  a{color:var(--main);text-decoration:none;}
+  header.hd{padding:52px 0 22px;border-bottom:1px solid var(--line);}
+  .ey{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px;}
+  header.hd h1{font-size:clamp(2rem,4vw,2.7rem);line-height:1.07;font-weight:600;max-width:24ch;}
+  header.hd p{font-size:15px;color:var(--inksoft);max-width:78ch;margin-top:14px;line-height:1.7;}
+  .sec{padding:36px 0 8px;}
+  .sec .sh{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--main);font-weight:600;margin-bottom:8px;}
+  .sec h2{font-size:1.7rem;font-weight:600;margin-bottom:8px;}
+  .sec .sl{font-size:14px;color:var(--inksoft);max-width:80ch;margin-bottom:20px;line-height:1.65;}
+  /* combo cards */
+  .combo{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:12px;display:grid;grid-template-columns:54px 150px 1fr;gap:18px;align-items:start;}
+  .rank{font-family:'Lora',serif;font-weight:600;font-size:26px;color:var(--muted);text-align:center;padding-top:2px;}
+  .combo.top .rank{color:var(--accent);}
+  .cleft .sws{display:flex;gap:4px;margin-bottom:8px;}
+  .cleft .sw{width:30px;height:30px;border-radius:6px;border:1px solid rgba(255,255,255,.15);}
+  .cleft .cid{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.06em;}
+  .cleft .cnm{font-family:'Playfair Display',serif;font-size:14.5px;font-weight:600;line-height:1.25;}
+  .cleft .cfm{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+  .cmainx .emo{font-size:13.5px;color:var(--inksoft);line-height:1.6;}
+  .cmainx .emo b{color:var(--ink);}
+  .meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px;}
+  .mchip{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line);border-radius:100px;padding:2px 8px;color:var(--muted);}
+  .mchip.aud{color:var(--main);border-color:var(--main);}
+  .mchip.scen{color:var(--accent);border-color:var(--accent);}
+  .mchip.warn{color:#E08A8A;border-color:#E08A8A;}
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0 16px;}
+  th{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);}
+  td{padding:9px 10px;border-bottom:1px solid var(--line);color:var(--inksoft);vertical-align:top;line-height:1.5;}
+  td:first-child{color:var(--ink);font-weight:600;white-space:nowrap;font-family:'Playfair Display',serif;}
+  td .chip{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1px solid rgba(255,255,255,.18);}
+  .laws{counter-reset:l;max-width:84ch;}
+  .law{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);}
+  .law::before{counter-increment:l;content:counter(l,decimal-leading-zero);font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);padding-top:2px;}
+  .law p{font-size:13.5px;color:var(--inksoft);line-height:1.6;}
+  .law p b{color:var(--ink);}
+  footer{padding:30px 0 70px;color:var(--faint);font-size:12px;line-height:1.8;}
+  @media(max-width:680px){.combo{grid-template-columns:40px 1fr;}.cmainx{grid-column:1 / -1;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hd">
+    <div class="ey">VegaReady · Palette Psychology · 2026-06-03</div>
+    <h1>What each approved palette says about the brand — ranked.</h1>
+    <p>All 20 approved combinations analysed for emotional register and audience perception, grounded in the JCJ colour-psychology corpus (Opus agent passes over all five documents), supplementary research, and the VegaReady vision: institutional-grade event intelligence · LP showcase + client product + internal desk · quiet confidence, no hype · Dubai/GCC home market · crypto-macro credibility. <b style="color:var(--ink)">Ranking is fitness-for-flagship, not quality — every combo below is approved and has a scenario where it wins.</b></p>
+  </header>
+
+  <section class="sec">
+    <div class="sh">01 · The ranking — with emotional profile, audiences, and scenario</div>
+    <h2>Best to worst, against the vision</h2>
+    <div id="cards"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sh">02 · The scenario map — a theme per subdomain</div>
+    <h2>Different content, different skin, one system</h2>
+    <p class="sl">Per-section theming runs on the token system (<span style="font-family:'IBM Plex Mono',monospace;font-size:12px">data-theme</span>). Transitions follow the hue-journey adjacency: neighbouring families hand off cleanly; never jump deep-navy → green-black without a neutral chrome moment.</p>
+    <table>
+      <thead><tr><th>Surface / subdomain</th><th>Theme</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Front door · LP showcase</td><td><span class="chip" style="background:#0D1626"></span>A4 Oxford Black <span style="color:var(--muted)">(GCC mode: WB9)</span></td><td>Universal institutional trust + the Navy→Gold upside arc; WB9 removes gold for allocator-formal contexts.</td></tr>
+        <tr><td>Markets / analysis product</td><td><span class="chip" style="background:#0E1217"></span>WB5 Deep Desk</td><td>Working-trust default; stamina for daily reading.</td></tr>
+        <tr><td>Live dashboard / war room</td><td><span class="chip" style="background:#17191C"></span>WB3 Smoke·Cobalt·Amber <span style="color:var(--muted)">(alt WB4)</span></td><td>Momentum + timeline urgency — the live feed's native register; amber is the alert dialect.</td></tr>
+        <tr><td>Connections / research</td><td><span class="chip" style="background:#131726"></span>A7 Indigo Ink</td><td>The scholarly-quant register for the intellectual showcase.</td></tr>
+        <tr><td>Who Profits / premium-gated</td><td><span class="chip" style="background:#0A0F1A"></span>WB6 Abyss</td><td>Exclusivity and slowed pacing for the payoff content.</td></tr>
+        <tr><td>Methodology / custody / trust</td><td><span class="chip" style="background:#11201C"></span>A1 / A8 green-blacks</td><td>The custody story told by the canvas itself.</td></tr>
+        <tr><td>Briefings / long-form</td><td><span class="chip" style="background:#13171D"></span>A3 Charcoal Blue <span style="color:var(--muted)">(legacy: A9)</span></td><td>Warm parchment reading register.</td></tr>
+        <tr><td>Risk / compliance / disclosures</td><td><span class="chip" style="background:#222D3A"></span>A5 Payne's Deep</td><td>"Legal clarity, compliance calm" — its verbatim documented purpose.</td></tr>
+        <tr><td>Education / Start-here</td><td><span class="chip" style="background:#1B2531"></span>A6 Federal Slate / WB2</td><td>Highest-luminance darks — the least intimidating first dark contact.</td></tr>
+        <tr><td>Internal desk tools</td><td><span class="chip" style="background:#232B33"></span>WB2 Gunmetal <span style="color:var(--muted)">(diligence: WB8)</span></td><td>Built for hours; compact density.</td></tr>
+        <tr><td>GCC / relationship surfaces</td><td><span class="chip" style="background:#11201C"></span>WB1 / WB11 / WB9</td><td>"Understated confidence tests better" — the hospitality register.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="sec">
+    <div class="sh">03 · The four decision laws from this analysis</div>
+    <h2>How to choose between them, forever</h2>
+    <div class="laws">
+      <div class="law"><p><b>Accent metal is the audience dial.</b> Champagne = hospitality/gratitude (GCC and family-office safest) · Brass/Old Gold = heritage institution (universally safe) · JCJ Gold = optimism/premium — Americas growth surfaces, always beside evidence, never beside governance ("Gold → Team = misdirection").</p></div>
+      <div class="law"><p><b>Main colour is the dialect.</b> Cobalt = analyst/pension ("strategy clarity, analyst trust") · Teal = product/action ("calm action without pressure") · Verdigris/greens = custody/wealth · Steel Blue = diligence ("reduces perceived volatility").</p></div>
+      <div class="law"><p><b>Warm ink is the anti-"ominous" mechanism.</b> The docs warn dark canvases can read "stark… ominous" — every approved combo defeats this with ivory/oat/cream/parchment ink + whitespace. The one cool-ink combo (WB4) trades that warmth for quant neutrality on purpose.</p></div>
+      <div class="law"><p><b>Family → audience.</b> Green-blacks → GCC + desk + the brand signature · Deep navies → universal trust and first contact · Charcoals → desk + analyst (caution: GCC/newcomers) · Lifted slates → newcomers + compliance · Petrol → crypto-quant.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    Sources: the JCJ Brand Guidelines v13, Colour Psychology Dictionary + Transition Map, Master Colour Guide (quick reference · practical application · sequential matrix) — Opus agent analysis passes, 2026-06-03 · supplementary: <a href="https://weandthecolor.com/color-psychology-in-fintech-branding-how-the-right-palette-builds-user-trust/209146">WE AND THE COLOR — fintech colour psychology</a> · <a href="https://palette.site/blog/2025-07-29-the-mood-of-money-color/">Palette — The Mood of Money</a> · <a href="https://form.agency/financial-marketing/colour-psychology-financial-trading-brands/">Form — colour psychology in trading brands</a> · <a href="https://deepsymbol.com/color-in-financial-services-trust-and-stability/">DeepSymbol — colour in financial services</a>. Companion register: _program/APPROVED-THEMES.md · _program/THEME-SCENARIO-MAP.md.
+  </footer>
+</div>
+
+<script>
+var D=[
+ {r:1,id:'A4',nm:'Oxford Black · Parchment · JCJ Teal · JCJ Gold',fam:'Deep navy',sw:['#0D1626','#EAE7DF','#36BBA6','#F4C37D'],
+  emo:'Sovereign gravitas with a visible upside narrative — <b>"formal structure, legal confidence"</b> plus the canonical Navy→Gold value arc; warm parchment keeps it human. The most "allocator deck" combination in the set.',
+  aud:['GCC ★','Pension/OCIO ★','Newcomer ★'],warn:'Gold reads promotional unless anchored to evidence — one highlight per view',scen:'Front door · LP showcase'},
+ {r:2,id:'WB5',nm:'Deep Desk · Cream · JCJ Teal · Brass',fam:'Deep navy',sw:['#0E1217','#F2EBDC','#36BBA6','#C9A24A'],
+  emo:'Navy-grade trust at operational stamina; the teal CTA reads as routine agency — <b>"you can act with agency."</b> Less monastic than Abyss, more working environment: the pragmatic product default.',
+  aud:['Desk ★','Pension ✓','All-round'],warn:'',scen:'Markets / analysis default'},
+ {r:3,id:'A8',nm:'Pine Black · Oat · Verdigris · Brass',fam:'Green-black',sw:['#11201C','#E8E2D2','#5FA897','#C9A24A'],
+  emo:'The custody promise made visual — <b>"secure storage, calm trust"</b> with Bone-lineage Oat warmth; stewardship and patience over urgency. The most ownable, differentiated identity in the set: no competitor owns this green.',
+  aud:['GCC ★','Desk ★','Newcomer ✓'],warn:'Teal/green CTAs live on elevated surfaces, never raw canvas (teal-green adjacency law)',scen:'Methodology · custody · trust'},
+ {r:4,id:'WB9',nm:'Oxford Black · Parchment · Verdigris · Champagne',fam:'Deep navy',sw:['#0D1626','#EAE7DF','#5FA897','#EDD3A1'],
+  emo:'The sovereign base, gold-free: governance formality that <b>celebrates quietly</b> — Verdigris steadies the action register, Champagne adds one "milestone" note. The safest allocator read of all 20.',
+  aud:['GCC ★','Pension ★','EU ✓'],warn:'Champagne is ceremonial: ≤5%, never text-bearing',scen:'GCC / formal front-door mode'},
+ {r:5,id:'A1',nm:'Midnight Custody · Ivory · JCJ Teal · Brass',fam:'Green-black',sw:['#0F1D19','#EFE7D8','#36BBA6','#C9A24A'],
+  emo:'The flagship custody statement: the canvas whispers <b>"protected assets"</b> while full JCJ Teal delivers "calm action… control without pressure" at maximum conviction. The most confident, most "act now" green.',
+  aud:['GCC ✓','Desk ✓','Quant ✓'],warn:'',scen:'Custody flagship surfaces'},
+ {r:6,id:'WB1',nm:'Pine Black · Ivory · Verdigris · Champagne',fam:'Green-black',sw:['#11201C','#EFE7D8','#5FA897','#EDD3A1'],
+  emo:'Gracious, old-money hospitality rather than operational security — Champagne imports <b>"celebration, milestones"</b>; the most "private client lounge" of the greens.',
+  aud:['GCC/FO ★'],warn:'',scen:'Relationship surfaces'},
+ {r:7,id:'A7',nm:'Indigo Ink · Cream · Verdigris · Brass',fam:'Deep navy',sw:['#131726','#F2EBDC','#5FA897','#C9A24A'],
+  emo:'The "thinking" navy: the violet undertone borrows <b>"analyst clarity in dense data… quant empathy, soft precision"</b> — quiet quant sophistication rather than authority theater.',
+  aud:['Quant ✓','EU ✓'],warn:'Keep the indigo subliminal — never let it read as purple',scen:'Connections · research'},
+ {r:8,id:'WB6',nm:'Abyss · Cream · JCJ Teal · Brass (airy)',fam:'Deep navy',sw:['#0A0F1A','#F2EBDC','#36BBA6','#C9A24A'],
+  emo:'Near-black exclusivity — <b>"deep focus; slows pacing for weighty content… elevates perceived value."</b> Airy restraint is the understated-confidence law executed as layout.',
+  aud:['Premium/LP ★'],warn:'Dense long-reads need generous spacing here, by law',scen:'Who Profits · premium-gated'},
+ {r:9,id:'A9',nm:'Juniper · Ivory · Verdigris · Old Gold',fam:'Green-black',sw:['#152420','#EFE7D8','#5FA897','#D4AF5E'],
+  emo:'Furthest into <b>"heritage continuity; stewardship and long horizon"</b> — the established house. Old Gold keeps aspiration in the earned register, not the reward-trigger one.',
+  aud:['FO/legacy ★'],warn:'',scen:'Legacy briefings'},
+ {r:10,id:'WB3',nm:'Smoke · Cool Paper · Cobalt Lift · Desk Amber',fam:'Charcoal',sw:['#17191C','#E8EAEE','#5E83D9','#E0A24A'],
+  emo:'The truest "event-driven" embodiment: Cobalt = <b>"innovation, dynamism, forward momentum"</b> + Amber = "timeline logic, soft urgency." A live terminal — momentum over heritage.',
+  aud:['Quant ★','Desk ★'],warn:'Flirts with the GCC understatement line — product/desk surfaces only',scen:'Live dashboard · war room'},
+ {r:11,id:'WB8',nm:'Charcoal Blue · Cream · Steel Blue · JCJ Gold (restr.)',fam:'Charcoal',sw:['#13171D','#F2EBDC','#7C97B8','#F4C37D'],
+  emo:'The quant-diligence room: Steel Blue is the docs\' analyst colour verbatim — <b>"analyst depth; reduces perceived volatility."</b> Low arousal, high credibility, deliberately unexciting.',
+  aud:['Pension/OCIO ★'],warn:'',scen:'Desk diligence mode'},
+ {r:12,id:'A2',nm:'Ink Slate · Ivory · Teal Mist · Desk Amber',fam:'Charcoal',sw:['#161A20','#EFE7D8','#5AA6B5','#E0A24A'],
+  emo:'A balanced middle: steady teal narrative plus Amber\'s <b>"timeline logic and sequence emphasis"</b> — "we track cadence dispassionately."',
+  aud:['Balanced'],warn:'Amber stays at accent coverage',scen:'Data / sequence pages'},
+ {r:13,id:'A3',nm:'Charcoal Blue · Parchment · Teal Mist · JCJ Gold',fam:'Charcoal',sw:['#13171D','#EAE7DF','#5AA6B5','#F4C37D'],
+  emo:'The warmest charcoal — calm analysis that resolves into <b>genuine optimism</b>; gold sits on its required dark ground. The brightest emotional arc of the neutrals.',
+  aud:['General ✓'],warn:'Gold near governance content = tonal clash',scen:'Briefings · long-form'},
+ {r:14,id:'WB4',nm:'Petrol Black · Cool Paper · Teal Mist · Champagne',fam:'Petrol',sw:['#0F1B1F','#E8EAEE','#5AA6B5','#EDD3A1'],
+  emo:'Composed maritime intelligence — custody calm blended with macro stability, kept <b>analytical by the cool ink</b>. Lower warmth, lower pressure than any green-black.',
+  aud:['Quant ★'],warn:'Cold stacks risk "sterile distance" — the ≤5% Champagne is load-bearing warmth',scen:'Alternate live desk'},
+ {r:15,id:'WB10',nm:'Federal Slate · Ivory · Cobalt Lift · Brass',fam:'Lifted slate',sw:['#1B2531','#EFE7D8','#5E83D9','#C9A24A'],
+  emo:'The modernizing institution: governance bones with a live <b>Cobalt data pulse</b> — the slate family\'s answer to the terminal, more formal and less urgent.',
+  aud:['Pension/OCIO ✓'],warn:'Cobalt off long text; buffer near navies',scen:'Analyst surfaces'},
+ {r:16,id:'A6',nm:'Federal Slate · Ivory · Teal Mist · Brass',fam:'Lifted slate',sw:['#1B2531','#EFE7D8','#5AA6B5','#C9A24A'],
+  emo:'Official seriousness with the temperature down: <b>measured, procedural, trustworthy</b> without exclusivity claims — a credible public-institution register.',
+  aud:['US/EU inst. ✓'],warn:'Federal lineage reads U.S.-centric',scen:'Onboarding · about'},
+ {r:17,id:'A5',nm:"Payne's Deep · Ivory · Teal Mist · Desk Amber",fam:'Lifted slate',sw:['#222D3A','#EFE7D8','#5AA6B5','#E0A24A'],
+  emo:'Built on the <b>"legal clarity, compliance calm"</b> canvas with an amber heartbeat — rigorous, diligence-grade, calm under load.',
+  aud:['Compliance ★'],warn:'Keep amber off legal/disclosure blocks ("legal content: never a warm tone")',scen:'Risk · compliance · disclosures'},
+ {r:18,id:'WB2',nm:'Gunmetal · Linen · Sea Glass · Old Gold (compact)',fam:'Lifted slate',sw:['#232B33','#F0EDE6','#6FB5AE','#D4AF5E'],
+  emo:'The workbench identity: lightest canvas, most muted main — pragmatic, low-arousal, <b>built for hours</b>. The least aspirational of the 20, by design.',
+  aud:['Desk ★','Newcomer ✓ (bright rooms)'],warn:'Hierarchy depends entirely on type and spacing at this lightness',scen:'Internal desk tools'},
+ {r:19,id:'WB11',nm:'Pine Black · Oat · Verdigris · Brass (hairline, restr.)',fam:'Green-black',sw:['#11201C','#E8E2D2','#5FA897','#C9A24A'],
+  emo:'A8 in diligence-room mode — warmth with <b>zero promotional gesture</b>; the "understated confidence" law as a whole theme. Ranked low only for redundancy with A8.',
+  aud:['GCC allocator ★'],warn:'With accents this quiet, hierarchy must come from type',scen:'GCC diligence surfaces'},
+ {r:20,id:'WB7',nm:'Midnight Custody · Ivory · Auto-green · Brass (restr.)',fam:'Green-black',sw:['#0F1D19','#EFE7D8','#44A78A','#C9A24A'],
+  emo:'The quietest competence — the auto-green main shifts the register from "decide" to <b>"verified"</b>; a system that doesn\'t need to sell. Near-duplicate of A1 with under-signalled CTAs.',
+  aud:['Trust-max contexts'],warn:'CTAs under-signal; use where action isn\'t the goal',scen:'Verified / status modes'}
+];
+document.getElementById('cards').innerHTML=D.map(function(d){
+ return '<div class="combo'+(d.r<=3?' top':'')+'"><div class="rank">'+d.r+'</div>'+
+ '<div class="cleft"><div class="sws">'+d.sw.map(function(s){return '<span class="sw" style="background:'+s+'"></span>';}).join('')+'</div>'+
+ '<div class="cid">'+d.id+'</div><div class="cnm">'+d.nm+'</div><div class="cfm">'+d.fam+'</div></div>'+
+ '<div class="cmainx"><div class="emo">'+d.emo+'</div><div class="meta">'+
+ d.aud.map(function(a){return '<span class="mchip aud">'+a+'</span>';}).join('')+
+ '<span class="mchip scen">'+d.scen+'</span>'+
+ (d.warn?'<span class="mchip warn">⚠ '+d.warn+'</span>':'')+
+ '</div></div></div>';
+}).join('');
+</script>
+</body>
+</html>

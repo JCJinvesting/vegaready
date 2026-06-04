@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VegaReady — Approved Dark Themes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0F1D19; --card:#19261F; --card2:#1E2B25; --line:#283832; --line2:#36463F;
+    --ink:#EFE7D8; --inksoft:#C2BCB0; --muted:#8F8C81; --faint:#6B6A5F;
+    --main:#36BBA6; --accent:#C9A24A; --accent-ink:#10141A;
+    --realized:#46C9A0; --realized-w:rgba(70,201,160,.13); --anticipated:#E0B262; --anticipated-w:rgba(224,178,98,.13); --latent:#84909E; --latent-w:rgba(132,144,158,.13);
+    --display:'Playfair Display'; --body:'Fraunces'; --num:'Lora'; --mono:'IBM Plex Mono';
+    --shadow:0 1px 0 rgba(255,255,255,.03), 0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body),Georgia,serif;font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;transition:background .25s;}
+  h1,h2,h3,h4{font-family:var(--display),Georgia,serif;color:var(--ink);letter-spacing:-.01em;}
+  .num{font-family:var(--num),monospace;font-variant-numeric:tabular-nums;}
+
+  .panel{position:sticky;top:0;z-index:50;background:#191815;color:#ECE8E0;border-bottom:1px solid #38362f;}
+  .panel-in{max-width:1020px;margin:0 auto;padding:10px 28px;}
+  .ptop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .ptop .pt{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7FCB9D;}
+  .ptop .active-name{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#A8A398;margin-left:auto;}
+  .presets{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;}
+  .preset{display:flex;align-items:center;gap:8px;cursor:pointer;border:1px solid #45423a;border-radius:8px;background:#24221d;padding:6px 11px;}
+  .preset.on{outline:2px solid #7FCB9D;outline-offset:1px;}
+  .preset .pswatches{display:flex;gap:3px;}
+  .preset .ps{width:13px;height:13px;border-radius:3px;border:1px solid rgba(255,255,255,.18);}
+  .preset .pn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#D8D4CA;}
+  .readout{display:flex;gap:5px;flex-wrap:wrap;margin-top:9px;padding-top:9px;border-top:1px solid #38362f;align-items:center;}
+  .ro{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 8px;border-radius:100px;border:1px solid #38362f;color:#bdb8ae;}
+  .ro b{font-weight:600;} .ro.aa{color:#7FCB9D;border-color:#2f6e4c;} .ro.aal{color:#E2B24C;border-color:#7a5e1f;} .ro.no{color:#E89A8E;border-color:#7a2f28;}
+  .guide{font-family:'IBM Plex Mono',monospace;font-size:9px;color:#9A958B;width:100%;margin-top:5px;}
+  .guide b{color:#D8D4CA;font-weight:500;}
+
+  .head{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20;}
+  .head-in{max-width:1000px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;gap:18px;}
+  .brand{font-family:var(--display);font-weight:600;font-size:21px;}
+  .brand i{color:var(--accent);font-style:italic;}
+  .nav{display:flex;gap:14px;flex:1;}
+  .nav a{font-size:13px;color:var(--muted);cursor:pointer;}
+  .nav a.on{color:var(--main);font-weight:700;}
+  .fresh{font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+  .fresh .dot{width:7px;height:7px;border-radius:50%;background:var(--realized);}
+  .modepill{display:inline-flex;border:1px solid var(--line2);border-radius:100px;overflow:hidden;font-size:12px;}
+  .modepill span{padding:4px 12px;font-weight:700;color:var(--muted);}
+  .modepill span.on{background:var(--main);color:var(--bg);}
+  .rail{border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 72%,var(--card) 28%);}
+  .rail-in{max-width:1000px;margin:0 auto;padding:9px 28px;display:flex;overflow-x:auto;}
+  .cstep{flex:1 0 0;min-width:112px;padding:5px 12px;border-left:1px solid var(--line);}
+  .cstep:first-child{border-left:none;}
+  .cstep .cn{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);}
+  .cstep .ct{font-size:12px;font-weight:600;color:var(--muted);margin-top:1px;}
+  .cstep.on .ct{color:var(--main);} .cstep.on .cn{color:var(--accent);}
+
+  main{max-width:1000px;margin:0 auto;padding:30px 28px 90px;}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:13px;}
+  h1.hero{font-size:clamp(1.9rem,3.6vw,2.4rem);line-height:1.1;max-width:20ch;}
+  .dl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--main);margin-bottom:11px;}
+  .tldr{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--main);border-radius:8px;padding:18px 22px;margin:22px 0;box-shadow:var(--shadow);}
+  .tldr .tk{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--main);margin-bottom:7px;}
+  .tldr p{font-family:var(--display);font-size:18px;line-height:1.5;color:var(--ink);max-width:70ch;}
+  .tldr .asym{display:block;margin-top:10px;font-size:14px;font-weight:700;color:var(--ink);}
+  .tldr .asym b{color:var(--accent);}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 22px;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px;box-shadow:var(--shadow);}
+  .stat .sv{font-family:var(--num),monospace;font-variant-numeric:tabular-nums;font-weight:600;font-size:30px;color:var(--accent);}
+  .stat .sl{font-size:13px;color:var(--inksoft);margin-top:8px;line-height:1.45;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:13px;box-shadow:var(--shadow);}
+  .ctop{display:flex;align-items:flex-start;gap:14px;}
+  .cmain{flex:1;}
+  .cc{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--main);margin-bottom:5px;}
+  .card h3{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.3;}
+  .pills{display:flex;gap:6px;flex-shrink:0;align-items:center;}
+  .rb,.cp{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:100px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;}
+  .rb::before{content:"";width:6px;height:6px;border-radius:50%;}
+  .rb.realized{color:var(--realized);background:var(--realized-w);}.rb.realized::before{background:var(--realized);}
+  .cp{border:1px solid var(--realized);color:var(--realized);}
+  .metrics{display:flex;gap:30px;flex-wrap:wrap;margin:16px 0 4px;}
+  .m b{font-family:var(--num),monospace;font-variant-numeric:tabular-nums;font-weight:600;font-size:24px;color:var(--accent);}
+  .m span{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--inksoft);margin-top:4px;}
+  .cbody{font-size:14px;color:var(--inksoft);line-height:1.6;margin-top:12px;}
+  .cbody b{color:var(--ink);}
+  .gl{border-bottom:1px dotted var(--main);cursor:help;}
+  .badges{display:flex;gap:6px;margin-top:13px;}
+  .bdg{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.03em;text-transform:uppercase;border:1px solid var(--line2);border-radius:100px;padding:3px 9px;color:var(--muted);}
+  .bdg.t1{color:var(--main);border-color:var(--main);}.bdg.priced{color:var(--accent);border-color:var(--accent);}
+  .sec{margin:28px 0;}
+  .tbl-summary{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:10px;}
+  .tbl-summary .ts{font-size:13px;color:var(--inksoft);}
+  .tbl-summary .ts b{font-family:var(--num),monospace;font-size:19px;color:var(--ink);display:block;}
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--card);box-shadow:var(--shadow);}
+  table.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:520px;}
+  table.tbl th{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:right;padding:10px 12px;border-bottom:2px solid var(--line2);background:var(--card2);}
+  table.tbl th:first-child{text-align:left;}
+  table.tbl td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--inksoft);text-align:right;}
+  table.tbl td:first-child{text-align:left;font-weight:600;color:var(--ink);}
+  table.tbl td.n{font-family:var(--num),monospace;font-variant-numeric:tabular-nums;}
+  table.tbl .peak{color:var(--anticipated);}
+  table.tbl tr:last-child td{border-bottom:none;}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+  .scol{border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:var(--card);box-shadow:var(--shadow);}
+  .scol h5{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;}
+  .scol.win h5{color:var(--realized);}.scol.lose h5{color:var(--anticipated);}
+  .scol li{font-size:13.5px;color:var(--inksoft);margin-bottom:7px;line-height:1.45;list-style:none;padding-left:16px;position:relative;}
+  .scol li::before{position:absolute;left:0;top:1px;}
+  .scol.win li::before{content:"\2713";color:var(--realized);}
+  .scol.lose li::before{content:"\2715";color:var(--anticipated);}
+  .actions{margin:24px 0;}
+  .btn{display:inline-block;font-family:var(--body);font-weight:700;font-size:13.5px;background:var(--accent);color:var(--accent-ink);padding:10px 18px;border-radius:6px;cursor:pointer;border:none;}
+  .foot{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:16px 20px;margin-top:8px;}
+  .foot p{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:7px;}
+  .foot b{color:var(--ink);}
+  .tag{font-family:var(--display);font-style:italic;font-size:16px;color:var(--ink);margin-top:20px;padding-left:14px;border-left:3px solid var(--accent);}
+  @media(max-width:640px){.stats,.split{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+  <div class="panel"><div class="panel-in">
+    <div class="ptop"><span class="pt">✓ Approved dark themes · locked 2026-06-03</span>
+      <span class="active-name" id="activeName"></span></div>
+    <div class="presets" id="presets"></div>
+    <div class="readout" id="readout"></div>
+  </div></div>
+
+  <header class="head"><div class="head-in">
+    <span class="brand">Vega<i>&nu;</i> Ready</span>
+    <nav class="nav"><a>Home</a><a class="on">Cross-Asset</a><a>Connections</a></nav>
+    <span class="fresh"><span class="dot"></span>Last reviewed · Jun 3</span>
+    <span class="modepill"><span class="on">Simple</span><span>Analyst</span></span>
+  </div></header>
+  <div class="rail"><div class="rail-in">
+    <div class="cstep"><div class="cn">01</div><div class="ct">What happened</div></div>
+    <div class="cstep"><div class="cn">02</div><div class="ct">How it spreads</div></div>
+    <div class="cstep on"><div class="cn">03</div><div class="ct">What moved</div></div>
+    <div class="cstep"><div class="cn">04</div><div class="ct">Who's exposed</div></div>
+    <div class="cstep"><div class="cn">05</div><div class="ct">How it connects</div></div>
+    <div class="cstep"><div class="cn">06</div><div class="ct">Who profits</div></div>
+  </div></div>
+
+  <main>
+    <div class="kick">Markets · Cross-Asset · what moved</div>
+    <h1 class="hero">How it all moved together — and apart.</h1>
+    <div class="tldr"><div class="tk">The one thing to know</div>
+      <p>The classic hedges stopped working: stocks and bonds fell together, and gold didn't save you — the dollar did.</p>
+      <span class="asym">Key asymmetry: <b>oil volatility went off the chart while equity volatility barely flinched</b> — the shock lived in the commodity complex.</span></div>
+    <div class="stats">
+      <div class="stat"><div class="sv num">4×</div><div class="sl"><span class="gl" title="oil-market fear gauge">OVX</span> oil-vol exploded ~28 → 121, settled ~2×</div></div>
+      <div class="stat"><div class="sv num">15.7</div><div class="sl">Stock-vol (VIX) fell below pre-war — a false all-clear</div></div>
+      <div class="stat"><div class="sv num">USD</div><div class="sl">The dollar, not gold, took the safe-haven bid</div></div>
+    </div>
+    <article class="card">
+      <div class="ctop"><div class="cmain"><div class="cc">Volatility</div><h3>Crude volatility hit a 4× conflict peak — the shock lived in oil, not equities.</h3></div>
+      <div class="pills"><span class="rb realized">Realized</span><span class="cp">High</span></div></div>
+      <div class="metrics"><div class="m"><b class="num">28.4 → 120.9</b><span>OVX baseline → peak</span></div><div class="m"><b class="num">58.3</b><span>OVX May 28 (~2×)</span></div><div class="m"><b class="num">31.1</b><span>VIX peak (only)</span></div></div>
+      <p class="cbody"><span class="gl" title="oil-market fear gauge">OVX</span> rose over 4× while equity vol barely moved — a commodity-located shock, not a broad panic.</p>
+      <div class="badges"><span class="bdg t1">T1 · CBOE/FRED</span><span class="bdg priced">priced-in</span></div>
+    </article>
+    <div class="sec">
+      <div class="dl">Volatility regime — CBOE via FRED · T1</div>
+      <div class="tbl-summary"><div class="ts"><b class="num">4×</b>OVX peak vs baseline</div><div class="ts"><b class="num">2×</b>OVX &amp; VXEEM still elevated</div><div class="ts"><b class="num">&lt;1×</b>VIX &amp; GVZ below baseline</div></div>
+      <div class="tblwrap"><table class="tbl">
+        <thead><tr><th>Index</th><th>Underlying</th><th>Baseline</th><th>Peak</th><th>May 28</th><th style="text-align:left">Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>OVX</td><td style="text-align:right">Crude</td><td class="n">28.40</td><td class="n peak">120.91</td><td class="n">58.30</td><td style="text-align:left">Still ~2× — the durable gauge</td></tr>
+          <tr><td>VIX</td><td style="text-align:right">US equity</td><td class="n">17.93</td><td class="n peak">31.05</td><td class="n">15.74</td><td style="text-align:left">Below baseline — false all-clear</td></tr>
+          <tr><td>GVZ</td><td style="text-align:right">Gold</td><td class="n">~17</td><td class="n peak">—</td><td class="n">24.83</td><td style="text-align:left">Complacency restored</td></tr>
+          <tr><td>VXEEM</td><td style="text-align:right">EM equity</td><td class="n">17.16</td><td class="n peak">—</td><td class="n">35.30</td><td style="text-align:left">Sticky EM risk premium</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="sec">
+      <div class="dl">Signal quality — what to trust</div>
+      <div class="split">
+        <div class="scol win"><h5>Still worked as a signal</h5><li>Oil volatility (OVX) — led the move</li><li>The stock-bond correlation flip</li><li>Gold positioning (honest divergence)</li></div>
+        <div class="scol lose"><h5>Gave false comfort</h5><li>The calm VIX "all-clear"</li><li>"Buy gold on any war"</li><li>Crowded consensus inflows</li></div>
+      </div>
+    </div>
+    <div class="actions"><button class="btn">Open the desk →</button></div>
+    <div class="foot">
+      <div class="dl" style="margin-bottom:8px">Data quality &amp; method</div>
+      <p><b style="color:var(--realized)">High</b> — vol indices from CBOE/FRED (T1). &nbsp; <b style="color:var(--anticipated)">Moderate</b> — positioning proxies. &nbsp; <b>Quarantined</b> — intraday pending second source.</p>
+      <div class="tag">Volatility isn't risk. It's signal.</div>
+    </div>
+  </main>
+
+<script>
+function lum(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(x=>x+x).join('');var r=parseInt(h.slice(0,2),16)/255,g=parseInt(h.slice(2,4),16)/255,b=parseInt(h.slice(4,6),16)/255;var f=v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);return .2126*f(r)+.7152*f(g)+.0722*f(b);}
+function ratio(a,b){var L1=lum(a),L2=lum(b),hi=Math.max(L1,L2),lo=Math.min(L1,L2);return (hi+.05)/(lo+.05);}
+function mix(a,b,wa){a=a.replace('#','');b=b.replace('#','');function p(h){return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}var A=p(a),B=p(b),o=A.map((v,i)=>Math.round(v*wa+B[i]*(1-wa)));return '#'+o.map(v=>('0'+v.toString(16)).slice(-2)).join('');}
+function tg(r){return r>=4.5?'aa':r>=3?'aal':'no';}
+function lb(r){return r>=4.5?'AA':r>=3?'AA·lg':'low';}
+function sizeNote(r){return r>=4.5?'any size':r>=3?'≥18px / 14px bold':'chrome only';}
+
+var PRESETS=[
+ {n:'1 · Midnight Custody',c:'#0F1D19',i:'#EFE7D8',m:'#36BBA6',a:'#C9A24A'},
+ {n:'2 · Ink Slate',c:'#161A20',i:'#EFE7D8',m:'#5AA6B5',a:'#E0A24A'},
+ {n:'3 · Charcoal Blue',c:'#13171D',i:'#EAE7DF',m:'#5AA6B5',a:'#F4C37D'},
+ {n:'4 · Oxford Black',c:'#0D1626',i:'#EAE7DF',m:'#36BBA6',a:'#F4C37D'},
+ {n:'5 · Payne’s Deep',c:'#222D3A',i:'#EFE7D8',m:'#5AA6B5',a:'#E0A24A'},
+ {n:'6 · Federal Slate',c:'#1B2531',i:'#EFE7D8',m:'#5AA6B5',a:'#C9A24A'},
+ {n:'7 · Indigo Ink',c:'#131726',i:'#F2EBDC',m:'#5FA897',a:'#C9A24A'},
+ {n:'8 · Pine Black',c:'#11201C',i:'#E8E2D2',m:'#5FA897',a:'#C9A24A'},
+ {n:'9 · Juniper',c:'#152420',i:'#EFE7D8',m:'#5FA897',a:'#D4AF5E'}
+];
+var active=0;
+function renderPresets(){
+  var el=document.getElementById('presets');el.innerHTML='';
+  PRESETS.forEach(function(p,idx){
+    var b=document.createElement('button');b.className='preset'+(idx===active?' on':'');
+    b.innerHTML='<span class="pswatches"><span class="ps" style="background:'+p.c+'"></span><span class="ps" style="background:'+p.i+'"></span><span class="ps" style="background:'+p.m+'"></span><span class="ps" style="background:'+p.a+'"></span></span><span class="pn">'+p.n+'</span>';
+    b.onclick=function(){active=idx;apply();renderPresets();};
+    el.appendChild(b);
+  });
+}
+function apply(){
+  var p=PRESETS[active], s=document.documentElement.style, c=p.c, ink=p.i;
+  var lifted=lum(c)>0.015;
+  var wS=lifted?0.80:0.74, wM=lifted?0.61:0.52, wF=lifted?0.45:0.36;
+  s.setProperty('--bg',c);
+  s.setProperty('--card', mix('#FFFFFF',c,.055));
+  s.setProperty('--card2',mix('#FFFFFF',c,.085));
+  s.setProperty('--line', mix('#FFFFFF',c,.13));
+  s.setProperty('--line2',mix('#FFFFFF',c,.21));
+  s.setProperty('--ink',ink);
+  s.setProperty('--inksoft',mix(ink,c,wS));
+  s.setProperty('--muted',  mix(ink,c,wM));
+  s.setProperty('--faint',  mix(ink,c,wF));
+  s.setProperty('--main',p.m);
+  s.setProperty('--accent',p.a);
+  s.setProperty('--accent-ink',mix('#000000',c,.78));
+  document.getElementById('activeName').textContent=p.n+' · '+c+' / '+p.i+' / '+p.m+' / '+p.a+(lifted?' · lifted ramp':'');
+  var rm=ratio(mix(ink,c,wM),c), rmain=ratio(p.m,c), ra=ratio(p.a,c), ri=ratio(ink,c), rb=ratio(mix(ink,c,wS),c);
+  var html='';
+  [['ink',ri],['body',rb],['muted',rm],['main',rmain],['accent',ra]].forEach(function(d){html+='<span class="ro '+tg(d[1])+'">'+d[0]+' <b>'+d[1].toFixed(1)+'</b> '+lb(d[1])+'</span>';});
+  html+='<span class="guide"><b>Text-size guidance:</b> muted labels — '+sizeNote(rm)+' · main as text — '+sizeNote(rmain)+' · accent as text — '+sizeNote(ra)+'. Body uses the derived soft ink (anti-halation); lifted canvases auto-strengthen the ramp.</span>';
+  document.getElementById('readout').innerHTML=html;
+}
+renderPresets();apply();
+</script>
+</body>
+</html>
