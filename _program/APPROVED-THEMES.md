@@ -139,3 +139,47 @@
 4. Solid full-strength status marks at chip scale AND pale-hue-on-pale tints (the v2/v1 extremes; 16% tint + darkened text is the register).
 5. Pastel and second-teal buttons (`#A9D18E`, `#36BBA6` as generic UI — funnel-semantics colours, not buttons).
 6. Warm-paper canvases as the light default (v1: "dull/dirty/bland" at scale) — Bone reserved for premium-formula surfaces only.
+
+---
+
+# Typography & Emphasis — LOCKED 2026-06-04 (all 10 exhibits approved)
+
+*Evidence: `artifacts/VegaReady-Type-Emphasis-Trial.html` + `artifacts/Typography-Emphasis-Spec.md` (6-document research). Applies to BOTH palettes. The E1 composition is the system; duel alternates remain corpus-sanctioned options.*
+
+## Type scale (both themes — families: Playfair = display · Fraunces = body/logic · Lora = numerals/labels; max 3 families, roles fixed)
+
+| Role | Size | Weight | LH | Tracking | Word cap |
+|---|---|---|---|---|---|
+| Page title H1 | 28px (24–40) | 700 | 1.15 | −0.01em | ≤8 |
+| Section H2 | 20px (18–36) | 600 | 1.2 | −0.005em | 5–8 |
+| Subhead H3 | 17–18px | 600 | 1.3 | 0 | — |
+| Body | 15.5–16px | 400 | **1.5 light · 1.6 dark** (contrast-graded) | 0 | 25–35/block |
+| Captions | 13px | 400 | 1.4 | 0 | — |
+| Metadata | 12px floor | 400 | 1.3 | 0 | — |
+| Footnotes | 11px floor | 300–400 | 1.3 | 0 | ≤12 |
+| Micro-label (the ONLY caps) | 11px | **700** | 1.2 | +.05em | 1–3 |
+| Hero stat | 48–56px, **once/page** | 700 | 1.05 | −0.01em | ≤3 |
+| Inline stat | 14–15px | 600–700 | inherit | 0 | — |
+| Quote | 19–20px | 500 italic | 1.4 | 0 | ≤20 |
+| Framing subline | 16.5px | 400 italic | 1.35 | 0 | — |
+| CTA text | 14.5–16px | 600–700 | 1.0 | 0 | 2–4, sentence case + "→" |
+
+## The Weight Law (E4 — adopted as law)
+**Weight rises as contrast or chroma falls:** Regular only on AAA surfaces · Medium+ on AA · **any coloured text = bold** · Bold/Black for T4 accents · Light weight only on premium deep canvases. Readability fix ladder: weight → ≥7:1 contrast → Tier-1 colour swap. Footers: Regular only, no bold/italics/caps.
+
+## Italics (E5)
+Licensed: quotes · framing sublines · stats-context · Crimson legal disclaimers. Italic paragraphs banned. **Pull-quote construction:** centered, Playfair italic 19–22px, fill Gold/Fog-Purple/Bone (dark: surface-tint or gold-tint panel), no inline styling or multi-colour words, no quotation marks unless needed, **never on the same view as a CTA; no CTA directly after a quote or risk section.**
+
+## Spacing & alignment (E6, E7)
+Rhythm ladder (space-after): title→subline 36 · subline→body 28 · body→CTA 24 · quote→section 44. Sections ≥24px; mobile paragraphs ≥16px; cards 24–32px padding; buttons r8–10 inside the r12 system; mobile column ≤720px. **Left-align all explanatory text; quotes centered.** Tracking: 0 body · negative on headers · +.05em only on 11px bold micro-labels (E7-B).
+
+## Links & underlines (E8)
+Underline = links only + the **key-stat underline accent** (Royal Blue `#4169E1` on light · gold-metal on dark; ≤5%, never running text). Links ≥14px, mandatory hover, **hover = −15% brightness** (buttons too). CTAs sentence case + "→", always framed, **one per view**.
+
+## Emphasis budget — the % system (E9, E10 — adopted with the 5% cap)
+**5-layer envelope:** background 70–100% · overlay 20–40% · structural 15–30% · text variable (ink ~20% cap incl. lines) · **CTA/action 1–5% — measured, >5% = over budget.** Global: 70-20-10 · ≤5 colours/view · ≤2 non-neutral outside Tier 1 · 1 hero stat · 1 CTA · 1 gradient · ≤3 data colours/chart. **Blank-space law:** ≥3× cap-height around CTAs · ~20% around Navy/title panels · canvas ≥40% visible · 20–30% neutral space between strong colours.
+**Context budgets:** Data page = canvas 80% + 2 data colours + slate reference, no decorative accents · Risk page = alert ≤5% + decompression, **no CTA inside risk content** (next section) · Passive-CTA page = container ~40% + one soft action · Premium = Bone 70 + Gold 10 + ink headers · Trust/front-door = Navy panel 20–40% + Gold ≤3% + one CTA.
+
+## Emphasis device hierarchy (use in this order)
+1 Bold · 2 Size (hero, once) · 3 Ink contrast · 4 Semantic colour (always bold, always means something) · 5 Fill containers (chips/callouts/tint rows/quote fills/framed CTAs) · 6 Underline (links + key-stat device).
+**Banned:** all-caps body or CTA · italic paragraphs · multi-colour words · red CTA text · decorative Crimson · grey-on-grey · same-hue stacks · quote+CTA same view · emphasis colour on >2 elements/view.

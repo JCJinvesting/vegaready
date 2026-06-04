@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VegaReady — Typography &amp; Emphasis Trial · built to the approved spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{--r:12px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Fraunces',Georgia,serif;font-size:15.5px;background:#0B0E13;color:#EFE7D8;line-height:1.6}
+  .num{font-family:'Lora',Georgia,serif;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 28px}
+
+  /* chrome */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);border-bottom:1px solid #232a35;padding:10px 0}
+  .topbar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar h1{font-family:'Playfair Display',serif;font-size:17px;font-weight:600}
+  .topbar .sub{font-size:12.5px;color:#8e96a3}
+  .progress{margin-left:auto;font-size:12.5px;color:#8e96a3}
+  .copybtn{font-family:inherit;font-size:13px;background:#36BBA6;color:#0B0E13;border:0;border-radius:8px;padding:7px 16px;cursor:pointer;font-weight:600}
+  .intro{padding:30px 0 22px;color:#aab1bc}
+  .intro p{max-width:78ch;font-size:14.5px}
+  .intro b{color:#cfd4dc}
+
+  /* themes */
+  .band{padding:42px 0 36px;border-top:1px solid rgba(0,0,0,.08)}
+  .t-dark{background:#0E1217;color:#F2EBDC;
+    --canvas:#0E1217;--ink:#F2EBDC;--main:#36BBA6;--accent:#C9A24A;
+    --card:#181D24;--hair:#2A3038;--body:#E3DCCB;--muted:#A89F8C;--faint:#7E7768;--lh:1.6}
+  .t-light{background:#DDE2E6;color:#2B2F34;
+    --canvas:#DDE2E6;--ink:#2B2F34;--main:#367588;--accent:#525C66;
+    --card:#FFFFFF;--hair:#C2CAD1;--body:#2B2F34;--muted:#4A535C;--faint:#67727E;--lh:1.5}
+
+  /* ── THE TYPE SYSTEM UNDER TRIAL (spec §1) ── */
+  .ty-h1{font-family:'Playfair Display',serif;font-weight:700;font-size:28px;line-height:1.15;letter-spacing:-0.01em;color:var(--ink)}
+  .ty-h2{font-family:'Playfair Display',serif;font-weight:600;font-size:20px;line-height:1.2;letter-spacing:-0.005em;color:var(--ink)}
+  .ty-h3{font-family:'Fraunces',serif;font-weight:600;font-size:17px;line-height:1.3;color:var(--ink)}
+  .ty-body{font-size:15.5px;line-height:var(--lh);color:var(--body);font-weight:400}
+  .ty-caption{font-size:13px;line-height:1.4;color:var(--muted)}
+  .ty-meta{font-size:12px;line-height:1.3;color:var(--faint)}
+  .ty-label{font-family:'Lora',serif;font-weight:700;font-size:11px;line-height:1.2;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+  .ty-hero{font-family:'Lora',serif;font-weight:700;font-size:50px;line-height:1.05;letter-spacing:-0.01em;color:var(--ink)}
+  .ty-quote{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:19.5px;line-height:1.4;text-align:center}
+  .ty-subline{font-style:italic;font-size:16.5px;line-height:1.35;color:var(--muted)}
+  /* rhythm ladder (spec §4) */
+  .sp-title-sub{margin-bottom:14px}
+  .sp-sub-body{margin-bottom:22px}
+  .sp-body-cta{margin-bottom:20px}
+
+  .exhibit{margin-bottom:34px}
+  .ex-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:2px}
+  .ex-id{font-family:'Lora',serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--main)}
+  .ex-head h2{font-family:'Playfair Display',serif;font-weight:600;font-size:21px;color:var(--ink)}
+  .cite{font-size:12.5px;color:var(--faint);font-style:italic;max-width:84ch;margin:2px 0 14px}
+  .cite b{font-style:normal;color:var(--muted)}
+  .spec{display:inline-block;font-family:'Lora',serif;font-size:10.5px;color:var(--faint);background:rgba(127,127,127,.10);border-radius:5px;padding:1.5px 7px;margin-left:6px;vertical-align:1px}
+
+  .panel{border-radius:10px;padding:16px 18px;background:var(--card);border:1px solid var(--hair);position:relative}
+  .opt{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--main);margin-bottom:10px}
+  .mark{position:absolute;top:10px;right:12px;font-size:15px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:var(--r);padding:14px 16px}
+  .t-dark .card{border:none}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);border-radius:var(--r);overflow:hidden}
+  .t-light table{border:1px solid var(--hair)}
+  th{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);text-align:left;padding:9px 12px;border-bottom:1.5px solid var(--hair)}
+  td{padding:8px 12px;color:var(--body)}
+  td.num,th.num{text-align:right}
+  tbody tr:nth-child(odd){background:rgba(127,127,127,.05)}
+  .chip{display:inline-block;font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.05em;padding:3px 11px;border-radius:99px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14.5px;font-weight:600;padding:9px 20px;border-radius:9px;cursor:pointer;border:none;transition:filter .15s,background .15s}
+  .btn.primary{background:var(--main);color:#fff}
+  .t-dark .btn.primary{color:#0B0E13}
+  .btn.primary:hover{filter:brightness(.85)}
+  .btn.secondary{background:var(--accent);color:#fff}
+  .t-dark .btn.secondary{background:transparent;border:1.5px solid var(--hair);color:var(--body)}
+  .alink{font-size:13.5px;font-weight:600;color:var(--main);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  .alink:hover{filter:brightness(.85)}
+
+  .meter{display:flex;align-items:center;gap:10px;font-family:'Lora',serif;font-size:11.5px;color:var(--faint);margin-top:10px}
+  .meter .bar{flex:1;max-width:260px;height:6px;border-radius:3px;background:rgba(127,127,127,.18);overflow:hidden}
+  .meter .fill{height:100%;border-radius:3px;background:var(--main)}
+  .meter .fill.over{background:#D4856A}
+
+  .verdict{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--hair);margin-top:16px;padding-top:12px}
+  .verdict span.q{font-size:12.5px;color:var(--faint);margin-right:4px}
+  .vbtn{font-family:inherit;font-size:12.5px;padding:5px 14px;border-radius:99px;border:1px solid var(--hair);background:var(--card);color:var(--muted);cursor:pointer}
+  .vbtn.on-approve{background:rgba(70,180,140,.13);border-color:#3AA383;color:#2E8C68}
+  .t-dark .vbtn.on-approve{color:#7fd0b2}
+  .vbtn.on-cond{background:rgba(200,150,70,.13);border-color:#B98A3C;color:#8a6118}
+  .t-dark .vbtn.on-cond{color:#e3b566}
+  .vbtn.on-reject{background:rgba(210,90,100,.10);border-color:#C2576A;color:#B23240}
+  .t-dark .vbtn.on-reject{color:#e88}
+  .vnote{flex:1;min-width:200px;font-family:inherit;font-size:12.5px;background:var(--card);border:1px solid var(--hair);border-radius:8px;color:var(--ink);padding:6px 12px;outline:none}
+  .vnote::placeholder{color:var(--faint)}
+  .footer{padding:40px 0 70px;color:#7d8693;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <h1>Typography &amp; Emphasis Trial</h1>
+    <span class="sub">built to the approved spec · 10 verdicts · both palettes</span>
+    <span class="progress" id="prog">0 / 10 judged</span>
+    <button class="copybtn" id="copyAll">Copy verdicts</button>
+  </div>
+</div>
+
+<div class="intro">
+  <div class="wrap">
+    <p>The full type system from the spec, live: corpus master scale mapped to <b>Playfair / Fraunces / Lora</b>, line-height contrast-graded (<b>1.5× light, 1.6× dark</b>), the weight law, the rhythm ladder, word caps, and the emphasis budget measured as <b>actual % of painted page area</b> on E9/E10. Every exhibit cites its corpus rule. Judge, Copy verdicts, paste back.</p>
+  </div>
+</div>
+
+<!-- ═══════ E1 · FULL-SYSTEM SLICES (dark, then light) ═══════ -->
+<section class="band t-dark">
+  <div class="wrap">
+    <div class="exhibit" data-ex="E1" data-name="Full type system slices — dark (Deep Desk) + light (Soft White) together">
+      <div class="ex-head"><span class="ex-id">E1</span><h2>The whole system at once — dark slice</h2></div>
+      <p class="cite">WB5 Deep Desk · body at <b>1.6× line-height</b> (corpus: dark surfaces step up from 1.5×) · H1 28px/700/−0.01em · labels 11px Lora bold caps · hero stat once, ≤3 digits-group · rhythm ladder spacing · one CTA, framed.</p>
+
+      <div class="sp-title-sub">
+        <div class="ty-h1">Crude complex — day 201 read</div>
+        <div class="ty-subline sp-sub-body" style="margin-top:6px">Volatility versus liquidity, after the ceasefire repricing.</div>
+      </div>
+      <div class="grid3" style="margin-bottom:16px">
+        <div class="card">
+          <div class="ty-label">Brent spot</div>
+          <div class="ty-hero" style="font-size:34px;margin-top:4px">96.40</div>
+          <div class="ty-caption"><span class="num" style="color:#46C9A0;font-weight:600">▲ +1.8%</span> w/w · premium holding</div>
+        </div>
+        <div class="card">
+          <div class="ty-label">War-risk premium</div>
+          <div class="ty-hero" style="font-size:34px;margin-top:4px">0.42%</div>
+          <div class="ty-caption"><span class="chip" style="background:rgba(70,201,160,.15);color:#46C9A0">REALIZED</span></div>
+        </div>
+        <div class="card">
+          <div class="ty-label">Re-closure scenario</div>
+          <div class="ty-hero" style="font-size:34px;margin-top:4px">+$31</div>
+          <div class="ty-caption"><span class="chip" style="background:rgba(132,144,158,.16);color:#9aa5b1">LATENT</span> · not priced</div>
+        </div>
+      </div>
+      <p class="ty-body sp-body-cta" style="max-width:66ch">The market priced the first nine days as if the strait could stay closed forever — and the next thirty-five as if it had never been at risk. Both were wrong, and both were tradable. The desk's read stays unchanged: the premium is real, the panic is not.</p>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <button class="btn primary">Read the briefing →</button>
+        <span class="alink">All channels →</span>
+      </div>
+      <p class="ty-meta" style="margin-top:14px">Source: desk marks, day 201 · footnote register 12px @1.3</p>
+      <div class="verdict"><span class="q">Verdict (covers BOTH slices — light version directly below):</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band t-light" style="padding-top:34px">
+  <div class="wrap">
+    <p class="cite" style="margin-bottom:14px"><b>E1 continued — the same system on Soft White Desk</b> · body returns to 1.5× · identical scale, weights, ladder, caps.</p>
+    <div class="sp-title-sub">
+      <div class="ty-h1">Crude complex — day 201 read</div>
+      <div class="ty-subline sp-sub-body" style="margin-top:6px">Volatility versus liquidity, after the ceasefire repricing.</div>
+    </div>
+    <div class="grid3" style="margin-bottom:16px">
+      <div class="card">
+        <div class="ty-label">Brent spot</div>
+        <div class="ty-hero" style="font-size:34px;margin-top:4px">96.40</div>
+        <div class="ty-caption"><span class="num" style="color:#00754B;font-weight:600">▲ +1.8%</span> w/w · premium holding</div>
+      </div>
+      <div class="card">
+        <div class="ty-label">War-risk premium</div>
+        <div class="ty-hero" style="font-size:34px;margin-top:4px">0.42%</div>
+        <div class="ty-caption"><span class="chip" style="background:#D6EEE3;color:#00754B">REALIZED</span></div>
+      </div>
+      <div class="card">
+        <div class="ty-label">Re-closure scenario</div>
+        <div class="ty-hero" style="font-size:34px;margin-top:4px">+$31</div>
+        <div class="ty-caption"><span class="chip" style="background:#E2E5E8;color:#46505A">LATENT</span> · not priced</div>
+      </div>
+    </div>
+    <p class="ty-body sp-body-cta" style="max-width:66ch">The market priced the first nine days as if the strait could stay closed forever — and the next thirty-five as if it had never been at risk. Both were wrong, and both were tradable. The desk's read stays unchanged: the premium is real, the panic is not.</p>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <button class="btn primary">Read the briefing →</button>
+      <span class="alink" style="color:#2B2F34;text-decoration-color:#67727E">All channels →</span>
+    </div>
+    <p class="ty-meta" style="margin-top:14px">Source: desk marks, day 201 · footnote register 12px @1.3</p>
+  </div>
+</section>
+
+<!-- ═══════ E2–E10 on light, with dark inserts where needed ═══════ -->
+<section class="band t-light">
+  <div class="wrap">
+
+    <div class="exhibit" data-ex="E2" data-name="Type-scale duel — corpus-literal vs current vs airy">
+      <div class="ex-head"><span class="ex-id">E2</span><h2>Type-scale duel</h2></div>
+      <p class="cite">Same content, three scales. Corpus master table: headers 20/24–32/48 @1.2 · body 14/16/18 @1.5 · titles up to 48 bold.</p>
+      <div class="grid3">
+        <div class="panel">
+          <div class="opt">A · Corpus-literal <span class="spec">H1 32 · H2 24 · body 16</span></div>
+          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:32px;line-height:1.15;letter-spacing:-0.01em">Transit insurance</div>
+          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:24px;line-height:1.2;margin-top:10px">Premium widening</div>
+          <p style="font-size:16px;line-height:1.5;color:var(--muted);margin-top:8px">War-risk premia tripled in eleven sessions before the ceasefire repriced the strait.</p>
+        </div>
+        <div class="panel">
+          <div class="opt">B · Current <span class="spec">H1 28 · H2 20 · body 15.5</span></div>
+          <div class="ty-h1">Transit insurance</div>
+          <div class="ty-h2" style="margin-top:10px">Premium widening</div>
+          <p class="ty-body" style="margin-top:8px;color:var(--muted)">War-risk premia tripled in eleven sessions before the ceasefire repriced the strait.</p>
+        </div>
+        <div class="panel">
+          <div class="opt">C · Airy <span class="spec">H1 24 · H2 18 · body 15 · +spacing</span></div>
+          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;line-height:1.2;letter-spacing:-0.005em">Transit insurance</div>
+          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:18px;line-height:1.25;margin-top:14px">Premium widening</div>
+          <p style="font-size:15px;line-height:1.6;color:var(--muted);margin-top:12px">War-risk premia tripled in eleven sessions before the ceasefire repriced the strait.</p>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (name A/B/C):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E3" data-name="Family-role duel — locked stack vs corpus-literal sans-logic vs all-serif">
+      <div class="ex-head"><span class="ex-id">E3</span><h2>Family-role duel</h2></div>
+      <p class="cite">Corpus role logic: sans = logic blocks, serif = quotes/section gravitas; families never carry hierarchy alone. Three interpretations.</p>
+      <div class="grid3">
+        <div class="panel">
+          <div class="opt">A · Locked stack <span class="spec">Playfair + Fraunces + Lora</span></div>
+          <div class="ty-h2">Custody, verified daily</div>
+          <p class="ty-body" style="margin-top:6px;color:var(--muted)">Assets sit with the custodian, marked against the escalation index.</p>
+          <div class="num" style="font-weight:700;font-size:22px;margin-top:8px">$2.4T</div>
+        </div>
+        <div class="panel">
+          <div class="opt">B · Corpus-literal <span class="spec">sans logic + serif display</span></div>
+          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:20px;letter-spacing:-0.005em">Custody, verified daily</div>
+          <p style="font-family:'Segoe UI',Arial,sans-serif;font-size:14.5px;line-height:1.5;color:var(--muted);margin-top:6px">Assets sit with the custodian, marked against the escalation index.</p>
+          <div style="font-family:'Segoe UI',Arial,sans-serif;font-weight:700;font-size:22px;margin-top:8px;font-variant-numeric:tabular-nums">$2.4T</div>
+        </div>
+        <div class="panel">
+          <div class="opt">C · All-serif <span class="spec">Playfair + Lora only</span></div>
+          <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:20px;letter-spacing:-0.005em">Custody, verified daily</div>
+          <p style="font-family:'Lora',serif;font-size:14.5px;line-height:1.55;color:var(--muted);margin-top:6px">Assets sit with the custodian, marked against the escalation index.</p>
+          <div class="num" style="font-weight:700;font-size:22px;margin-top:8px">$2.4T</div>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (name A/B/C):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E4" data-name="The Weight Law — contrast-graded weights, judge the law">
+      <div class="ex-head"><span class="ex-id">E4</span><h2>The Weight Law</h2></div>
+      <p class="cite">"Weight rises as contrast or chroma falls." Regular only on AAA · Medium+ on AA · <b>any coloured text = bold</b> · Bold/Black for T4 accents · Light only on premium darks. Fix ladder: weight → 7:1 → Tier-1 colour.</p>
+      <div class="grid3">
+        <div class="panel">
+          <div class="opt">AAA surface → Regular legal</div>
+          <p style="font-weight:400;font-size:14.5px">Premium widening across eleven sessions. <span class="spec">ink on white 12.6:1</span></p>
+        </div>
+        <div class="panel" style="background:#EDEFF2">
+          <div class="opt">AA-ish surface → Medium+</div>
+          <p style="font-weight:500;font-size:14.5px;color:#4A535C">Premium widening across eleven sessions. <span class="spec">muted on tint → 500</span></p>
+        </div>
+        <div class="panel">
+          <div class="opt">Coloured text → always bold</div>
+          <p style="font-size:14.5px"><span style="color:#367588;font-weight:700">Teal Blue header note</span> · <span style="color:#B23240;font-weight:700">risk flag</span> <span class="spec">never regular when coloured</span></p>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (approve = adopt as law):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E5" data-name="Italic constructions — pull-quote fills ×3, framing subline, inline stat">
+      <div class="ex-head"><span class="ex-id">E5</span><h2>Italic constructions</h2></div>
+      <p class="cite">Italics licensed for quotes, stats/framing sublines, legal disclaimers only. Pull-quote: centered, Playfair italic 19–22px, fill <b>Gold / Fog Purple / Bone</b>, no inline styling, no quotation marks unless needed, <b>never beside a CTA</b>.</p>
+      <div class="grid3">
+        <div style="border-radius:10px;padding:18px 20px;background:#F4C37D">
+          <p class="ty-quote" style="color:#1C1C1E">Conviction emerges from clean signals.</p>
+          <p style="text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#4a3d22;margin-top:8px;font-weight:600">Desk note · day 201</p>
+        </div>
+        <div style="border-radius:10px;padding:18px 20px;background:#ECECF7">
+          <p class="ty-quote" style="color:#2B2F34">Conviction emerges from clean signals.</p>
+          <p style="text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#67727E;margin-top:8px;font-weight:600">Fog Purple fill</p>
+        </div>
+        <div style="border-radius:10px;padding:18px 20px;background:#F4F1EA;border:1px solid #E0DACC">
+          <p class="ty-quote" style="color:#33302A">Conviction emerges from clean signals.</p>
+          <p style="text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8d8674;margin-top:8px;font-weight:600">Bone fill</p>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="panel">
+          <div class="opt">Framing subline (italic licence #2)</div>
+          <div class="ty-h2">The strait premium</div>
+          <div class="ty-subline" style="margin-top:4px">What the market charges, what it ignores.</div>
+        </div>
+        <div class="panel">
+          <div class="opt">Inline stat — bold beats italic</div>
+          <p class="ty-body">Premia tripled, <span class="num" style="font-weight:700">+0.42%</span> on the quarter — versus the italic version at <span class="num" style="font-style:italic">+0.42%</span>.</p>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (note preferred quote fill):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E6" data-name="Spacing duel — rhythm ladder vs uniform">
+      <div class="ex-head"><span class="ex-id">E6</span><h2>Spacing — the rhythm ladder</h2></div>
+      <p class="cite">Corpus pairwise ladder (scaled): title→subline 36 · subline→body 28 · body→CTA 24 · quote→section 44. Versus flat 24px everywhere.</p>
+      <div class="grid2">
+        <div class="panel">
+          <div class="opt">A · Rhythm ladder</div>
+          <div class="ty-h2">Exposure read</div>
+          <div class="ty-subline" style="margin-top:8px;margin-bottom:26px">Seven mandates, marked daily.</div>
+          <p class="ty-body" style="margin-bottom:22px;color:var(--muted)">Stress of this shape is survivable when sized in advance — patience is the position.</p>
+          <button class="btn primary">Read the briefing →</button>
+        </div>
+        <div class="panel">
+          <div class="opt">B · Uniform 24px</div>
+          <div class="ty-h2">Exposure read</div>
+          <div class="ty-subline" style="margin-top:24px;margin-bottom:24px">Seven mandates, marked daily.</div>
+          <p class="ty-body" style="margin-bottom:24px;color:var(--muted)">Stress of this shape is survivable when sized in advance — patience is the position.</p>
+          <button class="btn primary">Read the briefing →</button>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (A or B):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E7" data-name="Tracking duel — micro-label letterspacing strengths">
+      <div class="ex-head"><span class="ex-id">E7</span><h2>Tracking — the caps labels</h2></div>
+      <p class="cite">Caps only exist at the 11px bold micro-label. Headers carry 0 to −0.02em (negative). Pick the label tracking.</p>
+      <div class="grid3">
+        <div class="panel"><div class="opt">A · 0.03em</div><div class="ty-label" style="letter-spacing:.03em">War-risk premium</div><div class="num" style="font-size:22px;font-weight:600;margin-top:4px">0.42%</div></div>
+        <div class="panel"><div class="opt">B · 0.05em (current)</div><div class="ty-label">War-risk premium</div><div class="num" style="font-size:22px;font-weight:600;margin-top:4px">0.42%</div></div>
+        <div class="panel"><div class="opt">C · 0.09em</div><div class="ty-label" style="letter-spacing:.09em">War-risk premium</div><div class="num" style="font-size:22px;font-weight:600;margin-top:4px">0.42%</div></div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (A/B/C):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E8" data-name="Underlines & links — hover −15%, Royal Blue key-stat underline">
+      <div class="ex-head"><span class="ex-id">E8</span><h2>Underlines &amp; links</h2></div>
+      <p class="cite">Underline = links only, plus ONE sanctioned accent: Royal Blue "underlines, key-stat typography, premium lines" (≤5%, never running text). Hover −15% live on everything here.</p>
+      <div class="panel" style="display:flex;gap:26px;flex-wrap:wrap;align-items:baseline">
+        <span class="alink">Standard link →</span>
+        <span>
+          <span class="num" style="font-size:26px;font-weight:700;border-bottom:3px solid #4169E1;padding-bottom:2px">$2.4T</span>
+          <span class="spec">Royal-Blue key-stat underline</span>
+        </span>
+        <span>
+          <span class="num" style="font-size:26px;font-weight:700;border-bottom:3px solid #C9A24A;padding-bottom:2px">$2.4T</span>
+          <span class="spec">gold variant (dark-theme accent family)</span>
+        </span>
+      </div>
+      <div class="verdict"><span class="q">Verdict (note which underline accent, if any):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E9" data-name="CTA/emphasis budget — 2% vs 5% vs 8% measured page coverage">
+      <div class="ex-head"><span class="ex-id">E9</span><h2>The emphasis budget — measured</h2></div>
+      <p class="cite">Corpus: CTA/action layer <b>1–5%</b> of page · bright colour >5% = amateur · whitespace ≥3× cap-height around CTAs. Coverage below is <b>measured live</b> from the painted accent areas.</p>
+      <div class="grid3">
+        <div class="panel" data-budget>
+          <div class="opt">A · ~2% — one action</div>
+          <p class="ty-body" style="color:var(--muted);margin-bottom:18px">Premia tripled in eleven sessions. The desk's read: the premium is real, the panic is not. Position accordingly and size the basis trade before the window narrows further.</p>
+          <button class="btn primary" data-accent>Read the briefing →</button>
+          <div class="meter"><span>accent coverage</span><div class="bar"><div class="fill"></div></div><span class="pct">…</span></div>
+        </div>
+        <div class="panel" data-budget>
+          <div class="opt">B · ~5% — action + status</div>
+          <p class="ty-body" style="color:var(--muted);margin-bottom:14px">Premia tripled in eleven sessions. The desk's read: the premium is real, the panic is not.</p>
+          <div style="margin-bottom:14px"><span class="chip" data-accent style="background:#D6EEE3;color:#00754B">REALIZED</span> <span class="chip" data-accent style="background:#F4E3CB;color:#8A5B1D">ANTICIPATED</span></div>
+          <button class="btn primary" data-accent>Read the briefing →</button>
+          <div class="meter"><span>accent coverage</span><div class="bar"><div class="fill"></div></div><span class="pct">…</span></div>
+        </div>
+        <div class="panel" data-budget>
+          <div class="opt">C · ~8% — over budget</div>
+          <p class="ty-body" style="color:var(--muted);margin-bottom:12px">Premia tripled in eleven sessions.</p>
+          <div style="margin-bottom:10px"><span class="chip" data-accent style="background:#D6EEE3;color:#00754B">REALIZED</span> <span class="chip" data-accent style="background:#F4E3CB;color:#8A5B1D">ANTICIPATED</span> <span class="chip" data-accent style="background:#F2DBDB;color:#A14444">ELEVATED</span></div>
+          <button class="btn primary" data-accent style="margin-right:8px">Read the briefing →</button>
+          <button class="btn secondary" data-accent>Methodology</button>
+          <div style="margin-top:10px"><span class="alink" data-accent>All channels →</span> · <span class="alink" data-accent>Subscribe →</span></div>
+          <div class="meter"><span>accent coverage</span><div class="bar"><div class="fill over"></div></div><span class="pct">…</span></div>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (name the budget cap):</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E10" data-name="Context budgets — data vs risk vs CTA page, live meters">
+      <div class="ex-head"><span class="ex-id">E10</span><h2>Context-aware budgets</h2></div>
+      <p class="cite">The corpus goal-table as page recipes. Each mini-page shows its target and its <b>measured</b> accent spend. Risk pages carry <b>no CTA inside risk content</b> ("risk + CTA = emotional conflict — move it to the next section").</p>
+      <div class="grid3">
+        <div class="panel" data-budget>
+          <div class="opt">Data page · target ≤4%</div>
+          <div class="ty-label" style="margin-bottom:4px">OVX vs baseline</div>
+          <svg viewBox="0 0 300 90" width="100%">
+            <polyline points="10,62 70,60 130,63 190,60 290,58" fill="none" stroke="#67727E" stroke-width="1.6" stroke-dasharray="6 4"/>
+            <polyline points="10,74 60,58 110,66 160,38 210,26 260,34 290,22" fill="none" stroke="#2A6478" stroke-width="2.2" data-accent-svg/>
+          </svg>
+          <p class="ty-caption">Two data colours + slate reference. No decorative accents.</p>
+          <div class="meter"><span>spend</span><div class="bar"><div class="fill"></div></div><span class="pct">…</span></div>
+        </div>
+        <div class="panel" data-budget>
+          <div class="opt">Risk page · alert ≤5%, no CTA</div>
+          <p class="ty-body" style="font-size:14px;color:var(--muted)"><span style="color:#B23240;font-weight:700">Drawdown candour:</span> a re-closure would mark the worst single-quarter repricing since day 9 — <span class="num" style="color:#A14444;font-weight:700" data-accent>−14.8%</span> peak-to-trough.</p>
+          <div style="border-radius:8px;background:#E7EDE4;padding:10px 12px;margin-top:10px" data-accent>
+            <p style="font-size:13px;color:#3D5C49">What this means: stress of this shape is survivable when sized in advance.</p>
+          </div>
+          <p class="ty-meta" style="margin-top:10px">CTA appears in the NEXT section, per the exclusion law.</p>
+          <div class="meter"><span>spend</span><div class="bar"><div class="fill"></div></div><span class="pct">…</span></div>
+        </div>
+        <div class="panel" data-budget>
+          <div class="opt">Passive-CTA page · one soft action</div>
+          <div style="border-radius:8px;background:#E4EAE2;padding:12px 14px" data-accent>
+            <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px">Weekly desk note — what moved, what's priced, what isn't.</p>
+            <button class="btn primary" data-accent>Join the watchlist →</button>
+          </div>
+          <p class="ty-meta" style="margin-top:10px">Container 40% · CTA inside · nothing else coloured.</p>
+          <div class="meter"><span>spend</span><div class="bar"><div class="fill"></div></div><span class="pct">…</span></div>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (approve = adopt context budgets):</span></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="footer">
+  VegaReady Typography &amp; Emphasis Trial · spec-built from the 6-document research · “Copy verdicts” to export
+</div>
+
+<script>
+// ── live accent-coverage meters ──
+function measure(panel){
+  const pr=panel.getBoundingClientRect();
+  const area=pr.width*pr.height;
+  let acc=0;
+  panel.querySelectorAll('[data-accent]').forEach(el=>{
+    const r=el.getBoundingClientRect();acc+=r.width*r.height;
+  });
+  panel.querySelectorAll('[data-accent-svg]').forEach(el=>{
+    const r=el.getBoundingClientRect();acc+=r.width*r.height*0.18; // stroke, not fill
+  });
+  return area?100*acc/area:0;
+}
+function runMeters(){
+  document.querySelectorAll('[data-budget]').forEach(p=>{
+    const pct=measure(p);
+    const fill=p.querySelector('.fill'),lab=p.querySelector('.pct');
+    if(fill){fill.style.width=Math.min(100,pct*10)+'%';
+      fill.classList.toggle('over',pct>5.5);}
+    if(lab)lab.textContent=pct.toFixed(1)+'% of panel';
+  });
+}
+window.addEventListener('load',()=>setTimeout(runMeters,300));
+window.addEventListener('resize',()=>setTimeout(runMeters,200));
+
+// ── verdicts ──
+const KEY='vr-type-verdicts';
+const store=JSON.parse(localStorage.getItem(KEY)||'{}');
+const exs=[...document.querySelectorAll('.exhibit')];
+function save(){localStorage.setItem(KEY,JSON.stringify(store));prog()}
+function prog(){const n=Object.values(store).filter(v=>v.v).length;
+  document.getElementById('prog').textContent=n+' / '+exs.length+' judged'}
+exs.forEach(ex=>{
+  const id=ex.dataset.ex, bar=ex.querySelector('.verdict');
+  if(!bar)return;
+  const mk=(label,key)=>{const b=document.createElement('button');b.className='vbtn';b.textContent=label;
+    b.onclick=()=>{store[id]=store[id]||{};store[id].v=store[id].v===key?null:key;paint();save()};bar.appendChild(b);return b};
+  const bA=mk('Approve','approve'), bC=mk('Conditional','cond'), bR=mk('Reject','reject');
+  const note=document.createElement('input');note.className='vnote';note.placeholder='note — winner, cap, restriction…';
+  note.value=(store[id]&&store[id].n)||'';
+  note.oninput=()=>{store[id]=store[id]||{};store[id].n=note.value;save()};bar.appendChild(note);
+  function paint(){const v=store[id]&&store[id].v;
+    bA.classList.toggle('on-approve',v==='approve');
+    bC.classList.toggle('on-cond',v==='cond');
+    bR.classList.toggle('on-reject',v==='reject')}
+  paint();
+});
+prog();
+document.getElementById('copyAll').onclick=()=>{
+  const lines=exs.filter(e=>e.querySelector('.verdict')).map(ex=>{const id=ex.dataset.ex,s=store[id]||{};
+    return id+' · '+ex.dataset.name+' — '+(s.v?s.v.toUpperCase():'(unjudged)')+(s.n?' — '+s.n:'')});
+  navigator.clipboard.writeText('VegaReady Type & Emphasis Trial verdicts\n'+lines.join('\n')).then(()=>{
+    const b=document.getElementById('copyAll');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1600)});
+};
+</script>
+</body>
+</html>
