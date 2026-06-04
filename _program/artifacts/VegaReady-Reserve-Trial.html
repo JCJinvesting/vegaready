@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VegaReady — Reserve Colour Trial · validate against the approved system</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --r:12px;
+    --etf:#FFD89A; --sky:#72C5E1; --dteal:#0A7D7D; --softalert:#D16D6D;
+    --slateblue:#8B7FD9; --orchid:#9D8CC4; --sage:#B5C9A9; --palemint:#C1E1C1;
+    --fog:#E6E6FA; --clay:#DAA06D; --plum:#9B6A6C; --terra:#E2725B;
+    --coral:#FF6B6B; --royal:#4169E1; --mint:#98FF98; --epurple:#8A2BE2;
+    --alert:#E16470; --antic:#E0B262; --latent:#84909E; --realized:#46C9A0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Fraunces',Georgia,serif;font-size:15.5px;line-height:1.62;background:#0B0E13;color:#EFE7D8}
+  .sec{padding:56px 0 64px;background:var(--canvas);color:var(--ink)}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;line-height:1.2}
+  .num{font-family:'Lora',Georgia,serif;font-variant-numeric:tabular-nums}
+  /* derived theme tokens */
+  .sec{
+    --surface:color-mix(in srgb, var(--ink) 5%, var(--canvas));
+    --raised:color-mix(in srgb, var(--ink) 9%, var(--canvas));
+    --hair:color-mix(in srgb, var(--ink) 14%, var(--canvas));
+    --body:color-mix(in srgb, var(--ink) 86%, var(--canvas));
+    --muted:color-mix(in srgb, var(--ink) 61%, var(--canvas));
+    --faint:color-mix(in srgb, var(--ink) 45%, var(--canvas));
+  }
+  /* themes (scenario-mapped, from APPROVED-THEMES.md) */
+  .t-deepdesk{--canvas:#0E1217;--ink:#F2EBDC;--main:#36BBA6;--accent:#C9A24A}
+  .t-oxford  {--canvas:#0D1626;--ink:#EAE7DF;--main:#36BBA6;--accent:#F4C37D}
+  .t-smoke   {--canvas:#17191C;--ink:#E8EAEE;--main:#5E83D9;--accent:#E0A24A}
+  .t-indigo  {--canvas:#131726;--ink:#F2EBDC;--main:#5FA897;--accent:#C9A24A}
+  .t-pine    {--canvas:#11201C;--ink:#E8E2D2;--main:#5FA897;--accent:#C9A24A}
+  .t-charblue{--canvas:#13171D;--ink:#EAE7DF;--main:#5AA6B5;--accent:#F4C37D}
+
+  /* top bar */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);border-bottom:1px solid #232a35;padding:10px 0}
+  .topbar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar h1{font-size:17px;color:#EFE7D8;font-weight:600}
+  .topbar .sub{font-size:12.5px;color:#8e96a3}
+  .progress{margin-left:auto;font-size:12.5px;color:#8e96a3}
+  .copybtn{font-family:inherit;font-size:13px;background:#36BBA6;color:#0B0E13;border:0;border-radius:8px;padding:7px 16px;cursor:pointer;font-weight:600}
+  .copybtn:hover{filter:brightness(1.08)}
+
+  .intro{padding:34px 0 8px;background:#0B0E13;color:#cfd4dc}
+  .intro p{max-width:74ch;color:#aab1bc;font-size:14.5px}
+  .intro .law{font-size:12.5px;color:#7d8693;margin-top:10px}
+
+  .scen{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+  .scen b{color:var(--accent);font-weight:600;letter-spacing:.14em}
+  .sec h2{font-size:26px;margin-bottom:4px;color:var(--ink)}
+  .lede{color:var(--muted);max-width:72ch;margin-bottom:26px;font-size:15px}
+
+  .exhibit{background:var(--surface);border-radius:var(--r);padding:22px 24px 16px;margin-bottom:30px}
+  .ex-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+  .ex-id{font-family:'Lora',serif;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+  .ex-head h3{font-size:18.5px;color:var(--ink)}
+  .swatch{display:inline-block;width:13px;height:13px;border-radius:4px;vertical-align:-1px;margin-right:5px}
+  .quote{font-size:13px;color:var(--muted);font-style:italic;margin:2px 0 16px;max-width:80ch}
+  .quote b{color:var(--body);font-style:normal}
+  .cc{display:inline-block;font-family:'Lora',serif;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--raised);color:var(--muted);margin-left:6px;vertical-align:1px}
+  .cc.pass{color:#7fd0b2}.cc.warn{color:#e3b566}.cc.fail{color:#e88}
+
+  /* verdict widget */
+  .verdict{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--hair);margin-top:18px;padding-top:12px}
+  .verdict span.q{font-size:12.5px;color:var(--faint);margin-right:4px}
+  .vbtn{font-family:inherit;font-size:12.5px;padding:5px 14px;border-radius:99px;border:1px solid var(--hair);background:transparent;color:var(--muted);cursor:pointer}
+  .vbtn:hover{color:var(--body);border-color:var(--faint)}
+  .vbtn.on-approve{background:rgba(70,201,160,.16);border-color:#46C9A0;color:#7fd0b2}
+  .vbtn.on-cond{background:rgba(224,178,98,.14);border-color:#E0B262;color:#e3b566}
+  .vbtn.on-reject{background:rgba(225,100,112,.13);border-color:#E16470;color:#e88}
+  .vnote{flex:1;min-width:200px;font-family:inherit;font-size:12.5px;background:var(--raised);border:none;border-radius:8px;color:var(--body);padding:6px 12px;outline:none}
+  .vnote::placeholder{color:var(--faint)}
+
+  /* charts */
+  .chart{background:var(--raised);border-radius:10px;padding:16px 18px 8px;margin:6px 0 12px}
+  .chart .ct{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .chart .ct h4{font-family:'Playfair Display',serif;font-size:14.5px;color:var(--body);font-weight:600}
+  .chart .ct .num{font-size:12px;color:var(--faint)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:8px 2px 6px}
+  .legend i{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:3px;margin-right:6px}
+  svg text{font-family:'Lora',serif}
+
+  /* misc components */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .panel{border-radius:10px;padding:16px 18px}
+  .tagline{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:8px}
+  .donot{position:relative}
+  .mark{position:absolute;top:10px;right:12px;font-size:15px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:left;font-weight:600;padding:7px 10px}
+  td{padding:8px 10px;color:var(--body)}
+  td.num,th.num{text-align:right}
+  tbody tr:nth-child(odd){background:color-mix(in srgb, var(--ink) 3%, transparent)}
+  .badge{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.05em;padding:2.5px 10px;border-radius:99px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;font-weight:600;padding:10px 22px;border-radius:10px;cursor:pointer;border:1.5px solid transparent}
+  .dot{width:7px;height:7px;border-radius:50%}
+  .footer{padding:40px 0 70px;background:#0B0E13;color:#7d8693;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <h1>Reserve Colour Trial</h1>
+    <span class="sub">13 exhibits · approved themes · judge each, notes optional</span>
+    <span class="progress" id="prog">0 / 13 judged</span>
+    <button class="copybtn" id="copyAll">Copy verdicts</button>
+  </div>
+</div>
+
+<div class="intro">
+  <div class="wrap">
+    <p>Each exhibit places one reserve colour from <b style="color:#cfd4dc">COLOR-RESERVE.md</b> into expanded, real-scenario content on its scenario-mapped approved theme. Contrast chips are measured live against the actual background. Where the corpus forbids something, the forbidden version is shown beside the correct one so the "how not to use" rule can be confirmed visually.</p>
+    <p class="law">Verdicts save locally; <b>Copy verdicts</b> exports them as text to paste back to me. Approve = adopt into the system · Conditional = adopt with the noted restriction · Reject = lock in as a don't.</p>
+  </div>
+</div>
+
+<!-- ════════ MARKETS · WB5 DEEP DESK ════════ -->
+<section class="sec t-deepdesk">
+  <div class="wrap">
+    <div class="scen"><b>WB5 · Deep Desk</b> Cream · JCJ Teal · Brass — Markets</div>
+    <h2>Benchmark &amp; data duty</h2>
+    <p class="lede">The Markets surface carries the most charts. These exhibits test the two reserve colours that earn chart duty.</p>
+
+    <div class="exhibit" data-ex="E1" data-name="ETF Yellow — benchmark/overlay line">
+      <div class="ex-head"><span class="ex-id">E1</span><h3><span class="swatch" style="background:var(--etf)"></span>ETF Yellow <span class="num" style="font-size:13px;color:var(--faint)">#FFD89A</span> — the benchmark line</h3><span class="cc" data-fg="#FFD89A"></span></div>
+      <p class="quote">"Benchmark highlight — fastest series recognition; market awareness, temporal markers." Max 8%, data contexts only. <b>Never white text on it.</b> Never beside Gold in the same view.</p>
+      <div class="chart">
+        <div class="ct"><h4>Brent vs pre-escalation baseline</h4><span class="num">War day 142 → 201</span></div>
+        <svg viewBox="0 0 880 220" width="100%">
+          <line x1="40" y1="180" x2="860" y2="180" stroke="color-mix(in srgb,#F2EBDC 14%,#0E1217)" stroke-width="1"/>
+          <line x1="40" y1="110" x2="860" y2="110" stroke="color-mix(in srgb,#F2EBDC 8%,#0E1217)" stroke-width="1"/>
+          <line x1="40" y1="40"  x2="860" y2="40"  stroke="color-mix(in srgb,#F2EBDC 8%,#0E1217)" stroke-width="1"/>
+          <text x="34" y="184" fill="#8d8c80" font-size="11" text-anchor="end">78</text>
+          <text x="34" y="114" fill="#8d8c80" font-size="11" text-anchor="end">96</text>
+          <text x="34" y="44"  fill="#8d8c80" font-size="11" text-anchor="end">114</text>
+          <!-- benchmark: ETF Yellow dashed -->
+          <polyline points="40,156 180,154 320,157 460,153 600,155 740,154 860,152" fill="none" stroke="#FFD89A" stroke-width="2" stroke-dasharray="7 5"/>
+          <!-- main series: JCJ Teal -->
+          <polyline points="40,150 120,138 200,144 280,96 360,72 440,88 520,60 600,76 680,52 760,66 860,48" fill="none" stroke="#36BBA6" stroke-width="2.5"/>
+          <!-- NOW marker -->
+          <line x1="680" y1="30" x2="680" y2="180" stroke="#FFD89A" stroke-width="1" stroke-dasharray="2 4" opacity=".7"/>
+          <text x="680" y="22" fill="#FFD89A" font-size="11" font-weight="600" text-anchor="middle">NOW</text>
+          <circle cx="680" cy="52" r="4" fill="#36BBA6"/>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#36BBA6"></i>Brent spot</span>
+          <span><i style="background:#FFD89A;height:2px;background-image:linear-gradient(90deg,#FFD89A 60%,transparent 60%);background-size:10px 2px"></i>Pre-escalation baseline</span>
+          <span style="color:#FFD89A">▸ "NOW" temporal marker</span>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="panel" style="background:var(--raised)">
+          <div class="tagline">Correct — charcoal text on ETF Yellow</div>
+          <span class="badge" style="background:#FFD89A;color:#1C1C1E">BASELINE +38%</span>
+          <span class="cc" data-fg="#1C1C1E" data-bg="#FFD89A"></span>
+        </div>
+        <div class="panel donot" style="background:var(--raised)">
+          <div class="tagline">Forbidden — white text on ETF Yellow</div><span class="mark">✗</span>
+          <span class="badge" style="background:#FFD89A;color:#FFFFFF">BASELINE +38%</span>
+          <span class="cc" data-fg="#FFFFFF" data-bg="#FFD89A"></span>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E2" data-name="ETF Yellow — type-size law (Saturation-Footprint)">
+      <div class="ex-head"><span class="ex-id">E2</span><h3>ETF Yellow under the Saturation-Footprint Law — where size breaks it</h3></div>
+      <p class="quote">Your earlier observation, applied to the reserve: bright yellow works at <b>one–two words and medium numerals</b>; at large-numeral or sentence scale it disrupts.</p>
+      <div class="grid2">
+        <div class="panel" style="background:var(--raised)">
+          <div class="tagline">Within budget ✓</div>
+          <div style="display:flex;gap:26px;align-items:baseline">
+            <span class="badge" style="background:rgba(255,216,154,.14);color:#FFD89A">BENCHMARK</span>
+            <span class="num" style="font-size:26px;color:#FFD89A;font-weight:600">96.40</span>
+          </div>
+          <p style="font-size:12.5px;color:var(--faint);margin-top:8px">Two-word chip · medium numeral</p>
+        </div>
+        <div class="panel donot" style="background:var(--raised)"><span class="mark">✗</span>
+          <div class="tagline">Over budget</div>
+          <span class="num" style="font-size:46px;color:#FFD89A;font-weight:700;line-height:1">+38.2%</span>
+          <p style="font-size:13.5px;color:#FFD89A;margin-top:6px">Yellow running as a full explanatory sentence is visually disruptive.</p>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FRONT DOOR · A4 OXFORD BLACK ════════ -->
+<section class="sec t-oxford">
+  <div class="wrap">
+    <div class="scen"><b>A4 · Oxford Black</b> Parchment · JCJ Teal · JCJ Gold — Front door</div>
+    <h2>The three-step CTA ladder</h2>
+    <p class="lede">Today we have one action register. The corpus defines three: browse (no commitment) → track (passive, "emotional risk: none") → commit (serious engagement).</p>
+
+    <div class="exhibit" data-ex="E3" data-name="CTA ladder — Sky Blue track + Dark Teal commit">
+      <div class="ex-head"><span class="ex-id">E3</span><h3><span class="swatch" style="background:var(--sky)"></span>Sky Blue <span class="num" style="font-size:13px;color:var(--faint)">#72C5E1</span> + <span class="swatch" style="background:var(--dteal)"></span>Dark Teal <span class="num" style="font-size:13px;color:var(--faint)">#0A7D7D</span></h3></div>
+      <p class="quote">Sky Blue: "Passive observer mode… reduces action anxiety" — the documented Track/Watchlist colour. Dark Teal: "decisive action, commitment… critical actions only, max 1–2 elements."</p>
+      <div class="panel" style="background:var(--raised);display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+        <button class="btn" style="background:transparent;border-color:color-mix(in srgb,#36BBA6 45%,transparent);color:#36BBA6">Explore the data</button>
+        <button class="btn" style="background:transparent;border-color:#72C5E1;color:#72C5E1"><span class="dot" style="background:#72C5E1"></span>Track this market</button>
+        <button class="btn" style="background:#0A7D7D;color:#F2EBDC">Request the briefing</button>
+        <span class="cc" data-fg="#72C5E1"></span><span class="cc" data-fg="#F2EBDC" data-bg="#0A7D7D"></span>
+      </div>
+      <p style="font-size:12.5px;color:var(--faint);margin-top:10px">Browse = main ghost · Track = Sky Blue outline (passive, no pressure) · Commit = Dark Teal solid (one per view). Corpus rule confirmed visually: the ladder never sequences into urgency colours.</p>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E4" data-name="Page-exit zone — Pale Mint soft-CTA + Fog Purple referral footer">
+      <div class="ex-head"><span class="ex-id">E4</span><h3><span class="swatch" style="background:var(--palemint)"></span>Pale Mint soft-CTA zone → <span class="swatch" style="background:var(--fog)"></span>Fog Purple exit footer</h3></div>
+      <p class="quote">Pale Mint: "low-pressure opt-in… never early, late-funnel only." Fog Purple: "soft closure, no-pressure exits… reserve for hello/goodbye, never mid-page." Both applied as low-alpha tints per the dark-duty adaptation.</p>
+      <div class="panel" style="background:color-mix(in srgb,#C1E1C1 9%,var(--canvas));border-radius:10px 10px 0 0">
+        <div class="tagline" style="color:color-mix(in srgb,#C1E1C1 75%,var(--canvas))">Stay close to the data</div>
+        <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+          <p style="font-size:14px;color:var(--body);max-width:46ch">Weekly desk note on Gulf risk pricing — what moved, what's priced, what isn't.</p>
+          <button class="btn" style="background:transparent;border-color:#72C5E1;color:#72C5E1"><span class="dot" style="background:#72C5E1"></span>Join the watchlist</button>
+        </div>
+      </div>
+      <div class="panel" style="background:color-mix(in srgb,#E6E6FA 7%,var(--canvas));border-radius:0 0 10px 10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+        <span style="font-size:13px;color:var(--muted)">Useful to a colleague on the desk?</span>
+        <a href="#" onclick="return false" style="font-size:13px;color:color-mix(in srgb,#E6E6FA 80%,var(--ink));text-decoration:underline;text-underline-offset:3px">Send to a colleague →</a>
+      </div>
+      <p style="font-size:12.5px;color:var(--faint);margin-top:10px">Sequencing spine honoured: authority content → soft-CTA → soft exit. Neither tint appears mid-page.</p>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ DASHBOARD · WB3 SMOKE ════════ -->
+<section class="sec t-smoke">
+  <div class="wrap">
+    <div class="scen"><b>WB3 · Smoke</b> Cool Paper · Cobalt Lift · Desk Amber — Dashboard</div>
+    <h2>Status registers &amp; hero numerals</h2>
+
+    <div class="exhibit" data-ex="E5" data-name="Soft Alert Red — the Elevated register">
+      <div class="ex-head"><span class="ex-id">E5</span><h3><span class="swatch" style="background:var(--softalert)"></span>Soft Alert Red <span class="num" style="font-size:13px;color:var(--faint)">#D16D6D</span> — a fourth status register</h3><span class="cc" data-fg="#D16D6D"></span></div>
+      <p class="quote">"Warm risk alert, quiet caution… moderate warnings." Fills the gap between Anticipated amber and the Alert red, which stays reserved for genuine live alerts.</p>
+      <div class="panel" style="background:var(--raised);display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+        <span class="badge" style="background:rgba(132,144,158,.16);color:#9aa5b1">LATENT</span>
+        <span class="badge" style="background:rgba(224,178,98,.15);color:#E0B262">ANTICIPATED</span>
+        <span class="badge" style="background:rgba(209,109,109,.15);color:#D16D6D">ELEVATED — new</span>
+        <span class="badge" style="background:rgba(225,100,112,.17);color:#E16470">ALERT</span>
+        <span class="badge" style="background:rgba(70,201,160,.15);color:#46C9A0">REALIZED</span>
+      </div>
+      <table>
+        <thead><tr><th>Channel</th><th>Reading</th><th class="num">Δ 7d</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Hormuz transit insurance</td><td>War-risk premium widening</td><td class="num">+0.18%</td><td><span class="badge" style="background:rgba(209,109,109,.15);color:#D16D6D">ELEVATED</span></td></tr>
+          <tr><td>VLCC spot rates</td><td>Within seasonal band</td><td class="num">+2.1%</td><td><span class="badge" style="background:rgba(132,144,158,.16);color:#9aa5b1">LATENT</span></td></tr>
+          <tr><td>OVX (oil volatility)</td><td>Pricing event premium</td><td class="num">+11.4%</td><td><span class="badge" style="background:rgba(224,178,98,.15);color:#E0B262">ANTICIPATED</span></td></tr>
+          <tr><td>Strait AIS dark activity</td><td>Confirmed interference</td><td class="num">+34%</td><td><span class="badge" style="background:rgba(225,100,112,.17);color:#E16470">ALERT</span></td></tr>
+        </tbody>
+      </table>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E6" data-name="Royal Blue — hero stat numerals">
+      <div class="ex-head"><span class="ex-id">E6</span><h3><span class="swatch" style="background:var(--royal)"></span>Royal Blue <span class="num" style="font-size:13px;color:var(--faint)">#4169E1</span> — dynamic stat emphasis</h3><span class="cc" data-fg="#4169E1"></span></div>
+      <p class="quote">"Regal authority, dynamic stat emphasis… key-stat typography. Never background — over-saturated, fails risk tone." Numerals only, per the Saturation-Footprint Law.</p>
+      <div class="grid2">
+        <div class="panel" style="background:var(--raised)">
+          <div class="tagline">Hero stat in Royal Blue</div>
+          <span class="num" style="font-size:44px;font-weight:700;color:#4169E1">$2.4T</span>
+          <p style="font-size:13px;color:var(--muted)">Gulf sovereign assets in scope</p>
+        </div>
+        <div class="panel" style="background:var(--raised)">
+          <div class="tagline">Same stat in theme main (current)</div>
+          <span class="num" style="font-size:44px;font-weight:700;color:#5E83D9">$2.4T</span>
+          <p style="font-size:13px;color:var(--muted)">Gulf sovereign assets in scope</p>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:var(--faint);margin-top:10px">Honest framing: on Smoke, Royal Blue lands close to Cobalt Lift. It only earns a slot if you want a hotter stat register than the main — otherwise reject as redundant.</p>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CONNECTIONS · A7 INDIGO INK ════════ -->
+<section class="sec t-indigo">
+  <div class="wrap">
+    <div class="scen"><b>A7 · Indigo Ink</b> Cream · Verdigris · Brass — Connections</div>
+    <h2>Dense-chart series &amp; annotations</h2>
+
+    <div class="exhibit" data-ex="E7" data-name="Slate Blue VR — chart series 3/4">
+      <div class="ex-head"><span class="ex-id">E7</span><h3><span class="swatch" style="background:var(--slateblue)"></span>Slate Blue <span class="num" style="font-size:13px;color:var(--faint)">VR #8B7FD9</span> + <span class="swatch" style="background:var(--orchid)"></span>Steel Orchid <span class="num" style="font-size:13px;color:var(--faint)">VR #9D8CC4</span> annotations</h3><span class="cc" data-fg="#8B7FD9"></span><span class="cc" data-fg="#9D8CC4"></span></div>
+      <p class="quote">Slate Blue: "data depth, analytical thinking… multivariate charts." Steel Orchid: "high-logic precision with distinctiveness — analytic headers, annotation labels." The violet band is unoccupied in our system, so annotations can never be mistaken for data.</p>
+      <div class="chart">
+        <div class="ct"><h4>Cross-asset correlation to escalation index</h4><span class="num">90-day rolling</span></div>
+        <svg viewBox="0 0 880 230" width="100%">
+          <line x1="40" y1="190" x2="860" y2="190" stroke="color-mix(in srgb,#F2EBDC 14%,#131726)" stroke-width="1"/>
+          <line x1="40" y1="115" x2="860" y2="115" stroke="color-mix(in srgb,#F2EBDC 8%,#131726)" stroke-width="1"/>
+          <text x="34" y="119" fill="#8b8a93" font-size="11" text-anchor="end">0.5</text>
+          <polyline points="40,150 160,128 280,118 400,84 520,96 640,70 760,78 860,62" fill="none" stroke="#5FA897" stroke-width="2.5"/>
+          <polyline points="40,170 160,162 280,148 400,140 520,124 640,132 760,112 860,118" fill="none" stroke="#5E83D9" stroke-width="2"/>
+          <polyline points="40,182 160,176 280,180 400,160 520,166 640,150 760,156 860,142" fill="none" stroke="#8B7FD9" stroke-width="2"/>
+          <!-- Steel Orchid annotation -->
+          <line x1="400" y1="84" x2="470" y2="46" stroke="#9D8CC4" stroke-width="1"/>
+          <text x="476" y="44" fill="#9D8CC4" font-size="12">Ceasefire repricing · day 167</text>
+          <circle cx="400" cy="84" r="3.5" fill="none" stroke="#9D8CC4" stroke-width="1.5"/>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#5FA897"></i>Brent β</span>
+          <span><i style="background:#5E83D9"></i>GCC equities β</span>
+          <span><i style="background:#8B7FD9"></i>Shipping rates β — new series 3</span>
+          <span style="color:#9D8CC4">— Steel Orchid annotation layer</span>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ STRUCTURAL RISK · A8 PINE BLACK ════════ -->
+<section class="sec t-pine">
+  <div class="wrap">
+    <div class="scen"><b>A8 · Pine Black</b> Oat · Verdigris · Brass — Structural Risk</div>
+    <h2>Risk pacing — the sequencing spine as page design</h2>
+    <p class="lede">The 55-row matrix prescribes an order: neutral container → risk content → warm-neutral landing → Sage Green decompression. Scroll this section as one flow.</p>
+
+    <div class="exhibit" data-ex="E8" data-name="Risk pacing sequence — Terracotta risk + Sage Green decompression">
+      <div class="ex-head"><span class="ex-id">E8</span><h3><span class="swatch" style="background:var(--terra)"></span>Terracotta risk accent → <span class="swatch" style="background:var(--sage)"></span>Sage Green <span class="num" style="font-size:13px;color:var(--faint)">#B5C9A9</span> decompression</h3><span class="cc" data-fg="#E2725B"></span></div>
+      <p class="quote">Terracotta: "honest underperformance, humble reality check." Sage Green: "long-term alignment, succession calm" — the corpus-wide de-escalation landing zone after risk content. Never after Coral; never into Crimson.</p>
+      <div class="panel" style="background:var(--raised);margin-bottom:2px">
+        <div class="tagline" style="color:#E2725B">Drawdown candour</div>
+        <p style="color:var(--body);max-width:70ch">A re-closure of the Strait would mark the worst single-quarter repricing since day 9. Tanker war-risk premia tripled in eleven sessions; <span class="num" style="color:#E2725B;font-weight:600">−14.8%</span> peak-to-trough on the regional equity basket.</p>
+      </div>
+      <div class="panel" style="background:color-mix(in srgb,#B5C9A9 10%,var(--canvas));margin-bottom:2px">
+        <div class="tagline" style="color:color-mix(in srgb,#B5C9A9 80%,var(--canvas))">What this means for positioning</div>
+        <p style="color:var(--body);max-width:70ch;font-size:14.5px">Stress of this shape is survivable when sized for it in advance. The basis trades that pay through the cycle are the ones structured before the premium widens — patience is the position.</p>
+      </div>
+      <div class="panel" style="background:var(--surface)">
+        <span style="font-size:12.5px;color:var(--faint)">→ continues into neutral structure (method, custody, sizing)</span>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E9" data-name="Coral vs Terracotta — the GCC gate">
+      <div class="ex-head"><span class="ex-id">E9</span><h3><span class="swatch" style="background:var(--coral)"></span>Coral <span class="num" style="font-size:13px;color:var(--faint)">#FF6B6B</span> vs <span class="swatch" style="background:var(--terra)"></span>Terracotta <span class="num" style="font-size:13px;color:var(--faint)">#E2725B</span> — same content, home-market test</h3></div>
+      <p class="quote">Coral: "empathetic risk… volatility without panic" but flagged <b>"too casual for GCC."</b> Terracotta carries the same candour without the gate. Our front door faces the GCC.</p>
+      <div class="grid2">
+        <div class="panel donot" style="background:var(--raised)"><span class="mark">⚠</span>
+          <div class="tagline" style="color:#FF6B6B">Coral version (Americas-gated)</div>
+          <p style="font-size:14px;color:var(--body)">Drawdowns happen. Day 9 cost the unhedged basket <span class="num" style="color:#FF6B6B;font-weight:600">−22%</span> in a week.</p>
+        </div>
+        <div class="panel" style="background:var(--raised)">
+          <div class="tagline" style="color:#E2725B">Terracotta version (GCC-safe) ✓</div>
+          <p style="font-size:14px;color:var(--body)">Drawdowns happen. Day 9 cost the unhedged basket <span class="num" style="color:#E2725B;font-weight:600">−22%</span> in a week.</p>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BRIEFINGS · A3 CHARCOAL BLUE ════════ -->
+<section class="sec t-charblue">
+  <div class="wrap">
+    <div class="scen"><b>A3 · Charcoal Blue</b> Parchment · Teal Mist · JCJ Gold — Briefings</div>
+    <h2>Narrative registers</h2>
+
+    <div class="exhibit" data-ex="E10" data-name="Warm Clay — narrative pivot panel">
+      <div class="ex-head"><span class="ex-id">E10</span><h3><span class="swatch" style="background:var(--clay)"></span>Warm Clay <span class="num" style="font-size:13px;color:var(--faint)">#DAA06D</span> — the pivot from data to story</h3></div>
+      <p class="quote">"Slow re-entry, post-skepticism re-engagement; humanizes after technical content." The corpus' designated re-warm step between density and narrative.</p>
+      <table style="margin-bottom:2px">
+        <thead><tr><th>Window</th><th class="num">OVX</th><th class="num">Brent</th><th class="num">War-risk premium</th></tr></thead>
+        <tbody>
+          <tr><td>Day 1–9</td><td class="num">+212%</td><td class="num">+31%</td><td class="num">+0.62%</td></tr>
+          <tr><td>Day 10–44</td><td class="num">−38%</td><td class="num">−12%</td><td class="num">−0.21%</td></tr>
+        </tbody>
+      </table>
+      <div class="panel" style="background:color-mix(in srgb,#DAA06D 9%,var(--canvas))">
+        <div class="tagline" style="color:color-mix(in srgb,#DAA06D 85%,var(--ink))">How the desk read it</div>
+        <p style="font-family:'Playfair Display',serif;font-size:17px;line-height:1.5;color:var(--body);max-width:62ch">The market priced the first nine days as if the strait could stay closed forever — and the next thirty-five as if it had never been at risk. Both were wrong, and both were tradable.</p>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E11" data-name="Dusty Plum — post-mortem accent">
+      <div class="ex-head"><span class="ex-id">E11</span><h3><span class="swatch" style="background:var(--plum)"></span>Dusty Plum <span class="num" style="font-size:13px;color:var(--faint)">#9B6A6C</span> — retrospectives</h3><span class="cc" data-fg="#9B6A6C"></span></div>
+      <p class="quote">"Emotional safety, cycle memory, lessons learned" — the corpus' post-loss register, and <b>the only colour sanctioned to lead into risk content</b>. Never beside Gold; 1–2 sections max.</p>
+      <div class="panel" style="background:var(--raised);border-left:3px solid #9B6A6C;border-radius:4px 10px 10px 4px">
+        <div class="tagline" style="color:color-mix(in srgb,#9B6A6C 92%,var(--ink))">Retrospective · what we got wrong</div>
+        <p style="font-size:14.5px;color:var(--body);max-width:66ch">In the day-44 ceasefire we kept paying for protection the market no longer demanded. The lesson was structural, not tactical: our phase model lagged the registry by a week.</p>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:8px">→ exits into <span style="color:color-mix(in srgb,#B5C9A9 85%,var(--canvas))">Sage Green</span> alignment content, per the spine.</p>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E12" data-name="Gold ✕ Crimson quarantine — component law">
+      <div class="ex-head"><span class="ex-id">E12</span><h3>The Gold ✕ Crimson quarantine — alert components carry no gold</h3></div>
+      <p class="quote">Quarantined <b>in both directions, corpus-wide</b>: "optimism and risk are never adjacent." Proposed as a component law: no gold accent inside any alert/disclosure component.</p>
+      <div class="grid2">
+        <div class="panel" style="background:var(--raised);border-left:3px solid #E16470;border-radius:4px 10px 10px 4px">
+          <div class="tagline" style="color:#E16470">Correct ✓ — alert, neutral chrome</div>
+          <p style="font-size:14px;color:var(--body)"><b style="color:#E16470">Live alert:</b> AIS interference confirmed in the eastern approach. Insurance quotes suspended.</p>
+        </div>
+        <div class="panel donot" style="background:var(--raised);border-left:3px solid #E16470;border-radius:4px 10px 10px 4px"><span class="mark">✗</span>
+          <div class="tagline" style="color:#F4C37D">Violation — gold accent inside the alert</div>
+          <p style="font-size:14px;color:var(--body)"><b style="color:#E16470">Live alert:</b> AIS interference confirmed. <span class="badge" style="background:rgba(244,195,125,.15);color:#F4C37D">PREMIUM SIGNAL ★</span></p>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <div class="exhibit" data-ex="E13" data-name="Confirm rejections — Mint and Electric Purple at scale">
+      <div class="ex-head"><span class="ex-id">E13</span><h3>Confirm the rejections — <span class="swatch" style="background:var(--mint)"></span>Mint <span class="num" style="font-size:13px;color:var(--faint)">#98FF98</span> &amp; <span class="swatch" style="background:var(--epurple)"></span>Electric Purple <span class="num" style="font-size:13px;color:var(--faint)">#8A2BE2</span></h3></div>
+      <p class="quote">Both violate the Saturation-Footprint Law at any meaningful scale. Shown once so the rejection is a judged decision, not an assumption.</p>
+      <div class="grid2">
+        <div class="panel donot" style="background:var(--raised)"><span class="mark">✗</span>
+          <div class="tagline">Mint as a positive register</div>
+          <span class="badge" style="background:#98FF98;color:#11201C">FRESH SIGNAL</span>
+          <span class="num" style="font-size:24px;color:#98FF98;font-weight:600;margin-left:14px">+4.2%</span>
+          <p style="font-size:12.5px;color:var(--faint);margin-top:8px">Neon against the desk tone; collides with Realized green semantics.</p>
+        </div>
+        <div class="panel donot" style="background:var(--raised)"><span class="mark">✗</span>
+          <div class="tagline">Electric Purple as an innovation header</div>
+          <h3 style="color:#8A2BE2;font-size:20px">Next-generation signals platform</h3>
+          <p style="font-size:12.5px;color:var(--faint);margin-top:8px">"Disruption" energy the brand explicitly avoids; Slate Blue / Steel Orchid own this band, muted.</p>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  VegaReady Reserve Colour Trial · built on APPROVED-THEMES.md + COLOR-RESERVE.md · verdicts persist locally — use “Copy verdicts” to export
+</div>
+
+<script>
+// ---------- WCAG contrast ----------
+function lum(hex){const c=hex.replace('#','');const f=s=>{let v=parseInt(s,16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};
+  return .2126*f(c.substr(0,2))+.7152*f(c.substr(2,2))+.0722*f(c.substr(4,2))}
+function ratio(a,b){const l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05)}
+function sectionCanvas(el){let s=el.closest('.sec');return getComputedStyle(s).getPropertyValue('--canvas').trim()}
+document.querySelectorAll('.cc').forEach(el=>{
+  const fg=el.dataset.fg, bg=el.dataset.bg||sectionCanvas(el);
+  if(!fg)return;
+  const r=ratio(fg,bg), txt=r.toFixed(1)+':1 ';
+  let cls='fail',label='✗';
+  if(r>=7){cls='pass';label='AAA'}else if(r>=4.5){cls='pass';label='AA'}else if(r>=3){cls='warn';label='large-only'}
+  el.textContent=txt+label; el.classList.add(cls);
+});
+// ---------- verdicts ----------
+const KEY='vr-reserve-verdicts';
+const store=JSON.parse(localStorage.getItem(KEY)||'{}');
+const exs=[...document.querySelectorAll('.exhibit')];
+function save(){localStorage.setItem(KEY,JSON.stringify(store));prog()}
+function prog(){const n=Object.values(store).filter(v=>v.v).length;
+  document.getElementById('prog').textContent=n+' / '+exs.length+' judged'}
+exs.forEach(ex=>{
+  const id=ex.dataset.ex, bar=ex.querySelector('.verdict');
+  const mk=(label,key)=>{const b=document.createElement('button');b.className='vbtn';b.textContent=label;
+    b.onclick=()=>{store[id]=store[id]||{};store[id].v=store[id].v===key?null:key;paint();save()};bar.appendChild(b);return b};
+  const bA=mk('Approve','approve'), bC=mk('Conditional','cond'), bR=mk('Reject','reject');
+  const note=document.createElement('input');note.className='vnote';note.placeholder='note (optional) — restriction, scenario, tweak…';
+  note.value=(store[id]&&store[id].n)||'';
+  note.oninput=()=>{store[id]=store[id]||{};store[id].n=note.value;save()};bar.appendChild(note);
+  function paint(){const v=store[id]&&store[id].v;
+    bA.classList.toggle('on-approve',v==='approve');
+    bC.classList.toggle('on-cond',v==='cond');
+    bR.classList.toggle('on-reject',v==='reject')}
+  paint();
+});
+prog();
+document.getElementById('copyAll').onclick=()=>{
+  const lines=exs.map(ex=>{const id=ex.dataset.ex,s=store[id]||{};
+    return id+' · '+ex.dataset.name+' — '+(s.v?s.v.toUpperCase():'(unjudged)')+(s.n?' — '+s.n:'')});
+  navigator.clipboard.writeText('VegaReady Reserve Trial verdicts\n'+lines.join('\n')).then(()=>{
+    const b=document.getElementById('copyAll');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1600)});
+};
+</script>
+</body>
+</html>
