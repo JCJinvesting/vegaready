@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VegaReady — Light Trial v3 · built to the approved spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --r:12px;
+    /* ── canvas & ink (carried forward, approved) ── */
+    --canvas:#DDE2E6;            /* Soft White — your leading conditional */
+    --ink:#2B2F34;               /* cool-black, approved X1 */
+    --card:#FFFFFF;              /* pure-white cards, approved X3-A */
+    --hairline:#C2CAD1;          /* slate-tinted hairline */
+    --zebra:rgba(82,92,102,.055);
+    --muted:#4A535C;             /* ink 80% — strengthened, never faint */
+    --soft:#67727E;              /* metadata only, ≥12px */
+    /* ── structure & action ── */
+    --navy:#0B2E4E; --gold:#F4C37D; --slate:#525C66;
+    --tealblue:#367588; --tealblue-hover:#2E6373;
+    --deepteal:#2A6478; --lcyan:#A8D5E2; --bench:#67727E;
+    /* ── status: same-hue darkened TEXT values (the fix) ── */
+    --realized-base:#00A86B; --realized-text:#00754B;
+    --antic-base:#E9B56C;    --antic-text:#8A5B1D;
+    --elev-base:#D16D6D;     --elev-text:#A14444;
+    --alert-base:#D44D5C;    --alert-text:#B23240;
+    --latent-base:#525C66;   --latent-text:#46505A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Fraunces',Georgia,serif;font-size:15.5px;line-height:1.62;background:#0B0E13;color:#EFE7D8}
+  .num{font-family:'Lora',Georgia,serif;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 28px}
+
+  /* ───────── trial chrome (dark, unchanged) ───────── */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);border-bottom:1px solid #232a35;padding:10px 0}
+  .topbar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar h1{font-family:'Playfair Display',serif;font-size:17px;color:#EFE7D8;font-weight:600}
+  .topbar .sub{font-size:12.5px;color:#8e96a3}
+  .progress{margin-left:auto;font-size:12.5px;color:#8e96a3}
+  .copybtn{font-family:inherit;font-size:13px;background:#36BBA6;color:#0B0E13;border:0;border-radius:8px;padding:7px 16px;cursor:pointer;font-weight:600}
+  .intro{padding:32px 0 24px;background:#0B0E13;color:#aab1bc}
+  .intro p{max-width:78ch;font-size:14.5px}
+  .intro b{color:#cfd4dc}
+  .intro .law{font-size:12.5px;color:#7d8693;margin-top:10px}
+
+  /* ───────── light page ───────── */
+  .page{background:var(--canvas);color:var(--ink);padding:46px 0 40px;border-top:1px solid rgba(0,0,0,.06)}
+
+  /* TYPOGRAPHY SYSTEM — the F1 fix.
+     Headers = ink at weight, sentence case, normal/negative tracking.
+     Caps exist ONLY at micro-label scale, BOLD, in ink (corpus: "Micro Label · All Caps · 10pt · Charcoal"). */
+  .h-page{font-family:'Playfair Display',serif;font-weight:700;font-size:27px;letter-spacing:-0.01em;color:var(--ink);line-height:1.18}
+  .h-section{font-family:'Playfair Display',serif;font-weight:600;font-size:20px;letter-spacing:-0.005em;color:var(--ink)}
+  .h-card{font-family:'Lora',serif;font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
+  .h-sub{font-size:14px;color:var(--muted)}
+
+  .exhibit{margin-bottom:34px}
+  .ex-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:2px}
+  .ex-id{font-family:'Lora',serif;font-size:12px;font-weight:700;color:var(--tealblue);letter-spacing:.08em}
+  .ex-head h2{font-family:'Playfair Display',serif;font-weight:600;font-size:21px;color:var(--ink)}
+  .cite{font-size:12.5px;color:var(--soft);font-style:italic;max-width:84ch;margin:2px 0 14px}
+  .cite b{font-style:normal;color:var(--muted)}
+  .cc{display:inline-block;font-family:'Lora',serif;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--card);border:1px solid var(--hairline);color:var(--slate);margin-left:6px;vertical-align:1px}
+  .cc.pass{color:#1F7A55}.cc.warn{color:#8a6118}.cc.fail{color:#C2404E}
+  .spec{display:inline-block;font-family:'Lora',serif;font-size:10.5px;color:var(--soft);background:rgba(82,92,102,.08);border-radius:5px;padding:1.5px 7px;margin-left:6px;vertical-align:1px}
+
+  /* slice components */
+  .titlezone{background:var(--navy);color:#fff;border-radius:var(--r);padding:20px 24px;margin-bottom:16px}
+  .titlezone .kick{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .titlezone h3{font-family:'Playfair Display',serif;font-weight:600;font-size:22px;color:#fff;margin-bottom:3px;letter-spacing:-0.005em}
+  .titlezone p{font-size:13.5px;color:rgba(255,255,255,.80);max-width:64ch}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+  @media(max-width:760px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r);padding:14px 16px}
+  .card .v{font-family:'Lora',serif;font-size:27px;font-weight:600;color:var(--ink);margin-top:5px}
+  .card .d{font-size:12.5px;color:var(--muted);margin-top:3px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card);border:1px solid var(--hairline);border-radius:var(--r);overflow:hidden}
+  th{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-align:left;padding:9px 12px;border-bottom:1.5px solid var(--hairline)}
+  td{padding:8px 12px;color:var(--ink)}
+  td.num,th.num{text-align:right}
+  tbody tr:nth-child(odd){background:var(--zebra)}
+  .chip{display:inline-block;font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.05em;padding:3px 11px;border-radius:99px}
+  .actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:14px;font-weight:600;padding:9px 20px;border-radius:8px;cursor:pointer;border:1.5px solid transparent;transition:background .15s}
+  .btn.primary{background:var(--tealblue);color:#fff}
+  .btn.primary:hover{background:var(--tealblue-hover)}
+  .btn.secondary{background:var(--slate);color:#fff}
+  .btn.secondary:hover{background:#46505A}
+  .alink{font-size:13.5px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--soft)}
+  .chart{background:var(--card);border:1px solid var(--hairline);border-radius:10px;padding:14px 16px 6px;margin:6px 0 4px}
+  .chart .ct{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:8px 2px 6px}
+  .legend i{display:inline-block;width:18px;height:3px;border-radius:2px;vertical-align:3px;margin-right:6px}
+  svg text{font-family:'Lora',serif}
+
+  /* duel panels */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:860px){.grid4{grid-template-columns:1fr 1fr}}
+  @media(max-width:760px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+  .panel{border-radius:10px;padding:15px 17px;background:var(--card);border:1px solid var(--hairline);position:relative}
+  .opt{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--tealblue);margin-bottom:10px}
+  .mark{position:absolute;top:10px;right:12px;font-size:15px}
+
+  /* verdict widget */
+  .verdict{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border-top:1px solid var(--hairline);margin-top:16px;padding-top:12px}
+  .verdict span.q{font-size:12.5px;color:var(--soft);margin-right:4px}
+  .vbtn{font-family:inherit;font-size:12.5px;padding:5px 14px;border-radius:99px;border:1px solid var(--hairline);background:var(--card);color:var(--slate);cursor:pointer}
+  .vbtn.on-approve{background:rgba(0,117,75,.08);border-color:#00754B;color:#00754B}
+  .vbtn.on-cond{background:rgba(138,91,29,.08);border-color:#8a6118;color:#8a6118}
+  .vbtn.on-reject{background:rgba(178,50,64,.07);border-color:#B23240;color:#B23240}
+  .vnote{flex:1;min-width:200px;font-family:inherit;font-size:12.5px;background:var(--card);border:1px solid var(--hairline);border-radius:8px;color:var(--ink);padding:6px 12px;outline:none}
+  .vnote::placeholder{color:var(--soft)}
+  .footer{padding:40px 0 70px;background:#0B0E13;color:#7d8693;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <h1>Light Trial v3</h1>
+    <span class="sub">built to the approved spec · 8 verdicts</span>
+    <span class="progress" id="prog">0 / 8 judged</span>
+    <button class="copybtn" id="copyAll">Copy verdicts</button>
+  </div>
+</div>
+
+<div class="intro">
+  <div class="wrap">
+    <p>Every change here traces to a corpus rule surfaced by the diagnostic. <b>Headers</b> are now the ink at weight — Playfair semibold sentence case, labels at 11px <b>bold</b> caps in ink (the corpus' "Micro Label · All Caps · 10pt · Charcoal" pattern) — never thin, never colored by default. <b>Chips</b> are the documented pale-tint-fill + darkened-same-hue-text construction, at three strengths for you to pick. <b>The benchmark</b> is a slate reference line ("reference lines only… works with all chart colors"); gold is shown once as a reject-confirm. <b>Actions</b> follow the corpus secondary register: slate fill, ink text-link, one primary per view, hover −15%.</p>
+    <p class="law">V1 shows everything applied at once. The duels after it isolate each decision. Same workflow — judge, Copy verdicts, paste back.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="wrap">
+
+    <!-- ════════════════ V1 · THE CORRECTED SLICE ════════════════ -->
+    <div class="exhibit" data-ex="V1" data-name="The corrected full slice on Soft White">
+      <div class="ex-head"><span class="ex-id">V1</span><h2>The corrected slice — everything applied at once</h2></div>
+      <p class="cite">Soft White <span class="num">#DDE2E6</span> canvas · white cards · ink-at-weight headers · 16% chips · slate benchmark · corpus action row. Judge the whole before the parts.</p>
+
+      <div class="titlezone">
+        <div class="kick">Markets · Strait of Hormuz</div>
+        <h3>Crude complex — day 201 read</h3>
+        <p>What the market charges for Hormuz risk, what it ignores, and where the desk stands.</p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <div class="h-card">Brent spot</div>
+          <div class="v num">96.40</div>
+          <div class="d"><span class="num" style="color:var(--realized-text);font-weight:600">▲ +1.8%</span> w/w · premium holding</div>
+        </div>
+        <div class="card">
+          <div class="h-card">War-risk premium</div>
+          <div class="v num">0.42%</div>
+          <div class="d"><span class="chip" style="background:color-mix(in srgb,var(--realized-base) 16%,#fff);color:var(--realized-text)">REALIZED</span></div>
+        </div>
+        <div class="card">
+          <div class="h-card">Re-closure scenario</div>
+          <div class="v num">+$31</div>
+          <div class="d"><span class="chip" style="background:color-mix(in srgb,var(--latent-base) 16%,#fff);color:var(--latent-text)">LATENT</span> · not priced</div>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Channel</th><th>Reading</th><th class="num">Δ 7d</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Hormuz transit insurance</td><td>Premium widening</td><td class="num">+0.18%</td><td><span class="chip" style="background:color-mix(in srgb,var(--elev-base) 16%,#fff);color:var(--elev-text)">ELEVATED</span></td></tr>
+          <tr><td>VLCC spot rates</td><td>Within seasonal band</td><td class="num">+2.1%</td><td><span class="chip" style="background:color-mix(in srgb,var(--latent-base) 16%,#fff);color:var(--latent-text)">LATENT</span></td></tr>
+          <tr><td>OVX (oil volatility)</td><td>Event premium priced</td><td class="num">+11.4%</td><td><span class="chip" style="background:color-mix(in srgb,var(--antic-base) 16%,#fff);color:var(--antic-text)">ANTICIPATED</span></td></tr>
+          <tr><td>Strait AIS dark activity</td><td>Confirmed interference</td><td class="num">+34%</td><td><span class="chip" style="background:color-mix(in srgb,var(--alert-base) 16%,#fff);color:var(--alert-text)">ALERT</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="chart" style="margin-top:16px">
+        <div class="ct"><span class="h-section" style="font-size:15px">Brent vs pre-escalation baseline</span><span class="num" style="font-size:12px;color:var(--soft)">War day 142 → 201</span></div>
+        <svg viewBox="0 0 880 200" width="100%">
+          <rect x="40" y="58" width="820" height="34" fill="#A8D5E2" opacity=".28"/>
+          <text x="852" y="79" fill="#5d8294" font-size="10.5" text-anchor="end">seasonal range</text>
+          <line x1="40" y1="168" x2="860" y2="168" stroke="#D5DADE" stroke-width="1"/>
+          <line x1="40" y1="104" x2="860" y2="104" stroke="#E2E6E9" stroke-width="1"/>
+          <text x="34" y="108" fill="#67727E" font-size="11" text-anchor="end">96</text>
+          <text x="34" y="172" fill="#67727E" font-size="11" text-anchor="end">82</text>
+          <polyline points="40,124 250,122 460,125 670,122 860,120" fill="none" stroke="#67727E" stroke-width="1.8" stroke-dasharray="7 5"/>
+          <text x="48" y="116" fill="#67727E" font-size="11">pre-escalation baseline</text>
+          <polyline points="40,152 150,136 260,144 370,98 480,74 590,90 700,58 860,50" fill="none" stroke="#2A6478" stroke-width="2.5"/>
+          <line x1="700" y1="36" x2="700" y2="168" stroke="#525C66" stroke-width="1" stroke-dasharray="2 4" opacity=".75"/>
+          <text x="700" y="28" fill="#2B2F34" font-size="11" font-weight="700" text-anchor="middle">NOW</text>
+          <circle cx="700" cy="58" r="4" fill="#2A6478"/>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#2A6478"></i>Brent spot</span>
+          <span><i style="background:#67727E;height:2px"></i>Baseline (slate reference)</span>
+          <span><i style="background:#A8D5E2"></i>Seasonal range</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary">Read the briefing</button>
+        <button class="btn secondary">View methodology</button>
+        <a class="alink" href="#" onclick="return false">All channels →</a>
+      </div>
+
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <!-- ════════════════ V2 · HEADER DUEL ════════════════ -->
+    <div class="exhibit" data-ex="V2" data-name="Header duel — ink-at-weight vs Teal Blue vs Navy hero-bold vs v2 reject-confirm">
+      <div class="ex-head"><span class="ex-id">V2</span><h2>The header duel</h2></div>
+      <p class="cite">Corpus law: blue text <b>never below 16pt, bold required</b> ("Cobalt… acceptable only when bold and &gt;16pt"); default header ink is <b>Charcoal at weight</b> ("Apply to all headers", tracking −0.02em); Teal Blue <span class="num">#367588</span> is licensed "✅ Section header". Blue is re-tested per your clarification — at the sizes/weights the corpus demands.</p>
+      <div class="grid4">
+        <div class="panel">
+          <div class="opt">A · Ink at weight (proposed default)</div>
+          <div class="h-section" style="font-size:18px">Transit insurance</div>
+          <div class="h-card" style="margin-top:8px">War-risk premium</div>
+          <div class="num" style="font-size:23px;font-weight:600;margin-top:2px">0.42%</div>
+          <span class="cc" data-fg="#2B2F34" data-bg="#FFFFFF"></span><span class="spec">600 · 18px / 700 · 11px caps</span>
+        </div>
+        <div class="panel">
+          <div class="opt">B · Teal Blue section head</div>
+          <div class="h-section" style="font-size:18px;color:var(--tealblue)">Transit insurance</div>
+          <div class="h-card" style="margin-top:8px">War-risk premium</div>
+          <div class="num" style="font-size:23px;font-weight:600;margin-top:2px">0.42%</div>
+          <span class="cc" data-fg="#367588" data-bg="#FFFFFF"></span><span class="spec">600 · 18px · ties to action colour</span>
+        </div>
+        <div class="panel">
+          <div class="opt">C · Navy, corpus-legal scale</div>
+          <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:24px;color:var(--navy);letter-spacing:-0.005em">Transit insurance</div>
+          <div class="h-card" style="margin-top:8px">War-risk premium</div>
+          <div class="num" style="font-size:23px;font-weight:600;margin-top:2px">0.42%</div>
+          <span class="cc" data-fg="#0B2E4E" data-bg="#FFFFFF"></span><span class="spec">700 · 24px — bold ≥16pt gate met</span>
+        </div>
+        <div class="panel"><span class="mark">✗</span>
+          <div class="opt" style="color:#9aa3ab">D · v2 treatment (reject-confirm)</div>
+          <div style="font-family:'Fraunces',serif;font-weight:400;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)">Transit insurance</div>
+          <div style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);margin-top:10px;font-weight:400">War-risk premium</div>
+          <div class="num" style="font-size:23px;font-weight:600;margin-top:2px">0.42%</div>
+          <span class="spec">thin · small · letterspaced caps — breaks every corpus gate</span>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (name the winner in the note):</span></div>
+    </div>
+
+    <!-- ════════════════ V3 · CHIP STRENGTH TRIPLET ════════════════ -->
+    <div class="exhibit" data-ex="V3" data-name="Status chip strength — 12% vs 16% vs 22% tint">
+      <div class="ex-head"><span class="ex-id">V3</span><h2>Status chips — pick the register</h2></div>
+      <p class="cite">The documented construction: <b>pale same-hue tint fill + dark text</b> ("use only with dark/black text" on every pale fill; "Charcoal on Pale Mint 6.7:1 ✅"). Text is the darkened same-hue value, fill strength varies. Your words: "a mix between v1 and v2."</p>
+      <div class="grid3">
+        <div class="panel">
+          <div class="opt">12% tint — quietest</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap" data-strength="12"></div>
+        </div>
+        <div class="panel">
+          <div class="opt">16% tint — the slice above uses this</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap" data-strength="16"></div>
+        </div>
+        <div class="panel">
+          <div class="opt">22% tint — most present</div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap" data-strength="22"></div>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (name the strength in the note):</span></div>
+    </div>
+
+    <!-- ════════════════ V4 · BENCHMARK ════════════════ -->
+    <div class="exhibit" data-ex="V4" data-name="Slate benchmark line (corpus-legal) on the Deep Teal chart">
+      <div class="ex-head"><span class="ex-id">V4</span><h2>The benchmark — slate reference line</h2></div>
+      <p class="cite">"Slate Gray [data]: <b>Reference lines only</b>… Universal Use: works with all chart colors." The gold version sits in V5 as a reject-confirm. Benchmark token becomes theme-conditional: dark → ETF Yellow <span class="num">#FFD89A</span> (approved E1) · light → slate dash <span class="num">#67727E</span>.</p>
+      <div class="chart">
+        <div class="ct"><span class="h-section" style="font-size:15px">OVX vs event-premium baseline</span><span class="num" style="font-size:12px;color:var(--soft)">90-day</span></div>
+        <svg viewBox="0 0 880 190" width="100%">
+          <line x1="40" y1="160" x2="860" y2="160" stroke="#D5DADE" stroke-width="1"/>
+          <line x1="40" y1="96" x2="860" y2="96" stroke="#E2E6E9" stroke-width="1"/>
+          <text x="34" y="100" fill="#67727E" font-size="11" text-anchor="end">38</text>
+          <polyline points="40,118 250,116 460,119 670,116 860,114" fill="none" stroke="#67727E" stroke-width="1.8" stroke-dasharray="7 5"/>
+          <text x="48" y="110" fill="#67727E" font-size="11">event-premium baseline</text>
+          <polyline points="40,148 160,128 280,138 400,88 520,68 640,84 760,56 860,62" fill="none" stroke="#2A6478" stroke-width="2.5"/>
+          <circle cx="760" cy="56" r="4" fill="#2A6478"/>
+        </svg>
+        <div class="legend">
+          <span><i style="background:#2A6478"></i>OVX</span>
+          <span><i style="background:#67727E;height:2px"></i>Baseline — slate, dashed</span>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <!-- ════════════════ V5 · GOLD REJECT-CONFIRM ════════════════ -->
+    <div class="exhibit" data-ex="V5" data-name="Gold benchmark on light — reject-confirm">
+      <div class="ex-head"><span class="ex-id">V5</span><h2>Gold benchmark — confirm the don't</h2></div>
+      <p class="cite">Corpus, verbatim: gold-family is "<b>not compatible with Slate or Cobalt transitions — triggers too much contrast</b>" and "Gold: Tier 4 Data: <b>Never in charts</b>." Your v2 verdict said the same thing. Shown once so the rule locks as a judged decision.</p>
+      <div class="chart" style="position:relative"><span class="mark">✗</span>
+        <svg viewBox="0 0 880 150" width="100%">
+          <line x1="40" y1="126" x2="860" y2="126" stroke="#D5DADE" stroke-width="1"/>
+          <polyline points="40,92 250,90 460,93 670,90 860,88" fill="none" stroke="#B8860B" stroke-width="2" stroke-dasharray="7 5"/>
+          <text x="48" y="84" fill="#8a6118" font-size="11">gold baseline — fights the series</text>
+          <polyline points="40,116 160,100 280,108 400,68 520,52 640,64 760,42 860,48" fill="none" stroke="#2A6478" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div class="verdict"><span class="q">Verdict (approve = lock the ban):</span></div>
+    </div>
+
+    <!-- ════════════════ V6 · ACTION ROW ════════════════ -->
+    <div class="exhibit" data-ex="V6" data-name="Action row — Teal Blue primary, slate secondary, ink text-link">
+      <div class="ex-head"><span class="ex-id">V6</span><h2>The action row</h2></div>
+      <p class="cite">Corpus secondary register: <b>no outline buttons exist in the system</b> — secondaries are soft solid fills ("Track (Soft) → <b>Slate</b>") or sentence-case text + "→". One primary per view ("Multiple CTAs in different colors → decision paralysis"). Hover = 15% darker (the corpus' only hover formula) — try it on the buttons.</p>
+      <div class="panel" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+        <span><button class="btn primary">Read the briefing</button><span class="cc" data-fg="#FFFFFF" data-bg="#367588"></span></span>
+        <span><button class="btn secondary">View methodology</button><span class="cc" data-fg="#FFFFFF" data-bg="#525C66"></span></span>
+        <span><a class="alink" href="#" onclick="return false">All channels →</a><span class="cc" data-fg="#2B2F34" data-bg="#FFFFFF"></span></span>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+    <!-- ════════════════ V7 · TITLE ZONE: KEPT vs REMOVED ════════════════ -->
+    <div class="exhibit" data-ex="V7" data-name="Navy title-zone — kept vs removed">
+      <div class="ex-head"><span class="ex-id">V7</span><h2>The Navy title-zone — keep or remove?</h2></div>
+      <p class="cite">The fill version of "blue headers" — corpus: "Title Zone | Top 20% | <b>Navy</b>" with white text; "Navy: best used as full background." You didn't flag it in v2 (only the blue <i>ink</i>). Decide its fate explicitly.</p>
+      <div class="grid2">
+        <div class="panel" style="padding:0;overflow:hidden">
+          <div class="opt" style="padding:13px 17px 0">A · Kept — Navy panel anchors the page</div>
+          <div style="margin:10px 14px 14px">
+            <div class="titlezone" style="margin-bottom:0">
+              <div class="kick">Exposure · Gulf Sovereigns</div>
+              <h3 style="font-size:19px">Institutional positioning</h3>
+            </div>
+          </div>
+        </div>
+        <div class="panel" style="padding:0;overflow:hidden">
+          <div class="opt" style="padding:13px 17px 0">B · Removed — ink headline on canvas</div>
+          <div style="margin:10px 14px 14px;padding:18px 4px">
+            <div class="h-card" style="color:var(--tealblue);margin-bottom:6px">Exposure · Gulf Sovereigns</div>
+            <div class="h-page" style="font-size:23px">Institutional positioning</div>
+          </div>
+        </div>
+      </div>
+      <div class="verdict"><span class="q">Verdict (A or B in the note):</span></div>
+    </div>
+
+    <!-- ════════════════ V8 · CANVAS CONFIRM ════════════════ -->
+    <div class="exhibit" data-ex="V8" data-name="Canvas confirm — Soft White as the light default">
+      <div class="ex-head"><span class="ex-id">V8</span><h2>Canvas confirm</h2></div>
+      <p class="cite">This whole page runs on Soft White <span class="num">#DDE2E6</span> ("cooler off-white canvas… text: Charcoal", documented). Cool Paper <span class="num">#E8EAEE</span> and Modal <span class="num">#E9EDF2</span> inherit the identical treatment one step brighter. Approve Soft White as the light-theme default canvas, or name another in the note.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <span class="chip" style="background:#DDE2E6;color:#2B2F34;border:1px solid #C2CAD1">SOFT WHITE #DDE2E6 — this page</span>
+        <span class="chip" style="background:#E8EAEE;color:#2B2F34;border:1px solid #C2CAD1">COOL PAPER #E8EAEE</span>
+        <span class="chip" style="background:#E9EDF2;color:#2B2F34;border:1px solid #C2CAD1">MODAL #E9EDF2</span>
+      </div>
+      <div class="verdict"><span class="q">Verdict:</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  VegaReady Light Trial v3 · built to the approved spec from the 7-document diagnostic · “Copy verdicts” to export
+</div>
+
+<script>
+// ── status chip triplet builder ──
+const STATUS=[
+  ['REALIZED','#00A86B','#00754B'],
+  ['ANTICIPATED','#E9B56C','#8A5B1D'],
+  ['ELEVATED','#D16D6D','#A14444'],
+  ['ALERT','#D44D5C','#B23240'],
+  ['LATENT','#525C66','#46505A'],
+];
+document.querySelectorAll('[data-strength]').forEach(holder=>{
+  const s=parseInt(holder.dataset.strength,10);
+  STATUS.forEach(([label,base,text])=>{
+    const el=document.createElement('span');
+    el.className='chip';
+    el.style.background=`color-mix(in srgb, ${base} ${s}%, #FFFFFF)`;
+    el.style.color=text;
+    el.textContent=label;
+    holder.appendChild(el);
+  });
+});
+
+// ── WCAG contrast chips ──
+function lum(hex){const c=hex.replace('#','');const f=t=>{let v=parseInt(t,16)/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)};
+  return .2126*f(c.substr(0,2))+.7152*f(c.substr(2,2))+.0722*f(c.substr(4,2))}
+function ratio(a,b){const l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05)}
+document.querySelectorAll('.cc').forEach(el=>{
+  const fg=el.dataset.fg,bg=el.dataset.bg;
+  if(!fg||!bg)return;
+  const r=ratio(fg,bg);
+  let cls='fail',label='✗';
+  if(r>=7){cls='pass';label='AAA'}else if(r>=4.5){cls='pass';label='AA'}else if(r>=3){cls='warn';label='large-only'}
+  el.textContent=r.toFixed(1)+':1 '+label;el.classList.add(cls);
+});
+
+// ── verdict capture ──
+const KEY='vr-light3-verdicts';
+const store=JSON.parse(localStorage.getItem(KEY)||'{}');
+const exs=[...document.querySelectorAll('.exhibit')];
+function save(){localStorage.setItem(KEY,JSON.stringify(store));prog()}
+function prog(){const n=Object.values(store).filter(v=>v.v).length;
+  document.getElementById('prog').textContent=n+' / '+exs.length+' judged'}
+exs.forEach(ex=>{
+  const id=ex.dataset.ex, bar=ex.querySelector('.verdict');
+  const mk=(label,key)=>{const b=document.createElement('button');b.className='vbtn';b.textContent=label;
+    b.onclick=()=>{store[id]=store[id]||{};store[id].v=store[id].v===key?null:key;paint();save()};bar.appendChild(b);return b};
+  const bA=mk('Approve','approve'), bC=mk('Conditional','cond'), bR=mk('Reject','reject');
+  const note=document.createElement('input');note.className='vnote';note.placeholder='note (optional) — winner, strength, restriction…';
+  note.value=(store[id]&&store[id].n)||'';
+  note.oninput=()=>{store[id]=store[id]||{};store[id].n=note.value;save()};bar.appendChild(note);
+  function paint(){const v=store[id]&&store[id].v;
+    bA.classList.toggle('on-approve',v==='approve');
+    bC.classList.toggle('on-cond',v==='cond');
+    bR.classList.toggle('on-reject',v==='reject')}
+  paint();
+});
+prog();
+document.getElementById('copyAll').onclick=()=>{
+  const lines=exs.map(ex=>{const id=ex.dataset.ex,s=store[id]||{};
+    return id+' · '+ex.dataset.name+' — '+(s.v?s.v.toUpperCase():'(unjudged)')+(s.n?' — '+s.n:'')});
+  navigator.clipboard.writeText('VegaReady Light Trial v3 verdicts\n'+lines.join('\n')).then(()=>{
+    const b=document.getElementById('copyAll');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1600)});
+};
+</script>
+</body>
+</html>

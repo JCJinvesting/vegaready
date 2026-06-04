@@ -104,3 +104,38 @@
 6. **One yellow-family member per context;** alert red quarantined to genuine live alerts/losses; Latent reality state is grey, never red.
 
 *Maintained alongside DESIGN-CONTRACT.md; the final winning combo(s) + elevation settings will be cut into the contract tokens when the dark and light trials close.*
+
+---
+
+# The Light Alternate — LOCKED 2026-06-04 · "Soft White Desk" (L1)
+
+*Three trial rounds (v1 inversion REJECTED · v2 corpus-anchoring REJECTED on details · v3 to the diagnostic spec APPROVED — "much better results"). Evidence: `artifacts/VegaReady-Light-Trial-v3.html` + `artifacts/Light-Trial-v3-Spec.md` (the 7-document diagnostic). Light is the alternate theme; dark remains primary.*
+
+## Tokens
+
+| Role | Value | Notes |
+|---|---|---|
+| **Canvas (default)** | Soft White `#DDE2E6` | "Cooler off-white canvas… text: Charcoal" — answers the "real, not too warm" brief |
+| Canvas siblings | Cool Paper `#E8EAEE` · Modal `#E9EDF2` | identical treatment, one step brighter |
+| **Card** | `#FFFFFF` + hairline `#C2CAD1` | white-lift (X3-A approved); zebra `rgba(82,92,102,.055)` |
+| **Ink** | cool-black `#2B2F34` | warm-black `#33302A` reserved for warm canvases (Bone) |
+| Ink ramp | muted `#4A535C` · metadata `#67727E` (≥12px only) | never faint labels — v1 lesson |
+| **Headers** | **ink at weight** — Playfair 600/700, sentence case, tracking ≥ −0.01em | hue-neutral by default ("won't match whatever changes") |
+| Labels (card/table) | Lora **700** · 11px · caps · `.06em` · ink | corpus micro-label pattern; never thin, never colored |
+| Colored header options | Teal Blue `#367588` section heads (corpus "✅ Section header") · Navy `#0B2E4E` only ≥24px **bold** | **blue ink below the 16px-bold gate is BANNED** ("Cobalt… acceptable only when bold and >16pt") |
+| **Title zone** | Navy `#0B2E4E` panel · white text · gold kicker `#F4C37D` | the corpus' fill-version of "blue headers"; kept (V7-A in V1 composition) |
+| **Status chips** | same-hue **16% tint** fill on white + **darkened same-hue text** | Realized `#00A86B`/`#00754B` · Anticipated `#E9B56C`/`#8A5B1D` · Elevated `#D16D6D`/`#A14444` · Alert `#D44D5C`/`#B23240` · Latent `#525C66`/`#46505A` |
+| **Chart main** | Deep Teal `#2A6478` | corpus "deep analysis" series |
+| **Benchmark (light)** | slate dash `#67727E` | theme-conditional token: dark → ETF Yellow `#FFD89A` (E1), light → slate ("reference lines only; works with all chart colors") |
+| Range band | Light Cyan `#A8D5E2` @ ~28% | "supporting evidence" |
+| **Primary button** | Teal Blue `#367588` solid · white bold · hover −15% (`#2E6373`) | one primary per view |
+| Secondary button | Slate `#525C66` solid · white | corpus "Track (Soft) → Slate"; **no outline buttons exist in the system** |
+| Tertiary | ink text-link + "→" | sentence case |
+
+## Light-theme bans (locked by judged verdicts)
+1. Blue ink at small/thin/letterspaced-caps scale (V2-D reject-confirm; corpus gate ≥16px bold).
+2. Gold/yellow chart lines on light (V5; "Gold: Tier 4 Data: Never in charts"; ETF Yellow = dark bg only).
+3. White text on any pale fill (corpus-wide "dark/black text only" on pale tones).
+4. Solid full-strength status marks at chip scale AND pale-hue-on-pale tints (the v2/v1 extremes; 16% tint + darkened text is the register).
+5. Pastel and second-teal buttons (`#A9D18E`, `#36BBA6` as generic UI — funnel-semantics colours, not buttons).
+6. Warm-paper canvases as the light default (v1: "dull/dirty/bland" at scale) — Bone reserved for premium-formula surfaces only.
