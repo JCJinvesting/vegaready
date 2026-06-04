@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VegaReady — Components Trial A · layouts, containers, chrome</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Fraunces',Georgia,serif;font-size:15px;background:#0B0E13;color:#EFE7D8;line-height:1.55}
+  .num{font-family:'Lora',Georgia,serif;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);border-bottom:1px solid #232a35;padding:10px 0}
+  .topbar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar h1{font-family:'Playfair Display',serif;font-size:17px;font-weight:600}
+  .topbar .sub{font-size:12.5px;color:#8e96a3}
+  .progress{margin-left:auto;font-size:12.5px;color:#8e96a3}
+  .copybtn{font-family:inherit;font-size:13px;background:#36BBA6;color:#0B0E13;border:0;border-radius:8px;padding:7px 16px;cursor:pointer;font-weight:600}
+  .intro{padding:28px 0 8px;color:#aab1bc}
+  .intro p{max-width:80ch;font-size:14.5px}
+  .intro b{color:#cfd4dc}
+
+  .exhibit{padding:34px 0 26px;border-top:1px solid #1a212b}
+  .ex-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .ex-id{font-family:'Lora',serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:#5AA6B5}
+  .ex-head h2{font-family:'Playfair Display',serif;font-weight:600;font-size:21px;color:#EFE7D8}
+  .cite{font-size:12.5px;color:#7d8693;font-style:italic;max-width:86ch;margin:3px 0 16px}
+  .cite b{font-style:normal;color:#aab1bc}
+  .opt{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#5AA6B5;margin:0 0 8px}
+  .optwrap{background:#10141B;border:1px solid #1e2630;border-radius:12px;padding:13px 14px}
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:980px){.grid5,.grid4{grid-template-columns:1fr 1fr}}
+  @media(max-width:680px){.grid5,.grid4,.grid3,.grid2{grid-template-columns:1fr}}
+
+  /* theme frames */
+  .f{border-radius:9px;padding:12px;margin-bottom:8px;font-size:12px;line-height:1.45}
+  .f:last-child{margin-bottom:0}
+  .f-d{background:#0E1217;color:#E3DCCB;
+    --ink:#F2EBDC;--card:#181D24;--hair:#2A3038;--main:#36BBA6;--accent:#C9A24A;--muted:#A89F8C;--faint:#7E7768;--zeb:rgba(242,235,220,.04)}
+  .f-l{background:#DDE2E6;color:#2B2F34;
+    --ink:#2B2F34;--card:#FFFFFF;--hair:#C2CAD1;--main:#367588;--accent:#525C66;--muted:#4A535C;--faint:#67727E;--zeb:rgba(82,92,102,.055)}
+  .lab{font-family:'Lora',serif;font-weight:700;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+  .val{font-family:'Lora',serif;font-weight:600;font-size:19px;color:var(--ink)}
+  .cap{font-size:10.5px;color:var(--muted)}
+  .met{font-size:9.5px;color:var(--faint)}
+  .h-mini{font-family:'Playfair Display',serif;font-weight:600;font-size:14px;color:var(--ink);letter-spacing:-.005em}
+  .btn-m{display:inline-block;font-size:11px;font-weight:600;padding:5px 12px;border-radius:7px;background:var(--main);color:#fff;cursor:default}
+  .f-d .btn-m{color:#0B0E13}
+  .chip-m{display:inline-block;font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:99px}
+
+  /* verdict */
+  .verdict{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .verdict span.q{font-size:12.5px;color:#7d8693}
+  .vbtn{font-family:inherit;font-size:12.5px;padding:5px 14px;border-radius:99px;border:1px solid #2a3340;background:transparent;color:#9aa4b1;cursor:pointer}
+  .vbtn.on-approve{background:rgba(70,201,160,.14);border-color:#46C9A0;color:#7fd0b2}
+  .vbtn.on-cond{background:rgba(224,178,98,.13);border-color:#E0B262;color:#e3b566}
+  .vbtn.on-reject{background:rgba(225,100,112,.12);border-color:#E16470;color:#e88}
+  .vnote{flex:1;min-width:200px;font-family:inherit;font-size:12.5px;background:#10141B;border:1px solid #1e2630;border-radius:8px;color:#EFE7D8;padding:6px 12px;outline:none}
+  .vnote::placeholder{color:#5d6671}
+  .footer{padding:40px 0 70px;color:#7d8693;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <h1>Components Trial A</h1>
+  <span class="sub">8 exhibits · 4–5 options each · every option on BOTH palettes</span>
+  <span class="progress" id="prog">0 / 8 judged</span>
+  <button class="copybtn" id="copyAll">Copy verdicts</button>
+</div></div>
+
+<div class="intro"><div class="wrap">
+  <p>Each option panel renders <b>dark (Deep Desk) on top, light (Soft White) below</b> so a single verdict locks the component for both themes. Corpus citations per exhibit; <b>net-new</b> marks the four areas the corpus is silent on — there we're deciding, not citing. Name winners in the notes.</p>
+</div></div>
+
+<!-- ════ A1 · ARCHETYPE GALLERY ════ -->
+<div class="exhibit" data-ex="A1" data-name="Layout archetype registry — 5 section templates"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A1</span><h2>Layout archetypes — the section template registry</h2></div>
+  <p class="cite">Corpus grids adopted as section templates. "Sidebar 20/80: quote left, CTA + logic right — best for framing" · "4-Column: equal-weight content blocks" · "6-Column: high-density data, fee grids, allocation splits" · "Full-Bleed: macro stat spanning entire width." Shown on light; identical construction on dark.</p>
+  <div class="grid5">
+    <div class="optwrap"><div class="opt">1 · Zone anatomy</div>
+      <div class="f f-l" style="padding:8px">
+        <div style="background:#0B2E4E;border-radius:5px;padding:7px 9px;margin-bottom:6px"><span style="color:#F4C37D;font-size:8px;letter-spacing:.1em;font-weight:700">MARKETS</span><div style="color:#fff;font-family:'Playfair Display',serif;font-size:11.5px">Day 201 read</div></div>
+        <div style="display:flex;gap:5px;margin-bottom:6px">
+          <div style="flex:1.4;background:var(--card);border:1px solid var(--hair);border-radius:5px;padding:7px"><div class="cap">Logic block — the desk's read in two short paragraphs…</div></div>
+          <div style="flex:1;background:var(--card);border:1px solid var(--hair);border-radius:5px;padding:7px"><div class="lab">Visual</div><div class="val" style="font-size:14px">96.40</div></div>
+        </div>
+        <div style="background:rgba(82,92,102,.10);border-radius:5px;padding:4px 8px"><span class="met">footer · CTA bar 10–15%</span></div>
+      </div>
+    </div>
+    <div class="optwrap"><div class="opt">2 · Sidebar 20/80</div>
+      <div class="f f-l" style="padding:8px;display:flex;gap:6px">
+        <div style="flex:1;background:#ECECF7;border-radius:5px;padding:7px"><div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;color:#2B2F34">"The premium is real, the panic is not."</div></div>
+        <div style="flex:3.2">
+          <div class="h-mini">The strait premium</div>
+          <div class="cap" style="margin:4px 0 8px">What the market charges, what it ignores, where the desk stands on the basis trade.</div>
+          <span class="btn-m">Read the briefing →</span>
+        </div>
+      </div>
+    </div>
+    <div class="optwrap"><div class="opt">3 · 4-col equal</div>
+      <div class="f f-l" style="padding:8px"><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:5px">
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:5px;padding:6px"><div class="lab">Custodian</div><div class="cap">Coinbase Prime</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:5px;padding:6px"><div class="lab">Admin</div><div class="cap">NAV Consulting</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:5px;padding:6px"><div class="lab">Legal</div><div class="cap">Loeb Smith</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:5px;padding:6px"><div class="lab">Audit</div><div class="cap">Cohen &amp; Co.</div></div>
+      </div><div class="met" style="margin-top:5px">equal-weight partners / mandates</div></div>
+    </div>
+    <div class="optwrap"><div class="opt">4 · 6-col dense</div>
+      <div class="f f-l" style="padding:8px"><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:3px">
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:4px 2px;text-align:center"><div class="met">UAE</div><div class="num" style="font-size:10px;font-weight:700">28%</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:4px 2px;text-align:center"><div class="met">KSA</div><div class="num" style="font-size:10px;font-weight:700">22%</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:4px 2px;text-align:center"><div class="met">QAT</div><div class="num" style="font-size:10px;font-weight:700">15%</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:4px 2px;text-align:center"><div class="met">KWT</div><div class="num" style="font-size:10px;font-weight:700">13%</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:4px 2px;text-align:center"><div class="met">BHR</div><div class="num" style="font-size:10px;font-weight:700">12%</div></div>
+        <div style="background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:4px 2px;text-align:center"><div class="met">OMN</div><div class="num" style="font-size:10px;font-weight:700">10%</div></div>
+      </div><div class="met" style="margin-top:5px">allocations / fee grids</div></div>
+    </div>
+    <div class="optwrap"><div class="opt">5 · Full-bleed stat</div>
+      <div class="f f-l" style="padding:14px 8px;text-align:center">
+        <div class="num" style="font-size:26px;font-weight:700;color:var(--ink)">+64%</div>
+        <div class="met" style="margin:2px 0 8px">2024 net return · net of fees</div>
+        <span class="btn-m" style="font-size:10px">Track performance →</span>
+      </div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (adopt registry; note exclusions):</span></div>
+</div></div>
+
+<!-- ════ A2 · CARD DUEL ×5 ════ -->
+<div class="exhibit" data-ex="A2" data-name="Card duel ×5 — hairline / borderless-tint / strong-lift / framed-tint / surround-block"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A2</span><h2>The card — five constructions, both themes</h2></div>
+  <p class="cite">Corpus: containers carry their colour's budget; modal-class needs "consistent 1px borders"; light-on-light needs a separator; the <b>surround-block</b> is the corpus showcase device ("center row white, rows above/below core colour").</p>
+  <div class="grid5">
+    <div class="optwrap"><div class="opt">A · Hairline (current light)</div>
+      <div class="f f-d"><div style="background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:9px"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+      <div class="f f-l"><div style="background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:9px"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Borderless tint (current dark)</div>
+      <div class="f f-d"><div style="background:var(--card);border-radius:8px;padding:9px"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+      <div class="f f-l"><div style="background:rgba(82,92,102,.07);border-radius:8px;padding:9px"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · Strong lift</div>
+      <div class="f f-d"><div style="background:#1E242D;border-radius:8px;padding:9px;border-top:1px solid rgba(242,235,220,.10)"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+      <div class="f f-l"><div style="background:#fff;border-radius:8px;padding:9px;border:1px solid #B5BEC6;border-top:2.5px solid #8A96A0"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">D · Framed main-tint</div>
+      <div class="f f-d"><div style="background:rgba(54,187,166,.06);border:1px solid rgba(54,187,166,.25);border-radius:8px;padding:9px"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+      <div class="f f-l"><div style="background:rgba(54,117,136,.05);border:1px solid rgba(54,117,136,.30);border-radius:8px;padding:9px"><div class="lab">War-risk premium</div><div class="val">0.42%</div><div class="cap">insurer quotes firm</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">E · Surround-block</div>
+      <div class="f f-d" style="padding:8px"><div style="background:rgba(54,187,166,.14);border-radius:6px 6px 0 0;height:8px"></div><div style="background:var(--card);padding:8px"><div class="lab">War-risk premium</div><div class="val">0.42%</div></div><div style="background:rgba(54,187,166,.14);border-radius:0 0 6px 6px;height:8px"></div></div>
+      <div class="f f-l" style="padding:8px"><div style="background:rgba(54,117,136,.16);border-radius:6px 6px 0 0;height:8px"></div><div style="background:#fff;padding:8px"><div class="lab">War-risk premium</div><div class="val">0.42%</div></div><div style="background:rgba(54,117,136,.16);border-radius:0 0 6px 6px;height:8px"></div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (default per theme; roles for the others):</span></div>
+</div></div>
+
+<!-- ════ A3 · TABLE DUEL ×4 ════ -->
+<div class="exhibit" data-ex="A3" data-name="Table duel ×4 — current zebra / dust-zebra+hairlines / header-fill / dense-legal"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A3</span><h2>The table — four systems</h2></div>
+  <p class="cite">Corpus: zebra = neutral tint "5–30% dispersed" · structure = slate hairlines ≤10% · dense/legal = Payne's-class panel "up to full page in dense info" · gray-on-gray text banned · red never in table fills.</p>
+  <div class="grid4">
+    <div class="optwrap"><div class="opt">A · Current (zebra only)</div>
+      <div class="f f-d"><table style="width:100%;border-collapse:collapse;font-size:9.5px"><tr><td class="lab" style="padding:4px;border-bottom:1px solid var(--hair)">Channel</td><td class="lab num" style="padding:4px;border-bottom:1px solid var(--hair);text-align:right">Δ7d</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">Insurance</td><td class="num" style="padding:4px;text-align:right">+0.18%</td></tr><tr><td style="padding:4px">VLCC rates</td><td class="num" style="padding:4px;text-align:right">+2.1%</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">OVX</td><td class="num" style="padding:4px;text-align:right">+11.4%</td></tr></table></div>
+      <div class="f f-l"><table style="width:100%;border-collapse:collapse;font-size:9.5px;background:#fff;border-radius:6px;overflow:hidden"><tr><td class="lab" style="padding:4px;border-bottom:1.5px solid var(--hair)">Channel</td><td class="lab num" style="padding:4px;border-bottom:1.5px solid var(--hair);text-align:right">Δ7d</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">Insurance</td><td class="num" style="padding:4px;text-align:right">+0.18%</td></tr><tr><td style="padding:4px">VLCC rates</td><td class="num" style="padding:4px;text-align:right">+2.1%</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">OVX</td><td class="num" style="padding:4px;text-align:right">+11.4%</td></tr></table></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Zebra + row hairlines</div>
+      <div class="f f-d"><table style="width:100%;border-collapse:collapse;font-size:9.5px"><tr><td class="lab" style="padding:4px;border-bottom:1px solid var(--hair)">Channel</td><td class="lab num" style="padding:4px;border-bottom:1px solid var(--hair);text-align:right">Δ7d</td></tr><tr style="background:var(--zeb)"><td style="padding:4px;border-bottom:1px solid rgba(127,127,127,.12)">Insurance</td><td class="num" style="padding:4px;text-align:right;border-bottom:1px solid rgba(127,127,127,.12)">+0.18%</td></tr><tr><td style="padding:4px;border-bottom:1px solid rgba(127,127,127,.12)">VLCC rates</td><td class="num" style="padding:4px;text-align:right;border-bottom:1px solid rgba(127,127,127,.12)">+2.1%</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">OVX</td><td class="num" style="padding:4px;text-align:right">+11.4%</td></tr></table></div>
+      <div class="f f-l"><table style="width:100%;border-collapse:collapse;font-size:9.5px;background:#fff;border-radius:6px;overflow:hidden"><tr><td class="lab" style="padding:4px;border-bottom:1.5px solid var(--hair)">Channel</td><td class="lab num" style="padding:4px;border-bottom:1.5px solid var(--hair);text-align:right">Δ7d</td></tr><tr style="background:var(--zeb)"><td style="padding:4px;border-bottom:1px solid #DDE2E6">Insurance</td><td class="num" style="padding:4px;text-align:right;border-bottom:1px solid #DDE2E6">+0.18%</td></tr><tr><td style="padding:4px;border-bottom:1px solid #DDE2E6">VLCC rates</td><td class="num" style="padding:4px;text-align:right;border-bottom:1px solid #DDE2E6">+2.1%</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">OVX</td><td class="num" style="padding:4px;text-align:right">+11.4%</td></tr></table></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · Header-fill band</div>
+      <div class="f f-d"><table style="width:100%;border-collapse:collapse;font-size:9.5px"><tr style="background:rgba(242,235,220,.07)"><td class="lab" style="padding:4px">Channel</td><td class="lab num" style="padding:4px;text-align:right">Δ7d</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">Insurance</td><td class="num" style="padding:4px;text-align:right">+0.18%</td></tr><tr><td style="padding:4px">VLCC rates</td><td class="num" style="padding:4px;text-align:right">+2.1%</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">OVX</td><td class="num" style="padding:4px;text-align:right">+11.4%</td></tr></table></div>
+      <div class="f f-l"><table style="width:100%;border-collapse:collapse;font-size:9.5px;background:#fff;border-radius:6px;overflow:hidden"><tr style="background:#E9EDF2"><td class="lab" style="padding:4px">Channel</td><td class="lab num" style="padding:4px;text-align:right">Δ7d</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">Insurance</td><td class="num" style="padding:4px;text-align:right">+0.18%</td></tr><tr><td style="padding:4px">VLCC rates</td><td class="num" style="padding:4px;text-align:right">+2.1%</td></tr><tr style="background:var(--zeb)"><td style="padding:4px">OVX</td><td class="num" style="padding:4px;text-align:right">+11.4%</td></tr></table></div>
+    </div>
+    <div class="optwrap"><div class="opt">D · Dense / legal register</div>
+      <div class="f f-d"><div style="background:#222D3A;border-radius:6px;padding:6px"><table style="width:100%;border-collapse:collapse;font-size:9px;color:#EFE7D8"><tr><td class="lab" style="padding:3px;border-bottom:1px solid rgba(239,231,216,.18)">Clause</td><td class="lab" style="padding:3px;border-bottom:1px solid rgba(239,231,216,.18)">Term</td></tr><tr><td style="padding:3px">Withdrawal</td><td style="padding:3px">72h · dual-sig</td></tr><tr><td style="padding:3px">Custody</td><td style="padding:3px">Segregated</td></tr></table></div></div>
+      <div class="f f-l"><div style="background:#404E5C;border-radius:6px;padding:6px"><table style="width:100%;border-collapse:collapse;font-size:9px;color:#fff"><tr><td class="lab" style="padding:3px;border-bottom:1px solid rgba(255,255,255,.25);color:#fff">Clause</td><td class="lab" style="padding:3px;border-bottom:1px solid rgba(255,255,255,.25);color:#fff">Term</td></tr><tr><td style="padding:3px">Withdrawal</td><td style="padding:3px">72h · dual-sig</td></tr><tr><td style="padding:3px">Custody</td><td style="padding:3px">Segregated</td></tr></table></div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (default + when D applies):</span></div>
+</div></div>
+
+<!-- ════ A4 · NAV DUEL ×4 (NET-NEW) ════ -->
+<div class="exhibit" data-ex="A4" data-name="Navigation duel ×4 — net-new (canvas chrome / surface bar / anchor bar / ink sidebar)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A4</span><h2>Navigation — <b style="color:#E0B262">net-new</b>, corpus precedents only</h2></div>
+  <p class="cite">Precedents: "Navigation bars" under Cobalt (fill + white text) · "active tab = Cobalt indicator vs inactive = Modal fill" · sidebar nav = ink · links need hover states. Four translations.</p>
+  <div class="grid4">
+    <div class="optwrap"><div class="opt">A · Canvas chrome + main indicator</div>
+      <div class="f f-d" style="padding:0;overflow:hidden"><div style="display:flex;gap:2px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--hair)"><span style="font-family:'Lora',serif;font-weight:700;font-size:10px;color:var(--ink);margin-right:8px">VegaReady</span><span style="font-size:9.5px;color:var(--main);border-bottom:2px solid var(--main);padding:2px 6px">Markets</span><span style="font-size:9.5px;color:var(--muted);padding:2px 6px">Exposure</span><span style="font-size:9.5px;color:var(--muted);padding:2px 6px">Briefings</span></div></div>
+      <div class="f f-l" style="padding:0;overflow:hidden"><div style="display:flex;gap:2px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--hair)"><span style="font-family:'Lora',serif;font-weight:700;font-size:10px;color:var(--ink);margin-right:8px">VegaReady</span><span style="font-size:9.5px;color:var(--main);border-bottom:2px solid var(--main);padding:2px 6px;font-weight:600">Markets</span><span style="font-size:9.5px;color:var(--muted);padding:2px 6px">Exposure</span><span style="font-size:9.5px;color:var(--muted);padding:2px 6px">Briefings</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Surface bar + pill tabs</div>
+      <div class="f f-d" style="padding:0;overflow:hidden"><div style="display:flex;gap:4px;align-items:center;padding:7px 10px;background:var(--card)"><span style="font-family:'Lora',serif;font-weight:700;font-size:10px;color:var(--ink);margin-right:8px">VegaReady</span><span style="font-size:9.5px;background:rgba(54,187,166,.15);color:var(--main);padding:3px 9px;border-radius:99px;font-weight:600">Markets</span><span style="font-size:9.5px;color:var(--muted);padding:3px 9px">Exposure</span><span style="font-size:9.5px;color:var(--muted);padding:3px 9px">Briefings</span></div></div>
+      <div class="f f-l" style="padding:0;overflow:hidden"><div style="display:flex;gap:4px;align-items:center;padding:7px 10px;background:#fff;border-bottom:1px solid var(--hair)"><span style="font-family:'Lora',serif;font-weight:700;font-size:10px;margin-right:8px">VegaReady</span><span style="font-size:9.5px;background:rgba(54,117,136,.12);color:var(--main);padding:3px 9px;border-radius:99px;font-weight:600">Markets</span><span style="font-size:9.5px;color:var(--muted);padding:3px 9px">Exposure</span><span style="font-size:9.5px;color:#67727E;padding:3px 9px">Briefings</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · Anchor-fill bar (corpus literal)</div>
+      <div class="f f-d" style="padding:0;overflow:hidden"><div style="display:flex;gap:2px;align-items:center;padding:8px 10px;background:#0D1626"><span style="font-family:'Lora',serif;font-weight:700;font-size:10px;color:#EAE7DF;margin-right:8px">VegaReady</span><span style="font-size:9.5px;color:#fff;border-bottom:2px solid #F4C37D;padding:2px 6px;font-weight:600">Markets</span><span style="font-size:9.5px;color:rgba(234,231,223,.6);padding:2px 6px">Exposure</span><span style="font-size:9.5px;color:rgba(234,231,223,.6);padding:2px 6px">Briefings</span></div></div>
+      <div class="f f-l" style="padding:0;overflow:hidden"><div style="display:flex;gap:2px;align-items:center;padding:8px 10px;background:#0B2E4E"><span style="font-family:'Lora',serif;font-weight:700;font-size:10px;color:#fff;margin-right:8px">VegaReady</span><span style="font-size:9.5px;color:#fff;border-bottom:2px solid #F4C37D;padding:2px 6px;font-weight:600">Markets</span><span style="font-size:9.5px;color:rgba(255,255,255,.6);padding:2px 6px">Exposure</span><span style="font-size:9.5px;color:rgba(255,255,255,.6);padding:2px 6px">Briefings</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">D · Ink sidebar</div>
+      <div class="f f-d" style="padding:0;overflow:hidden;display:flex"><div style="width:64px;background:var(--card);padding:8px 7px"><div style="font-family:'Lora',serif;font-weight:700;font-size:9px;color:var(--ink);margin-bottom:7px">VR</div><div style="font-size:8.5px;color:var(--main);font-weight:700;margin-bottom:4px;border-left:2px solid var(--main);padding-left:5px">Markets</div><div style="font-size:8.5px;color:var(--muted);margin-bottom:4px;padding-left:7px">Exposure</div><div style="font-size:8.5px;color:var(--muted);padding-left:7px">Briefings</div></div><div style="flex:1;padding:8px"><div class="met">content…</div></div></div>
+      <div class="f f-l" style="padding:0;overflow:hidden;display:flex"><div style="width:64px;background:#fff;border-right:1px solid var(--hair);padding:8px 7px"><div style="font-family:'Lora',serif;font-weight:700;font-size:9px;margin-bottom:7px">VR</div><div style="font-size:8.5px;color:var(--main);font-weight:700;margin-bottom:4px;border-left:2px solid var(--main);padding-left:5px">Markets</div><div style="font-size:8.5px;color:var(--muted);margin-bottom:4px;padding-left:7px">Exposure</div><div style="font-size:8.5px;color:var(--muted);padding-left:7px">Briefings</div></div><div style="flex:1;padding:8px"><div class="met">content…</div></div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (winner; sticky yes/no in note):</span></div>
+</div></div>
+
+<!-- ════ A5 · HERO DUEL ×4 ════ -->
+<div class="exhibit" data-ex="A5" data-name="Hero duel ×4 — Navy full-bleed / title-zone 20% / gradient cover / full-bleed stat"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A5</span><h2>The hero — four constructions</h2></div>
+  <p class="cite">Corpus: Navy's 100% licence is hero-only, white text, accents ≤10%, <b>CTA on a white panel inside it</b> · title-zone 20% is our locked default · gradient covers (Navy→Bone, 2-stop, horizontal) exist in the registry · full-bleed stat = "macro stat spanning entire width." Pacing: limit consecutive dark/hero bands.</p>
+  <div class="grid4">
+    <div class="optwrap"><div class="opt">A · Navy full-bleed</div>
+      <div class="f" style="background:#0B2E4E;color:#fff;padding:14px 12px">
+        <div style="color:#F4C37D;font-size:8px;letter-spacing:.12em;font-weight:700;margin-bottom:4px">VEGAREADY · GULF RISK DESK</div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:3px">War-risk, priced honestly</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.75);margin-bottom:8px">What the market charges for Hormuz risk — and what it ignores.</div>
+        <div style="background:#fff;border-radius:6px;padding:6px 8px;display:inline-block"><span style="font-size:10px;font-weight:700;color:#367588">Read the briefing →</span></div>
+      </div>
+      <div class="met" style="margin-top:6px">same construction both themes (Navy is theme-stable)</div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Title-zone 20% (locked default)</div>
+      <div class="f f-d" style="padding:8px"><div style="background:#0D1626;border-radius:6px;padding:9px 10px"><div style="color:#F4C37D;font-size:8px;letter-spacing:.1em;font-weight:700">MARKETS</div><div style="font-family:'Playfair Display',serif;font-size:12px;color:#fff">Crude complex — day 201</div></div><div class="met" style="margin-top:5px">…page content on canvas…</div></div>
+      <div class="f f-l" style="padding:8px"><div style="background:#0B2E4E;border-radius:6px;padding:9px 10px"><div style="color:#F4C37D;font-size:8px;letter-spacing:.1em;font-weight:700">MARKETS</div><div style="font-family:'Playfair Display',serif;font-size:12px;color:#fff">Crude complex — day 201</div></div><div class="met" style="margin-top:5px">…page content on canvas…</div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · Gradient cover</div>
+      <div class="f" style="background:linear-gradient(90deg,#0B2E4E 0%,#27445E 55%,#3E5B72 100%);color:#fff;padding:14px 12px">
+        <div style="font-size:8px;letter-spacing:.1em;font-weight:700;color:#F4C37D">SECTION 3 →</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600">Performance architecture</div>
+        <div style="font-size:9.5px;color:rgba(255,255,255,.7)">2 stops · horizontal · no dense text across the transition</div>
+      </div>
+      <div class="f f-l" style="padding:0;overflow:hidden"><div style="background:linear-gradient(90deg,#0B2E4E,#DDE2E6);padding:12px"><div style="font-family:'Playfair Display',serif;font-size:13px;color:#fff">Navy → canvas fade</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">D · Full-bleed stat</div>
+      <div class="f f-d" style="text-align:center;padding:16px 10px"><div class="num" style="font-size:30px;font-weight:700;color:var(--ink)">$2.4T</div><div class="met" style="margin:2px 0 8px">Gulf sovereign assets in scope</div><span class="btn-m" style="font-size:10px">Explore exposure →</span></div>
+      <div class="f f-l" style="text-align:center;padding:16px 10px"><div class="num" style="font-size:30px;font-weight:700;color:var(--ink)">$2.4T</div><div class="met" style="margin:2px 0 8px">Gulf sovereign assets in scope</div><span class="btn-m" style="font-size:10px">Explore exposure →</span></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (front door vs section pages in note):</span></div>
+</div></div>
+
+<!-- ════ A6 · FOOTER DUEL ×4 ════ -->
+<div class="exhibit" data-ex="A6" data-name="Footer duel ×4 — plain meta / tint band / CTA bar / legal register"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A6</span><h2>The footer — four end-zone constructions</h2></div>
+  <p class="cite">Corpus: bottom-aligned, left-aligned, regular weight, never overlaps a CTA; sanctioned fills none/Modal/Gold/Fog tints; CTA bar = soft-tint band ("enclose CTA in a padded footer"); Crimson only for must-see disclosure.</p>
+  <div class="grid4">
+    <div class="optwrap"><div class="opt">A · Plain meta</div>
+      <div class="f f-d"><div style="border-top:1px solid var(--hair);padding-top:6px"><span class="met">Source: desk marks · day 201 · © JCJ Investing</span></div></div>
+      <div class="f f-l"><div style="border-top:1px solid var(--hair);padding-top:6px"><span class="met">Source: desk marks · day 201 · © JCJ Investing</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Tint band</div>
+      <div class="f f-d" style="padding:8px"><div style="background:var(--card);border-radius:6px;padding:7px 9px"><span class="met">Source: desk marks · day 201 · © JCJ Investing</span></div></div>
+      <div class="f f-l" style="padding:8px"><div style="background:#E9EDF2;border-radius:6px;padding:7px 9px"><span class="met">Source: desk marks · day 201 · © JCJ Investing</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · CTA bar (soft tint)</div>
+      <div class="f f-d" style="padding:8px"><div style="background:rgba(193,225,193,.08);border-radius:6px;padding:8px 9px;display:flex;justify-content:space-between;align-items:center;gap:6px"><span class="cap" style="font-size:9.5px">Weekly desk note</span><span class="btn-m" style="font-size:9.5px;padding:4px 9px">Join →</span></div></div>
+      <div class="f f-l" style="padding:8px"><div style="background:rgba(193,225,193,.35);border-radius:6px;padding:8px 9px;display:flex;justify-content:space-between;align-items:center;gap:6px"><span class="cap" style="font-size:9.5px">Weekly desk note</span><span class="btn-m" style="font-size:9.5px;padding:4px 9px">Join →</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">D · Legal register</div>
+      <div class="f f-d"><div style="border-top:2px solid rgba(225,100,112,.5);padding-top:6px"><span class="met" style="color:#E16470;font-weight:600">Risk disclosure:</span> <span class="met">capital at risk; past performance is not indicative.</span></div></div>
+      <div class="f f-l"><div style="border-top:2px solid rgba(212,77,92,.55);padding-top:6px"><span class="met" style="color:#B23240;font-weight:600">Risk disclosure:</span> <span class="met">capital at risk; past performance is not indicative.</span></div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (default + where C/D apply):</span></div>
+</div></div>
+
+<!-- ════ A7 · FORMS & STATES ════ -->
+<div class="exhibit" data-ex="A7" data-name="Forms & interactive states gallery — composite"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A7</span><h2>Forms &amp; states — the composite system</h2></div>
+  <p class="cite">Field = neutral fill + 1px border · disabled (<b style="color:#E0B262">net-new composite</b>) = light-grey bg + soft-grey text · success chip ≤3%, max 2/view · warning = amber + dark text · hover row = Ice-Blue-class tint · tooltip = Ice-Blue card · never stack two interactive tones.</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">Dark</div>
+      <div class="f f-d">
+        <div class="lab" style="margin-bottom:3px">Email for the desk note</div>
+        <div style="display:flex;gap:6px;margin-bottom:8px"><div style="flex:1;background:#13181F;border:1px solid var(--hair);border-radius:6px;padding:5px 8px"><span class="met">you@fund.ae</span></div><span class="btn-m" style="font-size:10px">Subscribe →</span></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+          <span class="chip-m" style="background:rgba(70,201,160,.15);color:#46C9A0">✓ VERIFIED</span>
+          <span class="chip-m" style="background:rgba(224,178,98,.15);color:#E0B262">REVIEW REQUIRED</span>
+          <span class="chip-m" style="background:rgba(127,127,127,.14);color:#7E7768">UNAVAILABLE</span>
+          <span style="font-size:10px;font-weight:600;padding:4px 10px;border-radius:7px;background:#161B22;color:#5d564a;cursor:not-allowed">Disabled action</span>
+        </div>
+        <div style="background:rgba(90,166,181,.10);border-radius:5px;padding:4px 8px;margin-bottom:6px"><span class="met" style="color:#9ec7d1">hover row — Ice-Blue-class tint</span></div>
+        <div style="background:#1A2730;border:1px solid rgba(90,166,181,.3);border-radius:6px;padding:5px 8px;display:inline-block"><span class="met" style="color:#cfe3e9">Tooltip: OVX = oil volatility index</span></div>
+      </div>
+    </div>
+    <div class="optwrap"><div class="opt">Light</div>
+      <div class="f f-l">
+        <div class="lab" style="margin-bottom:3px">Email for the desk note</div>
+        <div style="display:flex;gap:6px;margin-bottom:8px"><div style="flex:1;background:#E9EDF2;border:1px solid var(--hair);border-radius:6px;padding:5px 8px"><span class="met">you@fund.ae</span></div><span class="btn-m" style="font-size:10px">Subscribe →</span></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+          <span class="chip-m" style="background:#D6EEE3;color:#00754B">✓ VERIFIED</span>
+          <span class="chip-m" style="background:#F4E3CB;color:#8A5B1D">REVIEW REQUIRED</span>
+          <span class="chip-m" style="background:#E2E5E8;color:#67727E">UNAVAILABLE</span>
+          <span style="font-size:10px;font-weight:600;padding:4px 10px;border-radius:7px;background:#D3D8DC;color:#9AA3AB;cursor:not-allowed">Disabled action</span>
+        </div>
+        <div style="background:rgba(197,232,245,.45);border-radius:5px;padding:4px 8px;margin-bottom:6px"><span class="met" style="color:#3D6B7D">hover row — Ice Blue tint</span></div>
+        <div style="background:#EAF4FB;border:1px solid #B8D9EA;border-radius:6px;padding:5px 8px;display:inline-block"><span class="met" style="color:#2B4A58">Tooltip: OVX = oil volatility index</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (composite; flag any piece):</span></div>
+</div></div>
+
+<!-- ════ A8 · RHYTHM LAW ════ -->
+<div class="exhibit" data-ex="A8" data-name="Page-rhythm laws — bridges, alternation, risk arc"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">A8</span><h2>Page rhythm — the laws, demonstrated</h2></div>
+  <p class="cite">Buffer ranking ⚖: Modal-class within-page · Steel-class between sections · Payne's-class between bright sections. "Alternate dense/light sections" · risk arc completes in 2–3 sections, "never jump from Risk directly to positive" · emotional sections 1–2 max then bridge · limit consecutive dark bands.</p>
+  <div class="f f-l" style="padding:10px">
+    <div style="background:#fff;border:1px solid var(--hair);border-radius:6px;padding:8px;margin-bottom:6px"><div class="lab">1 · Dense data section</div><div class="met">table + chart, full emphasis budget on data</div></div>
+    <div style="background:#E9EDF2;border-radius:6px;padding:5px 8px;margin-bottom:6px"><span class="met">2 · neutral bridge (Modal-class) — "primes with container"</span></div>
+    <div style="background:rgba(218,160,109,.18);border-radius:6px;padding:8px;margin-bottom:6px"><div class="lab" style="color:#8a5b2e">3 · Narrative pivot (Warm Clay)</div><div class="met">story register, serif pull, no data</div></div>
+    <div style="background:rgba(177,79,79,.10);border-radius:6px;padding:8px;margin-bottom:6px"><div class="lab" style="color:#A14444">4 · Risk candour</div><div class="met">alert budget spent here; <b>no CTA in this section</b></div></div>
+    <div style="background:rgba(181,201,169,.30);border-radius:6px;padding:5px 8px;margin-bottom:6px"><span class="met" style="color:#3D5C49">5 · Sage decompression — risk arc closes (within 2–3 sections ✓)</span></div>
+    <div style="background:rgba(193,225,193,.35);border-radius:6px;padding:8px"><div class="lab" style="color:#2E6B4F">6 · Soft-CTA zone</div><div class="met">the one CTA, after the arc resolves — never directly after risk</div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (approve = adopt rhythm laws):</span></div>
+</div></div>
+
+<div class="footer">VegaReady Components Trial A · spec-built · “Copy verdicts” to export</div>
+
+<script>
+const KEY='vr-comp-verdicts';
+const store=JSON.parse(localStorage.getItem(KEY)||'{}');
+const exs=[...document.querySelectorAll('.exhibit')];
+function save(){localStorage.setItem(KEY,JSON.stringify(store));prog()}
+function prog(){const n=Object.values(store).filter(v=>v.v).length;
+  document.getElementById('prog').textContent=n+' / '+exs.length+' judged'}
+exs.forEach(ex=>{
+  const id=ex.dataset.ex, bar=ex.querySelector('.verdict');
+  const mk=(label,key)=>{const b=document.createElement('button');b.className='vbtn';b.textContent=label;
+    b.onclick=()=>{store[id]=store[id]||{};store[id].v=store[id].v===key?null:key;paint();save()};bar.appendChild(b);return b};
+  const bA=mk('Approve','approve'), bC=mk('Conditional','cond'), bR=mk('Reject','reject');
+  const note=document.createElement('input');note.className='vnote';note.placeholder='note — winner(s), roles, restrictions…';
+  note.value=(store[id]&&store[id].n)||'';
+  note.oninput=()=>{store[id]=store[id]||{};store[id].n=note.value;save()};bar.appendChild(note);
+  function paint(){const v=store[id]&&store[id].v;
+    bA.classList.toggle('on-approve',v==='approve');
+    bC.classList.toggle('on-cond',v==='cond');
+    bR.classList.toggle('on-reject',v==='reject')}
+  paint();
+});
+prog();
+document.getElementById('copyAll').onclick=()=>{
+  const lines=exs.map(ex=>{const id=ex.dataset.ex,s=store[id]||{};
+    return id+' · '+ex.dataset.name+' — '+(s.v?s.v.toUpperCase():'(unjudged)')+(s.n?' — '+s.n:'')});
+  navigator.clipboard.writeText('VegaReady Components Trial A verdicts\n'+lines.join('\n')).then(()=>{
+    const b=document.getElementById('copyAll');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1600)});
+};
+</script>
+</body>
+</html>

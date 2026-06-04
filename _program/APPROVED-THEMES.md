@@ -183,3 +183,39 @@ Underline = links only + the **key-stat underline accent** (Royal Blue `#4169E1`
 ## Emphasis device hierarchy (use in this order)
 1 Bold · 2 Size (hero, once) · 3 Ink contrast · 4 Semantic colour (always bold, always means something) · 5 Fill containers (chips/callouts/tint rows/quote fills/framed CTAs) · 6 Underline (links + key-stat device).
 **Banned:** all-caps body or CTA · italic paragraphs · multi-colour words · red CTA text · decorative Crimson · grey-on-grey · same-hue stacks · quote+CTA same view · emphasis colour on >2 elements/view.
+
+---
+
+# Components & Page Layouts — LOCKED 2026-06-05 (Trial A verdicts)
+
+*Evidence: `artifacts/VegaReady-Components-Trial-A.html` + `artifacts/Components-Charts-Spec.md` (3-agent research over 6 documents). Every option was judged on BOTH palettes.*
+
+## Layout archetypes (A1 — APPROVED, full registry)
+Section templates: **Zone anatomy** (Title 20% / Logic 60% / Visual 40% L-or-R / optional Quote-Framing overlay / Footer 10–15%) · **Sidebar 20/80** (quote left, logic+CTA right) · **Grid Block** · **4-column 25×4** (equal-weight partners/mandates) · **6-column** (dense allocations/fee grids) · **Full-bleed stat** · **Centered CTA 60/40**. Page archetype library: 24 corpus slide IDs mapped to surfaces (S1 strategy, C4 custody, R9 risk [no CTA zone], F4 comparison, RS1 referral, A8 watchlist, P1 metrics+quote, R2 risk matrix, T1 team, F3 FAQ, C6 entity…). Mobile: ≤720px column, ≥16px paragraph spacing, collapsible logic blocks.
+
+## Cards (A2 — CONDITIONAL: A/B/D sanctioned · C and E REJECTED)
+- **Defaults (locked):** light = white + slate hairline (A) · dark = borderless tint (B).
+- **Framed main-tint (D)** sanctioned as the *highlight-card* role (featured/selected states, main-tinted fill + main-toned 1px border).
+- **REJECTED:** strong-lift (C — "too much pop") and surround-block (E — "looks strange"). Surround-block is struck from the system despite corpus sanction — owner verdict overrides corpus.
+- Modal/floating containers keep: neutral fill + mandatory 1px border + shadow (floats), ≤40% viewport, 80% overlay opacity. Border semantics vocabulary stands (1px structure/dotted secondary · 2px alert/dashed caution · 3px emphasis · double luxury). Light-beside-light needs a border.
+
+## Tables (A3 — CONDITIONAL: A and D only)
+- **Default (locked):** current system — zebra only, header = ink bold caps + bottom rule, no row hairlines, no header fill (A).
+- **Dense/legal register (D):** Payne's-class dark panel table for compliance/terms surfaces only.
+- **REJECTED:** row-hairline zebra (B) and header-fill band (C).
+
+## Navigation (A4 — APPROVED, net-new registry)
+All four constructions sanctioned: **canvas chrome + main-colour active indicator (working default — matches the live site pattern)** · surface bar + pill tabs · anchor-fill bar (Navy + gold indicator, candidate for the front door) · ink sidebar (candidate for dense desk tools). Sticky sanctioned. Active = main-colour indicator; inactive = muted ink. *Default assignment open to owner override.*
+
+## Heroes (A5 — APPROVED, role-assigned)
+**Title-zone 20% = page default** (already locked) · **Navy full-bleed** = front-door/cover use only (100% licence is hero-only; white text; accents ≤10%; **CTA on a white panel inside it**; never beside Oxford; limit consecutive dark bands) · **Gradient cover** = section dividers (2 stops, horizontal, no dense text across the fade, max 1/page) · **Full-bleed stat** = landing/summary moments (one hero stat law applies).
+
+## Footers (A6 — APPROVED, role-assigned)
+**Plain meta = default** (top hairline, meta register, left-aligned, regular) · tint band = alternate on long pages · **CTA bar (soft-tint + one soft action)** = end-zones only (pairs with the locked Pale-Mint→Fog exit) · **legal register** (2px alert top-rule + risk-disclosure line) = compliance surfaces. Footer never overlaps a CTA.
+
+## Forms & states (A7 — CONDITIONAL: approved with one construction fix)
+**Fix (locked):** all text inside form fields, chips, buttons, and tooltips is **vertically centered** (flex align-center), never top-aligned.
+System: field = neutral fill + 1px border · labels = micro-label register · disabled = light-grey bg + soft-grey text (composite, net-new) · success = Approval-class chip ≤3%, max 2/view · warning = amber chip + dark text · hover row/tooltip = Ice-Blue-class tint · never stack two interactive tones · buttons ≥44px mobile / 36px desktop · hover −15%.
+
+## Page rhythm (A8 — APPROVED as law)
+Alternate dense/light sections · neutral bridges between strong sections with buffer ranking (**Modal-class within page · Steel-class between sections · Payne's-class between bright sections**) · risk arcs complete in 2–3 sections, never risk→positive directly · emotional sections 1–2 max then bridge · no CTA inside risk content · one idea per section · limit consecutive dark/hero bands.
