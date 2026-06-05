@@ -1,0 +1,897 @@
+🎨 JCJ Master Color Guide: Functional Tier System with Complete HEX References
+Executive Summary
+This guide presents JCJ Investing's 55-color palette organized by functional usage tiers, where colors appear multiple times based on their different applications.
+A single color like 🟦 Navy #0B2E4E can be Tier 1 for backgrounds, Tier 1 for text, but Never for data visualization—each with different usage rules and constraints.
+ The system answers: "What tier is this color for my specific use case?"
+The 5-Layer Color Framework
+Based on JCJ Brand Guidelines v13, every design operates across five functional layers:
+Background Layer – Sets emotional tone and pacing (70–100% coverage)
+Overlay/Fill Layer – Adds visual emphasis and rhythm (20–40% coverage)
+Structural Box/Chart Layer – Highlights content blocks and logic paths (15–30% coverage)
+Text/Headline/Icon Layer – Communicates message content (variable coverage)
+CTA/Action Layer – Drives user behavior and key signals (1–5% coverage)
+TIER 1: PRIMARY COLORS BY FUNCTION
+These are the first-choice colors for each functional use case.
+Tier 1 Background Colors
+⬜ Off White #FAFAFA
+Maximum Coverage: 100% slide background
+Platform Fit: All platforms; ideal for print/PDF
+Text Required: ⬛ Charcoal #2C2C2C or 🟦 Navy #0B2E4E
+ADA Compliance: ✅ PASS (14.8:1 with ⬛ Charcoal #2C2C2C)
+Regional Notes: Global-safe
+Feature Tags: Canvas
+Emotional Function: Clarity, openness, fresh perspective, breathing space
+Example Uses:
+Default backgrounds for content-heavy slides
+Primary canvas for all materials
+Clean sections requiring maximum readability
+Data presentation backgrounds
+Compliance document bases
+Best After: 🤍 Bone #F9F6F0 – neutral reset for clarity and pacing
+ Best Before: 🩶 Slate Gray #525C66 – moves into structure or logic cleanly
+ Never After: 🟥 Crimson #D44D5C – abrupt escalation not aligned to tone
+ Emotional Transition: Creates mental space for decision-making
+🤍 Bone #F9F6F0
+Maximum Coverage: 100% background
+Platform Fit: All platforms; premium print
+Text Required: ⬛ Charcoal #2C2C2C or 🟦 Navy #0B2E4E
+ADA Compliance: ✅ PASS (9.0:1 with 🟦 Navy #0B2E4E)
+Regional Notes: GCC/India preferred for softer tone
+Feature Tags: Premium Neutral
+Emotional Function: Warm neutrality, organic softness, human comfort, approachable luxury
+Example Uses:
+Premium backgrounds for high-touch materials
+Family office presentations
+Referral deck backgrounds
+Client testimonial sections
+Personal story frames
+Warm institutional materials
+Best Before: ⬜ Off White #FAFAFA – bone → white clean transition
+ Never After: ⬛ Off Black #111111 – black → light extreme jarring
+ Emotional Transition: Adds organic warmth to professional communications
+🟦 Navy #0B2E4E
+Maximum Coverage: 40% general; 100% hero slides only
+Percentage Guidance: 80–100% background; accents ≤10%
+Platform Fit: PDF • PPT • Gamma
+Text Required: ⬜ White #FFFFFF only
+ADA Compliance: ✅ PASS (11.7:1 with ⬜ White #FFFFFF)
+Regional Notes: Conservative baseline globally
+Feature Tags: Canvas
+Emotional Function: Deep institutional trust, authority, stability, confidence building
+Example Uses:
+Title frames and hero covers
+Executive summary slides
+Quote blocks for gravitas
+Team introduction backgrounds
+Governance sections
+Board presentation openers
+Trust-building moments
+Best After: 🩶 Modal Fill Gray #E9EDF2 – primes authority with container
+ Best Before: 🟦 Cobalt Blue #2B50AA – authority → logic proof transition
+ Never After: 🟥 Crimson #D44D5C – fear spike after authority creates whiplash
+ Never Before: 🟨 Gold #F4C37D – optimism shift without proof feels promotional
+ Emotional Transition: Establishes foundational trust before detailed content
+Tier 1 CTA Colors
+🟩 Teal #36BBA6
+Maximum Coverage: 5% of design
+Button Height: Minimum 44px (mobile), 36px (desktop)
+Text Required: ⬜ White #FFFFFF bold only
+Platform Fit: Gamma 10/10, Mobile 10/10, PPT 8/10
+Regional Notes: Global-safe
+Feature Tags: CTA
+Emotional Function: Clear action, positive momentum, confident decision-making
+Example Uses:
+Primary CTA buttons ("Request Access")
+Opt-in flows
+Decision points
+Interactive navigation elements
+Success path indicators
+Checklist icons
+Active states
+Best After: 🟦 Signal Blue #3C61C5 – data insight → action natural flow
+ Best Before: ⬜ Off White #FAFAFA – action → reset for next section
+ Never After: 🟥 Crimson #D44D5C – risk → action too jarring
+ Hover State: 15% darker (#2E9A86)
+ Emotional Transition: Converts interest into commitment
+Tier 1 Data Colors
+(Full section, word-for-word with color chips and Google Docs–compatible formatting)
+🟦 Signal Blue #3C61C5
+Maximum in Chart: 40% of data elements
+Combines With: 🟨 ETF Yellow #FFD89A, 🩶 Light Gray #D3D3D3, 🧊 Light Cyan #A8D5E2
+Platform Fit: All platforms; web-optimized
+Feature Tags: Data/Interactive
+Emotional Function: Digital clarity, data authority, analytical confidence
+Example Uses:
+Key data points in charts
+Primary data series
+Interactive elements
+Performance highlights
+Metric callouts
+Hyperlinks in digital formats
+Dashboard primary indicators
+Best After: 🟦 Cobalt Blue #2B50AA – logic → data detail natural progression
+Best Before: 🟩 Teal #36BBA6 – data insight → action flow
+Never Before: 🟪 Deep Purple #663399 – data → premium without context
+Emotional Transition: Transforms complex data into clear insights
+Tier 2 Background Colors
+🟦 Oxford Blue #002147
+Maximum Coverage: 35% (section dividers only)
+Platform Fit: Best for covers/sections
+Text Required: ⬜ White #FFFFFF or ⬜ Off White #FAFAFA
+Regional Notes: Strong in Europe
+Feature Tags: Research/Academic
+Emotional Function: Academic credibility, research depth, intellectual authority
+Example Uses:
+Research paper covers
+Deep analysis section dividers
+White paper headers
+Educational material sections
+University partnership slides
+Think tank presentations
+Best After: ⬜ Off White #FAFAFA – neutral → research depth transition
+ Never With: 🟦 Navy #0B2E4E – too similar, creates confusion
+ Emotional Transition: Signals shift to evidence-based content
+🩶 Payne's Gray #536878
+Maximum Coverage: 25%
+Platform Fit: PDF 9/10, PPT 8/10
+Text Required: ⬜ White #FFFFFF or ⬜ Off White #FAFAFA
+Feature Tags: Subtle/Sophisticated
+Emotional Function: Quiet sophistication, understated authority, professional subtlety
+Example Uses:
+Supporting content panels
+Secondary information sections
+Muted backgrounds for complex data
+Compliance sections
+Legal disclaimer backgrounds
+Footnote regions
+Works As: Universal transition color between bright sections
+ Emotional Transition: Provides visual rest between high-energy sections
+🩶 Steel Gray #909FAD [as background]
+Maximum Coverage: 30%
+Platform Fit: All platforms
+Text Required: ⬜ White #FFFFFF
+Regional Notes: Universal
+Feature Tags: Analyst-grade logic
+Emotional Function: Technical precision, analytical neutrality, data-driven confidence
+Example Uses:
+Technical walkthrough backgrounds
+FAQ sections
+Data table backgrounds
+Attribution panels
+Methodology sections
+Appendix dividers
+Functions As: Universal buffer between any colors
+ Emotional Transition: Creates neutral ground for objective information
+🩶 Modal Gray #E9EDF2
+Maximum Coverage: 100% for containers; 40% for sections
+Platform Fit: All platforms
+Text Required: ⬛ Charcoal #2C2C2C
+Feature Tags: Container/Modal
+Emotional Function: Structural support, visual organization, content framing
+Example Uses:
+Modal dialog backgrounds
+Container fills
+Form backgrounds
+Popup overlays
+Section separators
+Inactive tab backgrounds
+System message backgrounds
+Best Before: 🟦 Navy #0B2E4E – container → authority smooth transition
+ Universal Bridge: Works between any color combinations
+ Emotional Transition: Provides breathing room without distraction
+Tier 2 Text Colors
+🩶 Soft Gray #7B7B7B
+Minimum Size: 11pt (10pt for footnotes)
+Backgrounds: ⬜ Off White #FAFAFA, ⬜ Pure White #FFFFFF only
+Feature Tags: Secondary/Subtle
+Emotional Function: Reduced emphasis, supporting information, gentle hierarchy
+Example Uses:
+Dates and timestamps
+Metadata labels
+Copyright notices
+Version numbers
+Page numbers
+Secondary disclaimers
+Breadcrumb navigation
+Never For: Primary content or CTAs
+ Emotional Impact: Reduces cognitive load by de-emphasizing non-critical information
+🩶 Steel Gray #909FAD [as text]
+Minimum Size: 12pt
+Backgrounds: ⬜ Off White #FAFAFA, 🤍 Bone #F9F6F0, light backgrounds
+Emotional Function: Professional attribution, technical accuracy
+Example Uses:
+Attribution text
+Source citations
+FAQ answers
+Technical specifications
+Legal footnotes
+Signal overlay text
+Platform Notes: Legal and compliance text standard
+ Emotional Impact: Conveys precision without drawing attention
+🟦 Cobalt Blue #2B50AA [as text]
+Minimum Size: 16pt (headers only)
+Backgrounds: ⬜ Off White #FAFAFA, 🤍 Bone #F9F6F0, 🩶 Modal Gray #E9EDF2
+Emotional Function: Structural emphasis, logical hierarchy, analytical focus
+Example Uses:
+Section headers
+Subheadings
+Emphasis text
+Chart titles
+Key metric labels
+Never On: Dark or blue backgrounds
+Emotional Impact: Guides logical flow through content
+Tier 2 Accent/Overlay Colors
+🟨 Gold #F4C37D
+Maximum Coverage: 10% (small areas only)
+Platform Fit: All platforms
+Text Required: ⬛ Charcoal #2C2C2C or ⬜ White #FFFFFF for large type only
+Regional Notes: Extra effective in GCC
+Feature Tags: Optimism
+Emotional Function: Premium value, achievement, exclusivity, measured optimism
+Example Uses:
+Pull quote backgrounds
+Macro insight frames
+Timeline milestone markers
+Achievement badges
+Success celebration accents
+Special offer highlights
+Award indicators
+Best After: 🟩 Light Green #92C47D – growth → opportunity natural flow
+ Best Before: 🟩 Teal #36BBA6 – opportunity → action conversion
+ Never After: 🟥 Crimson #D44D5C – risk → opportunity too jarring
+ Never Before: 🟧 Amber #E9B56C – opportunity → warning confusing
+ Emotional Transition: Elevates perceived value and creates aspiration
+🟦 Cobalt Blue #2B50AA [as accent]
+Maximum Coverage: 30% (panels only)
+Platform Fit: All platforms
+Text Required: ⬜ White #FFFFFF
+Feature Tags: Panel
+Emotional Function: Structural logic, analytical clarity, professional confidence
+Example Uses:
+Section header backgrounds
+Performance anchor panels
+Chart frames
+Logic block containers
+Key stat backgrounds
+Navigation bars
+Active tab indicators
+Best After: 🩶 Modal Gray #E9EDF2 – container → logic natural progression
+ Best Before: 🩶 Slate Gray #525C66 – analysis → comparison clarity
+ Never Before: 🟧 Burnt Orange #D2691E – cool analysis → urgency spike
+ Emotional Transition: Builds allocator confidence through structure
+🟨 ETF Yellow #FFD89A
+Maximum Coverage: 20% (accent bars only)
+Platform Fit: All platforms; avoid 100% fills
+Text Required: ⬛ Charcoal #2C2C2C or ⬛ Black #000000 only
+ADA Warning: ❌ FAIL with ⬜ White #FFFFFF (2.1:1)
+Feature Tags: Product
+Emotional Function: Market awareness, benchmark reference, temporal markers
+Example Uses:
+Timeline highlights
+Watchlist indicators
+Alert frames
+ETF-specific content
+Market comparison bars
+Deadline markers
+"Now" indicators in timelines
+Best After: 🩶 Slate Gray #525C66 – structure → category highlighting
+ Never With: ⬜ White text, 🟨 Gold #F4C37D – similar yellows create confusion
+ Emotional Transition: Draws attention to time-sensitive or market-relative information
+🟧 Amber #E9B56C
+Maximum Coverage: 5%
+Platform Fit: All platforms
+Text Required: ⬛ Charcoal #2C2C2C
+Feature Tags: Warning
+Emotional Function: Measured caution, consideration prompt, moderate concern
+Example Uses:
+Caution indicators
+Warning states
+Consideration flags
+Pending status
+Review required markers
+Volatility warnings
+Medium-risk indicators
+Best After: 🟨 ETF Yellow #FFD89A – category → warning logical escalation
+ Best Before: 🟥 Crimson #D44D5C – warning → risk escalation path
+ Never After: 🟨 Gold #F4C37D – optimism → warning jarring
+ Emotional Transition: Prompts careful consideration without alarm
+Tier 2 CTA Colors
+🟦 Sky Blue #72C5E1
+Maximum Coverage: 5%
+Button Height: Minimum 40px
+Text Required: ⬜ White #FFFFFF or ⬛ Charcoal #2C2C2C bold
+Platform Fit: Gamma 10/10, PDF 5/10
+Regional Notes: Americas-gated
+Emotional Function: Passive engagement, low-pressure action, exploratory interest
+Example Uses:
+"Track Performance" buttons
+Watchlist CTAs
+Newsletter signups
+"Learn More" links
+Secondary option buttons
+Passive tracking invitations
+"Save for Later" actions
+Best For: A8 slides (watchlist), secondary options
+ Emotional Transition: Enables commitment-free engagement
+🟦 Teal Blue #367588
+Maximum Coverage: 10% (CTA panels)
+Platform Fit: Digital preferred
+Text Required: ⬜ White #FFFFFF
+Emotional Function: Digital action, modern interaction, progressive movement
+Example Uses:
+Secondary CTA buttons
+Digital platform actions
+Panel-based CTAs
+App interface buttons
+Form submit buttons
+Navigation CTAs
+Use When: 🟩 Standard Teal #36BBA6 is too bright for context
+ Emotional Transition: Encourages confident digital interaction
+Tier 2 Data Colors
+🟩 Deep Teal #2A6478
+Maximum in Chart: 30%
+Combines With: 🧊 Light Cyan #A8D5E2, ⬜ Off White #FAFAFA, 🟦 Signal Blue #3C61C5
+Feature Tags: Analysis
+Emotional Function: Deep understanding, complex analysis, thorough investigation
+Example Uses:
+Deep dive data sections
+Complex analysis charts
+Secondary data series
+Correlation visualizations
+Multi-variable analysis
+Risk mitigation data
+Historical trend analysis
+Best After: 🟥 Crimson #D44D5C – risk → mitigation analysis flow
+ Emotional Transition: Demonstrates thorough analytical capability
+🟨 ETF Yellow #FFD89A [as data]
+Maximum in Chart: 30%
+Background Required: 🟦 Navy #0B2E4E or dark colors only
+Emotional Function: Benchmark comparison, market context, relative performance
+Example Uses:
+Benchmark comparison lines
+Market index data
+ETF performance metrics
+Peer comparison data
+Industry averages
+Volatility indicators
+Never As: Primary data series
+ Emotional Transition: Provides market context for performance claims
+🟩 Forest Green #228B22
+Maximum in Chart: 25%
+Text Required: ⬜ White #FFFFFF
+Feature Tags: ESG/Environmental
+Emotional Function: Sustainability, long-term thinking, responsible investing
+Example Uses:
+ESG metric displays
+Environmental impact data
+Sustainability scores
+Green investment indicators
+Carbon footprint metrics
+Renewable energy allocations
+Best After: 🟩 Deep Custody Green #1C6357 – security → sustainability connection
+ Emotional Transition: Connects financial returns with values alignment
+Tier 3 Background Colors (Panel/Partial Only)
+🟩 Pale Mint #C1E1C1
+Maximum Coverage: 40% (late-funnel only)
+Minimum Coverage: 10%
+Text Required: ⬛ Charcoal #2C2C2C or 🟦 Navy #0B2E4E
+Restriction: ❌ Avoid early in formal pitches
+Feature Tags: Soft CTA
+Emotional Function: Gentle guidance, soft encouragement, low-pressure invitation
+Example Uses:
+Watchlist section backgrounds
+Passive CTA backgrounds
+Referral zones
+"Optional next steps" panels
+Soft signup areas
+Email capture sections
+Follow-up action zones
+Best After: 🟨 Gold #F4C37D – strong → gentle optimism transition
+ Never After: 🟥 Coral Red #FF6B6B – alert → soft guidance confusing
+ Emotional Transition: Reduces pressure while maintaining engagement
+🟪 Fog Purple #E6E6FA
+Maximum Coverage: 30% (exit/referral slides only)
+Text Required: ⬛ Charcoal #2C2C2C or 🟦 Navy #0B2E4E
+Restriction: ❌ Reserve for hello/goodbye only
+Regional Notes: Test in conservative markets
+Emotional Function: Sophisticated closure, elegant exit, refined handoff
+Example Uses:
+RS1 referral slide backgrounds
+Exit path panels
+Handoff zones
+"Share with advisor" sections
+Goodbye messages
+Thank you panels
+Follow-up prompts
+Best Placement: Footer or final slide
+ Never Mid-Deck: Breaks flow
+ Emotional Transition: Creates graceful conclusion without abruptness
+🧊 Ice Blue #EAF4FB
+Maximum Coverage: 30%
+Platform Warning: ⚠️ Prints very faint
+Text Required: ⬛ Charcoal #2C2C2C or 🟦 Navy #0B2E4E
+Regional Notes: APAC preferred
+Emotional Function: Transparency, openness, accessible information
+Example Uses:
+Sidebar information zones
+Flow diagram backgrounds
+Process step containers
+Supporting information panels
+FAQ backgrounds
+Help text areas
+Never As: Full page (too light)
+ Emotional Transition: Makes complex information feel approachable
+🟦 Slate Blue #6A5ACD [as background panel]
+Maximum Coverage: 20%
+Text Required: ⬜ White #FFFFFF
+Restriction: Data-heavy sections only
+Emotional Function: Analytical depth, data sophistication, complex understanding
+Example Uses:
+Advanced analytics panels
+Data deep-dive backgrounds
+Complex chart containers
+Statistical analysis sections
+Quantitative model displays
+Regional Caution: Test in conservative markets
+ Emotional Transition: Signals sophisticated analytical capability
+Tier 3 Accent Colors (Restricted Use)
+🟥 Crimson #D44D5C
+Maximum Coverage: 5% for emphasis
+Function: Risk/legal only
+Text Required: ⬜ White #FFFFFF
+Restriction: ❌ Never for positive content
+Feature Tags: Risk/Alert
+Emotional Function: Critical information, risk awareness, legal importance
+Example Uses:
+Risk disclosure headers
+Critical disclaimers
+Legal warnings
+Deadline alerts
+Compliance flags
+Important notices
+Drawdown indicators
+Best After: 🩶 Slate Gray #525C66 – neutral setup for risk message
+ Never Before: 🟩 Teal #36BBA6 – risk → CTA inappropriate
+ Emotional Transition: Draws appropriate attention without panic
+🟩 Deep Custody Green #1C6357
+Maximum Coverage: 10%
+Function: Security/custody only
+Text Required: ⬜ White #FFFFFF
+Feature Tags: Security
+Emotional Function: Institutional safety, secure processes, protected assets
+Example Uses:
+Custody workflow diagrams
+Security feature highlights
+Audit statement frames
+Compliance checkmarks
+Vault imagery backgrounds
+Protection indicators
+Secure process flows
+Best After: 🟦 Navy #0B2E4E – authority → security natural flow
+ Never After: 🟥 Crimson #D44D5C – risk → security too reactive
+ Emotional Transition: Builds confidence in operational security
+🟩 Sage Green #B5C9A9
+Maximum Coverage: 15%
+Text Required: ⬛ Charcoal #2C2C2C
+Feature Tags: Heritage/Legacy
+Emotional Function: Established wisdom, heritage value, time-tested approaches
+Example Uses:
+Historical performance contexts
+Legacy messaging
+Tradition emphasis
+"Established since" content
+Heritage brand elements
+Long-term relationship indicators
+Generational wealth themes
+Best Before: 🟦 Navy #0B2E4E – heritage → authority builds credibility
+ Never After: 🟪 Electric Purple #8A2BE2 – future → past jarring
+ Emotional Transition: Connects past success with present opportunity
+🟪 Dusty Plum #9B6A6C
+Maximum Coverage: 8%
+Text Required: ⬜ White #FFFFFF
+Restriction: Trauma overlays, blocked callouts only
+Emotional Function: Reflection, lessons learned, cautious wisdom
+Example Uses:
+"What went wrong" sections
+Lessons learned panels
+Case study failures
+Market correction contexts
+Historical challenge sections
+Recovery narratives
+Must Follow With: Neutral bridge before optimism
+ Emotional Transition: Acknowledges challenges while maintaining professionalism
+🟥 Coral Red #FF6B6B
+Maximum Coverage: 5%
+Text Required: ⬜ White #FFFFFF
+Feature Tags: Soft Alert
+Emotional Function: Gentle urgency, empathetic warning, human-centered alert
+Example Uses:
+Soft warning messages
+Attention callouts
+Empathetic risk pages
+Human impact sections
+Gentle deadline reminders
+Considerate alerts
+Best After: 🟧 Amber #E9B56C – warning → alert escalation
+ Never Before: 🟨 Gold #F4C37D – alert → optimism inappropriate
+ Emotional Transition: Maintains urgency while preserving relationship
+Tier 3 CTA Colors (Specific Functions Only)
+🟩 Approval Green #00A86B
+Maximum Coverage: 3%
+Function: Success confirmation only
+Text Required: ⬜ White #FFFFFF
+Restriction: ❌ Never for primary CTAs
+Emotional Function: Confirmation, validation, successful completion
+Example Uses:
+Checkmark icons
+Success tags
+Confirmation messages
+"Complete" indicators
+Approved status
+Verified badges
+Transaction confirmations
+Platform Notes: State change accent only
+ Emotional Transition: Provides positive reinforcement
+Tier 3 Data Colors
+🧊 Light Cyan #A8D5E2
+Maximum in Chart: 20%
+Function: Supporting data only
+Feature Tags: Support/Secondary
+Emotional Function: Supporting evidence, contextual information, layered understanding
+Example Uses:
+Supporting chart data
+Secondary metrics
+Background trend lines
+Contextual information
+Comparative data sets
+Reference ranges
+Historical context data
+Best After: 🟩 Deep Teal #2A6478 – deep → light analysis layering
+ Emotional Transition: Adds depth without overwhelming primary message
+🟩 Light Green #92C47D
+Maximum in Chart: 15%
+Function: Positive indicators only
+Feature Tags: Positive/Growth
+Emotional Function: Growth, positive momentum, success indicators
+Example Uses:
+Positive performance metrics
+Growth indicators
+Success markers
+Upward trends
+Achievement data
+Target attainment
+Favorable comparisons
+Best After: 🟩 Forest Green #228B22 – strong → light green natural fade
+ Never After: 🟥 Crimson #D44D5C – risk → growth inappropriate
+ Emotional Transition: Reinforces positive narrative
+🩶 Slate Gray #525C66 [as data]
+Maximum in Chart: 10%
+Function: Reference lines/borders only
+Feature Tags: Panel/Overlay
+Emotional Function: Structure, organization, quiet support
+Example Uses:
+Chart gridlines
+Table borders
+Reference lines
+Axis lines
+Data dividers
+Category separators
+Universal Use: Works with all chart colors
+ Emotional Transition: Provides structure without distraction
+Tier 4 Accent Colors (Approval Required)
+🟧 Burnt Orange #D2691E
+Maximum Coverage: 2%
+Regional Gate: ❌ Never in GCC/India
+Function: Urgent CTAs only (scarcity)
+Text Required: ⬜ White #FFFFFF
+Approval Required: Yes – Director level
+Feature Tags: Urgency
+Emotional Function: Bold urgency, critical timing, last chance
+Example Uses:
+Flash-risk event alerts
+Intense watchlist warnings
+Final deadline markers
+Last-chance CTAs
+Critical time warnings
+Urgent action required
+Never After: 🟦 Cobalt Blue #2B50AA – cool analysis → hot urgency
+ Alternative: Use 🟧 Amber #E9B56C for international
+ Emotional Transition: Creates immediate action pressure
+🟧 Institutional Orange #FF6600
+Maximum Coverage: 3%
+Regional Gate: ❌ Test all markets
+Function: Innovation markers only
+Approval Required: Yes – Brand team
+Emotional Function: Institutional evolution, trusted change, progressive tradition
+Example Uses:
+Innovation program markers
+Change initiative indicators
+Transformation highlights
+Evolution timeline points
+Modernization flags
+Never As: Background or large elements
+ Emotional Transition: Signals evolution while maintaining trust
+🩷 Rose Gold #B76E79
+Maximum Coverage: 5%
+Regional Gate: Western markets only
+Function: Inclusive premium/feminine luxury
+Approval Required: Yes – for specific initiatives
+Emotional Function: Inclusive elegance, modern luxury, diverse premium
+Example Uses:
+Women's wealth initiative materials
+Inclusive premium services
+Modern family office content
+Diversity program highlights
+Next-gen wealth themes
+Never With: 🟨 Traditional Gold #F4C37D – confusing
+ Emotional Transition: Modernizes luxury messaging
+🟪 Plum #8E4585
+Maximum Coverage: 3%
+Regional Gate: Europe/Americas only
+Function: Ultra-premium only
+Text Required: ⬜ White #FFFFFF
+Approval Required: Yes – UHNW materials only
+Emotional Function: Ultra-exclusivity, highest tier, sovereign wealth level
+Example Uses:
+Private banking materials
+Ultra-high-net-worth communications
+Exclusive event invitations
+Top-tier membership indicators
+Bespoke service highlights
+Never Before: 🟩 Pale Mint #C1E1C1 – premium → soft jarring
+ Emotional Transition: Elevates to highest service tier
+🟪 Electric Purple #8A2BE2
+Maximum Coverage: 10% (innovation sections)
+Platform Fit: Digital preferred
+Regional Notes: Western markets respond better
+Feature Tags: Innovation
+Emotional Function: Breakthrough innovation, future-forward, disruption
+Example Uses:
+Innovation section headers
+Future projection slides
+Breakthrough concept highlights
+Tech advancement indicators
+Digital transformation themes
+Next-generation features
+Never After: 🟩 Sage Green #B5C9A9 – heritage → innovation whiplash
+ Never Before: 🟦 Navy #0B2E4E – innovation → authority backwards
+ Emotional Transition: Signals leap into future thinking
+Tier 4 Never Backgrounds (Absolute Prohibitions)
+⬛ Charcoal #2C2C2C
+Why Not: Too heavy, creates oppressive mood, readability issues
+Use Instead: Text and footers only
+Emotional Impact if Misused: Creates anxiety and visual fatigue
+⬛ Off Black #111111
+Why Not: Overly stark, funeral-like, ominous for investment materials
+Use Instead: Print-grade text, fine lines only
+Emotional Impact if Misused: Triggers negative associations
+🟩 Teal #36BBA6
+Why Not: Reserved for CTAs; using as background destroys action meaning
+Use Instead: Buttons, badges, opt-in chips only
+Emotional Impact if Misused: Confuses user action paths
+🟦 Signal Blue #3C61C5
+Why Not: Too intense for background; meant as tactical data accent
+Use Instead: Chart series, data highlights, micro-accents
+Emotional Impact if Misused: Overwhelms content, causes eye strain
+🟥 Crimson #D44D5C
+Why Not: Creates alarm state; legal/risk association too strong
+Use Instead: Risk headers, warning text, legal bars only
+Emotional Impact if Misused: Triggers flight response, undermines trust
+🎨 All Bright Colors (Coral, Burnt Orange, etc.)
+Why Not: Unprofessional appearance, visual fatigue, amateur impression
+Use Instead: Minimal accents ≤5% only
+Emotional Impact if Misused: Destroys institutional credibility
+UTILITY TIER: NEUTRAL SYSTEM COLORS
+Universal application across all functions with specific rules.
+🩶 Modal Fill Gray #E9EDF2
+As Background: 100% containers, 40% sections
+As Overlay: Universal bridge between colors
+As Data: Never – too light
+Text On: ⬛ Charcoal #2C2C2C only
+Emotional Function: Breathing room, structural support, visual organization
+Example Uses:
+Modal dialog backgrounds
+Container fills
+Form field backgrounds
+Inactive states
+Loading screens
+System messages
+Universal Rule: Works between any color combination
+ Emotional Transition: Neutralizes emotional intensity
+🩶 Dust Gray #C9C9C9
+As Background: Never – low contrast
+As Accent: Disabled states, inactive elements
+As Text: Never – fails contrast
+Feature Tags: Disabled/Inactive
+Emotional Function: Unavailability, inactive state, reduced priority
+Example Uses:
+Disabled buttons
+Inactive form fields
+Unavailable options
+Grayed-out content
+Past deadlines
+Emotional Impact: Clearly communicates non-functionality
+🤍 Bone #F9F6F0
+As Background: Tier 1 – Premium neutral
+As Accent: Tier 2 – Warm highlights
+As Text: Never
+Regional Preference: GCC/India preferred over pure white
+Emotional Function: Warmth, premium comfort, organic sophistication
+Emotional Transition: Humanizes institutional content
+⬜ Pure White #FFFFFF
+As Background: Alternative to ⬜ Off White #FAFAFA
+As Text: Tier 1 on all dark colors
+As Accent: Maximum contrast needs
+Emotional Function: Absolute clarity, pure communication
+Universal Rule: Works with all dark colors
+Emotional Impact: Maximum readability and contrast
+PLATFORM-SPECIFIC TIER ADJUSTMENTS
+Gamma (Web/Interactive)
+Tier Upgrades:
+🟦 Sky Blue #72C5E1 → Tier 1 CTA (interactive optimized)
+🟦 Signal Blue #3C61C5 → Tier 1 Data (web rendering excellent)
+All hover states active
+Tier Downgrades:
+🟨 ETF Yellow #FFD89A → Tier 3 (screen rendering issues)
+🟪 Fog Purple #E6E6FA → Tier 4 (test before use)
+Print-optimized colors → Tier 3
+PowerPoint
+Tier Upgrades:
+All grays → Tier 1 Backgrounds (master slide compatible)
+🟦 Oxford Blue #002147 → Tier 1 for section dividers
+🩶 Payne's Gray #536878 → Tier 1 for compliance sections
+Tier Downgrades:
+🟦 Sky Blue #72C5E1 CTAs → Tier 3 (less effective than 🟩 Teal #36BBA6)
+Light colors → Tier 4 for text (projection issues)
+Web-specific blues → Tier 3
+PDF/Print
+Critical Downgrades:
+🟨 ETF Yellow #FFD89A + ⬜ White text → PROHIBITED
+All light backgrounds → Test print required
+Interactive blues → Tier 3 (static medium)
+🟦 Sky Blue #72C5E1 → Tier 4 (poor print)
+Tier Upgrades:
+🟦 Oxford Blue #002147, 🩶 Payne's Gray #536878 → Tier 1 (print beautifully)
+🤍 Bone #F9F6F0 → Tier 1 Background (premium print feel)
+Deep colors → All upgrade one tier
+Canva
+Strict Limitations:
+Background: ⬜ Off White #FAFAFA only at Tier 1
+Text: Web-safe affects all color perception
+CTAs: Center/bottom placement changes hierarchy
+Exports: All subtle grays downgrade one tier
+🩶 Modal Gray #E9EDF2 → Tier 3 (export issues)
+GCC / Middle East
+Upgrades to Tier 1:
+🤍 Bone #F9F6F0 → Tier 1 Background (warmer, softer than ⬜ Off White #FAFAFA)
+🔵 Deep Navy #002244 → Tier 1 over standard 🟦 Navy #0B2E4E
+🟦 Teal Blue #367588 → Tier 1 CTA (over bright 🟩 Teal #36BBA6)
+Deep blues → All upgrade one tier
+Muted tones → Preferred over bright
+Downgrades to Tier 4 (Avoid):
+🟧 Burnt Orange #D2691E – cultural sensitivity
+Bright CTAs – seen as aggressive
+🟧 Institutional Orange #FF6600 – test carefully
+🟥 Coral Red #FF6B6B – too casual
+All casual bright accents
+Safe Universals:
+All grays (🩶 Modal #E9EDF2, 🩶 Steel #909FAD, 🩶 Slate #525C66)
+Deep blues (🟦 Navy #0B2E4E, 🟦 Oxford #002147)
+Muted tones
+India / South Asia
+Upgrades to Tier 1:
+🩶 Steel Gray #909FAD → Tier 1 Background (serious tone)
+🟦 Oxford Blue #002147 → Tier 1 (academic credibility)
+Formal blues over casual blues
+⬛ Charcoal #2C2C2C → Enhanced prominence
+Downgrades:
+🟨 Gold #F4C37D → Tier 3 (use minimally)
+All bright colors → Tier 4
+Casual CTAs → Use formal 🟦 Teal Blue #367588
+Playful accents → Avoid entirely
+Preferred Combinations:
+🟦 Navy #0B2E4E + ⬜ Off White #FAFAFA + 🩶 Steel Gray #909FAD
+🟦 Oxford Blue #002147 + 🤍 Bone #F9F6F0 + ⬛ Charcoal #2C2C2C text
+Slide-Specific Color Assignments
+Based on JCJ Brand Guidelines slide types:
+S1 – Strategy Overview
+Background: ⬜ Off White #FAFAFA 80% or 🩶 Modal Gray #E9EDF2 panels
+Text: ⬛ Charcoal #2C2C2C primary
+Accent: 🟨 Gold #F4C37D quote frame
+CTA: 🟩 Teal #36BBA6 bottom-right
+Emotional Flow: Trust → Logic → Action
+C4 – Custody & Withdrawal Flow
+Background: ⬜ Off White #FAFAFA base
+Structure: 🩶 Steel Gray #909FAD panels, 🟩 Teal #36BBA6 flow elements
+Security: 🟩 Deep Custody Green #1C6357 for vault elements
+Text: ⬛ Charcoal #2C2C2C primary, ⬜ White #FFFFFF on panels
+Footer: 🟪 Fog Purple #E6E6FA CTA bar
+Emotional Flow: Authority → Security → Confidence
+R9 – Risk / Drawdown
+Background: 🤍 Bone #F9F6F0 for softer tone
+Data: 🟨 ETF Yellow #FFD89A for BTC, 🟦 Signal Blue #3C61C5 for JCJ
+Risk Elements: 🟥 Crimson #D44D5C headers 3%, 🟧 Amber #E9B56C caution 5%
+Text: ⬛ Charcoal #2C2C2C body, ⬜ White #FFFFFF on dark panels
+Emotional Flow: Concern → Analysis → Resolution
+F4 – Comparison Slide (BTC vs JCJ)
+Background: ⬜ Off White #FAFAFA
+Structure: 🩶 Slate Gray #525C66 dividers
+Highlights: 🟨 ETF Yellow #FFD89A for BTC stats
+JCJ Data: 🟦 Signal Blue #3C61C5
+CTA: Soft footer in 🤍 Bone #F9F6F0 or 🟪 Fog Purple #E6E6FA
+Emotional Flow: Comparison → Advantage → Interest
+RS1 – Referral Summary
+Background: 🤍 Bone #F9F6F0 or 🟪 Fog Purple #E6E6FA panels 30%
+Text: ⬛ Charcoal #2C2C2C primary, 🟦 Navy #0B2E4E quotes
+CTA: 🟦 Sky Blue #72C5E1 "Track" button
+Accent: 🟩 Pale Mint #C1E1C1 for soft guidance
+Emotional Flow: Relationship → Value → Gentle Action
+A8 – Watchlist CTA
+Background: ⬜ Off White #FAFAFA
+Overlay: 🩶 Modal Gray #E9EDF2 40%
+CTA: 🟦 Sky Blue #72C5E1 "Track from Sidelines"
+Text: ⬛ Charcoal #2C2C2C
+Emotional Flow: Low Pressure → Option → Passive Engagement
+Color Transition Sequences
+Authority → Action Flow
+🟦 Navy #0B2E4E – Establishes trust
+🩶 Modal Gray #E9EDF2 – Transitions to content
+🟦 Cobalt Blue #2B50AA – Introduces logic
+🟦 Signal Blue #3C61C5 – Shows data proof
+🟩 Teal #36BBA6 – Drives action
+Emotional Journey: Trust → Understanding → Confidence → Decision
+Risk Disclosure Flow
+⬜ Off White #FAFAFA – Neutral opening
+🩶 Slate Gray #525C66 – Structural setup
+🟧 Amber #E9B56C – Initial caution
+🟥 Crimson #D44D5C – Risk disclosure
+🟩 Deep Teal #2A6478 – Mitigation analysis
+🤍 Bone #F9F6F0 – Return to stability
+Emotional Journey: Calm → Attention → Concern → Solution → Resolution
+Innovation Narrative
+⬛ Charcoal #2C2C2C text on ⬜ Off White #FAFAFA – Current state
+🟪 Electric Purple #8A2BE2 – Innovation introduction
+🟦 Signal Blue #3C61C5 – Technology proof
+🟩 Mint Green #88D8A6 – Growth potential
+🟩 Teal #36BBA6 – Engagement prompt
+Emotional Journey: Present → Possibility → Evidence → Optimism → Action
+Value Presentation
+⬜ Off White #FAFAFA – Clean start
+🟦 Navy #0B2E4E – Authority establishment
+🟨 Gold #F4C37D – Value highlight
+🟩 Light Green #92C47D – Growth indication
+🟩 Teal #36BBA6 – Investment action
+Emotional Journey: Openness → Trust → Aspiration → Confidence → Commitment
+Implementation Checklist by Tier
+Using Tier 1 Colors
+Background: ⬜ Off White #FAFAFA, 🤍 Bone #F9F6F0, or 🟦 Navy #0B2E4E for heroes only
+Text: ⬛ Charcoal #2C2C2C on light, ⬜ White #FFFFFF on dark
+CTA: 🟩 Teal #36BBA6 for primary actions
+Data: 🟦 Signal Blue #3C61C5 for main series
+Verify contrast ratios meet ADA standards
+Using Tier 2 Colors
+Check if Tier 1 is already in use
+Verify platform compatibility
+Test contrast ratios (4.5:1 minimum)
+Consider regional preferences
+Ensure emotional transitions are smooth
+Using Tier 3 Colors
+Confirm specific context matches restriction
+Get approval if needed
+Use minimal percentages (≤5–10%)
+Provide neutral transitions before and after
+Test in target market if regionally sensitive
+Using Tier 4 Colors
+Obtain required approvals (Director/Brand team)
+Verify regional acceptance
+Use absolute minimum coverage (≤2–3%)
+Have Tier 2 alternatives ready
+Document usage justification
+🎯 Quick Reference: Multi-Function Colors
+Color | Name | Use Cases | Emotional Function
+🟦 | Navy #0B2E4E | Tier 1 Background: 40% max (100% heroes only) Tier 1 Text: Headers on light backgrounds Tier 3 Accent: Dividers/borders (10% max) Tier 4 Data: Never use in charts | Authority, trust, stability
+🟨 | Gold #F4C37D | Tier 2 Accent: Quote frames (10% max) Tier 3 Text: Large headers only (18pt+) Tier 4 Background: Never full background Tier 4 Data: Never in charts (confuses with ETF Yellow) | Premium value, achievement
+🩶 | Steel Gray #909FAD | Tier 2 Background: Technical sections (30% max) Tier 2 Text: Attribution, footnotes Tier 3 Accent: Overlays and panels Tier 3 Data: Reference lines only | Professional neutrality
+🟨 | ETF Yellow #FFD89A | Tier 2 Accent: Alert bars (20% max) Tier 2 Data: Comparison series Tier 4 Background: Never full Tier 4 Text: Never (fails all contrast) | Market awareness, temporal urgency
+🟥 | Crimson #D44D5C | Tier 3 Accent: Risk headers (5% max) Tier 3 Text: Warning text only Tier 4 Background: Never Tier 4 CTA: Never (negative association) | Risk awareness, critical information
+🟩 | Teal #36BBA6 | Tier 1 CTA: Primary actions Tier 4 Background: Never (loses CTA meaning) Tier 4 Text: Never Tier 4 Data: Never (confuses with action) | Clear action, positive momentum

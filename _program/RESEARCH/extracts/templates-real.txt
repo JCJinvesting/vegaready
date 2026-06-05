@@ -1,0 +1,2018 @@
+SECTION 1: BACKGROUNDS
+Tier 1 Background Colors
+PRIMARY: [COLOR:#FAF9F6]OFF WHITE[/COLOR]
+#FAF9F6 | Tier: 1 | Color ID: 026
+Emotional Function: Clarity, openness, fresh perspective, breathing space
+Primary Function Classifications:
+Background: Tier 1 (100% max coverage)
+Text: Never
+Accent: Never
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:100%] of total design
+Minimum: [COVERAGE:40%] recommended for readability
+Sweet Spot: [COVERAGE:70-85%] for optimal content balance
+Narrative Role Definition: Creates mental space for decision-making and reduces cognitive load. Off White serves as the primary canvas for all JCJ materials, providing the cleanest possible foundation for content hierarchy and professional communication.
+Frictions It Calms:
+Visual fatigue
+Information density anxiety
+Cognitive overload
+Reading comprehension barriers
+Fears It Avoids:
+Cluttered appearance
+Overwhelming complexity
+Inaccessibility
+Unprofessional presentation
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#003366]Navy[/COLOR] #003366 (Authority structure)
+[COLOR:#36454F]Charcoal[/COLOR] #36454F (Clear hierarchy)
+[COLOR:#008080]Teal[/COLOR] #008080 (Action clarity)
+Approved Triads:
+[COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] (Clarity-Authority-Value)
+[COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#008080]Teal[/COLOR] (Space-Definition-Action)
+[COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] - [COLOR:#0047AB]Cobalt Blue[/COLOR] (Foundation-Structure-Innovation)
+Forbidden Combinations:
+Off White + [COLOR:#FFFDD0]Cream[/COLOR] #FFFDD0 (Insufficient contrast)
+Off White + [COLOR:#F5F5F5]Modal Fill Gray[/COLOR] #F5F5F5 (Redundant)
+Off White + [COLOR:#FFEF00]ETF Yellow[/COLOR] #FFEF00 (Visibility issues)
+Technical Specifications
+Text on Off White Requirements:
+Minimum size: 12pt (14pt preferred)
+Required colors: Charcoal #36454F or Navy #003366
+Font weight: Regular or higher
+Line height: 1.5x minimum
+ADA Compliance:
+✅ WCAG AAA with Charcoal (14.8:1)
+✅ WCAG AAA with Navy (11.2:1)
+❌ Fails with all light colors
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Default backgrounds for content-heavy slides
+Primary canvas for all materials
+Clean sections requiring maximum readability
+Data presentation backgrounds
+Compliance document bases
+Form backgrounds
+Report templates
+Email templates
+Transition Sequences:
+Best After: [COLOR:#E3DAC9]Bone[/COLOR] #E3DAC9 (neutral reset for clarity)
+Best Before: [COLOR:#71797E]Steel Gray[/COLOR] #71797E (moves into structure cleanly)
+Never After: [COLOR:#DC143C]Crimson[/COLOR] #DC143C (abrupt escalation misaligned)
+Never Before: [COLOR:#FFD700]Gold[/COLOR] #FFD700 (removes premium setup)
+Quick Reference
+DO's:
+✅ Use as default canvas for all materials
+✅ Maintain [COVERAGE:40%] minimum for readability
+✅ Pair with dark text colors exclusively
+✅ Use for data visualization backgrounds
+✅ Apply to compliance and legal documents
+DON'Ts:
+❌ Use light colored text on Off White
+❌ Pair with cream or light gray elements
+❌ Use less than [COVERAGE:40%] in any layout
+❌ Apply filters or tints
+❌ Use for accent or highlight purposes
+Fallback Options:
+Primary: [COLOR:#FFFFFF]Pure White[/COLOR] #FFFFFF (maximum contrast)
+Secondary: [COLOR:#FAFAFA]Cool White[/COLOR] #FAFAFA (slight blue tone)
+Emergency: System default white
+Pairing Score Matrix
+Tier 2 Background Colors
+PRIMARY: [COLOR:#F5F5F5]MODAL FILL GRAY[/COLOR]
+#F5F5F5 | Tier: 2 | Color ID: 047
+Emotional Function: System feedback, technical function, interface utility, container clarity
+Primary Function Classifications:
+Background: Tier 2 (40% max for containers/modals)
+Text: Never
+Accent: Never
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:40%] in technical contexts
+Minimum: N/A (as needed for UI)
+Sweet Spot: [COVERAGE:20-30%] for modal overlays and forms
+Narrative Role Definition: Provides clear system feedback and technical clarity without interfering with content hierarchy. Modal Fill Gray serves as the technical foundation for all interactive elements, creating consistent container behavior across digital platforms.
+Frictions It Calms:
+System confusion
+Technical intimidation
+Interface complexity
+Form anxiety
+Fears It Avoids:
+Technical errors
+System failures
+User mistakes
+Lost data concerns
+Color Relationships & Combinations
+Approved Pairs:
+ALL system colors work well
+[COLOR:#003366]Navy[/COLOR] #003366 (Clear hierarchy)
+[COLOR:#008080]Teal[/COLOR] #008080 (Action clarity)
+Approved Triads:
+[COLOR:#F5F5F5]Modal Fill Gray[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#008080]Teal[/COLOR] (System-Authority-Action)
+[COLOR:#F5F5F5]Modal Fill Gray[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#00A86B]Approval Green[/COLOR] (Container-Text-Success)
+[COLOR:#F5F5F5]Modal Fill Gray[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] (Layers-Base-Structure)
+Forbidden Combinations:
+Modal Fill Gray + [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Insufficient contrast)
+Modal Fill Gray + [COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3 (Too similar)
+Modal Fill Gray as primary background (technical only)
+Technical Specifications
+Text on Modal Fill Gray Requirements:
+Minimum size: 14pt (16pt for labels)
+Required colors: Charcoal #36454F or Navy #003366
+Font weight: Regular or higher
+Line height: 1.5x minimum
+ADA Compliance:
+✅ WCAG AAA with Charcoal (13.5:1)
+✅ WCAG AAA with Navy (10.8:1)
+❌ Fails with light colors
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Modal dialog backgrounds
+Form field containers
+System message backgrounds
+Dropdown menu backgrounds
+Tooltip backgrounds
+Alert containers
+Loading screen overlays
+Input field backgrounds
+Transition Sequences:
+Best After: User action trigger
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (return to content)
+Natural Flow: Action → Modal Fill Gray → Response
+System Pattern: Trigger → Container → Feedback
+Quick Reference
+DO's:
+✅ Use for all modal overlays
+✅ Apply to form containers
+✅ Maintain consistent [COVERAGE:1px] borders
+✅ Use with [COVERAGE:80%] opacity for overlays
+✅ Apply subtle shadows for depth
+DON'Ts:
+❌ Use as primary page background
+❌ Apply to non-interactive elements
+❌ Exceed [COVERAGE:40%] of viewport
+❌ Use without clear borders
+❌ Apply to marketing content
+Fallback Options:
+Primary: [COLOR:#EEEEEE]Light Modal Gray[/COLOR] #EEEEEE
+Secondary: [COLOR:#F0F0F0]System Gray 96[/COLOR] #F0F0F0
+Emergency: rgba(0,0,0,0.05)
+Pairing Score Matrix
+PRIMARY: [COLOR:#D3D3D3]LIGHT GRAY[/COLOR]
+#D3D3D3 | Tier: 2 | Color ID: 039
+Emotional Function: Clean structure, minimal presence, quiet professionalism, unobtrusive support
+Primary Function Classifications:
+Background: Tier 2 (35% max for forms/tables)
+Text: Never (insufficient contrast)
+Accent: Never
+CTA: Never
+Data: Tier 3 (Support elements only)
+Coverage Guidelines:
+Maximum: [COVERAGE:35%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:15-25%] for structural support
+Narrative Role Definition: Provides clean, unobtrusive structure that supports content without competing for attention. Light Gray enables complex information architecture while maintaining visual lightness and professional restraint.
+Frictions It Calms:
+Visual weight concerns
+Heavy design feeling
+Overwhelming structure
+Information density
+Fears It Avoids:
+Dark/heavy feeling
+Oppressive design
+Claustrophobic layouts
+Visual fatigue
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#003366]Navy[/COLOR] #003366 (High contrast)
+[COLOR:#008080]Teal[/COLOR] #008080 (Clear actions)
+[COLOR:#36454F]Charcoal[/COLOR] #36454F (Text clarity)
+Approved Triads:
+[COLOR:#D3D3D3]Light Gray[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#008080]Teal[/COLOR] (Structure-Authority-Action)
+[COLOR:#D3D3D3]Light Gray[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] (Support-Text-Value)
+[COLOR:#D3D3D3]Light Gray[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#0047AB]Cobalt Blue[/COLOR] (Layers-Base-Accent)
+Forbidden Combinations:
+Light Gray + [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Insufficient contrast)
+Light Gray + [COLOR:#F5F5F5]Modal Fill Gray[/COLOR] #F5F5F5 (Too similar)
+Light Gray + Light text colors (Fails ADA)
+Technical Specifications
+Text on Light Gray Requirements:
+Minimum size: 14pt (16pt preferred)
+Required colors: Navy #003366 or Charcoal #36454F only
+Font weight: Medium or higher
+Line height: 1.5x minimum
+ADA Compliance:
+✅ WCAG AA with Navy (8.9:1)
+✅ WCAG AA with Charcoal (8.2:1)
+❌ Fails with all light colors
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Form field backgrounds
+Data table alternating rows
+Section dividers
+Card backgrounds
+Sidebar panels
+Footer backgrounds
+Disabled state backgrounds
+Loading placeholders
+Transition Sequences:
+Best After: [COLOR:#003366]Navy[/COLOR] #003366 (relief from darkness)
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (return to clarity)
+Natural Bridge: Between contrasting sections
+Data Flow: Headers → Light Gray rows → White rows
+Quick Reference
+DO's:
+✅ Use for form backgrounds
+✅ Apply to data table rows
+✅ Create visual hierarchy with layers
+✅ Use for disabled/inactive states
+✅ Apply [COVERAGE:50%] opacity for overlays
+DON'Ts:
+❌ Use for primary content backgrounds
+❌ Apply light text on Light Gray
+❌ Exceed [COVERAGE:35%] coverage
+❌ Use adjacent to Off White without borders
+❌ Apply to CTAs or important elements
+Fallback Options:
+Primary: [COLOR:#DCDCDC]Gainsboro[/COLOR] #DCDCDC
+Secondary: [COLOR:#C0C0C0]Silver[/COLOR] #C0C0C0
+Emergency: rgb(211,211,211)
+Pairing Score Matrix
+PRIMARY: [COLOR:#002147]OXFORD BLUE[/COLOR]
+#002147 | Tier: 2 | Color ID: 011
+Emotional Function: Depth, academic credibility, research authority, analytical rigor
+Primary Function Classifications:
+Background: Tier 2 (35% max for sections)
+Text: Never (too dark for body text)
+Accent: Tier 3 (Academic headers only)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:35%] of design
+Minimum: [COVERAGE:10%] for impact
+Sweet Spot: [COVERAGE:20-25%] for research sections
+Narrative Role Definition: Establishes research credibility and analytical depth in knowledge-intensive contexts. Oxford Blue signals academic rigor and deep expertise, making complex information feel thoroughly researched and trustworthy.
+Frictions It Calms:
+Credibility concerns
+Research depth questions
+Academic rigor doubts
+Expertise uncertainty
+Fears It Avoids:
+Superficial analysis
+Lack of expertise
+Unsubstantiated claims
+Amateur research
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Maximum clarity)
+[COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3 (Structured support)
+[COLOR:#FFD700]Gold[/COLOR] #FFD700 (Premium research)
+Approved Triads:
+[COLOR:#002147]Oxford Blue[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Research-Value-Clarity)
+[COLOR:#002147]Oxford Blue[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] - [COLOR:#008080]Teal[/COLOR] (Depth-Structure-Action)
+[COLOR:#002147]Oxford Blue[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] (Authority-Space-Balance)
+Forbidden Combinations:
+Oxford Blue + [COLOR:#003366]Navy[/COLOR] #003366 (Too similar)
+Oxford Blue + [COLOR:#002244]Deep Navy[/COLOR] #002244 (Redundant)
+Oxford Blue + Dark backgrounds (Lost impact)
+Technical Specifications
+Text on Oxford Blue Requirements:
+Minimum size: 14pt (16pt preferred)
+Required color: White #FFFFFF only
+Font weight: Regular or higher
+Line height: 1.5x minimum
+ADA Compliance:
+✅ WCAG AAA with White (15.1:1)
+✅ WCAG AAA with Off White (14.3:1)
+❌ Fails with all mid-tones
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Research paper headers
+White paper sections
+Analytical report covers
+Educational material headers
+Case study backgrounds
+Methodology sections
+Academic citations panels
+Deep-dive content frames
+Transition Sequences:
+Best After: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (setup for depth)
+Best Before: [COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3 (emerge from research)
+Academic Flow: Introduction → Oxford Blue → Data
+Research Pattern: Overview → Oxford Blue → Findings
+Quick Reference
+DO's:
+✅ Use for research-heavy content
+✅ Apply to academic credentials
+✅ Reserve for deep analysis sections
+✅ Pair with substantial white space
+✅ Use for methodology presentations
+DON'Ts:
+❌ Use for casual content
+❌ Exceed [COVERAGE:35%] coverage
+❌ Pair with other dark blues
+❌ Use for CTAs or interactions
+❌ Apply to marketing materials
+Fallback Options:
+Primary: [COLOR:#191970]Midnight Blue[/COLOR] #191970
+Secondary: [COLOR:#003366]Navy[/COLOR] #003366
+Emergency: [COLOR:#00008B]Dark Blue[/COLOR] #00008B
+Pairing Score Matrix
+PRIMARY: [COLOR:#002244]DEEP NAVY[/COLOR]
+#002244 | Tier: 2 | Color ID: 016
+Emotional Function: Maximum authority, institutional weight, foundational trust, permanence
+Primary Function Classifications:
+Background: Tier 2 (30% max for institutional)
+Text: Never
+Accent: Tier 3 (Executive headers only)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:30%] of design
+Minimum: [COVERAGE:10%] for presence
+Sweet Spot: [COVERAGE:15-20%] for authority without overwhelming
+Narrative Role Definition: Establishes unquestionable institutional authority and permanence. Deep Navy represents the ultimate expression of organizational stability, reserved for the most formal and authoritative communications.
+Frictions It Calms:
+Institutional credibility doubts
+Authority questions
+Trust foundation needs
+Permanence concerns
+Fears It Avoids:
+Fly-by-night concerns
+Lack of substance
+Institutional weakness
+Temporary nature
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FFD700]Gold[/COLOR] #FFD700 (Ultimate prestige)
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Maximum contrast)
+[COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3 (Structural clarity)
+Approved Triads:
+[COLOR:#002244]Deep Navy[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Authority-Prestige-Clarity)
+[COLOR:#002244]Deep Navy[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] - [COLOR:#008080]Teal[/COLOR] (Foundation-Structure-Progress)
+[COLOR:#002244]Deep Navy[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] (Depth-Space-Definition)
+Forbidden Combinations:
+Deep Navy + [COLOR:#003366]Navy[/COLOR] #003366 (Redundant)
+Deep Navy + [COLOR:#002147]Oxford Blue[/COLOR] #002147 (Too similar)
+Deep Navy + [COLOR:#000000]Black[/COLOR] #000000 (Too dark)
+Technical Specifications
+Text on Deep Navy Requirements:
+Minimum size: 14pt (16pt strongly preferred)
+Required color: White #FFFFFF exclusively
+Font weight: Regular or higher
+Line height: 1.6x minimum
+ADA Compliance:
+✅ WCAG AAA with White (16.7:1)
+✅ WCAG AAA with Off White (15.8:1)
+❌ Fails with all other colors
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Board presentation covers
+Institutional announcements
+Foundation documents
+Executive letters
+Governance materials
+Annual report covers
+Legal document headers
+Merger announcements
+Transition Sequences:
+Best After: Setup with lighter tones
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (relief necessary)
+Authority Flow: Light → Deep Navy → Content
+Institutional Pattern: Introduction → Deep Navy → Details
+Quick Reference
+DO's:
+✅ Reserve for highest authority needs
+✅ Use in institutional contexts
+✅ Limit to [COVERAGE:30%] maximum
+✅ Surround with ample white space
+✅ Apply to permanent communications
+DON'Ts:
+❌ Use for casual materials
+❌ Apply to interactive elements
+❌ Combine with other dark blues
+❌ Use for body text backgrounds
+❌ Apply to temporary content
+Fallback Options:
+Primary: [COLOR:#003366]Navy[/COLOR] #003366 (slightly lighter)
+Secondary: [COLOR:#002147]Oxford Blue[/COLOR] #002147 (academic alternative)
+Emergency: [COLOR:#000033]Darkest Navy[/COLOR] #000033
+Pairing Score Matrix
+PRIMARY: [COLOR:#536878]PAYNE'S GRAY[/COLOR]
+#536878 | Tier: 2 | Color ID: 012
+Emotional Function: Subtlety, sophistication, understated authority, quiet confidence
+Primary Function Classifications:
+Background: Tier 2 (25% max for subtle sections)
+Text: Never (insufficient contrast)
+Accent: Tier 3 (Sophisticated panels)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:25%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:10-15%] for sophisticated accents
+Narrative Role Definition: Provides sophisticated backdrop without demanding attention. Payne's Gray offers a refined alternative to stronger blues, creating elegant transitions and supporting premium content with understated class.
+Frictions It Calms:
+Visual noise
+Attention competition
+Design complexity
+Color fatigue
+Fears It Avoids:
+Overwhelming visuals
+Distraction
+Unprofessional appearance
+Harsh transitions
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Soft contrast)
+[COLOR:#008080]Teal[/COLOR] #008080 (Balanced action)
+[COLOR:#87CEEB]Light Blue[/COLOR] #87CEEB (Gentle progression)
+Approved Triads:
+[COLOR:#536878]Payne's Gray[/COLOR] - [COLOR:#008080]Teal[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Subtle-Action-Clarity)
+[COLOR:#536878]Payne's Gray[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Sophistication-Value-Structure)
+[COLOR:#536878]Payne's Gray[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#0047AB]Cobalt Blue[/COLOR] (Background-Base-Accent)
+Forbidden Combinations:
+Payne's Gray + [COLOR:#71797E]Steel Gray[/COLOR] #71797E (Indistinct)
+Payne's Gray + [COLOR:#708090]Slate Gray[/COLOR] #708090 (Too similar)
+Payne's Gray + Mid-tone grays (Muddy)
+Technical Specifications
+Text on Payne's Gray Requirements:
+Minimum size: 14pt (16pt preferred)
+Required colors: White #FFFFFF or Off White #FAF9F6
+Font weight: Medium or higher
+Line height: 1.5x minimum
+ADA Compliance:
+⚠️ WCAG AA with White (7.2:1)
+⚠️ WCAG AA with Off White (6.8:1)
+❌ Fails with mid-tones
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Supporting content backgrounds
+Secondary information panels
+Sidebar backgrounds
+Quote block backgrounds
+Testimonial sections
+Supporting data areas
+Footer sections
+Transition slides
+Transition Sequences:
+Best After: Bright colors (visual rest)
+Best Before: Bright colors (gentle preparation)
+Bridge Function: Between contrasting sections
+Flow Pattern: Bold → Payne's Gray → Bold
+Quick Reference
+DO's:
+✅ Use for sophisticated transitions
+✅ Apply to secondary content
+✅ Create visual breathing space
+✅ Use as universal buffer
+✅ Layer at [COVERAGE:70%] opacity
+DON'Ts:
+❌ Use as primary background
+❌ Pair with similar grays
+❌ Exceed [COVERAGE:25%] coverage
+❌ Use for text color
+❌ Apply to CTAs
+Fallback Options:
+Primary: [COLOR:#708090]Slate Gray[/COLOR] #708090
+Secondary: [COLOR:#71797E]Steel Gray[/COLOR] #71797E
+Emergency: [COLOR:#696969]Dim Gray[/COLOR] #696969
+Pairing Score Matrix
+Tier 3 Background Colors
+PRIMARY: [COLOR:#191970]MIDNIGHT BLUE[/COLOR]
+#191970 | Tier: 3 | Color ID: 017
+Emotional Function: Evening authority, after-hours sophistication, exclusive access, premium depth
+Primary Function Classifications:
+Background: Tier 3 (25% max for premium sections)
+Text: Never
+Accent: Tier 4 (Exclusive headers only)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:25%] of design
+Minimum: [COVERAGE:5%] for presence
+Sweet Spot: [COVERAGE:10-15%] for exclusive feel
+Narrative Role Definition: Conveys exclusivity and premium after-hours service availability. Midnight Blue signals special access and VIP treatment, creating an atmosphere of privileged information and exclusive opportunities.
+Frictions It Calms:
+Exclusivity doubts
+Premium access questions
+After-hours availability concerns
+Special treatment uncertainty
+Fears It Avoids:
+Common treatment
+Standard service
+Limited access
+Missing exclusive opportunities
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FFD700]Gold[/COLOR] #FFD700 (Ultimate luxury)
+[COLOR:#C0C0C0]Silver[/COLOR] #C0C0C0 (Modern premium)
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Clean contrast)
+Approved Triads:
+[COLOR:#191970]Midnight Blue[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Exclusive-Premium-Clarity)
+[COLOR:#191970]Midnight Blue[/COLOR] - [COLOR:#C0C0C0]Silver[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Night-Modern-Structure)
+[COLOR:#191970]Midnight Blue[/COLOR] - [COLOR:#B76E79]Rose Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Luxury-Elegance-Space)
+Forbidden Combinations:
+Midnight Blue + [COLOR:#003366]Navy[/COLOR] #003366 (Indistinct)
+Midnight Blue + [COLOR:#002147]Oxford Blue[/COLOR] #002147 (Too similar)
+Midnight Blue + [COLOR:#002244]Deep Navy[/COLOR] #002244 (Redundant)
+Technical Specifications
+Text on Midnight Blue Requirements:
+Minimum size: 14pt (16pt preferred)
+Required color: White #FFFFFF or Gold #FFD700
+Font weight: Light to Regular (elegance)
+Line height: 1.6x minimum
+ADA Compliance:
+✅ WCAG AAA with White (13.4:1)
+✅ WCAG AAA with Off White (12.7:1)
+❌ Fails with mid-tones
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+VIP client materials
+After-hours trading content
+Exclusive webinar backgrounds
+Premium service tiers
+Private wealth sections
+Invitation-only events
+Executive evening events
+Exclusive member portals
+Transition Sequences:
+Best After: Day content preparation
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (return to clarity)
+Premium Flow: Standard → Midnight Blue → Exclusive
+Time Pattern: Day colors → Midnight Blue (evening)
+Quick Reference
+DO's:
+✅ Reserve for premium/exclusive content
+✅ Use for after-hours materials
+✅ Pair with metallic accents
+✅ Apply to VIP communications
+✅ Use sparingly for impact
+DON'Ts:
+❌ Use for standard materials
+❌ Apply to daytime content
+❌ Exceed [COVERAGE:25%] coverage
+❌ Use for body content backgrounds
+❌ Mix with other dark blues
+Fallback Options:
+Primary: [COLOR:#002147]Oxford Blue[/COLOR] #002147
+Secondary: [COLOR:#003366]Navy[/COLOR] #003366
+Emergency: [COLOR:#000033]Dark Blue[/COLOR] #000033
+Pairing Score Matrix
+PRIMARY: [COLOR:#FFFDD0]CREAM[/COLOR]
+#FFFDD0 | Tier: 3 | Color ID: 060
+Emotional Function: Soft comfort, gentle luxury, warm sophistication, approachable premium
+Primary Function Classifications:
+Background: Tier 3 (20% max for soft sections)
+Text: Never
+Accent: Never
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:20%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:10-15%] for warmth without overwhelming
+Narrative Role Definition: Provides warm, comfortable sophistication without intimidation. Cream softens institutional materials while maintaining premium quality, perfect for creating approachable luxury experiences.
+Frictions It Calms:
+Harsh environments
+Cold interactions
+Uncomfortable experiences
+Institutional stiffness
+Fears It Avoids:
+Sterile service
+Cold professionalism
+Uncomfortable luxury
+Impersonal treatment
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#003366]Navy[/COLOR] #003366 (Warm authority)
+[COLOR:#36454F]Charcoal[/COLOR] #36454F (Soft contrast)
+[COLOR:#836953]Warm Taupe[/COLOR] #836953 (Tonal harmony)
+Approved Triads:
+[COLOR:#FFFDD0]Cream[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] (Warmth-Authority-Value)
+[COLOR:#FFFDD0]Cream[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#008080]Teal[/COLOR] (Comfort-Definition-Action)
+[COLOR:#FFFDD0]Cream[/COLOR] - [COLOR:#836953]Warm Taupe[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] (Layers-Tone-Structure)
+Forbidden Combinations:
+Cream + [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Too similar)
+Cream + [COLOR:#FFEF00]Yellow tones[/COLOR] (Muddy)
+Cream + Light colors (No contrast)
+Technical Specifications
+Text on Cream Requirements:
+Minimum size: 14pt (16pt preferred)
+Required colors: Navy #003366 or Charcoal #36454F
+Font weight: Medium or higher
+Line height: 1.5x minimum
+ADA Compliance:
+✅ WCAG AA with Navy (10.8:1)
+✅ WCAG AA with Charcoal (9.2:1)
+❌ Fails with light colors
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Welcome sections
+Client testimonial backgrounds
+Family office materials
+Personal wealth sections
+Hospitality areas
+Warm transitions
+Comfort messaging
+Gentle introductions
+Transition Sequences:
+Best After: [COLOR:#003366]Navy[/COLOR] #003366 (authority to warmth)
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (warm to clean)
+Comfort Flow: Formal → Cream → Personal
+Temperature: Cold → Cream → Warm content
+Quick Reference
+DO's:
+✅ Use for humanizing content
+✅ Apply to comfort sections
+✅ Pair with navy for warmth
+✅ Use in hospitality contexts
+✅ Apply subtle shadows
+DON'Ts:
+❌ Use as primary background
+❌ Pair with yellow tones
+❌ Exceed [COVERAGE:20%] coverage
+❌ Use for technical content
+❌ Apply to data-heavy sections
+Fallback Options:
+Primary: [COLOR:#FFF8DC]Cornsilk[/COLOR] #FFF8DC
+Secondary: [COLOR:#FAEBD7]Antique White[/COLOR] #FAEBD7
+Emergency: [COLOR:#FFFFF0]Ivory[/COLOR] #FFFFF0
+Pairing Score Matrix
+PRIMARY: [COLOR:#5F9EA0]CADET BLUE[/COLOR]
+#5F9EA0 | Tier: 3 | Color ID: 018
+Emotional Function: Approachability, professional warmth, accessible expertise, educational clarity
+Primary Function Classifications:
+Background: Tier 3 (20% max for educational sections)
+Text: Never
+Accent: Tier 3 (Learning highlights)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:20%] of design
+Minimum: [COVERAGE:5%] for accent
+Sweet Spot: [COVERAGE:10-15%] for approachable sections
+Narrative Role Definition: Makes professional content feel approachable and learnable. Cadet Blue bridges the gap between expertise and accessibility, perfect for educational materials and client onboarding.
+Frictions It Calms:
+Intimidation
+Complexity fears
+Approachability concerns
+Learning anxiety
+Fears It Avoids:
+Cold professionalism
+Inaccessibility
+Overwhelming expertise
+Exclusionary knowledge
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Clear teaching)
+[COLOR:#836953]Warm Taupe[/COLOR] #836953 (Comfortable learning)
+[COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3 (Structured education)
+Approved Triads:
+[COLOR:#5F9EA0]Cadet Blue[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#836953]Warm Taupe[/COLOR] (Approachable-Clear-Comfortable)
+[COLOR:#5F9EA0]Cadet Blue[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] - [COLOR:#008080]Teal[/COLOR] (Education-Structure-Progress)
+[COLOR:#5F9EA0]Cadet Blue[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] (Learning-Clarity-Achievement)
+Forbidden Combinations:
+Cadet Blue + [COLOR:#008080]Teal[/COLOR] #008080 (Too similar)
+Cadet Blue + [COLOR:#367588]Teal Blue[/COLOR] #367588 (Confusing)
+Cadet Blue + Dark backgrounds (Lost warmth)
+Technical Specifications
+Text on Cadet Blue Requirements:
+Minimum size: 14pt (16pt preferred)
+Required colors: White #FFFFFF or Off White #FAF9F6
+Font weight: Regular to Medium
+Line height: 1.6x minimum (readability)
+ADA Compliance:
+⚠️ WCAG AA with White (4.7:1)
+⚠️ WCAG AA with Off White (4.4:1)
+❌ Fails with mid-tones
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Onboarding materials
+Educational sections
+How-to guides
+Client education
+Training presentations
+FAQ backgrounds
+Tutorial sections
+Knowledge base content
+Transition Sequences:
+Best After: Complex content (simplification)
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (return to neutral)
+Learning Flow: Complex → Cadet Blue → Simple
+Education Pattern: Problem → Cadet Blue → Solution
+Quick Reference
+DO's:
+✅ Use for educational content
+✅ Apply to onboarding materials
+✅ Create approachable sections
+✅ Pair with warm neutrals
+✅ Use for simplification
+DON'Ts:
+❌ Use for formal/executive content
+❌ Pair with similar blues/teals
+❌ Exceed [COVERAGE:20%] coverage
+❌ Use for urgent content
+❌ Apply to data visualization
+Fallback Options:
+Primary: [COLOR:#4682B4]Steel Blue[/COLOR] #4682B4
+Secondary: [COLOR:#6495ED]Cornflower Blue[/COLOR] #6495ED
+Emergency: [COLOR:#5F9EA0]System Cadet[/COLOR] #5F9EA0
+Pairing Score Matrix
+PRIMARY: [COLOR:#836953]WARM TAUPE[/COLOR]
+#836953 | Tier: 3 | Color ID: 028
+Emotional Function: Comfort, stability, approachable luxury, grounded premium, human connection
+Primary Function Classifications:
+Background: Tier 3 (15% max for comfort sections)
+Text: Never
+Accent: Tier 3 (Warm highlights)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:15%] of design
+Minimum: [COVERAGE:5%] for warmth
+Sweet Spot: [COVERAGE:8-12%] for comfort without dominating
+Narrative Role Definition: Makes premium services feel comfortable and accessible. Warm Taupe humanizes institutional communications while maintaining sophisticated quality, perfect for high-touch client materials.
+Frictions It Calms:
+Luxury intimidation
+Premium accessibility concerns
+Comfort doubts
+Human connection needs
+Fears It Avoids:
+Cold luxury
+Inaccessible premium
+Uncomfortable experience
+Impersonal service
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#003366]Navy[/COLOR] #003366 (Grounded authority)
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Warm clarity)
+[COLOR:#FFD700]Gold[/COLOR] #FFD700 (Comfortable value)
+Approved Triads:
+[COLOR:#836953]Warm Taupe[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Comfort-Authority-Space)
+[COLOR:#836953]Warm Taupe[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Warmth-Value-Structure)
+[COLOR:#836953]Warm Taupe[/COLOR] - [COLOR:#87A96B]Sage Green[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Natural-Sustainable-Clean)
+Forbidden Combinations:
+Warm Taupe + Brown tones (Muddy)
+Warm Taupe + [COLOR:#CC5500]Burnt Orange[/COLOR] #CC5500 (Overwhelming warmth)
+Warm Taupe + Dark oranges (Dated appearance)
+Technical Specifications
+Text on Warm Taupe Requirements:
+Minimum size: 16pt (18pt preferred)
+Required colors: White #FFFFFF or Off White #FAF9F6
+Font weight: Medium to Bold
+Line height: 1.6x minimum
+ADA Compliance:
+⚠️ WCAG AA with White (5.2:1)
+⚠️ Marginal with Off White (4.9:1)
+❌ Fails with mid-tones
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Client lounge materials
+Family office presentations
+Personal wealth sections
+Testimonial backgrounds
+Welcome packages
+Relationship materials
+Human stories sections
+Comfort messaging
+Transition Sequences:
+Best After: [COLOR:#003366]Navy[/COLOR] #003366 (formal to personal)
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (warmth to clarity)
+Comfort Flow: Institutional → Warm Taupe → Personal
+Human Pattern: Data → Warm Taupe → Stories
+Quick Reference
+DO's:
+✅ Use for humanizing content
+✅ Apply to relationship materials
+✅ Create comfortable luxury
+✅ Pair with navy for depth
+✅ Use in family office contexts
+DON'Ts:
+❌ Use as primary background
+❌ Pair with brown/orange tones
+❌ Exceed [COVERAGE:15%] coverage
+❌ Use for technical content
+❌ Apply to urgent materials
+Fallback Options:
+Primary: [COLOR:#D2B48C]Tan[/COLOR] #D2B48C
+Secondary: [COLOR:#BC9A6A]Camel[/COLOR] #BC9A6A
+Emergency: [COLOR:#8B7355]Burlywood[/COLOR] #8B7355
+Pairing Score Matrix
+SECTION 2: TEXT/LINES
+Tier 2 Text/Line Colors
+PRIMARY: [COLOR:#36454F]CHARCOAL[/COLOR]
+#36454F | Tier: 2 | Color ID: 007
+Emotional Function: Authority, finality, premium depth, executive presence, sophisticated definition
+Primary Function Classifications:
+Background: Never (too heavy)
+Text: Tier 2 (20% max - primary text)
+Accent: Tier 2 (Divider lines, borders)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:20%] of design (including text and lines)
+Minimum: N/A (as needed for text)
+Sweet Spot: [COVERAGE:10-15%] for optimal readability and structure
+Narrative Role Definition: Conveys executive-level authority and premium positioning without being imposing. Charcoal serves as the primary text color for all JCJ materials, providing optimal readability while maintaining sophisticated presence.
+Frictions It Calms:
+Authority questions
+Premium credibility doubts
+Executive approval needs
+Professional uncertainty
+Fears It Avoids:
+Weak positioning
+Casual appearance
+Lack of gravitas
+Amateur typography
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FFD700]Gold[/COLOR] #FFD700 (Premium emphasis)
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Maximum readability)
+[COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3 (Structured hierarchy)
+Approved Triads:
+[COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Authority-Value-Clarity)
+[COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#008080]Teal[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Text-Action-Structure)
+[COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] (Definition-Space-Balance)
+Forbidden Combinations:
+Charcoal + [COLOR:#003366]Navy[/COLOR] #003366 backgrounds (Too dark)
+Charcoal + [COLOR:#000000]Black[/COLOR] #000000 (Indistinct)
+Charcoal on dark backgrounds (Fails contrast)
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 12pt body text (14pt preferred)
+Maximum size: 48pt for headers
+Font weight: Regular to Bold
+Line height: 1.5x for body, 1.2x for headers
+Letter spacing: 0 for body, -0.02em for headers
+Line/Border Usage:
+Minimum thickness: 1px for dividers
+Maximum thickness: 3px for emphasis
+Style: Solid for structure, dotted for secondary
+ADA Compliance:
+✅ WCAG AAA with Off White (14.8:1)
+✅ WCAG AAA with Light Gray (8.2:1)
+❌ Fails on dark backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+All body text on light backgrounds
+Primary headers and titles
+Executive summaries
+Signature blocks
+Premium headers
+Divider lines
+Border elements
+Legal text
+Transition Sequences:
+Best After: Light backgrounds setup
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (text to space)
+Text Hierarchy: Charcoal → [COLOR:#ADADAD]Soft Gray[/COLOR] → Light
+Line Pattern: Thick Charcoal → Thin gray
+Quick Reference
+DO's:
+✅ Use as primary text color
+✅ Apply to all headers
+✅ Use for premium dividers
+✅ Maintain consistent weight
+✅ Pair with light backgrounds only
+DON'Ts:
+❌ Use on dark backgrounds
+❌ Apply as background color
+❌ Use for CTAs
+❌ Make thinner than 12pt
+❌ Use for data visualization
+Fallback Options:
+Primary: [COLOR:#2C2C2C]Dark Charcoal[/COLOR] #2C2C2C
+Secondary: [COLOR:#4A4A4A]Medium Gray[/COLOR] #4A4A4A
+Emergency: [COLOR:#333333]Dark Gray[/COLOR] #333333
+Pairing Score Matrix
+PRIMARY: [COLOR:#DC143C]CRIMSON[/COLOR]
+#DC143C | Tier: 2 | Color ID: 005
+Emotional Function: Urgency, critical information, risk awareness, attention capture, controlled alert
+Primary Function Classifications:
+Background: Never
+Text: Tier 2 (5% max - risk/legal text)
+Accent: Tier 2 (Warning lines, alert borders)
+CTA: Never (too alarming)
+Data: Never (except risk indicators)
+Coverage Guidelines:
+Maximum: [COVERAGE:5%] of design
+Minimum: N/A (purposeful use only)
+Sweet Spot: [COVERAGE:2-3%] for effective warning without panic
+Narrative Role Definition: Draws attention to critical information without creating panic or negative associations. Crimson serves as the risk communication color, ensuring important disclosures and warnings are noticed and understood.
+Frictions It Calms:
+Missing critical information
+Overlooking risks
+Deadline uncertainty
+Compliance concerns
+Fears It Avoids:
+Panic reactions
+Overwhelming negativity
+Aggressive messaging
+Anxiety triggers
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Clear warning)
+[COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3 (Controlled alert)
+[COLOR:#36454F]Charcoal[/COLOR] #36454F (Structured warning)
+Approved Triads:
+[COLOR:#DC143C]Crimson[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Risk-Structure-Clarity)
+[COLOR:#DC143C]Crimson[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Alert-Authority-Control)
+[COLOR:#DC143C]Crimson[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] (Warning-Space-Balance)
+Forbidden Combinations:
+Crimson + Red tones (Alarming)
+Crimson + [COLOR:#FF4040]Bright colors[/COLOR] (Message dilution)
+Crimson + [COLOR:#00A86B]Green[/COLOR] #00A86B (Jarring contrast)
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 12pt (14pt preferred for warnings)
+Font weight: Bold preferred
+Style: Can use italic for legal disclaimers
+Placement: Always with adequate white space
+Line/Border Usage:
+Thickness: 2px minimum for visibility
+Style: Solid for alerts, dashed for cautions
+Usage: Top/bottom borders for disclaimer boxes
+ADA Compliance:
+✅ WCAG AAA with White (9.4:1)
+✅ WCAG AA with Light Gray (5.2:1)
+❌ Fails on colored backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Risk disclosures
+Deadline alerts
+Critical updates
+Legal disclaimers
+Warning messages
+Compliance notices
+Important deadlines
+Regulatory text
+Transition Sequences:
+Best After: Neutral setup
+Best Before: Resolution color (solution)
+Risk Flow: Information → Crimson → Mitigation
+Alert Pattern: Normal → Crimson → Action
+Quick Reference
+DO's:
+✅ Use for risk disclosures
+✅ Apply bold weight for visibility
+✅ Surround with white space
+✅ Keep usage minimal
+✅ Use for compliance requirements
+DON'Ts:
+❌ Use for positive content
+❌ Apply to CTAs
+❌ Exceed [COVERAGE:5%] usage
+❌ Combine with other reds
+❌ Use for decorative purposes
+Fallback Options:
+Primary: [COLOR:#B22222]Brick Red[/COLOR] #B22222
+Secondary: [COLOR:#CD5C5C]Indian Red[/COLOR] #CD5C5C
+Emergency: [COLOR:#FF0000]Pure Red[/COLOR] #FF0000
+Pairing Score Matrix
+Tier 3 Text/Line Colors
+PRIMARY: [COLOR:#ADADAD]SOFT GRAY[/COLOR]
+#ADADAD | Tier: 3 | Color ID: 040
+Emotional Function: Gentle neutrality, approachable structure, friendly professionalism, reduced emphasis
+Primary Function Classifications:
+Background: Never
+Text: Tier 3 (15% max - secondary text)
+Accent: Tier 3 (Gentle borders, soft lines)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:15%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:8-10%] for secondary information
+Narrative Role Definition: Softens structural elements while maintaining professionalism. Soft Gray provides hierarchy without harshness, perfect for secondary information and gentle visual organization.
+Frictions It Calms:
+Harsh contrasts
+Aggressive structure
+Visual tension
+Information overload
+Fears It Avoids:
+Intimidating design
+Harsh boundaries
+Unfriendly interface
+Overwhelming hierarchy
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#003366]Navy[/COLOR] #003366 (Soft hierarchy)
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Gentle contrast)
+Warm accent colors (Balanced emphasis)
+Approved Triads:
+[COLOR:#ADADAD]Soft Gray[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Secondary-Primary-Base)
+[COLOR:#ADADAD]Soft Gray[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Hierarchy-Text-Structure)
+[COLOR:#ADADAD]Soft Gray[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#008080]Teal[/COLOR] (Soft-Clear-Action)
+Forbidden Combinations:
+Soft Gray + Similar mid-grays (Indistinct)
+Soft Gray on colored backgrounds (Poor contrast)
+Soft Gray + Light backgrounds for text (Fails ADA)
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 14pt (16pt preferred)
+Font weight: Regular to Medium
+Usage: Secondary text, captions, metadata
+Line height: 1.5x minimum
+Line/Border Usage:
+Thickness: 1px standard
+Style: Solid or dotted
+Usage: Gentle dividers, soft containers
+ADA Compliance:
+⚠️ WCAG AA with Off White (3.8:1)
+❌ Fails with Light Gray
+✅ Pass on dark backgrounds only
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Secondary text labels
+Timestamps and dates
+Footer information
+Gentle borders
+Form field placeholders
+Disabled text states
+Supporting metadata
+Caption text
+Transition Sequences:
+Best After: Primary text
+Best Before: Background colors
+Hierarchy: [COLOR:#36454F]Charcoal[/COLOR] → Soft Gray → Light
+Structure: Bold → Soft Gray → Minimal
+Quick Reference
+DO's:
+✅ Use for secondary information
+✅ Apply to less important text
+✅ Create gentle hierarchy
+✅ Use for timestamps/metadata
+✅ Apply to subtle borders
+DON'Ts:
+❌ Use for primary text
+❌ Apply on light backgrounds
+❌ Use smaller than 14pt
+❌ Apply to important content
+❌ Use for CTAs
+Fallback Options:
+Primary: [COLOR:#A9A9A9]Dark Gray[/COLOR] #A9A9A9
+Secondary: [COLOR:#999999]Medium Gray[/COLOR] #999999
+Emergency: [COLOR:#808080]Gray[/COLOR] #808080
+Pairing Score Matrix
+PRIMARY: [COLOR:#B22222]BRICK RED[/COLOR]
+#B22222 | Tier: 3 | Color ID: 030
+Emotional Function: Foundational strength, heritage, established power, institutional history
+Primary Function Classifications:
+Background: Never
+Text: Tier 3 (5% max - heritage text)
+Accent: Tier 3 (Foundation lines, heritage markers)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:5%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:2-3%] for heritage emphasis
+Narrative Role Definition: Communicates established strength and institutional heritage. Brick Red connects current success to foundational history, perfect for anniversary materials and legacy communications.
+Frictions It Calms:
+Stability questions
+Heritage doubts
+Foundation concerns
+Legacy uncertainty
+Fears It Avoids:
+New/untested perception
+Weak foundations
+Lack of history
+Temporary nature
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Heritage clarity)
+[COLOR:#36454F]Charcoal[/COLOR] #36454F (Established depth)
+[COLOR:#836953]Warm Taupe[/COLOR] #836953 (Historical warmth)
+Approved Triads:
+[COLOR:#B22222]Brick Red[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Heritage-Authority-Space)
+[COLOR:#B22222]Brick Red[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Foundation-Trust-Structure)
+[COLOR:#B22222]Brick Red[/COLOR] - [COLOR:#836953]Warm Taupe[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (History-Comfort-Clarity)
+Forbidden Combinations:
+Brick Red + [COLOR:#DC143C]Crimson[/COLOR] #DC143C (Redundant)
+Brick Red + Bright colors (Clashing)
+Brick Red + Other reds (Overwhelming)
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 14pt (16pt for headers)
+Font weight: Bold preferred
+Usage: Heritage headers, anniversary text
+Style: Can use serif for tradition
+Line/Border Usage:
+Thickness: 2-3px for foundation lines
+Style: Solid for strength
+Usage: Heritage markers, timeline elements
+ADA Compliance:
+✅ WCAG AAA with White (10.5:1)
+✅ WCAG AA with Off White (10.0:1)
+❌ Fails on colored backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Company history sections
+Anniversary materials
+Heritage messaging
+Foundation stories
+Established dates
+Legacy communications
+Timeline markers
+Milestone celebrations
+Transition Sequences:
+Best After: Modern content (contrast)
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (relief)
+Heritage Flow: Present → Brick Red → History
+Timeline: Current → Brick Red → Founded
+Quick Reference
+DO's:
+✅ Use for heritage content
+✅ Apply to anniversary materials
+✅ Mark foundational elements
+✅ Use bold for emphasis
+✅ Pair with traditional fonts
+DON'Ts:
+❌ Use for modern content
+❌ Apply to CTAs
+❌ Mix with other reds
+❌ Exceed [COVERAGE:5%] usage
+❌ Use for risk warnings
+Fallback Options:
+Primary: [COLOR:#8B0000]Dark Red[/COLOR] #8B0000
+Secondary: [COLOR:#DC143C]Crimson[/COLOR] #DC143C
+Emergency: [COLOR:#A52A2A]Brown Red[/COLOR] #A52A2A
+Pairing Score Matrix
+PRIMARY: [COLOR:#4169E1]ROYAL BLUE[/COLOR]
+#4169E1 | Tier: 3 | Color ID: 042
+Emotional Function: Regal authority, highest tier, sovereign strength, premium positioning
+Primary Function Classifications:
+Background: Never
+Text: Tier 3 (5% max - authority headers)
+Accent: Tier 3 (Premium lines, top-tier markers)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:5%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:2-3%] for premium emphasis
+Narrative Role Definition: Establishes highest-tier authority and premium positioning. Royal Blue signals exclusive access and top-level service, reserved for the most prestigious communications.
+Frictions It Calms:
+Authority questions
+Premium tier doubts
+Leadership concerns
+Status uncertainty
+Fears It Avoids:
+Common treatment
+Low-tier service
+Weak positioning
+Standard offering
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FFD700]Gold[/COLOR] #FFD700 (Ultimate prestige)
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (Regal clarity)
+[COLOR:#C0C0C0]Silver[/COLOR] #C0C0C0 (Premium metals)
+Approved Triads:
+[COLOR:#4169E1]Royal Blue[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Sovereign-Wealth-Clarity)
+[COLOR:#4169E1]Royal Blue[/COLOR] - [COLOR:#C0C0C0]Silver[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] (Premium-Modern-Structure)
+[COLOR:#4169E1]Royal Blue[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] (Authority-Space-Definition)
+Forbidden Combinations:
+Royal Blue + [COLOR:#003366]Navy[/COLOR] #003366 (Hierarchy confusion)
+Royal Blue + [COLOR:#0047AB]Cobalt[/COLOR] #0047AB (Too similar)
+Royal Blue + Other blues (Muddy authority)
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 16pt (18pt preferred)
+Font weight: Bold or Black
+Usage: Premium headers only
+Style: Can use decorative fonts
+Line/Border Usage:
+Thickness: 2-3px for premium borders
+Style: Solid or double for luxury
+Usage: Top-tier indicators, premium frames
+ADA Compliance:
+⚠️ WCAG AA with White (6.8:1)
+⚠️ WCAG AA with Off White (6.4:1)
+❌ Fails on colored backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Premium tier headers
+Top-level memberships
+Executive materials
+Platinum services
+Royal patronage
+Leadership communications
+Award recognitions
+Exclusive access markers
+Transition Sequences:
+Best After: Standard tiers (elevation)
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6 (relief)
+Tier Flow: Standard → Royal Blue → Exclusive
+Premium Pattern: Basic → Royal Blue → VIP
+Quick Reference
+DO's:
+✅ Reserve for highest tier
+✅ Use with gold accents
+✅ Apply to premium headers
+✅ Keep usage minimal
+✅ Use bold weights
+DON'Ts:
+❌ Use for body text
+❌ Apply to standard content
+❌ Mix with navy
+❌ Exceed [COVERAGE:5%] usage
+❌ Use for CTAs
+Fallback Options:
+Primary: [COLOR:#1C39BB]Persian Blue[/COLOR] #1C39BB
+Secondary: [COLOR:#0047AB]Cobalt Blue[/COLOR] #0047AB
+Emergency: [COLOR:#0000FF]Pure Blue[/COLOR] #0000FF
+Pairing Score Matrix
+PRIMARY: [COLOR:#71797E]STEEL GRAY[/COLOR]
+#71797E | Tier: 1 | Color ID: 006
+Emotional Function: Sophistication, neutrality, professional balance, structure
+Primary Function Classifications:
+Background: Tier 1 (30% max coverage)
+Text: Never (insufficient contrast)
+Accent: Tier 2 (Structural elements)
+CTA: Never
+Data: Tier 3 (Reference lines only)
+Coverage Guidelines:
+Maximum: [COVERAGE:30%] of total design
+Minimum: N/A (excellent buffer color)
+Sweet Spot: [COVERAGE:15-25%] for structural support
+Narrative Role Definition: Provides visual breathing room and professional structure without drawing attention. Steel Gray acts as the universal buffer in the JCJ system, enabling smooth transitions between any colors while maintaining sophisticated neutrality.
+Frictions It Calms:
+Visual overwhelm
+Decision fatigue
+Information overload
+Color clash anxiety
+Fears It Avoids:
+Unprofessional appearance
+Cluttered design
+Emotional manipulation
+Harsh transitions
+Color Relationships & Combinations
+Approved Pairs:
+ALL core colors work well
+[COLOR:#003366]Navy[/COLOR] #003366 (Depth variation)
+[COLOR:#008080]Teal[/COLOR] #008080 (Balanced action)
+Approved Triads:
+[COLOR:#71797E]Steel Gray[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] (Structure-Authority-Value)
+[COLOR:#71797E]Steel Gray[/COLOR] - [COLOR:#008080]Teal[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] (Balance-Action-Clarity)
+[COLOR:#71797E]Steel Gray[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#0047AB]Cobalt Blue[/COLOR] (Layers-Definition-Innovation)
+Forbidden Combinations:
+Steel Gray + [COLOR:#999999]Dust Gray[/COLOR] #999999 (Too similar)
+Steel Gray + [COLOR:#708090]Slate Gray[/COLOR] #708090 (Purposeless redundancy)
+Steel Gray as sole color (needs contrast)
+Technical Specifications
+Text on Steel Gray Requirements:
+Minimum size: 14pt (16pt preferred)
+Required colors: Off White #FAF9F6 or White #FFFFFF
+Font weight: Medium or higher
+Line height: 1.5x minimum
+ADA Compliance:
+⚠️ WCAG AA with White (5.8:1)
+⚠️ WCAG AA with Off White (5.4:1)
+❌ Fails with mid-tones
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Background panels for sections
+Data table backgrounds
+Form field containers
+Divider elements
+Secondary navigation backgrounds
+Sidebar backgrounds
+Footer sections
+Modal overlays (with transparency)
+Transition Sequences:
+Best After: Any color (universal buffer)
+Best Before: Any color (universal buffer)
+Ideal Bridge: Between high-contrast colors
+Natural Flow: Dark → Steel Gray → Light
+Quick Reference
+DO's:
+✅ Use as universal transition color
+✅ Apply to structural elements
+✅ Layer with [COVERAGE:60%] opacity for overlays
+✅ Use for data table alternating rows
+✅ Employ as visual breathing room
+DON'Ts:
+❌ Use for primary text
+❌ Exceed [COVERAGE:30%] as background
+❌ Pair with similar grays without purpose
+❌ Use for CTAs or important actions
+❌ Apply as sole design color
+Fallback Options:
+Primary: [COLOR:#708090]Slate Gray[/COLOR] #708090 (similar neutrality)
+Secondary: [COLOR:#909FAD]Cool Gray[/COLOR] #909FAD (lighter option)
+Emergency: System gray 50%
+Pairing Score Matrix
+PRIMARY: [COLOR:#0072BB]FRENCH BLUE[/COLOR]
+#0072BB | Tier: 4 | Color ID: 041
+Emotional Function: Sophisticated European, refined taste, cultural depth
+Primary Function Classifications:
+Background: Never
+Text: Tier 4 (5% max - European/sophisticated text)
+Accent: Tier 4 (Cultural references, sophisticated lines)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:5%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:1-2%] for sophisticated accent
+Narrative Role Definition: Adds European sophistication and cultural refinement to select materials. French Blue signals international awareness and cosmopolitan approach, reserved for culturally sophisticated contexts.
+Frictions It Calms:
+Provincial concerns
+Sophistication doubts
+Cultural credibility
+Fears It Avoids:
+Unsophisticated approach
+Provincial limitations
+Cultural insensitivity
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+[COLOR:#FFD700]Gold[/COLOR] #FFD700
+[COLOR:#36454F]Charcoal[/COLOR] #36454F
+Approved Triads:
+[COLOR:#0072BB]French Blue[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR]
+[COLOR:#0072BB]French Blue[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR]
+[COLOR:#0072BB]French Blue[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#C0C0C0]Silver[/COLOR]
+Forbidden Combinations:
+French Blue + [COLOR:#0047AB]Cobalt Blue[/COLOR] #0047AB
+French Blue + American flag color combinations
+French Blue + Other bright blues
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 14pt
+Font weight: Regular to Medium
+Usage: European market headers, sophisticated accents
+Style: Pairs well with serif fonts
+Line/Border Usage:
+Thickness: 1-2px for elegant lines
+Style: Solid for refinement
+Usage: Cultural section dividers
+ADA Compliance:
+✅ WCAG AAA with White (8.6:1)
+✅ WCAG AA with Off White (8.1:1)
+❌ Fails on colored backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+European market materials
+Sophisticated investment options
+Cultural initiatives
+International portfolios
+Paris office materials
+EU regulatory content
+Continental strategies
+Heritage European funds
+Transition Sequences:
+Best After: Standard content
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+Cultural Flow: Global → French Blue → European
+Sophistication: Standard → French Blue → Elite
+Quick Reference
+DO's:
+✅ Reserve for European contexts
+✅ Use in sophisticated materials
+✅ Apply sparingly for impact
+✅ Pair with refined typography
+✅ Test with target audience
+DON'Ts:
+❌ Use in American-focused content
+❌ Apply broadly
+❌ Mix with patriotic themes
+❌ Use in casual contexts
+❌ Apply to CTAs
+Fallback Options:
+Primary: [COLOR:#0047AB]Cobalt Blue[/COLOR] #0047AB
+Secondary: [COLOR:#003366]Navy[/COLOR] #003366
+Emergency: Standard blue
+Pairing Score Matrix
+PRIMARY: [COLOR:#1C39BB]PERSIAN BLUE[/COLOR]
+#1C39BB | Tier: 4 | Color ID: 032
+Emotional Function: Deep expertise, complex understanding, masterful knowledge
+Primary Function Classifications:
+Background: Never
+Text: Tier 4 (5% max - expertise headers)
+Accent: Tier 4 (Master class markers, expertise lines)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:5%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:1-2%] for expertise marking
+Narrative Role Definition: Signals deep expertise and masterful understanding. Persian Blue indicates advanced knowledge and sophisticated analysis, reserved for expert-level content.
+Frictions It Calms:
+Expertise doubts
+Knowledge depth concerns
+Mastery questions
+Fears It Avoids:
+Surface-level service
+Amateur advice
+Insufficient expertise
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+[COLOR:#FFD700]Gold[/COLOR] #FFD700
+[COLOR:#D3D3D3]Light Gray[/COLOR] #D3D3D3
+Approved Triads:
+[COLOR:#1C39BB]Persian Blue[/COLOR] - [COLOR:#FFD700]Gold[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR]
+[COLOR:#1C39BB]Persian Blue[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR]
+[COLOR:#1C39BB]Persian Blue[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR] - [COLOR:#C0C0C0]Silver[/COLOR]
+Forbidden Combinations:
+Persian Blue + [COLOR:#003366]Navy[/COLOR] #003366 (Too similar)
+Persian Blue + Other deep blues
+Persian Blue + Casual colors
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 16pt headers only
+Font weight: Bold or Black
+Usage: Expert commentary headers, master class titles
+Style: Professional fonts only
+Line/Border Usage:
+Thickness: 2px for expertise markers
+Style: Solid for authority
+Usage: Expert section dividers
+ADA Compliance:
+✅ WCAG AAA with White (11.2:1)
+✅ WCAG AAA with Off White (10.6:1)
+❌ Fails on colored backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Expert commentary sections
+Master class headers
+Advanced strategy titles
+Deep expertise markers
+Thought leadership
+Academic credentials
+Research headers
+Advanced analysis
+Transition Sequences:
+Best After: Basic content
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+Knowledge Flow: Basic → Persian Blue → Expert
+Depth Pattern: Surface → Persian Blue → Deep
+Quick Reference
+DO's:
+✅ Reserve for expert content
+✅ Use for master classes
+✅ Apply to deep analysis
+✅ Keep usage minimal
+✅ Use bold weights
+DON'Ts:
+❌ Use for basic content
+❌ Apply to body text
+❌ Mix with navy
+❌ Use casually
+❌ Apply to CTAs
+Fallback Options:
+Primary: [COLOR:#4169E1]Royal Blue[/COLOR] #4169E1
+Secondary: [COLOR:#002147]Oxford Blue[/COLOR] #002147
+Emergency: Deep blue
+Pairing Score Matrix
+PRIMARY: [COLOR:#CC5500]BURNT ORANGE[/COLOR]
+#CC5500 | Tier: 4 | Color ID: 024
+Emotional Function: Bold confidence, contrarian thinking, breakthrough moments
+Primary Function Classifications:
+Background: Never
+Text: Tier 4 (3% max - bold statements)
+Accent: Tier 4 (Breakthrough highlights, contrarian markers)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:3%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:1%] for strategic emphasis
+Narrative Role Definition: Signals breakthrough thinking and bold strategic moves. Burnt Orange marks contrarian insights and innovative departures from conventional wisdom.
+Frictions It Calms:
+Conventional thinking limits
+Breakthrough hesitation
+Bold move uncertainty
+Fears It Avoids:
+Recklessness
+Aggression
+Unprofessionalism
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#003366]Navy[/COLOR] #003366
+[COLOR:#36454F]Charcoal[/COLOR] #36454F
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+Approved Triads:
+[COLOR:#CC5500]Burnt Orange[/COLOR] - [COLOR:#003366]Navy[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR]
+[COLOR:#CC5500]Burnt Orange[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR]
+[COLOR:#CC5500]Burnt Orange[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR]
+Forbidden Combinations:
+Burnt Orange + Red tones (Aggressive)
+Burnt Orange + [COLOR:#FFD700]Gold[/COLOR] #FFD700
+Burnt Orange + Bright colors
+Technical Specifications
+Text Usage Requirements:
+Minimum size: 16pt bold only
+Font weight: Bold or Black required
+Usage: Bold statements, breakthrough headers
+Placement: Strategic emphasis only
+Line/Border Usage:
+Thickness: 2px minimum
+Style: Solid for impact
+Usage: Breakthrough markers
+ADA Compliance:
+⚠️ WCAG AA with White (5.7:1)
+⚠️ WCAG AA with Navy (3.2:1)
+❌ Fails on most backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Innovation announcements
+Contrarian strategies
+Breakthrough moments
+Bold insights
+Disruption markers
+Game-changing ideas
+Paradigm shifts
+Revolutionary approaches
+Transition Sequences:
+Best After: Conservative content
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+Innovation Flow: Traditional → Burnt Orange → New
+Breakthrough: Status quo → Burnt Orange → Future
+Quick Reference
+DO's:
+✅ Use extremely sparingly
+✅ Apply to breakthrough content
+✅ Test with audience
+✅ Use bold weights only
+✅ Surround with space
+DON'Ts:
+❌ Use for standard content
+❌ Apply to body text
+❌ Mix with reds
+❌ Use in conservative contexts
+❌ Apply to CTAs
+Fallback Options:
+Primary: [COLOR:#B7410E]Rust[/COLOR] #B7410E
+Secondary: [COLOR:#D2691E]Chocolate[/COLOR] #D2691E
+Emergency: Dark orange
+Pairing Score Matrix
+PRIMARY: [COLOR:#FF6600]INSTITUTIONAL ORANGE[/COLOR]
+#FF6600 | Tier: 4 | Color ID: 027
+Emotional Function: Established innovation, trusted change, institutional evolution
+Primary Function Classifications:
+Background: Never
+Text: Tier 4 (3% max - innovation text)
+Accent: Tier 4 (Evolution markers, change indicators)
+CTA: Never
+Data: Never
+Coverage Guidelines:
+Maximum: [COVERAGE:3%] of design
+Minimum: N/A
+Sweet Spot: [COVERAGE:1%] for innovation marking
+Narrative Role Definition: Signals institutional evolution while maintaining trust. Institutional Orange marks established organizations embracing innovation without abandoning their foundation.
+Frictions It Calms:
+Change resistance
+Innovation skepticism
+Evolution fears
+Fears It Avoids:
+Reckless change
+Unproven methods
+Institutional instability
+Color Relationships & Combinations
+Approved Pairs:
+[COLOR:#002244]Deep Navy[/COLOR] #002244
+[COLOR:#36454F]Charcoal[/COLOR] #36454F
+[COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+Approved Triads:
+[COLOR:#FF6600]Institutional Orange[/COLOR] - [COLOR:#002244]Deep Navy[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR]
+[COLOR:#FF6600]Institutional Orange[/COLOR] - [COLOR:#36454F]Charcoal[/COLOR] - [COLOR:#D3D3D3]Light Gray[/COLOR]
+[COLOR:#FF6600]Institutional Orange[/COLOR] - [COLOR:#71797E]Steel Gray[/COLOR] - [COLOR:#FAF9F6]Off White[/COLOR]
+Forbidden Combinations:
+Institutional Orange + [COLOR:#CC5500]Burnt Orange[/COLOR] #CC5500
+Institutional Orange + Reds
+Institutional Orange + Other oranges
+Technical Specifications
+Text Usage Requirements:
+Minimum size: Large headers only (18pt+)
+Font weight: Bold required
+Usage: Innovation program headers
+Placement: Strategic only
+Line/Border Usage:
+Thickness: 2px for evolution markers
+Style: Solid or dashed for change
+Usage: Transformation indicators
+ADA Compliance:
+⚠️ WCAG AA with Navy (4.8:1)
+✅ WCAG AAA with Charcoal (7.2:1)
+❌ Fails on light backgrounds
+Platform Performance Scores
+Regional Considerations
+Implementation Examples
+Example Uses:
+Innovation programs
+Digital transformation
+Change initiatives
+Evolution announcements
+Modernization efforts
+Institutional pivots
+Strategic shifts
+Future-facing initiatives
+Transition Sequences:
+Best After: Institutional content
+Best Before: [COLOR:#FAF9F6]Off White[/COLOR] #FAF9F6
+Evolution Flow: Traditional → Institutional Orange → Future
+Change Pattern: Established → Institutional Orange → Transformed
+Quick Reference
+DO's:
+✅ Use for institutional innovation
+✅ Apply to change programs
+✅ Test extensively
+✅ Pair with deep navy
+✅ Use sparingly
+DON'Ts:
+❌ Use for startups
+❌ Apply broadly
+❌ Mix with other oranges
+❌ Use for standard content
+❌ Apply without approval
+Fallback Options:
+Primary: [COLOR:#FF8C00]Dark Orange[/COLOR] #FF8C00
+Secondary: [COLOR:#CC5500]Burnt Orange[/COLOR] #CC5500
+Emergency: Standard orange
+Pairing Score Matrix
+Platform | Score | Notes
+Gamma | 10/10 | Perfect for all digital contexts
+PowerPoint | 10/10 | Universal compatibility
+PDF | 10/10 | Print-perfect, no color shift
+Canva | 10/10 | Consistent across templates
+Mobile | 10/10 | Ideal for screen reading
+Region | Status | Notes
+Global | ✅ Universal | No cultural conflicts
+GCC/Middle East | ✅ Preferred | Clean, professional standard
+India/South Asia | ✅ Standard | Formal document baseline
+Europe | ✅ Standard | Expected professional norm
+Americas | ✅ Standard | Corporate default
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 1.0 ✅ Best | 0.1 ❌ Never | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+[COLOR:#008080]Teal #008080[/COLOR] | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+[COLOR:#71797E]Steel Gray #71797E[/COLOR] | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+[COLOR:#0047AB]Cobalt Blue #0047AB[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+[COLOR:#DC143C]Crimson #DC143C[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 1.0 ✅ Best
+Platform | Score | Notes
+Gamma | 10/10 | Perfect for interactive elements
+PowerPoint | 7/10 | Limited modal functionality
+PDF | 5/10 | Static only, no interactivity
+Canva | 8/10 | Good for form templates
+Mobile | 10/10 | Essential for touch interfaces
+Region | Status | Notes
+Global | ✅ Universal | Technical standard worldwide
+GCC/Middle East | ✅ Standard | Clear system feedback
+India/South Asia | ✅ Standard | Form convention
+Europe | ✅ Standard | Expected UI pattern
+Americas | ✅ Standard | Interface norm
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+All Colors | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+[COLOR:#003366]Navy #003366[/COLOR] | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 1.0 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+[COLOR:#008080]Teal #008080[/COLOR] | 0.1 ❌ Never | 0.9 ✅ Best | 0.7 ✅ Good | 0.9 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.0 ❌ Never | 0.7 ✅ Good | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 9/10 | Excellent for data tables
+PowerPoint | 9/10 | Perfect for structured content
+PDF | 8/10 | Consistent print quality
+Canva | 9/10 | Template-friendly
+Mobile | 9/10 | Clear on all screens
+Region | Status | Notes
+Global | ✅ Universal | Standard structural color
+GCC/Middle East | ✅ Standard | Acceptable for data
+India/South Asia | ✅ Standard | Form convention
+Europe | ✅ Standard | Expected for tables
+Americas | ✅ Standard | Corporate norm
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 0.9 ✅ Best | 0.1 ❌ Never | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+[COLOR:#008080]Teal #008080[/COLOR] | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.7 ✅ Good | 0.1 ❌ Never | 0.0 ❌ Never
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.3 ⚠️ Sometimes | 0.8 ✅ Best | 0.4 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 8/10 | Strong for research content
+PowerPoint | 9/10 | Excellent for academic presentations
+PDF | 10/10 | Perfect for white papers
+Canva | 7/10 | Use carefully in templates
+Mobile | 6/10 | Consider reduced coverage
+Region | Status | Notes
+Global | ✅ Universal | Academic standard
+GCC/Middle East | ✅ Standard | Formal contexts
+India/South Asia | ✅ Preferred | Educational prestige
+Europe | ✅ Preferred | Strong academic association
+Americas | ✅ Standard | Research credibility
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.9 ✅ Best
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#D3D3D3]Light Gray #D3D3D3[/COLOR] | 0.1 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+[COLOR:#003366]Navy #003366[/COLOR] | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 9/10 | Strong institutional presence
+PowerPoint | 10/10 | Perfect for board presentations
+PDF | 10/10 | Exceptional print quality
+Canva | 8/10 | Use with restraint
+Mobile | 7/10 | Reduce coverage on small screens
+Region | Status | Notes
+Global | ✅ Universal | Maximum formality
+GCC/Middle East | ✅ Preferred | Institutional standard
+India/South Asia | ✅ Preferred | Government/formal
+Europe | ✅ Standard | Corporate authority
+Americas | ✅ Standard | Board-level appropriate
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.2 ⚠️ Sometimes | 0.9 ✅ Best | 1.0 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.4 ⚠️ Sometimes
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best
+[COLOR:#D3D3D3]Light Gray #D3D3D3[/COLOR] | 0.1 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+[COLOR:#003366]Navy #003366[/COLOR] | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 8/10 | Elegant for subtle sections
+PowerPoint | 8/10 | Good for sophisticated templates
+PDF | 9/10 | Excellent print reproduction
+Canva | 7/10 | Use with clear purpose
+Mobile | 7/10 | Ensure sufficient contrast
+Region | Status | Notes
+Global | ✅ Universal | Sophisticated choice
+GCC/Middle East | ✅ Standard | Acceptable subtlety
+India/South Asia | ✅ Standard | Premium contexts
+Europe | ✅ Preferred | Appreciated refinement
+Americas | ✅ Standard | Professional option
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+[COLOR:#008080]Teal #008080[/COLOR] | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#87CEEB]Light Blue #87CEEB[/COLOR] | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Platform | Score | Notes
+Gamma | 8/10 | Strong for premium content
+PowerPoint | 7/10 | Use sparingly for impact
+PDF | 8/10 | Excellent for luxury materials
+Canva | 7/10 | Premium templates only
+Mobile | 6/10 | Reduce coverage on mobile
+Region | Status | Notes
+Global | ✅ Universal | Premium markets
+GCC/Middle East | ✅ Preferred | Evening events/VIP
+India/South Asia | ⚠️ Caution | Test with audience
+Europe | ✅ Preferred | Luxury association
+Americas | ✅ Standard | After-hours premium
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.3 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#C0C0C0]Silver #C0C0C0[/COLOR] | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+[COLOR:#B76E79]Rose Gold #B76E79[/COLOR] | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Platform | Score | Notes
+Gamma | 7/10 | Good for warm sections
+PowerPoint | 7/10 | Nice for softer templates
+PDF | 8/10 | Excellent print warmth
+Canva | 7/10 | Template-friendly
+Mobile | 6/10 | Ensure text contrast
+Region | Status | Notes
+Global | ✅ Universal | Warm reception
+GCC/Middle East | ✅ Preferred | Hospitality connection
+India/South Asia | ✅ Standard | Positive warmth
+Europe | ✅ Standard | Sophisticated warmth
+Americas | ✅ Standard | Approachable premium
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 0.8 ✅ Best | 0.1 ❌ Never | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+[COLOR:#836953]Warm Taupe #836953[/COLOR] | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.4 ⚠️ Sometimes | 0.7 ✅ Good | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.2 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 8/10 | Great for educational content
+PowerPoint | 7/10 | Good for training materials
+PDF | 7/10 | Nice for guides
+Canva | 8/10 | Template-friendly
+Mobile | 8/10 | Approachable on all screens
+Region | Status | Notes
+Global | ✅ Universal | Friendly worldwide
+GCC/Middle East | ✅ Standard | Educational respect
+India/South Asia | ✅ Standard | Learning positive
+Europe | ✅ Standard | Approachable professional
+Americas | ✅ Standard | Accessible expertise
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+[COLOR:#836953]Warm Taupe #836953[/COLOR] | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+[COLOR:#D3D3D3]Light Gray #D3D3D3[/COLOR] | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Platform | Score | Notes
+Gamma | 7/10 | Good for human sections
+PowerPoint | 7/10 | Warm presentations
+PDF | 8/10 | Excellent print warmth
+Canva | 7/10 | Comfort templates
+Mobile | 6/10 | Test contrast carefully
+Region | Status | Notes
+Global | ✅ Universal | Human warmth appreciated
+GCC/Middle East | ✅ Preferred | Hospitality connection
+India/South Asia | ✅ Standard | Welcoming tone
+Europe | ✅ Standard | Sophisticated comfort
+Americas | ✅ Standard | Approachable premium
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.4 ⚠️ Sometimes
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#87A96B]Sage Green #87A96B[/COLOR] | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 8/10 | Excellent for digital text
+PowerPoint | 9/10 | Perfect for presentations
+PDF | 10/10 | Print-optimized
+Canva | 7/10 | Good for templates
+Mobile | 7/10 | Ensure adequate size
+Region | Status | Notes
+Global | ✅ Universal | Professional standard
+GCC/Middle East | ✅ Standard | Formal text choice
+India/South Asia | ✅ Standard | Corporate approved
+Europe | ✅ Preferred | Sophisticated choice
+Americas | ✅ Standard | Executive standard
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.4 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+[COLOR:#D3D3D3]Light Gray #D3D3D3[/COLOR] | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+[COLOR:#003366]Navy #003366[/COLOR] | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 7/10 | Use sparingly
+PowerPoint | 8/10 | Clear on projection
+PDF | 9/10 | Excellent for disclaimers
+Canva | 6/10 | Test in templates
+Mobile | 8/10 | High visibility
+Region | Status | Notes
+Global | ✅ Universal | Risk standard
+GCC/Middle East | ⚠️ Use sparingly | Cultural sensitivity
+India/South Asia | ✅ Standard | Accepted for warnings
+Europe | ✅ Standard | Regulatory familiar
+Americas | ✅ Standard | Compliance standard
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.9 ✅ Best
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.8 ✅ Best
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 1.0 ✅ Best
+[COLOR:#71797E]Steel Gray #71797E[/COLOR] | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.7 ✅ Good
+Platform | Score | Notes
+Gamma | 7/10 | Good for secondary text
+PowerPoint | 8/10 | Nice for subtle elements
+PDF | 7/10 | Print carefully
+Canva | 7/10 | Template-friendly
+Mobile | 8/10 | Good for less important text
+Region | Status | Notes
+Global | ✅ Universal | Accepted secondary
+GCC/Middle East | ✅ Standard | Subtle hierarchy
+India/South Asia | ✅ Standard | Secondary text norm
+Europe | ✅ Standard | Appreciated subtlety
+Americas | ✅ Standard | Metadata standard
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 6/10 | Use for special occasions
+PowerPoint | 7/10 | Heritage presentations
+PDF | 8/10 | Anniversary materials
+Canva | 6/10 | Limited templates
+Mobile | 6/10 | Ensure readability
+Region | Status | Notes
+Global | ✅ Universal | Heritage respected
+GCC/Middle East | ✅ Standard | Tradition valued
+India/South Asia | ✅ Standard | Legacy important
+Europe | ✅ Preferred | History appreciated
+Americas | ✅ Standard | Foundation messaging
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 0.8 ✅ Best
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.7 ✅ Good
+[COLOR:#836953]Warm Taupe #836953[/COLOR] | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+[COLOR:#003366]Navy #003366[/COLOR] | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 7/10 | Premium sections only
+PowerPoint | 8/10 | Executive presentations
+PDF | 9/10 | Premium materials
+Canva | 7/10 | Luxury templates
+Mobile | 6/10 | Reduce usage on small screens
+Region | Status | Notes
+Global | ✅ Universal | Royalty recognized
+GCC/Middle East | ✅ Preferred | Royal association strong
+India/South Asia | ✅ Preferred | Premium respected
+Europe | ✅ Preferred | Regal tradition
+Americas | ✅ Standard | Premium tier marker
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+[COLOR:#C0C0C0]Silver #C0C0C0[/COLOR] | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#003366]Navy #003366[/COLOR] | 0.7 ✅ Good | 0.3 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 9/10 | Excellent for panels and dividers
+PowerPoint | 10/10 | Perfect for master templates
+PDF | 9/10 | Consistent print reproduction
+Canva | 8/10 | Good for structural elements
+Mobile | 9/10 | Clear definition on all screens
+Region | Status | Notes
+Global | ✅ Universal | No cultural conflicts
+GCC/Middle East | ✅ Standard | Professional neutral
+India/South Asia | ✅ Standard | Formal structure color
+Europe | ✅ Preferred | Sophisticated choice
+Americas | ✅ Standard | Corporate approved
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.5 ⚠️ Sometimes | 0.7 ✅ Good
+[COLOR:#008080]Teal #008080[/COLOR] | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.9 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+All Others | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 7/10 | European content focused
+PowerPoint | 6/10 | Limited use cases
+PDF | 8/10 | Sophisticated documents
+Canva | 6/10 | Special templates only
+Mobile | 5/10 | Desktop preferred
+Region | Status | Notes
+Global | ⚠️ Test | Cultural sensitivity needed
+GCC/Middle East | ❌ Avoid | Not culturally aligned
+India/South Asia | ⚠️ Caution | Limited relevance
+Europe | ✅ Gated | European markets only
+Americas | ⚠️ Caution | May seem pretentious
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.3 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 6/10 | Expert content only
+PowerPoint | 7/10 | Master class materials
+PDF | 8/10 | White papers, research
+Canva | 6/10 | Limited use
+Mobile | 5/10 | Desktop preferred
+Region | Status | Notes
+Global | ✅ Universal | Academia respected
+GCC/Middle East | ✅ Standard | Expertise valued
+India/South Asia | ✅ Preferred | Knowledge respected
+Europe | ✅ Preferred | Academic tradition
+Americas | ✅ Standard | Expert recognition
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+[COLOR:#FFD700]Gold #FFD700[/COLOR] | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#D3D3D3]Light Gray #D3D3D3[/COLOR] | 0.1 ❌ Never | 0.9 ✅ Best | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+[COLOR:#003366]Navy #003366[/COLOR] | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Platform | Score | Notes
+Gamma | 6/10 | Innovation sections
+PowerPoint | 5/10 | Use very sparingly
+PDF | 6/10 | Strategic highlights
+Canva | 6/10 | Bold templates only
+Mobile | 5/10 | Test carefully
+Region | Status | Notes
+Global | ⚠️ Test | Bold for many markets
+GCC/Middle East | ❌ Gated | Too aggressive
+India/South Asia | ⚠️ Caution | Test reception
+Europe | ⚠️ Caution | May seem American
+Americas | ✅ Gated | Americas only
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#003366]Navy #003366[/COLOR] | 0.1 ❌ Never | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+[COLOR:#71797E]Steel Gray #71797E[/COLOR] | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Platform | Score | Notes
+Gamma | 5/10 | Innovation programs
+PowerPoint | 6/10 | Change management
+PDF | 7/10 | Evolution documents
+Canva | 5/10 | Limited use
+Mobile | 4/10 | Desktop preferred
+Region | Status | Notes
+Global | ❌ Gated | Test all markets
+GCC/Middle East | ❌ Avoid | Too disruptive
+India/South Asia | ⚠️ Caution | Conservative approach
+Europe | ⚠️ Test | Market dependent
+Americas | ⚠️ Test | Institution dependent
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+[COLOR:#002244]Deep Navy #002244[/COLOR] | 0.0 ❌ Never | 0.8 ✅ Best | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#36454F]Charcoal #36454F[/COLOR] | 0.1 ❌ Never | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+[COLOR:#FAF9F6]Off White #FAF9F6[/COLOR] | 0.0 ❌ Never | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+[COLOR:#71797E]Steel Gray #71797E[/COLOR] | 0.2 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never

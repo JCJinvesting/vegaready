@@ -1,0 +1,2015 @@
+JCJ Color Psychology + Transition Map (Combined)
+Merged from: JCJ Tone Transition Compatibility Map and JCJ Brand Color Psychology Dictionary – Fully Annotated Edition.
+Icon Key — Category markers: ✅ Best · ⚠️ Sometimes · ❌ Never; Infrastructure: ◻️ Modal Fill Gray · ▫️ Dust Gray · ◽ Off White · ⬛ Charcoal · ▪️ Slate
+Steel Gray (#909FAD)
+Tier: Tier 1
+Emotional Function: Precision, edge validation
+Approved Use Zones: Attribution slides, strategy walk-throughs
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Skepticism, info overload, asset class distrust
+Fears It Avoids Triggering: Crypto hype, visual clutter
+Narrative Role: Proof / Guardrail
+🎯 Frictions It Calms:
+• Alpha skepticism
+• Quant verification need
+• Benchmark demand
+• Credibility filter
+❌ Fears It Avoids Triggering:
+• Strategy vagueness
+• Buzzword overuse
+• Visual pitchiness
+• Execution opacity
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Gold (#F4C37D)
+Tier: Tier 1
+Emotional Function: Reframing, timeline optimism
+Approved Use Zones: Quote slides, ETF analogies, capital window callouts
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Timing anxiety, drawdown fear
+Fears It Avoids Triggering: Push urgency, unbacked optimism
+Narrative Role: Reframe
+🎯 Frictions It Calms:
+• Liquidity constraints
+• Timing misfit
+• Watchlist parking
+• Delayed conviction
+❌ Fears It Avoids Triggering:
+• Hype triggers
+• Scarcity manipulation
+• Sales closing tone
+• Performance exuberance
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Optimistic reframe. Opportunity, macro tailwinds, forwardlooking belief.
+🔽 Comes After…
+✅ Best
+🟫 Bone — “Neutral stability → Optimism reframe”
+🟨 ETF Yellow — “Rational base → Vision casting”
+◻️ Modal Fill Gray — “CTA zone → Forward narrative uplift”
+⚠️ Sometimes
+🟢 Pale Mint — “Soft optin → Reinforced thesis”
+🟩 Sage Green — “Legacy trust → Future belief”
+🟠 Warm Clay — “Emotional warmth → Positive CTA”
+❌ Never
+🟪 Dusty Plum — “Postloss tone → Feels insensitive”
+🟥 Crimson — “Legal disclosure → Unbelievable shift”
+🔴 Coral Red — “Risk tone → Optimism whiplash”
+🔼 Goes Before…
+✅ Best
+🟨 ETF Yellow — “Reframe → Proof of logic”
+🟫 Bone — “Optimism → Passive next step”
+◻️ Modal Fill Gray — “Optimism → CTA base”
+⚠️ Sometimes
+🟢 Pale Mint — “Optimism → Action nudge”
+🟪 Fog Purple — “Optimism → Social handoff”
+🟧 Burnt Orange — “Optimism → Scarcity push”
+❌ Never
+🔴 Coral Red — “Hope → Risk spike”
+🔷 Signal Blue — “Optimism → Tactical hard ask”
+🟥 Crimson — “Reframe → Legal tone reversal”
+Bone (#F9F6F0)
+Tier: Tier 2
+Emotional Function: Human softness, legacy framing
+Approved Use Zones: Spousal decks, FO referrals, intro decks
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Use only with dark/black text. Avoid white text overlays.
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Legacy family skepticism
+• Trust gatekeepers
+• Unseen spouse blockers
+• Cultural reluctance
+❌ Fears It Avoids Triggering:
+• Modernist branding
+• Pitch tones
+• Animated visuals
+• Dark CTA
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Fog Purple (#E6E6FA)
+Tier: Tier 3
+Emotional Function: Referral safety, social optics
+Approved Use Zones: Forwardable PDFs, passive follow-ups
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Use only with dark/black text. Avoid white text overlays.
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Referral fear, social optics, trauma friction
+Fears It Avoids Triggering: Sales push, performance bravado
+Narrative Role: Open / Exit / Reconnect
+🎯 Frictions It Calms:
+• Referral hesitation
+• Social optics
+• Passive spouse blocker
+• Reputational anxiety
+❌ Fears It Avoids Triggering:
+• Sales push
+• Performance pressure
+• Aggressive CTA
+• Deck-forward embarrassment
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Pale Mint (#C1E1C1)
+Tier: Tier 3
+Emotional Function: Low-pressure opt-in
+Approved Use Zones: Watchlist CTA, passive decks
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Use only with dark/black text. Avoid white text overlays.
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Decision fatigue, opt-in hesitation
+Fears It Avoids Triggering: Complexity, fear of work
+Narrative Role: Reconnect / Exit
+🎯 Frictions It Calms:
+• Complexity fatigue
+• Decision overload
+• Opt-in friction
+• Intro deck burnout
+❌ Fears It Avoids Triggering:
+• Workflow implication
+• Customization burden
+• Platform effort
+• Deck load
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Dusty Plum (#9B6A6C)
+Tier: Tier 3
+Emotional Function: Emotional safety
+Approved Use Zones: Post-loss decks, ghosted LPs
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Referral fear, social optics, trauma friction
+Fears It Avoids Triggering: Sales push, performance bravado
+Narrative Role: Open / Exit / Reconnect
+🎯 Frictions It Calms:
+• FTX trauma
+• Drawdown scars
+• Rekt avoidance
+• Legacy LP anxiety
+❌ Fears It Avoids Triggering:
+• Volatility triggers
+• Signal overload
+• Conversion pressure
+• Cold CTA
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Sage Green (#B5C9A9)
+Tier: Tier 3
+Emotional Function: Legacy alignment
+Approved Use Zones: Long-term LP onboarding
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Decision fatigue, opt-in hesitation
+Fears It Avoids Triggering: Complexity, fear of work
+Narrative Role: Reconnect / Exit
+🎯 Frictions It Calms:
+• Succession anxiety
+• Multi-decision family LPs
+• Alignment hesitation
+• Legacy capital concern
+❌ Fears It Avoids Triggering:
+• GP misalignment
+• Rushed commitments
+• Non-durable fund relationships
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+Tier 1 Slide Tones
+🔗 Transition Map
+Legacy tone. Signals longterm alignment, succession calm, intergenerational trust.
+🔽 Comes After…
+✅ Best
+🟫 Bone — “Neutral calm → Family trust”
+🟪 Fog Purple — “Social reassurance → Strategic planning”
+◻️ Modal Fill Gray — “Operational clarity → Human alignment”
+⚠️ Sometimes
+🟢 Pale Mint — “Soft optin → Legacy framing”
+🟨 ETF Yellow — “Reframed logic → Emotional depth”
+🟠 Warm Clay — “Skeptical nudge → Planning peace”
+❌ Never
+🔷 Signal Blue — “Tactical burst → Emotional mismatch”
+🔴 Coral Red — “Risk alarm → Too fast a pivot”
+🟡 Gold — “Aggressive optimism → Inconsistent tone”
+🔼 Goes Before…
+✅ Best
+🟪 Fog Purple — “Planning calm → Passive reentry”
+🟫 Bone — “Emotional trust → Passive visual close”
+🟢 Pale Mint — “Strategic calm → Soft action”
+⚠️ Sometimes
+🟨 ETF Yellow — “Legacy tone → Logic reengagement”
+◻️ Modal Fill Gray — “Emotional frame → CTA container”
+🟪 Dusty Plum — “Trust tone → Volatility transparency”
+❌ Never
+🔴 Coral Red — “Calm zone → Risk spike”
+🔷 Signal Blue — “Family trust → Tactical push”
+🟥 Crimson — “Strategic tone → Fear trigger”
+Navy (#0B2E4E)
+Tier: Tier 1
+Emotional Function: Macro authority, platform framing
+Approved Use Zones: Slide backgrounds, team visuals, investor intro
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ✅ Safe with both light and dark text
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms: [Placeholder — to be assigned]
+❌ Fears It Avoids Triggering: [Placeholder — to be assigned]
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Anchor tone. Team, governance, primary structure. Authority.
+🔽 Comes After…
+✅ Best
+◻️ Modal Fill Gray — “Visual calm → Institutional depth”
+🟫 Bone — “Neutral trust → Anchor credibility”
+🟨 ETF Yellow — “Macro logic → Organizational control”
+⚠️ Sometimes
+🟢 Pale Mint — “Soft optin → Governance clarity”
+🟩 Sage Green — “Legacy → Formal deck shift”
+🟪 Fog Purple — “Referred trust → Institutionalization”
+❌ Never
+🟥 Crimson — “Disclosure → Authority = tonal clash”
+🟡 Gold — “Optimism → Team = misdirection”
+🟧 Burnt Orange — “Urgency → Team = emotional break”
+🔼 Goes Before…
+✅ Best
+▪️ Slate — “Team → Legal / platform logic”
+◻️ Modal Fill Gray — “Governance → Neutral explanation”
+🟨 ETF Yellow — “Team → Macro narrative”
+⚠️ Sometimes
+🟢 Pale Mint — “Governance → Passive CTA”
+🟩 Sage Green — “Team → Trust handoff”
+🔷 Signal Blue — “Team → Platform routing”
+❌ Never
+🟡 Gold — “Structure → Sudden optimism”
+🔴 Coral Red — “Governance → Risk alarm”
+🟧 Burnt Orange — “Credibility → Scarcity = clash”
+Cobalt Blue (#2B50AA)
+Tier: Tier 1
+Emotional Function: Strategy clarity, analyst trust
+Approved Use Zones: Charts, callout blocks, structure overlays
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ✅ Safe with both light and dark text
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Analyst precision demands
+• Fund comparison
+• Strategy back-test curiosity
+❌ Fears It Avoids Triggering:
+• Emotional analogies
+• Soft visual language
+• Lack of control slides
+• Over-narration
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Precision tone. Performance walkthroughs, platform logic, attribution.
+🔽 Comes After…
+✅ Best
+◻️ Modal Fill Gray — “Structure base → Precision details”
+🟨 ETF Yellow — “Macro context → Quant logic”
+▪️ Slate — “Neutral visuals → Strategy walkthrough”
+⚠️ Sometimes
+🟪 Dusty Plum — “Emotional recovery → Performance reset”
+🟠 Warm Clay — “Tone bridge → Tactical detail”
+🟢 Pale Mint — “Optin → Transparency support”
+❌ Never
+🟡 Gold — “Optimism → Precision = tonal mismatch”
+🟥 Crimson — “Legal → Logic = disorientation”
+🟪 Fog Purple — “Social comfort → Tactical intensity”
+🔼 Goes Before…
+✅ Best
+🟫 Bone — “Logic → Passive CTA”
+◻️ Modal Fill Gray — “Precision → Content spacing”
+🟨 ETF Yellow — “Precision → Frame thesis”
+⚠️ Sometimes
+🔴 Coral Red — “Precision → Risk amplification”
+🟩 Sage Green — “Logic → Trust building”
+🟢 Pale Mint — “Logic → Soft CTA bridge”
+❌ Never
+🟥 Crimson — “Quant → Legal trigger”
+🟡 Gold — “Logic → Sudden optimism”
+🟧 Burnt Orange — “Precision → Urgency mismatch”
+ETF Yellow (#FFD89A)
+Tier: Tier 2
+Emotional Function: Timeline clarity, macro framing
+Approved Use Zones: Timeline banners, macro comparison decks
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Use only with dark/black text. Avoid white text overlays.
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms: [Placeholder — to be assigned]
+❌ Fears It Avoids Triggering: [Placeholder — to be assigned]
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Reframing tone. Macro narratives, chart overlays, timing perspective.
+🔽 Comes After…
+✅ Best
+🟫 Bone — “Neutral frame → Timing logic”
+◻️ Modal Fill Gray — “CTA zone → Macro hook”
+🟪 Fog Purple — “Emotional calm → Thesis reset”
+⚠️ Sometimes
+🟩 Sage Green — “Legacy → Market positioning”
+🟠 Warm Clay — “Skeptical narrative → Logic pull”
+🔷 Oxford Blue — “Governance → Opportunity frame”
+❌ Never
+🟥 Crimson — “Legal → Optimism = mismatch”
+🔴 Coral Red — “Risk → Optimism = tonal break”
+🟡 Gold — “Optimism → Optimism = saturation”
+🔼 Goes Before…
+✅ Best
+🔷 Cobalt Blue — “Reframe → Quant proof”
+◻️ Modal Fill Gray — “Macro → Structural zone”
+▪️ Slate — “Macro → Comparison or disclosure”
+⚠️ Sometimes
+🟢 Pale Mint — “Macro → Passive CTA”
+🟩 Sage Green — “Macro → Trust build”
+🟧 Burnt Orange — “Macro → Scarcity urgency”
+❌ Never
+🟥 Crimson — “Thesis → Legal threat = tone collapse”
+🟪 Dusty Plum — “Reframe → Postloss = sequencing fail”
+🟡 Gold — “Macro → Reframe echo”
+Oxford Blue (#14213D)
+Tier: Tier 2
+Emotional Function: Formal structure, legal confidence
+Approved Use Zones: Sovereign decks, governance slides
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ✅ Safe with both light and dark text
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Sovereign allocation formality
+• US LP structure concerns
+• Institutional review bias
+❌ Fears It Avoids Triggering:
+• Informal tone
+• Color splash visuals
+• Light CTA blocks
+• Excessive diagrams
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Governance tone. Platform integrity, legal disclosure, operational structure.
+🔽 Comes After…
+✅ Best
+▪️ Slate — “Platform layout → Structure integrity”
+◻️ Modal Fill Gray — “Background → Organizational control”
+🟫 Bone — “Neutral trust → Legal clarity”
+⚠️ Sometimes
+🟨 ETF Yellow — “Macro → Institutional structure”
+🔷 Cobalt Blue — “Quant logic → Governance”
+🟪 Fog Purple — “Social tone → Structural shift”
+❌ Never
+🔴 Coral Red — “Risk → Governance = tone confusion”
+🟡 Gold — “Reframe → Legal = whiplash”
+🟧 Burnt Orange — “Scarcity → Legal = manipulative”
+🔼 Goes Before…
+✅ Best
+◻️ Modal Fill Gray — “Governance → Layout zone”
+▪️ Slate — “Governance → Risk layer”
+🟫 Bone — “Structure → Passive optout”
+⚠️ Sometimes
+🟥 Crimson — “Structure → Disclosure”
+🟢 Pale Mint — “Governance → CTA”
+🟨 ETF Yellow — “Governance → Opportunity”
+❌ Never
+🟡 Gold — “Governance → Reframe = tonal mismatch”
+🟧 Burnt Orange — “Structure → Urgency = friction”
+🟪 Dusty Plum — “Governance → Ghosted LP = emotional break”
+Tier 2 — Infrastructure & Layout
+Air Force Blue (#5D8AA8)
+Tier: Tier 2
+Emotional Function: Platform tone, fund stack logic
+Approved Use Zones: Slides for OCIOs, DAFs, platform reviewers
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms: [Placeholder — to be assigned]
+❌ Fears It Avoids Triggering: [Placeholder — to be assigned]
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Coral Red (#FF6B6B)
+Tier: Tier 3
+Emotional Function: Empathetic risk
+Approved Use Zones: BTC comparison slides, disclaimers
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Post-loss detachment
+• Risk disclosure ambiguity
+• BTC confusion
+• Custody misperception
+❌ Fears It Avoids Triggering:
+• Over-personalization
+• Jargon-heavy disclaimers
+• Passive avoidance
+• Fear of another loss
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Risk tone. Volatility disclosure, strategy edge, postloss justification.
+🔽 Comes After…
+✅ Best
+▪️ Slate — “Comparison slide → Risk clarification”
+◻️ Modal Fill Gray — “Content leadin → Risk breakout”
+🔷 Oxford Blue — “Governance → Tactical performance gap”
+⚠️ Sometimes
+🟨 ETF Yellow — “ETF logic → Volatility edge”
+🟧 Burnt Orange — “Scarcity → Justify volatility”
+🟪 Dusty Plum — “Loss narrative → Strategy defense”
+❌ Never
+🟢 Pale Mint — “Soft optin → Risk = fear trigger”
+🟩 Sage Green — “Legacy trust → Tone betrayal”
+🟡 Gold — “Optimism → Risk tone = tonal collapse”
+🔼 Goes Before…
+✅ Best
+◻️ Modal Fill Gray — “Risk → Explanation zone”
+🟫 Bone — “Risk → Passive exit”
+🟪 Fog Purple — “Risk → Social soft landing”
+⚠️ Sometimes
+🟠 Warm Clay — “Risk → Sincerity”
+🟪 Dusty Plum — “Risk → Honesty, then repair”
+🟨 ETF Yellow — “Risk → Rational tradeoff”
+❌ Never
+🟢 Pale Mint — “Fear → Action = pushback”
+🟡 Gold — “Risk → Optimism = contradiction”
+🔷 Signal Blue — “Risk → Tactical CTA = overload”
+Amber (#E9B56C)
+Tier: Tier 3
+Emotional Function: Soft urgency
+Approved Use Zones: Timeline overlays, allocation window
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Timing anxiety, drawdown fear
+Fears It Avoids Triggering: Push urgency, unbacked optimism
+Narrative Role: Reframe
+🎯 Frictions It Calms:
+• Timeline stalling
+• Mid-funnel ghosting
+• Capital drift
+• Momentum loss
+❌ Fears It Avoids Triggering:
+• Feeling forced
+• Premature ask
+• Signal overload
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+Infrastructure Tones
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Teal (#36BBA6)
+Tier: Tier 1
+Emotional Function: Clarity CTA, conversion boost
+Approved Use Zones: CTA buttons only, opt-in overlays
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• None – CTA color only
+❌ Fears It Avoids Triggering:
+• Avoid using as tone; triggers if used full background
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Crimson (#D44D5C)
+Tier: Tier 1
+Emotional Function: Risk disclosure, drawdown
+Approved Use Zones: Redemption notices, warnings, disclaimers
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Unacknowledged risk
+• Blind spot awareness
+❌ Fears It Avoids Triggering:
+• Triggering panic
+• Feeling misled
+• Drawdown shame
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Footers, redemption disclosures, legal risk blocks. Finality/regulatory tone.
+🔽 Comes After…
+✅ Best
+◻️ Modal Fill Gray — “Neutral layout → Compliance warning”
+▪️ Slate — “Serious tone → Legal trigger”
+🔷 Oxford Blue — “Governance → Legal finality”
+⚠️ Sometimes
+🟨 ETF Yellow — “Macro positioning → Tax/legal shift”
+🟪 Dusty Plum — “Performance regret → Drawdown disclosure”
+🟩 Sage Green — “Legacy → Redemption info (less common)”
+❌ Never
+🟢 Pale Mint — “CTA → Legal scare”
+🟡 Gold — “Optimism → Legal hard stop”
+🔷 Signal Blue — “Interactive CTA → Legal clash”
+🔼 Goes Before…
+✅ Best
+🟫 Bone — “Compliance → Passive deck exit”
+◻️ Modal Fill Gray — “Legal tone → Calm footer finish”
+🟪 Fog Purple — “Legal → Recovered narrative close”
+⚠️ Sometimes
+🟩 Sage Green — “Compliance → Longterm explanation”
+🟠 Warm Clay — “Redemption → Soft reframe”
+🟪 Dusty Plum — “Disclosure → Postloss repair”
+❌ Never
+🟡 Gold — “Legal tone → Reframe = tonal dissonance”
+🔴 Coral Red — “Double risk = allocator exit”
+🟢 Pale Mint — “Legal → CTA pressure = fail”
+Tier 1 — SlideDriven Tones
+Charcoal (#1C1C1E)
+Tier: Tier 1
+Emotional Function: Formal default, body text
+Approved Use Zones: Text, sidebar navigation, internal headers
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Text readability fatigue
+• Font contrast comfort
+❌ Fears It Avoids Triggering:
+• Overuse as header fill
+• All-dark layout tone
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Text anchor. Headers, legal lines, contact footers, nonemotional titles.
+🔽 Comes After…
+✅ Best
+◻️ Modal Fill Gray — “Background → Text clarity”
+▪️ Slate — “Disclosure tone → Header anchor”
+◽ Off White — “Passive canvas → Visual lead”
+⚠️ Sometimes
+🟥 Crimson — “Legal → Header link”
+🟨 ETF Yellow — “Chart → Legal contact”
+🟢 Pale Mint — “CTA → Footer contrast”
+❌ Never
+🔷 Signal Blue — “CTA → Text anchor = tone clash”
+🟡 Gold — “Optimism → Footnote = dissonance”
+🟧 Burnt Orange — “Urgency → Hard footer = visual crash”
+🔼 Goes Before…
+✅ Best
+🟫 Bone — “Footer → Referral passthrough”
+◻️ Modal Fill Gray — “Footer → CTA structure”
+🟥 Crimson — “Text → Legal closure”
+⚠️ Sometimes
+🟨 ETF Yellow — “Title → Data section”
+🟪 Fog Purple — “Header → Social layer”
+🟢 Pale Mint — “Legal note → Soft CTA”
+❌ Never
+🔷 Signal Blue — “Text → Highenergy CTA”
+🟡 Gold — “Header → Optimism = visual mismatch”
+🔴 Coral Red — “Text → Risk = anchor disruption”
+Utility
+Off White (#F6F6F6)
+Tier: Tier 1
+Emotional Function: Default background neutral
+Approved Use Zones: Slide canvases, safe backgrounds
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Full background, ✅ Quote block, ✅ CTA strip
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• None – base layout background
+❌ Fears It Avoids Triggering:
+• None; always paired with other tones
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Base canvas for print/PDF/static layouts.
+🔽 Comes After…
+✅ Best
+(Any tone) — “Universal reset canvas”
+◻️ Modal Fill Gray — “Layout → Canvas”
+🟫 Bone — “Neutral anchor → Passive background”
+⚠️ Sometimes
+🟪 Fog Purple — “Soft opener → Neutral platform”
+🟢 Pale Mint — “Passive CTA → Canvas reset”
+🔷 Oxford Blue — “Governance → Passive visual buffer”
+❌ Never
+🟥 Crimson — “Legal → Blank tone = unresolved”
+🟡 Gold — “Optimism → White reset = clash”
+🔴 Coral Red — “Risk → Neutral = tension mismatch”
+🔼 Goes Before…
+✅ Best
+🟪 Fog Purple — “Canvas → Social intro”
+🟫 Bone — “Canvas → Referral layer”
+🟨 ETF Yellow — “Canvas → Macro reframe”
+⚠️ Sometimes
+🟢 Pale Mint — “Canvas → Passive CTA”
+◻️ Modal Fill Gray — “Canvas → Structure”
+🟪 Dusty Plum — “Canvas → Reactivation”
+❌ Never
+🔷 Signal Blue — “Canvas → Tactical CTA = abrupt”
+🟧 Burnt Orange — “Canvas → Urgency = tonal break”
+🔴 Coral Red — “Canvas → Risk = unframed”
+Soft Alert Red (#D16D6D)
+Tier: Tier 2
+Emotional Function: Warm risk alert
+Approved Use Zones: Use in moderate warnings
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Subtle K-1 anxiety
+• Ops risk blind spots
+❌ Fears It Avoids Triggering:
+• Tax overwhelm
+• Pre-emptive objection
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Brick Red (#8B0000)
+Tier: Tier 2
+Emotional Function: Hard legal stop
+Approved Use Zones: Do not use unless policy requires
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Document clarity demand
+• Redemption structure insistence
+❌ Fears It Avoids Triggering:
+• Aggressive rebuttal
+• Hard 'no' framing
+• Auditor resistance
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+Utility / Reserve Tones
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Ice Blue (#C5E8F5)
+Tier: Tier 2
+Emotional Function: Onboarding ease, clarity
+Approved Use Zones: Checklist slides, onboarding flows
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Use only with dark/black text. Avoid white text overlays.
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Navigation confusion
+• Structural fatigue
+• Platform implementation blockers
+❌ Fears It Avoids Triggering:
+• Onboarding complexity
+• Technical overwhelm
+• Presentation friction
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Interactive tone. Hover zones, tooltips, subtle overlays (Gamma/Canva).
+🔽 Comes After…
+✅ Best
+◽ Off White — “Canvas → Interactive guide”
+◻️ Modal Fill Gray — “Layout → Tooltip activation”
+🟫 Bone — “Trust → Appstyle visual”
+⚠️ Sometimes
+🟢 Pale Mint — “CTA → Tooltip step”
+🟪 Fog Purple — “Narrative → Guided layer”
+🟨 ETF Yellow — “Macro → Toolenhanced read”
+❌ Never
+🔷 Signal Blue — “CTA → Tooltip = stack confusion”
+🔴 Coral Red — “Risk → Tooltip = bad tone”
+🟥 Crimson — “Legal → App UI = tone clash”
+🔼 Goes Before…
+✅ Best
+🟨 ETF Yellow — “Tooltip → Macro reframe”
+🟢 Pale Mint — “Interactive → CTA”
+◻️ Modal Fill Gray — “Hover → Content transition”
+⚠️ Sometimes
+🟪 Dusty Plum — “Interactive → Ghosted LP overlay”
+🟧 Burnt Orange — “Hover → Scarcity push”
+🟩 Sage Green — “Tooltip → Family framing”
+❌ Never
+🟥 Crimson — “Tooltip → Legal = dissonance”
+🔷 Signal Blue — “Interactive → Interactive = overload”
+🟡 Gold — “Tooltip → Reframe = mismatch”
+Payne’s Gray (#404E5C)
+Tier: Tier 2
+Emotional Function: Legal tone, compliance calm
+Approved Use Zones: Compliance tables, tax/disclosure visuals
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ✅ Safe with both light and dark text
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Skepticism, info overload, asset class distrust
+Fears It Avoids Triggering: Crypto hype, visual clutter
+Narrative Role: Proof / Guardrail
+🎯 Frictions It Calms:
+• Compliance blockers
+• Controller concern
+• Document request anxiety
+• Structure doubt
+❌ Fears It Avoids Triggering:
+• Marketing tone
+• Passive voice
+• Visual clutter
+• Non-standard decks
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Slate Blue (#6A5ACD)
+Tier: Tier 2
+Emotional Function: Quant empathy, soft precision
+Approved Use Zones: Quant decks that still need warm visual tone
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Skepticism, info overload, asset class distrust
+Fears It Avoids Triggering: Crypto hype, visual clutter
+Narrative Role: Proof / Guardrail
+🎯 Frictions It Calms:
+• Quant empathy balance
+• Post-data rest framing
+❌ Fears It Avoids Triggering:
+• Feeling too corporate
+• Overweight analytics
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Cadet Blue (#5F9EA0)
+Tier: Tier 2
+Emotional Function: Military-formal logic
+Approved Use Zones: Decks for disciplined allocators or U.S. policy flow
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Military formality preference
+• Structure clarity
+❌ Fears It Avoids Triggering:
+• Over-design
+• Playful visuals
+• Perceived informality
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Teal Blue (#367588)
+Tier: Tier 2
+Emotional Function: Visual clarity, logic overlays
+Approved Use Zones: Backgrounds for fund flow diagrams
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Flow diagram confusion
+• Asset route opacity
+• Custody ambiguity
+❌ Fears It Avoids Triggering:
+• Dense language overlays
+• Diagram clutter
+• Non-interactive visuals
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Federal Blue (#2C3E50)
+Tier: Tier 2
+Emotional Function: Institutional tradition
+Approved Use Zones: Legacy allocator decks, pitch to pensions
+Platform Compatibility: PDF, PPT, Canva
+ADA Contrast Guidance: ✅ Safe with both light and dark text
+Slide Zone Recommendation: ✅ Section header, ✅ Overlay, ⚠️ Use caution as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• State fund governance optics
+• Pension board reassurance
+❌ Fears It Avoids Triggering:
+• Youthful tone
+• Modernism
+• “Crypto vibe”
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Burnt Orange (#D2691E)
+Tier: Tier 3
+Emotional Function: Final allocation CTA
+Approved Use Zones: Re-up prompts, opt-out reminder decks
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Capital window hesitancy
+• Passive delay
+• Slippage anxiety
+• Soft ghosting
+❌ Fears It Avoids Triggering:
+• Over-framed urgency
+• Scarcity manipulation
+• Hyper-focus on deadlines
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Scarcity tone. Urgency without aggression (“window closing”).
+🔽 Comes After…
+✅ Best
+◻️ Modal Fill Gray — “Layout calm → Scarcity logic”
+🟪 Dusty Plum — “Regret tone → Scarcity push”
+🟨 ETF Yellow — “Macro rationale → Action timeline”
+⚠️ Sometimes
+🟩 Sage Green — “Family tone → Scarcity setup”
+🟠 Warm Clay — “Narrative tone → Limited time option”
+🟪 Fog Purple — “Soft trust → Scarcity contrast”
+❌ Never
+🟥 Crimson — “Fear tone → Feels predatory”
+🟢 Pale Mint — “CTA optin → Scarcity = pressure clash”
+🔴 Coral Red — “Too much red zone”
+🔼 Goes Before…
+✅ Best
+🟨 ETF Yellow — “Scarcity → Logic activation”
+🟢 Pale Mint — “Scarcity → Invitation optin”
+◻️ Modal Fill Gray — “Scarcity → Calm confirmation”
+⚠️ Sometimes
+🟪 Dusty Plum — “Scarcity → Regret narrative”
+🟠 Warm Clay — “Urgency → Human reentry”
+🟫 Bone — “Scarcity → Passive close”
+❌ Never
+🟥 Crimson — “Scarcity → Legal fear = manipulative”
+🔴 Coral Red — “Scarcity → Risk spike”
+🟡 Gold — “Scarcity → Incongruent optimism”
+Warm Clay (#DAA06D)
+Tier: Tier 3
+Emotional Function: Slow reentry
+Approved Use Zones: Maturity explanations, intro flows
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Early skepticism
+• New manager fear
+• Lack of traction anxiety
+• Ramp-stage discomfort
+❌ Fears It Avoids Triggering:
+• Overconfidence visuals
+• Aggressive maturity framing
+• Pre-launch hype signals
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Postskepticism reengagement tone. Humanizes after technical/volatile content.
+🔽 Comes After…
+✅ Best
+🟪 Dusty Plum — “Emotional honesty → Personal narrative”
+◻️ Modal Fill Gray — “Neutral base → Gentle story restart”
+🟫 Bone — “Safe context → Warm rebuild”
+⚠️ Sometimes
+🟢 Pale Mint — “Optin tone → Humanized continuation”
+🟨 ETF Yellow — “Rational CTA → Emotional warmth”
+🟧 Burnt Orange — “Scarcity push → Reengagement softener”
+❌ Never
+🔷 Signal Blue — “Sharp CTA → Feels disjointed”
+🟡 Gold — “Optimistic flash → Inconsistent emotion”
+🔴 Coral Red — “Hard risk → Too severe a pivot”
+🔼 Goes Before…
+✅ Best
+🟢 Pale Mint — “Human warmth → Invitation”
+🟪 Fog Purple — “Reengagement → Passive trust frame”
+🟫 Bone — “Story closure → Passive finish”
+⚠️ Sometimes
+◻️ Modal Fill Gray — “Human CTA → Layout transition”
+🟨 ETF Yellow — “Emotion → Rational logic pivot”
+🟪 Dusty Plum — “Tone build → Volatility recap”
+❌ Never
+🔴 Coral Red — “Story → Risk spike”
+🔷 Signal Blue — “Warm narrative → Sharp direction”
+🟡 Gold — “Sincere tone → Overpromised payoff”
+Light Mustard (#FFE082)
+Tier: Tier 3
+Emotional Function: Clarification
+Approved Use Zones: FAQ, RS4, post-call flows
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Use only with dark/black text. Avoid white text overlays.
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Clarification need
+• Mild skepticism
+• Watchlist passivity
+• Silent confusion
+❌ Fears It Avoids Triggering:
+• Being called out
+• Feeling dumb
+• Over-activation
+• Embarrassment triggers
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+Soft clarification tone for passive FAQs, reactivation, educational followups.
+🔽 Comes After…
+✅ Best
+🟫 Bone — “Neutral tone → Clarification frame”
+◻️ Modal Fill Gray — “Background calm → Passive explainer”
+🟢 Pale Mint — “Friendly CTA → Gentle clarifier”
+⚠️ Sometimes
+🟪 Dusty Plum — “Postloss → Clarified restart”
+🟨 ETF Yellow — “Reframed logic → Passive detail”
+🟩 Sage Green — “Legacy frame → Secondary explanation”
+❌ Never
+🔷 Signal Blue — “Tactical direction → Softened logic”
+🟥 Crimson — “Fear deck → Confused message”
+🔴 Coral Red — “Risk narrative → Tone mismatch”
+🔼 Goes Before…
+✅ Best
+◻️ Modal Fill Gray — “Clarification → Layout container”
+🟢 Pale Mint — “Info bridge → CTA followthrough”
+🟫 Bone — “Lowpressure clarification → Passive exit”
+⚠️ Sometimes
+🟪 Fog Purple — “Clarification → Soft social cover”
+🟩 Sage Green — “Clarification → Family alignment”
+🟨 ETF Yellow — “Clarification → Logic reaffirmation”
+❌ Never
+🔷 Signal Blue — “Clarity → Tactical burst”
+🔴 Coral Red — “Clarifier → Risk escalation”
+🟡 Gold — “Explainer → Premature optimism”
+Terracotta (#E2725B)
+Tier: Tier 3
+Emotional Function: Structured optimism
+Approved Use Zones: Soft-onboarding visuals
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Interpersonal trust hesitation
+• Succession tension
+• Lack of emotional contract
+❌ Fears It Avoids Triggering:
+• Cold data decks
+• Excessive formalism
+• Advisor disconnect
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Royal Blue (#4169E1)
+Tier: Tier 3
+Emotional Function: Calm macro clarity
+Approved Use Zones: Deck headers, institutional positioning
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Global macro uncertainty
+• FX/currency concern
+• Jurisdictional skepticism
+❌ Fears It Avoids Triggering:
+• Over-Americanized framing
+• Non-compliant optics
+• Decentralization ambiguity
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Blue Gray (#6699CC)
+Tier: Tier 3
+Emotional Function: Trust-by-structure
+Approved Use Zones: Governance overlays, pitch decks
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Skepticism, info overload, asset class distrust
+Fears It Avoids Triggering: Crypto hype, visual clutter
+Narrative Role: Proof / Guardrail
+🎯 Frictions It Calms:
+• Process confusion
+• Multi-step onboarding anxiety
+• Tech stack friction
+❌ Fears It Avoids Triggering:
+• Too many moving parts
+• Visual overwhelm
+• Lack of clarity
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+Forest Green (#228B22)
+Tier: Tier 3
+Emotional Function: Government framing
+Approved Use Zones: Use only for conservative U.S. LPs
+Platform Compatibility: PDF only (use caution on Gamma, PPT background)
+ADA Contrast Guidance: ⚠️ Medium readability — test contrast with text overlay
+Slide Zone Recommendation: ✅ CTA block, ✅ Side strip, ⚠️ Do NOT use as full background
+Frictions It Calms: Varied
+Fears It Avoids Triggering: Deck-dependent
+Narrative Role: Flex / Utility
+🎯 Frictions It Calms:
+• Patriot capital skepticism
+• State-backed allocator hesitation
+• Structure legitimacy gaps
+❌ Fears It Avoids Triggering:
+• Perceived decentralization
+• Unregulated optics
+• Crypto ideology discomfort
+✅ Compatible Slide Types:
+• [Placeholder — to be defined: e.g., Quote, Metrics, CTA, Risk, Timeline]
+🌀 Gradient & Overlay Use:
+• [Placeholder — define if safe in overlays or should be avoided]
+✨ Motion & Animation Guidance:
+• [Placeholder — e.g., Static only / Fade CTA / Avoid transitions]
+⏱️ Best Used In:
+• [Placeholder — e.g., Post-call PDF / Live call / Watchlist email decks]
+🔗 Recommended Tone Transition:
+• May follow: [Placeholder]
+• Avoid following: [Placeholder]
+📎 Usage Library:
+• [Placeholder — add links or internal examples if available]
+——————————————————————————————————————————————————
+Primary:
+• RS1 – Referral Cover
+• RS4 – Watchlist Follow-up
+• A8 – Passive CTA
+Secondary:
+• F3 – FAQ Clarifier
+• C4 – Custody Visual
+• A4 – Passive Exit
+📘 Format Notes:
+• Used as full-slide background in referral decks and watchlist follow-ups
+• Commonly combined with Modal Gray or Bone for layout control
+• Overlay-safe with Sage Green, Pale Mint, or Bone
+• Avoid layering with Gold or Signal Blue (causes softness clash)
+Primary:
+• A8 – Watchlist Opt-In
+• RS4 – Ghosted Follow-Up
+• F3 – FAQ Clarifier
+Secondary:
+• A4 – Passive CTA
+• RS1 – Referral Neutral
+• Appendix or Contact Sections
+📘 Format Notes:
+• Used in low-friction passive opt-in slides
+• Ideal for quiet CTA prompts and FAQ reactivation
+• Often placed over Off White or Modal Gray for accessibility
+• Avoid pairing with Burnt Orange or Signal Blue — creates tonal conflict
+Primary:
+• P1 – Attribution / Performance
+• P6 – Metrics Walkthrough
+• S2 – Strategy View
+• R9 – Execution Logic
+Secondary:
+• A4 – Performance CTA
+• T2 – Tactical Timeline
+• F2 – Quant Rationale
+📘 Format Notes:
+• Static tone used to communicate edge, precision, and credibility
+• Overlay-safe with Modal Gray or Oxford Blue
+• Avoid pairing with Coral Red or Gold unless explicitly framed
+• Should never animate; used only in live or print walkthroughs
+Primary:
+• Quote Slides
+• Timeline Visuals
+• CTA Reframe Decks
+• A8 – “Why Now?”
+Secondary:
+• P4 – Allocation Curve
+• RS2 – Opportunity Window
+• A4 – Timeline CTA
+📘 Format Notes:
+• Ideal for macro reframes or timing clarity in pitch decks
+• Use only in static or testimonial-style layouts
+• Avoid fade animations — triggers emotional overload if followed by Slate or Coral
+• Use overlay only on Off White or Modal Fill
+Primary:
+• RS1 – Spousal Referral
+• A4 – Passive Deck CTA
+• PDF or Contact Footer
+Secondary:
+• Watchlist Decks
+• T1 – Team Intro
+• A8 – FO Opt-In
+📘 Format Notes:
+• Visual calm base for decks passed through referrals
+• Should not be animated or layered — functions as emotional 'soft floor'
+• Ideal for print-ready layouts
+• Pairs well with Fog Purple, Sage Green, Pale Mint
+Primary:
+• RS4 – Ghosted LP Reconnect
+• P7 – Post-Loss Deck
+• R8 – Risk Disclosure
+• A4 – Passive Comeback
+Secondary:
+• FAQ Clarifier
+• RS5 – Spouse Friction Softener
+• T1 – GP Alignment Recap
+📘 Format Notes:
+• Never used in cold decks — works post-loss or in soft handoff
+• Gradient only with Modal Fill Gray or Sage Green
+• Avoid layering with Gold or Signal Blue — they invalidate emotional neutrality
+• Fade-in allowed only for quote overlays
+Primary:
+• RS5 – Succession Trust CTA
+• A4 – Family Office Alignment
+• A8 – Legacy Opt-In
+Secondary:
+• Appendix Referral Footer
+• Watchlist Decks
+• RS1 – Passive Reassurance
+📘 Format Notes:
+• Soft post-call trust color for long-term capital alignment
+• Use only in static decks or summary one-pagers
+• Avoid combining with Coral or Burnt Orange — conflict between urgency and patience
+• Works best over Bone or Modal Fill Gray
+Primary:
+• T1 – Team / Governance Slides
+• A1 – Strategy Opener
+• S1 – Structure Overview
+• RS1 – Institutional Referral Deck
+Secondary:
+• P6 – Executive Summary Metrics
+• F3 – Macro Thesis Deck
+• Appendix Cover
+📘 Format Notes:
+• Used as an 'authority tone' in team, structure, or committee-ready decks
+• Best used as full background — not for CTA or quote slides
+• Overlay-safe with Gold, Bone, Modal Fill
+• Avoid combining with Crimson or Signal Blue — too heavy
+Primary:
+• S2 – Strategy Details
+• P6 – Strategy Attribution
+• A3 – Platform Logic
+• A4 – Core CTA Deck
+Secondary:
+• R9 – Execution Routing
+• RS2 – Performance Forward Deck
+📘 Format Notes:
+• Ideal for technical PMs, OCIOs, or skeptical fund-of-funds
+• Avoid animation transitions; tone requires precision
+• Layer-safe with Modal Gray, Bone
+• Avoid pairing with Gold unless clearly framed — emotional mismatch
+Primary:
+• F3 – ETF Comparison
+• A8 – Timeline Reframe
+• RS2 – Passive Repricing Deck
+Secondary:
+• Watchlist CTA
+• Macro Comparison Overlays
+• Quote Slides ('You’re not too late')
+📘 Format Notes:
+• Feels soft + optimistic if paired with Bone or Modal
+• Not compatible with Slate or Cobalt transitions — triggers too much contrast
+• OK for animated transitions, but not fade overlays
+• Great for 'why now?' logic — should be followed by either CTA (Mint) or Exit (Bone)
+Primary:
+• T1 – Governance
+• C6 – Entity Structure
+• Appendix – Audit Notes
+• P6 – Institutional Control Summary
+Secondary:
+• Legal Cover
+• Platform Verification
+• R4 – Structure Flow
+📘 Format Notes:
+• Deep anchor tone — replaces Navy for LPs with SEC/state mandates
+• Use as full background for audit/control decks
+• Safe to overlay with Gold, Bone, Modal
+• Never fade in — static decks only
+Primary:
+• C5 – Custody Explanation
+• A3 – Platform Flow
+• T4 – Operations View
+• P8 – Allocator Table
+Secondary:
+• Watchlist Execution
+• Reframe Quote
+• FAQ Section
+📘 Format Notes:
+• Mid-weight tone between Slate and Cobalt — ideal for platform logic
+• Fade-in animation OK on charts, not full backgrounds
+• Safe to pair with Pale Mint, Modal Gray
+• Avoid stacking after Gold — breaks narrative pacing
+Primary:
+• R8 – Risk Scenario Disclosure
+• P7 – Post-Volatility Explanation
+• Appendix – BTC Volatility Modeling
+Secondary:
+• Quote Slides with Disclaimers
+• T3 – Drawdown Strategy
+📘 Format Notes:
+• Only use when disclaiming, warning, or differentiating risk
+• Never animate; always static or footnoted
+• Overlay-safe with Modal Gray
+• Must follow calm color (e.g., Sage, Slate) to work — don’t lead with Coral
+Primary:
+• A4 – CTA Decks
+• RS1 – Referral Prompt
+• RS4 – Watchlist Join Prompt
+Secondary:
+• FAQ Opt-In
+• Passive 'More Info' Buttons
+📘 Format Notes:
+• Never used as a background — button/CTA zone only
+• Fade-in allowed for CTA only
+• ADA-safe with Off White, Modal, Bone
+• Not for high-stakes decks (e.g., Audit, Risk)
+Primary:
+• Disclaimers
+• Drawdown Slides
+• Appendix Risk Warnings
+• Audit Redemptions
+Secondary:
+• Footers (redemption details)
+• Timeline callout warnings
+📘 Format Notes:
+• Use for legal and compliance tone control
+• Static only — no motion or fade
+• Should not appear near optimistic tones like Gold or Coral
+• Only use when disclosure *must* be seen
+Primary:
+• Footers (Legal or Contact)
+• Headers (Team / Governance)
+• Appendix Risk Footnotes
+Secondary:
+• Disclosure Bar
+• Quote Line Caption
+• Ops / Legal Table Label
+📘 Format Notes:
+• Used only for typography, anchor frames, or content dividers
+• Never use as background — too heavy
+• Not animation-friendly; must be static
+• Provides ADA-safe contrast with all tones except Dust Gray
+Primary:
+• Default Canvas for all decks
+• RS1 – Referral Decks
+• T1 – Team / Trust Decks
+• A8 – Watchlist PDF Background
+Secondary:
+• Print-Ready PDF decks
+• Any 'static' intro content
+• Non-interactive platform decks
+📘 Format Notes:
+• Not emotional — it’s the visual trust default
+• Do not animate; never CTA-highlight
+• Pairs with all tones except Brick Red or Crimson
+• Always static — no transitions or fades
+Primary:
+• Timeline Reframe Slides
+• Watchlist CTA
+• A4 – Window Expiry Deck
+Secondary:
+• Soft Urgency Quotes
+• Market Entry CTA
+📘 Format Notes:
+• Soft urgency tone — blends optimism with passive activation
+• Fade-in allowed in CTA zones only
+• Avoid layering on top of emotional tones (e.g., Plum or Gold)
+• Should follow a neutral base like Modal Fill or Bone
+Primary:
+• A4 – Interactive Step Decks
+• Onboarding Visuals
+• FAQ Diagrams
+Secondary:
+• Referral Process Map
+• Platform Walkthrough
+📘 Format Notes:
+• Best on white or modal backgrounds
+• Safe for fade transitions
+• Great for interactive Gamma builds
+• Avoid overuse in pitch decks — feels overly digital
+Primary:
+• C6 – Entity Overview for Military-Connected LPs
+• Platform Diagrams in Structured OCIO Decks
+Secondary:
+• Appendix – Compliance Flow
+• Watchlist Flowchart
+📘 Format Notes:
+• Tone used primarily for government-affiliated decks
+• Always static; never animate
+• Safe with Modal, Bone
+• Should not follow Coral or Signal Blue — causes tone disruption
+Primary:
+• A1 – Global Macro Introduction
+• C6 – Structure Slides for Non-US LPs
+• RS2 – Currency-Linked CTA
+Secondary:
+• Quote with Macro Framing
+• PDF or Committee Printout
+📘 Format Notes:
+• Global allocator safe — preferred for neutral macro tone
+• Gradient OK with Modal Fill only
+• Don’t follow with Gold, Coral, or Signal Blue
+• Best in PDF / PPT decks — avoid in Gamma
+Primary:
+• State LP Pitches
+• T1 – Governance Decks
+• Appendix Summary for U.S.-regulated Allocators
+Secondary:
+• Regulatory Deck Close
+• Platform Reassurance
+📘 Format Notes:
+• Not emotional — tone is about compliance optics
+• Should follow Slate or Oxford for best clarity
+• Never animate
+• Layer only over Bone or Modal Fill
+🔗 Transition Map
+🔽 Comes After…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]
+🔼 Goes Before…
+✅ Best
+• [Add pairings]
+⚠️ Sometimes
+• [Add pairings]
+❌ Never
+• [Add pairings]

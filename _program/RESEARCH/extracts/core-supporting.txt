@@ -1,0 +1,26 @@
+Core & Supporting Colors
+Rules:
+Never use more than 2 non-neutral colors per slide outside Tier 1.
+CTA buttons must use Tier 1/2 tones only; never red for CTA.
+Always pass ADA contrast (≥4.5:1 for body text).
+Blocked: neon greens, bright oranges, white text on yellow; no rainbow charts.
+© JCJ — Internal use only. This file contains the authoritative brand rules for decks and documents.
+Swatch | Name | HEX | Tier | Role & Notes
+ | Navy | #0B2E4E | Tier 1 | Title backgrounds, frames, quotes, team visuals
+ | Cobalt Blue | #2B50AA | Tier 1 | Section headers, chart anchor, performance anchors
+ | Teal | #36BBA6 | Tier 1 | CTA buttons, checklists, opt-in zones
+ | Gold | #F4C37D | Tier 1 | Quotes, macro framing, timeline emphasis (sparingly)
+ | Crimson | #D44D5C | Tier 1 | Risk, redemptions, compliance
+ | Steel Gray | #909FAD | Tier 1 | Attribution overlays, technical FAQs
+ | Charcoal | #1C1C1E | Tier 1 | Primary body text, footnotes, axis labels
+ | Off White | #FAFAFA | Tier 1 | Background canvas
+ | ETF Yellow | #FFD89A | Tier 2 | ETF comparisons, macro transitions
+ | Amber | #E9B56C | Tier 2 | Timelines, narrative sequencing
+ | Oxford Blue | #14213D | Tier 2 | Conservative cover tone
+ | Payne’s Gray | #404E5C | Tier 2 | Legal tables, compliance sidebars
+ | Deep Custody Green | #1C6357 | Tier 2 | Custody diagrams, signer logic
+ | Slate Gray | #525C66 | Tier 2 | Dividers, table borders, legal footers
+ | Pale Mint | #C1E1C1 | Tier 3 | Passive watchlist CTA zones
+ | Fog Purple | #E6E6FA | Tier 3 | Calm exits, referral soft slides
+ | Dusty Plum | #9B6A6C | Tier 3 | Legacy/trauma reframing
+ | Burnt Orange | #D2691E | Tier 3 | Capacity scarcity (sparingly)

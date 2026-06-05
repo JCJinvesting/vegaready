@@ -1,0 +1,3074 @@
+JCJ Investing
+Brand Guidelines – Version 13
+Live Demonstration of Institutional Brand System
+Structured, Tone-Aligned, Platform-Ready
+Document Metadata
+Version: 13
+Date: 20 August 2025
+Prepared by: Chris Martin
+Document Type: Institutional Brand Guidelines
+Confidentiality: Internal use and approved design vendors only.
+Executive Summary
+This document is a live demonstration of JCJ Investing’s institutional brand system. It establishes the core visual and messaging logic used across all allocator-facing decks, platform materials, and compliance assets.
+
+Every heading, paragraph, table, and CTA in this document reflects our Tiered Color System, Typography Rules, and Platform Formatting Standards — in real usage, not theory. This is not just a brand reference — it is the system itself.
+
+Use this guide as the foundation for:
+- Deck builds (strategy, structure, risk, referral)
+- Compliance and KYC material formatting
+- PDF/Gamma/PowerPoint/Canva template reviews
+- Internal training, tone alignment, and platform upload QA
+
+Everything shown here is allocator-safe, ADA-compliant, and emotionally structured to reduce friction and build trust.
+
+
+
+Introduction
+This document establishes the core visual language, formatting behavior, and platform-safe standards for all institutional materials produced by JCJ Investing. It is designed to align allocator expectations with internal messaging precision, ensuring every visual element serves a strategic purpose.
+
+The guidelines contained here have been rigorously structured for ADA compliance, cross-platform compatibility (PDF, Gamma, Canva, PowerPoint), and emotional tone calibration across a range of investor frictions.
+Emotional Friction 
+→ Visual Design Table
+This table maps common allocator emotional frictions to visual design solutions using JCJ’s tone-mapped color system. Each row is color-filled according to our ADA-compliant Tier 3 palette and reflects how design reduces friction without adding hype.
+* Friction-to-solution mappings expanded from allocator tone research and internal JCJ visual behavior systems.
+* Friction-to-solution mappings expanded from allocator tone research and internal JCJ visual behavior systems. Use of red highlights refers to chart-level emphasis only, not table fills.
+Voice & Tone Framing
+Regional Design Behavior: 
+GCC vs India LPs
+This table summarizes regionally adaptive design behaviors for institutional LPs in the GCC and India. Though both allocator groups are sophisticated and globally fluent, visual behavior, tone, and CTA expectations differ in subtle but critical ways. All rows are formatted using ADA-safe contrast with neutral tone fills.
+Pull Quote Block
+Institutional design isn’t decoration — it’s decision-making at 24px spacing.
+Definition: Pull Quote Block
+A pull quote block is a visually isolated design element used to emphasize a key message, quote, or theme within a document. It is intended to break visual pacing, create resonance, and frame a transition — especially in materials targeted at institutional allocators.
+
+In the JCJ system, pull quote blocks are not decorative. They serve a structural purpose by briefly pausing the narrative to highlight design ethos, investment philosophy, or narrative inflection points.
+
+Best practices for allocator-facing pull quote blocks include:
+
+• Centered layout with no surrounding clutter
+• Font: Playfair Display Italic or Georgia Italic
+• Font size: 18–22pt
+• Background fill: Fog Purple, Gold, or Bone
+• No inline styling or multi-color words
+• No quotation marks unless contextually needed
+• Serves as a narrative transition or emphasis — not decoration
+Footer Tag 
+Format & Compliance Reference
+Every core section of this guidelines document concludes with a footer-style tag that confirms adherence to JCJ’s design system. This tag standardizes font choice, size, color usage, and ADA compliance across platforms such as Word, PDF, PowerPoint, and Canva.
+
+These footer elements support accessibility auditing, visual consistency, and trust signaling — especially for investors reviewing printed documents or PDFs where contrast and structure perception is critical.
+Font: Calibri   Size: 12pt   Section Tones: Bone, Pale Mint, Modal Gray   Contrast: ✅ PASS (≥4.5:1)
+Font: Calibri   Size: 12pt   Section Tones: Bone, Pale Mint, Modal Gray   Contrast: ✅ PASS (≥4.5:1)
+What Was Actually Done
+This section documents the formatting, tone, and layout rules that were actually applied in building Phase 1 of the JCJ Brand Guidelines.
+
+Each subsection adhered to the standards defined in JCJ’s visual identity system to ensure allocator-grade clarity, platform adaptability, and compliance with ADA visual contrast standards.
+• Section 1.1 introduced the brand mission and Quiet Confidence design principles using left-aligned logic and neutral tone.
+• Section 1.2 mapped allocator emotional frictions to visual design behavior using a 2-column table with real HEX color fills (Bone, Mint, Fog Purple, Modal Gray).
+• Expanded friction rows were added with uniform logic and a footnote referencing tone-matching methodology — not citations.
+• Section 1.3 compared GCC vs India allocator design expectations using column-based background fills (Bone and Pale Mint), with a Modal Gray header for hierarchy.
+• Section 1.4 featured a centered pull quote on a Fog Purple background using Playfair Display Italic, 20pt font.
+• Section 1.5 included a visual footer tag showcasing Calibri 12pt, ADA contrast compliance, and tone usage tracking.
+
+Brand Mission & Design Ethos
+JCJ Investing operates at the intersection of institutional structure and algorithmic strategy. Our materials are not designed to persuade through flash, but to clarify through precision. Every design decision serves the allocator's lens — simplifying complex strategy, signaling operational control, and reducing emotional friction.
+Quiet Confidence Design Principles:
+Structure over flair
+Emotional friction-aware
+Calm tone, serious execution
+No hype — just trust and alignment
+
+🎯 The 5 Layers of Color in JCJ Design
+Color System & Tiered Visual Behavior
+🔹 Tier 1: Institutional Core Colors 
+(High Trust, High Contrast)
+🎯 Allocator Tone Map: Institutional trust. Use for Performance, Fund Terms, Strategy, Custody.
+🔹 Tier 2: Structural / Modulatory Colors
+⚠️ Use Case: Layer under CTA rows, annotation boxes, or background tint for charts.
+🔹 Tier 3: Behavioral / Emotional Overlays
+Color System & Tiered Visual Behavior
+Tier 1 – Core Brand Colors
+Each Tier 1 color is represented using a 4-row stack. The center row displays key information with a white background, while the rows above and below provide visual framing using the core color. Each right-side pairing cell displays the tone-mapped combination in live fill.
+Font: Calibri  12/14pt Tier: 1 Colors Only Contrast Compliance: ✅ PASS (≥4.5:1)
+Tier 2 – Structural Colors 
+Tier 2 colors are used for overlays, compliance callouts, tables, and structural cues. They are strong enough to segment content without overwhelming primary tone. This table follows the surround-block layout to visually frame each structural color's tone and use case.
+Font: Calibri  12pt   Tier: 2 Colors Only  Contrast Compliance: ✅ PASS (≥4.5:1)
+Tier 3 – Behavioral/Emotional Colors
+Tier 3 colors are emotional signaling tools used for passive CTAs, risk recovery, soft exits, and low-pressure guidance. They are most often used in pull quotes, watchlist prompts, footers, and background bands. This table uses the surround format to show framing tone behavior.
+Font: Calibri 12/14pt  Tier: 3 Colors Only  Contrast Compliance: ✅ PASS (≥4.5:1)
+Footer Use Case^^ 
+Gradient Rules & Hero Transition Logic
+Gradient usage rules for CTA backgrounds, divider slides, quote overlays.
+🔹 Recommended Pairings
+🔹 Guidelines
+Max 1 gradient per slide unless masked under a shape
+Always fade to Bone or Slate for readability
+Do not overlay more than one layer of gradient + image (use one or the other)
+Color Choice – Backgrounds, Accents and Text
+✅ Background-ready 
+
+full-slide backgrounds safe in the stated contexts
+⚠️ Partial / conditional backgrounds 
+
+panels, strips, late-funnel, or very specific use cases
+
+❌ Never 
+Never full-slide background — accent/text only
+† About Crimson/Fog Purple “background” conflicts:
+Older annotated references sometimes show these as more permissive; our latest brand usage constrains them to accents or very specific pages (Coral/Plum for empathy/lesson; Crimson for legal footers). This table follows the stricter, current guidance to avoid tonal whiplash in allocator settings. 
+Method & sources (why this looks the way it does)
+Emotional function → layout permission. I started from each tone’s emotional job (e.g., “reassure”, “quant proof”, “legal clarity”) and only promoted to background-ready if that role benefits from owning the entire canvas (e.g., Navy, Payne’s Gray, Off White) instead of just supporting content. This aligns with the Tone Transition Map logic used to keep flows psychologically smooth. 
+ADA/contrast & platform reality. Colors flagged as medium/low contrast or “panel-only” in the annotated dictionary were kept conditional or disallowed as full backgrounds (e.g., ETF Yellow, Gold, Fog Purple, Dusty Plum). 
+Regional norms & allocator psychology. Warm urgency (Burnt Orange/Dijon) was restricted to closing slides or thin accents, especially for GCC/India where understated confidence tests better.
+Quick sanity checks (practical rules of thumb)
+If the copy is long, prefer ◽ Off White / 🟫 Bone / Payne’s Gray / Navy.
+If the content is legal/compliance, use Payne’s Gray or a neutral, never a warm tone. 
+If the goal is empathy/repair, keep 🟪 Dusty Plum / 🔴 Coral to one or two slides max, then bridge out via a neutral. 
+CTAs live on Teal/Teal-Blue panels (never full-slide Teal).
+Color System & Tiered Visual Behavior
+Blocked Colors & Contrast Failures
+This table lists color combinations that are blocked or discouraged within the JCJ visual system due to insufficient ADA contrast or visual confusion. These pairings may fail WCAG 2.1 minimum standards or produce emotional friction when used in allocator-facing materials. All ❌ items shown here are either visually ambiguous, inaccessible, or misleading.
+Font: Calibri   Size: 12pt   Category: Blocked Combinations   Compliance: ❌ FAIL (contrast or context)
+Approved JCJ Gradient Swatches & Emotional Mapping
+Gold → Steel Purple
+Emotion: From insight cue to structural clarity — warmth to precision.
+Use for: Insight quotes, thesis handoff, macro exit slides.
+JCJ Example:
+“Algorithmic signal engines don't operate on hope. They rotate on liquidity, volatility, and flow.”
+Slide Position: Slide 5 – Post-Macro Quote
+→ After Slide 4: “Macro Conditions & Market Structure”
+→ Before Slide 6: “Strategy Construction”
+Emotional Function: Reorients allocator from narrative risk framing into quant-based strategy logic.
+Black Text Overlay Version
+ETF Yellow → Slate Blue
+Emotion: From market stress to algorithmic structure — caution to conviction.
+Use for: Risk slide headers, volatility cluster explanations, allocation rationale.
+JCJ Example:
+“Rebalancing bias occurs when volatility clusters form faster than macro conditions normalize.”
+Slide Position: Slide 9 – Strategy Regime Adaptation
+→ After Slide 8: “Position Sizing Timeline”
+→ Before Slide 10: “Execution Layer Overview”
+Emotional Function: Helps allocator digest volatility framing and ease into execution detail.
+Black Text Overlay Version
+Modal Gray → Cobalt
+Emotion: From neutrality to conviction — muted to formal.
+Use for: Section divider slides, internal framework anchors.
+JCJ Example:
+“Section 4: Governance, Custody & Withdrawal Flow”
+Slide Position: Slide 12 – Section Divider
+→ After Slide 11: “Service Provider Map”
+→ Before Slide 13: “Cold Storage Access Controls”
+Emotional Function: Signals shift from operational layout into technical depth.
+Black Text Overlay Version
+Mint → Fog Purple
+Emotion: From permissionless inquiry to soft engagement — calm to closure.
+Use for: End-of-deck referral slides, watchlist CTAs, post-pitch handoff.
+JCJ Example:
+“Track from the sidelines or request full access.”
+Slide Position: Slide 22 – Final CTA
+→ After Slide 21: “Performance Attribution & Drawdown Behavior”
+→ Before Slide 23: “Appendix Index”
+Emotional Function: Provides low-friction off-ramp from deck without hard ask.
+Black Text Overlay Version
+Deep Custody Green → Gold
+Emotion: From regulatory depth to strategic optimism — safety into signal.
+Use for: Compliance slides, audit statements, KYC/AML readiness framing.
+JCJ Example:
+“Regulatory readiness isn’t the end state — it’s a baseline for trust.”
+Slide Position: Slide 16 – Compliance Statement
+→ After Slide 15: “Custody Workflow & Withdrawal Logic”
+→ Before Slide 17: “Redemption Lockup Schedule”
+Emotional Function: Pulls allocator out of procedural content into proactive narrative arc.
+Black Text Overlay Version
+Gradient Overlay Table & Usage Framework
+Purpose of Gradient Usage
+Gradients in the JCJ system are used to frame transitions, set tone, and move allocators emotionally without adding textual complexity. A gradient is not a background; it’s a behavioral cue. The following table and guide describe how to construct, position, and apply gradient overlays across slide layouts.
+Gradient Overlay Reference Table
+Each gradient shown below includes two color swatches representing a left-to-right blend transition. These can be used behind quotes, CTA bands, or section dividers. All gradients are ADA-safe when overlaid with bold text.
+Gradient Layout Framework & Behavioral Zones
+Gradients guide allocator attention by simulating motion, insight emergence, or thematic handoff. 
+Every JCJ gradient slide contains three zones:
+**Entry Zone (0–30%)** – For breadcrumbs, soft context, or supporting labels.
+**Transition Zone (30–70%)** – For quotes or emotional pivots. Use sparingly and avoid complex text.
+**Resolution Zone (70–100%)** – For CTAs, section titles, and structural messages.
+Avoid placing important or dense content across the color blend. Content should always align with the emotional meaning of the gradient's endpoint.
+Slide Layout Examples Using Gradients
+Quote Slide
+Gradient: Gold → Steel Purple (Left → Right)
+Layout: Quote centered in the middle blend zone
+Meaning: Soft insight emerging into structure
+Text: “Markets reward conviction, not complexity.”
+Section Divider Slide
+Gradient: Slate → Cobalt (Left → Right)
+Layout: Breadcrumb left, section title right
+Meaning: Narrative shift into structure
+     Text: Section 3 →    Performance Architecture
+CTA Slide
+Gradient: Modal Gray → Teal
+Layout: Left: Context, Right: Call to Action
+Meaning: From observation to action
+     Text: You’ve seen the performance.     Request Access →
+Using Gradients When Space is Limited
+In high-density decks or limited slide counts, avoid full-page gradient backgrounds. Instead, apply gradients in header strips, footer CTA bands, or behind white content cards. This conserves space while preserving emotional framing.
+Gradient Design Checklist
+✓ 2 color stops used (no more)
+✓ Direction = horizontal unless footer/banner use
+✓ Content placed in appropriate emotional zones
+✓ Overlay text tested in both black and white
+✓ No dense text across color transitions
+✓ Gradient matches slide tone (signal → structure, emotion → action)
+Gradient Design Framework –Walkthrough	
+A gradient is not a visual flourish. In the JCJ system, it’s a behavioral cue—a transition of emotional tone, guiding allocators from confusion to clarity, hesitation to structure, or signal to decision.
+You use it to:
+- Frame a quote
+- Introduce a section
+- Bridge two contrasting themes
+- Draw allocator attention without extra text
+Direction of Gradient Use								
+• Left → Right (default): Best for slide flow, narrative motion.
+• Top → Bottom: Used in footers, section banners.
+• Diagonal/Radial: Avoid. Too decorative.
+Gradient Zone Strategy									
+- Entry Zone (0–30%): Breadcrumbs, soft intro
+- Transition Zone (30–70%): Quotes, insights, pivots
+- Resolution Zone (70–100%): CTA, section title, core message
+Content must align with emotional meaning of each zone.
+Example A – Quote Slide									
+Gradient: Gold → Steel Purple
+Direction: Left → Right
+Layout: Quote is centered in the transition blend zone.
+Effect: Insight emerges softly into structure.
+Visual Simulation:
+[ Gold (0–30%) | Blending (30–70%) | Steel Purple (70–100%) ]
+[             | 'Conviction drives clarity.' |             ]
+Example B – Section Divider								
+Gradient: Slate Gray → Cobalt
+Layout:
+Left = 'Section 3 →' (breadcrumb)
+Right = 'Performance Architecture' (title)
+Effect: Clean narrative break and entrance into structure.
+Example C – CTA Prompt									
+Gradient: Modal Gray → Teal
+Left = Framing: 'You’ve seen the performance...'
+Right = CTA: 'Request Access →'
+Effect: Calm entry into a soft ask. Teal implies action without pressure.
+Gradient Strategies When Slide Count is Tight					
+- Use header strips (top 20%) or footers
+- Overlay quote bands or CTA bars
+- Embed white cards on gradient background for structure
+Overlay Text & Contrast Rules								
+- White text for dark tones (Cobalt, Charcoal)
+- Charcoal text for light tones (Mint, Gold)
+- Test overlays in both black and white
+- Never place small/dense text across blend zones
+Final Checklist for Gradient Use							
+✓ 2 color stops only
+✓ Direction is intentional
+✓ Content lives in emotional zone
+✓ CTA or pivot lands at end tone
+✓ Contrast verified (white + black)
+✓ Meaningful tone transition: signal → structure
+ADA Contrast Table
+JCJ Gradient & UI Safety Mapping
+Footer Block
+Format, Compliance, and Placement Rules
+Footer Format Rule
+All footers in JCJ documents must use a consistent format to ensure institutional clarity, contrast safety, and visual neutrality. Font must remain allocator-safe and passive in tone.
+
+Required Format:
+Font: Calibri
+Size: 10–12pt (never smaller than 10pt)
+Tone Color: Modal Gray (#E9EDF2), Charcoal (#1C1C1E), or Navy (#0B2E4E)
+Weight: Regular (no bold), no italics, no caps
+Footer Contrast Examples 
+– Do / Don’t
+DO: Charcoal on Off White
+DO: Charcoal on Mint
+DO: White on Navy
+DO: White on Slate
+DON’T: White on ETF Yellow
+DON’T: Steel on Gold
+DON’T: Fog Purple on Bone
+Footer Placement Rules
+• Always bottom-aligned in slide or page layout
+• Minimum 12pt margin from main content block
+• Never overlaps primary CTA or main logic statement
+• Left-aligned unless used in slide center format
+Use case in section 2.1 bottom as below. 
+Font: Calibri   Size: 12pt   Layout: Footer Standard   Compliance: ✅
+Font Layer System 
+The table below outlines JCJ’s typography layers with styled previews, platform compatibility, fallbacks, sizing logic, and allocator-safe use cases. Each row is rendered in its own format to simulate how it should appear.
+Typography Spacing Hierarchy 
+Corrected Paragraph Spacing
+Each example below uses paragraph stacking and vertical spacing (space_after) instead of line spacing. Each text line is shown in its actual recommended style and size for allocator-readable formatting.
+Slide Title → Framing Subtitle (line spacing: 48 pt)
+Market Regimes & Signal Adaptation
+Volatility vs Liquidity
+Framing Subtitle → Body Text (line spacing: 36 pt)
+Volatility vs Liquidity
+The strategy adapts based on regime filters.
+Body Text → CTA (line spacing: 32 pt)
+The strategy adapts based on regime filters.
+Request Access →
+Quote → Section Header (line spacing: 60 pt)
+“Conviction comes from clean signals.”
+Portfolio Construction Framework
+Pull Quote Formatting Block
+Full Use Cases
+Pull quotes create emotional and structural pivot points. Below are institutional formatting variants, each styled for different quote use cases. Quotes are styled with platform-safe fonts, ADA contrast compliance, and appropriate emotional tone. Includes one bad example for comparison.
+Use Case A – Emotional Framing (Mid-Slide)
+Use on passive slides to give room between metrics and strategy.
+“Typography, like signal, should guide attention — not demand it.”
+Font: Georgia 20pt – Background: #E6E6FA – Contrast: ✅ PASS (Dark Gray on Fog Purple)
+Use Case B – Pivotal Insight 
+Quote + CTA Divider Slide
+Use to pivot from insight into section ask.
+“Signal should whisper. Action should follow.”
+Font: Georgia 20pt – Background: #F4C37D – Contrast: ✅ PASS (Charcoal on Gold)
+Use Case C – Section Header Slide 
+White on Gold
+Use on white-text quote slides with CTA following.
+“Markets reward conviction, not clutter.”
+Font: Georgia 20pt – Background: #F4C37D – Contrast: ✅ PASS (White on Gold)
+BAD Example – Noncompliant Font/Color
+Fails contrast and tone; avoid using red-on-yellow with no spacing.
+“Buy the dip. Time the top.”
+Font: Calibri 14pt – Background: #FFD89A – Contrast: ❌ FAIL (Red on Yellow, Small Font)
+ADA Contrast Table 
+Visual Compliance Simulation
+This table simulates live text-on-background combinations with Word-native formatting to demonstrate ADA contrast compliance. Minimum contrast ratio is 4.5:1 for body text. Failing examples are marked ❌. All fills and font colors are true to JCJ's visual system.
+Note: All examples use Word-native font and background fills. Minimum required contrast ratio for body text is 4.5:1.
+Typography QA Table
+Violations & Fixes
+This table shows common formatting mistakes and allocator-safe corrections. Each violation is simulated visually, along with a recommended fix using JCJ’s type system. All styles are rendered using Word-native formatting.
+Footer Block Simulation
+Expanded with Formatting Specs
+This section shows allocator-safe and non-compliant footers with reasoning and exact formatting specs for reproduction in decks and exports.
+✅ GOOD – Source Disclosure Footer
+Source: JCJ Internal Performance Data (April 2025)
+Passes ADA, subtle tone, aligned left for easy scanning.
+✅ GOOD – Platform Export Footer
+Slide Export: Gamma • PDF • PPT
+Utility footer, clean alignment, supports multi-platform clarity.
+✅ GOOD – Passive CTA Footer
+Track performance passively — request the full deck.
+High contrast, emotionally neutral, ADA-safe font and background.
+✅ GOOD – Legal Disclaimer Footer
+Past performance is not indicative of future results. This material is for informational purposes only and is not an offer to sell or a solicitation of an offer to buy any security.
+Dense content formatted for readability; ADA-safe contrast on neutral background.
+❌ BAD – Red Text on Light Background
+DISCLOSURE: THIS IS NOT A GUARANTEE OF FUTURE RETURNS.
+Fails ADA contrast, aggressive tone, poor readability.
+❌ BAD – ALL CAPS Small Text
+ALL INFORMATION PROVIDED IS SUBJECT TO CHANGE WITHOUT NOTICE.
+All caps with small font fails mobile readability and feels hostile.
+❌ BAD – Overcrowded Multi-Line Footer
+Source: Internal Data | Contact: info@jcjinvesting.com | Regulatory ID: 12345 | Version: 2.1 | Last Updated: April 2025
+Too much info crammed into one footer; overwhelms allocator and distracts from content.
+Slide Layout Zones 
+This table defines the five core layout zones used across JCJ slides. Each zone is mapped to its visual height proportion and explained for allocator-facing design use. The color fill behind each row simulates real placement within a slide.
+Slide Grid Types
+This section defines JCJ’s primary slide grid layouts and shows real allocator-facing mockups using brand colors, structure logic, and tone-appropriate formatting. Each layout simulates spacing and content as used in actual decks.
+4-Column Grid
+Ratio: 25 / 25 / 25 / 25
+Used for service provider stacks, team layouts, and comparisons requiring equal-weight content blocks.
+Use Case: Show balanced stack of core institutional partners.
+6-Column Grid
+Ratio: 16.6% × 6
+Used for high-density data, fee grids, or allocation splits.
+Use Case: Show models or asset strategies with allocation splits.
+Sidebar Split (20/80)
+Ratio: 20 / 80
+Used to anchor quotes or framing language next to a logic block and CTA.
+Use Case: Quote left, CTA + logic right. Best for framing.
+Allocator Impact Summary:
+Full-Bleed Visual
+Ratio: 100%
+Used for macro stat or large quote spanning entire width.
+Use Case: Use when emphasis is on performance or insight.
+Centered CTA Column (60/40)
+Ratio: 60 / 40
+Used for CTA-focused layouts where framing is secondary.
+Use Case: Setup CTA with logic left and CTA right.   
+Slide Typology Reference
+Modular Layout Index
+This section outlines the core slide types used across JCJ decks, including their layout behavior, tone logic, CTA structure, and psychological purpose. 
+Each slide block is presented using paragraph-based formatting instead of tables for clarity and platform safety.
+S1 – Strategy Overview
+Layout Structure: 2-column layout: left = modal quote zone, right = logic block + CTA
+Tone Colors: Modal Gray (#E9EDF2), Sky Blue (#72C5E1)
+CTA Position: Bottom-right corner, styled as blue CTA box with bold white text
+Primary Allocator Purpose: Frame the core alpha source, structure, and allocator-ready value prop
+C4 – Custody & Withdrawal Flow
+Layout Structure: Visual flow diagram with stacked logic annotations (Teal + Slate blocks)
+Tone Colors: Steel Gray (#909FAD), Teal (#36BBA6), Fog Purple footer CTA
+CTA Position: Footer row as visual CTA bar with fog purple fill, optional bold white text
+Primary Allocator Purpose: Demonstrate operational security, custody path, and withdrawal integrity
+R9 – Risk / Drawdown
+Layout Structure: 2-column: left = metric stack or heatmap visual, right = drawdown narrative
+Tone Colors: ETF Yellow (#FFD89A), Slate Gray (#708090), optional Crimson for alerts
+CTA Position: Optional footer or right-aligned nudge CTA in Modal or Sky Blue
+Primary Allocator Purpose: Reframe volatility as managed risk; showcase downside discipline
+F4 – Comparison Slide (BTC vs JCJ)
+Layout Structure: Side-by-side data blocks or fee structure table; 50/50 split
+Tone Colors: Off White (#FAFAFA), Slate Gray, ETF Yellow highlights for BTC stats
+CTA Position: Soft CTA in bottom-left or center using Bone or Fog Purple background
+Primary Allocator Purpose: Visually explain difference between passive BTC return and JCJ managed alpha
+RS1 – Referral Summary
+Layout Structure: Sidebar-style layout: left = quote or share framing, right = light CTA box
+Tone Colors: Fog Purple (#E6E6FA), Bone (#F9F6F0), Sky Blue for embedded CTA
+CTA Position: Centered or bottom-right, passive voice: 'Send to Advisor' / 'Preview Deck'
+Primary Allocator Purpose: De-risk referral logic and provide shareable CTA structure for connectors
+A8 – Watchlist CTA Slide
+Layout Structure: Full-width layout with passive CTA framing; no quote block
+Tone Colors: Modal Gray, Sky Blue, Bone
+CTA Position: Right-aligned CTA: 'Track Performance Quietly →' styled with soft colors
+Primary Allocator Purpose: Capture interest from non-committal LPs; opt-in without pressure
+Emotional Tone 
+Slide Matrix
+
+Slide Mockup 
+S1: Strategy Overview
+This mockup simulates Slide S1 – Strategy Overview using a 2-column structure. It includes real JCJ strategy language, brand-tiered color fills, and a CTA footer, styled for allocator-grade platform use.
+Font: Georgia/Calibri  Size: 16pt/11pt  CTA Zone: Right Bottom  Colors: Modal Gray, Off White, Sky Blue  Contrast: ✅ PASS
+[What Was Actually Done]
+- Simulated S1 slide with 2-column Word table layout.
+- Left = Georgia Italic quote (Modal Gray), right = Calibri logic block + Sky Blue CTA.
+- CTA rendered as full-width paragraph with bold white text.
+- Tone fills used from Tier 1–2 color system.
+- Designed for export-readiness and ADA-safe contrast.
+Slide Mockup 
+C4: Custody & Withdrawal Flow
+This mockup simulates Slide C4 – Custody & Withdrawal Flow. It illustrates custody pathways using a flow-based layout with logic labels, real service providers, and styled tone blocks following JCJ’s institutional stack.
+Font: Calibri  Size: 10pt / 11pt  CTA Zone: Footer Label  Colors: Steel Gray, Teal, Fog Purple  Contrast: ✅ PASS
+[What Was Actually Done]
+- Simulated C4 slide as a vertical flow chart using a 3-row table.
+- Each row represents a tier: Custody, Admin, Withdrawal.
+- Steel Gray, Teal, and Fog Purple used to match tone layers.
+- Styled labels and real provider names reinforce legitimacy.
+- CTA logic embedded as withdrawal summary.
+Slide Mockup 
+R9: Risk / Drawdown Framing
+This mockup simulates Slide R9 – Risk / Drawdown Framing. It communicates JCJ’s downside protection through visual framing of drawdown capture, risk behavior, and comparison vs BTC. Contrast tones and spacing are used to simulate risk-aware storytelling.
+See Performance by Quarter →
+Font: Calibri  Size: 12pt/11pt  CTA Zone: Center Footer  Colors: Burnt Orange, Soft Green, Slate  Contrast: ✅ PASS
+[What Was Actually Done]
+- Simulated risk comparison slide with 2-column visual stat blocks.
+- Left: BTC drawdown in Burnt Orange. Right: JCJ risk capture in Soft Green.
+- Risk logic merged across bottom row.
+- CTA rendered as a central footer in Slate Gray.
+- Allocator-focused tone for downside framing.
+Slide Mockup 
+F4: BTC vs JCJ Comparison
+This mockup simulates Slide F4 – BTC vs JCJ Comparison. 
+It visualizes relative performance, volatility, and drawdown using a two-column stat block layout. Real allocator metrics are used alongside subtle tone cues for clarity.
+View Full Allocation & Fee Summary →
+Font: Calibri  Size: 11pt–12pt  CTA Zone: Center Footer  Colors: ETF Yellow, Slate, Off White  Contrast: ✅ PASS
+[What Was Actually Done]
+- Built two-column layout comparing BTC vs JCJ performance.
+- Used real return, volatility, and drawdown stats.
+- ETF Yellow background used on BTC row to subtly flag legacy reference.
+- JCJ metrics shown on neutral Off White background.
+- CTA embedded as slate-colored footer with white font.
+Slide Mockup 
+RS1: Referral Summary Slide
+This mockup simulates Slide RS1 – Referral Summary. 
+It presents a passive, shareable framing for advisor or client referral. Fog Purple and Bone are used to calm the ask, while a quiet CTA invites user flow without pressure.
+Send Deck Link →
+Font: Georgia/Calibri  Size: 14pt/11pt/12pt  CTA Zone: Bottom Center  Colors: Fog Purple, Bone, Sky Blue  Contrast: ✅ PASS
+[What Was Actually Done]
+- Simulated 2-column layout for referral prompt.
+- Left = Georgia Italic quote block with Fog Purple fill.
+- Right = Passive CTA setup with Bone tone.
+- Footer CTA rendered as Sky Blue button.
+- Voice kept soft and shareable, suitable for indirect flow.
+Slide Mockup 
+A8: Watchlist CTA Slide
+This mockup simulates Slide A8 – Watchlist CTA Slide. 
+It provides a passive, no-pressure engagement point for allocators who aren't yet ready to commit. 
+Modal Gray and Sky Blue are used to structure a calm tone that invites quiet follow-up.
+Track from the Sidelines →
+Font: Calibri  Size: 12pt  CTA Zone: Center Footer  Colors: Modal Gray, Sky Blue  Contrast: ✅ PASS
+[What Was Actually Done]
+- Simulated full-width layout with passive watchlist invitation.
+- Modal Gray used for primary tone block with quiet CTA line.
+- Bold white Sky Blue CTA styled as soft engagement.
+- Language framed for allocators unsure about commitment.
+Slide Footer Tag System 
+Each section below simulates how a footer would appear beneath real slide content. 
+Framing (Fog Purple)
+“This deck might be useful for your client or partner.”
+Font: Georgia / Calibri  Size: 14pt / 11pt  CTA Zone: Bottom Center  Colors: Fog Purple  Contrast: ✅ PASS
+Logic (Bone)
+Assets are held in cold storage under a Fireblocks vault policy.
+Font: Calibri  Size: 12pt / 11pt  CTA Zone: Right Bottom  Colors: Bone  Contrast: ✅ PASS
+CTA (Sky Blue)
+Track from the Sidelines →
+Font: Calibri  Size: 12pt  CTA Zone: Center Footer  Colors: Sky Blue  Contrast: ✅ PASS
+Fail Example (ETF Yellow with White Text)
+Legacy assets listed in tracking sheet:
+Font: Calibri Size: 10pt CTA Zone: None Colors: ETF Yellow on White   
+Contrast: ❌ FAIL (2.1:1)
+Platform Format & Layout Behavior
+This section defines how JCJ slide layouts, CTAs, font behavior, and export features adapt across major platforms:
+PDF, Gamma, PowerPoint, and Canva. 
+It includes platform-specific design rules, CTA positioning behavior, and export flag considerations with allocator-use examples.
+
+Each platform above is used selectively by JCJ depending on allocator context and engagement level. 
+For example, Gamma is ideal for high-engagement LP candidates, while PDF is used for static archives and compliance deliverables.
+CTAs
+Tone Mapping & Allocator Behavior
+This table defines each JCJ CTA type by tone color, placement logic, use case, and emotional risk level. Each tone maps directly to allocator psychology and platform export behavior.
+
+Each CTA type above is matched to its ideal emotional use case, ensuring that investor-facing slides minimize friction and comply with ADA tone standards. 
+Tone fills are used consistently across A8 (Track), RS1 (Refer), S1 (Commit), and C4 (Ask).
+CTA Gamma Placement
+CTA design includes:
+Rounded buttons (8px)
+Text = All Caps, 90% character width
+Always accompanied by directional icon (arrow, hand, etc.)
+Never more than 1 CTA per slide except at section summary
+CTA Examples
+Each Call To Action block below simulates a styled Word-native button row using the JCJ tone system. 
+Below each CTA is a footer tag describing: font size, fill color, contrast behavior, and platform placement logic.
+Track This Strategy →
+Font: Calibri Bold  Size: 12pt  Tone: Sky Blue (#72C5E1)  
+Text Color: White  Placement: Footer CTA on A8
+Request Full Overview →
+Font: Calibri Bold  Size: 12pt  Tone: Teal (#36BBA6)  
+Text Color: White  Placement: Logic CTA on C4
+Commit Capital →
+Font: Calibri Bold  Size: 12pt  Tone: Approval Green (#A9D18E)  
+Text Color: Dark Gray  Placement: Final Slide CTA (S1)
+Send to Advisor →
+Font: Calibri Bold  Size: 12pt  Tone: Fog Purple (#E6E6FA)  
+Text Color: Dark Gray  Placement: Referral Slide (RS1)
+Join Our Watchlist →
+Font: Calibri Bold  Size: 12pt  Tone: Sky Blue (#72C5E1)  
+Text Color: White  Placement: Passive CTA Slide (A8)
+Platform CTA Behavior Matrix
+This Platform matrix accounts for CTA placement, font and embed behavior, animation and interactivity, and export constraints.
+Each CTA configuration must be platform-aware. 
+Gamma supports interactive CTA structures and collapsibles, while PDF and Canva require pre-framed CTA layouts that export cleanly and remain ADA and print-safe.
+CTA Anti-Pattern Table 
+Misuse Examples & Fixes
+This version includes visual renderings of each CTA misstep and its corrected alternative. 
+The left column shows the flawed visual using tone, case, or color misalignment. 
+The right column simulates the fix using allocator-grade formatting with ADA-safe contrast and tone behavior.
+Platform Format Comparison Table
+This table defines layout behavior, CTA positioning, font logic, and export constraints across key delivery platforms: Gamma, PDF, PowerPoint, and Canva. Each row includes ADA-compliant formatting notes and tone compatibility based on live allocator use cases.
+
+Use this table to determine platform-appropriate slide structure, font safety, CTA placement, and visual behaviors before exporting any final deck for allocator distribution.
+CTA Layout Rules by Platform
+Each platform handles CTA placement, tone safety, and structural framing differently. This table summarizes the expected CTA positioning and tone allowances across PDF, Gamma, Canva, and PowerPoint formats.
+
+All CTA placement must respect allocator context, platform spacing logic, and visual separation rules. Avoid mixing emotional tone (e.g., 'Commit Now') with risk slides or structural footnotes.
+Font & Export
+Behavior Matrix
+This table documents how fonts behave across each platform, including embedding rules, fallback behavior, size tolerances, and contrast considerations. Font behavior impacts readability, mobile experience, and export stability.
+
+Font safety is critical to allocator readability. All JCJ slides must embed or simulate fallback fonts depending on platform. Use high-contrast text and verify exports in grayscale when printing or exporting to PDF.
+Export Optimization Notes
+This section includes layout and formatting guidance to ensure export safety across PDF, Gamma, and Canva platforms. All layout elements must remain ADA-safe, grayscale-friendly, and mobile-readable.
+✅ Use 24–32px padding on all mobile content cards to maintain tap-safe spacing.
+✅ Maximum mobile-safe content width: 680–720px (Gamma, Canva).
+✅ Avoid placing CTAs near PDF page breaks or immediately after quote slides.
+✅ Never use white text on ETF Yellow or Bone when exporting to PDF or print.
+✅ Use dark text over light fills (Slate, Fog Purple) for print safety.
+✅ Always test visual blocks in grayscale mode before final PDF export.
+✅ Use footer-only CTA placement in PDFs to preserve layout integrity.
+✅ Avoid paragraph spacing less than 16px in mobile layouts to preserve readability.
+
+These guidelines apply to all investor-facing decks exported from Word, Canva, Gamma, and PowerPoint. They ensure allocator readability, ADA compliance, and layout stability across screen sizes and output formats.
+Font Matrix 
+This table defines the visual font system used across JCJ slides. Each font role is simulated using real font styling, size, and row fills. It enables consistent design output across Word, Canva, Gamma, and PowerPoint.
+Typography Layer Table
+
+
+Fonts are visually simulated to help designers replicate tone, contrast, and spacing across decks. All text shown passes ADA contrast thresholds when paired with branded background tones.
+Icon Style
+Requirements		
+Icon Size Standards by Platform
+Icon Examples
+✅ All icons must be vector (SVG preferred) and scaled per platform at export. Rasterized PNG icons may only be used in print with 2× resolution for clarity.
+Grid & Alignment Rules
+Use pixel-safe bounding boxes (e.g., 32x32px for centered icons).
+Align icons vertically with text cap-height, not mid-line.
+Minimum padding: 12px between icon and surrounding text or element.
+Icon + Label pairs should use Label font = Calibri, 12–14pt, with Slate or Charcoal font color.
+🔒 Security Visual Guide
+Slide C4 -
+Custody, Vaults, Withdrawal Flow
+This section defines visual metaphors and icon combinations for communicating secure custody workflows in allocator-facing decks. It ensures that Fireblocks, cold storage, dual-signature protocols, and bank routing are communicated clearly and visually — without overwhelming with technical detail.
+🔐 Custody Narrative Elements
+🎨 Color & Layout Recommendations
+Use flowchart arrows in Sky Blue or Teal.
+Annotate each layer with concise caption text, Calibri 11pt.
+Max total height: 3/4 of slide; footer remains for CTA.
+
+🧠 Allocator Psychology Notes
+The vault icon implies security without needing to explain Fireblocks.
+The clock + lock combination visually signals time delay = safety.
+The bank icon reassures with traditional institutional symbols.
+This layout helps allocators intuitively “see the controls” without needing to read legal detail.
+🧩 Diagram Structure: Slide C4 – Custody Flow
+Create a 3-tier vertical diagram with icons in each section:
+Custodian Tier
+🔐 Vault icon (White fill, Navy stroke)
+Fireblocks logo or abstract shield-node icon
+Text: “Cold Storage: Segregated per Feeder”
+Admin / Legal Tier
+🧾 Document icon (Slate stroke)
+Label: “NAV Consulting, Loeb Smith, Cohen & Co.”
+Background Fill: Steel Gray
+Withdrawal Protocol Tier
+⏱️ Clock icon + 🔑 Key icon
+Label: “72hr Delay • Dual-Signature Required”
+Final node: 🏦 Bank icon (NT) with arrow → “USD wire”
+✅ This structure is used in Slide C4 and supported by Fog Purple or Bone footer CTAs for withdrawal policies, audit readiness, or custody flow transparency.
+Emotional Friction → Color Tone Map
+This table links allocator emotional friction types to recommended design tones. 
+Each row simulates tone behavior using real color fills and text contrast rules to reflect pitchdeck-safe behavior.
+Slide Mockup
+Reference Table (S1–A8)
+This table summarizes JCJ’s primary slide layouts across the S1–A8 framework. Each row links slide ID to its structural layout, primary tones, CTA zone, and emotional friction solved. Row fills use tone shading to reflect visual behavior.
+Final QA Checklist 
+This checklist supports design and export consistency. 
+Each category includes formatting, spacing, and tone checks required before any allocator-facing output is published.
+JCJ Investing - Comprehensive Brand Color Guide
+🎨 Core Brand Colors
+JCJ INVESTING BRAND COLOR GUIDE
+Complete Visual Identity System
+🎨 CORE BRAND COLORS
+1. NAVY
+Emotional Function: Trust, stability, professional authority, confidence building
+Navy (#003366) Tier: 1
+USE 1: FULL BACKGROUND
+Use 2: Headers, Primary Text, Divider Lines, Logo Applications * Usage Guidelines: Maximum 40% of total design space, always paired with lighter accents
+Color Relationships & Combinations
+Approved pairs: Gold, Off White, Teal
+Approved triads: Navy-Gold-Off White, Navy-Teal-Steel Gray
+Forbidden combinations: Navy-Charcoal (too dark), Navy-Oxford Blue (insufficient contrast)
+ADA Contrast: ✅ (AAA with Off White, AA with Gold)
+🎯 Frictions It Calms: • Investment uncertainty • Trust in advisor relationships • Platform credibility concerns
+❌ Fears It Avoids: • Amateur appearance • Unreliability • Lack of expertise
+Platform / Score: (Gamma 10/10, PowerPoint 10/10, PDF 10/10, Canva 9/10, Mobile 8/10) Regional: Universal
+Transition sequences: Navy → Off White → Gold for trust-building narratives
+Approved Zones: Homepage headers, executive presentations, trust documents
+Quick reference do's and don'ts
+Does not pair well with Purple tones, Dark grays
+Maximum 3 colors per slide when Navy is dominant
+Text Size: Minimum 14pt for body text on Navy backgrounds
+Fallback: Deep Navy (#002244) when primary unavailable
+Minimum 20% white space required around Navy elements
+Narrative role definitions
+Emotional Tone & Function: Establishes foundational trust and professional credibility in opening moments of investor engagement
+Ideal Usage Context: Initial investor presentations, legal documentation headers, and institutional communication materials
+Pairing Score Matrix:
+2. COBALT BLUE
+Emotional Function: Innovation, dynamism, progressive thinking, opportunity
+Cobalt Blue (#0047AB) Tier: 1
+USE 1: ACCENT BACKGROUND
+Use 2: Interactive Elements, Highlight Boxes, Progress Indicators, Section Headers * Usage Guidelines: Maximum 25% of design, never adjacent to Navy without buffer
+Color Relationships & Combinations
+Approved pairs: Off White, Gold, Steel Gray
+Approved triads: Cobalt-Gold-Off White, Cobalt-Teal-Light Gray
+Forbidden combinations: Cobalt-Navy (too similar), Cobalt-Royal Blue (confusing)
+ADA Contrast: ✅ (AAA with Off White, AA with Light Yellow)
+🎯 Frictions It Calms: • Fear of missing opportunities • Stagnant portfolio concerns • Innovation hesitancy
+❌ Fears It Avoids: • Being left behind • Old-fashioned approaches • Lack of forward thinking
+Platform / Score: (Gamma 9/10, PowerPoint 9/10, PDF 7/10, Canva 8/10, Mobile 9/10) Regional: Universal
+Transition sequences: Off White → Cobalt → Gold for opportunity narratives
+Approved Zones: Interactive dashboards, growth projections, innovation sections
+Quick reference do's and don'ts
+Does not pair well with Purple, Dark Navy
+Maximum 4 colors per slide with Cobalt
+Text Size: Minimum 16pt white text on Cobalt
+Fallback: Signal Blue (#005EB8)
+Requires 15% breathing room around Cobalt elements
+Narrative role definitions
+Emotional Tone & Function: Signals innovation and forward momentum while maintaining professional credibility
+Ideal Usage Context: Technology investment materials, growth strategy presentations, digital platform interfaces
+Pairing Score Matrix:
+3. TEAL
+Emotional Function: Action, clarity, decisiveness, positive momentum
+Teal (#008080) Tier: 1
+USE 1: CTA/ACTION ACCENTS
+Use 2: Success Indicators, Active States, Primary CTAs, Navigation Highlights * Usage Guidelines: Maximum 15% of design, always high contrast placement
+Color Relationships & Combinations
+Approved pairs: Off White, Navy, Gold
+Approved triads: Teal-Navy-Off White, Teal-Gold-Light Gray
+Forbidden combinations: Teal-Green (message confusion), Teal-Turquoise (redundant)
+ADA Contrast: ✅ (AAA with White, AA with Light Gray)
+🎯 Frictions It Calms: • Decision paralysis • Action hesitancy • Process confusion
+❌ Fears It Avoids: • Missing opportunities • Inaction regret • Unclear next steps
+Platform / Score: (Gamma 10/10, PowerPoint 8/10, PDF 6/10, Canva 9/10, Mobile 10/10) Regional: Universal
+Transition sequences: Navy → Teal for action prompts
+Approved Zones: CTA buttons, success messages, active navigation
+Quick reference do's and don'ts
+Does not pair well with Greens, Blues without buffer
+Maximum 2 Teal elements per view
+Text Size: Minimum 14pt, bold for CTA text
+Fallback: Dark Teal (#006666)
+Requires high contrast background only
+Narrative role definitions
+Emotional Tone & Function: Creates urgency without anxiety, encouraging confident decision-making
+Ideal Usage Context: Call-to-action buttons, confirmation messages, navigation states, and decision points
+Pairing Score Matrix:
+4. GOLD
+Emotional Function: Premium value, achievement, exclusivity, reward
+Gold (#FFD700) Tier: 1
+USE 1: ACCENT BACKGROUND
+Use 2: Premium Indicators, Achievement Badges, Highlight Accents, Special Offers * Usage Guidelines: Maximum 10% of design, strategic placement only
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Gold-Navy-Off White, Gold-Charcoal-Teal
+Forbidden combinations: Gold-Yellow (redundant), Gold-Orange (value confusion)
+ADA Contrast: ⚠️ (AA with Navy, needs dark backgrounds)
+🎯 Frictions It Calms: • Value uncertainty • ROI concerns • Premium service doubts
+❌ Fears It Avoids: • Cheap appearance • Low-value perception • Commodity service
+Platform / Score: (Gamma 8/10, PowerPoint 9/10, PDF 10/10, Canva 7/10, Mobile 6/10) Regional: Universal (Extra effective in GCC)
+Transition sequences: Navy → Gold for value propositions
+Approved Zones: Premium tier indicators, success celebrations, exclusive content
+Quick reference do's and don'ts
+Does not pair well with Yellows, Light backgrounds
+Maximum 3 Gold elements per design
+Text Size: Not recommended for text except large headers
+Fallback: Amber (#FFBF00)
+Requires dark contrasting backgrounds
+Narrative role definitions
+Emotional Tone & Function: Elevates perceived value and creates aspirational connection to premium outcomes
+Ideal Usage Context: Premium service tiers, achievement notifications, exclusive access indicators
+Pairing Score Matrix:
+5. CRIMSON
+Emotional Function: Urgency, critical information, risk awareness, attention
+Crimson (#DC143C) Tier: 2
+USE 1: TEXT/LINE ACCENTS
+Use 2: Risk Indicators, Alert Messages, Deadline Markers, Critical Updates * Usage Guidelines: Maximum 5% of design, never dominant, always purposeful
+Color Relationships & Combinations
+Approved pairs: Off White, Light Gray, Charcoal
+Approved triads: Crimson-Charcoal-Off White, Crimson-Navy-Light Gray
+Forbidden combinations: Crimson-Red (alarming), Crimson-Pink (message dilution)
+ADA Contrast: ✅ (AAA with White, AA with Light Gray)
+🎯 Frictions It Calms: • Missing critical information • Overlooking risks • Deadline uncertainty
+❌ Fears It Avoids: • Panic reactions • Overwhelming negativity • Aggressive messaging
+Platform / Score: (Gamma 7/10, PowerPoint 8/10, PDF 9/10, Canva 6/10, Mobile 8/10) Regional: Universal (Use sparingly in GCC)
+Transition sequences: Neutral → Crimson → Resolution color
+Approved Zones: Risk disclosures, deadline alerts, critical updates
+Quick reference do's and don'ts
+Does not pair well with Other reds, Bright colors
+Maximum 2 Crimson elements per view
+Text Size: Minimum 12pt, prefer bold
+Fallback: Brick Red (#B22222)
+Requires neutral surrounding space
+Narrative role definitions
+Emotional Tone & Function: Draws attention to critical information without creating panic or negative associations
+Ideal Usage Context: Risk disclosures, time-sensitive alerts, important disclaimers, and regulatory notices
+Pairing Score Matrix:
+6. STEEL GRAY
+Emotional Function: Sophistication, neutrality, professional balance, structure
+Steel Gray (#71797E) Tier: 1
+USE 1: FULL BACKGROUND
+Use 2: Structural Elements, Dividers, Secondary Text, Form Fields * Usage Guidelines: Maximum 30% of design, excellent buffer color
+Color Relationships & Combinations
+Approved pairs: All Core colors work well
+Approved triads: Steel Gray-Navy-Gold, Steel Gray-Teal-Off White
+Forbidden combinations: Steel Gray-Dust Gray (too similar)
+ADA Contrast: ⚠️ (Needs testing with each pairing)
+🎯 Frictions It Calms: • Visual overwhelm • Decision fatigue • Information overload
+❌ Fears It Avoids: • Unprofessional appearance • Cluttered design • Emotional manipulation
+Platform / Score: (Gamma 9/10, PowerPoint 10/10, PDF 9/10, Canva 8/10, Mobile 9/10) Regional: Universal
+Transition sequences: Any color → Steel Gray → Any color (universal buffer)
+Approved Zones: Background panels, data tables, form sections
+Quick reference do's and don'ts
+Does not pair well with Similar grays without purpose
+Maximum 5 colors when Steel Gray is base
+Text Size: Minimum 14pt dark text on Steel Gray
+Fallback: Slate Gray (#708090)
+Flexible white space requirements
+Narrative role definitions
+Emotional Tone & Function: Provides visual breathing room and professional structure without drawing attention
+Ideal Usage Context: Data presentations, form backgrounds, section dividers, and anywhere visual calm is needed
+Pairing Score Matrix:
+7. CHARCOAL
+Emotional Function: Authority, finality, premium depth, executive presence
+Charcoal (#36454F) Tier: 2
+USE 1: TEXT/LINE ACCENTS
+Use 2: Headers, Premium Text, Executive Materials, Signature Elements * Usage Guidelines: Maximum 20% of design, high-impact placement only
+Color Relationships & Combinations
+Approved pairs: Gold, Off White, Light Gray
+Approved triads: Charcoal-Gold-Off White, Charcoal-Teal-Light Gray
+Forbidden combinations: Charcoal-Navy (too dark), Charcoal-Black (indistinct)
+ADA Contrast: ✅ (AAA with light colors, fails with dark)
+🎯 Frictions It Calms: • Authority questions • Premium credibility • Executive approval needs
+❌ Fears It Avoids: • Weak positioning • Casual appearance • Lack of gravitas
+Platform / Score: (Gamma 8/10, PowerPoint 9/10, PDF 10/10, Canva 7/10, Mobile 7/10) Regional: Universal
+Transition sequences: Light → Charcoal for emphasis
+Approved Zones: Executive summaries, signature blocks, premium headers
+Quick reference do's and don'ts
+Does not pair well with Dark blues, Dark grays
+Maximum 3 colors with Charcoal dominant
+Text Size: Minimum 16pt for headers, 12pt for body
+Fallback: Dark Slate Gray (#2F4F4F)
+Requires light backgrounds for text use
+Narrative role definitions
+Emotional Tone & Function: Conveys executive-level authority and premium positioning without being imposing
+Ideal Usage Context: C-suite presentations, premium service materials, formal documents, and signature branding
+Pairing Score Matrix:
+8. OFF WHITE
+Emotional Function: Clarity, openness, fresh perspective, breathing space
+Off White (#FAF9F6) Tier: 1
+USE 1: FULL BACKGROUND
+Use 2: Primary Background, Text on Dark, Clean Sections, Breathing Space * Usage Guidelines: Minimum 40% of design, primary canvas color
+Color Relationships & Combinations
+Approved pairs: All colors except light yellows
+Approved triads: Works in any triad as the light element
+Forbidden combinations: Off White-Light Yellow (invisible), Off White-Cream (redundant)
+ADA Contrast: ✅ (Provides AAA with all dark colors)
+🎯 Frictions It Calms: • Visual fatigue • Information density • Cognitive overload
+❌ Fears It Avoids: • Cluttered appearance • Overwhelming complexity • Inaccessibility
+Platform / Score: (Gamma 10/10, PowerPoint 10/10, PDF 10/10, Canva 10/10, Mobile 10/10) Regional: Universal
+Transition sequences: Dark → Off White for relief and clarity
+Approved Zones: Universal application
+Quick reference do's and don'ts
+Does not pair well with Very light colors
+No maximum when used as base
+Text Size: Any size with dark text
+Fallback: Pure White (#FFFFFF)
+No minimum white space needed (is the white space)
+Narrative role definitions
+Emotional Tone & Function: Creates mental space for decision-making and reduces cognitive load
+Ideal Usage Context: Primary canvas for all materials, essential for readability and professional appearance
+Pairing Score Matrix:
+📊 STRUCTURAL/DATA COLORS
+9. ETF YELLOW
+Emotional Function: Data highlight, performance indicator, attention to metrics
+ETF Yellow (#FFEF00) Tier: 2
+USE 1: CHART/DATA ACCENTS
+Use 2: Performance Highlights, Data Points, Chart Elements, Metric Callouts * Usage Guidelines: Maximum 8% in data contexts only
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Steel Gray
+Approved triads: ETF Yellow-Navy-Steel Gray
+Forbidden combinations: ETF Yellow-Gold (confusion), ETF Yellow-Light backgrounds
+ADA Contrast: ⚠️ (Requires dark backgrounds)
+🎯 Frictions It Calms: • Data interpretation difficulty • Performance uncertainty • Metric confusion
+❌ Fears It Avoids: • Missing key data • Misreading charts • Performance opacity
+Platform / Score: (Gamma 7/10, PowerPoint 8/10, PDF 6/10, Canva 7/10, Mobile 5/10) Regional: Universal
+Transition sequences: Data context → ETF Yellow highlight
+Approved Zones: Charts, graphs, performance dashboards
+Quick reference do's and don'ts
+Does not pair well with Gold, Light colors
+Maximum 3 data colors per chart
+Text Size: Not for text use
+Fallback: Amber (#FFBF00)
+Only in data visualization contexts
+Narrative role definitions
+Emotional Tone & Function: Draws attention to key performance metrics without overwhelming the data story
+Ideal Usage Context: ETF performance charts, yield indicators, and highlighting outperformance metrics
+Pairing Score Matrix:
+10. AMBER
+Emotional Function: Caution, consideration, moderate risk, attention
+Amber (#FFBF00) Tier: 3
+USE 1: CHART/DATA ACCENTS
+Use 2: Warning States, Moderate Risk Indicators, Consideration Flags * Usage Guidelines: Maximum 5% of design, purposeful placement
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Steel Gray
+Approved triads: Amber-Navy-Off White
+Forbidden combinations: Amber-Gold, Amber-Yellow
+ADA Contrast: ⚠️ (AA with Navy, needs dark backgrounds)
+🎯 Frictions It Calms: • Risk blindness • Overconfidence • Insufficient caution
+❌ Fears It Avoids: • Panic responses • Paralysis • Extreme risk aversion
+Platform / Score: (Gamma 6/10, PowerPoint 7/10, PDF 8/10, Canva 6/10, Mobile 5/10) Regional: Universal
+Transition sequences: Green → Amber → Red for risk scales
+Approved Zones: Risk indicators, caution messages, consideration flags
+Quick reference do's and don'ts
+Does not pair well with Yellows, Golds
+Maximum 2 warning colors per view
+Text Size: Not recommended for text
+Fallback: Dark Goldenrod (#B8860B)
+Requires context explanation
+Narrative role definitions
+Emotional Tone & Function: Signals need for careful consideration without triggering alarm
+Ideal Usage Context: Moderate risk indicators, market volatility warnings, and consideration prompts
+Pairing Score Matrix:
+11. OXFORD BLUE
+Emotional Function: Depth, academic credibility, research, analysis
+Oxford Blue (#002147) Tier: 2
+USE 1: FULL BACKGROUND
+Use 2: Research Sections, Deep Analysis, Educational Content, White Papers * Usage Guidelines: Maximum 35% of design, academic contexts preferred
+Color Relationships & Combinations
+Approved pairs: Off White, Light Gray, Gold
+Approved triads: Oxford Blue-Gold-Off White
+Forbidden combinations: Oxford Blue-Navy (too similar)
+ADA Contrast: ✅ (AAA with light colors)
+🎯 Frictions It Calms: • Credibility concerns • Research depth questions • Academic rigor doubts
+❌ Fears It Avoids: • Superficial analysis • Lack of expertise • Unsubstantiated claims
+Platform / Score: (Gamma 8/10, PowerPoint 9/10, PDF 10/10, Canva 7/10, Mobile 6/10) Regional: Universal (Strong in Europe)
+Transition sequences: Introduction → Oxford Blue for deep dives
+Approved Zones: Research papers, analytical sections, educational materials
+Quick reference do's and don'ts
+Does not pair well with Navy, Dark blues
+Maximum 4 colors with Oxford Blue base
+Text Size: Minimum 14pt white text
+Fallback: Midnight Blue (#191970)
+Requires high contrast elements
+Narrative role definitions
+Emotional Tone & Function: Establishes research credibility and analytical depth
+Ideal Usage Context: White papers, research presentations, educational materials, and deep analysis sections
+Pairing Score Matrix:
+12. PAYNE'S GRAY
+Emotional Function: Subtlety, sophistication, understated authority
+Payne's Gray (#536878) Tier: 2
+USE 1: FULL BACKGROUND
+Use 2: Subtle Sections, Secondary Headers, Muted Panels, Supporting Content * Usage Guidelines: Maximum 25% of design, transitional use
+Color Relationships & Combinations
+Approved pairs: Off White, Teal, Light Blue
+Approved triads: Payne's Gray-Teal-Off White
+Forbidden combinations: Payne's Gray-Steel Gray (indistinct)
+ADA Contrast: ⚠️ (Varies by pairing)
+🎯 Frictions It Calms: • Visual noise • Attention competition • Design complexity
+❌ Fears It Avoids: • Overwhelming visuals • Distraction • Unprofessional appearance
+Platform / Score: (Gamma 8/10, PowerPoint 8/10, PDF 9/10, Canva 7/10, Mobile 7/10) Regional: Universal
+Transition sequences: Bright → Payne's Gray → Bright for visual rest
+Approved Zones: Supporting content, secondary information, background panels
+Quick reference do's and don'ts
+Does not pair well with Similar grays
+Maximum 4 colors with Payne's Gray
+Text Size: Minimum 14pt for contrast
+Fallback: Slate Gray (#708090)
+Works as universal transition color
+Narrative role definitions
+Emotional Tone & Function: Provides sophisticated backdrop without demanding attention
+Ideal Usage Context: Supporting information panels, secondary content areas, and visual breathing spaces
+Pairing Score Matrix:
+13. SIGNAL BLUE
+Emotional Function: Digital interaction, clickability, navigation, functionality
+Signal Blue (#005EB8) Tier: 3
+USE 1: CHART/DATA ACCENTS
+Use 2: Interactive Links, Digital CTAs, Navigation Elements, Data Visualization * Usage Guidelines: Maximum 10% of design, digital contexts only
+Color Relationships & Combinations
+Approved pairs: Off White, Light Gray, Navy
+Approved triads: Signal Blue-Off White-Steel Gray
+Forbidden combinations: Signal Blue-Cobalt Blue (confusing)
+ADA Contrast: ✅ (AAA with white)
+🎯 Frictions It Calms: • Navigation confusion • Interaction uncertainty • Digital hesitancy
+❌ Fears It Avoids: • Getting lost • Missing features • Technology intimidation
+Platform / Score: (Gamma 10/10, PowerPoint 7/10, PDF 5/10, Canva 8/10, Mobile 10/10) Regional: Universal
+Transition sequences: Static → Signal Blue for interaction
+Approved Zones: Hyperlinks, digital navigation, interactive elements
+Quick reference do's and don'ts
+Does not pair well with Other bright blues
+Maximum 5 Signal Blue elements per view
+Text Size: Minimum 14pt for links
+Fallback: Cobalt Blue (#0047AB)
+Digital platforms only
+Narrative role definitions
+Emotional Tone & Function: Signals interactivity and guides digital navigation
+Ideal Usage Context: Website links, app navigation, digital dashboards, and interactive data visualizations
+Pairing Score Matrix:
+14. SLATE BLUE
+Emotional Function: Data depth, analytical thinking, complex information
+Slate Blue (#6A5ACD) Tier: 3
+USE 1: CHART/DATA ACCENTS
+Use 2: Complex Data Sets, Multi-layered Charts, Analytical Highlights * Usage Guidelines: Maximum 8% of design, data contexts only
+Color Relationships & Combinations
+Approved pairs: Off White, Light Gray, ETF Yellow
+Approved triads: Slate Blue-ETF Yellow-Off White
+Forbidden combinations: Slate Blue-Purple tones (confusing)
+ADA Contrast: ⚠️ (AA with white, fails with light colors)
+🎯 Frictions It Calms: • Data complexity fears • Analysis paralysis • Information hierarchy confusion
+❌ Fears It Avoids: • Oversimplification • Missing insights • Shallow analysis
+Platform / Score: (Gamma 7/10, PowerPoint 6/10, PDF 7/10, Canva 6/10, Mobile 5/10) Regional: Universal (Test in conservative markets)
+Transition sequences: Simple data → Slate Blue for complexity
+Approved Zones: Advanced analytics, complex charts, data deep dives
+Quick reference do's and don'ts
+Does not pair well with Purples, Dark blues
+Maximum 3 data colors including Slate Blue
+Text Size: Not for text use
+Fallback: Steel Blue (#4682B4)
+Complex data only
+Narrative role definitions
+Emotional Tone & Function: Indicates analytical depth and sophisticated data interpretation
+Ideal Usage Context: Multi-variable charts, correlation matrices, and complex analytical presentations
+Pairing Score Matrix:
+15. APPROVAL GREEN
+Emotional Function: Success, confirmation, positive outcomes, growth
+Approval Green (#00A86B) Tier: 2
+USE 1: CHART/DATA ACCENTS
+Use 2: Success Messages, Positive Indicators, Growth Metrics, Confirmations * Usage Guidelines: Maximum 8% of design, positive contexts only
+Color Relationships & Combinations
+Approved pairs: Navy, Off White, Steel Gray
+Approved triads: Green-Navy-Off White
+Forbidden combinations: Green-Teal (message confusion), Green-Red (jarring)
+ADA Contrast: ⚠️ (AA with white, AAA with navy)
+🎯 Frictions It Calms: • Success uncertainty • Progress doubts • Achievement validation
+❌ Fears It Avoids: • Failure focus • Negative bias • Progress blindness
+Platform / Score: (Gamma 8/10, PowerPoint 8/10, PDF 7/10, Canva 8/10, Mobile 9/10) Regional: Universal
+Transition sequences: Action → Green for confirmation
+Approved Zones: Success states, confirmations, positive metrics
+Quick reference do's and don'ts
+Does not pair well with Reds, Teals
+Maximum 2 success indicators per view
+Text Size: Not primary text color
+Fallback: Forest Green (#228B22)
+Positive contexts only
+Narrative role definitions
+Emotional Tone & Function: Confirms successful actions and highlights positive outcomes
+Ideal Usage Context: Transaction confirmations, portfolio growth indicators, and success celebrations
+Pairing Score Matrix:
+16. DEEP NAVY
+Emotional Function: Maximum authority, institutional weight, foundational trust
+Deep Navy (#002244) Tier: 2
+USE 1: FULL BACKGROUND
+Use 2: Institutional Headers, Foundation Documents, Maximum Authority Contexts * Usage Guidelines: Maximum 30% of design, high-authority contexts
+Color Relationships & Combinations
+Approved pairs: Gold, Off White, Light Gray
+Approved triads: Deep Navy-Gold-Off White
+Forbidden combinations: Deep Navy-Navy (redundant), Deep Navy-Black
+ADA Contrast: ✅ (AAA with light colors)
+🎯 Frictions It Calms: • Institutional credibility • Authority questions • Trust foundation needs
+❌ Fears It Avoids: • Fly-by-night concerns • Lack of substance • Institutional weakness
+Platform / Score: (Gamma 9/10, PowerPoint 10/10, PDF 10/10, Canva 8/10, Mobile 7/10) Regional: Universal (Especially strong in institutional contexts)
+Transition sequences: Opening with Deep Navy for maximum authority
+Approved Zones: Institutional materials, foundation documents, board presentations
+Quick reference do's and don'ts
+Does not pair well with Other dark blues
+Maximum 3 colors with Deep Navy
+Text Size: Minimum 14pt white text
+Fallback: Navy (#003366)
+Institutional contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Establishes unquestionable institutional authority and permanence
+Ideal Usage Context: Board materials, institutional presentations, foundational documents
+Pairing Score Matrix:
+17. MIDNIGHT BLUE
+Emotional Function: Evening authority, after-hours sophistication, exclusive access
+Midnight Blue (#191970) Tier: 3
+USE 1: FULL BACKGROUND
+Use 2: Premium Evening Content, After-hours Materials, Exclusive Access Sections * Usage Guidelines: Maximum 25% of design, premium/exclusive contexts
+Color Relationships & Combinations
+Approved pairs: Gold, Silver, Off White
+Approved triads: Midnight Blue-Gold-Off White
+Forbidden combinations: Midnight Blue-Navy (indistinct)
+ADA Contrast: ✅ (AAA with light colors)
+🎯 Frictions It Calms: • Exclusivity doubts • Premium access questions • After-hours availability
+❌ Fears It Avoids: • Common treatment • Standard service • Limited access
+Platform / Score: (Gamma 8/10, PowerPoint 7/10, PDF 8/10, Canva 7/10, Mobile 6/10) Regional: Universal (Strong in premium markets)
+Transition sequences: Day content → Midnight Blue for evening/exclusive
+Approved Zones: VIP materials, after-hours content, premium services
+Quick reference do's and don'ts
+Does not pair well with Dark blues, Dark grays
+Maximum 3 colors with Midnight Blue
+Text Size: Minimum 14pt light text
+Fallback: Oxford Blue (#002147)
+Premium contexts only
+Narrative role definitions
+Emotional Tone & Function: Conveys exclusivity and premium after-hours service availability
+Ideal Usage Context: VIP client materials, exclusive webinars, premium service tiers
+Pairing Score Matrix:
+18. CADET BLUE
+Emotional Function: Approachability, professional warmth, accessible expertise
+Cadet Blue (#5F9EA0) Tier: 3
+USE 1: FULL BACKGROUND
+Use 2: Educational Sections, Onboarding Materials, Approachable Content * Usage Guidelines: Maximum 20% of design, educational contexts
+Color Relationships & Combinations
+Approved pairs: Off White, Warm Taupe, Light Gray
+Approved triads: Cadet Blue-Off White-Warm Taupe
+Forbidden combinations: Cadet Blue-Teal (too similar)
+ADA Contrast: ⚠️ (AA with white, check dark text)
+🎯 Frictions It Calms: • Intimidation • Complexity fears • Approachability concerns
+❌ Fears It Avoids: • Cold professionalism • Inaccessibility • Overwhelming expertise
+Platform / Score: (Gamma 8/10, PowerPoint 7/10, PDF 7/10, Canva 8/10, Mobile 8/10) Regional: Universal
+Transition sequences: Complex → Cadet Blue for simplification
+Approved Zones: Onboarding, education, client-friendly materials
+Quick reference do's and don'ts
+Does not pair well with Teals, Similar blues
+Maximum 4 colors with Cadet Blue
+Text Size: Minimum 14pt for contrast
+Fallback: Steel Blue (#4682B4)
+Educational contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Makes professional content feel approachable and learnable
+Ideal Usage Context: Client education materials, onboarding sequences, simplified explanations
+Pairing Score Matrix:
+19. TEAL BLUE
+Emotional Function: Digital action, modern interaction, progressive movement
+Teal Blue (#367588) Tier: 2
+USE 1: CTA/ACTION ACCENTS
+Use 2: Secondary CTAs, Digital Actions, Modern Interactive Elements * Usage Guidelines: Maximum 10% of design, digital action contexts
+Color Relationships & Combinations
+Approved pairs: Off White, Light Gray, Navy
+Approved triads: Teal Blue-Navy-Off White
+Forbidden combinations: Teal Blue-Teal (redundant)
+ADA Contrast: ✅ (AA with white)
+🎯 Frictions It Calms: • Digital hesitation • Action uncertainty • Modern platform fears
+❌ Fears It Avoids: • Outdated appearance • Unclear actions • Digital confusion
+Platform / Score: (Gamma 9/10, PowerPoint 7/10, PDF 5/10, Canva 8/10, Mobile 10/10) Regional: Universal
+Transition sequences: Static → Teal Blue for digital action
+Approved Zones: Digital CTAs, app interfaces, modern platforms
+Quick reference do's and don'ts
+Does not pair well with Teal, Similar blues
+Maximum 3 action colors per view
+Text Size: Minimum 14pt bold for CTAs
+Fallback: Teal (#008080)
+Digital platforms preferred
+Narrative role definitions
+Emotional Tone & Function: Encourages confident digital interaction and modern engagement
+Ideal Usage Context: App interfaces, digital dashboards, modern web platforms
+Pairing Score Matrix:
+20. DARK TEAL
+Emotional Function: Decisive action, commitment, serious engagement
+Dark Teal (#006666) Tier: 3
+USE 1: CTA/ACTION ACCENTS
+Use 2: Critical CTAs, Commitment Actions, Important Decisions * Usage Guidelines: Maximum 5% of design, critical actions only
+Color Relationships & Combinations
+Approved pairs: Off White, Gold, Light Gray
+Approved triads: Dark Teal-Gold-Off White
+Forbidden combinations: Dark Teal-Teal (confusing)
+ADA Contrast: ✅ (AAA with white)
+🎯 Frictions It Calms: • Commitment hesitation • Decision uncertainty • Action paralysis
+❌ Fears It Avoids: • Casual mistakes • Accidental actions • Unclear importance
+Platform / Score: (Gamma 8/10, PowerPoint 7/10, PDF 6/10, Canva 7/10, Mobile 9/10) Regional: Universal
+Transition sequences: Consideration → Dark Teal for commitment
+Approved Zones: Final CTAs, commitment actions, critical decisions
+Quick reference do's and don'ts
+Does not pair well with Other teals, Dark blues
+Maximum 1-2 Dark Teal elements
+Text Size: Minimum 16pt bold
+Fallback: Teal (#008080)
+Critical actions only
+Narrative role definitions
+Emotional Tone & Function: Signals serious commitment points and critical decision moments
+Ideal Usage Context: Final investment confirmations, account commitments, critical action buttons
+Pairing Score Matrix:
+21. LIGHT MUSTARD
+Emotional Function: Warmth, optimism, approachable value, friendly premium
+Light Mustard (#FFDB58) Tier: 3
+USE 1: ACCENT BACKGROUND
+Use 2: Warm Highlights, Friendly Accents, Optimistic Sections * Usage Guidelines: Maximum 8% of design, warmth contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Steel Gray
+Approved triads: Light Mustard-Navy-Off White
+Forbidden combinations: Light Mustard-Gold (confusing)
+ADA Contrast: ⚠️ (Needs dark backgrounds)
+🎯 Frictions It Calms: • Cold professionalism • Intimidation • Unapproachable expertise
+❌ Fears It Avoids: • Sterile experience • Emotional distance • Impersonal service
+Platform / Score: (Gamma 7/10, PowerPoint 7/10, PDF 8/10, Canva 7/10, Mobile 6/10) Regional: Universal (Test in conservative markets)
+Transition sequences: Formal → Light Mustard for warmth
+Approved Zones: Welcome sections, friendly highlights, optimistic content
+Quick reference do's and don'ts
+Does not pair well with Gold, Yellows
+Maximum 3 warm colors per design
+Text Size: Not for text use
+Fallback: Goldenrod (#DAA520)
+Warm contexts only
+Narrative role definitions
+Emotional Tone & Function: Adds human warmth to professional communications
+Ideal Usage Context: Welcome messages, client appreciation, positive highlights
+Pairing Score Matrix:
+22. SAGE GREEN
+Emotional Function: Balance, sustainability, long-term thinking, ethical approach
+Sage Green (#87A96B) Tier: 3
+USE 1: ACCENT BACKGROUND
+Use 2: ESG Content, Sustainability Sections, Long-term Planning * Usage Guidelines: Maximum 15% of design, sustainability contexts
+Color Relationships & Combinations
+Approved pairs: Off White, Navy, Warm Taupe
+Approved triads: Sage Green-Navy-Off White
+Forbidden combinations: Sage Green-Approval Green (message confusion)
+ADA Contrast: ⚠️ (AA with navy, check with white)
+🎯 Frictions It Calms: • Sustainability concerns • Long-term viability • Ethical investment doubts
+❌ Fears It Avoids: • Short-term thinking • Unsustainable practices • Ethical conflicts
+Platform / Score: (Gamma 8/10, PowerPoint 7/10, PDF 8/10, Canva 8/10, Mobile 7/10) Regional: Universal (Strong in Europe)
+Transition sequences: Traditional → Sage Green for sustainability
+Approved Zones: ESG materials, sustainability reports, long-term strategies
+Quick reference do's and don'ts
+Does not pair well with Bright greens, Teals
+Maximum 3 colors with Sage Green
+Text Size: Not primary text color
+Fallback: Olive (#808000)
+Sustainability contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Communicates sustainable and ethical investment approaches
+Ideal Usage Context: ESG portfolios, sustainable investment options, long-term planning materials
+Pairing Score Matrix:
+23. WARM GRAY
+Emotional Function: Approachable neutrality, soft professionalism, human touch
+Warm Gray (#8B8680) Tier: 3
+USE 1: STRUCTURAL ELEMENTS
+Use 2: Soft Dividers, Gentle Backgrounds, Human-centered Sections * Usage Guidelines: Maximum 20% of design, humanizing contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Warm Taupe, Off White
+Approved triads: Warm Gray-Navy-Off White
+Forbidden combinations: Warm Gray-Steel Gray (purposeless)
+ADA Contrast: ⚠️ (Varies by pairing)
+🎯 Frictions It Calms: • Cold technology • Impersonal service • Robotic interactions
+❌ Fears It Avoids: • Sterile experience • Automated feel • Human disconnection
+Platform / Score: (Gamma 7/10, PowerPoint 8/10, PDF 8/10, Canva 7/10, Mobile 7/10) Regional: Universal
+Transition sequences: Technical → Warm Gray for humanization
+Approved Zones: Client communications, personal sections, human stories
+Quick reference do's and don'ts
+Does not pair well with Cool grays without purpose
+Maximum 4 colors with Warm Gray
+Text Size: Minimum 14pt for contrast
+Fallback: Taupe (#483C32)
+Human-centered contexts
+Narrative role definitions
+Emotional Tone & Function: Adds human warmth to digital and professional contexts
+Ideal Usage Context: Client testimonials, advisor introductions, personalized communications
+Pairing Score Matrix:
+💼 BEHAVIORAL & EMOTIONAL COLORS
+24. BURNT ORANGE
+Emotional Function: Bold confidence, contrarian thinking, breakthrough moments
+Burnt Orange (#CC5500) Tier: 4 (Gated)
+USE 1: ACCENT TEXT
+Use 2: Bold Statements, Breakthrough Highlights, Contrarian Insights * Usage Guidelines: Maximum 3% of design, strategic emphasis only
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Burnt Orange-Navy-Off White
+Forbidden combinations: Burnt Orange-Red (aggressive), Burnt Orange-Gold
+ADA Contrast: ⚠️ (AA with white, AAA with navy)
+🎯 Frictions It Calms: • Conventional thinking limits • Breakthrough hesitation • Bold move uncertainty
+❌ Fears It Avoids: • Recklessness • Aggression • Unprofessionalism
+Platform / Score: (Gamma 6/10, PowerPoint 5/10, PDF 6/10, Canva 6/10, Mobile 5/10) Regional: GCC-gated, Americas only
+Transition sequences: Conservative → Burnt Orange for breakthrough
+Approved Zones: Innovation highlights, breakthrough insights, bold strategies
+Quick reference do's and don'ts
+Does not pair well with Reds, Bright colors
+Maximum 2 Burnt Orange elements
+Text Size: Minimum 16pt bold only
+Fallback: Rust (#B7410E)
+Use extremely sparingly
+Narrative role definitions
+Emotional Tone & Function: Signals breakthrough thinking and bold strategic moves
+Ideal Usage Context: Innovation announcements, contrarian investment strategies, breakthrough moments
+Pairing Score Matrix:
+25. FOG PURPLE
+Emotional Function: Sophisticated innovation, creative thinking, premium uniqueness
+Fog Purple (#8B7D82) Tier: 3
+USE 1: ACCENT BACKGROUND
+Use 2: Innovation Sections, Creative Solutions, Unique Offerings * Usage Guidelines: Maximum 10% of design, innovation contexts
+Color Relationships & Combinations
+Approved pairs: Off White, Silver, Light Gray
+Approved triads: Fog Purple-Silver-Off White
+Forbidden combinations: Fog Purple-Slate Blue (confusing)
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms: • Sameness concerns • Innovation doubts • Creative limitations
+❌ Fears It Avoids: • Commodity treatment • Lack of differentiation • Stale approaches
+Platform / Score: (Gamma 7/10, PowerPoint 6/10, PDF 7/10, Canva 7/10, Mobile 6/10) Regional: Test in conservative markets
+Transition sequences: Traditional → Fog Purple for innovation
+Approved Zones: Innovation features, unique solutions, creative strategies
+Quick reference do's and don'ts
+Does not pair well with Blues, Other purples
+Maximum 3 colors with Fog Purple
+Text Size: Not for text use
+Fallback: Mauve (#E0B0FF)
+Innovation contexts only
+Narrative role definitions
+Emotional Tone & Function: Suggests sophisticated innovation and creative problem-solving
+Ideal Usage Context: Alternative investment strategies, innovative solutions, unique value propositions
+Pairing Score Matrix:
+26. CORAL RED
+Emotional Function: Energetic urgency, positive action, vibrant opportunity
+Coral Red (#FF4040) Tier: 3
+USE 1: ACCENT BACKGROUND
+Use 2: Urgent Opportunities, Time-sensitive Offers, Energy Injections * Usage Guidelines: Maximum 5% of design, high-energy contexts only
+Color Relationships & Combinations
+Approved pairs: Off White, Navy, Charcoal
+Approved triads: Coral Red-Navy-Off White
+Forbidden combinations: Coral Red-Crimson (message confusion)
+ADA Contrast: ⚠️ (AA with navy, check with white)
+🎯 Frictions It Calms: • Energy deficits • Opportunity blindness • Action hesitation
+❌ Fears It Avoids: • Panic triggers • Aggressive pressure • Negative urgency
+Platform / Score: (Gamma 7/10, PowerPoint 6/10, PDF 5/10, Canva 7/10, Mobile 8/10) Regional: Americas preferred, test elsewhere
+Transition sequences: Calm → Coral Red for energy injection
+Approved Zones: Limited-time offers, opportunity alerts, energy points
+Quick reference do's and don'ts
+Does not pair well with Other reds, Oranges
+Maximum 2 Coral Red elements
+Text Size: Not for text use
+Fallback: Salmon (#FA8072)
+Positive contexts only
+Narrative role definitions
+Emotional Tone & Function: Creates positive urgency and energetic opportunity awareness
+Ideal Usage Context: Time-sensitive opportunities, special promotions, high-energy announcements
+Pairing Score Matrix:
+27. INSTITUTIONAL ORANGE
+Emotional Function: Established innovation, trusted change, institutional evolution
+Institutional Orange (#FF6600) Tier: 4 (Gated)
+USE 1: ACCENT TEXT
+Use 2: Innovation Markers, Change Indicators, Evolution Points * Usage Guidelines: Maximum 3% of design, institutional innovation only
+Color Relationships & Combinations
+Approved pairs: Deep Navy, Charcoal, Off White
+Approved triads: Institutional Orange-Deep Navy-Off White
+Forbidden combinations: Institutional Orange-Burnt Orange
+ADA Contrast: ⚠️ (AA with navy, AAA with charcoal)
+🎯 Frictions It Calms: • Change resistance • Innovation skepticism • Evolution fears
+❌ Fears It Avoids: • Reckless change • Unproven methods • Institutional instability
+Platform / Score: (Gamma 5/10, PowerPoint 6/10, PDF 7/10, Canva 5/10, Mobile 4/10) Regional: Gated - Test all markets
+Transition sequences: Institutional → Orange for evolution
+Approved Zones: Innovation announcements, change management, evolution markers
+Quick reference do's and don'ts
+Does not pair well with Other oranges, Reds
+Maximum 1-2 elements only
+Text Size: Large headers only
+Fallback: Dark Orange (#FF8C00)
+Institutional contexts required
+Narrative role definitions
+Emotional Tone & Function: Signals institutional evolution while maintaining trust
+Ideal Usage Context: Institutional innovation programs, established firm transformations
+Pairing Score Matrix:
+28. WARM TAUPE
+Emotional Function: Comfort, stability, approachable luxury, grounded premium
+Warm Taupe (#836953) Tier: 3
+USE 1: ACCENT BACKGROUND
+Use 2: Comfort Sections, Stable Backgrounds, Approachable Premium * Usage Guidelines: Maximum 15% of design, comfort contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Off White, Gold
+Approved triads: Warm Taupe-Navy-Off White
+Forbidden combinations: Warm Taupe-Brown (muddy)
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms: • Luxury intimidation • Premium accessibility • Comfort concerns
+❌ Fears It Avoids: • Cold luxury • Inaccessible premium • Uncomfortable experience
+Platform / Score: (Gamma 7/10, PowerPoint 7/10, PDF 8/10, Canva 7/10, Mobile 6/10) Regional: Universal
+Transition sequences: Formal → Warm Taupe for comfort
+Approved Zones: Client lounges, comfort messaging, approachable premium
+Quick reference do's and don'ts
+Does not pair well with Browns, Dark oranges
+Maximum 3 colors with Warm Taupe
+Text Size: Not primary text color
+Fallback: Tan (#D2B48C)
+Comfort contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Makes premium services feel comfortable and accessible
+Ideal Usage Context: High-net-worth materials with approachable tone, family office communications
+Pairing Score Matrix:
+29. PLUM
+Emotional Function: Sophisticated wealth, refined taste, exclusive knowledge
+Plum (#8E4585) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Ultra-premium Indicators, Exclusive Content, Sophisticated Accents * Usage Guidelines: Maximum 3% of design, ultra-premium only
+Color Relationships & Combinations
+Approved pairs: Charcoal, Silver, Off White
+Approved triads: Plum-Silver-Charcoal
+Forbidden combinations: Plum-Purple tones (redundant)
+ADA Contrast: ⚠️ (Requires light backgrounds)
+🎯 Frictions It Calms: • Ultra-premium doubts • Exclusivity questions • Sophisticated service needs
+❌ Fears It Avoids: • Mass market treatment • Common service • Unsophisticated approach
+Platform / Score: (Gamma 5/10, PowerPoint 5/10, PDF 6/10, Canva 5/10, Mobile 4/10) Regional: Europe/Americas only
+Transition sequences: Premium → Plum for ultra-premium
+Approved Zones: Ultra-high-net-worth materials, exclusive events
+Quick reference do's and don'ts
+Does not pair well with Bright colors, Blues
+Maximum 1-2 Plum elements
+Text Size: Not for text
+Fallback: Deep Purple (#663399)
+Ultra-premium only
+Narrative role definitions
+Emotional Tone & Function: Signals ultra-premium exclusivity and sophisticated wealth management
+Ideal Usage Context: Private banking materials, ultra-high-net-worth communications
+Pairing Score Matrix:
+30. BRICK RED
+Emotional Function: Foundational strength, heritage, established power
+Brick Red (#B22222) Tier: 3
+USE 1: TEXT/LINE ACCENTS
+Use 2: Heritage Markers, Established Strength, Foundation Elements * Usage Guidelines: Maximum 5% of design, heritage contexts
+Color Relationships & Combinations
+Approved pairs: Off White, Charcoal, Warm Taupe
+Approved triads: Brick Red-Charcoal-Off White
+Forbidden combinations: Brick Red-Crimson (redundant)
+ADA Contrast: ✅ (AAA with white)
+🎯 Frictions It Calms: • Stability questions • Heritage doubts • Foundation concerns
+❌ Fears It Avoids: • New/untested • Weak foundations • Lack of history
+Platform / Score: (Gamma 6/10, PowerPoint 7/10, PDF 8/10, Canva 6/10, Mobile 6/10) Regional: Universal
+Transition sequences: Modern → Brick Red for heritage
+Approved Zones: Company history, heritage messaging, foundation stories
+Quick reference do's and don'ts
+Does not pair well with Other reds, Bright colors
+Maximum 2 Brick Red elements
+Text Size: Minimum 14pt bold
+Fallback: Crimson (#DC143C)
+Heritage contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Communicates established strength and institutional heritage
+Ideal Usage Context: Company heritage materials, established firm credentials, foundation messaging
+Pairing Score Matrix:
+31. ROSE GOLD
+Emotional Function: Feminine luxury, inclusive premium, modern elegance
+Rose Gold (#B76E79) Tier: 4 (Gated)
+USE 1: ACCENT ELEMENTS
+Use 2: Inclusive Premium, Modern Luxury, Elegant Highlights * Usage Guidelines: Maximum 5% of design, inclusive luxury contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Rose Gold-Navy-Off White
+Forbidden combinations: Rose Gold-Gold (confusing)
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms:
+Gender exclusion, Traditional luxury limits, Modern elegance needs
+❌ Fears It Avoids:
+Masculine-only messaging, Outdated luxury, Exclusionary premium
+Platform / Score: (Gamma 7/10, PowerPoint 6/10, PDF 7/10, Canva 7/10, Mobile 7/10) Regional: Gated - Western markets preferred
+Transition sequences: Traditional → Rose Gold for modern luxury
+Approved Zones: Inclusive premium, modern wealth management, elegant solutions
+Quick reference do's and don'ts
+Does not pair well with Gold, Yellow tones
+Maximum 2 Rose Gold elements
+Text Size: Not for text use
+Fallback: Dusty Rose (#DCAE96)
+Modern luxury contexts only
+Narrative role definitions
+Emotional Tone & Function: Modernizes luxury messaging with inclusive elegance
+Ideal Usage Context: Women's wealth initiatives, modern family offices, inclusive premium services
+Pairing Score Matrix:
+32. PERSIAN BLUE
+Emotional Function: Deep expertise, complex understanding, masterful knowledge
+Persian Blue (#1C39BB) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Expertise Indicators, Master Class Content, Deep Knowledge Markers * Usage Guidelines: Maximum 5% of design, expertise contexts only
+Color Relationships & Combinations
+Approved pairs: Off White, Gold, Light Gray
+Approved triads: Persian Blue-Gold-Off White
+Forbidden combinations: Persian Blue-Navy (too similar)
+ADA Contrast: ✅ (AAA with white)
+🎯 Frictions It Calms:
+Expertise doubts, Knowledge depth concerns, Mastery questions
+❌ Fears It Avoids:
+Surface-level service, Amateur advice, Insufficient expertise
+Platform / Score: (Gamma 6/10, PowerPoint 7/10, PDF 8/10, Canva 6/10, Mobile 5/10) Regional: Universal (Strong in academia)
+Transition sequences: Basic → Persian Blue for expertise
+Approved Zones: Expert content, master classes, deep expertise sections
+Quick reference do's and don'ts
+Does not pair well with Other deep blues
+Maximum 2 Persian Blue elements
+Text Size: Headers only
+Fallback: Royal Blue (#4169E1)
+Expertise contexts required
+Narrative role definitions
+Emotional Tone & Function: Signals deep expertise and masterful understanding
+Ideal Usage Context: Expert commentary, advanced strategies, master-level educational content
+Pairing Score Matrix:
+33. BRONZE
+Emotional Function: Third-tier achievement, solid performance, respectable results
+Bronze (#CD7F32) Tier: 3
+USE 1: ACCENT ELEMENTS
+Use 2: Bronze Tier Indicators, Solid Performance, Respectable Achievements * Usage Guidelines: Maximum 5% of design, achievement contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Off White, Charcoal
+Approved triads: Bronze-Navy-Off White
+Forbidden combinations: Bronze-Gold (hierarchy confusion)
+ADA Contrast: ⚠️ (AA with navy, check with white)
+🎯 Frictions It Calms:
+Performance anxiety
+Achievement recognition
+Tier confusion
+❌ Fears It Avoids:
+Undervaluation
+Lack of recognition
+Performance invisibility
+Platform / Score: (Gamma 6/10, PowerPoint 7/10, PDF 8/10, Canva 6/10, Mobile 5/10) Regional: Universal
+Transition sequences: Standard → Bronze for achievement
+Approved Zones: Tier indicators, achievement badges, performance metrics
+Quick reference do's and don'ts
+Does not pair well with Gold, Silver
+Maximum 1 Bronze element per view
+Text Size: Not for text
+Fallback: Copper (#B87333)
+Achievement contexts only
+Narrative role definitions
+Emotional Tone & Function: Recognizes solid achievement and respectable performance
+Ideal Usage Context: Performance tiers, achievement levels, milestone recognition
+Pairing Score Matrix:
+34. MAHOGANY
+Emotional Function: Executive tradition, boardroom authority, legacy strength
+Mahogany (#C04000) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Executive Accents, Boardroom Materials, Legacy Indicators * Usage Guidelines: Maximum 3% of design, executive contexts only
+Color Relationships & Combinations
+Approved pairs: Charcoal, Gold, Off White
+Approved triads: Mahogany-Gold-Charcoal
+Forbidden combinations: Mahogany-Red tones
+ADA Contrast: ✅ (AAA with white)
+🎯 Frictions It Calms:
+Executive credibility, Boardroom presence, Legacy validation
+❌ Fears It Avoids:
+Weak leadership, Insufficient gravitas, Lack of tradition
+Platform / Score: (Gamma 5/10, PowerPoint 6/10, PDF 8/10, Canva 5/10, Mobile 4/10) Regional: Americas/Europe preferred
+Transition sequences: Professional → Mahogany for executive
+Approved Zones: Executive suites, boardroom materials, legacy content
+Quick reference do's and don'ts
+Does not pair well with Bright colors, Reds
+Maximum 1-2 Mahogany elements
+Text Size: Large headers only
+Fallback: Maroon (#800000)
+Executive contexts required
+Narrative role definitions
+Emotional Tone & Function: Establishes executive-level authority and traditional strength
+Ideal Usage Context: C-suite presentations, boardroom materials, legacy communications
+Pairing Score Matrix:
+⚙️ NEUTRALS & UTILITY TONES
+35. SLATE GRAY
+Emotional Function: Universal neutrality, structural support, professional balance
+Slate Gray (#708090) Tier: 2
+USE 1: STRUCTURAL ELEMENTS
+Use 2: Dividers, Borders, Secondary Backgrounds, Form Elements * Usage Guidelines: Maximum 25% of design, structural use
+Color Relationships & Combinations
+Approved pairs: All colors work well
+Approved triads: Universal buffer color
+Forbidden combinations: None (universal compatibility)
+ADA Contrast: ⚠️ (Test with each pairing)
+🎯 Frictions It Calms:
+Visual clash, Color competition, Design tension
+❌ Fears It Avoids:
+Unprofessional appearance, Visual chaos, Design amateur hour
+Platform / Score: (Gamma 9/10, PowerPoint 10/10, PDF 9/10, Canva 9/10, Mobile 9/10) Regional: Universal
+Transition sequences: Any → Slate Gray → Any
+Approved Zones: Universal application
+Quick reference do's and don'ts
+Does not pair well with Nothing (pairs with everything)
+No maximum when used structurally
+Text Size: Minimum 14pt for text on Slate Gray
+Fallback: Gray (#808080)
+Universal utility color
+Narrative role definitions
+Emotional Tone & Function: Provides structural integrity without emotional weight
+Ideal Usage Context: Universal structural element for all materials
+Pairing Score Matrix:
+36. DUST GRAY
+Emotional Function: Subtle structure, quiet support, gentle division
+Dust Gray (#999999) Tier: 2
+USE 1: STRUCTURAL ELEMENTS
+Use 2: Subtle Dividers, Light Borders, Gentle Backgrounds * Usage Guidelines: Maximum 20% of design, subtle structural use
+Color Relationships & Combinations
+Approved pairs: Navy, Teal, Off White
+Approved triads: Works in most combinations
+Forbidden combinations: Dust Gray-Light Gray (indistinct)
+ADA Contrast: ⚠️ (Fails with light colors)
+🎯 Frictions It Calms:
+Hard edges, Stark divisions, Visual harshness
+❌ Fears It Avoids:
+Aggressive structure, Overwhelming borders, Heavy-handed design
+Platform / Score: (Gamma 8/10, PowerPoint 9/10, PDF 8/10, Canva 8/10, Mobile 8/10) Regional: Universal
+Transition sequences: Bold → Dust Gray → Bold
+Approved Zones: Subtle structural elements
+Quick reference do's and don'ts
+Does not pair well with Light grays
+Maximum 4 colors with Dust Gray
+Text Size: Not for text use
+Fallback: Silver (#C0C0C0)
+Subtle contexts only
+Narrative role definitions
+Emotional Tone & Function: Provides gentle structure without visual weight
+Ideal Usage Context: Subtle dividers, gentle section breaks, soft structural elements
+Pairing Score Matrix:
+37. BONE
+Emotional Function: Warm neutrality, organic softness, human comfort
+Bone (#E3DAC9) Tier: 2
+USE 1: ACCENT BACKGROUND
+Use 2: Warm Backgrounds, Comfort Sections, Human Elements * Usage Guidelines: Maximum 30% of design, warmth contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Warm Taupe
+Approved triads: Bone-Navy-Gold
+Forbidden combinations: Bone-Off White (too similar)
+ADA Contrast: ⚠️ (Needs dark text/elements)
+🎯 Frictions It Calms:
+Digital coldness, Sterile feeling, Impersonal touch
+❌ Fears It Avoids:
+Robotic interaction, Cold professionalism, Uncomfortable experience
+Platform / Score: (Gamma 8/10, PowerPoint 8/10, PDF 9/10, Canva 8/10, Mobile 7/10) Regional: Universal
+Transition sequences: Technical → Bone for warmth
+Approved Zones: Human-centered content, comfort messaging
+Quick reference do's and don'ts
+Does not pair well with Off White, Light colors
+Maximum 4 colors with Bone
+Text Size: Dark text only
+Fallback: Beige (#F5F5DC)
+Warm contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Adds organic warmth to professional communications
+Ideal Usage Context: Client testimonials, personal stories, human-centered content
+Pairing Score Matrix:
+38. SILVER
+Emotional Function: Modern premium, technological sophistication, sleek professionalism
+Silver (#C0C0C0) Tier: 2
+USE 1: ACCENT ELEMENTS
+Use 2: Modern Accents, Tech Elements, Premium Indicators * Usage Guidelines: Maximum 10% of design, modern contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Midnight Blue, Charcoal
+Approved triads: Silver-Navy-Off White
+Forbidden combinations: Silver-Gray tones (indistinct)
+ADA Contrast: ⚠️ (Poor with light colors)
+🎯 Frictions It Calms:
+Outdated appearance, Tech hesitation, Modern credibility
+❌ Fears It Avoids:
+Behind the times, Low-tech appearance, Unsophisticated tools
+Platform / Score: (Gamma 8/10, PowerPoint 7/10, PDF 7/10, Canva 7/10, Mobile 8/10) Regional: Universal
+Transition sequences: Traditional → Silver for modernization
+Approved Zones: Tech features, modern interfaces, digital elements
+Quick reference do's and don'ts
+Does not pair well with Light grays
+Maximum 3 Silver elements
+Text Size: Not for text
+Fallback: Light Gray (#D3D3D3)
+Modern contexts only
+Narrative role definitions
+Emotional Tone & Function: Signals modern sophistication and technological capability
+Ideal Usage Context: Digital platforms, tech-forward presentations, modern interfaces
+Pairing Score Matrix:
+39. LIGHT GRAY
+Emotional Function: Clean structure, minimal presence, quiet professionalism
+Light Gray (#D3D3D3) Tier: 2
+USE 1: STRUCTURAL ELEMENTS
+Use 2: Light Backgrounds, Form Fields, Subtle Divisions * Usage Guidelines: Maximum 35% of design, background use
+Color Relationships & Combinations
+Approved pairs: Navy, Teal, Charcoal
+Approved triads: Universal light neutral
+Forbidden combinations: Light Gray-Off White (insufficient contrast)
+ADA Contrast: ❌ (Fails with light colors)
+🎯 Frictions It Calms:
+Visual weight, Heavy design, Overwhelming structure
+❌ Fears It Avoids:
+Dark/heavy feeling, Oppressive design, Claustrophobic layouts
+Platform / Score: (Gamma 9/10, PowerPoint 9/10, PDF 8/10, Canva 9/10, Mobile 9/10) Regional: Universal
+Transition sequences: Dark → Light Gray for relief
+Approved Zones: Universal light structural use
+Quick reference do's and don'ts
+Does not pair well with Light colors
+No maximum as background
+Text Size: Dark text only
+Fallback: Gainsboro (#DCDCDC)
+Light structural use
+Narrative role definitions
+Emotional Tone & Function: Provides clean, unobtrusive structure
+Ideal Usage Context: Form backgrounds, data tables, light structural elements
+Pairing Score Matrix:
+40. SOFT GRAY
+Emotional Function: Gentle neutrality, approachable structure, friendly professionalism
+Soft Gray (#ADADAD) Tier: 3
+USE 1: TEXT/LINE ACCENTS
+Use 2: Secondary Text, Gentle Borders, Soft Structural Elements * Usage Guidelines: Maximum 15% of design, gentle structure
+Color Relationships & Combinations
+Approved pairs: Navy, Off White, Warm colors
+Approved triads: Works as gentle neutral
+Forbidden combinations: Soft Gray-Similar grays
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms:
+Harsh contrasts, Aggressive structure, Visual tension
+❌ Fears It Avoids:
+Intimidating design, Harsh boundaries, Unfriendly interface
+Platform / Score: (Gamma 7/10, PowerPoint 8/10, PDF 7/10, Canva 7/10, Mobile 8/10) Regional: Universal
+Transition sequences: Strong → Soft Gray → Strong
+Approved Zones: Secondary text, gentle structure
+Quick reference do's and don'ts
+Does not pair well with Other mid-grays
+Maximum 3 structural grays per design
+Text Size: Minimum 14pt
+Fallback: Dark Gray (#A9A9A9)
+Secondary use only
+Narrative role definitions
+Emotional Tone & Function: Softens structural elements while maintaining professionalism
+Ideal Usage Context: Secondary information, gentle dividers, approachable structure
+Pairing Score Matrix:
+🔧 EXTENDED & ACCENT COLORS
+41. FRENCH BLUE
+Emotional Function: Sophisticated European, refined taste, cultural depth
+French Blue (#0072BB) Tier: 4 (Gated)
+USE 1: TEXT/LINE ACCENTS
+Use 2: European Content, Sophisticated Accents, Cultural References * Usage Guidelines: Maximum 5% of design, sophisticated contexts
+Color Relationships & Combinations
+Approved pairs: Off White, Gold, Charcoal
+Approved triads: French Blue-Gold-Off White
+Forbidden combinations: French Blue-Cobalt Blue
+ADA Contrast: ✅ (AAA with white)
+🎯 Frictions It Calms:
+Provincial concerns, Sophistication doubts, Cultural credibility
+❌ Fears It Avoids:
+Unsophisticated approach, Provincial limitations, Cultural insensitivity
+Platform / Score: (Gamma 7/10, PowerPoint 6/10, PDF 8/10, Canva 6/10, Mobile 5/10) Regional: Europe-gated
+Transition sequences: Standard → French Blue for sophistication
+Approved Zones: European markets, sophisticated content, cultural materials
+Quick reference do's and don'ts
+Does not pair well with American flag colors
+Maximum 2 French Blue elements
+Text Size: Minimum 14pt
+Fallback: Cobalt Blue (#0047AB)
+European contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Adds European sophistication and cultural refinement
+Ideal Usage Context: European market materials, sophisticated investment options, cultural initiatives
+Pairing Score Matrix:
+42. ROYAL BLUE
+Emotional Function: Regal authority, highest tier, sovereign strength
+Royal Blue (#4169E1) Tier: 3
+USE 1: TEXT/LINE ACCENTS
+Use 2: Premium Headers, Authority Markers, Top-tier Indicators * Usage Guidelines: Maximum 5% of design, authority contexts
+Color Relationships & Combinations
+Approved pairs: Gold, Off White, Silver
+Approved triads: Royal Blue-Gold-Off White
+Forbidden combinations: Royal Blue-Navy (hierarchy confusion)
+ADA Contrast: ✅ (AA with white)
+🎯 Frictions It Calms:
+Authority questions, Premium tier doubts, Leadership concerns
+❌ Fears It Avoids:
+Common treatment, Low-tier service, Weak positioning
+Platform / Score: (Gamma 7/10, PowerPoint 8/10, PDF 9/10, Canva 7/10, Mobile 6/10) Regional: Universal
+Transition sequences: Standard → Royal Blue for premium
+Approved Zones: Premium tiers, authority content, leadership materials
+Quick reference do's and don'ts
+Does not pair well with Navy, Cobalt
+Maximum 2 Royal Blue elements
+Text Size: Headers only
+Fallback: Persian Blue (#1C39BB)
+Authority contexts only
+Narrative role definitions
+Emotional Tone & Function: Establishes highest-tier authority and premium positioning
+Ideal Usage Context: Top-tier services, premium memberships, leadership communications
+Pairing Score Matrix:
+43. STEEL ORCHID
+Emotional Function: Refined uniqueness, subtle luxury, understated elegance
+Steel Orchid (#71818C) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Refined Accents, Subtle Luxury, Elegant Details * Usage Guidelines: Maximum 5% of design, luxury details
+Color Relationships & Combinations
+Approved pairs: Off White, Rose Gold, Silver
+Approved triads: Steel Orchid-Silver-Off White
+Forbidden combinations: Steel Orchid-Gray tones
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms:
+Loud luxury concerns. Ostentation fears, Subtlety needs
+❌ Fears It Avoids:
+Flashy appearance, New money stigma, Lack of refinement
+Platform / Score: (Gamma 6/10, PowerPoint 5/10, PDF 7/10, Canva 6/10, Mobile 5/10) Regional: Europe/Asia preferred
+Transition sequences: Bold → Steel Orchid for refinement
+Approved Zones: Luxury details, refined accents, elegant touches
+Quick reference do's and don'ts
+Does not pair well with Bright colors
+Maximum 2 Steel Orchid elements
+Text Size: Not for text
+Fallback: Slate Blue (#6A5ACD)
+Luxury contexts only
+Narrative role definitions
+Emotional Tone & Function: Adds refined elegance without ostentation
+Ideal Usage Context: Private wealth materials, refined luxury services, understated premium
+Pairing Score Matrix:
+44. SKY BLUE
+Emotional Function: Optimism, openness, possibility, fresh perspective
+Sky Blue (#87CEEB) Tier: 4 (Gated)
+USE 1: INTERACTIVE ACCENTS
+Use 2: Optimistic Content, Fresh Perspectives, Open Communications * Usage Guidelines: Maximum 8% of design, optimistic contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Off White, Warm Gray
+Approved triads: Sky Blue-Navy-Off White
+Forbidden combinations: Sky Blue-Light Blue (redundant)
+ADA Contrast: ⚠️ (Poor with light colors)
+🎯 Frictions It Calms:
+Pessimism, Closed thinking, Limited perspective
+❌ Fears It Avoids:
+Doom and gloom, Negative bias, Closed opportunities
+Platform / Score: (Gamma 9/10, PowerPoint 6/10, PDF 5/10, Canva 8/10, Mobile 9/10) Regional: Americas-gated
+Transition sequences: Serious → Sky Blue for optimism
+Approved Zones: Positive outlooks, opportunity content, fresh starts
+Quick reference do's and don'ts
+Does not pair well with Light colors
+Maximum 3 Sky Blue elements
+Text Size: Not for light text
+Fallback: Light Blue (#ADD8E6)
+Optimistic contexts only
+Narrative role definitions
+Emotional Tone & Function: Brings optimism and fresh perspective to communications
+Ideal Usage Context: Market opportunity content, positive outlooks, fresh investment perspectives
+Pairing Score Matrix:
+45. COLUMBIA BLUE
+Emotional Function: Trust building, approachable expertise, educational clarity
+Columbia Blue (#9BDDFF) Tier: 3
+USE 1: INTERACTIVE ACCENTS
+Use 2: Educational Content, Trust Building, Approachable Information * Usage Guidelines: Maximum 10% of design, educational contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Columbia Blue-Navy-Off White
+Forbidden combinations: Columbia Blue-Sky Blue
+ADA Contrast: ❌ (Fails with most colors)
+🎯 Frictions It Calms:
+Learning anxiety, Information overwhelm, Trust hesitation
+❌ Fears It Avoids:
+Complexity paralysis, Information density, Unapproachable expertise
+Platform / Score: (Gamma 8/10, PowerPoint 6/10, PDF 5/10, Canva 7/10, Mobile 8/10) Regional: Universal
+Transition sequences: Complex → Columbia Blue for clarity
+Approved Zones: Educational materials, onboarding, trust-building content
+Quick reference do's and don'ts
+Does not pair well with Light blues
+Maximum 3 Columbia Blue elements
+Text Size: Not for text
+Fallback: Light Sky Blue (#87CEFA)
+Educational contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Makes complex information feel learnable and approachable
+Ideal Usage Context: Educational content, onboarding materials, trust-building communications
+Pairing Score Matrix:
+46. LIGHT SLATE BLUE
+Emotional Function: Gentle innovation, soft progress, approachable change
+Light Slate Blue (#8470FF) Tier: 3
+USE 1: INTERACTIVE ACCENTS
+Use 2: Soft Innovation, Gentle Progress Indicators, Approachable Updates * Usage Guidelines: Maximum 8% of design, gentle innovation
+Color Relationships & Combinations
+Approved pairs: Off White, Warm Gray, Navy
+Approved triads: Light Slate Blue-Navy-Off White
+Forbidden combinations: Light Slate Blue-Purple tones
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms:
+Change resistance, Innovation fears, Progress anxiety
+❌ Fears It Avoids:
+Harsh disruption, Aggressive change, Overwhelming innovation
+Platform / Score: (Gamma 8/10, PowerPoint 6/10, PDF 6/10, Canva 7/10, Mobile 8/10) Regional: Universal
+Transition sequences: Traditional → Light Slate Blue for gentle innovation
+Approved Zones: Soft updates, gentle progress, approachable innovation
+Quick reference do's and don'ts
+Does not pair well with Strong blues, Purples
+Maximum 3 Light Slate Blue elements
+Text Size: Not for text
+Fallback: Medium Slate Blue (#7B68EE)
+Gentle contexts only
+Narrative role definitions
+Emotional Tone & Function: Introduces innovation and change gently
+Ideal Usage Context: Gradual transitions, soft launches, gentle innovation announcements
+Pairing Score Matrix:
+47. MODAL FILL GRAY
+Emotional Function: System feedback, technical function, interface utility
+Modal Fill Gray (#F5F5F5) Tier: 2
+USE 1: STRUCTURAL ELEMENTS
+Use 2: Modal Backgrounds, System Messages, Form Fields, Technical UI * Usage Guidelines: Maximum 40% in technical contexts
+Color Relationships & Combinations
+Approved pairs: All system colors
+Approved triads: Universal technical neutral
+Forbidden combinations: Modal Fill Gray-Off White
+ADA Contrast: ❌ (Needs dark text/borders)
+🎯 Frictions It Calms:
+System confusion, Technical intimidation, Interface complexity
+❌ Fears It Avoids:
+Technical errors, System failures, User mistakes
+Platform / Score: (Gamma 10/10, PowerPoint 7/10, PDF 5/10, Canva 8/10, Mobile 10/10) Regional: Universal
+Transition sequences: Action → Modal Fill Gray for system response
+Approved Zones: System interfaces, form elements, technical feedback
+Quick reference do's and don'ts
+Does not pair well with Other light grays
+No maximum in technical contexts
+Text Size: Dark text only
+Fallback: White Smoke (#F5F5F5)
+Technical contexts only
+Narrative role definitions
+Emotional Tone & Function: Provides clear system feedback and technical clarity
+Ideal Usage Context: Digital interfaces, form backgrounds, system messages, modal windows
+Pairing Score Matrix:
+48. LIGHT STEEL GRAY
+Emotional Function: Technical precision, digital structure, system organization
+Light Steel Gray (#B0C4DE) Tier: 3
+USE 1: STRUCTURAL ELEMENTS
+Use 2: Technical Borders, System Dividers, Digital Structure * Usage Guidelines: Maximum 15% of design, technical structure
+Color Relationships & Combinations
+Approved pairs: Navy, Signal Blue, Charcoal
+Approved triads: Light Steel Gray-Navy-Off White
+Forbidden combinations: Light Steel Gray-Silver
+ADA Contrast: ⚠️ (Poor with light colors)
+🎯 Frictions It Calms:
+Technical chaos, System disorder, Digital confusion
+❌ Fears It Avoids:
+Unprofessional tech, Messy interfaces, Disorganized systems
+Platform / Score: (Gamma 8/10, PowerPoint 7/10, PDF 6/10, Canva 7/10, Mobile 9/10) Regional: Universal
+Transition sequences: Content → Light Steel Gray for structure
+Approved Zones: Technical interfaces, system boundaries, digital organization
+Quick reference do's and don'ts
+Does not pair well with Silver, Light grays
+Maximum 3 structural elements
+Text Size: Not for text
+Fallback: Steel Gray (#71797E)
+Technical contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Provides precise technical structure and digital organization
+Ideal Usage Context: System interfaces, technical documentation, digital platform structure
+Pairing Score Matrix:
+49. PERIWINKLE
+Emotional Function: Creative thinking, imaginative solutions, gentle innovation
+Periwinkle (#CCCCFF) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Creative Content, Imaginative Solutions, Innovation Highlights * Usage Guidelines: Maximum 5% of design, creative contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Periwinkle-Navy-Off White
+Forbidden combinations: Periwinkle-Blue tones
+ADA Contrast: ❌ (Poor contrast)
+🎯 Frictions It Calms:
+Creative blocks, Innovation resistance, Imagination limits
+❌ Fears It Avoids:
+Stale thinking, Rigid approaches, Creativity suppression
+Platform / Score: (Gamma 6/10, PowerPoint 5/10, PDF 5/10, Canva 6/10, Mobile 6/10) Regional: Test all markets
+Transition sequences: Analytical → Periwinkle for creativity
+Approved Zones: Creative solutions, innovation content, imaginative approaches
+Quick reference do's and don'ts
+Does not pair well with Blues, Purples
+Maximum 2 Periwinkle elements
+Text Size: Not for text
+Fallback: Lavender (#E6E6FA)
+Creative contexts only
+Narrative role definitions
+Emotional Tone & Function: Encourages creative thinking and imaginative problem-solving
+Ideal Usage Context: Innovation workshops, creative strategy sessions, imaginative solutions
+Pairing Score Matrix:
+50. DUSTY ROSE
+Emotional Function: Gentle sophistication, soft luxury, understated elegance
+Dusty Rose (#DCAE96) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Soft Luxury, Gentle Sophistication, Understated Premium * Usage Guidelines: Maximum 5% of design, soft luxury contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Warm Taupe
+Approved triads: Dusty Rose-Navy-Off White
+Forbidden combinations: Dusty Rose-Pink tones
+ADA Contrast: ⚠️ (Poor with light colors)
+🎯 Frictions It Calms:
+Harsh luxury, Aggressive premium, Intimidating sophistication
+❌ Fears It Avoids:
+Ostentatious display, Uncomfortable luxury, Exclusionary premium
+Platform / Score: (Gamma 6/10, PowerPoint 5/10, PDF 6/10, Canva 6/10, Mobile 5/10) Regional: Europe/Americas
+Transition sequences: Standard → Dusty Rose for soft luxury
+Approved Zones: Gentle premium, understated luxury, soft sophistication
+Quick reference do's and don'ts
+Does not pair well with Bright colors, Pinks
+Maximum 2 Dusty Rose elements
+Text Size: Not for text
+Fallback: Mauve (#E0B0FF)
+Soft luxury only
+Narrative role definitions
+Emotional Tone & Function: Adds gentle sophistication without intimidation
+Ideal Usage Context: Approachable luxury services, gentle premium offerings, soft sophistication
+Pairing Score Matrix:
+51. SEAFOAM
+Emotional Function: Fresh start, renewal, clean slate, new beginnings
+Seafoam (#93E9BE) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Fresh Starts, Renewal Content, New Beginning Markers * Usage Guidelines: Maximum 5% of design, renewal contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Off White, Warm Gray
+Approved triads: Seafoam-Navy-Off White
+Forbidden combinations: Seafoam-Green tones
+ADA Contrast: ❌ (Poor with most colors)
+🎯 Frictions It Calms:
+Past baggage, Fresh start anxiety, Renewal hesitation
+❌ Fears It Avoids:
+Stuck patterns, No escape, Permanent problems
+Platform / Score: (Gamma 7/10, PowerPoint 5/10, PDF 4/10, Canva 6/10, Mobile 7/10) Regional: Americas preferred
+Transition sequences: Old → Seafoam for renewal
+Approved Zones: Fresh starts, new accounts, renewal opportunities
+Quick reference do's and don'ts
+Does not pair well with Greens, Teals
+Maximum 2 Seafoam elements
+Text Size: Not for text
+Fallback: Mint (#98FF98)
+Renewal contexts only
+Narrative role definitions
+Emotional Tone & Function: Signals fresh opportunities and clean slates
+Ideal Usage Context: Account renewals, fresh start programs, new beginning initiatives
+Pairing Score Matrix:
+52. TERRACOTTA
+Emotional Function: Grounded wisdom, earthly stability, natural strength
+Terracotta (#E2725B) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Grounding Content, Stability Markers, Natural Strength Indicators * Usage Guidelines: Maximum 5% of design, grounding contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Warm Taupe, Off White
+Approved triads: Terracotta-Navy-Off White
+Forbidden combinations: Terracotta-Orange/Red tones
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms:
+Instability fears, Ungrounded feeling, Disconnection anxiety
+❌ Fears It Avoids:
+Artificial approaches, Unstable foundations, Disconnected service
+Platform / Score: (Gamma 6/10, PowerPoint 6/10, PDF 7/10, Canva 6/10, Mobile 5/10) Regional: Test all markets
+Transition sequences: Abstract → Terracotta for grounding
+Approved Zones: Stability messaging, foundational content, natural approaches
+Quick reference do's and don'ts
+Does not pair well with Oranges, Reds
+Maximum 2 Terracotta elements
+Text Size: Not for text
+Fallback: Sienna (#A0522D)
+Grounding contexts only
+Narrative role definitions
+Emotional Tone & Function: Provides grounding and natural stability
+Ideal Usage Context: Long-term stability messaging, foundational strategies, natural investment approaches
+Pairing Score Matrix:
+53. MAUVE
+Emotional Function: Refined taste, subtle sophistication, quiet luxury
+Mauve (#E0B0FF) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Refined Accents, Subtle Sophistication, Quiet Luxury Markers * Usage Guidelines: Maximum 3% of design, refined contexts
+Color Relationships & Combinations
+Approved pairs: Charcoal, Silver, Off White
+Approved triads: Mauve-Charcoal-Off White
+Forbidden combinations: Mauve-Purple/Pink tones
+ADA Contrast: ❌ (Poor contrast)
+🎯 Frictions It Calms:
+Loud luxury concerns, Taste questions, Refinement doubts
+❌ Fears It Avoids:
+Gaudy appearance, Poor taste, Unrefined approach
+Platform / Score: (Gamma 5/10, PowerPoint 4/10, PDF 5/10, Canva 5/10, Mobile 4/10) Regional: Europe preferred
+Transition sequences: Standard → Mauve for refinement
+Approved Zones: Ultra-refined content, quiet luxury, subtle sophistication
+Quick reference do's and don'ts
+Does not pair well with Bright colors
+Maximum 1 Mauve element
+Text Size: Never for text
+Fallback: Plum (#8E4585)
+Ultra-refined only
+Narrative role definitions
+Emotional Tone & Function: Whispers sophistication rather than shouting luxury
+Ideal Usage Context: Ultra-high-net-worth subtle messaging, quiet luxury services
+Pairing Score Matrix:
+54. COPPER
+Emotional Function: Tangible value, practical worth, honest achievement
+Copper (#B87333) Tier: 3
+USE 1: ACCENT ELEMENTS
+Use 2: Practical Value, Honest Worth, Tangible Achievement * Usage Guidelines: Maximum 5% of design, practical contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Copper-Navy-Off White
+Forbidden combinations: Copper-Bronze/Gold
+ADA Contrast: ⚠️ (AA with navy)
+🎯 Frictions It Calms:
+Abstract value concerns, Practical worth questions, Tangibility needs
+❌ Fears It Avoids:
+Intangible promises, Abstract concepts only, Lack of real value
+Platform / Score: (Gamma 6/10, PowerPoint 7/10, PDF 8/10, Canva 6/10, Mobile 5/10) Regional: Universal
+Transition sequences: Abstract → Copper for tangibility
+Approved Zones: Practical value, real worth indicators, tangible benefits
+Quick reference do's and don'ts
+Does not pair well with Other metals
+Maximum 2 Copper elements
+Text Size: Not for text
+Fallback: Bronze (#CD7F32)
+Practical contexts only
+Narrative role definitions
+Emotional Tone & Function: Communicates practical, tangible value
+Ideal Usage Context: Real asset investments, tangible benefits, practical value propositions
+Pairing Score Matrix:
+55. CHAMPAGNE
+Emotional Function: Celebration, achievement, success moments, milestones
+Champagne (#F7E7CE) Tier: 3
+USE 1: ACCENT ELEMENTS
+Use 2: Celebration Markers, Success Highlights, Milestone Indicators * Usage Guidelines: Maximum 5% of design, celebration contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Gold, Charcoal
+Approved triads: Champagne-Navy-Gold
+Forbidden combinations: Champagne-Yellow/Cream tones
+ADA Contrast: ❌ (Poor with most colors)
+🎯 Frictions It Calms:
+Achievement anxiety, Success recognition, Milestone acknowledgment
+❌ Fears It Avoids:
+Unrecognized success, Uncelebrated achievements, Milestone blindness
+Platform / Score: (Gamma 7/10, PowerPoint 6/10, PDF 7/10, Canva 7/10, Mobile 6/10) Regional: Universal
+Transition sequences: Achievement → Champagne for celebration
+Approved Zones: Success celebrations, milestone markers, achievement highlights
+Quick reference do's and don'ts
+Does not pair well with Light colors
+Maximum 2 Champagne elements
+Text Size: Not for text
+Fallback: Beige (#F5F5DC)
+Celebration contexts only
+Narrative role definitions
+Emotional Tone & Function: Marks celebration and acknowledges success
+Ideal Usage Context: Milestone achievements, success stories, celebration moments
+Pairing Score Matrix:
+56. SAGE BLUE
+Emotional Function: Wisdom, experience, learned expertise, seasoned judgment
+Sage Blue (#6B8CAE) Tier: 3
+USE 1: ACCENT ELEMENTS
+Use 2: Wisdom Content, Experience Markers, Expert Insights * Usage Guidelines: Maximum 8% of design, wisdom contexts
+Color Relationships & Combinations
+Approved pairs: Off White, Warm Taupe, Navy
+Approved triads: Sage Blue-Navy-Off White
+Forbidden combinations: Sage Blue-Similar blues
+ADA Contrast: ⚠️ (Check all pairings)
+🎯 Frictions It Calms:
+Inexperience concerns, Wisdom seeking, Judgment questions
+❌ Fears It Avoids:
+Amateur advice, Inexperienced guidance, Poor judgment
+Platform / Score: (Gamma 7/10, PowerPoint 7/10, PDF 8/10, Canva 6/10, Mobile 6/10) Regional: Universal
+Transition sequences: Question → Sage Blue for wisdom
+Approved Zones: Expert insights, wisdom content, experienced perspectives
+Quick reference do's and don'ts
+Does not pair well with Bright blues
+Maximum 3 Sage Blue elements
+Text Size: Headers only
+Fallback: Steel Blue (#4682B4)
+Wisdom contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Conveys seasoned wisdom and experienced judgment
+Ideal Usage Context: Expert commentary, seasoned perspectives, wisdom-based content
+Pairing Score Matrix:
+57. OLIVE
+Emotional Function: Practical wisdom, grounded decisions, earthy stability
+Olive (#808000) Tier: 3
+USE 1: ACCENT ELEMENTS
+Use 2: Practical Content, Grounded Approaches, Stable Decisions * Usage Guidelines: Maximum 5% of design, practical contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Off White, Warm Taupe
+Approved triads: Olive-Navy-Off White
+Forbidden combinations: Olive-Green tones
+ADA Contrast: ⚠️ (AA with white)
+🎯 Frictions It Calms:
+Impractical concerns, Ungrounded approaches, Stability questions
+❌ Fears It Avoids:
+Pie-in-the-sky thinking, Unstable strategies, Impractical solutions
+Platform / Score: (Gamma 6/10, PowerPoint 6/10, PDF 7/10, Canva 6/10, Mobile 5/10) Regional: Universal
+Transition sequences: Theory → Olive for practicality
+Approved Zones: Practical strategies, grounded approaches, stable solutions
+Quick reference do's and don'ts
+Does not pair well with Greens, Browns
+Maximum 2 Olive elements
+Text Size: Not recommended
+Fallback: Dark Olive Green (#556B2F)
+Practical contexts only
+Narrative role definitions
+Emotional Tone & Function: Grounds decisions in practical wisdom
+Ideal Usage Context: Practical investment strategies, grounded financial planning
+Pairing Score Matrix:
+58. LAVENDER
+Emotional Function: Calm innovation, peaceful change, gentle transformation
+Lavender (#E6E6FA) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Calm Innovation, Peaceful Transitions, Gentle Changes * Usage Guidelines: Maximum 5% of design, gentle change contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Lavender-Navy-Off White
+Forbidden combinations: Lavender-Purple/Blue tones
+ADA Contrast: ❌ (Very poor contrast)
+🎯 Frictions It Calms:
+Change anxiety, Innovation stress, Transformation fears
+❌ Fears It Avoids:
+Harsh disruption, Stressful change, Overwhelming transformation
+Platform / Score: (Gamma 6/10, PowerPoint 5/10, PDF 5/10, Canva 6/10, Mobile 5/10) Regional: Test all markets
+Transition sequences: Status quo → Lavender for gentle change
+Approved Zones: Peaceful transitions, calm innovations, gentle transformations
+Quick reference do's and don'ts
+Does not pair well with Blues, Purples
+Maximum 2 Lavender elements
+Text Size: Never for text
+Fallback: Periwinkle (#CCCCFF)
+Gentle contexts only
+Narrative role definitions
+Emotional Tone & Function: Facilitates peaceful change and calm innovation
+Ideal Usage Context: Transition announcements, gentle pivots, peaceful transformations
+Pairing Score Matrix:
+59. MINT
+Emotional Function: Refreshing clarity, clean decisions, crisp thinking
+Mint (#98FF98) Tier: 4
+USE 1: ACCENT ELEMENTS
+Use 2: Fresh Perspectives, Clear Decisions, Clean Approaches * Usage Guidelines: Maximum 5% of design, freshness contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Off White
+Approved triads: Mint-Navy-Off White
+Forbidden combinations: Mint-Green tones
+ADA Contrast: ❌ (Poor with most colors)
+🎯 Frictions It Calms:
+Mental fog, Decision cloudiness, Unclear thinking
+❌ Fears It Avoids:
+Confused decisions, Muddy thinking, Unclear paths
+Platform / Score: (Gamma 7/10, PowerPoint 5/10, PDF 4/10, Canva 6/10, Mobile 7/10) Regional: Americas preferred
+Transition sequences: Confusion → Mint for clarity
+Approved Zones: Fresh perspectives, clear decisions, clean slate offerings
+Quick reference do's and don'ts
+Does not pair well with Greens, Teals
+Maximum 2 Mint elements
+Text Size: Never for text
+Fallback: Seafoam (#93E9BE)
+Freshness contexts only
+Narrative role definitions
+Emotional Tone & Function: Brings refreshing clarity to complex decisions
+Ideal Usage Context: Fresh perspectives, clear investment paths, clean decision points
+Pairing Score Matrix:
+60. CREAM
+Emotional Function: Soft comfort, gentle luxury, warm sophistication
+Cream (#FFFDD0) Tier: 3
+USE 1: ACCENT BACKGROUND
+Use 2: Soft Backgrounds, Gentle Luxury, Warm Sophistication * Usage Guidelines: Maximum 20% of design, comfort contexts
+Color Relationships & Combinations
+Approved pairs: Navy, Charcoal, Warm Taupe
+Approved triads: Cream-Navy-Gold
+Forbidden combinations: Cream-Off White/Yellow tones
+ADA Contrast: ❌ (Needs dark text)
+🎯 Frictions It Calms:
+Harsh environments, Cold interactions, Uncomfortable experiences
+❌ Fears It Avoids:
+Sterile service, Cold professionalism, Uncomfortable luxury
+Platform / Score: (Gamma 7/10, PowerPoint 7/10, PDF 8/10, Canva 7/10, Mobile 6/10) Regional: Universal
+Transition sequences: Cold → Cream for warmth
+Approved Zones: Comfort messaging, warm luxury, gentle sophistication
+Quick reference do's and don'ts
+Does not pair well with Light colors
+Maximum 3 colors with Cream
+Text Size: Dark text only
+Fallback: Ivory (#FFFFF0)
+Comfort contexts preferred
+Narrative role definitions
+Emotional Tone & Function: Provides warm, comfortable sophistication
+Ideal Usage Context: Comfortable wealth management, warm client experiences, gentle luxury services
+Pairing Score Matrix:
+Usage Summary by Platform
+Gamma (Web/Interactive)
+Recommended: All Tier 1 colors, Steel tones, Interactive accents (Sky Blue, Columbia Blue)
+Caution: Light colors on mobile, very bright accents
+Avoid: Print-specific tones, regional-gated colors for global audiences
+PowerPoint
+Recommended: All Tier 1 & 2 colors, most utilities
+Caution: Very light backgrounds, mobile compatibility
+Avoid: Web-specific interactive tones
+PDF/Print
+Recommended: Dark core colors, high-contrast combinations
+Caution: Very light tones, screen-optimized colors
+Avoid: Interactive-specific colors, gradient-dependent tones
+Canva
+Recommended: Full spectrum available, good for design experimentation
+Caution: Brand consistency, tier compliance
+Avoid: Off-brand experiments, tier violations
+Regional Considerations
+GCC/Middle East
+Preferred: Deep blues, conservative tones, minimal bright accents
+Acceptable: Warm neutrals (Bone, Warm Taupe), structured grays
+Caution: Bright CTAs (use Teal Blue over bright Teal), promotional colors
+Avoid: Casual brights, overly playful tones
+India/South Asia
+Preferred: Formal blues, compliance grays, traditional neutrals
+Acceptable: Conservative golds (minimal), structured accents
+Caution: Cultural color meanings, bright highlights
+Avoid: Aggressive urgency colors, casual informality
+Europe
+Preferred: Full professional spectrum, analytical tones
+Acceptable: Most Tier 2 and controlled Tier 3
+Caution: Context appropriateness
+Avoid: Overly promotional bright accents in formal contexts
+Americas
+Preferred: Full spectrum usage based on context
+Acceptable: Broader Tier 3 usage in appropriate contexts
+Caution: Audience-specific adjustments
+Avoid: Regionally inappropriate formal/casual mixing
+Quick Reference: Do's and Don'ts
+✅ Always Do
+Test contrast for accessibility
+Consider platform-specific rendering
+Respect regional preferences
+Use tier structure as guide
+Maintain narrative consistency
+Pair colors thoughtfully
+❌ Never Do
+Use bright accents as full backgrounds
+Combine multiple Tier 3 colors
+Ignore regional gating guidelines
+Use utility colors as themes
+Place light text on light backgrounds
+Use Crimson for positive content
+⚠️ Use Caution With
+Tier 3 colors in formal contexts
+Light backgrounds on mobile
+Warm colors in conservative settings
+Bright CTAs in traditional cultures
+Multiple accent colors per slide
+Color combinations without testing
+Appendix:
+Cross-Color Suitability Matrix
+Pairwise Scoring — Numeric + Qualitative
+Allocator Emotional Friction | Visual Design Solution
+“Crypto = Risk” | Use cold-tone structure, governance-first layout, and quote framing.
+“I don’t understand this” | Use analogies, visual sequencing, and one idea per slide.
+“Don’t want to look stupid referring this” | Design with share-safe slides and no-pressure CTAs.
+“This looks like a startup pitch” | Use bone or fog purple background, compliance visuals, and structure-first layouts.
+“Too speculative” | De-risk through custody visuals, team bios, and conservative layout sequencing.
+“This is too complex” | Simplify with clear chart overlays, signal diagrams, and collapsible content structures.
+“This looks like a pitch deck” | Use neutral background tones (Bone/Fog Purple), avoid promo tone, show governance.
+“Is this even regulated?” | Place legal structure slides early; use red highlights only for risk/compliance content.
+Characteristic | Description
+Professional | Always platform-safe and allocator-facing
+Human, not Hype | Calm verbs, no superlatives
+Clear & Data-backed | Show, don’t sell. Let stats lead
+Direct CTA Framing | CTA verbs should match deck tone, platform, and friction level
+GCC Allocators | India Allocators
+Prefer legal structure upfront | Prefer quote, metric, or stat early
+Passive CTA language, footer only | Mid-slide CTA ok if tone is reassuring
+Avoid red-on-white or bright yellow fills | Avoid all caps, favor quote containers
+Visual spacing critical on mobile (iPad/WhatsApp view) | Text hierarchy more important than image clarity
+Structural tone preferred over metaphors | Serious formatting signals trustworthiness
+Institutional design isn’t decoration — it’s decision-making at 24px spacing.
+Layer | Role | What Colors Belong Here
+1. Background | Sets the emotional tone 
+and pacing of the slide | Off White, Bone, Modal Gray, Navy (for title or intro), 
+Gold (for narrative opener), ETF Yellow (for market slides)
+2. Overlay / Fill | Adds visual emphasis, 
+creates rhythm or visual pacing | Pale Mint, Ice Blue, Soft Alert Red, Amber, Slate Blue, Steel Purple
+3. Structural Box / Chart Fill | Highlights content blocks 
+or logic paths | Modal Gray, ETF Yellow, Teal Blue, Slate Gray, Mint, Signal Blue
+4. Text / Headline / Icon Layer | Communicates message content | Charcoal (default), White (on darks), Cobalt, Gold (quotes), 
+Crimson (risk), Dusty Plum (legacy)
+5. CTA / Action Element | Drives user behavior 
+or key signal | Teal, Sky Blue, Approval Green, Amber (timeline), 
+Burnt Orange (if scarcity is intentional)
+Color Name | HEX | Function | Emotion | Region Fit
+Navy | #003366 | Heading, CTA | Authority | Global
+Cobalt | #004C99 | Buttons, Stats | Clarity | Global
+Slate Gray | #6C7A89 | Footnotes, Text | Neutrality | Global
+Bone | #F5F5F3 | Background | Calm | GCC, U.S.
+Charcoal | #1A1A1A | Subtitle | Stability | U.S., Asia
+Color Name | HEX | Function | Emotion | Region Fit
+Modal Fill Gray | #E0E0E0 | Shape fill | Clarity | Global
+Steel | #B0B8C1 | Admin elements | Discipline | U.S.
+Ice Blue | #EAF4FB | Sidebar zone | Transparency | APAC
+ETF Yellow | #F5DE8E | Callout frames | Logic | Europe, GCC
+Color Name | HEX | Use Function | Emotion | Contrast Risk
+Fog Purple | #B8B0C8 | Story quote BG | Reassurance | Moderate
+Warm Clay | #D9A66B | Planning zone | Security, Calm | Moderate
+Pale Mint | #D8EAD2 | Referral zone | Opt-in, Soft | Slight
+Coral Red | #FF6F61 | Alert strip | Urgency | High
+Sage Green | #A6C8A4 | Succession logic | Legacy | Medium
+ | Color Swatch | HEX | Use Case | Tier Behavior | Pairing (Tone Behavior) | 
+ |  |  |  |  | White (Authority) | 
+ | Navy | #0B2E4E | Title backgrounds, quote blocks, framing slides | Institutional authority | Gold (Framing) | 
+ |  |  |  |  | Pale Mint (Soft resolve) | 
+ |  |  |  |  | Fog Purple (Calm referral) | 
+ |  |  |  |  | White (Clarity) | 
+ | Cobalt Blue | #2B50AA | Headers, performance anchors, section logic | Structure and confidence | ETF Yellow (Volatility warning) | 
+ |  |  |  |  | Slate Gray (Analyst grid) | 
+ |  |  |  |  | Modal Gray (Neutral overlay) | 
+ |  |  |  |  | White (Clarity) | 
+ | Teal | #36BBA6 | CTA buttons, checklist icons, opt-in flows | Clarity and soft action | Off White (Surface neutral) | 
+ |  |  |  |  | Gold (Positive emphasis) | 
+ |  |  |  |  | Charcoal (Actionable contrast) | 
+ |  |  |  |  | Navy (Weight) | 
+ | Gold | #F4C37D | Quotes, macro insight, timeline accents | Framing and emphasis | Charcoal (Muted strength) | 
+ |  |  |  |  | Steel Gray (Subdued overlay) | 
+ |  |  |  |  | Fog Purple (Soft grounding) | 
+ |  |  |  |  | White (Contrast) | 
+ | Steel Gray | #909FAD | Attribution, signal overlays, FAQs | Analyst-grade logic | Gold (Stat callout) | 
+ |  |  |  |  | Teal (Compliance logic) | 
+ |  |  |  |  | ETF Yellow (Risk filter) | 
+ |  |  |  |  | Off White (Canvas) | 
+ | Charcoal | #1C1C1E | Body text, axis labels, footnotes | Neutral clarity | Bone (Soft slide) | 
+ |  |  |  |  | Mint (Passive CTA) | 
+ |  |  |  |  | Fog Purple (Gentle prompt) | 
+ |  |  |  |  | Charcoal (Primary text) | 
+ | Off White | #FAFAFA | Slide backgrounds, neutral zones | Canvas and light structure | Navy (Title embed) | 
+ |  |  |  |  | Cobalt (Structure) | 
+ |  |  |  |  | Steel Gray (Overlay logic) | 
+Color Swatch | Color Swatch | HEX | Use Case | Tier Behavior | Pairing (Tone Behavior) | 
+ |  |  |  |  | Charcoal (Readability) | 
+ | ETF Yellow | #FFD89A | Timelines, watchlists, alert frames | Caution and temporality | Navy (Regulatory prompt) | 
+ | ETF Yellow | #FFD89A | Timelines, watchlists, alert frames | Caution and temporality | Cobalt (Soft urgency) | 
+ |  |  |  |  | Slate (Muted alert) | 
+ |  |  |  |  | Charcoal (Anchor text) | 
+ | Amber | #FFAD60 | Compliance alerts, blocked CTA overlays | Moderated risk flag | Steel Gray (Filtered emphasis) | 
+ | Amber | #FFAD60 | Compliance alerts, blocked CTA overlays | Moderated risk flag | Navy (Attention pull) | 
+ |  |  |  |  | White (Reverse prompt) | 
+ |  |  |  |  | White (Readability) | 
+ | Deep Custody Green | #395D4F | Legal frame, approval overlays | Permissioning and regulatory grounding | Gold (Approval) | 
+ | Deep Custody Green | #395D4F | Legal frame, approval overlays | Permissioning and regulatory grounding | Off White (Soft validation) | 
+ |  |  |  |  | Teal (Logical security) | 
+ |  |  |  |  | White (High contrast) | 
+ | Oxford Blue | #142C50 | Footnotes, section frames, analysis sidebars | Deep structure and background logic | Gold (Insight callout) | 
+ | Oxford Blue | #142C50 | Footnotes, section frames, analysis sidebars | Deep structure and background logic | Steel Gray (Side logic) | 
+ |  |  |  |  | ETF Yellow (Muted highlight) | 
+ |  |  |  |  | White (Visibility) | 
+ | Slate Gray | #525C66 | Body tables, overlays, footer banners | Calm utility and information framing | Teal (Utility logic) | 
+ | Slate Gray | #525C66 | Body tables, overlays, footer banners | Calm utility and information framing | Gold (Emphasis) | 
+ |  |  |  |  | Off White (Panel or sidebar) | 
+Color Swatch | Color Swatch | HEX | Use Case | Tier Behavior | Pairing (Tone Behavior) | 
+ |  |  |  |  | Charcoal (Action clarity) | 
+ | Pale Mint | #C1E1C1 | Passive CTA backgrounds, recovery frames | Soft progression and relief | Bone (Reinforced calm) | 
+ |  |  |  |  | Teal (Soft click intent) | 
+ |  |  |  |  | White (Neutral signal) | 
+ |  |  |  |  | Charcoal (High contrast text) | 
+ | Fog Purple | #E6E6FA | Exit paths, handoff zones, referral footers | Calm resolution and closure | Navy (Referral CTA) | 
+ |  |  |  |  | Gold (Calm optimism) | 
+ |  |  |  |  | White (Passive CTA) | 
+ |  |  |  |  | White (Safety) | 
+ | Dusty Plum | #9B6A6C | Trauma overlays, blocked callouts | Emotional intensity or caution | Steel Gray (Muted urgency) | 
+ |  |  |  |  | Gold (Reassurance) | 
+ |  |  |  |  | Teal (Stabilization) | 
+ |  |  |  |  | White (Legibility) | 
+ | Burnt Orange | #D2691E | Flash-risk events, intense watchlist warnings | Heat and alert with context | Charcoal (Urgency frame) | 
+ |  |  |  |  | Off White (Tone softener) | 
+ |  |  |  |  | Steel Gray (Neutral overlay) | 
+Gradient | Start → End | Emotional Transition | Use Case
+Navy → Bone | #003366 → #F5F5F3 | Trust → Calm | Cover, Summary, CTA Rows
+Fog Purple → Slate | #B8B0C8 → #6C7A89 | Reassurance → Authority | Testimonials, Quotes
+Cobalt → Ice Blue | #004C99 → #EAF4FB | Precision → Transparency | Metric Headers, Fund Stats
+Teal → ETF Yellow | #317773 → #F5DE8E | Innovation → Logic | Strategy Flow, Timeline Slides
+Warm Clay → Bone | #D9A66B → #F5F5F3 | Planning → Simplicity | Onboarding Slide CTA
+Color | Background | Why / Where it Works | Recommended Text | Platform / Region Notes
+◽ Off White | Allowed | Default institutional canvas; highest legibility and neutrality | Charcoal / Navy | All platforms; universal across regions.
+🟫 Bone | Allowed | Warmer neutral for intros, referral decks, family-office friendly sections | Charcoal / Navy | Great for PDF/PPT; widely acceptable in GCC/India for softer tone.
+🔵 Navy | Allowed | Authority/anchor; titles, frames, quote blocks | White / Off-white | Fully safe across platforms & regions; conservative baseline.
+🔷 Oxford Blue | Allowed | Formal cover/sections; governance gravitas | White / Off-white | Best for covers / section breaks; conservative audiences.
+Payne’s Gray | Allowed | Compliance / legal tables; “serious but calm” | White / Off-white | Great for dense content; prints well.
+Steel Gray (Steel Purple) | Allowed | Technical/attribution walk-throughs, FAQs | White / Off-white | Data-first tone; test contrast on small text.
+Slate Blue | Allowed | Analyst clarity for data-heavy sections | White / very dark | Softer precision; test small text contrast.
+Air Force Blue | Allowed | Strategy / thesis sections; OCIO/DAF context | White / very dark | Good mid-depth canvas; test contrast on overlays.
+Cadet Blue | Allowed | Macro diagrams, long data sections | White / very dark | “Trusted progress” backdrop; print & screen-safe.
+Federal Blue | Allowed | U.S. governance/policy tone; formal covers/sections | White / Off-white | Region-leaning (US/EU); a bit stiff for informal decks.
+Deep Custody Green | Allowed | Custody/process diagrams; secure infrastructure | White / Off-white | Dark, stable; works for full diagram slides.
+Warm Taupe | Allowed | Legacy/continuity slides; FO reassurance | Charcoal / Navy | Very safe in tradition-valuing cultures (e.g., GCC).
+Sage Green | Allowed | Alignment/commitment pages; “skin in the game” | Charcoal / Navy | Universally positive if purpose-tied (alignment).
+🟧 Warm Clay | Allowed | Narrative change / “how we evolved” story slides | Charcoal / Navy | Mid-tone; check ADA for small text.
+🟨 Light Mustard | Allowed | FAQs, myth-busting, gentle clarifications | Charcoal | Eye-friendly; keep copy concise.
+Color | Background | How to Use It Safely | Recommended Text | Notes / Limits
+🟨 ETF Yellow | Conditional | Accent bars/overlays; not full page (fatigue) | Charcoal / Black | Great for benchmark/y-now; avoid 100% fills.
+🟡 Gold | Conditional | Quote frames / one-off emphasis; small areas | Charcoal / White (large type) | Avoid long copy on Gold; use sparingly.
+🟧 Amber | Conditional | Timelines, sequence highlights; small backgrounds | Charcoal | One accent per slide typically enough.
+🔷 Cobalt Blue | Conditional | Headers/blocks; performance anchors | White / Off-white | Prefer structured accents vs. whole slides.
+Steel Blue | Conditional | Background strips/panels (20–30%); not “hero” | White / very dark | Keep as supporting tone, not main canvas.
+Denim | Conditional | Small module backgrounds ≤20%; data pop | White / very dark | Treat as precision accent, not theme.
+Teal Blue | Conditional | CTA/overlay panels (30–50% panel fills) | White | Use when standard Teal is too bright.
+Forest Green | Conditional | Dedicated legacy/heritage pages (≤40%) | White / Off-white | Don’t use mid-deck as generic canvas.
+🟩 Pale Mint | Conditional | Late-funnel/watchlist sections; soft CTA pages | Charcoal / Navy | Avoid early in formal pitches (too soft).
+🟪 Fog Purple | Conditional | Exit/referral slides only (soft sign-off) | Charcoal / Navy | Not mid-deck; reserve for hello/goodbye. Overrides older “no-BG” note.
+🟪 Dusty Plum | Conditional | Reflection / “what went wrong” sections | White / very dark | Follow with neutral bridge before optimism.
+🟠 Burnt Orange | Conditional | Closing urgency / final notice slides | White / very dark | Region-cautious (use sparingly in GCC/India).
+🔴 Coral Red | Conditional | Empathetic risk pages; candid drawdown context | Charcoal / White (large) | Use only for “honest risk” sections.
+🧊 Ice Blue | Conditional | Flow-steps, diagram fills; not full page | Charcoal / Navy | Very light; prints faint.
+Sky Blue | Conditional | Interactive panels / quote containers | White (large) | Informal contexts; avoid as full BG in formal decks.
+Pale Steel Blue | Conditional | Quote boxes / pacing elements | Charcoal | Keep copy short; avoid dense text.
+Blue Gray | Conditional | Infographic blocks / secondary titles | Charcoal / Navy | Secondary tone; don’t make it the “theme”.
+Columbia Blue | Conditional | Info boxes; casual/email one-pagers | Charcoal / Navy | Not typical for full slides in serious decks.
+Dijon | Conditional | Alert bars / spotlight stripes | White (large) / Black | Small, deliberate doses only.
+Terracotta | Conditional | Underperformance case study pages | Charcoal / Navy | Cluster lessons, then neutral transition.
+Color | Background | Why Not as Background | Safe Uses
+⬛ Charcoal | Never | Too heavy; readability & mood issues | Body text; headers; footers
+Off Black | Never | Overly stark / ominous for decks | Print-grade text, lines
+🟩 Teal (CTA Green) | Never | Reserved for CTAs; loses meaning as BG | Buttons, badges, opt-in chips
+🔷 Signal Blue | Never | Too intense; tactical “ping,” not theme | Secondary chart series, micro-highlights
+🟦 French Blue | Never | Promotional energy if full-page | Single line/bar highlight (external decks)
+🔵 Royal Blue | Never | Over-saturated; fails risk tone | Short stats / words; infographic accents
+Slate Gray | Never | Utility line/divider; dulls content | Rules, tables, footers; legal overlays
+▫️ Dust Gray | Never | Sub-layer/padding only; low contrast | Containers, alternating rows
+Soft Gray | Never | Microcopy only; fails body contrast | Dates, metadata, disclaimers
+Approval Green | Never | “State change” accent; not a tone | Checkmarks; success tags
+Institutional Orange | Never | Alert glyph; too “promo” at scale | Tiny deadline flags/icons
+Pale Blush | Never | Extremely low contrast at scale | Inline risk note boxes only
+Steel Orchid | Never | Analytic label accent only | Small labels; call-outs
+🟥 Crimson / Brick Red | Never | Reads as “alarm/legal”; whiplash risk | Legal bars, warning chips, lines †
+Swatch (Text) | Color Combination | Example Use | Why It Fails
+White on ETF Yellow | White on ETF Yellow | CTA or label on alert banner | ❌ Contrast ratio ≈ 2.1:1 — fails ADA
+Red on Slate Gray | Red on Slate Gray | Warning text in muted panels | ❌ Poor clarity in low light, causes emotional noise
+Charcoal on Burnt Orange | Charcoal on Burnt Orange | Urgency warning | ❌ Bleeds under projection and print
+Gold on White | Gold on White | Quote header | ❌ Nearly invisible — not screen safe
+Teal on Pale Mint | Teal on Pale Mint | Soft CTA | ❌ Blurs on whiteboards and in print
+Cobalt on ETF Yellow | Cobalt on ETF Yellow | Compliance label | ❌ Acceptable only when bold and >16pt
+Left Color | Right Color | Emotional Transition | Use Case
+Gold → | Steel Purple | Macro insight framing | Used in quote banners, transition slides
+ETF Yellow → | Slate Blue | Soft risk mitigation | Used in muted overlays and callouts
+Modal Gray → | Cobalt | Neutral → strategic | Used in footnotes, analysis panels
+Mint → | Fog Purple | Soft progression | Used in exit CTAs and referral handoffs
+Deep Custody Green → | Gold | Secure approval framing | Used in audit or compliance sections
+Text Label | Background Fill | Visual Description | ADA Ratio Estimate | ✅ / ❌
+White | #0B2E4E | Strong contrast on dark navy | 7.1:1 | ✅
+White | #909FAD | Mild gray-blue base | 4.9:1 | ✅
+White | #FFD89A | Fails on ETF Yellow | 2.1:1 | ❌
+White | #D2691E | Fails on Burnt Orange | 3.4:1 | ❌
+Charcoal | #FAFAFA | Safe on off-white | 12.5:1 | ✅
+Charcoal | #F4C37D | Passes on Gold | 8.2:1 | ✅
+Charcoal | #C1E1C1 | Passes on Mint | 6.7:1 | ✅
+Navy | #F9F6F0 | Navy on Bone background | 9.0:1 | ✅
+Red | #525C66 | Fails on Slate Gray | 3.3:1 | ❌
+Steel Gray | #F4C37D | Fails: Steel on Gold | 3.9:1 | ❌
+Text Layer | Live Preview | Primary Font | Fallback Fonts | Size Range (pt) | Use Case | Platform Compatibility
+Hero Stat | 83.2% | Calibri | Arial, Helvetica | 48–72 | Used once per slide to call out key metric | Gamma, PPT, PDF
+Slide Title | Market Structure Rotation | Calibri | Arial, Helvetica | 32–44 | Top of slide or section header | Canva, PPT, Gamma
+Framing Subtitle | Volatility vs Liquidity | Calibri Italic | Arial Italic | 24–28 | Subline under title for framing logic | Gamma, PPT
+Body Text | The strategy rebalances daily based on regime signals. | Calibri | Arial, Helvetica | 12–14 | Default logic block | All platforms
+ |  |  |  |  |  | 
+Text Layer | Live Preview | Primary Font | Fallback Fonts | Size Range (pt) | Use Case | Platform Compatibility
+Bullets | • Rebalances every 24h
+• Avoids overconcentration
+• Rotates top 10 assets | Calibri | Arial | 11–13 | Used for logic structure or checklist | All platforms
+Quote | “Conviction emerges from clean signals.” | Georgia Italic | Playfair, Times Italic | 20 | Institutional quote or midpoint visual pause | PDF, PPT | PDF, PPT
+CTA Button | Request Access → | Calibri Bold | Arial Bold | 14–16 | Action prompt, always enclosed in footer container | Gamma, Canva, PPT | Gamma, Canva, PPT
+Footnote / Source | Source: JCJ Strategy Notes, April 2025 | Calibri | Arial | 10–11 | Used for disclaimers, lower left/right slide footer | All platforms | All platforms
+Micro Label | BETA ADJUSTED | Calibri All Caps | Arial All Caps | 10 | Used in chart labels, table headers | PDF, PPT | PDF, PPT
+Inline Stat Label | +3.2% | Calibri Bold | Arial Bold | 14 | Used mid-body next to supportive sentence | Canva, PPT | Canva, PPT
+Form Tooltip / Field Label | Enter your full name | Calibri | Arial | 11–12 | Form labels, internal UI | PDF, Web, Forms | PDF, Web, Forms
+Text Color | Background Fill | ADA Ratio | ✅/❌
+White | Navy | 11.7:1 | ✅
+White | ETF Yellow | 2.1:1 | ❌
+Charcoal | Off White | 14.8:1 | ✅
+Steel | Gold | 3.4:1 | ❌
+Fog Purple | Bone | 2.8:1 | ❌
+Cobalt | Modal Gray | 5.4:1 | ✅
+Violation | Why It Fails | Recommended Fix
+ALL CAPS BODY TEXT | Hard to read, feels like yelling | Use sentence case: 
+The strategy adapts daily.
+Red text on Slate | Fails ADA, emotionally jarring | Use white or charcoal on Slate background
+Font under 11pt | Fails ADA, unreadable on mobile or print | Use minimum 11pt for all body/footnotes
+Center-aligned logic | Allocators expect left-aligned reasoning | Left-align all explanatory text
+Floating CTA | Feels weak or disconnected from content | Enclose CTA in a padded Sky Blue footer
+Italic paragraph | Too soft, lowers structure hierarchy | Use italics only for quotes or stats
+Alignment | Left
+Font | Calibri
+Size | 10 pt
+Font Color | RGB(28,28,30)
+Italic | No
+Bold | No
+All Caps | No
+Background Fill | None
+Alignment | Right
+Font | Calibri
+Size | 10 pt
+Font Color | RGB(28,28,30)
+Italic | No
+Bold | No
+All Caps | No
+Background Fill | None
+Alignment | Center
+Font | Calibri
+Size | 12 pt
+Font Color | RGB(28,28,30)
+Italic | No
+Bold | No
+All Caps | No
+Background Fill | E6E6FA
+Alignment | Left
+Font | Calibri
+Size | 9 pt
+Font Color | RGB(28,28,30)
+Italic | No
+Bold | No
+All Caps | No
+Background Fill | E9EDF2
+Alignment | Left
+Font | Calibri
+Size | 9 pt
+Font Color | RGB(255,0,0)
+Italic | No
+Bold | No
+All Caps | No
+Background Fill | FFD89A
+Alignment | Left
+Font | Calibri
+Size | 9 pt
+Font Color | RGB(28,28,30)
+Italic | No
+Bold | No
+All Caps | Yes
+Background Fill | None
+Alignment | Left
+Font | Calibri
+Size | 9 pt
+Font Color | RGB(28,28,30)
+Italic | No
+Bold | No
+All Caps | No
+Background Fill | F4C37D
+Zone | % of Slide Height | Design Use Case | Visual Layer (Color Sim)
+Title Zone | Top 20% | Used for slide titles or section labels. 
+Always appears with strong visual anchoring tone. | Navy
+Logic Block Zone | Middle 60% | Primary logic content: framing statements, bullet clusters, comparisons, and narrative blocks. | Off White
+Visual Block Zone | Split 40% | Used for chart, quote, diagram, macro stat. 
+Can be on left or right. | Modal Gray
+Quote/Framing Zone | Optional Overlay | Placed before logic to orient allocator. 
+Quote, stat, or framing sentence. | Fog Purple
+Footer / CTA Bar | Bottom 10–15% | Used for CTA buttons, footnotes, or summary sentiment. Fills entire width or aligns right. | Teal
+NAV Consulting | Northern Trust | Cohen & Co. | Loeb Smith
+BTC Strategy
+
+14% / 1.5% Mgmt | ETH Split
+
+14% / 1.5% Mgmt | Momentum A
+
+14% / 1.5% Mgmt | Momentum B
+
+14% / 1.5% Mgmt | Drawdown Hedge
+
+14% / 1.5% Mgmt | Stable Pool
+
+14% / 1.5% Mgmt
+The market doesn’t wait. Neither do we. | Daily rebalancing enforces discipline across models.
+The market doesn’t wait. Neither do we. | Request Access →
+Get full strategy access (PDF, Gamma, PPT)
+Zone | Allocator Perception
+Left (Quote) | “This fund has perspective, they’ve thought this through.”
+Right (Logic) | “They use structure to manage risk — daily rebalancing, not guesswork.”
+Bottom-Right CTA | “I can move forward softly — no hype, just access.”
++64% 2024 Net Return (Net of Fees)
+After two years of refinement, our model now captures 
+multi-cycle volatility. | Track Performance or Request Access →
+Access via PDF, Gamma, or PPT
+Friction Type | Recommended Slide Style | CTA Zone Color | Background | Font Tier
+Performance Skepticism | P1 – Metrics + Quote | ETF Yellow | Bone | Cobalt (Header)
+Risk Aversion | R2 – Risk Matrix | Slate Fill | White | Navy
+Transparency Concern | A7 – Strategy Overlay | Fog Purple | Light Gray | Charcoal
+Referral Anxiety | A4 – Quote + Warm CTA | Warm Clay | Ice Blue | Navy
+“Too Complex” Block | A1 – Visual Stack + CTA | Cobalt | Bone | Cobalt (CTA)
+Time-Sensitive | S1 – Timeline CTA | Coral Accent | White | Black (Bold)
+“We don’t just trade momentum — we rebalance it daily.” | JCJ captures structural inefficiencies in crypto markets by rotating between the top 10 market cap assets using a multi-model momentum system. We dynamically rebalance capital every 24 hours based on volatility regimes, conviction scoring, and market flow.
+
+Request Access to Full Deck →
+Custodian: Coinbase Prime / Fireblocks | Segregated Fireblocks Vault per Feeder (Cold Storage)
+Fund Admin / Legal | NAV Consulting (Admin), Loeb Smith (Legal), Cohen & Co. (Audit)
+Withdrawal Protocol | Dual-signature approval, 72-hour withdrawal delay, bank wires via Northern Trust
+BTC 2023 Drawdown:
+-77% peak to trough | JCJ 2023 Drawdown:
+-22% (Captured 28% of BTC loss)
+JCJ is built for structural risk adaptation, not passive exposure. Our multi-model system reduces downside through volatility gating, conviction scoring, and daily rebalancing. | JCJ is built for structural risk adaptation, not passive exposure. Our multi-model system reduces downside through volatility gating, conviction scoring, and daily rebalancing.
+BTC Return 2023: +46% | JCJ Return 2023: +64% (Net of Fees)
+BTC Volatility: 72% | JCJ Volatility: 48%
+BTC Max Drawdown: -77% | JCJ Max Drawdown: -22%
+“This deck might be useful for your client or partner.” | Share this deck via email or WhatsApp with your trusted advisor.
+Not ready to commit?
+Add JCJ to your watchlist and receive monthly LP updates.
+Platform | Design Rule | CTA Behavior | Export Flags
+PDF | Fixed layout. 
+
+Fonts must be embedded. 
+
+No animation or interaction. | Footer preferred. 
+
+Inline CTA okay. 
+
+Avoid hover states. | Mobile readable. 
+
+ADA contrast must pass. 
+
+Static versioning of all slides.
+Gamma | Responsive, collapsible logic blocks. 
+
+Modular layout zones. | Sticky or mid-slide. 
+
+Links and collapsible CTA rows work best. | Optimized for mobile tap zones and sharing. 
+
+Used for interactive walkthroughs of slides like RS1 and A8.
+PowerPoint (PPT) | Slide master controls spacing, 
+CTA zones, and headers. 
+
+Animations allowed. | CTA rows anchored to grid. 
+
+Used on right column or full-width slides. | Ideal for internal walkthroughs and committee review. 
+
+Master slide strategy used for S1 and R9.
+Canva | Fonts must be web-safe. 
+
+Browser scaling may shift object spacing. | Use framed text blocks or simple CTA text. 
+
+Avoid embedded links in exports. | Use Canva's bleed margin tool. 
+
+Works best for 1-pagers or quote/CTA slides (e.g., RS1) with visual framing.
+CTA Type | Tone Color (HEX) | Placement Logic | Use Case | Emotional Risk
+Track | Sky Blue (#72C5E1) | Footer (A8) | Passive observer mode | None
+Ask | Teal (#36BBA6) | Mid-slide, logic block | Request structure or deck | Low
+Commit | Approval Green (#A9D18E) | Final slide or right CTA zone | Decision point, opt-in | High
+Refer | Fog Purple (#E6E6FA) | Footer or handoff section | Send to peer or advisor | Minimal
+CTA Type | Tone | Placement (PDF) | Placement (Gamma) | Button Color
+Track (Soft) | Calm, opt-in | Bottom-left | Sidebar | Slate
+Ask (Direct) | Assertive | Bottom-right | End of section | Cobalt / Navy
+Commit (Timed) | Urgent-optimistic | Mid-slide | CTA card (Gamma) | ETF Yellow
+Refer (Social) | Warm, low pressure | Bottom CTA strip | Floating footer | Fog Purple
+Platform | CTA Placement Options | Font / Embed Behavior | Export Limitations
+Gamma | Sticky top, mid-slide, or footer. 
+
+Supports collapsible CTA rows. | Uses system fonts (e.g., Calibri, Segoe UI). 
+
+Fonts don’t embed.
+
+Use mobile-safe sizes (12–14pt). | Dynamic. 
+
+Supports collapsible and hover. 
+
+Some fonts may default if exported to static PDF.
+PDF | Footer CTA or inline row only. 
+
+No sticky or animated elements. | Fonts must be embedded (e.g., Calibri, Arial). Bold fonts render cleanest. | Fully static. Must meet print-safe contrast and ADA 4.5:1 minimum.
+PowerPoint (PPT) | Anchored right column, footer rows, or master layout zones. | All system fonts supported. Embedded fonts work for export. 
+
+Supports layering and animation. | Export to PDF loses animation. 
+
+Internal sharing retains layout if exported with fonts.
+Canva | Centered blocks or inline logic rows. 
+
+Avoid edge CTA bleed. | Must use web-safe fonts (Inter, Lato, etc.). 
+
+Avoid specialized or non-Google fonts. | Browser-scaled spacing may shift margins. 
+
+PDF export is mobile-readable but not font-locked.
+CTA Visual Misstep | Why It Fails | Fix Recommendation
+WHITE TEXT ON ETF YELLOW | Fails ADA contrast (only ~2.1:1). 
+Unreadable in print or mobile. | Black Text or charcoal font on ETF Yellow Or Sky Blue.
+ALL CAPS CTA | Appears aggressive or 'shouty'. 
+Reduces allocator trust. | Use sentence case. 
+
+Apply bold to emphasize instead of uppercase.→
+Red CTA text | Red implies error, warning, or danger 
+— misaligned with CTA intent. | Use teal, green, or Sky Blue for positive CTA prompts.
+Unframed CTA | CTA is lost in logic text or 
+not visually distinguishable. | Framed CTA Block →
+CTA on Risk Slide | Allocators associate risk with caution — adding CTA here creates emotional conflict. | Move CTA to next slide or section summary. 
+
+Reframe as structural or optional.
+Platform | CTA Zones Allowed | Font Rules | Interaction Limits | Export Limitations
+Gamma | Sticky header + footer + mid-slide | System fonts only (Calibri, Segoe UI). No embedding. | Supports collapsibles. Hover effects usable. | No font embed. 
+Mobile-safe max width: 720px.
+PDF | Footer only | Fonts must embed (e.g., Calibri, Arial). | Static only. No collapsibles or hover. | No motion. 
+Avoid white on ETF Yellow. 
+Print-safe only.
+PowerPoint | Footer row or right-aligned zone | Calibri preferred. Arial fallback acceptable. | Animations and transitions supported. | Fonts embed. 
+Export to PDF removes motion.
+Canva | Inline center block or bottom card | Inter, Lato, or brand kit substitutions only. | No interactivity. Scales by browser viewport. | Text may shift on export. 
+Avoid extended spacing.
+Platform | CTA Position | CTA Tone Limit | Design Notes
+Gamma | Sticky Top, Footer, 
+or Collapsible Mid-slide | Sky Blue, Teal only | Best for interactive pitch decks. 
+Use collapsible logic block above CTA.
+PDF | Footer only | Bone, Fog Purple, Teal | Avoid CTA after quote or risk slide. 
+Place in visually distinct footer row.
+Canva | Inline center 
+or bottom card row | Sky Blue only | Use sentence-case CTA text in button blocks. 
+Avoid embed links.
+PowerPoint | Right-aligned grid row 
+or anchored footer | Sky Blue, Approval Green | Best with animation or Master Slide anchors.
+Final CTA zone preferred.
+Platform | Font Embed Rule | Font Fallback | Safe Size Zone | Contrast Caution
+Gamma | Font embed fails 
+(use system-safe fonts only) | Segoe UI, Calibri | 12pt – 14pt recommended | Avoid yellow on white; 
+Sky Blue on Fog Purple passes if bold
+PDF | Embed required for accurate export | None (must embed Calibri, Arial) | 12pt minimum for readability | ETF Yellow with white = ❌; 
+Black text preferred on color blocks
+Canva | N/A – Browser-rendered fonts only | Inter, Lato, Open Sans (via brand kit) | 14pt baseline for desktop; scales down on mobile | Avoid text over Slate without bold or white fill box
+PowerPoint | Embed works in export (optional) | Arial if Calibri unavailable | 12–18pt supported in Master Slides | Motion CTA must avoid red-on-dark or white-on-yellow combos
+Layer Type | Font Weight | Size (px) | Max Words | Platform Safe?
+Title (Slide H1) | Bold | 48–60 | 8 | All platforms
+Section Header | SemiBold | 36 | 5–8 | Yes
+Body Text | Regular | 18–24 | 25–35 | Yes
+Bullet Label | Medium | 16 | 5–10 | Yes
+Quote Text | Italic Serif | 28–32 | 20 | Caution on mobile
+Metric Stat | Ultra Bold | 60+ | 3 max | Yes (Gamma/PDF)
+Caption/Footnote | Light | 12–14 | 12 max | No under 14pt on PDF
+Font Role | Typeface (Visual) | Size Range | Slide Use Example
+Hero Stat | Calibri Light / Bold | 60pt | S1 – Strategy Slide
+CTA | Calibri Bold | 12pt | A8 – Watchlist CTA
+Section Header | Georgia Bold | 20pt | Slide Intro
+Body Text | Calibri | 12pt | Logic Block
+Bullet / Sub-Bullet | Calibri Light | 11pt | Nested Bullets – R9
+Quote | Georgia Italic | 20pt | Quote Slide
+Footnote | Calibri Light | 9pt | Custody Footnote
+Category | Specification
+Style | Outline or Duotone (no fills unless in accent tones)
+Color Options | White fill + Navy stroke —or— Cobalt fill + Slate stroke
+Opacity | 100% (never use faded icons unless watermarking)
+Visual Complexity | No more than 2 layers per icon (keep simple and geometric)
+Animation | ❌ No animated icons — static only
+Emoji / Clipart | ❌ Never allowed — breaks institutional tone
+Platform | Minimum Size | Recommended Size | Max Size | Line Weight
+Gamma | 20px | 24–32px | 40px | 1.5–2px
+PDF/PPT | 24px | 32–48px | 64px | 2px
+Canva | 28px | 36px | 60px | 1.75–2px
+Print | 36px | 48px | 64px | 2.25px (min)
+Use Case | Icon Style | Recommended Color Pairing
+Custody Access Point | Duotone vault | Navy stroke, White fill
+KYC Complete | Shield outline | Cobalt fill, Slate stroke
+Audit Trail | Document icon | Steel fill, Charcoal stroke
+Fund Admin (NAV) | Calculator | Charcoal stroke
+Referral / Advisor Share | Send icon | Fog Purple fill, White icon
+Request Access CTA | Arrow icon | Teal fill, White arrow
+Concept | Visual Metaphor | Slide Element Type
+Vault Storage | Padlock + cold vault icon | Diagram or stacked icon box
+Fireblocks Access | Network + shield | Flow chart node
+Segregated Wallets | Multiple vaults | 2–3 icon cluster
+Dual-Signature | Key + Person icons | Icon row with caption
+Withdrawal Delay | Clock + Arrow + Lock | Timeline graphic
+Bank Wires (NT) | Bank icon + Routing Line | End node in custody path
+Layer | Fill Color | Icon Color | Font Color
+Custodian Layer | Slate (#708090) | Navy / White icon | White
+Admin Layer | Steel (#909FAD) | White / Charcoal icon | Charcoal
+Withdrawal Layer | Fog Purple | Teal + White icons | Navy or Black
+Emotional Friction | Tone Response | Color (HEX) | Use Case / Slide Context
+Fear of looking uninformed | Calm / framing | F9F6F0 | Intro decks, FAQ tables, email follow-up
+Risk Aversion | Neutral cool | E9EDF2 | R9 – Risk Slides, Custody terms, PDF exports
+Referral discomfort | Peer-safe handoff | E6E6FA | RS1 – Referral Slide, LP Digest Email
+Decision Paralysis | Gentle motion prompt | 72C5E1 | A8 – Watchlist CTA, mid-slide teaser blocks
+Need for structural clarity | Rational, audit-safe | D1D1D1 | Custody Slides, Legal Footers, Governance Tables
+Slide ID | Layout Type | Primary Tone(s) | CTA Zone | Friction Solved
+S1 | 60/40 split | Modal Gray + Sky Blue | Footer | Strategy framing clarity
+C4 | Grid Block | Slate + Teal | Right Column | Custody confusion
+R9 | Full-bleed + Stat Block | Bone + Approval Green | None | Drawdown fear
+F4 | Column Comparison | ETF Yellow + Slate | Footer | Benchmark confusion
+RS1 | Centered Referral Block | Fog Purple | Footer 
+(Fog Purple CTA) | Referral discomfort
+A8 | Minimalist Passive | Sky Blue | Watchlist CTA | Fear of opt-in
+Category | Design Rule | ✓
+Typography | Minimum 12pt font across body text | ✓
+Typography | No ALL CAPS in CTA text | ✓
+Typography | Footnotes set in 9pt Calibri Light | ✓
+CTA | CTA must be framed with button-style fill | ✓
+CTA | No white-on-yellow text blocks | ✓
+CTA | Only one CTA per slide zone | ✓
+Spacing | Minimum 24px between sections | ✓
+Spacing | Only one Hero Stat per slide | ✓
+Quote | Use Georgia Italic 20pt, centered | ✓
+Quote | Never pair quote with CTA on same slide | ✓
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Cobalt Blue | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.3 ⚠️ Sometimes | 0.2 ⚠️ Sometimes
+Teal | 0.4 ⚠️ Sometimes | 0.9 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never
+Gold | 0.3 ⚠️ Sometimes | 0.9 ✅ Best | 1.0 ✅ Best | 0.7 ✅ Good | 0.8 ✅ Best | 0.5 ⚠️ Sometimes
+Off White | 0.1 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.3 ⚠️ Sometimes | 0.2 ⚠️ Sometimes
+Teal | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.9 ✅ Best | 0.5 ⚠️ Sometimes | 1.0 ✅ Best | 0.0 ❌ Never
+Gold | 0.4 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never
+Steel Gray | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.5 ⚠️ Sometimes | 0.7 ✅ Good
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.9 ✅ Best | 0.4 ⚠️ Sometimes | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never
+Gold | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+Steel Gray | 0.7 ✅ Good | 0.3 ⚠️ Sometimes | 0.9 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.9 ✅ Best | 0.3 ⚠️ Sometimes | 1.0 ✅ Best | 0.7 ✅ Good | 0.8 ✅ Best | 0.5 ⚠️ Sometimes
+Charcoal | 0.8 ✅ Best | 0.4 ⚠️ Sometimes | 0.9 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes
+Teal | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.9 ✅ Best
+Charcoal | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.8 ✅ Best
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 1.0 ✅ Best
+Steel Gray | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.7 ✅ Good
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.5 ⚠️ Sometimes | 0.7 ✅ Good
+Teal | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.9 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.0 ❌ Never
+Gold | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Gold | 0.4 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+Light Gray | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 1.0 ✅ Best | 0.1 ❌ Never | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best
+Charcoal | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+Teal | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+All Others | 0.9 ✅ Best | 0.2 ⚠️ Sometimes | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.9 ✅ Best
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.0 ❌ Never | 0.8 ✅ Best | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Steel Gray | 0.0 ❌ Never | 0.7 ✅ Good | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Signal Blue | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Charcoal | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.0 ❌ Never | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Approval Green | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Crimson | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Steel Gray | 0.0 ❌ Never | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.9 ✅ Best
+Gold | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Light Gray | 0.1 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+Navy | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+Teal | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Light Blue | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Gold | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never
+Navy | 0.7 ✅ Good | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never
+Steel Gray | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.8 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never
+ETF Yellow | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+ETF Yellow | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Light Gray | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.0 ❌ Never | 0.8 ✅ Best | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+Amber | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Steel Gray | 0.1 ❌ Never | 0.7 ✅ Good | 0.8 ✅ Best | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Gold | 0.2 ⚠️ Sometimes | 0.9 ✅ Best | 1.0 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.4 ⚠️ Sometimes
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 1.0 ✅ Best
+Light Gray | 0.1 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+Navy | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Gold | 0.3 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.0 ❌ Never
+Silver | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.8 ✅ Best
+Rose Gold | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.9 ✅ Best | 1.0 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+Warm Taupe | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Light Gray | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Gold | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.8 ✅ Best | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+Light Gray | 0.1 ❌ Never | 0.8 ✅ Best | 0.8 ✅ Best | 0.8 ✅ Best | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Steel Gray | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 1.0 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.0 ❌ Never
+Gold | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.5 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never
+Navy | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never
+Light Gray | 0.0 ❌ Never | 0.8 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.0 ❌ Never | 0.8 ✅ Best | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.1 ❌ Never | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Steel Gray | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.1 ❌ Never | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Warm Taupe | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Steel Gray | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.3 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.5 ⚠️ Sometimes
+Off White | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Warm Taupe | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Gold | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.1 ❌ Never | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Steel Gray | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Silver | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Light Gray | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Navy | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.1 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.0 ❌ Never | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Charcoal | 0.1 ❌ Never | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Steel Gray | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Deep Navy | 0.0 ❌ Never | 0.8 ✅ Best | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.1 ❌ Never | 0.7 ✅ Good | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Steel Gray | 0.2 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.4 ⚠️ Sometimes
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Gold | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Sage Green | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Charcoal | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.1 ❌ Never | 0.0 ❌ Never
+Silver | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Gold | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.1 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 0.8 ✅ Best
+Charcoal | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.7 ✅ Good
+Warm Taupe | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Navy | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Midnight Blue | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+Gold | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Light Gray | 0.1 ❌ Never | 0.9 ✅ Best | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.1 ❌ Never | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Silver | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Gold | 0.9 ✅ Best | 0.1 ❌ Never | 0.2 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Charcoal | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Gold | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.7 ✅ Good | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Deep Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.2 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+All Colors | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.8 ✅ Best | 0.9 ✅ Best | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Off White | 0.8 ✅ Best | 0.1 ❌ Never | 0.6 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Teal | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.9 ✅ Best | 0.1 ❌ Never | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+Charcoal | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Warm Taupe | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Midnight Blue | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.9 ✅ Best | 0.1 ❌ Never | 0.8 ✅ Best | 0.9 ✅ Best | 0.0 ❌ Never | 0.7 ✅ Good
+Charcoal | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Teal | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.8 ✅ Best | 0.7 ✅ Good | 0.1 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Off White | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.8 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Gold | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.3 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Gold | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.9 ✅ Best | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.0 ❌ Never | 1.0 ✅ Best | 0.9 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Silver | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.0 ❌ Never | 0.9 ✅ Best | 0.8 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Rose Gold | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.1 ❌ Never | 0.0 ❌ Never
+Silver | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.8 ✅ Best | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Warm Gray | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Warm Gray | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+All Colors | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.9 ✅ Best | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Signal Blue | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Charcoal | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Off White | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Charcoal | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Warm Taupe | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never
+Off White | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Warm Gray | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Warm Taupe | 0.6 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Off White | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Charcoal | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Silver | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Off White | 0.2 ⚠️ Sometimes | 0.7 ✅ Good | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Charcoal | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Off White | 0.1 ❌ Never | 0.8 ✅ Best | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Gold | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Charcoal | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Off White | 0.1 ❌ Never | 0.8 ✅ Best | 0.8 ✅ Best | 0.8 ✅ Best | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Navy | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Warm Taupe | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.2 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.3 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.0 ❌ Never | 0.3 ⚠️ Sometimes
+Off White | 0.0 ❌ Never | 0.8 ✅ Best | 0.7 ✅ Good | 0.7 ✅ Good | 0.0 ❌ Never | 0.4 ⚠️ Sometimes
+Warm Taupe | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.2 ⚠️ Sometimes
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.5 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Charcoal | 0.6 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Off White | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.6 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.2 ⚠️ Sometimes | 0.0 ❌ Never
+Charcoal | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.3 ⚠️ Sometimes | 0.1 ❌ Never | 0.0 ❌ Never
+Off White | 0.3 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.5 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.0 ❌ Never | 0.0 ❌ Never
+Paired Color | Comes Before | Comes After | Accent Pairing | Panel Suitability | CTA Use | Disclosure
+Navy | 0.8 ✅ Best | 0.1 ❌ Never | 0.7 ✅ Good | 0.8 ✅ Best | 0.0 ❌ Never | 0.6 ⚠️ Sometimes
+Charcoal | 0.7 ✅ Good | 0.2 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.5 ⚠️ Sometimes
+Warm Taupe | 0.5 ⚠️ Sometimes | 0.4 ⚠️ Sometimes | 0.6 ⚠️ Sometimes | 0.7 ✅ Good | 0.0 ❌ Never | 0.3 ⚠️ Sometimes

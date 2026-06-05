@@ -1,0 +1,1417 @@
+JCJ Investor Persona System
+Persona System Overview
+1 – Why Friction Matters
+Allocators don’t reject strategies because of missing information — they stall, decline, or ignore because of unresolved friction.
+Friction is the silent barrier in capital raising. It isn’t a single objection you can counter with data. Instead, it’s the accumulation of psychological, social, and organizational weights that keep even the best strategies from moving forward.
+Understanding this is essential:
+A flawless pitch deck won’t move someone frozen by bandwidth overload.
+The clearest alpha story won’t land with an allocator afraid of looking foolish in front of peers.
+Even when a strategy is objectively strong, friction can outweigh evidence.
+In other words:  📌 Capital flow starts with friction removal, not information delivery.
+The Three Core Truths of Friction
+Friction is emotional before it is rational.
+Allocators may say “we need more data,” but what they really feel is “I don’t feel safe moving forward yet.”
+Friction accumulates silently.
+Each unanswered doubt, each design misstep, each poorly timed ask stacks into disengagement.
+Friction decides funnel entry.
+Before performance, before custody, before fees — the allocator must feel it’s safe to even look.
+Why This Matters for Crypto
+In digital assets, frictions are amplified:
+Reputational risk (association with scams, failures, or hype cycles)
+Category fatigue (“I’ve seen this story before — it ended badly”)
+Operational skepticism (custody, regulation, tax, reporting)
+Emotional trauma (FTX, Mt. Gox, fund implosions)
+This means the allocator is not starting neutral — they are starting weighted down by skepticism. Your first job is not persuasion; it is friction removal.
+Key Takeaway
+Friction is not the absence of information.
+ It is the presence of doubt, fear, and overload.
+Until friction is resolved, no allocator moves.
+1.1 – The Psychology of Allocator Engagement
+If friction is the barrier, then allocator psychology is the terrain.
+To design an effective system, you must first understand how allocators experience investment decisions — not as abstract rational actors, but as professionals balancing emotion, cognition, and social pressure.
+The Dual Systems at Work
+Allocator engagement runs on two parallel tracks:
+Emotional Safety (Limbic System)
+Core driver: “Will this make me look foolish or unsafe?”
+Frictions: referral anxiety, reputational fear, trauma from prior losses.
+Behavior: hesitation, gatekeeping, or avoidance before even opening a deck.
+Analytical Clarity (Prefrontal Cortex)
+Core driver: “Can I logically defend this decision?”
+Frictions: custody trust gap, performance skepticism, operational complexity.
+Behavior: detailed questioning, demand for legal/ops proof, data-first review.
+📌 Truth: Emotional friction always precedes analytical engagement. Until the allocator feels safe, logic doesn’t matter.
+Sources of Friction
+Allocator resistance doesn’t come from one place — it emerges from overlapping pressures:
+Psychological Pressures
+ Fear of loss, embarrassment, regret, or career risk.
+Social Pressures
+ Worry about how colleagues, committees, or family members will judge the allocation.
+Organizational Pressures
+ Bandwidth scarcity, rigid mandates, compliance bottlenecks.
+Category Pressures
+ Industry fatigue, skepticism about crypto, distrust of narratives.
+Each allocator’s persona is defined by how these pressures stack — creating a specific friction profile that dictates how they will (or won’t) engage.
+Why This Matters for Engagement Strategy
+Sending the wrong format (e.g., a data-heavy deck to someone frozen by social optics) amplifies friction.
+Misjudging their psychological state (pushing for a call before they’re safe to forward) burns credibility.
+Assuming logic alone will carry the pitch ignores that allocators are protecting reputation first, portfolios second.
+The allocator’s first question is never “How does your strategy work?”
+It is always: “Do I feel safe engaging with this at all?”
+1.2 – Friction Categories Overview
+Friction isn’t random. Across allocators, the same patterns repeat — hesitation, delay, or disengagement typically fall into recognizable families of friction. Understanding these categories is the foundation of persona mapping.
+The Big Families of Allocator Friction
+Inertia & Overwhelm
+Allocator is simply not moving.
+Driven by bandwidth scarcity, pipeline saturation, or lack of urgency.
+Result: Decks go unopened, calls unreturned.
+Complexity & Comprehension Gaps
+Allocator feels the material will take too much effort to process.
+Driven by technical detail, jargon, or lack of simple framing.
+Result: “Send me a one-pager” → passive stall.
+Trust & Custody Concerns
+Allocator doubts capital safety, fund structure, or oversight.
+Driven by custody questions, redemption fears, regulatory ambiguity.
+Result: Demands for admin, audit, or legal proof.
+Career & Reputational Risk
+Allocator fears looking wrong or reckless.
+Driven by committee politics, past fund failures, peer optics.
+Result: “Can I defend this if it goes wrong?”
+Social & Referral Optics
+Allocator worries how they’ll look when forwarding or endorsing.
+Driven by design judgment, credibility signals, referral safety.
+Result: Decks die at the gatekeeper level.
+Timing & Macro Paralysis
+Allocator believes now isn’t the right cycle.
+Driven by volatility, macro headlines, or fear of acting too early.
+Result: Delays framed as “Let’s revisit next quarter.”
+Mandate & Structural Conflict
+Allocator can’t reconcile the vehicle with internal rules.
+Driven by platform restrictions, mandate mismatches, ERISA/tax rules.
+Result: Legal/ops barriers halt momentum.
+Trauma & Fatigue
+Allocator has been burned before.
+Driven by losses, fraud exposure, category skepticism.
+Result: Ghosting, soft declines, or unwillingness to re-engage.
+Why These Families Matter
+Every persona in this document is built from one or more of these friction families.
+By naming the category first, you avoid confusing symptoms with causes.
+CRM tagging and deck routing depend on knowing which family of friction is in play.
+Key Point: Personas are not demographics — they are friction composites.
+A CIO and an HNWI may look different on paper, but if they share the same friction family (e.g., career risk), they’ll respond to the same design and CTA logic.
+1.3 – Pre-Funnel Resistance: Inertia & Risk Aversion
+Before allocators even enter a funnel — before they forward a deck, book a call, or ask a single diligence question — most capital opportunities die in silence. The reason is not dislike of the strategy, but inertia: the pull of the status quo combined with the effort of change.
+This is the most underestimated stage of allocator psychology. Unlike later stages where objections can be addressed with facts or documents, pre-funnel frictions are pure resistance to engagement itself.
+The Nature of Pre-Funnel Inertia
+Allocators are rarely neutral. They are usually:
+Overloaded – already tracking too many deals.
+Defensive – focused inward on internal fires or restructuring.
+Complacent – portfolios look fine, so “why bother?”
+Time-poor – no mental bandwidth to evaluate new ideas.
+Avoidant – unwilling to open a new category “can of worms.”
+At this stage, the allocator’s brain is saying:
+“Even if this fund is good, I don’t have the energy, safety, or incentive to engage right now.”
+Core Pre-Funnel Frictions
+Why This Stage Kills Deals
+Decks die unopened. Materials don’t even get skimmed.
+Calls don’t happen. Not because of rejection, but lack of bandwidth.
+Momentum never starts. The allocator simply doesn’t enter the game.
+This is not a “no.” It is a “can’t engage.”
+Strategic Implication
+At pre-funnel stages, the goal is not persuasion but safe exposure. Content must be:
+Passive and skimmable (one-pagers, referral-safe summaries).
+Minimal in ask (footer CTA only, if any).
+Designed to reduce cognitive and emotional weight, not increase it.
+Key Point: At the pre-funnel stage, you are not pitching your fund.
+ You are fighting to earn the right to attention.
+1.4 – Pre-Funnel Resistance: Advisor, Family, Infrastructure, & Apathy
+Not all resistance comes directly from the allocator themselves. Much of it emerges from the ecosystem around them — advisors, spouses, family offices, operational teams, or simply category fatigue. These frictions operate before formal diligence, often stalling momentum even when the allocator is curious.
+Four Hidden Pre-Funnel Barriers
+Advisor & Intermediary Friction
+Gatekeepers won’t forward what they don’t understand or can’t defend.
+Their career risk is social: “If I pass this along and it’s wrong, it reflects on me.”
+Result: Requests for shorter, simpler, or “safe-to-share” decks — or silence.
+Family & Household Filters
+Many decisions are collective, not individual. A spouse, next-gen heir, or family board may veto an idea that the principal likes.
+Result: Emotional vetoes disguised as “we’ll think about it” or “our family doesn’t do this.”
+Infrastructure & Ops Constraints
+Even if the allocator is interested, internal teams may block advancement due to data, custodian, or compliance mismatches.
+Result: Momentum stalls at the operational level: “Our admin can’t handle this” or “we need feeds you don’t have.”
+Category Apathy & Fatigue
+Some allocators have been pitched too many times and no longer believe there’s differentiation.
+Result: Cynical disengagement — “You all look the same,” “Where’s the real alpha?”
+Why These Barriers Matter
+These frictions are indirect but decisive.
+A CIO may be open, but if an advisor won’t forward, a spouse says no, or ops teams block, the deal dies outside your line of sight.
+These barriers explain why strong first meetings often fade without feedback.
+Strategic Implication
+At this stage, your job is to design for the ecosystem, not just the allocator:
+For Advisors: Provide referral-safe decks that explain themselves.
+For Family/Spouse: Emphasize safety, legacy, and values alignment.
+For Ops Teams: Pre-emptively address admin, custody, and reporting integration.
+For Apathy: Differentiate with credibility-first framing, not hype.
+Key Point: Winning allocator engagement often means de-risking the people around them.
+1.3 Pre-Funnel Resistance: Crypto Discomfort & Skepticism
+Even before they look at your strategy, many allocators carry deep category-level resistance to crypto itself. This is not about your fund’s merits — it’s about whether the allocator believes the asset class is even worth engaging.
+This stage is critical: without addressing category discomfort, fund-specific materials won’t matter.
+The Nature of Crypto Skepticism
+Unlike traditional alternatives, crypto arrives with unique emotional baggage:
+Reputational Risk: “Will associating with this make me look reckless?”
+Contagion Trauma: Memories of collapses (FTX, Terra, Mt. Gox) shape allocator psychology (PTSD).
+Category Fatigue: Many have “seen this movie before” — too many decks, too much hype, not enough proof.
+Structural Distrust: Custody, wallets, taxation, and regulation feel opaque or unsafe.
+Cultural Distance: The industry can appear aggressive, technical, or “not for real investors.”
+Common Expressions of Crypto Friction
+Why This Stage Blocks Capital
+Allocators aren’t rejecting you — they’re rejecting the entire category.
+Treating these doubts as strategy-specific misses the real issue.
+Without a credible reframing, allocators never even begin diligence.
+Strategic Implication
+At this stage, persuasion isn’t about performance or strategy.
+It’s about category legitimacy:
+Anchor crypto alongside recognized institutional assets (ETFs, regulated custody, big-name auditors).
+Frame participation as measured and safe, not revolutionary.
+Use third-party validation (admin, audit, regulatory recognition) as credibility bridges.
+Avoid hype language — focus on governance, structure, and controls.
+Key Point: Until the allocator believes crypto is safe to even consider, your strategy cannot be considered at all.
+LP Responses: These are the most recurring
+1.4 – Investor Stance / Position
+Investors may react or respond with questions or behaviors that reveal their stance or position from receiving the pitch at various stages. Stances may be obvious or hidden to their true intentions.
+Understanding their positions reveals the true frictions and helps us reframe the conversation and pitch approach methods. 
+
+🛡️ Deflection-Based Stances
+💬 Image or Control-Based Stances
+🧊 Cognitive & Evaluative Stances
+⏳ Motivational Friction Stances
+❌ Exit & Blocker Stances
+📉 Emotional Scar or Risk-Based Stances
+🟢 Conversion-State Stances
+2 – Funnel Entry Points: Cold Referral vs Intro Call
+Once an allocator moves past pre-funnel resistance — inertia, ecosystem barriers, or category skepticism
+— the first live engagement usually happens in one of two forms: a Cold Referral or an Intro Call.
+These two entry points are not the same. They are defined by different emotions, different risks, and different requirements for trust.
+Recognizing the difference is critical, because treating a cold referral like a diligence call will break trust, and treating an intro call like a one-pager handoff will miss the chance to establish credibility.
+Core Dynamics of Each Entry Point: Cold Referral vs. Intro Call
+Cold Referral → Passive Referral → Intro Call
+What Each Stage Represents
+Cold Referral
+You’re not pitching your fund — you’re pitching the right to be looked at.
+Materials must be short, safe, and reputation-neutral.
+If it doesn’t look polished and forwardable, it dies.
+Intro Call
+You’ve cleared the gate. Now the allocator is testing legitimacy.
+They want structure, custody clarity, and risk framing.
+This is the first chance to “earn” analytical trust.
+Strategic Implications for Fundraising
+Cold Referral Stage
+Goal: Social de-risking.
+Tools: one-pagers, referral-safe PDFs, clean design with footer-only CTAs.
+Tone: polished, brief, no jargon, no pressure.
+Key Thought: “Make it safe for me to open, skim, and forward.”
+Intro Call Stage
+Goal: Credibility calibration.
+Tools: FAQ-ready decks, clear custody/ops slides, regulatory anchors.
+Tone: calm, structured, confident, transparent.
+Key Thought: “Prove you are real, competent, and institutionally prepared.”
+🔑 Why Passive Referral Matters
+It’s the silent middle step: many decks circulate without you knowing.
+If the material isn’t skimmable and “self-explanatory,” it won’t survive the handoff.
+Referral decks should be designed to work unattended — they must carry context, polish, and credibility without your voice.
+Key Point: Cold referrals remove social friction. Intro calls resolve structural friction.
+ Treating them as the same will either overwhelm the first stage or underserve the second.
+Understanding Entry-Point Questions in Modern Allocators
+Before diving into the next set of allocator personas, it’s worth addressing a subtle but powerful truth:
+Many of the questions you’ll see in these profiles may feel simple to answer — but they are not simple to the allocator.
+A question like “Is this Cayman-compliant?” or “Can this fit into my IRA?” isn’t just about legal status.
+It’s often an allocator’s way of managing fear, protecting their reputation, or stalling safely while they assess your credibility.
+Why We Don’t Dismiss Softballs
+Even when the answer is obvious to us, the question reveals:
+What the allocator fears
+Where they are in the funnel
+What tone, format, and CTA will feel safe
+Softball questions are often emotional proxies — and how we handle them determines whether we earn the right to move forward.
+Allocator Persona Friction Matrix
+The Persona Friction matrix presents a stage-based system for engaging allocators based on real behavioral patterns — not just job titles or demographics.
+Each row represents a distinct allocator state, defined by what they fear, how they behave, and what they need in order to move forward.
+Personas are grouped by funnel stage:
+Cold: No trust yet — avoid pressure, send clean, forwardable decks
+Passive: Will track or skim, but won’t commit — use soft tone and minimal ask
+Warm: Interested, cautious — lead with structure and reduce perceived risk
+Engaged: Actively reviewing — provide clarity, legal framing, and institutional materials
+Each persona includes:
+Allocator Type – who they are in relation to the investment (HNWI, Family office CIO)
+Allocator Voice – what they actually say
+Friction Type – what’s really holding them back
+Stance – what position they seem to be holding
+GP Questions – How to frame the friction and break through the stance
+Slide Blocks – what they need to see first
+Tone Zone – what the design and voice should feel like
+CTA Behavior – how hard to push, if at all
+Platform Format – what tools or deck types are safe to use
+Use this matrix to decide:
+Which deck to send
+What tone to use
+What CTA (if any) is appropriate
+How to log or tag the interaction in your CRM
+This is not a pitch tool — it’s a routing system. Designed to protect trust, reduce friction, and move allocators forward at the speed they’re psychologically ready for.
+1.1 – System Mission & Strategic Role
+“Allocator movement doesn’t start with information — it starts with emotional resolution.”
+Every deck, format, and CTA must first solve for trust, clarity, or safety.
+The JCJ Investor Persona System exists to remove emotional barriers to capital movement.
+It is not a pitch tool.
+It is a diagnostic framework engineered to:
+Identify what’s blocking allocator engagement
+Match the right deck structure to their hesitation
+Apply the correct tone behavior and delivery format
+Deploy the right CTA — or none at all — based on friction, not eagerness
+Each persona functions as an allocator logic profile. It encodes:
+The investor’s primary psychological hesitation
+The slide blocks and tone layers required to reduce that hesitation
+The format they’ll trust (PDF, Gamma, Canva)
+The CTA behavior appropriate to their state (Request Access, Passive Watchlist, No Ask)
+The result is a system that:
+Routes decks and messages without overstepping trust
+Maintains allocator safety
+And builds alignment before expectation
+This system doesn’t just ask investors to act — it removes the reasons they don’t.
+1.2 – What a Persona Is in the JCJ Model
+A JCJ persona is not a static profile. It’s a behavioral signal map — combining emotional friction with platform logic.
+Each persona captures a blend of:
+“This investor is not uninformed — they’re overexposed, over-pitched, or politically constrained.”
+Design must solve for that — not just explain strategy.
+Each persona is structured to:
+Route allocator engagement through friction-aware slide sequences
+Match CTA pressure to allocator psychology
+Avoid missteps in platform, tone, or format
+Enable CRM-based tracking, filtering, and follow-up based on emotion, not demographics
+🧩 CRM & Automation Integration
+Each persona maps directly into:
+CRM tag sets (e.g., Friction: Referral Anxiety, Behavior: Gatekeeper)
+Format routing logic (e.g., Canva PDF for referral; Gamma for legal decisionmaker)
+CTA triggers (e.g., RS1 sent → RS5 referral follow-up → Watchlist opt-in)
+These tags ensure the system isn’t just narrative — it’s trackable, automatable, and re-engagement-ready.
+🎨 Tone Tier Preview
+Each persona also routes into a specific tone tier and design zone. Examples:
+C4 (Custody Flow) → Deep Custody Green = legal clarity
+RS1 (Referral Summary) → Fog Purple = passive social opt-in
+P6 (Attribution) → Cobalt + Gold overlay = conviction with structure
+Slide layout type (Sidebar Split, Full Bleed, CTA Footer) adapts based on their emotional zone.
+🧠 Resistance Framing
+This system is built to prevent allocator rejection, friction, and fatigue.
+Every persona:
+Reduces pitch pressure
+Avoids cognitive overload
+Protects social trust (especially for referrals)
+Delivers only what’s safe to forward, review, or act on
+It gives allocators exit paths that feel safe — and entrance ramps that feel rational.
+Figure 1: Persona Friction-to-Format Flowchart (Enhanced)
+This enhanced flowchart visualizes how allocator friction maps to design tone, slide block routing, format selection, CTA behavior, and CRM tagging. Each stage reflects the allocator journey from hesitation to safe engagement. Color fills represent JCJ tone tiers. Arrows and step labels simulate the routing logic.
+→ Step 1: Identify Allocator Friction
+↓
+→ Step 2: Route to Slide Blocks and Tone Zones
+↓
+→ Step 3: Match Format to Trust Profile
+↓
+→ Step 4: Select CTA Tone & Placement
+↓
+→ Step 5: Conditional Summary (If / Then Logic)
+If Friction = Referral Anxiety → Slide = RS1 → Format = Canva → CTA = Passive Footer Only
+If Friction = Trust Gap + Warm → Slide = C4, R5 → Format = Gamma → CTA = Legal Framed Access Request
+If Friction = Complexity + Cold → Slide = S1, RS1 → Format = PDF → CTA = Watchlist Opt-In
+↓
+→ Step 6: CRM Auto-Tags Example
+1.3 – Friction Glossary
+This expanded table includes allocator friction definitions, voice-of-allocator quotes, corresponding slide blocks, design tone behavior, and the exact HEX color values used to resolve emotional friction via visual tone.
+1.4 – Tagging System Overview
+This section defines the three-tier tag system used to align investor personas with deck routing, CRM segmentation, CTA tone selection, and platform formatting.
+Each tag is color-coded according to JCJ Tier 2 or Tier 3 tone behavior and designed for platform reusability.
+A. Persona Type Tags
+B. Primary Friction Tags
+C. Format / CTA Behavior Tags
+Tag Strip Example 
+- CRM or Gamma Simulation
+This visual simulates how persona and behavior tags appear in a CRM list view, Pipedrive record, or Gamma footer zone.
+Each tag is styled using JCJ’s tone-tier ADA-safe color fills and designed for quick identification of investor type, friction state, format preference, and CTA behavior.
+These tags assist in deck routing, follow-up logic, and friction-aware communication.
+📍 Example Use Case:
+Investor Name: John Sampleton
+Persona: Crypto-Cautious HNWI
+Behavior: Prefers passive formats, sensitive to social optics.
+CRM Tags Applied: Persona Type, Friction, Format Preference, CTA Behavior
+🔖 Tag Key:
+🎯 System Behavior:
+- These tags are assigned automatically at intake 
+- or manually by CRM user based on known allocator behaviors.
+
+- Tag strip determines which deck format is sent, 
+     -whether CTA is included, and follow-up sequence 
+     (e.g., Watchlist opt-in vs. Access Request).
+
+- Tag consistency allows:
+   filtering by persona type or friction level for performance review and targeting.
+1.5 – Behavior Flags Overview
+Behavior flags are persona-level modifiers that influence tone, CTA intensity, deck structure, and platform selection.
+These tags reflect allocator-specific sensitivities or engagement patterns 
+— and must override default format logic where relevant.
+Each flag is mapped to a design behavior using ADA-compliant tone fills from Tier 2 and 3 of the JCJ Brand System.
+Flag Strip Overlay – Persona Cards + CRM Filter Labels
+This visual simulates the horizontal flag strip that will be layered across
+Persona cards
+CRM lists
+Filtered decks
+Each persona can carry up to 3 behavior flags.
+These flags influence platform choice (Gamma, PDF, Canva), deck sequencing logic, and CTA placement or suppression. ADA-safe color codes reflect emotional tone tier or behavioral friction type.
+1.6 – Persona Friction-to-Format Flow Diagram
+Illustrates the allocator journey from initial hesitation to design-driven engagement.
+Each step in the flow connects emotional friction with the slide blocks that resolve it,
+the correct format (Gamma, PDF, Canva), CTA tone behavior, and CRM tagging.
+Routing logic ensures that investors are never over-exposed or asked too soon.
+→ Step 1: Allocator Friction States
+↓
+→ Step 2: Slide Blocks Mapped to Friction
+↓
+→ Step 3: Format Routing Based on Trust Level
+↓
+→ Step 4: CTA Tone Zone Mapping
+↓
+→ Step 5: CRM Tags Applied
+1.7 – Persona Engagement Funnel
+The persona engagement funnel represents allocator readiness across five emotional stages 
+— from initial disinterest or avoidance to full referral engagement.
+Each stage suggests specific tone tiers, CTA types, format strategies, and appropriate slide sequences.
+This funnel should guide deck timing, referral language, and format escalation.
+🎯 Usage Guidance:
+- Personas must not be pushed beyond their stage. 
+Timing, tone, and ask must match allocator friction.
+
+- Cold-stage personas should receive only soft, passive CTA formats 
+(e.g., RS1 PDF with footer only).
+
+- Engaged allocators should be offered full attribution walkthroughs and platform access.
+
+- Referral personas must be treated delicately 
+ — no aggressive follow-up; use referral-safe design tone.
+Friction Cluster Index
+This section groups investor personas by their primary psychological friction.
+Each cluster includes a quote representing the emotional hesitation, recommended slide blocks to resolve it, format and CTA logic, and ADA-compliant tone fill.
+Use this as a routing reference for deck sequencing, messaging, and CRM filters.
+Cluster 1: Capital Safety / Custody Trust Gap
+Allocator Quote: “Where is my money, and how safe is it?”
+🧠 CTA Summary: Use custody-first slide stack (C4, R5). Include sidebar legal CTA. Never begin with performance.
+Cluster 2: Comprehension / Complexity Friction
+Allocator Quote: “This feels like work I don’t have time for.”
+🧠 CTA Summary: Lead with RS1 or S1. Avoid data-heavy walkthroughs. CTA must be optional or footer-only.
+Cluster 3: Career / Reputation Risk
+Allocator Quote: “If this blows up, it’s my fault.”
+🧠 CTA Summary: Tone must de-risk the forward action. Use RS1, RS2 with controlled structure and legal overlays.
+Cluster 4: Social Optics / Referral Anxiety
+Allocator Quote: “I don’t want to look dumb sending this around.”
+🧠 CTA Summary: Referral decks must be RS1 or RS5, Canva preferred. No mid-slide CTAs. Design must feel passive.
+Cluster 5: Timing Paralysis / Fear of Acting Too Soon
+Allocator Quote: “Let’s wait and see what the market does.”
+🧠 CTA Summary: Provide a no-pressure CTA. Use RS1 + A8. Invite tracking or follow-up — not commitment.
+Cluster 6: Performance / Attribution Skepticism
+Allocator Quote: “Isn’t this just another beta product in disguise?”
+🧠 CTA Summary: Always lead with attribution (P6, S2). Avoid storytelling slides. Use calm, visual explanation format.
+Cluster 7: Liquidity & Redemption Doubt
+Allocator Quote: “What if I need to pull my capital?”
+🧠 CTA Summary: Lead with A3 + R9. Show timelines and explain gating. Never hide redemption windows.
+Cluster 8: Cognitive Bandwidth / Trauma Recovery
+Allocator Quote: “I’m not ready to get burned again.”
+🧠 CTA Summary: Use RS4 with no CTA. Never use Gamma or performance framing. This is a trust-repair zone.
+Cluster 9: Platform / Mandate Conflict
+Allocator Quote: “This type of vehicle isn’t allowed on our platform.”
+🧠 CTA Summary: Always show C6 early. Avoid marketing slides. Use legal structure first.
+Cluster 10: Operational or Tax Complexity
+Allocator Quote: “This looks like it’ll be a reporting nightmare.”
+🧠 CTA Summary: Send O1, O2 with no heavy branding. Use clarity tone (Steel or Modal). K-1 detail optional in CTA.
+Cluster 11: Methodology / Signal Skepticism
+Allocator Quote: “I don’t get how this actually works.”
+🧠 CTA Summary: Start with S2 or S5. Avoid summary-only decks. If they don’t understand the signal, they won’t move.
+Cluster 12: Institutional Optics / Approval Chain Delay
+Allocator Quote: “We like it, but getting it through committee will take time.”
+🧠 CTA Summary: Keep tone soft. Use formats that feel 'passable'. No aggressive CTAs or dense data. Think reputational protection.
+3.1 – Slide Routing Lookup Table
+This table expands the allocator routing logic by friction type.
+3.2 – Deck Assembly Matrix
+This matrix defines investor-specific deck personalization strategies.
+Each row maps a unique persona type to its primary emotional friction, recommended slide stack (with functional logic), optimal format delivery, CTA tone and timing, CRM tagging guidance, and situational use case.
+Use this table for pitch tailoring, CRM automation, and Gamma/PDF routing.
+Pre-Funnel Frictions: Inertia & Risk Aversion
+This addresses perhaps the most overlooked yet most powerful blocker in allocator outreach: the internal resistance to even starting the conversation.
+Unlike skepticism about crypto itself or active objections during the funnel, these frictions are pure psychological inertia — where allocators don't necessarily dislike the strategy, but they simply lack the cognitive, emotional, or organizational resources to care.
+This is where even the best decks die unopened.
+🧠 Psychological Meaning of This Stage
+🎯 Key Truth: This Isn’t a “No” — It’s a “Can’t Engage”
+Allocators in this phase are not evaluating the merits of your pitch. They’re stuck in internal overwhelm, portfolio complacency, or emotional avoidance. The dominant theme here is not rejection — it's inertia, and that inertia is powered by:
+Overload (“Too many deals in motion already”)
+Defensiveness (“We’re focused on internal stuff”)
+Status quo bias (“Nothing’s broken in our portfolio”)
+Bandwidth gaps (“Not enough hours in the day”)
+Fear of effort (“Feels like too much work to evaluate”)
+At this level, the allocator’s brain is saying:
+“Even if this was good, I wouldn’t have the time, energy, or safety to engage.”
+🔍 Friction Types Mapped in This Section
+Pre-Funnel Frictions: Inertia & Risk Aversion
+➡️ Transition: Allocator has not yet engaged; content must be passive, skimmable, and minimal.
+Pre-Funnel Frictions: Advisor, Family, Infrastructure, Apathy
+This appendix captures the most actionable early-stage objections that fall outside the formal diligence funnel but directly impact allocator conversion. Unlike the structured stages in Appendix D and E, these frictions often emerge before formal engagement begins — or linger just outside deal momentum despite surface-level interest.
+They reflect a mix of:
+Category-level apathy
+Social and family system blockers
+Advisor constraints and referral filters
+Technical infrastructure objections
+Each allocator statement is mapped to its root friction and paired with a CRM tag for tracking, tone adjustment, and reactivation planning. This allows your team to differentiate true risk aversion from logistical misalignment, and route follow-ups accordingly.
+Apathy & Category Bias
+This section captures allocator fatigue, cynicism, and category-level disillusionment that blocks new entrants — regardless of fund strength or performance. These frictions stem from perceived sameness, marketing fatigue, and skepticism about value creation in the space. They often appear in allocators who have previously explored crypto or alternatives but came away unimpressed, or who now demand a clear, verifiable differentiator before they’ll engage again.
+Use these tags to identify prospects who require credibility-first reactivation or high-proof, low-hype framing.
+Pre-Funnel Frictions: Apathy & Category Bias
+➡️ Transition: Allocator is aware of the space but emotionally disengaged due to narrative burnout.
+Advisor & Intermediary Friction
+This section highlights forwarding risk, reputational filtering, and comprehension-based deferrals from advisors, consultants, or intermediaries. These gatekeepers often control deal flow to CIOs or principals but hesitate to forward materials they don’t fully understand, can’t defend, or perceive as non-conforming to internal norms.
+The CRM tags here help track where format friction, referral sensitivity, or role displacement are blocking visibility, enabling your team to tailor safe-to-share formats and downstream-ready language.
+Pre-Funnel Advisor & Intermediary Frictions
+➡️ Transition: Materials may be seen, but gatekeepers block access due to lack of confidence or role safety.
+Family Office / Spousal Friction
+Family office decision-making is rarely individual. This section outlines household-level and cultural filters that block even high-quality strategies from advancing. Emotional vetoes, generational splits, and family ethos misalignment often show up after a meeting goes well, but before a decision is made — especially in multigenerational or board-led family structures.
+Use these CRM tags to anticipate and adapt to non-financial veto points, enabling subtle shifts in framing that support shared decision-making and reputational comfort.
+Pre-Funnel Frictions: Family Office / Spousal
+➡️ Transition: Emotional or governance-driven friction exists between an interested principal and actual decision makers.
+Infrastructure & Diligence Objections
+This section captures technical integration and process-fit concerns that arise from institutional teams conducting pre-onboarding diligence or infrastructure review. These objections are typically surfaced by operations, accounting, or IT teams and can stall otherwise promising allocations due to incompatibility, data friction, or lack of automation.
+Use the CRM tags here to track infrastructure mismatches, build tailored responses for operations counterparts, and proactively remove diligence bottlenecks before they appear.
+Pre-Funnel Frictions: Infrastructure & Diligence Objections
+➡️ Transition: Allocation interest may be real, but backend constraints block advancement.
+Active inquiry Frictions:
+Investors already in the funnel
+Referrals already passed a filter
+LPs responding to material you've sent them
+The Friction of Crypto – Pre-Funnel Resistance
+Allocator thoughts that never make it to inquiry or evaluation.
+These are the underlying objections that prevent engagement from beginning 
+— driven by emotional aversion, category distrust, or industry skepticism.
+Before allocators engage in diligence, committee review, or even open a deck, they encounter a deeper layer of resistance: crypto discomfort and skepticism.
+Unlike the active questions logged in the funnel stages, these frictions are often unspoken.
+They represent the silent killers of allocator engagement — the doubts, biases, and emotional red flags that prevent even a first conversation from gaining traction.
+At this stage, the allocator is not evaluating your fund — they are rejecting the entire asset class.
+Questions are less about “How do you generate alpha?” and more about “Why should I look at this at all?”
+Why This Stage Matters
+Pre-Funnel Barriers: These are the thoughts that block an allocator from entering the funnel in the first place.
+Emotional & Reputational Weight: Concerns are rooted in fear of embarrassment, association with “scams,” or uncertainty about explaining crypto to peers.
+Category vs. Manager Risk: Allocators aren’t yet assessing your specific vehicle — they’re questioning the existence of the category itself.
+Survival Test: If crypto friction isn’t acknowledged and addressed, the allocator never moves into structured engagement.
+CRM Application
+We capture these objections with CRM tagging to surface patterns in allocator psychology, tailor responses, and route follow-ups with precision.
+Each statement is mapped to a root friction for diagnostic clarity and tone design.
+This allows us to differentiate “fund-specific diligence” frictions from “asset class discomfort” frictions 
+— and avoid trying to answer strategy questions when the real problem is category-level skepticism.
+Pre-Funnel Friction: Crypto Discomfort / Skepticism
+➡️ Transition: Allocator isn’t rejecting your fund — they’re rejecting the entire asset class. 
+Trust-building must precede strategy.
+Cold Referral vs Intro Call
+🧠 Strategic Implications for Fundraising
+Cold Referral Stage:
+You're not pitching your fund — you're pitching the right to even be looked at.
+The goal is social friction removal: Make it safe, easy, and reputation-neutral to share or engage.
+Materials should be beautiful, short, and branded — ideally "safe to forward.”
+Intro Call Stage:
+The allocator is evaluating your operational credibility and risk profile.
+The goal is confidence calibration: Are you competent, regulated, prepared, and safe?
+Materials should be structured, FAQ-ready, and mapped to institutional signals like audits, fund admin, custody, etc.
+🧩 Summary Table: Fund Response Strategy by Stage
+Allocator Question → Friction Stage → CRM Index
+This appendix expands the diagnostic CRM tagging system by breaking out each allocator stage into its own labeled section and standalone table.
+Each stage features 30 or more real allocator-framed questions, mapped to their underlying friction type and appropriate CRM tag for routing and personalization.
+Stage 1: Cold Referral Frictions
+➡️ Transition: Allocator is socially filtering, reputation-managing, and prioritizing deniability.
+Stage 2: Intro Call Frictions
+➡️ Transition: Allocator wants operational clarity. This is your first real shot at “earning trust.”
+Committee Review
+🎯 Key Transition: From Personal Conviction → Institutional Endorsement
+At this point, the individual allocator (e.g., CIO, partner, analyst) is no longer the final decision-maker.
+Instead, they must:
+Justify the investment to a broader audience
+Pass internal controls
+Mitigate personal career risk
+This stage shifts the psychological burden from curiosity and analysis to defensibility, documentation, and delegation.
+🔍 Psychological Drivers at Committee Review
+🏛️ What the Stage Represents
+➡️ Transition: Social trust shifts to institutional defensibility. 
+You’re now selling to the system, not the person.
+Quant / Analyst Review
+🧠 Meaning of the Quant / Analyst Review Stage
+🎯 Transition: From Institutional Approval → Technical Validation
+Previous stages (Intro Call, Committee Review) were about risk, trust, compliance, and governance.
+Now, the allocator is saying:
+“Even if I like this, I need my quant or risk team to confirm the alpha is real.”
+This stage does not care about storytelling or founder charisma. It’s data-first, code-driven, benchmarked, and adversarial by default.
+🧠 Psychological Drivers of This Stage
+This stage is driven by a desire to remove emotion and bias from the investment process.
+🧠 Friction Types That Emerge at Quant Stage
+➡️ Transition: Proof replaces narrative. 
+Analysts will attempt to disprove your alpha claims and test for beta-masking.
+Reactivation
+Reactivation stage is a delicate re-engagement window — not a hard rejection, but not yet commitment either. Psychologically, it represents liminal attention: the allocator is aware of you, interested enough to track, but is waiting for a signal, a trigger, or a shift — internal or external — to justify moving forward.
+This is the gray zone between passive interest and active diligence. It’s where most allocator conversations stall — and where strategic follow-up wins or loses capital.
+🧠 Psychological Meaning of the Reactivation Stage
+🎯 Key Transition: From Dormant → Re-Consideration
+At this stage, the allocator is saying:
+“We liked something here… but the timing, conviction, or clarity wasn’t right. Convince us it’s worth re-engaging.”
+The allocator:
+Has you on their radar or watchlist
+May have said “not now” or ghosted after a warm intro
+Is waiting for an external trigger (macro shift, fiscal window, performance update)
+Needs a compelling, lightweight, and low-friction reason to re-engage
+🧠 Allocator Psychology at Reactivation
+They don’t want a re-pitch. They want a signal that something has changed — or that you’ve progressed without needing them.
+Reactivation Frictions
+➡️ Transition: Memory and momentum must be reignited with low-friction updates and milestone triggers.
+Soft Decline / Post-Delay
+Soft Decline / Post-Delay stage represents a non-confrontational exit from the funnel — but unlike a firm “no,” it’s a polite disengagement that often masks a variety of underlying frictions. This stage is where allocators delay, stall, or exit without burning a bridge, leaving open the possibility of future re-engagement — but only under better conditions.
+Understanding the psychological subtext of this stage is critical. 
+Most messages here are coded versions of:
+“Not now — and maybe not ever — unless something meaningful changes.”
+🧠 Psychological Meaning of the Soft Decline Stage
+🎯 Key Transition: From Consideration → Passive Rejection
+The allocator has seen the deck, taken a call, maybe even run it up the chain — but something stopped momentum.
+They don't want to say “no” outright (social discomfort, future optionality), so they say:
+“Next quarter”
+“We’re watching”
+“Send us updates”
+This is not a pending yes — it’s a polite no with an escape hatch.
+🧠 Frictions Underlying Soft Declines
+These are usually structural, not personal. But the messaging is socially buffered to maintain optionality.
+Soft Decline / Post-Delay Frictions
+➡️ Transition: Reactivation is possible, but only if context or conviction has changed. 
+Respect time, don’t chase.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Custody & Structure Slides – C1–C9)
+This table expands Slide Block Group C (Custody, Compliance, Legal, Structure) with mapped frictions, tone zones, delivery logic, CTA behaviors, and CRM tag assignments. Used for routing, tone design, and dynamic deck builds.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Referral & Social Slides – RS1–RS5)
+Slide Blocks RS1–RS5 are designed to address referral friction, social optics, and passive forwardability.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Attribution & Performance Slides – P1–P6)
+This section outlines slides related to attribution, alpha generation, benchmark comparison, and performance visualization.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Access, Timing & Watchlist Slides – A1–A8)
+This section defines slide blocks A1–A8 which address allocator questions about onboarding, timing, lockups, and passive tracking.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Risk, Redemption & Liquidity Slides – R1–R6)
+This section covers slides used to resolve allocator concerns around redemption timing, drawdown exposure, downside risk, and exit control.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Operational & Offering Slides – O1–O6)
+This section details slide blocks used to address allocator frictions around fund administration, onboarding, FAQ, fees, and process clarity.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Strategy, Summary & One-Pager Slides – S1–S3)
+This section details introductory and summary slide blocks typically used early in the funnel or for broad framing.
+Section 4.1 – Slide Block Friction Matrix 
+(Group: Team, Governance & Trust Architecture Slides – T1–T6)
+This section presents slide blocks used to build allocator confidence through personnel bios, governance architecture, and legal stack transparency.
+Section 4.2 – Slide Layout Zone Table 
+(Group: Custody & Structure Slides – C1–C9)
+This table maps the design layout behavior of Slide Blocks C1–C9. It includes visual zone type, CRM tag-based trigger logic, CTA placement behavior, and layout-specific placeholder instructions for use in Gamma, Canva, or PowerPoint.
+Section 4.2 – Slide Layout Zone Table 
+(Group: Referral & Social Slides – RS1–RS5)
+This table defines the layout behavior and CRM routing logic for RS1–RS5.
+Designed to solve referral hesitation, social optics, and forwardability concerns through visual formatting, CTA placement, and friction mapping.
+Section 4.2 – Slide Layout Zone Table (Group: Attribution & Performance Slides – P1–P6)
+This table defines layout behavior, CRM tag triggers, and CTA zones for Slide Blocks P1–P6. These are used to resolve performance doubt, attribution skepticism, and data-heavy diligence reviews.
+Section 4.2 – Slide Layout Zone Table 
+(Group: Access, Timing & Watchlist Slides – A1–A8)
+This table outlines layout types and CTA placements for Slide Blocks A1–A8. These slides resolve allocator delays related to entry timing, lockups, liquidity windows, and passive opt-in preferences.
+Section 4.2 – Slide Layout Zone Table 
+(Group: Risk, Redemption & Liquidity Slides – R1–R6)
+This section outlines visual structure and CTA placement for Slide Blocks R1–R6, which support downside protection, liquidity clarity, and allocator trust during volatility or redemption-sensitive conversations.
+Section 4.2 – Slide Layout Zone Table 
+(Group: Operations & Offering Slides – O1–O6)
+This layout map defines design structure and CRM routing for Slide Blocks O1–O6. These slides support fund operations clarity, administrator trust, fee modeling, and onboarding flow design.
+Section 4.2 – Slide Layout Zone Table (Group: Strategy, Summary & One-Pager Slides – S1–S3)
+This section outlines layout logic for top-of-funnel framing slides designed for cold referral, ethos framing, and executive summary. Applies to PDF, Canva, and Gamma-compatible front-end decks.
+Section 4.2 – Slide Layout Zone Table 
+(Group: Team, Governance & Trust Architecture Slides – T1–T6)
+This section defines layout logic, CRM routing triggers, CTA zones, and placeholder structure for trust-building slides including team bios, governance architecture, and alignment flows. Use this for structuring credibility-first decks or institutional packages.
+Section 4.3 – Gradient Behavior Overlay Map
+This gradient mapping table links each emotional tone gradient to allocator frictions, CRM triggers, placement zones, slide examples, and tone behavior. Used for CTA tone calibration, visual design, and funnel sequencing.
+Section 4.4 – CTA Behavior Matrix
+This matrix maps slide blocks to their default CTA zone, action language, tone icon, CRM tag triggers, and funnel behavior. Each CTA includes a visual icon and a shortform code for use in CRMs like Pipedrive.
+Master Slide Metadata Reference (C1–T6)
+This table provides a fully expanded, numerically sequenced reference of all JCJ slide blocks (C1 through T6) with tone tier, default layout, platform format, CTA behavior, CRM tag routing, engagement stages, and override flags. It is used for investor persona alignment, CRM automation, and platform-specific routing.
+Master Slide Metadata Reference (RS1–RS5)
+This section expands the referral and social slide metadata blocks (RS1–RS5) with tone, layout, CTA, and platform behavior logic for use in persona-stage delivery, CRM automation, and content suppression or escalation logic.
+Master Slide Metadata Reference (A1–A8 – Access & Timing)
+This section includes metadata for slide blocks A1 through A8, covering subscription access, lockup timelines, watchlist behavior, and onboarding processes. Each slide is mapped with tone, layout, CTA logic, platform compatibility, and CRM trigger conditions.
+Expanded Slide Block Metadata for Investor Personas
+This expanded table fills in missing slide metadata for the Investor Personas framework, including Risk (R1–R6) slides, layout types, tone HEX codes, default CTA behaviors, CRM tag triggers, platform routing, engagement stages, and behavior flag overrides. Designed for use in persona targeting, deck routing, CRM filtering, and CTA suppression logic.
+Master Slide Metadata Reference (O1–O6 – Operations & Offering Slides)
+This section includes metadata for slide blocks O1 through O6, covering fund operations, onboarding steps, access logic, fee structure, and passive summary tools. Slides support clarity in admin handoff, documentation expectations, and compliance.
+Master Slide Metadata Reference (P1–P6 – Performance & Attribution)
+This section includes metadata for slide blocks P1 through P6, covering historical returns, attribution, benchmark comparisons, volatility analytics, and alpha/beta breakdowns. Includes tone, CTA logic, layout behavior, and CRM routing.
+Master Slide Metadata Reference (S1–S3 – Strategy & Summary Slides)
+This section includes metadata for slide blocks S1 through S3, covering strategy introduction, performance curve framing, and one-pager summary delivery for top-of-funnel engagement or referral sharing.
+Master Slide Metadata Reference (T1–T6 – Team, Governance & Trust Architecture)
+This section includes metadata for slide blocks T1 through T6, covering team credentials, governance structure, founder framing, and GP/LP alignment logic. Each slide is mapped for platform, CRM behavior, and tone signaling.
+Friction Theme | Allocator Subtext | Example Allocator Thought
+Cognitive Load | Too much to process | “I don’t want to learn a new asset class.”
+Portfolio Complacency | Nothing feels broken | “We’re fine with what we have.”
+Emotional Avoidance | Don’t want distraction | “Let someone else be the guinea pig.”
+Bandwidth Scarcity | No capacity to review | “Not enough hours in the day.”
+Macro Deflection | Blame environment | “We’re not in deployment mode.”
+Organizational Barriers | Too political internally | “This would die in committee.”
+Friction Type | Allocator Subtext | Example Allocator Thought
+Comprehension Gap | Too complex | “I still don’t really get crypto.”
+Category Bias | Gambling stigma | “This feels like speculation.”
+Contagion Trauma | Burned before | “How do I know this isn’t another FTX?”
+Perception Lag | Outdated view | “I thought crypto was dead.”
+Regulatory Fear | Shut-down risk | “Can’t governments just ban this?”
+Intangibility Aversion | Lack of fundamentals | “It’s just code — where’s the value?”
+Security Fatigue | Too many hacks | “It’s all scams and theft.”
+Adoption Friction | UX barriers | “I don’t want to download wallets or learn systems.”
+Institutional Misfit | Doesn’t fit mandate | “This would never pass committee.”
+Category | Description
+🧠 Cognitive avoidance | LPs who disappear to protect ego, avoid shame, or delay due to complexity
+🪞 Ego/status management | LPs making choices based on image, peer optics, founder memory
+⚖️ Platform or compliance constraint | Frictions from admins, compliance, or onboarding systems
+🤝 Referral dynamic distortion | Issues from being introduced by a weak tie, friend, or admired source
+🏛️ Trust misalignment | LP doesn’t believe the fund or founder has institutional weight
+💸 Liquidity or capital misrepresentation | LP pretends to have access, but does not
+🫣 Fear of judgment or blame | LP avoids allocations they can’t defend later
+📤 “Social escape” behavior | Saying yes to be polite, then ghosting
+Stance | Description
+Deflecting | LP avoids ownership of the decision by passing responsibility upward or sideways
+Shielding | LP serves as a gatekeeper and blocks access on behalf of an institution or principal
+Withholding | LP has decision authority but keeps their evaluation internal, offering little in return
+Stance | Description
+Posturing | LP performs engagement or credibility without serious intention
+Extracting | LP is engaged only for leverage or informational advantage
+Ego-Soothing | LP gives advice or feedback instead of saying no, often due to pride or guilt
+Appeasing | LP flatters to exit gracefully without confrontation
+Pre-dismissed | LP already passed mentally but won’t admit it — pretends to evaluate or help
+Stance | Description
+Calibrating | LP is still forming a view — asking real questions, modeling options
+Validating | LP is matching you to known internal rules or categories — checkbox mentality
+Checking | LP is scanning for surface-level issues (jurisdiction, eligibility, compliance)
+Stance | Description
+Detached | LP is emotionally or mentally checked out; passive and drifting
+Drifting | LP hasn’t said no, but time is slowly killing the deal
+Numb | LP is emotionally unresponsive, possibly burnt out
+Hedging | LP plays multiple outcomes — talks interest but never commits
+Stance | Description
+Rejecting | Immediate dismissal or category-based rejection
+Dismissing | LP gives minimal attention and filters out without feedback
+Disqualifying | LP filters you out based on tone, formatting, or misalignment
+Disengaging | LP exits quietly — no reply, no re-engagement
+Obstructing | LP actively slows or blocks internal progress, possibly out of self-interest
+Stance | Description
+PTSD | LP is trauma-anchored from past losses; defensively avoids exposure even when risk is managed
+Safeguarding | LP won't share, refer, or engage further due to fear of social/professional blowback
+Triggered | LP reacts emotionally — pitch hits a nerve, tone, or historical association
+Stance | Description
+Poised | LP is aligned and nearly ready to commit — but watching for final cues
+Constrained | LP wants to commit but is structurally or logistically blocked
+ | 
+Dimension | Cold Referral | Passive Referral | Intro Call
+Primary Emotion | Social fear → “Will this make me look bad if I forward it?” | Low effort → “I’ll glance at this if it’s easy.” | Analytical caution → “Can I trust this structure, custody, and team?”
+Decision Mode | Reputation-first → optics, credibility, safety to share | Convenience-first → skim-friendly, safe to consume | Proof-first → structure, risk, operational clarity
+Core Friction | Referral anxiety, fear of association, design judgment | Bandwidth scarcity, attention filters, oversaturation | Custody trust gap, liquidity concern, fear of being wrong
+Trust Source | Borrowed trust (from referral, brand polish, credibility signals) | Design clarity and simplicity (format must explain itself without context) | Earned trust (through direct answers, transparency, documentation)
+Allocator Question | “Can I safely pass this on without regret?” | “Is this worth 60 seconds of my time?” | “Can I defend this decision if someone challenges me?”
+Your Materials Goal | Make it easy to look good forwarding → short, clean, safe-to-share deck | Make it easy to skim → short visuals, bullet clarity, referral-ready format | Make it easy to feel secure → clear custody, ops, governance
+Preferred Format | Canva / 1-pager PDF → polished, minimal CTA | Static PDF or email snapshot → instantly digestible, “safe to forward” | Gamma walkthrough or detailed PDF → structured, institutional presentation
+Main Obstacle | Fear of embarrassment → “Don’t make me look sloppy or naïve.” | Attention filter → “If it looks like work, I won’t open it.” | Fear of error → “Don’t make me endorse something that later fails.”
+If Mishandled | Overload = unopened / unforwarded | Too complex = ignored after 5 seconds | Oversimplify = credibility gap → allocator walks away
+Strategic Role | You’re asking for attention rights | You’re asking for mindshare entry | You’re asking for legitimacy approval
+Component | Function
+Capital Role | Defines control point: HNWI, CIO, Advisor, Referral, Gatekeeper
+Primary Friction | Psychological blocker (e.g., fear of looking stupid, referral damage, information overload)
+Tone Zone | Defines emotional design tier: Cold Structure, Soft Referral, Passive Track
+Format Compatibility | Matches their review channel: Gamma walkthrough, PDF for delay, Canva for passive sharing
+CTA Behavior | Defines safe action path: Watchlist opt-in, Referral Script, Request Access, or Exit
+Friction Label | Allocator Internal Thought
+❌ Career Risk | If this fails, I’m blamed.
+❌ Referral Anxiety | I don’t want to look stupid forwarding this.
+❌ Capital Trust Gap | Where is my money, and who controls it?
+❌ Complexity Aversion | This feels like work I don’t have time for.
+Friction | Slide Blocks Used | Tone Tier
+Career Risk | T4, RS1, C6 | Deep Custody Green
+Referral Anxiety | RS1, RS2, RS5 | Fog Purple
+Trust Gap | C4, R5, A3 | Slate Gray
+Complexity | S1, F4, O2 | Pale Mint
+Friction Cluster | Format | Rationale
+Career Risk | Gamma + Legal PDF | Must verify control and structure
+Referral Risk | Canva / RS1 + RS5 PDF | Needs self-contained, passive visuals
+Trust / Custody | PDF or Live Walkthrough | Slow delivery, no fast CTA
+Complexity | Visual-first, no dense slides | CTA in footer only
+CTA Type | Trigger Conditions | Tone (Tier 3) | Example Slides
+Passive Opt-In | Cold, Referral, Complexity | Fog Purple | RS1, RS5
+Legal Review CTA | Career Risk, Mandate | Deep Custody Green | C6, T4
+Watchlist CTA | Timing Delay, Referral Loop | Pale Mint | RS1, A8
+No CTA | Trauma, Ghosting | Dusty Plum | RS4
+Field | Value
+Friction | Referral Anxiety
+Decks Sent | RS1, RS5
+Format Used | Canva
+CTA Type | Passive Share
+Behavior Tags | Referral-Only, Spouse-Influenced
+Friction Name | Allocator Quote | Slide Blocks Used | Tone Behavior | HEX Value
+Career Risk | If this fails, my reputation takes the hit. | T4, RS1, C6 | Deep Custody Green | #395D4F
+Referral Anxiety | I don’t want to look dumb sending this around. | RS1, RS2, RS5 | Fog Purple | #E6E6FA
+Capital Trust Gap | Where is the money kept? Can it be pulled? | C4, R5, A3 | Slate | #525C66
+Complexity Aversion | This is too technical. I don’t have time to figure it out. | S1, F4, O2 | Pale Mint | #C1E1C1
+Redemption Doubt | What if I want out quickly and can’t move? | A3, R9, O4 | Gold | #F4C37D
+Social Optics | This can’t look like a crypto startup pitch. | RS1, RS5, C1 | Fog Purple | #E6E6FA
+Performance Skepticism | Is this just beta dressed up as alpha? | P6, S2, A4 | Steel Gray | #909FAD
+Timing Paralysis | Now’s not the time. Maybe after the next cycle. | A8, RS1, P8 | Mint | #C6EBC5
+Platform Mandate Conflict | Our investment policy probably can’t hold this. |  | Deep Custody Green | #395D4F
+Trauma or Ghosting | Just… not ready to re-engage. Burned before. | RS4, RS1 | Dusty Plum | #9B6A6C
+Tag Name | Description | Use Case | Tone Fill | Tone Fill | HEX
+HNWI | High-net-worth individual with discretionary capital | Primary investor class for direct PDF/Gamma routing | Off White | #FAFAFA | #FAFAFA
+CIO | Chief Investment Officer or committee lead | Requires legal framing, control stack slides | Slate Gray | #525C66 | #525C66
+Referral Gatekeeper | Advisor or contact who passes material onward | Needs passive format, Fog Purple CTA | Fog Purple | #E6E6FA | #E6E6FA
+Family Office | Multi-person wealth team with hierarchy | May require dual-format deck strategy | Pale Mint | #C1E1C1 | #C1E1C1
+Tag Name | Description | Use Case | Tone Fill | HEX
+Career Risk | Fear of reputational harm or being blamed | Needs custody/legal framing and deep tone control | Deep Custody Green | #395D4F
+Referral Anxiety | Worried about forwarding unclear or risky decks | Needs RS1 + referral-safe format, Fog Purple CTA | Fog Purple | #E6E6FA
+Complexity | Overwhelmed or time-constrained by technical detail | Must use simplified slides, footer CTAs only | Pale Mint | #C1E1C1
+Liquidity Concern | Fear of being unable to exit investment | Needs A3, O4, and timeline clarity slides | Gold | #F4C37D
+Tag Name | Description | Use Case | Tone Fill | HEX
+Gamma Preferred | Prefers guided walkthrough or warm visual flow | Best for CIOs, warm referrals, legal framing slides | Steel Gray | #909FAD
+PDF Cold Review | Wants time to review alone, no pressure | Use with RS1, S1, no CTA mid-slide | Modal Gray | #E9EDF2
+Canva for Referrals | Used to share with others passively | RS5-ready, no button CTAs, Fog Purple footer | Fog Purple | #E6E6FA
+No CTA / Exit Path | Needs to disengage or soft-fade | Show only RS4, no asks, Dusty Plum tone | Dusty Plum | #9B6A6C
+HNWI | Referral Anxiety | Canva for Referrals | No CTA / Exit Path | PDF Cold Review
+Tag Example | Meaning | Tone Tier / HEX
+HNWI | Investor Type | Off White – #FAFAFA
+Referral Anxiety | Primary Friction | Fog Purple – #E6E6FA
+Canva for Referrals | Format Preference | Fog Purple – #E6E6FA
+No CTA / Exit Path | CTA Behavior | Dusty Plum – #9B6A6C
+PDF Cold Review | Format Behavior | Modal Gray – #E9EDF2
+Behavior Flag | Description | Format / CTA Guidance | Tone Fill / HEX
+Gatekeeper | Screens decks but does not decide allocation. | Send RS1 with minimal ask. Use PDF only. | Modal Gray – #E9EDF2
+Referral-Only | Only engages via known contacts or peers. | Use RS1 + RS5. Never send Gamma first. | Fog Purple – #E6E6FA
+Spouse-Influenced | Needs social safety and visual clarity to explain. | Use visual-first slides. Avoid performance pressure. | Pale Mint – #C1E1C1
+Fast-Moving | Takes action when warm, then goes cold fast. | Lead with CTA (RS1 + Access). Use Gamma. | Steel Gray – #909FAD
+Ghosting / Trauma | May reappear later; triggered by past loss. | Show RS4 only. No asks. Use Dusty Plum tone. | Dusty Plum – #9B6A6C
+Platform-Constrained | Firm prohibits external tools or email links. | Only send pre-approved PDF decks. Avoid Canva/Gamma. | Slate – #525C66
+Gatekeeper | Referral-Only | Spouse-Influenced | Fast-Moving | Ghosting / Trauma | Platform-Constrained
+Friction | Allocator Quote
+Career Risk | “If this fails, I’m blamed.”
+Referral Anxiety | “I don’t want to look dumb forwarding this.”
+Capital Trust Gap | “Where is the money and how safe is it?”
+Complexity Aversion | “This looks overwhelming.”
+Friction | Slide Blocks Used | Tone Behavior
+Career Risk | T4, RS1, C6 | Deep Custody Green
+Referral Anxiety | RS1, RS2, RS5 | Fog Purple
+Capital Trust Gap | C4, R5, A3 | Slate Gray
+Complexity Aversion | S1, F4, O2 | Pale Mint
+Friction | Recommended Format | Reasoning
+Career Risk | Gamma + PDF | Legal + visual assurance
+Referral Anxiety | Canva PDF | Passive format, referral-safe
+Capital Trust Gap | PDF or walkthrough | Trust-first delivery
+Complexity Aversion | Visual summary PDF | Avoid dense data
+Friction | CTA Behavior | Tone Tier
+Referral Anxiety | Footer CTA only | Fog Purple
+Career Risk | Sidebar Legal CTA | Deep Custody Green
+Complexity | Watchlist CTA | Pale Mint
+Ghosting | No CTA (RS4 only) | Dusty Plum
+CRM Field | Value
+Friction | Referral Anxiety
+Slide Blocks | RS1, RS5
+Format | Canva PDF
+CTA Behavior | Passive
+Behavior Tags | Referral-Only, Ghosting
+Stage | Allocator State | Tone Tier | Recommended Format / CTA
+🧊 Cold | No trust, no prior exposure.  Allocator is unaware or disengaged. | Fog Purple | RS1 only; PDF or Canva;  passive footer CTA
+🌫️ Passive | May have heard of fund or contact.  Avoids commitment but not opposed. | Pale Mint | RS1 + RS5;  Watchlist opt-in only
+🔥 Warm | Expresses interest or requests materials. Looking for clarity, not pressure. | Cobalt / Navy | Send full deck (Gamma/PDF);  include CTA with sidebar
+🧠 Engaged | Deep review stage. Asking operational, structural, or performance questions. | Deep Custody Green | Send attribution stack,  custody visuals, offer access
+📩 Referral | Willing to forward or present fund internally.   Needs trusted format and social safety. | Fog Purple /  Off White | Send RS5 + Canva/Referral PDF,  footer-only CTA
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+HNWI – Capital Preserver | Wants proof of asset custody and control. | C4, R5, A3 | PDF walkthrough + sidebar CTA
+CIO – Legal Structure Required | Needs regulatory clarity and custody logic. | C4, C6, T4 | Gamma + compliance format
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+Referral Gatekeeper | Won’t pass forward anything that feels technical. | RS1, RS2, S1 | Canva or visual PDF only
+HNWI – Time-Constrained | Needs to feel in control, not overwhelmed. | S1, RS1, O2 | PDF with footer-only CTA
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+Family Office PM | Needs to show defensible diligence path. | C6, RS1, T4 | Gamma or structured PDF
+Institutional Analyst | Won’t share anything that looks risky or unclear. | T4, RS2, P6 | Fog Purple tone, PDF format
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+Trusted Advisor (Referral) | Wants a deck that explains itself and protects their reputation. | RS1, RS5 | Canva PDF with passive footer CTA
+FO Gatekeeper | Needs a 'safe to forward' version that removes decision risk. | RS1, RS2 | Referral-styled PDF only
+Persona Name | Allocator Voice | Slide Blocks Used | Format / CTA Guidance
+HNWI – Trend Watcher | Needs the option to delay with dignity. | RS1, A8 | Watchlist opt-in only
+Wealth Manager | May follow up after the cycle changes. | RS1, RS5 | Canva or Fog Purple PDF
+Persona Name | Allocator Voice | Slide Blocks Used | Format / CTA Guidance
+Quant-Savvy HNWI | Wants data they can trust without spin. | P6, S2 | PDF with sidebar insight CTA
+Committee Analyst | Needs a breakdown of alpha sources. | S2, P4 | Send attribution logic stack
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+HNWI – Liquidity Sensitive | Needs assurance of redemption timelines. | A3, R9 | PDF or visual-only Gamma
+FO COO | Concerned about gating or pro-rata exits. | O4, A3 | PDF + lockup table
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+Retired Executive | Wants to learn more, but slowly and privately. | RS1, RS4 | RS4 only. PDF. No CTA.
+Advisor – Burned by Prior Fund | Will ghost if overwhelmed or pushed. | RS4 | Visual-only format,  Dusty Plum tone
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+RIA Partner | Needs clarity on tax wrappers or co-invest structure. | C1, C6 | Legal PDF format
+Fund Gatekeeper | Wants to check structure before showing CIO. | C6, O2 | Gamma if allowed; otherwise PDF
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+Family Office Ops Lead | Needs assurance of admin quality, K-1 process. | O1, K1 Timeline | Structured PDF
+CFO / Advisor | Wants simplicity, automation, and clarity. | O2, RS1 | Clean PDF only.  Footer opt-in.
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+Macro-Focused PM | Needs to see clear, explainable signal construction. | S2, P6 | Send slide with forecast example + attribution
+Quant-Focused LP | Looking for proprietary logic, not just momentum. | S5, P4 | Send methodology flow with color-safe tone
+Persona Name | Allocator Voice | Slide Blocks | Format / CTA Guidance
+FO Team Lead | Needs approval across partners before next step. | RS1, RS2, A4 | Canva PDF + passive CTA
+CIO Support Role | Likes it but can’t move alone. Needs format that travels well. | RS1, RS5, RS4 | Use Fog Purple or Off White background. PDF only.
+Friction Cluster | Slide Block Logic / Sequence | Delivery | Format Rationale | CTA Behavior | Tone Mapping → Persona
+Custody Trust Gap | RS1 = Summary framing   C4 = Custody logic & structure   A3 = Controlled CTA | Gamma or PDF | Allows walkthrough or safe PDF forwarding; builds trust without pressure | Sidebar CTA (Appears after structural trust is established) | Fog Purple  → Deep Custody Green  → Pale Mint (HNWI – Capital Preserver)
+Referral / Social Optics | RS1 = Cover framing   RS5 = Passive explainer format | PDF  Referral-safe | Can be forwarded without edit or interpretation | Footer-only CTA (Soft opt-in, never intrusive) | Fog Purple  → Modal Gray (Referral Gatekeeper or Advisor)
+Complexity / Time Aversion | S1 = Visual summary   RS1 = Friction reduction   O2 = Operational simplicity | Canva or PDF | Quick to consume, no walkthrough required | Optional footer opt-in only (CTA not visible unless reader scrolls) | Pale Mint  → Fog Purple  → Off White (Wealth Advisor – Time Constrained)
+Career / Committee Risk | RS1 = Friction softener   C6 = Legal framing  T4 = Team authority & succession | Gamma Walkthrough required | Live format allows explanation and real-time objection handling | Sidebar CTA or Delayed Ask (Only after structure is defensible) | Fog Purple  → Slate  → Steel Gray (FO PM or CIO Support Role)
+Attribution Skepticism | RS1 = Setup   P4 = Attribution breakdown   P6 = Net performance credibility | Gamma or PDF Structured, numeric | Requires data fidelity but must remain allocator-comfortable | Insight CTA (Appears only after attribution stack) | Slate → Cobalt  → Modal (Quant-Inclined Analyst or CIO)
+Timing Paralysis | RS1 = Setup framing   A8 = Watchlist opt-in only | PDF, Gamma, or Canva | Used for no-pressure follow-up or teaser decks | CTA = Watchlist or ‘Track Only’ (non-committal) | Fog Purple  → Mint (Passive FO or Delayed CIO Committee)
+Persona Type | Primary Friction | Slide Stack + Function | Format | CTA Behavior | CRM Tags | Use Case Scenario
+HNWI – Capital Preserver | Custody Trust Gap | RS1 (Summary reassurance)  → C4 (Custody explanation)  → A3 (Access CTA) | Gamma or PDF Live if trust is forming, PDF if cautious | Sidebar CTA – Only after structural logic is shown | Capital: HNWI, Friction: Trust, CTA: Delayed, Format: PDF, Route: RS1→C4→A3 | First meeting or follow-up with risk-averse LP who wants to verify structure
+Referral Gatekeeper | Social Optics / Referral Anxiety | RS1 (Intro cover)  → RS5 (Referral explainer) | PDF (Referral-safe) No platform walkthrough needed | Footer CTA only – No sidebar, soft opt-in phrasing | Referral-Only, Passive,  RS1+RS5, PDF-First | When an advisor, connector, or LP needs something they can safely forward
+Family Office PM – Legal-First | Committee Risk / Legal Review Pressure | RS1 (Calm entry)  → C6 (Legal structure)  → T4 (Governance / control) | Gamma – Legal walkthrough with advisor present | Sidebar or Post-T4 CTA – Optional follow-up via email | Legal-First, Committee Delay, Gamma-Only, Route: RS1→C6→T4 | When you’re prepping for a family office team or committee submission
+Quant-Savvy Analyst | Attribution Skepticism | RS1 (Setup)  → P4 (Attribution breakdown)  → P6 (Performance credibility) | PDF (Structured) or Gamma (if they prefer walkthrough) | Insight CTA – Sidebar, tied to data clarity | Analyst, Quantified, Performance-Proof, Route: RS1→P4→P6 | Send after initial interest for technical validation or analyst review
+Wealth Advisor – Time-Limited | Complexity / Cognitive Load | S1 (Visual overview) → RS1 (Summary)  → O2 (Ops simplicity) | Canva or PDF – Scan-friendly, lightweight design | Optional opt-in only (Footer or email follow-up) | Time-Constrained, Simplicity, PDF/Canva,  No Sidebar CTA | Used in email follow-up or time-sensitive meeting context
+Passive FO or CIO – Watchlist Mode | Timing Paralysis / Decision Delay | RS1 (Setup)  → A8 (Watchlist CTA only) | Canva or PDF teaser deck No hard ask, light design | Watchlist CTA only – Passive opt-in, no urgency | Passive, Watchlist CTA, Route: RS1→A8, Delay-Focused | Perfect for market-timing waiters or follow-up opt-in strategies
+Friction Theme | Allocator Subtext | Example Allocator Thought
+Cognitive Load | “This is too much to process right now.” | “I don’t want to learn a new asset class.”
+Portfolio Complacency | “We’re fine with what we have.” | “Nothing’s broken in my portfolio.”
+Emotional Avoidance | “This feels like a distraction.” | “Let’s let someone else be the guinea pig.”
+Bandwidth Scarcity | “I can’t even process what’s already on my desk.” | “Not enough hours in the day.”
+Macro-Timing Deflection | “The environment doesn’t support this right now.” | “We’re not in deployment mode.”
+Organizational Barriers | “Even if I liked this, it would die internally.” | “It’s too political to bring this up now.”
+Allocator Thought | Underlying Friction | CRM Tag
+“This just isn’t on my radar.” | Attention Aversion | pre_unaware
+“Feels like too much work to evaluate.” | Cognitive Friction | pre_cognitive_friction
+“I don’t want to learn a new asset class right now.” | Bandwidth Friction | pre_learning_resistance
+“Nothing’s broken in my portfolio.” | Change Aversion | pre_status_quo_hold
+“Let’s let someone else be the guinea pig.” | Innovation Avoidance | pre_guinea_pig_deferral
+“I’m not sure my LPs would be okay with this.” | Perceived Reputational Risk | pre_lps_uncertain
+“There’s no urgency for this.” | Optionality Friction | pre_no_urgency
+“This feels like something for next year.” | Calendar Delay Logic | pre_next_year_deferral
+“We’re at full deployment already.” | Allocation Saturation | pre_fully_deployed
+“I’d need to understand the risk profile better.” | Risk Understanding Gap | pre_risk_model_missing
+“Feels like we’d have to start from scratch.” | Foundation Effort Anxiety | pre_blank_slate_block
+“We’re not in discovery mode right now.” | Exploration Inertia | pre_not_evaluating
+“We’re not actively looking for new strategies.” | Exploration Freeze | pre_strategy_window_closed
+“It would be too political to bring this up now.” | Internal Dynamics Risk | pre_political_inertia
+“I don’t want to open this can of worms.” | Complexity Avoidance | pre_can_of_worms
+“Our pipeline is already overfilled.” | Dealflow Saturation | pre_pipeline_saturated
+“I don’t want to sit through a pitch right now.” | Sales Resistance | pre_pitch_aversion
+“It’s not a priority in the current macro.” | Macro Mismatch | pre_macro_irrelevant
+“This isn’t in my domain.” | Role Displacement | pre_out_of_scope
+“We’re not resourced to evaluate this properly.” | Diligence Capacity Gap | pre_no_eval_bandwidth
+“Not enough hours in the day.” | Time Poverty | pre_time_block
+“We’re focused on fixing internal stuff first.” | Internal Overload | pre_internal_fire
+“This would be a distraction right now.” | Focus Risk | pre_focus_disruption
+“I’d need a full explainer deck just to consider it.” | Comprehension Load Barrier | pre_explainer_needed
+“We’re in capital conservation mode.” | Defensive Capital Posture | pre_capital_defensive
+“We’re not in deployment mode right now.” | Deployment Freeze | pre_on_hold
+“Too many things in motion already.” | Cognitive Fragmentation | pre_too_much
+“Our team is mid-restructure.” | Org Change Inertia | pre_org_change
+“This would just sit in my inbox.” | Non-Engagement Realism | pre_ignored
+“Circle back when things settle down.” | Temporal Deferral Mechanism | pre_when_calm
+“We’re looking for more passive ideas.” | Effort-to-Outcome Mismatch | pre_passive_preference
+Allocator Thought | Underlying Friction | CRM Tag
+“You all claim the same edge.” | Differentiation Collapse | category_edge_overlap
+“The returns look good — that’s the scary part.” | Returns Skepticism | category_too_good
+“Feels like everyone is just copying each other.” | Strategy Mimicry Aversion | category_copycat_strategies
+“You’re all trying to sound institutional now.” | Authenticity Filter | category_fake_institutional
+“Where’s the actual alpha?” | Performance Disappointment | category_alpha_missing
+“It’s always ‘early days’ and ‘long term’ with you guys.” | Narrative Repetition Fatigue | category_same_story
+“We need more than charts and conviction.” | Evidence Threshold Block | category_needs_proof
+“How do you actually create value?” | Value Creation Skepticism | category_value_doubt
+“We’re cynical for a reason.” | Historical Burnout | category_experience_scarred
+“The whole thing feels like marketing with math.” | Mathwashing Aversion | category_mathwashing
+Allocator Thought | Underlying Friction | CRM Tag
+“I don’t have enough context to forward this.” | Context Friction / Forwarding Risk | advisor_context_block
+“If I don’t understand it, I won’t send it.” | Comprehension Enforcement | advisor_understand_first
+“I don’t want to vouch for something I haven’t met in person.” | Trust Gap / Forwarding Exposure | advisor_meeting_required
+“We’d need a version for our CIO.” | Tailored Format Burden | advisor_needs_alt_deck
+“This is above my pay grade.” | Role Avoidance /  Authority Displacement | advisor_deferral_upstream
+“We only forward internally vetted opportunities.” | Vetting Threshold Block | advisor_internal_vetting_only
+“Can you send a deck with no crypto language?” | Translation Burden / Language Fit | advisor_sanitized_version
+“Let me check how others are sharing it.” | Social Norm Seeking | advisor_referral_check
+“If I forward this, I need it to reflect well on me.” | Reputation Risk | advisor_self_filtering
+“I need to test it myself before I refer it.” | Personal Exposure / Pre-Validation Gate | advisor_prevalidation_block
+Allocator Thought | Underlying Friction | CRM Tag
+“My wife/husband wouldn’t go for this.” | Household Governance Block | spouse_block
+“This isn’t aligned with how we do things.” | Family Constitution Friction | family_ethos_block
+“Let me talk to my son/daughter first.” | Generational Influence Delay | family_nextgen_review
+“We only do things we can teach our kids.” | Legacy Filter Logic | family_educational_test
+“Our family has a policy against crypto.” | Mandate Guardrail | family_policy_barrier
+“We only allocate through a single advisor.” | Access Control Preference | family_single_point_entry
+“My partner would kill me if I brought this forward.” | Emotional Gatekeeper Risk | spouse_disapproval_fear
+“This needs to feel safe to our family office board.” | Board Perception Risk | family_board_safety_needed
+“We need unanimous agreement.” | Consensus Requirement | family_unanimity_needed
+“Our estate advisor vetoed this.” | Third-Party Override | family_external_block
+Allocator Thought | Underlying Friction | CRM Tag
+“Can your data team work with ours?” | Integration Anxiety | infra_data_sync_check
+“Do you support our fund admin?” | Platform Compatibility Concern | infra_admin_compatibility
+“We need API access.” | Infrastructure Expectation | infra_api_required
+“Do you have live data rooms?” | Process Streamlining Request | infra_virtual_room_needed
+“Do you allow sandbox access for analytics?” | Evaluation Preview Desire | infra_sandbox_requested
+“Our ops team requires reconciliation feeds.” | Back Office Workflow Friction | infra_ops_recon
+“Is this encrypted at rest?” | Data Security Standard Requirement | infra_encryption_check
+“Do you integrate with custodians directly?” | Custody Sync Requirement | infra_custodian_pipe
+“Our diligence system needs JSON exports.” | Format-Driven Process Requirement | infra_json_export_needed
+“How does this plug into our accounting?” | System Workflow Friction | infra_fund_accounting_pipe
+Allocator Thought | Underlying Friction | CRM Tag
+“I still don’t really get crypto.” | Comprehension Gap | crypto_confused
+“This feels like gambling.” | Category Bias | crypto_gambling_aversion
+“How do I know this isn’t another FTX?” | Contagion Trauma | crypto_trust_trauma
+“I thought crypto was dead?” | Perception Lag | crypto_dead_narrative
+“Isn’t this just hype again?” | Narrative Skepticism | crypto_hype_skeptic
+“Can’t governments just shut this down?” | Regulatory Fear | crypto_gov_shutdown
+“It’s just code. That’s not real value.” | Intangibility Aversion | crypto_not_real_value
+“Why would I trust anonymous people on the internet?” | Trust Structure Breakdown | crypto_trustless_discomfort
+“Too many hacks, too many scams.” | Security Risk Fatigue | crypto_security_exhausted
+“I don’t understand wallets or custody.” | Technical UX Barrier | crypto_wallet_confused
+“Feels like there’s always another collapse coming.” | Volatility Trauma | crypto_collapse_fear
+“There’s no earnings, no dividends — how do I value this?” | Valuation Ambiguity | crypto_value_unclear
+“It’s not real money.” | Legacy System Anchoring | crypto_not_money
+“Seems like a niche for tech people, not investors.” | Cultural Distance | crypto_tech_niche
+“I’ve seen this movie before… and it didn’t end well.” | Cycle Trauma | crypto_burned_before
+“No one I trust is in this space.” | Network Isolation | crypto_no_network
+“How do taxes even work with crypto?” | Compliance Complexity Fear | crypto_tax_confusion
+“It all moves too fast.” | Cognitive Overwhelm | crypto_speed_friction
+“It’s all speculation, no fundamentals.” | Fundamentalist Skepticism | crypto_no_fundamentals
+“You can’t analyze it like a normal investment.” | Methodology Rejection | crypto_analysis_barrier
+“Too many tokens. What’s the point?” | Asset Class Fragmentation | crypto_token_overload
+“Feels unregulated or lawless.” | Rule System Mistrust | crypto_lawless_fear
+“The people in it seem… aggressive.” | Brand Aversion | crypto_culture_turnoff
+“What happens if my wallet gets lost or hacked?” | Irreversible Error Trauma | crypto_wallet_loss_fear
+“I don’t want to download anything or learn a new system.” | Adoption Friction | crypto_download_friction
+“It’s just 24/7 gambling, right?” | Trading Culture Rejection | crypto_247_gambling
+“This doesn’t fit our investment committee’s standards.” | Institutional Misfit | crypto_doesnt_fit_ic
+“I don’t want to explain this to my partners.” | Defensibility Fear | crypto_hard_to_defend
+“We only touch things with cash flow.” | Traditional Asset Anchor | crypto_no_cashflow
+“If this goes wrong, it’ll make me look reckless.” | Career Risk Projection | crypto_career_risk
+Dimension | Cold Referral | Intro Call
+Primary Emotion | Social risk aversion  (Fear of looking foolish or endorsing the wrong thing) | Cognitive uncertainty  (Desire to resolve ambiguity and assess competence)
+Dominant Brain System | Limbic system (social filtering, fight-or-flight, reputational defense) | Prefrontal cortex (analytical reasoning, due diligence, logical modeling)
+Friction Theme | "I’m not sure I should even look at this."  Gatekeeping, fear of association, social optics | "I need to figure out if this is real and worth engaging further."  Due diligence, risk modeling, control-seeking
+Trust Mode | Borrowed trust via referral, design polish, or brand recognition | Earned trust through direct responses, structure, and track record
+Main Obstacle | Fear of sharing or reputational harm  (e.g. “I don’t want to forward this”) | Fear of being wrong or misjudging risk  (e.g. “How is custody handled?” “What’s the worst-case drawdown?”)
+Decision Stage | Pre-curiosity or gatekeeping | Early due diligence / validation
+Key Frictions | - Social optics - Asymmetric familiarity - Bandwidth scarcity - Design judgment | - Structural trust gaps - Risk perception - Liquidity anxiety - Legal or operational clarity
+Language Cues | “Can I share this?”  “Does this look credible?” | “What’s the fee model?”  “Who is the custodian?”
+Response Style Needed | Short, referable, beautiful, frictionless | Clear, calm, confident, structured
+Stage | Allocator Psychology | Your Materials Goal
+Cold Referral | "Will this make me look bad?" | Social de-risking (one-pager, clean CTA, elegant design)
+Intro Call | "How do I know this is legitimate and secure?" | Credibility de-risking (FAQ deck, admin docs, charts, risk answers)
+Allocator Question | Underlying Friction | CRM Tag
+“I don’t want to forward something that  makes me look bad.” | “I don’t want to forward something that  makes me look bad.” | Referral Anxiety / Social Optics | referral_only
+“Can you send something simple I can pass along?” | “Can you send something simple I can pass along?” | Referral Delay / Bandwidth Risk | referral_passive
+“We don’t look at anything unless it’s vetted.” | “We don’t look at anything unless it’s vetted.” | Reputation Risk / Social Filtering | referral_compliance
+“Send it to me and I’ll take a look first.” | “Send it to me and I’ll take a look first.” | Trust Gap / Control Need | referral_gatekeeper
+“Is there a summary I can forward?” | “Is there a summary I can forward?” | Time Deferral / Simplicity Demand | referral_summary
+“What will this look like if I share it?” | “What will this look like if I share it?” | Social Optics / Presentation Anxiety | referral_fear
+“We only look at decks from known partners.” | “We only look at decks from known partners.” | Cold Source Rejection / Brand Trust Gap | referral_source_cred
+“Can you give me something I can understand?” | “Can you give me something I can understand?” | Comprehension Barrier / Complexity Risk | referral_simple
+“Don’t send me a pitch deck.” | “Don’t send me a pitch deck.” | Sales Aversion / Defensive Gatekeeping | referral_nopitch
+“We only take referrals through a process.” | “We only take referrals through a process.” | Process Control / Bureaucratic Delay | referral_procedural
+“I’ll forward it if it makes sense.” | “I’ll forward it if it makes sense.” | Cognitive Effort Aversion | referral_needs_summary
+“Who else has invested?” | “Who else has invested?” | Social Proof Request / Confidence Proxy | referral_social_proof
+“Do you have a short version?” | “Do you have a short version?” | Length Aversion / Low Attention | referral_shortform
+“Is this founder someone I can trust?” | “Is this founder someone I can trust?” | Team-Based Filtering / Trust Transfer | referral_team_vetting
+“Does this meet minimum standards?” | “Does this meet minimum standards?” | Process Validation Need | referral_threshold_check
+“This doesn’t look institutional.” | “This doesn’t look institutional.” | Design Judgment / Social Forwarding Fear | referral_design_reject
+“I get too many of these.” | “I get too many of these.” | Oversaturation Fatigue / Trust Filtering | referral_noise_block
+“Email me something I can check out later.” | “Email me something I can check out later.” | Async Review Preference | referral_async
+“I’ll look but probably won’t forward.” | “I’ll look but probably won’t forward.” | Referral Stall / Guarded Hesitation | referral_guarded
+“Can you send the one-pager?” | “Can you send the one-pager?” | Compressed Format Demand | referral_onepager
+“Is there a ‘safe to share’ version?” | “Is there a ‘safe to share’ version?” | Reputation Risk Management | referral_safeshare
+“Don’t make me log in to anything.” | “Don’t make me log in to anything.” | Friction Aversion / Commitment Resistance | referral_nologin
+“Will they know I shared it?” | “Will they know I shared it?” | Forwarding Anonymity Concern | referral_privacy
+“How would this make me look?” | “How would this make me look?” | Social Optics / Image Risk | referral_perception
+“Does this fit our ethos?” | “Does this fit our ethos?” | Mission Fit Uncertainty | referral_ethos_check
+“Will this trigger compliance issues?” | “Will this trigger compliance issues?” | Referral Legal Fear | referral_legal
+“How do I position this?” | “How do I position this?” | Messaging Clarity Gap | referral_framing_help
+“I’m not sure they’d care about this.” | “I’m not sure they’d care about this.” | Value Uncertainty / Friction Deflection | referral_low_interest
+“Can you give me bullet points?” | “Can you give me bullet points?” | Attention Deficit / Speed Friction | referral_bullets
+“We can’t touch this asset class.” | “We can’t touch this asset class.” | Categorical Rejection / Strategy Conflict | referral_asset_block
+“Only send me things I can share upstream.” | “Only send me things I can share upstream.” | Screening Delegation | referral_upstream_ready
+“You can send it, but I won’t be involved.” | “You can send it, but I won’t be involved.” | Liability Aversion / Social Disassociation | referral_armslength
+Allocator Question | Underlying Friction | CRM Tag
+“Where is my money and how safe is it?” | Custody Trust Gap | custody_trust
+“Do you use leverage?” | Risk Aversion / Strategy Clarity | risk_aversion
+“Who else is in the deal?” | Social Proof / Reputational Risk | social_proof
+“How long is the lockup?” | Liquidity Friction / Exit Anxiety | liquidity_concern
+“Is this crypto?” | Category Uncertainty / Reputation Friction | crypto_reputation_check
+“What’s your minimum?” | Access Concern / Gate Screening | minimum_threshold
+“Can you show me a simple diagram?” | Comprehension Demand | diagram_request
+“Where are you regulated?” | Jurisdiction Risk / Compliance Barrier | jurisdiction_check
+“How often do you report performance?” | Transparency Concern | reporting_frequency
+“How liquid are the assets?” | Redemption Timing Anxiety | liquidity_profile
+“Can I see a sample report?” | Reporting Proof / Presentation Friction | sample_report_request
+“What’s the risk management process?” | Risk Oversight Demand | risk_process_check
+“How long have you been trading?” | Track Record Proof / Experience Filter | track_record_request
+“Is this fund open now?” | Timing & Availability Check | fund_open_status
+“Can you walk me through it?” | Conversation Preference / Live Processing | walkthrough_request
+“Do you have a fund admin?” | Institutional Trust Mechanism | fund_admin_check
+“How do I redeem?” | Redemption Path Anxiety | redemption_process
+“Do I get monthly statements?” | Investor Communication Concern | monthly_reporting
+“Are you audited?” | External Verification Need | audit_check
+“What’s the worst-case drawdown?” | Downside Risk Psychology | drawdown_disclosure
+“What’s your background?” | Team Trust Calibration | founder_background_check
+“How is this structured?” | Entity Complexity Concern | structure_clarity
+“What’s your fee model?” | Compensation Aversion / Transparency | fee_model_request
+“How do I subscribe?” | Onboarding Process Anxiety | subscription_logistics
+“Do you custody directly?” | Security Perception / Ops Friction | custody_responsibility
+“How fast can I get in?” | Urgency / Liquidity Ingress | entry_timing_check
+“Is there a side pocket?” | Transparency of Strategy Components | side_pocket_risk
+“What’s the net exposure?” | Hedging Structure Curiosity | net_exposure_check
+“Is this on-chain?” | Technology Infrastructure Filter | onchain_question
+“How are fees calculated?” | Operational Clarity Demand | fee_calc_request
+“Do you have other funds?” | Comparative Option Interest | multi_fund_query
+“How many LPs are in the fund?” | Investor Base Vetting | lp_base_check
+“What banks or custodians are involved?” | Partner Trust Proxy | custodian_list_check
+Theme | Description | Allocator Thought
+Career Risk | Fear of recommending a deal that later fails or is non-compliant | “Can I defend this if it goes wrong?”
+Compliance Burden | Triggered by legal, tax, ERISA, and KYC requirements | “Has this passed our filters already?”
+Third-Party Validation | Allocator wants to delegate trust to lawyers, auditors, or admins | “What does the fund admin say?”
+Structure Transparency | The vehicle must match allocator’s mandate and investor type | “Is this LP-friendly and Cayman-compliant?”
+Operational Readiness | Proof that the fund is institutionally viable, not just a good idea | “Do they have admin feeds and audit letters?”
+Governance Scrutiny | Need for oversight, alignment, and exit protection | “What’s the GP comp? Is there board oversight?”
+Perspective | What Committee Review Represents
+Allocator | “I need to prove this is defendable and passes our internal filters.”
+Fundraising Team | “This is where we stop marketing and start proving institutional readiness.”
+Internal Committee | “Show us that this won’t come back to haunt us — legally, reputationally, or financially.”
+Allocator Question | Underlying Friction | CRM Tag
+“Can I defend this internally?” | Career Risk / Legal Structure | committee_review
+“We need to document this carefully.” | Compliance Friction | compliance_priority
+“Can I send this to our legal team?” | Legal Trigger / Career Risk | legal_referral
+“Does this pass operational due diligence?” | Execution Risk / Process Gaps | odddocs_request
+“Have you been audited?” | Governance & Transparency | audit_status
+“Are you set up for Cayman compliance?” | Structure Assurance / Domicile Risk | cayman_structured
+“Who handles custody?” | Counterparty Risk | custody_provider_check
+“Do you have a KYC/AML policy?” | Institutional Compliance Comfort | aml_kyc_required
+“Do you support fund admin feeds?” | Infrastructure Readiness | admin_feed_ready
+“Is this strategy GIPS compliant?” | Standards-Based Framing | gips_standard_check
+“Can we get a side letter?” | Negotiated Terms Exploration | side_letter_interest
+“Is this vehicle LP-friendly?” | Governance Framing / Control Logic | lp_friendly_check
+“Has this gone through legal already?” | Legal Filter Confirmation | legal_precleared
+“Send over all docs.” | Compliance Handoff / Control Language | doc_dump_request
+“Who signs on withdrawals?” | Control Logic / Authority Disclosure | withdrawal_control_check
+“How is the GP compensated?” | Governance Clarity / Misalignment Concern | gp_compensation_request
+“Do you have board oversight?” | Governance Comfort Layer | board_structure_check
+“Is this eligible for ERISA investors?” | ERISA Compliance Eligibility | erisa_eligibility_check
+“Do you offer a feeder structure?” | Structural Accommodation Interest | feeder_availability
+“What’s your NAV frequency?” | Valuation Structure Transparency | nav_timing_check
+“Are fees reported gross or net?” | Disclosure Accuracy Concern | fee_reporting_type
+“Do you have audit letters or summaries?” | External Verification Evidence | audit_letters_request
+“What’s your risk policy?” | Risk Framework Credibility | risk_policy_reference
+“Do you use a Big Four audit firm?” | Brand Validation Proxy | big4_audit_check
+“Is this a blocker or pass-through?” | Tax Structuring Relevance | tax_entity_form
+“Do you comply with CRS/FATCA?” | Global Reporting Compliance Concern | fatca_compliance_check
+“What protections are in place for LPs?” | Alignment & Downside Risk Protections | lp_protections_requested
+“Can we talk to your fund admin?” | 3rd Party Verification Trust Builder | admin_contact_request
+“Are monthly statements independently verified?” | Control Delegation Reassurance | statement_thirdparty_check
+“Is this QIB eligible?” | Qualified Investor Layer Check | qib_eligibility
+“How is the audit timeline handled?” | Compliance Follow-Through / Deadlines | audit_timing_check
+“What’s the tax reporting schedule?” | Filing Deadlines / Process Expectation | tax_reporting_schedule
+Dimension | Allocator Mindset
+Attribution Skepticism | “Are these returns luck or skill?”
+Replicability Filter | “Could this be mimicked cheaply or passively?”
+Data Fidelity Check | “Do the numbers hold up under our internal models?”
+Noise Reduction | “What signals are real, and which are just volatility?”
+Benchmark Pressure | “How does this stack up to beta or peers?”
+Control Seeking | “We need raw data to verify your claims ourselves.”
+Friction Type | Example Allocator Question
+Alpha Validity | “How do you generate alpha?”
+Beta Confusion | “Isn’t this just beta in disguise?”
+Risk-Adjusted Performance | “What’s your Sharpe or Sortino ratio?”
+Time Series Scrutiny | “Can I see daily returns?” “What’s the monthly alpha?”
+Backtest Rigor | “Can you backtest across market regimes?”
+Attribution Clarity | “Is the alpha selection or timing-based?”
+Correlation Exposure | “How correlated is this to BTC/ETH?”
+Liquidity & Execution | “What’s the liquidity of underlying assets?”
+Edge Decomposition | “What % of trades drive the alpha?”
+Allocator Question | Underlying Friction | CRM Tag
+“How do you generate alpha?” | Attribution Skepticism | quant_alpha
+“Isn’t this just beta in disguise?” | Performance Misunderstanding | beta_confusion
+“What’s your Sharpe or Sortino ratio?” | Risk Adjusted Performance Scrutiny | quant_metrics_request
+“What’s driving these returns?” | Alpha Source Breakdown | performance_drivers
+“Can I get a CSV export of returns?” | Data Portability Concern | quant_csv_request
+“Are you benchmarked?” | Comparative Framing Need | benchmark_compare
+“What’s the strategy turnover rate?” | Execution Transparency / Operational Efficiency | turnover_check
+“Do you have attribution by asset?” | Granularity Request | attribution_by_asset
+“How do you manage volatility?” | Risk Management Inquiry | volatility_control
+“Can I replicate this?” | Indexability Check / Proprietary Risk | replication_question
+“What’s the monthly alpha?” | Time-Based Attribution Curiosity | monthly_alpha_check
+“Is this statistically significant?” | Quantitative Rigor Demand | statistical_significance_check
+“Can I stress test this portfolio?” | Scenario Testing Curiosity | stress_test_request
+“Is there multi-strategy overlap?” | Allocation Framing Concern | multi_strategy_confusion
+“What’s your max drawdown?” | Performance Drawdown Framing | quant_drawdown_check
+“What’s your upside capture ratio?” | Comparative Performance Metric Need | upside_capture_request
+“Is this delta-neutral?” | Exposure Structure Clarification | delta_neutral_check
+“Can I see the daily returns?” | Time-Series Performance Transparency | daily_return_request
+“Can you decompose alpha into selection vs timing?” | Attribution Split Interest | alpha_breakout_request
+“What’s your gross vs net exposure range?” | Leverage Transparency | exposure_range_check
+“Do you hedge macro events?” | Event Risk Management Scrutiny | macro_hedge_check
+“How correlated is this to BTC/ETH?” | Correlation Awareness | crypto_correlation_check
+“How is this different from passive?” | Strategic Differentiation Gap | active_vs_passive
+“What’s the liquidity of underlying assets?” | Execution Risk / Sellability Concern | underlying_liquidity_check
+“What’s your rolling 3Y Sharpe?” | Longitudinal Risk-Adjusted Returns | sharpe_rolling_3y
+“Show me a time-weighted return curve.” | Performance Visualization Request | twr_curve_request
+“What if I run this through my model?” | Replicability Skepticism | third_party_model_check
+“How much of this is luck?” | Causality Skepticism / Noise Filter | luck_vs_skill
+“What would happen in a flash crash?” | Shock Scenario Risk Review | flash_crash_response
+“What % of trades drive the alpha?” | Pareto Distribution Curiosity | alpha_distribution_check
+“What’s the holding period distribution?” | Strategy Time Frame Filter | holding_period_analysis
+“Can you backtest it across market regimes?” | Stress Regime Simulation | market_regime_backtest
+Psychological Driver | Description
+Timing Aversion | “We’re overloaded / not allocating this cycle.”
+Validation Delay | “We need to see someone else move first.”
+Portfolio Optimization | “We’re full in this bucket, but watching for rotation.”
+Low Bandwidth | “Send us the skimmable version.”
+Macro Paralysis | “Waiting for volatility or rates to settle.”
+Rebuilding Trust | “Still not sure about ops or structure.”
+Memory Re-triggering | “Remind me what made you stand out.”
+Allocator Question | Underlying Friction | CRM Tag
+“Still watching, not ready.” | Timing Paralysis | watchlist_mode
+“Remind me what makes you different.” | Strategy Clarity / Recall Loss | reactivation_differentiation
+“Send me your latest update.” | Passive Monitoring | reactivation_update
+“We’re following for now.” | Waitlist Psychology / Info-Gathering | reactivation_passive
+“Have you launched yet?” | Confirmation Status Check | reactivation_status
+“What’s performance YTD?” | Performance Check-In | reactivation_perf_ytd
+“Have any institutions come in?” | Validation-Seeking Behavior | reactivation_institutional_check
+“How often do you rebalance?” | Ops Curiosity / Trust Rebuild | reactivation_rebalance
+“We’re reviewing Q4 allocation targets.” | Cycle-Based Window Awareness | reactivation_fiscal_window
+“Send a light version I can skim.” | Low Bandwidth Reactivation | reactivation_skimmer
+“We liked it, just not at the right time.” | Soft Pass Follow-Up | reactivation_warm_decline
+“We’re still trying to understand the category.” | Segment Hesitation | reactivation_asset_class_learning
+“Has anything changed since we last spoke?” | State Change Curiosity | reactivation_change_check
+“Ping me when you hit a milestone.” | Milestone Triggered Follow-Up | reactivation_milestone_wait
+“Forward us updated numbers in a few weeks.” | Data Update Window | reactivation_data_request
+“Send this again in Q1.” | Quarter-Based Reconnect Request | reactivation_calendar_set
+“We’re rotating into more liquid strategies.” | Liquidity Preference Shift | reactivation_liquidity_shift
+“Let’s wait until the macro stabilizes.” | Macro Environment Delay | reactivation_macro_wait
+“We’re tracking a few funds now.” | Shortlist Competition | reactivation_in_comparison
+“What’s new since your deck?” | Update Framing Trigger | reactivation_deck_updated
+“Have you improved the ops side?” | Trust Rebuild Attempt | reactivation_ops_recheck
+“How close are you to critical mass?” | Momentum Threshold Curiosity | reactivation_critical_mass
+“Do you have new third-party references?” | External Validation Request | reactivation_new_ref_check
+“We’re waiting for a signal from our CIO.” | Top-Down Delay Point | reactivation_cio_signal
+“Can I see a quick performance snapshot?” | Visual Reporting Preference | reactivation_perf_snapshot
+“What’s your AUM now?” | Scale Credibility Check | reactivation_aum_now
+“We’re onboarding someone new to look at this.” | Coverage Change | reactivation_contact_change
+“We’re checking back on high-performers from last year.” | Leaderboard Psychology | reactivation_perf_sort
+“Can you send monthly returns since inception?” | Detailed Reporting Recall | reactivation_perf_history
+“We’re rebalancing internally.” | Portfolio Strategy Rebuild | reactivation_rebalance_window
+“We’re watching for entry signal.” | Technical Timing Filter | reactivation_entry_timing
+“We’ll let you know after year-end review.” | Post-Planning Delay | reactivation_post_fiscal_review
+Friction Type | Allocator Thought
+Timing Aversion | “Not in this cycle, maybe later.”
+Mandate Mismatch | “We can’t justify this asset class internally.”
+Narrative Risk | “Crypto doesn’t feel safe enough right now.”
+Bandwidth / Fatigue | “Too many deals, not enough attention.”
+Credibility Gaps | “Still feels early-stage or risky.”
+Portfolio Fit | “We’re over-allocated to this strategy already.”
+Internal Politics | “My CIO or committee doesn’t support this.”
+Allocator Question | Underlying Friction | CRM Tag
+“Let’s circle back next quarter.” | Passive Stall | soft_decline
+“We’re not allocating to crypto right now.” | Category Freeze / Narrative Risk | asset_class_paused
+“Timing’s not right.” | Market Volatility / Allocation Window | macro_delay
+“We’re focused elsewhere this cycle.” | Competing Opportunity / Prior Commitment | allocation_redirect
+“We’ve moved our pipeline to other verticals.” | Opportunity Window Closed | pipeline_exited
+“Our committee isn’t looking at this space anymore.” | Internal Prioritization Shift | committee_pivoted
+“We’re full on alternatives right now.” | Portfolio Saturation / Strategy Cap | alt_full
+“Send us an update next quarter.” | Passive Deferment Loop | soft_update_requested
+“We liked it, just not at the right time.” | Warm Decline | warm_decline
+“We’ll keep you on file.” | Deferred Passive Dismissal | filed_away
+“We just did a crypto allocation elsewhere.” | Slot Already Filled | category_already_allocated
+“Too early for us.” | Strategy Maturity Skepticism | too_early_signal
+“We’re reducing fund commitments across the board.” | Internal Liquidity Tightening | internal_cutbacks
+“We’re simplifying our book.” | Portfolio Consolidation | portfolio_simplification
+“We need more time to digest.” | Bandwidth Delay / Decision Friction | digest_delay
+“Not a great fit for us right now.” | Soft Exit / Category Uncertainty | soft_exit
+“Let’s revisit in 6 months.” | Long-Term Delay Marker | delay_6mo_followup
+“Too much uncertainty in this space.” | Market Confidence Freeze | macro_uncertainty_decline
+“Not our mandate.” | Strict Allocation Criteria / No-Flex | outside_mandate
+“We’re closing out this round.” | Timing Cutoff / Missed Window | round_closed
+“Our CIO said no for now.” | Top-Down Rejection | cio_block
+“We’re putting this on pause.” | Internal Strategy Re-Orientation | paused_position
+“Can’t justify the fees internally.” | Fee Sensitivity / Internal Pressure | fee_objection
+“Hard to prioritize this with other deals in motion.” | Pipeline Congestion | pipeline_pressure
+“We’re prioritizing liquidity this year.” | Liquidity-Centric Allocation Rule | liquidity_year_focus
+“Doesn’t feel urgent.” | Perceived Optionality | low_urgency_decline
+“I’m not the right person for this.” | Reflex Deferral / Authority Displacement | wrong_contact_deferral
+“We’d need to see more traction first.” | Credibility Building Needed | traction_required_decline
+“We’re exiting this space.” | Strategic Withdrawal | exiting_category
+“Already passed to investment committee – they passed.” | Decision Finalization | committee_passed
+“We didn’t feel the timing was right to introduce something new.” | Innovation Fatigue / Stability Preference | change_resistance_decline
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+C1 – Master-Feeder Structure Diagram | Jurisdiction Friction, Legal Uncertainty, Governance Risk | Steel → Charcoal | Gamma, PDF | 🔒 Sidebar CTA – “We can walk you through the fund structure.” | legal_referral, committee_review, jurisdiction_check
+C3 – Service Provider Stack | Trust Formation Barrier, Operational Doubt, Compliance Friction | Slate → Pale Mint | Gamma, PDF | 🔒 Footer CTA – “Full due diligence packet available.” | audit_status, compliance_priority, aml_kyc_required
+C4 – Custody Flow Diagram | Custody Trust Gap, Liquidity Concern, Referral Anxiety | Deep Custody Green → Modal | Gamma, PDF | 🔒 Sidebar CTA – “We can walk you through custody.” | custody_trust, liquidity_concern, referral_only
+C5 – Cold Storage Access Control | Security Aversion, Technical Skepticism, Irreversible Error Fear | Dusty Plum → Modal Gray | PDF only | 🔒 Legal CTA – “We can explain custody risk controls.” | crypto_wallet_loss_fear, compliance_priority, crypto_security_exhausted
+C6 – Legal Provider Summary + Regulatory Footnotes | Career Risk, Legal Diligence Requirement, Third-Party Validation Need | Slate → Charcoal | PDF, Gamma | 🔒 Footer CTA – “View provider list and governing standards.” | legal_referral, committee_review, audit_letters_request
+C9 – Redemption & Lockup Policy Table | Liquidity Anxiety, Redemption Timing Fear, Risk Disclosure Requirement | Modal → Steel | PDF, Gamma | 🔁 Sidebar CTA – “Redemption timing and exit flexibility shown here.” | liquidity_concern, redemption_process, fee_model_request
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+RS1 – Referral Summary Slide | Referral Delay, Social Optics, Comprehension Friction | Fog Purple  → Gold | Canva, PDF | ❄️ Footer CTA – “Safe to forward or track.” | referral_only, advisor_context_block, pre_explainer_needed
+RS2 – Visual Summary Snapshot | Time Constraint, Referral Bandwidth Filter, Forwarding Anxiety | Pale Mint  → Fog Purple | Canva, PDF | ❄️ Passive CTA – “Skim and forward.” | referral_passive, referral_safeshare, advisor_understand_first
+RS3 – Strategy Identity Tile | Social Proof Gap, Comparison Delay | Dusty Plum  → Steel | PDF | 🔁 Column CTA – “Quick overview: What we are, what we’re not.” | social_proof, advisor_needs_alt_deck, referral_ethos_check
+RS4 – Credential Wall Slide | Brand Validation Delay, Forwardability Hesitation | Charcoal  → Slate | PDF, Canva | ❄️ Footer CTA – “Use for intro or forwarding.” | category_credential_gap, family_board_safety_needed, referral_upstream_ready
+RS5 – Referral Email Snapshot Slide | Time Aversion, Forwarding Aversion, Cold Intro Delay | Fog Purple | PDF only | ❄️ No CTA – Passive visual only (email-style forwardable) | referral_async, referral_summary, referral_shortform
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+P1 – Historical Performance Summary | Comprehension Delay, Performance Recall Gap, Confidence Barrier | Steel → Cobalt | PDF, Gamma | 🔁 Footer CTA – “Explore full return history.” | reactivation_perf_history, quant_metrics_request, reactivation_update
+P2 – Strategy vs. Benchmark Comparison | Beta Confusion, Alpha Skepticism, Differentiation Doubt | Steel Purple → Cobalt | PDF | 🔁 Sidebar CTA – “See how our edge stacks up.” | category_edge_overlap, attribution_by_asset, benchmark_compare
+P4 – Attribution Logic Flow | Alpha Source Friction, Data Integrity Concern | Slate → Cobalt | PDF, Gamma | 🔁 Right CTA – “Breakdown by trade logic available.” | quant_alpha, alpha_breakout_request, category_value_doubt
+P6 – Attribution vs. Beta Slide | Attribution Skepticism, Performance Dismissal Risk | Steel → Cobalt | PDF only | 🔁 Sidebar CTA – “Send full metrics set.” | quant_alpha, beta_confusion, committee_review
+P7 – Sharpe/Sortino Volatility Matrix | Risk-Adjusted Return Scrutiny, Quant Evaluation | Cobalt → Charcoal | PDF | 🔒 Sidebar CTA – “Submit for full quantitative appendix.” | quant_metrics_request, sharpe_rolling_3y, statistical_significance_check
+P8 – Risk / Return Positioning Map | Category Comparison Confusion, Exposure Aversion | Slate → Pale Mint | PDF, Gamma | 🔁 Footer CTA – “Visualize fit in your portfolio.” | macro_delay, quant_csv_request, advisor_prevalidation_block
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+A1 – Investment Window Timeline | Deployment Freeze, Liquidity Schedule Concern | Slate → Steel | PDF, Gamma | 🔁 Sidebar CTA – “Join this window or waitlist.” | macro_delay, allocation_redirect, reactivation_fiscal_window
+A2 – Lockup & Redemption Chart | Exit Anxiety, Liquidity Aversion | Modal → Slate | PDF | 🔁 Sidebar CTA – “Compare class lockups and liquidity rights.” | liquidity_concern, redemption_process, fee_model_request
+A3 – Share Class Eligibility Matrix | Entity Confusion, Subscription Filter Delay | Charcoal → Teal | PDF | 🔒 Legal CTA – “See which share class applies to your structure.” | jurisdiction_check, subscription_logistics, tax_entity_form
+A4 – Strategy Entry Schematic | Deployment Questioning, Fit Hesitation | Steel → Pale Mint | PDF, Gamma | 🔁 Column CTA – “Here’s where you’d enter in our flow.” | pre_next_year_deferral, subscription_logistics, pre_passive_preference
+A5 – Entry Signal Map (Macro Trigger Overlay) | Timing Paralysis, Rebalance Deferral, Strategy Skepticism | Mint → Fog Purple | PDF, Gamma | ❄️ Footer CTA – “Track entry signals or join passive list.” | timing_paralysis, macro_delay, reactivation_entry_timing
+A6 – Subscription Process Diagram | Operational Friction, Onboarding Uncertainty | Slate → Cobalt | PDF | 🔁 Sidebar CTA – “Step-by-step onboarding with admin contact.” | subscription_logistics, onboarding_process_delay, doc_dump_request
+A7 – Onboarding Checklist | First-Time Fund Process Risk, Form Fatigue | Steel → Slate | PDF only | 🔁 Right CTA – “Use this to prep your team or advisor.” | advisor_check_required, onboarding_process_delay, compliance_priority
+A8 – Track & Watchlist Invitation | Timing Paralysis, Passive Opt-In Preference | Pale Mint → Fog Purple | Canva, Gamma | ❄️ Footer CTA – “→ Track performance or watch quietly.” | watchlist_mode, reactivation_passive, referral_async
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+R1 – Risk Disclosure Statement | Drawdown Anxiety, Institutional Comfort Demand | Slate  → Charcoal | PDF | 🔒 Sidebar CTA – “We disclose risk honestly and clearly.” | drawdown_disclosure, audit_status, family_ethos_block
+R2 – Stress Testing Summary | Shock Scenario Curiosity, Strategy Fragility Concerns | Dusty Plum  → Steel | PDF | 🔁 Right CTA – “Stress testing data available by request.” | stress_test_request, volatility_control, macro_hedge_check
+R3 – Portfolio Volatility Map | Exposure Aversion, Historical Burnout Memory | Steel  → Cobalt | PDF, Gamma | 🔁 Footer CTA – “See strategy stability under pressure.” | macro_uncertainty_decline, quant_drawdown_check, reactivation_perf_ytd
+R4 – Downside Protection Table | Career Risk, Timing Concern, Defensive Allocation Preference | Modal Gray  → Pale Mint | PDF | ❄️ Footer CTA – “See how we protect investor capital.” | emotion_career_defense, reactivation_defensive_only, fee_objection
+R5 – Redemption Schedule Waterfall | Exit Planning Risk, Liquidity Clarification Delay | Modal  → Steel | PDF, Gamma | 🔁 Sidebar CTA – “Exit flexibility explained here.” | liquidity_concern, redemption_process, withdrawal_control_check
+R6 – Liquidity Timeline vs Strategy Lock | Redemption Confusion, Liquidity-to-Alpha Concern | Slate  → Navy | PDF | 🔁 Column CTA – “Transparency on liquidity terms.” | liquidity_profile, redemption_timing, soft_update_requested
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+O1 – Fund Admin Overview | Operational Validation Barrier, Third-Party Trust Gap | Slate  → Modal | PDF, Gamma | 🔒 Sidebar CTA – “View third-party administrator details.” | admin_feed_ready, doc_dump_request, fund_admin_check
+O2 – Fee Structure Breakdown | Compensation Aversion, Complexity Skepticism | Steel  → Slate | PDF only | 🔁 Right CTA – “We clarify all economics upfront.” | fee_model_request, fee_reporting_type, soft_decline
+O3 – Investor FAQ Summary | Info Friction, Referral Delay, Process Doubt | Pale Mint  → Fog Purple | PDF, Canva | ❄️ Footer CTA – “Answers to common diligence questions.” | referral_summary, advisor_check_required, onboarding_process_delay
+O4 – Access & Subscription Slide | Access Anxiety, Compliance Delay | Charcoal  → Teal | PDF | 🔒 Right-aligned CTA – “Download PDF Access Agreement.” | access_anxiety, onboarding_process_delay, subscription_logistics
+O5 – Onboarding Steps & Timelines | Framing Friction, Process Delay, Advisor Confusion | Slate  → Steel | PDF, Gamma | 🔁 Column CTA – “Detailed onboarding doc available.” | advisor_check_required, reactivation_rebalance_window, onboarding_process_delay
+O6 – Summary Snap Slide (Fast Framing) | Cold Contact Delay, Attention Filter, Sales Aversion | Pale Mint  → Modal | PDF, Canva | ❄️ Passive CTA – “Quick version to review or forward.” | referral_shortform, advisor_deferral_upstream, soft_decline
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+S1 – Strategy Intro Slide | Attention Filter, First Impression Judgment, Referral Delay | Pale Mint  → Gold | PDF, Canva, Gamma | ❄️ Footer CTA – “Skim this page first.” | referral_ethos_check, advisor_meeting_required, referral_first_impression
+S2 – Performance Curve + Strategy Mix | Beta Confusion, Attribution Gap, Portfolio Fit Doubt | Cobalt  → Steel | PDF only | 🔁 Footer CTA – “Breakout and curve details available.” | performance_drivers, beta_confusion, quant_drawdown_check
+S3 – One-Pager Overview (Interactive or Static) | Bandwidth Friction, Category Skepticism, Warm Referral Preview | Modal  → Fog Purple | Canva, PDF | ❄️ Passive CTA – “Safe to forward one-pager summary.” | referral_summary, referral_passive, advisor_needs_alt_deck
+Slide Block | Frictions Resolved | Emotional Tone | Platform Format | CTA Behavior | CRM Tags
+T1 – Core Team Bios Slide | Trust Gap, Advisor Doubt, Referral Safety Check | Pale Mint  → Dusty Plum | PDF, Canva | ❄️ Passive CTA – “Trusted operators with aligned experience.” | founder_background_check, advisor_prevalidation_block, referral_safeshare
+T2 – Founder's Statement Block | Allocator Confidence Barrier, Personalization Friction | Charcoal  → Gold | PDF | ❄️ Sidebar CTA – “Hear why we built this.” | referral_ethos_check, emotion_internal_friction, committee_pivoted
+T3 – Experience Timeline Overlay | Track Record Uncertainty, Performance Memory Gap | Cobalt  → Modal | PDF, Gamma | 🔁 Footer CTA – “Decades of operational continuity.” | track_record_request, lp_base_check, reactivation_perf_sort
+T4 – Governance Disclosure Table | Career Risk, Legal Oversight Concern, Board Friction | Slate  → Dusty Plum | Gamma | 🔒 Legal CTA – “Full governance structure available.” | committee_review, board_structure_check, legal_referral
+T5 – GP/LP Alignment Flowchart | Compensation Misalignment Fear, Fee Skepticism | Steel  → Modal | PDF, Gamma | 🔒 Sidebar CTA – “See alignment in practice.” | gp_compensation_request, fee_model_request, fee_reporting_type
+T6 – Team Access & Support Roles | Onboarding Clarity, Relationship Accessibility | Pale Mint  → Slate | PDF, Canva | 🔁 Column CTA – “Meet the people you’ll work with.” | subscription_logistics, advisor_check_required, onboarding_process_delay
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+C1 – Master-Feeder Structure Diagram | Sidebar Split (20/80) | jurisdiction_check, legal_referral, committee_review | Sidebar | Insert visual diagram showing US/Cayman feeder/master flow and LP entry points.
+C3 – Service Provider Stack | Visual + Logic Block | audit_status, compliance_priority, aml_kyc_required | Footer | Show brand logos of admin/legal/audit plus bullet list of compliance services.
+C4 – Custody Flow Diagram | Sidebar Split (20/80) | custody_trust, liquidity_concern, referral_only | Sidebar | Visual custody flow from subscription → admin → cold storage and reconciliation lines.
+C5 – Cold Storage Access Control | Full Bleed | crypto_wallet_loss_fear, crypto_security_exhausted, compliance_priority | None | Large access diagram: who signs what, multi-sig policies, internal + legal controls.
+C6 – Legal Provider Summary + Regulatory Footnotes | Sidebar Split (20/80) | legal_referral, committee_review, audit_letters_request | Footer | Left: provider list w/ icons. Right: jurisdiction & governing rules. Footnotes below.
+C9 – Redemption & Lockup Policy Table | Centered CTA (60/40) | liquidity_concern, redemption_process, fee_model_request | Sidebar | Insert tabular lockup/redemption timing matrix with class-by-class breakdown.
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+RS1 – Referral Summary Slide | Centered CTA (60/40) | referral_only, advisor_context_block, pre_explainer_needed | Footer | Display testimonial, credentials, 3-value bullets, and CTA quote bar: “→ Safe to forward”
+RS2 – Visual Summary Snapshot | Centered CTA (60/40) | referral_passive, referral_safeshare, advisor_understand_first | Footer | Use icon-based value tiles with large font and clean Canva-safe framing for PDF forwarding.
+RS3 – Strategy Identity Tile | Visual + Logic Block | social_proof, advisor_needs_alt_deck, referral_ethos_check | Column | Block for left-side tagline and right-side logic bullet overlay with brand framing zone.
+RS4 – Credential Wall Slide | Full Bleed | category_credential_gap, family_board_safety_needed, referral_upstream_ready | Footer | Center-aligned badge wall with certifications, logos, and credential overlays for risk-safe appeal.
+RS5 – Referral Email Snapshot Slide | Full Bleed | referral_async, referral_summary, referral_shortform | None | Design as screenshot mimic: top line, deck snippet, and blur CTA for passive forward view.
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+P1 – Historical Performance Summary | Sidebar Split (20/80) | reactivation_perf_history, quant_metrics_request, reactivation_update | Footer | Line chart of net returns, basic stats column, and callout: 'Track record summary since inception'
+P2 – Strategy vs. Benchmark Comparison | Visual + Logic Block | category_edge_overlap, attribution_by_asset, benchmark_compare | Sidebar | Left: bar chart or scatterplot; Right: key logic on how alpha differs from beta exposure
+P4 – Attribution Logic Flow | Sidebar Split (20/80) | quant_alpha, alpha_breakout_request, category_value_doubt | Right CTA | Stacked logic overlay showing alpha source pathway: selection, timing, regime response
+P6 – Attribution vs. Beta Slide | Visual + Logic Block | quant_alpha, beta_confusion, committee_review | Sidebar | Show split performance attribution vs passive proxy. Include summary table at right.
+P7 – Sharpe/Sortino Volatility Matrix | Sidebar Split (20/80) | quant_metrics_request, sharpe_rolling_3y, statistical_significance_check | Sidebar | Matrix or quadrant showing strategies by risk-adjusted metric. Sidebar: volatility commentary.
+P8 – Risk / Return Positioning Map | Centered CTA (60/40) | macro_delay, quant_csv_request, advisor_prevalidation_block | Footer | Portfolio map: strategy position by risk/return. Footer CTA: 'Visualize fit in your allocation'
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+A1 – Investment Window Timeline | Sidebar Split (20/80) | macro_delay, allocation_redirect, reactivation_fiscal_window | Sidebar | Timeline graphic with windows and lock periods; sidebar text for quarterly or monthly entry logic.
+A2 – Lockup & Redemption Chart | Visual + Logic Block | liquidity_concern, redemption_process, fee_model_request | Sidebar | Bar chart of lockup schedules by share class with side commentary: 'Compare entry/exit flexibility.'
+A3 – Share Class Eligibility Matrix | Sidebar Split (20/80) | jurisdiction_check, subscription_logistics, tax_entity_form | Footer | Tabular matrix showing class type, jurisdiction, lockup, and KYC filter logic.
+A4 – Strategy Entry Schematic | Centered CTA (60/40) | pre_next_year_deferral, subscription_logistics, pre_passive_preference | Column | Graphic entry flow from LP → deck → onboarding; CTA: 'Where you enter →'
+A5 – Entry Signal Map  (Macro Trigger Overlay) | Full Bleed | timing_paralysis, macro_delay, reactivation_entry_timing | Footer | Macro signal graphic overlayed with timing indicators; footer CTA: 'Track entry signal only.'
+A6 – Subscription Process Diagram | Sidebar Split (20/80) | subscription_logistics, onboarding_process_delay, doc_dump_request | Sidebar | Flowchart from contact → docs → funding → access. Sidebar text = checklist or key points.
+A7 – Onboarding Checklist | Visual + Logic Block | advisor_check_required, onboarding_process_delay, compliance_priority | Column | Left: checklist (fund doc readiness, advisor intro, bank wiring); Right: 1-line onboarding tips.
+A8 – Track & Watchlist Invitation | Centered CTA (60/40) | watchlist_mode, reactivation_passive, referral_async | Footer | Quote-style passive CTA: '→ Track only. No obligation.' + button row or watchlist tag option.
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+R1 – Risk Disclosure Statement | Sidebar Split (20/80) | drawdown_disclosure, audit_status, family_ethos_block | Sidebar | Left: legal/risk box quotes; Right: description of risk policy and internal controls.
+R2 – Stress Testing Summary | Visual + Logic Block | stress_test_request, volatility_control, macro_hedge_check | Right CTA | Chart showing stress scenarios + resilience summary; column CTA: 'Stress test logic →'
+R3 – Portfolio Volatility Map | Sidebar Split (20/80) | macro_uncertainty_decline, quant_drawdown_check, reactivation_perf_ytd | Footer | Quadrant or range chart with performance band and volatility marker; footer summary CTA.
+R4 – Downside Protection Table | Centered CTA (60/40) | emotion_career_defense, reactivation_defensive_only, fee_objection | Footer | Row table showing strategy safeguards vs market events. CTA: 'See capital protection logic.'
+R5 – Redemption Schedule Waterfall | Sidebar Split (20/80) | liquidity_concern, redemption_process, withdrawal_control_check | Sidebar | Bar chart or waterfall timeline by class; sidebar with lock period and notice rules.
+R6 – Liquidity Timeline vs Strategy Lock | Visual + Logic Block | liquidity_profile, redemption_timing, soft_update_requested | Column | Chart + bullets: X-axis = time, Y = capital availability; CTA: 'Compare liquidity and risk flow.'
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+O1 – Fund Admin Overview | Sidebar Split (20/80) | admin_feed_ready, doc_dump_request, fund_admin_check | Sidebar | Logo cluster of legal/admin/audit providers; sidebar box w/ verification language.
+O2 – Fee Structure Breakdown | Visual + Logic Block | fee_model_request, fee_reporting_type, soft_decline | Right CTA | Left: visual pie chart or waterfall; Right: bullet economic policy; CTA = 'All fees pre-clarified.'
+O3 – Investor FAQ Summary | Sidebar Split (20/80) | referral_summary, advisor_check_required, onboarding_process_delay | Footer | Q&A block (3–5 items); footer CTA: 'Answers for advisors and LPs.'
+O4 – Access & Subscription Slide | Centered CTA (60/40) | access_anxiety, onboarding_process_delay, subscription_logistics | Right-aligned | Left = form list & submission path; Right = CTA button → Download Access Agreement.
+O5 – Onboarding Steps & Timelines | Visual + Logic Block | advisor_check_required, reactivation_rebalance_window, onboarding_process_delay | Column | Top: timeline or flowchart; bottom = onboarding check grid and contact names.
+O6 – Summary Snap Slide (Fast Framing) | Centered CTA (60/40) | referral_shortform, advisor_deferral_upstream, soft_decline | Footer | Visual intro block: Who we are / Why us / Next steps; footer: 'Skim or forward anytime.'
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+S1 – Strategy Intro Slide | Centered CTA (60/40) | referral_ethos_check, advisor_meeting_required, referral_first_impression | Footer | Brand bar + 3-pillar logic snapshot + CTA bar: '→ First impression matters.'
+S2 – Performance Curve  + Strategy Mix | Sidebar Split (20/80) | performance_drivers, beta_confusion, quant_drawdown_check | Footer | Line graph or blend curve + sidebar with summary stats; footer = explore breakdown CTA.
+S3 – One-Pager Overview  (Interactive or Static) | Full Bleed | referral_summary, referral_passive, advisor_needs_alt_deck | Footer | Static or interactive panel: Who we are, key facts, QR/link, and CTA: '→ Send to decision-maker.'
+Slide Block | Layout Type | Trigger CRM Tags | CTA Placement Zone | Visual Placeholder
+T1 – Core Team Bios Slide | Visual + Logic Block | founder_background_check, advisor_prevalidation_block, referral_safeshare | None | Headshots + roles in structured grid, no CTA. Used for credibility support and referral trust.
+T2 – Founder's Statement Block | Sidebar Split (20/80) | referral_ethos_check, emotion_internal_friction, committee_pivoted | Sidebar | Founder quote block on left, mission statement on right. Sidebar CTA tone = ethos confirmation.
+T3 – Experience Timeline Overlay | Full Bleed | track_record_request, lp_base_check, reactivation_perf_sort | Footer | Horizontal timeline with milestone callouts. Footer CTA = 'View track record performance.'
+T4 – Governance Disclosure Table | Sidebar Split (20/80) | committee_review, board_structure_check, legal_referral | Footer | Governance stack + decision rights table. Footer CTA = 'Full policy & oversight structure.'
+T5 – GP/LP Alignment Flowchart | Visual + Logic Block | gp_compensation_request, fee_model_request, fee_reporting_type | Sidebar | Flow diagram showing GP interests tied to LP results. Sidebar explains incentives and alignment.
+T6 – Team Access & Support Roles | Sidebar Split (20/80) | subscription_logistics, advisor_check_required, onboarding_process_delay | Column | Left: team roles and titles (e.g. onboarding lead); Right: bullet FAQ or contact summary.
+Gradient Zone | Emotional Effect | Trigger CRM Tags | Placement Zone | Slide Examples | CTA Icon | Usage Notes
+Mint → Fog Purple | Passive opt-in, social comfort, soft deferral | referral_only, watchlist_mode, soft_decline | 70–100% | RS1, RS5, A8, S3 | ❄️ | Used in footer bars and referral decks. Avoid in cold CTA emails. No sidebar CTAs.
+Gold → Steel Purple | Credibility framing, insight-first structure | category_edge_overlap, attribution_by_asset, advisor_understand_first | 30–70% | P2, P4, A4, RS3 | 🔁 | Use when allocator needs logic or data clarity before trust. Centered CTA or column placement preferred.
+Modal → Teal | Compliance tone, legal onboarding, admin confidence | access_anxiety, subscription_logistics, fee_model_request | 30–70% or 70–100% | C1, O2, O4, C6 | 🔒 | Use for legal/ops tone reinforcement. Works in sidebar or footer. Avoid in Canva referral decks.
+Pale Mint → Dusty Plum | Team trust building, founder narrative safety | founder_background_check, advisor_prevalidation_block, referral_ethos_check | 30–70% | T1, T2, RS1 | ❄️ | Good for warm decks, ethos slides, quote overlays. Do not use for CTA conversion-focused decks.
+Slate → Steel | Diligence tone, institutional comparison, allocation defense | fee_reporting_type, quant_drawdown_check, benchmark_compare | 30–70% | P6, A2, R5, T5 | 🔁 | Use for analysis-first framing, often paired with column logic slides. CTA must be request-based.
+Fog Purple → Gold | Referral-first tone with credibility elevation | referral_passive, referral_safeshare, advisor_context_block | 70–100% | RS1, RS2, RS4 | ❄️ | Footer placement only. Should be calm, non-pressured. Ideal for Canva-safe sendable decks.
+Charcoal → Modal | Operational transparency, governance visibility | committee_review, audit_status, board_structure_check | 30–70% | C6, O1, T4 | 🔒 | Use for due diligence decks. Sidebar or footer CTA zones. Avoid in cold outreach formats.
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+C1 | Master-Feeder Structure Diagram | Structure Confusion, Legal Clarity | #445C6E | Sidebar Split | → Walk through structure | 🔒 cta_legal | Gamma, PDF | jurisdiction_check, legal_referral | Warm, Engaged | Institutional Only
+C2 | Jurisdiction & Legal Entity Overview | Jurisdiction Uncertainty, Regulatory Risk Concern | #445C6E | Visual + Logic Block | → View regulatory & jurisdiction layers | 🔒 cta_legal | PDF, Gamma | jurisdiction_check, regulatory_disclosure, legal_referral | Warm, Engaged | Referral-Only: Suppress Gamma
+C3 | Service Provider Stack | Compliance Credibility, Legal Trust | #445C6E | Visual + Logic Block | → View admin, audit, legal stack | 🔒 cta_legal | PDF | audit_status, compliance_priority | Warm | —
+C4 | Custody Flow Diagram | Custody Trust Gap, Liquidity Concern | #008073 | Sidebar Split | → We can walk you through this | 🔒 cta_legal | Gamma, PDF | custody_trust, liquidity_concern | Warm | Legal Review Flag: Suppress Canva
+C5 | Cold Storage Access Control | Crypto Custody Concern, Key Security Risk | #666666 | Full Bleed |  | 👁️ cta_view | PDF | crypto_wallet_loss_fear, crypto_security_exhausted | Warm | Security Sensitive: Suppress Canva
+C6 | Legal Provider Summary | Oversight Assurance, Governance Transparency | #888888 | Sidebar Split | → View provider list and governing standards | 🔒 cta_legal | PDF | legal_referral, committee_review | Engaged | —
+C9 | Redemption & Lockup Policy Table | Liquidity Terms Clarification | #888888 | Centered CTA | → View liquidity by class | 🔁 cta_follow | PDF | liquidity_concern, redemption_process | Warm | —
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+RS1 | Referral Summary Slide | Referral Delay, Social Optics | #D8D3E4 | Centered CTA | → Safe to forward or track | ❄️ cta_passive | Canva, PDF | referral_only, advisor_context_block | Cold, Referral | Referral-Only: Suppress Gamma
+RS2 | Visual Summary Snapshot | Comprehension Barrier, Forward Delay | #D8D3E4 | Centered CTA | → Skim and share overview | ❄️ cta_passive | PDF, Canva | referral_passive, referral_safeshare | Cold, Referral | Referral-Only: Avoid data overlays
+RS3 | Strategy Identity Tile | Category Uncertainty, Referral Safety | #D8D3E4 | Visual + Logic Block | → What we are / are not | 🔁 cta_follow | PDF | advisor_needs_alt_deck, referral_ethos_check | Passive, Referral | Gatekeeper: Use Static PDF only
+RS4 | Credential Wall Slide | Reputation Risk, Decision Proxy Delay | #D8D3E4 | Full Bleed | → View credentials | 👁️ cta_view | PDF | credential_check, board_safety_needed | Referral | Referral-Only: Passive only
+RS5 | Referral Email Snapshot Slide | Cold Intro Delay, Async Communication | #D8D3E4 | Full Bleed |  | 👁️ cta_view | PDF | referral_async, referral_summary | Cold | Referral-Only: PDF only
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+A1 | Investment Window Timeline | Timing Ambiguity, Entry Deferral | #8AA3A3 | Sidebar Split | → Join or waitlist for next entry | ⏳ cta_later | PDF, Gamma | macro_delay, reactivation_fiscal_window | Cold, Passive | Referral: Suppress CTA
+A2 | Lockup & Redemption Chart | Liquidity Commitment Anxiety | #7B9D88 | Visual + Logic Block | → Compare exit terms | 🔁 cta_follow | PDF | redemption_process, liquidity_concern | Warm | —
+A3 | Share Class Eligibility Matrix | Jurisdiction Confusion, Entity Mismatch | #888888 | Sidebar Split | → Match class to investor type | 🔒 cta_legal | PDF | jurisdiction_check, tax_entity_form | Warm | Suppress Gamma if Flag: Complex Structure
+A4 | Strategy Entry Schematic | Onboarding Hurdle, Decision Inertia | #445C6E | Centered CTA | → Where you enter | ⚙️ cta_steps | PDF, Gamma | subscription_logistics, advisor_meeting_required | Passive, Warm | Flag: Use PDF if Cold
+A5 | Entry Signal Map (Macro Overlay) | Market Hesitancy, Opt-In Paralysis | #BEE3D8 | Full Bleed | → Track entry signal only | ⏳ cta_later | PDF | macro_delay, timing_paralysis | Cold, Passive | CTA Passive Only
+A6 | Subscription Process Diagram | Friction Around Docs & KYC | #999999 | Sidebar Split | → Visualize onboarding process | ⚙️ cta_steps | PDF, Gamma | onboarding_process_delay, doc_dump_request | Warm | —
+A7 | Onboarding Checklist | Advisor Delay, Setup Uncertainty | #666666 | Visual + Logic Block | → Confirm all onboarding items | 📥 cta_download | PDF | subscription_logistics, advisor_check_required | Warm, Engaged | Checklist Auto-Send in CRM
+A8 | Track & Watchlist Invitation | Timing Paralysis, Passive Opt-In | #BEE3D8 | Centered CTA | → Track performance only | ❄️ cta_passive | Gamma, Canva | watchlist_mode, reactivation_passive | Cold, Passive | Referral-Only: Use PDF only
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+R1 | Risk Disclosure Statement | Drawdown Anxiety, Institutional Comfort Demand | #666666 | Sidebar Split | → We disclose risk clearly | 🔒 cta_legal | PDF | drawdown_disclosure, audit_status, family_ethos_block | Warm, Engaged | —
+R2 | Stress Testing Summary | Shock Scenario Curiosity, Strategy Fragility | #B0A3BF | Visual + Logic Block | → Stress test result pack available | 📥 cta_download | PDF | stress_test_request, macro_hedge_check | Engaged | —
+R3 | Portfolio Volatility Map | Exposure Aversion, Burnout Memory | #3F5972 | Sidebar Split | → Strategy stability under pressure | 🔁 cta_follow | Gamma, PDF | macro_uncertainty_decline, quant_drawdown_check | Warm | —
+R4 | Downside Protection Table | Career Risk, Defensive Preference | #7B9D88 | Centered CTA | → See capital protection logic | 🔁 cta_follow | PDF | emotion_career_defense, reactivation_defensive_only | Passive, Warm | —
+R5 | Redemption Waterfall | Exit Planning Risk, Liquidity Delay | #888888 | Sidebar Split | → Exit flexibility explained | 🔁 cta_follow | Gamma, PDF | liquidity_concern, redemption_process | Warm | —
+R6 | Liquidity Timeline vs Strategy Lock | Redemption Confusion, Liquidity-Alpha Concern | #374355 | Visual + Logic Block | → Compare liquidity and risk | 🔁 cta_follow | PDF | liquidity_profile, redemption_timing | Engaged | —
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+O1 | Fund Admin Overview | Third-Party Confirmation, Operational Trust | #888888 | Sidebar Split | → View third-party confirmations | 🔒 cta_legal | PDF | fund_admin_check, audit_letters_request | Warm | Institutional: Pre-call material
+O2 | Fee Structure Breakdown | Pricing Confusion, Soft Decline Risk | #7B9D88 | Right CTA | → All fees clearly shown here | 🔁 cta_follow | PDF | fee_model_request, fee_reporting_type | Warm | —
+O3 | Investor FAQ Summary | Advisor Confidence Gap, Diligence Barrier | #D8D3E4 | Sidebar Split | → Answers to common diligence questions | 📥 cta_download | PDF | referral_summary, onboarding_process_delay | Passive, Warm | Referral-Only: Attach PDF
+O4 | Access & Subscription Slide | Access Anxiety, Compliance Delay | #445C6E | Right-aligned | → Download Access Agreement | 🔒 cta_legal | PDF | access_anxiety, onboarding_process_delay | Engaged | Compliance Required: No Canva
+O5 | Onboarding Steps & Timelines | Setup Process Unknown, Advisor Delay | #999999 | Visual + Logic Block | → Step-by-step guide | ⚙️ cta_steps | PDF | reactivation_rebalance_window, onboarding_process_delay | Warm | —
+O6 | Summary Snap Slide (Fast Framing) | Referral Compression, Email Snapshot Friction | #D8D3E4 | Centered CTA | → Quick read / forwardable | ❄️ cta_passive | PDF | referral_shortform, advisor_deferral_upstream | Cold, Passive, Referral | Referral-Only: Use static only
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+P1 | Historical Performance Summary | Track Record Validation, Cold Re-engagement | #274E80 | Sidebar Split | → Explore full return history | 🔁 cta_follow | PDF | reactivation_perf_history, quant_metrics_request | Passive, Warm | —
+P2 | Strategy vs. Benchmark Comparison | Beta Confusion, Category Overlap | #6666AA | Sidebar Split | → See how our edge stacks up | 🔁 cta_follow | PDF | benchmark_compare, attribution_by_asset | Warm | —
+P4 | Attribution Logic Flow | Alpha Source Confusion, Performance Skepticism | #3F5972 | Sidebar Split | → View strategy logic and alpha source | 🔁 cta_follow | PDF | quant_alpha, alpha_breakout_request | Engaged | —
+P6 | Attribution vs. Beta Slide | Beta Skepticism, Analyst Request | #274E80 | Visual + Logic Block | → Full metrics breakdown | 🔁 cta_follow | PDF | quant_alpha, beta_confusion, committee_review | Engaged | Analyst Persona: Suppress Canva
+P7 | Sharpe/Sortino Volatility Matrix | Volatility Skepticism, Institutional Metrics | #3A4B66 | Sidebar Split | → Submit for full quantitative appendix | 🔒 cta_legal | PDF | quant_metrics_request, sharpe_rolling_3y | Engaged | —
+P8 | Risk / Return Positioning Map | Strategy Fit Hesitation | #4D7B7F | Centered CTA | → See fit in your portfolio | 🔁 cta_follow | PDF | macro_delay, quant_csv_request | Warm | —
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+S1 | Strategy Intro Slide | First Impression Gap, Referral Delay | #274E80 | Centered CTA | → Skim this page first | ❄️ cta_passive | PDF, Canva | referral_first_impression, advisor_check_required | Cold, Passive, Referral | —
+S2 | Performance Curve + Strategy Mix | Beta Confusion, Visual Summarization Need | #6666AA | Sidebar Split | → View curve breakout | 🔁 cta_follow | PDF | beta_confusion, performance_drivers | Warm | —
+S3 | One-Pager Overview (Interactive or Static) | Referral Compression, Visual Snap Overview | #D8D3E4 | Full Bleed | → View deck snapshot or summary | 📥 cta_download | PDF | referral_summary, advisor_needs_alt_deck | Cold, Referral | Referral-Only: Static format only
+Slide ID | Slide Name | Frictions Solved | Tone Tier (HEX) | Layout | CTA (Copy) | CTA (Icon/Code) | Format | CRM Tags | Allowed Stages | Behavior Overrides
+T1 | Core Team Bios Slide | Founder's Credibility, Referral Trust Support | #D8D3E4 | Visual + Logic Block |  | 👁️ cta_view | PDF | founder_background_check, advisor_prevalidation_block | Referral, Passive | Referral-Only: Passive View Only
+T2 | Founder's Statement Block | Ethos Framing, Founder Alignment | #B0A3BF | Sidebar Split | → Why this matters to us | 💬 cta_advisor | PDF | referral_ethos_check, committee_pivoted | Warm | Show on second interaction
+T3 | Experience Timeline Overlay | Track Record Narrative, Timeline Friction | #7B9D88 | Full Bleed | → View operational history | 🔁 cta_follow | PDF | track_record_request, lp_base_check | Warm, Engaged | —
+T4 | Governance Disclosure Table | Oversight Concerns, Compliance Alignment | #888888 | Sidebar Split | → Full policy & oversight structure | 🔒 cta_legal | PDF | committee_review, board_structure_check | Engaged | Legal Persona Only
+T5 | GP/LP Alignment Flowchart | Compensation Skepticism, LP Trust | #999999 | Visual + Logic Block | → See alignment in practice | 🔁 cta_follow | PDF, Gamma | gp_compensation_request, fee_model_request | Warm | Committee Review: Suppress Canva
+T6 | Team Access & Support Roles | Operational Clarity, Advisor Handshake Delay | #445C6E | Sidebar Split | → Meet onboarding team | 💬 cta_advisor | PDF | subscription_logistics, advisor_check_required | Warm | Pre-onboarding call or follow-up
