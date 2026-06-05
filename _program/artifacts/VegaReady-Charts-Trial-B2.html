@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VegaReady — Trial B2 · revisions from your critiques</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Fraunces',Georgia,serif;font-size:15px;background:#0B0E13;color:#EFE7D8;line-height:1.55}
+  .num{font-family:'Lora',Georgia,serif;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);border-bottom:1px solid #232a35;padding:10px 0}
+  .topbar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar h1{font-family:'Playfair Display',serif;font-size:17px;font-weight:600}
+  .topbar .sub{font-size:12.5px;color:#8e96a3}
+  .progress{margin-left:auto;font-size:12.5px;color:#8e96a3}
+  .copybtn{font-family:inherit;font-size:13px;background:#36BBA6;color:#0B0E13;border:0;border-radius:8px;padding:7px 16px;cursor:pointer;font-weight:600}
+  .intro{padding:26px 0 6px;color:#aab1bc}
+  .intro p{max-width:84ch;font-size:14.5px}
+  .intro b{color:#cfd4dc}
+  .exhibit{padding:30px 0 22px;border-top:1px solid #1a212b}
+  .ex-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .ex-id{font-family:'Lora',serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:#5AA6B5}
+  .ex-head h2{font-family:'Playfair Display',serif;font-weight:600;font-size:20px;color:#EFE7D8}
+  .cite{font-size:12.5px;color:#7d8693;font-style:italic;max-width:88ch;margin:3px 0 14px}
+  .cite b{font-style:normal;color:#aab1bc}
+  .opt{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#5AA6B5;margin-bottom:8px}
+  .optwrap{background:#10141B;border:1px solid #1e2630;border-radius:12px;padding:12px 13px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:680px){.grid3,.grid2{grid-template-columns:1fr}}
+  .f{border-radius:9px;padding:11px;margin-bottom:8px;font-size:11.5px}
+  .f:last-child{margin-bottom:0}
+  .f-d{background:#0E1217;color:#E3DCCB}
+  .f-l{background:#DDE2E6;color:#2B2F34}
+  .chart-d{background:#181D24;border-radius:7px;padding:8px}
+  .chart-l{background:#fff;border:1px solid #C2CAD1;border-radius:7px;padding:8px}
+  svg text{font-family:'Lora',serif}
+  /* CONTRAST FIX (B7/B8/B9 critiques): explainer/meta text strengthened per theme */
+  .f-d .met{font-size:9.5px;color:#A89F8C}
+  .f-l .met{font-size:9.5px;color:#4A535C}
+  .lab{font-family:'Lora',serif;font-weight:700;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase}
+  .chip-m{display:inline-flex;align-items:center;gap:4px;font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.04em;padding:2.5px 9px;border-radius:99px}
+  .verdict{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .verdict span.q{font-size:12.5px;color:#7d8693}
+  .vbtn{font-family:inherit;font-size:12.5px;padding:5px 14px;border-radius:99px;border:1px solid #2a3340;background:transparent;color:#9aa4b1;cursor:pointer}
+  .vbtn.on-approve{background:rgba(70,201,160,.14);border-color:#46C9A0;color:#7fd0b2}
+  .vbtn.on-cond{background:rgba(224,178,98,.13);border-color:#E0B262;color:#e3b566}
+  .vbtn.on-reject{background:rgba(225,100,112,.12);border-color:#E16470;color:#e88}
+  .vnote{flex:1;min-width:200px;font-family:inherit;font-size:12.5px;background:#10141B;border:1px solid #1e2630;border-radius:8px;color:#EFE7D8;padding:6px 12px;outline:none}
+  .footer{padding:40px 0 70px;color:#7d8693;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <h1>Trial B2 — Revisions</h1>
+  <span class="sub">7 fixes from your critiques · approved items untouched</span>
+  <span class="progress" id="prog">0 / 7 judged</span>
+  <button class="copybtn" id="copyAll">Copy verdicts</button>
+</div></div>
+
+<div class="intro"><div class="wrap">
+  <p><b>Already locked from B1:</b> marker grammar (B4) · 8% threshold band (B5-A) · right-stacked legend (B6-B, your readability override of the research recommendation — recorded) · motion law (B12) · B3-A convention · B7 dark icons · B8 light diagrams · B9 stat-card + sparklines · B11 dark glyphs. Below: only what you flagged, fixed.</p>
+</div></div>
+
+<!-- R1 · B1+B2 series fix -->
+<div class="exhibit" data-ex="R1" data-name="Series system revised — no neon, no faint bottom line (fixes B1+B2)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">R1</span><h2>Series system, revised</h2></div>
+  <p class="cite">Your critique: "bottom most line faintly visible — should be more impactful" + "line thickness very heavy for the neon green." Fixes: hero = <b>Verdigris #5FA897 at 2.2px</b> (muted, not neon JCJ Teal at 2.4+) · context lines lifted to <b>#8A8274 at 1.5px full opacity</b> (≈4.7:1 on the chart surface — visible, still secondary) · every line now ≥3:1.</p>
+  <div class="grid3">
+    <div class="optwrap"><div class="opt">A · Revised full ladder</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="96" x2="294" y2="96" stroke="rgba(242,235,220,.22)"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#5FA897" stroke-width="2.2"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#5E83D9" stroke-width="1.6"/>
+        <polyline points="6,94 60,89 120,92 180,80 240,82 294,74" fill="none" stroke="#8B7FD9" stroke-width="1.6"/>
+        <polyline points="6,100 60,97 120,99 180,90 240,92 294,86" fill="none" stroke="#8A8274" stroke-width="1.6"/>
+        <text x="246" y="28" fill="#5FA897" font-size="9" font-weight="700">Brent</text>
+      </svg></div></div>
+      <div class="f f-l"><div class="chart-l"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="96" x2="294" y2="96" stroke="#9AA5B1"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#2A6478" stroke-width="2.2"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#4A6FA5" stroke-width="1.6"/>
+        <polyline points="6,94 60,89 120,92 180,80 240,82 294,74" fill="none" stroke="#6A5ACD" stroke-width="1.6"/>
+        <polyline points="6,100 60,97 120,99 180,90 240,92 294,86" fill="none" stroke="#67727E" stroke-width="1.6"/>
+        <text x="246" y="28" fill="#2A6478" font-size="9" font-weight="700">Brent</text>
+      </svg></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Revised hero + context</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="96" x2="294" y2="96" stroke="rgba(242,235,220,.22)"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#8A8274" stroke-width="1.5"/>
+        <polyline points="6,94 60,89 120,92 180,80 240,82 294,74" fill="none" stroke="#8A8274" stroke-width="1.5"/>
+        <polyline points="6,100 60,97 120,99 180,90 240,92 294,86" fill="none" stroke="#8A8274" stroke-width="1.5"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#5FA897" stroke-width="2.2"/>
+        <text x="246" y="28" fill="#5FA897" font-size="9" font-weight="700">Brent</text>
+      </svg></div></div>
+      <div class="f f-l"><div class="chart-l"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="96" x2="294" y2="96" stroke="#9AA5B1"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#8C96A0" stroke-width="1.5"/>
+        <polyline points="6,94 60,89 120,92 180,80 240,82 294,74" fill="none" stroke="#8C96A0" stroke-width="1.5"/>
+        <polyline points="6,100 60,97 120,99 180,90 240,92 294,86" fill="none" stroke="#8C96A0" stroke-width="1.5"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#2A6478" stroke-width="2.2"/>
+        <text x="246" y="28" fill="#2A6478" font-size="9" font-weight="700">Brent</text>
+      </svg></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · Revised skeleton (B1 re-judge)</div>
+      <div class="f f-d"><div class="chart-d">
+        <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-family:'Playfair Display',serif;font-weight:600;font-size:11px">Brent vs baseline</span><span class="num" style="font-size:9px;color:#A89F8C">USD/bbl</span></div>
+        <svg viewBox="0 0 300 110" width="100%">
+        <line x1="24" y1="26" x2="258" y2="26" stroke="rgba(242,235,220,.07)"/>
+        <line x1="24" y1="58" x2="258" y2="58" stroke="rgba(242,235,220,.07)"/>
+        <line x1="24" y1="90" x2="258" y2="90" stroke="rgba(242,235,220,.28)"/>
+        <text x="19" y="29" fill="#A89F8C" font-size="8.5" text-anchor="end">110</text>
+        <text x="19" y="61" fill="#A89F8C" font-size="8.5" text-anchor="end">95</text>
+        <text x="19" y="93" fill="#A89F8C" font-size="8.5" text-anchor="end">80</text>
+        <polyline points="24,76 80,74 140,76 200,73 258,72" fill="none" stroke="#FFD89A" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="262" y="75" fill="#FFD89A" font-size="8.5" font-weight="700">base</text>
+        <polyline points="24,84 70,70 120,76 170,48 215,36 258,28" fill="none" stroke="#5FA897" stroke-width="2.2"/>
+        <text x="262" y="30" fill="#5FA897" font-size="8.5" font-weight="700">Brent</text>
+      </svg></div></div>
+      <div class="met" style="color:#7d8693;padding:2px 2px 0">hero now Verdigris · axis labels lifted to #A89F8C</div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (A or B as default; C re-judges B1):</span></div>
+</div></div>
+
+<!-- R2 · B3 with numbers, both themes -->
+<div class="exhibit" data-ex="R2" data-name="Pos/neg convention A — full version with numbers, both themes (fixes B3)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">R2</span><h2>Positive/negative — A, with numbers, both themes</h2></div>
+  <p class="cite">Your note: A good, B strange, light version had no numbers to judge. Here is A complete: Realized-green / Terracotta, signs always shown, value labels on every bar.</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">Dark</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 360 120" width="100%">
+        <line x1="10" y1="62" x2="350" y2="62" stroke="rgba(242,235,220,.30)"/>
+        <rect x="34" y="34" width="30" height="28" fill="#46C9A0"/><text x="49" y="28" fill="#46C9A0" font-size="10" text-anchor="middle" font-weight="700">+18%</text>
+        <rect x="104" y="43" width="30" height="19" fill="#46C9A0"/><text x="119" y="37" fill="#46C9A0" font-size="10" text-anchor="middle" font-weight="700">+9%</text>
+        <rect x="174" y="62" width="30" height="32" fill="#E2725B"/><text x="189" y="108" fill="#E2725B" font-size="10" text-anchor="middle" font-weight="700">−22%</text>
+        <rect x="244" y="62" width="30" height="15" fill="#E2725B"/><text x="259" y="91" fill="#E2725B" font-size="10" text-anchor="middle" font-weight="700">−8%</text>
+        <rect x="314" y="38" width="30" height="24" fill="#46C9A0"/><text x="329" y="32" fill="#46C9A0" font-size="10" text-anchor="middle" font-weight="700">+14%</text>
+      </svg></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">Light</div>
+      <div class="f f-l"><div class="chart-l"><svg viewBox="0 0 360 120" width="100%">
+        <line x1="10" y1="62" x2="350" y2="62" stroke="#9AA5B1"/>
+        <rect x="34" y="34" width="30" height="28" fill="#00A86B"/><text x="49" y="28" fill="#00754B" font-size="10" text-anchor="middle" font-weight="700">+18%</text>
+        <rect x="104" y="43" width="30" height="19" fill="#00A86B"/><text x="119" y="37" fill="#00754B" font-size="10" text-anchor="middle" font-weight="700">+9%</text>
+        <rect x="174" y="62" width="30" height="32" fill="#C55B43"/><text x="189" y="108" fill="#A14430" font-size="10" text-anchor="middle" font-weight="700">−22%</text>
+        <rect x="244" y="62" width="30" height="15" fill="#C55B43"/><text x="259" y="91" fill="#A14430" font-size="10" text-anchor="middle" font-weight="700">−8%</text>
+        <rect x="314" y="38" width="30" height="24" fill="#00A86B"/><text x="329" y="32" fill="#00754B" font-size="10" text-anchor="middle" font-weight="700">+14%</text>
+      </svg></div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- R3 · B7 light label contrast -->
+<div class="exhibit" data-ex="R3" data-name="Icon sheet light — label contrast fixed (B7)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">R3</span><h2>Icons, light theme — labels fixed</h2></div>
+  <p class="cite">Your note: dark approved; light words need better contrast. Labels lifted from faded ink to solid <b>#4A535C</b> (≈6.9:1 on the light panel).</p>
+  <div class="optwrap" style="max-width:640px">
+    <div class="f f-l" style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end">
+      <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3.5" x2="12" y2="8"/></svg><div class="met">custody<br>(vault-ring)</div></span>
+      <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><rect x="4" y="5" width="16" height="14" rx="2"/><line x1="12" y1="5" x2="12" y2="19"/></svg><div class="met">segregation<br>(partition)</div></span>
+      <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="12.5" x2="16" y2="12.5"/><circle cx="15.5" cy="16.5" r="2.2"/></svg><div class="met">audit<br>(ledger-seal)</div></span>
+      <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#367588" stroke-width="1.75"><path d="M5 12.5 L10 17 L19 7"/></svg><div class="met" style="color:#367588">verified<br>(active)</div></span>
+      <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><line x1="4" y1="12" x2="18" y2="12"/><path d="M14 7.5 L18.8 12 L14 16.5"/></svg><div class="met">funds flow</div></span>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- R4 · B8 fixes -->
+<div class="exhibit" data-ex="R4" data-name="Diagrams — dark arrows de-neoned, explainer text strengthened (B8)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">R4</span><h2>Diagrams — arrows and explainer text fixed</h2></div>
+  <p class="cite">Your notes: dark arrow "too neon bright… overshadows the text importance" → arrows are now <b>structural ink-tone #9A917F</b>, not accent teal (arrows = structure, colour = meaning). Explainer text "too muted, even for muted" → lifted to the strengthened meta register both themes.</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">Step / transmission (dark, fixed)</div>
+      <div class="f f-d"><div style="display:flex;gap:6px;align-items:center">
+        <div style="flex:1;background:#181D24;border:1px solid #2A3038;border-radius:6px;padding:7px"><div class="lab" style="color:#F2EBDC">Strait event</div><div class="met">AIS interference</div></div>
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="#9A917F" stroke-width="1.5"><line x1="0" y1="6" x2="13" y2="6"/><path d="M9 1.5 L14.5 6 L9 10.5"/></svg>
+        <div style="flex:1;background:#181D24;border:1px solid #2A3038;border-radius:6px;padding:7px"><div class="lab" style="color:#F2EBDC">Insurance</div><div class="met">premium +0.18%</div></div>
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="#9A917F" stroke-width="1.5"><line x1="0" y1="6" x2="13" y2="6"/><path d="M9 1.5 L14.5 6 L9 10.5"/></svg>
+        <div style="flex:1;background:#181D24;border:1px solid #2A3038;border-radius:6px;padding:7px"><div class="lab" style="color:#F2EBDC">Freight</div><div class="met">VLCC +2.1%</div></div>
+      </div></div>
+    </div>
+    <div class="optwrap"><div class="opt">Custody tiers (light, text strengthened)</div>
+      <div class="f f-l">
+        <div style="background:#E6EAEE;border:1px solid #C2CAD1;border-radius:6px;padding:6px 9px;margin-bottom:5px;display:flex;gap:8px;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/></svg><div><span class="lab">Custodian</span> <span class="met">segregated cold vault per feeder</span></div></div>
+        <div style="background:#EDEFF2;border:1px solid #C2CAD1;border-radius:6px;padding:6px 9px;margin-bottom:5px;display:flex;gap:8px;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/></svg><div><span class="lab">Admin / Legal</span> <span class="met">NAV · Loeb Smith · Cohen &amp; Co.</span></div></div>
+        <div style="background:#ECECF4;border:1px solid #C2CAD1;border-radius:6px;padding:6px 9px;display:flex;gap:8px;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><line x1="12" y1="7" x2="12" y2="12"/><line x1="12" y1="12" x2="15.5" y2="14"/></svg><div><span class="lab">Withdrawal</span> <span class="met">72h delay · dual-signature</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- R5 · B9 fixes -->
+<div class="exhibit" data-ex="R5" data-name="Stat devices — anchor panel deepened, row labels strengthened (B9)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">R5</span><h2>Stat devices B &amp; C, fixed</h2></div>
+  <p class="cite">Your notes: B's fill too bright against the grey, value hard to read, labels too light → <b>deeper fill #1F4F60</b>, labels lifted. C's "return/volatility/max DD" too light → solid #4A535C. (A + sparklines already approved.)</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">B′ · Anchor panel, deepened</div>
+      <div class="f f-l"><div style="background:#1F4F60;border-radius:8px;padding:10px"><div class="lab" style="color:rgba(255,255,255,.82)">Net return 2024</div><div class="num" style="font-size:22px;font-weight:600;color:#fff">+64%</div><div style="font-size:9.5px;color:rgba(255,255,255,.70)">net of fees</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C′ · Stat-row, labels strengthened</div>
+      <div class="f f-l"><div style="display:flex;gap:20px;align-items:baseline"><span><span class="num" style="font-size:21px;font-weight:700;border-bottom:2.5px solid #4169E1;padding-bottom:1px">+64%</span><div class="met">return</div></span><span><span class="num" style="font-size:21px;font-weight:700">48%</span><div class="met">volatility</div></span><span><span class="num" style="font-size:21px;font-weight:700">−22%</span><div class="met">max drawdown</div></span></div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- R6 · B10 flipped ramp -->
+<div class="exhibit" data-ex="R6" data-name="Diverging ramp B — flipped: stressed left, calm right (B10)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">R6</span><h2>Ramp B, flipped</h2></div>
+  <p class="cite">Your note: "stressed red on the left, teal on the right — growth pattern, people read left to right." Flipped accordingly; midpoint stays labelled.</p>
+  <div class="optwrap" style="max-width:520px">
+    <div class="f f-l"><div style="display:flex;height:20px;border-radius:5px;overflow:hidden"><div style="flex:1;background:#B14F4F"></div><div style="flex:1;background:#D08552"></div><div style="flex:1;background:#E9B56C"></div><div style="flex:1;background:#EDEDEA"></div><div style="flex:1;background:#B5D2C8"></div><div style="flex:1;background:#5FA897"></div><div style="flex:1;background:#1C6357"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:2px"><span class="met">stressed</span><span class="met" style="font-weight:700">baseline</span><span class="met">calm / growth</span></div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- R7 · B11 light chips strengthened -->
+<div class="exhibit" data-ex="R7" data-name="Status glyphs light — strengthened tints + text (B11)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">R7</span><h2>Status glyphs, light theme strengthened</h2></div>
+  <p class="cite">Your note: light shape colour too muted (dark approved). Tints lifted 16%→22% and text/glyphs darkened one step.</p>
+  <div class="optwrap" style="max-width:640px">
+    <div class="f f-l" style="display:flex;gap:7px;flex-wrap:wrap">
+      <span class="chip-m" style="background:#D8DCE0;color:#39434D">○ LATENT</span>
+      <span class="chip-m" style="background:#F0DCBA;color:#75490F">◇ ANTICIPATED</span>
+      <span class="chip-m" style="background:#EDCFCF;color:#8F3535">△ ELEVATED</span>
+      <span class="chip-m" style="background:#F0C5CB;color:#9E2533">⬣ ALERT</span>
+      <span class="chip-m" style="background:#C6E6D6;color:#00603E">✓ REALIZED</span>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<div class="footer">VegaReady Trial B2 · revision pass on your B-trial critiques · “Copy verdicts” to export</div>
+
+<script>
+const KEY='vr-chartsB2-verdicts';
+const store=JSON.parse(localStorage.getItem(KEY)||'{}');
+const exs=[...document.querySelectorAll('.exhibit')];
+function save(){localStorage.setItem(KEY,JSON.stringify(store));prog()}
+function prog(){const n=Object.values(store).filter(v=>v.v).length;
+  document.getElementById('prog').textContent=n+' / '+exs.length+' judged'}
+exs.forEach(ex=>{
+  const id=ex.dataset.ex, bar=ex.querySelector('.verdict');
+  const mk=(label,key)=>{const b=document.createElement('button');b.className='vbtn';b.textContent=label;
+    b.onclick=()=>{store[id]=store[id]||{};store[id].v=store[id].v===key?null:key;paint();save()};bar.appendChild(b);return b};
+  const bA=mk('Approve','approve'), bC=mk('Conditional','cond'), bR=mk('Reject','reject');
+  const note=document.createElement('input');note.className='vnote';note.placeholder='note…';
+  note.value=(store[id]&&store[id].n)||'';
+  note.oninput=()=>{store[id]=store[id]||{};store[id].n=note.value;save()};bar.appendChild(note);
+  function paint(){const v=store[id]&&store[id].v;
+    bA.classList.toggle('on-approve',v==='approve');
+    bC.classList.toggle('on-cond',v==='cond');
+    bR.classList.toggle('on-reject',v==='reject')}
+  paint();
+});
+prog();
+document.getElementById('copyAll').onclick=()=>{
+  const lines=exs.map(ex=>{const id=ex.dataset.ex,s=store[id]||{};
+    return id+' · '+ex.dataset.name+' — '+(s.v?s.v.toUpperCase():'(unjudged)')+(s.n?' — '+s.n:'')});
+  navigator.clipboard.writeText('VegaReady Trial B2 verdicts\n'+lines.join('\n')).then(()=>{
+    const b=document.getElementById('copyAll');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1600)});
+};
+</script>
+</body>
+</html>

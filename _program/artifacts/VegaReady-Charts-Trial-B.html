@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VegaReady — Charts &amp; Icons Trial B · web-enhanced spec</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Fraunces',Georgia,serif;font-size:15px;background:#0B0E13;color:#EFE7D8;line-height:1.55}
+  .num{font-family:'Lora',Georgia,serif;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(11,14,19,.92);backdrop-filter:blur(10px);border-bottom:1px solid #232a35;padding:10px 0}
+  .topbar .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .topbar h1{font-family:'Playfair Display',serif;font-size:17px;font-weight:600}
+  .topbar .sub{font-size:12.5px;color:#8e96a3}
+  .progress{margin-left:auto;font-size:12.5px;color:#8e96a3}
+  .copybtn{font-family:inherit;font-size:13px;background:#36BBA6;color:#0B0E13;border:0;border-radius:8px;padding:7px 16px;cursor:pointer;font-weight:600}
+  .intro{padding:26px 0 6px;color:#aab1bc}
+  .intro p{max-width:82ch;font-size:14.5px}
+  .intro b{color:#cfd4dc}
+
+  .exhibit{padding:32px 0 24px;border-top:1px solid #1a212b}
+  .ex-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .ex-id{font-family:'Lora',serif;font-size:12px;font-weight:700;letter-spacing:.08em;color:#5AA6B5}
+  .ex-head h2{font-family:'Playfair Display',serif;font-weight:600;font-size:20px;color:#EFE7D8}
+  .cite{font-size:12.5px;color:#7d8693;font-style:italic;max-width:88ch;margin:3px 0 14px}
+  .cite b{font-style:normal;color:#aab1bc}
+  .opt{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#5AA6B5;margin-bottom:8px}
+  .optwrap{background:#10141B;border:1px solid #1e2630;border-radius:12px;padding:12px 13px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:980px){.grid4{grid-template-columns:1fr 1fr}}
+  @media(max-width:680px){.grid4,.grid3,.grid2{grid-template-columns:1fr}}
+
+  .f{border-radius:9px;padding:11px;margin-bottom:8px;font-size:11.5px}
+  .f:last-child{margin-bottom:0}
+  .f-d{background:#0E1217;color:#E3DCCB}
+  .f-l{background:#DDE2E6;color:#2B2F34}
+  .chart-d{background:#181D24;border-radius:7px;padding:8px}
+  .chart-l{background:#fff;border:1px solid #C2CAD1;border-radius:7px;padding:8px}
+  .ct{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .ct .t{font-family:'Playfair Display',serif;font-weight:600;font-size:11px}
+  .ct .c{font-family:'Lora',serif;font-size:9px;opacity:.65}
+  svg text{font-family:'Lora',serif}
+  .met{font-size:9.5px;opacity:.6}
+  .lab{font-family:'Lora',serif;font-weight:700;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase}
+  .chip-m{display:inline-flex;align-items:center;gap:4px;font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:99px}
+
+  .verdict{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .verdict span.q{font-size:12.5px;color:#7d8693}
+  .vbtn{font-family:inherit;font-size:12.5px;padding:5px 14px;border-radius:99px;border:1px solid #2a3340;background:transparent;color:#9aa4b1;cursor:pointer}
+  .vbtn.on-approve{background:rgba(70,201,160,.14);border-color:#46C9A0;color:#7fd0b2}
+  .vbtn.on-cond{background:rgba(224,178,98,.13);border-color:#E0B262;color:#e3b566}
+  .vbtn.on-reject{background:rgba(225,100,112,.12);border-color:#E16470;color:#e88}
+  .vnote{flex:1;min-width:200px;font-family:inherit;font-size:12.5px;background:#10141B;border:1px solid #1e2630;border-radius:8px;color:#EFE7D8;padding:6px 12px;outline:none}
+  .vnote::placeholder{color:#5d6671}
+  .footer{padding:40px 0 70px;color:#7d8693;font-size:13px;text-align:center}
+
+  /* B12 motion */
+  .mline{transition:opacity .22s ease-out, transform .22s ease-out}
+  .reduced .mline{transition:none!important}
+  .tgl{font-family:inherit;font-size:11px;padding:4px 10px;border-radius:7px;border:1px solid #2a3340;background:transparent;color:#9aa4b1;cursor:pointer}
+  .tgl.on{background:rgba(54,187,166,.15);border-color:#36BBA6;color:#7fd0b2}
+  .dim .s-ctx{opacity:.18}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <h1>Charts &amp; Icons Trial B</h1>
+  <span class="sub">12 exhibits · spec v2 (web-enhanced) · both palettes</span>
+  <span class="progress" id="prog">0 / 12 judged</span>
+  <button class="copybtn" id="copyAll">Copy verdicts</button>
+</div></div>
+
+<div class="intro"><div class="wrap">
+  <p>Built to Spec B v2: corpus + Trial A locks + the cited web research (Datawrapper · Urban Institute · Economist · FT · Tufte · Heer&amp;Robertson · NN/g · WCAG · TradingView · Carbon · Pajamas). <b>No chart animates on load — by law.</b> B12 demonstrates the only sanctioned motion, live.</p>
+</div></div>
+
+<!-- B1 SKELETON -->
+<div class="exhibit" data-ex="B1" data-name="Chart skeleton — research-tuned construction"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B1</span><h2>The skeleton</h2></div>
+  <p class="cite">Horizontal gridlines only ("gridlines whisper": white @6–8% dark, #D5DADE light) · heavier baseline · 4–5 round ticks · unit once in caption · direct series-end labels · aspect ≈0.4 · dark chart surface one step lighter than page · no glow.</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">Dark · Deep Desk</div>
+      <div class="f f-d"><div class="chart-d">
+        <div class="ct"><span class="t">Brent vs baseline</span><span class="c num">USD/bbl · day 142→201</span></div>
+        <svg viewBox="0 0 440 150" width="100%">
+          <line x1="34" y1="30" x2="380" y2="30" stroke="rgba(242,235,220,.07)"/>
+          <line x1="34" y1="70" x2="380" y2="70" stroke="rgba(242,235,220,.07)"/>
+          <line x1="34" y1="110" x2="380" y2="110" stroke="rgba(242,235,220,.28)"/>
+          <text x="28" y="33" fill="#7E7768" font-size="9" text-anchor="end">110</text>
+          <text x="28" y="73" fill="#7E7768" font-size="9" text-anchor="end">95</text>
+          <text x="28" y="113" fill="#7E7768" font-size="9" text-anchor="end">80</text>
+          <polyline points="34,96 100,94 170,96 240,93 310,95 380,93" fill="none" stroke="#FFD89A" stroke-width="1.6" stroke-dasharray="6 4"/>
+          <text x="386" y="96" fill="#FFD89A" font-size="9" font-weight="700">baseline</text>
+          <polyline points="34,104 90,88 150,94 210,60 270,44 330,54 380,38" fill="none" stroke="#36BBA6" stroke-width="2.4"/>
+          <text x="386" y="40" fill="#36BBA6" font-size="9" font-weight="700">Brent</text>
+        </svg>
+      </div></div>
+    </div>
+    <div class="optwrap"><div class="opt">Light · Soft White</div>
+      <div class="f f-l"><div class="chart-l">
+        <div class="ct"><span class="t">Brent vs baseline</span><span class="c num">USD/bbl · day 142→201</span></div>
+        <svg viewBox="0 0 440 150" width="100%">
+          <line x1="34" y1="30" x2="380" y2="30" stroke="#E2E6E9"/>
+          <line x1="34" y1="70" x2="380" y2="70" stroke="#E2E6E9"/>
+          <line x1="34" y1="110" x2="380" y2="110" stroke="#9AA5B1"/>
+          <text x="28" y="33" fill="#67727E" font-size="9" text-anchor="end">110</text>
+          <text x="28" y="73" fill="#67727E" font-size="9" text-anchor="end">95</text>
+          <text x="28" y="113" fill="#67727E" font-size="9" text-anchor="end">80</text>
+          <polyline points="34,96 100,94 170,96 240,93 310,95 380,93" fill="none" stroke="#67727E" stroke-width="1.6" stroke-dasharray="6 4"/>
+          <text x="386" y="96" fill="#67727E" font-size="9" font-weight="700">baseline</text>
+          <polyline points="34,104 90,88 150,94 210,60 270,44 330,54 380,38" fill="none" stroke="#2A6478" stroke-width="2.4"/>
+          <text x="386" y="40" fill="#2A6478" font-size="9" font-weight="700">Brent</text>
+        </svg>
+      </div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- B2 SERIES ×4 -->
+<div class="exhibit" data-ex="B2" data-name="Series system ×4 — full ladder / cool ladder / signal-first / hero+greyed-context"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B2</span><h2>Series system — four options</h2></div>
+  <p class="cite">All series ≥3:1 vs canvas (WCAG 1.4.11) · S1 stroke 2.4 vs context 1.4 · ≤4 series. <b>D is the research consensus</b> ("one audience-look-here colour, grey the rest" — SWD/Datawrapper/Economist). Dark shown; light mirrors with its locked ladder.</p>
+  <div class="grid4">
+    <div class="optwrap"><div class="opt">A · Full ladder</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="92" x2="294" y2="92" stroke="rgba(242,235,220,.20)"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#36BBA6" stroke-width="2.4"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#5E83D9" stroke-width="1.5"/>
+        <polyline points="6,95 60,90 120,93 180,82 240,84 294,76" fill="none" stroke="#8B7FD9" stroke-width="1.5"/>
+        <polyline points="6,100 60,98 120,99 180,92 240,94 294,88" fill="none" stroke="#7C97B8" stroke-width="1.5"/>
+      </svg></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Cool ladder</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="92" x2="294" y2="92" stroke="rgba(242,235,220,.20)"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#36BBA6" stroke-width="2.4"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#7C97B8" stroke-width="1.5"/>
+        <polyline points="6,95 60,90 120,93 180,82 240,84 294,76" fill="none" stroke="#8B7FD9" stroke-width="1.5"/>
+        <polyline points="6,100 60,98 120,99 180,92 240,94 294,88" fill="none" stroke="#5F9EA0" stroke-width="1.5"/>
+      </svg></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · Corpus-literal (Signal first)</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="92" x2="294" y2="92" stroke="rgba(242,235,220,.20)"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#5B8BE0" stroke-width="2.4"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#36BBA6" stroke-width="1.5"/>
+        <polyline points="6,95 60,90 120,93 180,82 240,84 294,76" fill="none" stroke="#8B7FD9" stroke-width="1.5"/>
+      </svg></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">D · Hero + greyed context ★</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="6" y1="92" x2="294" y2="92" stroke="rgba(242,235,220,.20)"/>
+        <polyline points="6,88 60,80 120,82 180,68 240,62 294,58" fill="none" stroke="#5A5648" stroke-width="1.3" opacity=".85"/>
+        <polyline points="6,95 60,90 120,93 180,82 240,84 294,76" fill="none" stroke="#5A5648" stroke-width="1.3" opacity=".85"/>
+        <polyline points="6,100 60,98 120,99 180,92 240,94 294,88" fill="none" stroke="#5A5648" stroke-width="1.3" opacity=".85"/>
+        <polyline points="6,80 60,66 120,72 180,48 240,36 294,30" fill="none" stroke="#36BBA6" stroke-width="2.6"/>
+        <text x="240" y="28" fill="#36BBA6" font-size="9" font-weight="700">Brent</text>
+      </svg></div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (winner; D-as-default-for-dense-pages?):</span></div>
+</div></div>
+
+<!-- B3 POS/NEG -->
+<div class="exhibit" data-ex="B3" data-name="Positive/negative conventions ×2 + sign cue"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B3</span><h2>Positive / negative — two conventions, sign cue mandatory</h2></div>
+  <p class="cite">A non-colour cue (sign/arrow) always accompanies colour (≈8% of men are red-green colourblind). Bars zero-based, gap ≈40% of bar width (Few).</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">A · Realized green / Terracotta bars (one colour story)</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="10" y1="58" x2="290" y2="58" stroke="rgba(242,235,220,.3)"/>
+        <rect x="30" y="32" width="26" height="26" fill="#46C9A0"/><text x="43" y="26" fill="#46C9A0" font-size="9" text-anchor="middle" font-weight="700">+18</text>
+        <rect x="86" y="40" width="26" height="18" fill="#46C9A0"/><text x="99" y="34" fill="#46C9A0" font-size="9" text-anchor="middle" font-weight="700">+9</text>
+        <rect x="142" y="58" width="26" height="30" fill="#E2725B"/><text x="155" y="100" fill="#E2725B" font-size="9" text-anchor="middle" font-weight="700">−22</text>
+        <rect x="198" y="58" width="26" height="14" fill="#E2725B"/><text x="211" y="84" fill="#E2725B" font-size="9" text-anchor="middle" font-weight="700">−8</text>
+        <rect x="254" y="36" width="26" height="22" fill="#46C9A0"/><text x="267" y="30" fill="#46C9A0" font-size="9" text-anchor="middle" font-weight="700">+14</text>
+      </svg></div></div>
+      <div class="f f-l"><div class="chart-l"><svg viewBox="0 0 300 60" width="100%">
+        <line x1="10" y1="32" x2="290" y2="32" stroke="#9AA5B1"/>
+        <rect x="40" y="16" width="22" height="16" fill="#00A86B"/><rect x="100" y="32" width="22" height="18" fill="#C55B43"/><rect x="160" y="20" width="22" height="12" fill="#00A86B"/><rect x="220" y="32" width="22" height="8" fill="#C55B43"/>
+      </svg></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Light-green / Crimson lines</div>
+      <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 110" width="100%">
+        <line x1="10" y1="58" x2="290" y2="58" stroke="rgba(242,235,220,.3)"/>
+        <rect x="30" y="32" width="26" height="26" fill="#92C47D"/><text x="43" y="26" fill="#92C47D" font-size="9" text-anchor="middle" font-weight="700">+18</text>
+        <rect x="86" y="40" width="26" height="18" fill="#92C47D"/><text x="99" y="34" fill="#92C47D" font-size="9" text-anchor="middle" font-weight="700">+9</text>
+        <rect x="142" y="58" width="26" height="30" fill="#D44D5C"/><text x="155" y="100" fill="#E16470" font-size="9" text-anchor="middle" font-weight="700">−22</text>
+        <rect x="198" y="58" width="26" height="14" fill="#D44D5C"/><text x="211" y="84" fill="#E16470" font-size="9" text-anchor="middle" font-weight="700">−8</text>
+        <rect x="254" y="36" width="26" height="22" fill="#92C47D"/><text x="267" y="30" fill="#92C47D" font-size="9" text-anchor="middle" font-weight="700">+14</text>
+      </svg></div></div>
+      <div class="met" style="padding:4px 2px">Crimson then unavailable for alert lines in the same chart (quarantine).</div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (A or B):</span></div>
+</div></div>
+
+<!-- B4 MARKERS -->
+<div class="exhibit" data-ex="B4" data-name="Marker grammar — solid event / dashed now / glyphs / labels mandatory"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B4</span><h2>Marker grammar</h2></div>
+  <p class="cite">ONS: "a bare line is a failure" — every line/band labelled, ≤50 chars. Solid vertical = event · dashed = NOW/last-value · glyphs when dense (TradingView pattern) · Steel Orchid annotations.</p>
+  <div class="optwrap" style="max-width:760px"><div class="opt">Dark (light mirrors)</div>
+    <div class="f f-d"><div class="chart-d"><svg viewBox="0 0 640 150" width="100%">
+      <line x1="20" y1="120" x2="620" y2="120" stroke="rgba(242,235,220,.22)"/>
+      <polyline points="20,108 90,92 160,98 230,62 300,46 370,58 440,40 510,50 580,36 620,38" fill="none" stroke="#36BBA6" stroke-width="2.2"/>
+      <line x1="230" y1="20" x2="230" y2="120" stroke="#9D8CC4" stroke-width="1.4"/>
+      <text x="236" y="26" fill="#9D8CC4" font-size="9.5" font-weight="700">Ceasefire repricing · day 167</text>
+      <line x1="510" y1="20" x2="510" y2="120" stroke="#FFD89A" stroke-width="1.2" stroke-dasharray="3 4"/>
+      <text x="510" y="14" fill="#FFD89A" font-size="9.5" font-weight="700" text-anchor="middle">NOW</text>
+      <circle cx="370" cy="58" r="4" fill="none" stroke="#E0B262" stroke-width="1.5"/>
+      <text x="370" y="76" fill="#E0B262" font-size="9" text-anchor="middle">insurer requote ◇</text>
+      <path d="M 440 32 l 5 8 h -10 z" fill="#E16470"/>
+      <text x="440" y="24" fill="#E16470" font-size="9" text-anchor="middle">AIS alert △</text>
+    </svg></div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- B5 BANDS -->
+<div class="exhibit" data-ex="B5" data-name="Band strengths — Soft-Alert threshold at 8/14/22% + labelled boundary"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B5</span><h2>Threshold bands — pick the strength</h2></div>
+  <p class="cite">Translucent fill + labelled boundary line, never saturated solids on dark. Range bands (Light Cyan) stay at the locked ~28%.</p>
+  <div class="grid3">
+    <div class="optwrap"><div class="opt">A · 8%</div><div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 100" width="100%">
+      <rect x="6" y="14" width="288" height="26" fill="#D16D6D" opacity=".08"/><line x1="6" y1="40" x2="294" y2="40" stroke="#D16D6D" stroke-width="1" stroke-dasharray="4 3"/><text x="10" y="26" fill="#D16D6D" font-size="8.5" font-weight="700">stress threshold</text>
+      <polyline points="6,80 60,66 120,72 180,48 240,30 294,36" fill="none" stroke="#36BBA6" stroke-width="2.2"/></svg></div></div></div>
+    <div class="optwrap"><div class="opt">B · 14%</div><div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 100" width="100%">
+      <rect x="6" y="14" width="288" height="26" fill="#D16D6D" opacity=".14"/><line x1="6" y1="40" x2="294" y2="40" stroke="#D16D6D" stroke-width="1" stroke-dasharray="4 3"/><text x="10" y="26" fill="#D16D6D" font-size="8.5" font-weight="700">stress threshold</text>
+      <polyline points="6,80 60,66 120,72 180,48 240,30 294,36" fill="none" stroke="#36BBA6" stroke-width="2.2"/></svg></div></div></div>
+    <div class="optwrap"><div class="opt">C · 22%</div><div class="f f-d"><div class="chart-d"><svg viewBox="0 0 300 100" width="100%">
+      <rect x="6" y="14" width="288" height="26" fill="#D16D6D" opacity=".22"/><line x1="6" y1="40" x2="294" y2="40" stroke="#D16D6D" stroke-width="1" stroke-dasharray="4 3"/><text x="10" y="26" fill="#D16D6D" font-size="8.5" font-weight="700">stress threshold</text>
+      <polyline points="6,80 60,66 120,72 180,48 240,30 294,36" fill="none" stroke="#36BBA6" stroke-width="2.2"/></svg></div></div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (strength in note):</span></div>
+</div></div>
+
+<!-- B6 LEGENDS -->
+<div class="exhibit" data-ex="B6" data-name="Legends ×4 — direct labeling is the research recommendation"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B6</span><h2>Legends — net-new, research has a verdict</h2></div>
+  <p class="cite">"With ≤4 series there is no excuse for a legend block on a line chart" — Datawrapper/Urban/Economist unanimous. <b>C = direct labeling, the recommended default.</b> Legend survives only for stacked bars (horizontal, above, stack-ordered).</p>
+  <div class="grid4">
+    <div class="optwrap"><div class="opt">A · Top swatch row</div><div class="f f-l"><div class="chart-l">
+      <div style="display:flex;gap:8px;margin-bottom:4px"><span class="met" style="opacity:1;color:#2A6478">▬ Brent</span><span class="met" style="opacity:1;color:#4A6FA5">▬ GCC eq.</span></div>
+      <svg viewBox="0 0 300 80" width="100%"><polyline points="6,64 80,48 160,56 230,30 294,22" fill="none" stroke="#2A6478" stroke-width="2.2"/><polyline points="6,70 80,62 160,66 230,52 294,48" fill="none" stroke="#4A6FA5" stroke-width="1.5"/></svg></div></div></div>
+    <div class="optwrap"><div class="opt">B · Right-stacked block</div><div class="f f-l"><div class="chart-l" style="display:flex;gap:6px">
+      <svg viewBox="0 0 240 80" style="flex:1"><polyline points="6,64 70,48 130,56 190,30 234,22" fill="none" stroke="#2A6478" stroke-width="2.2"/><polyline points="6,70 70,62 130,66 190,52 234,48" fill="none" stroke="#4A6FA5" stroke-width="1.5"/></svg>
+      <div style="width:54px"><div class="met" style="opacity:1;color:#2A6478">▬ Brent</div><div class="met" style="opacity:1;color:#4A6FA5">▬ GCC eq.</div></div></div></div></div>
+    <div class="optwrap"><div class="opt">C · Direct labels ★</div><div class="f f-l"><div class="chart-l">
+      <svg viewBox="0 0 300 80" width="100%"><polyline points="6,64 70,48 130,56 190,30 244,22" fill="none" stroke="#2A6478" stroke-width="2.2"/><text x="250" y="24" fill="#2A6478" font-size="9" font-weight="700">Brent</text><polyline points="6,70 70,62 130,66 190,52 244,48" fill="none" stroke="#4A6FA5" stroke-width="1.5"/><text x="250" y="50" fill="#4A6FA5" font-size="9" font-weight="700">GCC eq.</text></svg></div></div></div>
+    <div class="optwrap"><div class="opt">D · Bottom caption</div><div class="f f-l"><div class="chart-l">
+      <svg viewBox="0 0 300 74" width="100%"><polyline points="6,58 80,42 160,50 230,24 294,16" fill="none" stroke="#2A6478" stroke-width="2.2"/><polyline points="6,64 80,56 160,60 230,46 294,42" fill="none" stroke="#4A6FA5" stroke-width="1.5"/></svg>
+      <div class="met">Teal: Brent · Blue: GCC equities</div></div></div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- B7 ICONS -->
+<div class="exhibit" data-ex="B7" data-name="Icon system — 1.5px outline, custody motifs replace padlocks"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B7</span><h2>Icon system — etched, not app-like</h2></div>
+  <p class="cite">1.5px single-weight outline on the 24px grid (Pajamas weight; "outline reads etched beside serif type") · icon = adjacent text colour · padlock/shield retired ("generic through overuse") → vault-ring, partition, ledger-seal motifs · arrows only for direction-of-funds · duotone only ≥40px marketing.</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">Dark</div>
+      <div class="f f-d" style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end">
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3DCCB" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3.5" x2="12" y2="8"/></svg><div class="met">custody<br>(vault-ring)</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3DCCB" stroke-width="1.5"><rect x="4" y="5" width="16" height="14" rx="2"/><line x1="12" y1="5" x2="12" y2="19"/></svg><div class="met">segregation<br>(partition)</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3DCCB" stroke-width="1.5"><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="12.5" x2="16" y2="12.5"/><circle cx="15.5" cy="16.5" r="2.2"/></svg><div class="met">audit<br>(ledger-seal)</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#36BBA6" stroke-width="1.75"><path d="M5 12.5 L10 17 L19 7"/></svg><div class="met" style="color:#36BBA6;opacity:1">verified<br>(active state)</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E3DCCB" stroke-width="1.5"><line x1="4" y1="12" x2="18" y2="12"/><path d="M14 7.5 L18.8 12 L14 16.5"/></svg><div class="met">funds flow<br>(→ only)</div></span>
+        <span style="text-align:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A89F8C" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3.5" x2="12" y2="8"/></svg><div class="met">16px cut</div></span>
+      </div>
+    </div>
+    <div class="optwrap"><div class="opt">Light</div>
+      <div class="f f-l" style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end">
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="3.5" x2="12" y2="8"/></svg><div class="met">custody</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><rect x="4" y="5" width="16" height="14" rx="2"/><line x1="12" y1="5" x2="12" y2="19"/></svg><div class="met">segregation</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="12.5" x2="16" y2="12.5"/><circle cx="15.5" cy="16.5" r="2.2"/></svg><div class="met">audit</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#367588" stroke-width="1.75"><path d="M5 12.5 L10 17 L19 7"/></svg><div class="met" style="color:#367588;opacity:1">verified</div></span>
+        <span style="text-align:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><line x1="4" y1="12" x2="18" y2="12"/><path d="M14 7.5 L18.8 12 L14 16.5"/></svg><div class="met">funds flow</div></span>
+        <span style="text-align:center"><svg width="40" height="40" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="rgba(54,117,136,.14)" stroke="none"/><circle cx="12" cy="12" r="8.5" fill="none" stroke="#2B2F34" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="#2B2F34" stroke-width="1.5"/><line x1="12" y1="3.5" x2="12" y2="8" stroke="#2B2F34" stroke-width="1.5"/></svg><div class="met">duotone ≥40px<br>(marketing only)</div></span>
+      </div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- B8 DIAGRAMS -->
+<div class="exhibit" data-ex="B8" data-name="Diagrams — card-contained steps / flow / custody tiers"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B8</span><h2>Diagrams — card-contained, engraved strokes</h2></div>
+  <p class="cite">Containers over bare line-art (NN/g) · ≤5 horizontal steps → vertical on mobile · flows: ≤3 nodes/stage, values in labels · diagram strokes = 1.5px matching icons · no shadows.</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">Step / transmission (dark)</div>
+      <div class="f f-d"><div style="display:flex;gap:6px;align-items:center">
+        <div style="flex:1;background:#181D24;border:1px solid #2A3038;border-radius:6px;padding:7px"><div class="lab" style="color:#F2EBDC">Strait event</div><div class="met">AIS interference</div></div>
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="#36BBA6" stroke-width="1.5"><line x1="0" y1="6" x2="13" y2="6"/><path d="M9 1.5 L14.5 6 L9 10.5"/></svg>
+        <div style="flex:1;background:#181D24;border:1px solid #2A3038;border-radius:6px;padding:7px"><div class="lab" style="color:#F2EBDC">Insurance</div><div class="met">premium +0.18%</div></div>
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="#36BBA6" stroke-width="1.5"><line x1="0" y1="6" x2="13" y2="6"/><path d="M9 1.5 L14.5 6 L9 10.5"/></svg>
+        <div style="flex:1;background:#181D24;border:1px solid #2A3038;border-radius:6px;padding:7px"><div class="lab" style="color:#F2EBDC">Freight</div><div class="met">VLCC +2.1%</div></div>
+      </div></div>
+    </div>
+    <div class="optwrap"><div class="opt">Custody tiers (light)</div>
+      <div class="f f-l">
+        <div style="background:#E6EAEE;border:1px solid #C2CAD1;border-radius:6px;padding:6px 9px;margin-bottom:5px;display:flex;gap:8px;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4"/></svg><div><span class="lab">Custodian</span> <span class="met">segregated cold vault per feeder</span></div></div>
+        <div style="background:#EDEFF2;border:1px solid #C2CAD1;border-radius:6px;padding:6px 9px;margin-bottom:5px;display:flex;gap:8px;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/></svg><div><span class="lab">Admin / Legal</span> <span class="met">NAV · Loeb Smith · Cohen &amp; Co.</span></div></div>
+        <div style="background:#ECECF4;border:1px solid #C2CAD1;border-radius:6px;padding:6px 9px;display:flex;gap:8px;align-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B2F34" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><line x1="12" y1="7" x2="12" y2="12"/><line x1="12" y1="12" x2="15.5" y2="14"/></svg><div><span class="lab">Withdrawal</span> <span class="met">72h delay · dual-signature</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- B9 STAT DEVICES -->
+<div class="exhibit" data-ex="B9" data-name="Stat devices ×3 + sparkline strip"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B9</span><h2>Stat devices + sparklines</h2></div>
+  <p class="cite">A current stat-card · B anchor panel (corpus "performance anchor", ≤30%) · C stat-row with key-stat underline. Sparklines = pure data-ink, text-height, value at right (Tufte).</p>
+  <div class="grid3">
+    <div class="optwrap"><div class="opt">A · Stat card (locked A2)</div>
+      <div class="f f-l"><div style="background:#fff;border:1px solid #C2CAD1;border-radius:8px;padding:9px"><div class="lab">Net return 2024</div><div class="num" style="font-size:21px;font-weight:600">+64%</div><div class="met">net of fees</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Anchor panel</div>
+      <div class="f f-l"><div style="background:#2A6478;border-radius:8px;padding:9px"><div class="lab" style="color:rgba(255,255,255,.75)">Net return 2024</div><div class="num" style="font-size:21px;font-weight:600;color:#fff">+64%</div><div class="met" style="color:rgba(255,255,255,.6)">net of fees</div></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">C · Stat-row + underline</div>
+      <div class="f f-l"><div style="display:flex;gap:18px;align-items:baseline"><span><span class="num" style="font-size:21px;font-weight:700;border-bottom:2.5px solid #4169E1;padding-bottom:1px">+64%</span><div class="met">return</div></span><span><span class="num" style="font-size:21px;font-weight:700">48%</span><div class="met">volatility</div></span><span><span class="num" style="font-size:21px;font-weight:700">−22%</span><div class="met">max DD</div></span></div></div>
+    </div>
+  </div>
+  <div class="optwrap" style="margin-top:12px;max-width:560px"><div class="opt">Sparkline strip (fixture)</div>
+    <div class="f f-l"><div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:6px"><span class="met" style="opacity:1">Brent</span><svg width="72" height="14" viewBox="0 0 72 14"><polyline points="0,11 12,8 24,10 36,5 48,3 60,6 72,2" fill="none" stroke="#2A6478" stroke-width="1.4"/><circle cx="72" cy="2" r="1.8" fill="#2A6478"/></svg><span class="num" style="font-weight:700;font-size:12px">96.40</span></span>
+      <span style="display:inline-flex;align-items:center;gap:6px"><span class="met" style="opacity:1">OVX</span><svg width="72" height="14" viewBox="0 0 72 14"><polyline points="0,4 12,7 24,5 36,9 48,8 60,11 72,9" fill="none" stroke="#67727E" stroke-width="1.4"/><circle cx="72" cy="9" r="1.8" fill="#67727E"/></svg><span class="num" style="font-weight:700;font-size:12px">38.2</span></span>
+    </div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (default + roles):</span></div>
+</div></div>
+
+<!-- B10 RAMPS -->
+<div class="exhibit" data-ex="B10" data-name="Diverging ramps — blue-orange vs teal-amber-red; red-green banned"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B10</span><h2>Heatmap ramps — diverging duel</h2></div>
+  <p class="cite">Diverging when there's a meaningful midpoint (zero/benchmark); neutral centre labelled; lightness-monotonic (survives greyscale); <b>never raw red-green</b> (colourblind-unsafe).</p>
+  <div class="grid3">
+    <div class="optwrap"><div class="opt">A · Blue → Orange</div>
+      <div class="f f-l"><div style="display:flex;height:18px;border-radius:5px;overflow:hidden"><div style="flex:1;background:#2B50AA"></div><div style="flex:1;background:#6B82C4"></div><div style="flex:1;background:#B9C2D8"></div><div style="flex:1;background:#EDEDEA"></div><div style="flex:1;background:#E8C49A"></div><div style="flex:1;background:#D89B55"></div><div style="flex:1;background:#B96A22"></div></div><div style="display:flex;justify-content:space-between"><span class="met">below benchmark</span><span class="met" style="font-weight:700">0</span><span class="met">above</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt">B · Teal → Amber → Red</div>
+      <div class="f f-l"><div style="display:flex;height:18px;border-radius:5px;overflow:hidden"><div style="flex:1;background:#1C6357"></div><div style="flex:1;background:#5FA897"></div><div style="flex:1;background:#B5D2C8"></div><div style="flex:1;background:#EDEDEA"></div><div style="flex:1;background:#E9B56C"></div><div style="flex:1;background:#D08552"></div><div style="flex:1;background:#B14F4F"></div></div><div style="display:flex;justify-content:space-between"><span class="met">calm</span><span class="met" style="font-weight:700">baseline</span><span class="met">stressed</span></div></div>
+    </div>
+    <div class="optwrap"><div class="opt" style="color:#9aa3ab">✗ Raw red-green (reject-confirm)</div>
+      <div class="f f-l"><div style="display:flex;height:18px;border-radius:5px;overflow:hidden;opacity:.8"><div style="flex:1;background:#1f9d44"></div><div style="flex:1;background:#7cc47f"></div><div style="flex:1;background:#e8e8e8"></div><div style="flex:1;background:#e88"></div><div style="flex:1;background:#d22"></div></div><div class="met" style="margin-top:2px">≈8% of male users cannot read this</div></div>
+    </div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (A or B; confirm ban):</span></div>
+</div></div>
+
+<!-- B11 STATUS GLYPHS -->
+<div class="exhibit" data-ex="B11" data-name="Status glyph ladder — colour + shape + symbol (Carbon)"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B11</span><h2>Status glyphs — extending the locked ladder</h2></div>
+  <p class="cite">Carbon: severity = <b>colour + shape + symbol, never colour alone</b>; persistence scales with severity (Alert = persistent banner · Latent = dismissible inline). Approving extends the locked status system.</p>
+  <div class="grid2">
+    <div class="optwrap"><div class="opt">Dark</div><div class="f f-d" style="display:flex;gap:7px;flex-wrap:wrap">
+      <span class="chip-m" style="background:rgba(132,144,158,.16);color:#9aa5b1">○ LATENT</span>
+      <span class="chip-m" style="background:rgba(224,178,98,.15);color:#E0B262">◇ ANTICIPATED</span>
+      <span class="chip-m" style="background:rgba(209,109,109,.15);color:#D16D6D">△ ELEVATED</span>
+      <span class="chip-m" style="background:rgba(225,100,112,.17);color:#E16470">⬣ ALERT</span>
+      <span class="chip-m" style="background:rgba(70,201,160,.15);color:#46C9A0">✓ REALIZED</span>
+    </div></div>
+    <div class="optwrap"><div class="opt">Light</div><div class="f f-l" style="display:flex;gap:7px;flex-wrap:wrap">
+      <span class="chip-m" style="background:#E2E5E8;color:#46505A">○ LATENT</span>
+      <span class="chip-m" style="background:#F4E3CB;color:#8A5B1D">◇ ANTICIPATED</span>
+      <span class="chip-m" style="background:#F2DBDB;color:#A14444">△ ELEVATED</span>
+      <span class="chip-m" style="background:#F4D2D6;color:#B23240">⬣ ALERT</span>
+      <span class="chip-m" style="background:#D6EEE3;color:#00754B">✓ REALIZED</span>
+    </div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict:</span></div>
+</div></div>
+
+<!-- B12 MOTION -->
+<div class="exhibit" data-ex="B12" data-name="Motion doctrine — state-change transitions only, live demo"><div class="wrap">
+  <div class="ex-head"><span class="ex-id">B12</span><h2>Motion — the only sanctioned kinds, live</h2></div>
+  <p class="cite">No load animation (struck by research — transient false trends). Sanctioned: <b>state-change transitions</b> 150–250ms ease-out staged (Heer&amp;Robertson) · dim-others hover (instant) · hover −15% · reduced-motion = everything instant. Try the range buttons and the legend hover; toggle reduced motion.</p>
+  <div class="optwrap" style="max-width:760px" id="motionbox">
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+      <button class="tgl on" data-range="A">90 days</button>
+      <button class="tgl" data-range="B">1 year</button>
+      <span style="flex:1"></span>
+      <span class="met" id="hovhint" style="color:#7d8693">hover legend ↓</span>
+      <button class="tgl" id="rm">reduced motion: off</button>
+    </div>
+    <div class="f f-d"><div class="chart-d">
+      <svg viewBox="0 0 640 150" width="100%" id="msvg">
+        <line x1="20" y1="120" x2="620" y2="120" stroke="rgba(242,235,220,.22)"/>
+        <g id="stateA">
+          <polyline class="mline s-hero" points="20,104 120,88 220,94 320,60 420,46 520,56 620,40" fill="none" stroke="#36BBA6" stroke-width="2.4"/>
+          <polyline class="mline s-ctx" points="20,110 120,104 220,106 320,92 420,88 520,92 620,84" fill="none" stroke="#5A5648" stroke-width="1.4"/>
+        </g>
+        <g id="stateB" style="display:none">
+          <polyline class="mline s-hero" points="20,96 120,102 220,80 320,88 420,58 520,66 620,34" fill="none" stroke="#36BBA6" stroke-width="2.4"/>
+          <polyline class="mline s-ctx" points="20,104 120,108 220,98 320,100 420,84 520,90 620,78" fill="none" stroke="#5A5648" stroke-width="1.4"/>
+        </g>
+      </svg>
+      <div style="display:flex;gap:12px;margin-top:4px">
+        <span class="met" style="opacity:1;color:#36BBA6;cursor:pointer" id="hovhero">▬ Brent (hero)</span>
+        <span class="met" style="cursor:pointer" id="hovctx">▬ context</span>
+      </div>
+    </div></div>
+  </div>
+  <div class="verdict"><span class="q">Verdict (approve = adopt motion law):</span></div>
+</div></div>
+
+<div class="footer">VegaReady Charts &amp; Icons Trial B · Spec B v2 (web-enhanced) · “Copy verdicts” to export</div>
+
+<script>
+// B12 motion demo
+const box=document.getElementById('motionbox');
+const sA=document.getElementById('stateA'), sB=document.getElementById('stateB');
+let reduced=false;
+document.querySelectorAll('[data-range]').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('[data-range]').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const showB=b.dataset.range==='B';
+    const inEl=showB?sB:sA, outEl=showB?sA:sB;
+    if(reduced){outEl.style.display='none';inEl.style.display='';return}
+    // staged: fade out (150ms) then fade in (220ms ease-out)
+    outEl.querySelectorAll('.mline').forEach(l=>l.style.opacity=0);
+    setTimeout(()=>{outEl.style.display='none';inEl.style.display='';
+      inEl.querySelectorAll('.mline').forEach(l=>{l.style.opacity=0;requestAnimationFrame(()=>requestAnimationFrame(()=>l.style.opacity=1))});
+    },160);
+  };
+});
+const rm=document.getElementById('rm');
+rm.onclick=()=>{reduced=!reduced;rm.classList.toggle('on',reduced);
+  rm.textContent='reduced motion: '+(reduced?'ON':'off');
+  document.getElementById('msvg').closest('.optwrap').classList.toggle('reduced',reduced)};
+const svg=document.getElementById('msvg');
+document.getElementById('hovhero').onmouseenter=()=>svg.classList.add('dim');
+document.getElementById('hovhero').onmouseleave=()=>svg.classList.remove('dim');
+
+// verdicts
+const KEY='vr-chartsB-verdicts';
+const store=JSON.parse(localStorage.getItem(KEY)||'{}');
+const exs=[...document.querySelectorAll('.exhibit')];
+function save(){localStorage.setItem(KEY,JSON.stringify(store));prog()}
+function prog(){const n=Object.values(store).filter(v=>v.v).length;
+  document.getElementById('prog').textContent=n+' / '+exs.length+' judged'}
+exs.forEach(ex=>{
+  const id=ex.dataset.ex, bar=ex.querySelector('.verdict');
+  const mk=(label,key)=>{const b=document.createElement('button');b.className='vbtn';b.textContent=label;
+    b.onclick=()=>{store[id]=store[id]||{};store[id].v=store[id].v===key?null:key;paint();save()};bar.appendChild(b);return b};
+  const bA=mk('Approve','approve'), bC=mk('Conditional','cond'), bR=mk('Reject','reject');
+  const note=document.createElement('input');note.className='vnote';note.placeholder='note — winner, strength, restriction…';
+  note.value=(store[id]&&store[id].n)||'';
+  note.oninput=()=>{store[id]=store[id]||{};store[id].n=note.value;save()};bar.appendChild(note);
+  function paint(){const v=store[id]&&store[id].v;
+    bA.classList.toggle('on-approve',v==='approve');
+    bC.classList.toggle('on-cond',v==='cond');
+    bR.classList.toggle('on-reject',v==='reject')}
+  paint();
+});
+prog();
+document.getElementById('copyAll').onclick=()=>{
+  const lines=exs.map(ex=>{const id=ex.dataset.ex,s=store[id]||{};
+    return id+' · '+ex.dataset.name+' — '+(s.v?s.v.toUpperCase():'(unjudged)')+(s.n?' — '+s.n:'')});
+  navigator.clipboard.writeText('VegaReady Charts & Icons Trial B verdicts\n'+lines.join('\n')).then(()=>{
+    const b=document.getElementById('copyAll');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1600)});
+};
+</script>
+</body>
+</html>

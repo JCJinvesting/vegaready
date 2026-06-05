@@ -219,3 +219,45 @@ System: field = neutral fill + 1px border · labels = micro-label register · di
 
 ## Page rhythm (A8 — APPROVED as law)
 Alternate dense/light sections · neutral bridges between strong sections with buffer ranking (**Modal-class within page · Steel-class between sections · Payne's-class between bright sections**) · risk arcs complete in 2–3 sections, never risk→positive directly · emotional sections 1–2 max then bridge · no CTA inside risk content · one idea per section · limit consecutive dark/hero bands.
+
+---
+
+# Charts, Data-Viz & Iconography — LOCKED 2026-06-05 (Trial B + B2 verdicts)
+
+*Evidence: `artifacts/VegaReady-Charts-Trial-B.html` + `artifacts/VegaReady-Charts-Trial-B2.html` + `artifacts/Charts-Icons-Spec-B-v2.md` (corpus research + 3-agent web research: Datawrapper/Urban/Economist/FT/Tufte/Heer-Robertson/NN-g/WCAG/TradingView/Carbon/Pajamas).*
+
+## Chart skeleton (B1→R1-C)
+Horizontal gridlines only ("whisper": white @6–8% dark · `#D5DADE` light) · zero/baseline one step heavier · 4–6 round ticks, unit once in the caption, 1.2K/$3M abbreviations · axis labels = meta register, **lifted floor** (`#A89F8C` dark / `#67727E` light) · aspect ≈0.4 · dark chart surface one step lighter than page · charts live in locked cards · no glow, ever · drop y-axis+grid when bars carry value labels.
+
+## Series system (B2→R1 — both sanctioned)
+**Chart hero on dark = Verdigris `#5FA897` @2.2px — JCJ Teal `#36BBA6` is BANNED as a chart hero ("neon" at weight; CTA colour stays CTA).** Light hero = Deep Teal `#2A6478`. Ladder: S2 = Cobalt-class (`#5E83D9`/`#4A6FA5`) · S3 = Slate Blue (`#8B7FD9`/`#6A5ACD`) · S4 = **visible warm-grey `#8A8274` dark / `#67727E` light @1.6px full opacity** (the faint-bottom-line fix — context lines have a visibility floor ≈4.5:1). Hero+context variant (one hero + all-grey context @1.5px) sanctioned for dense pages. Every series ≥3:1 vs canvas (WCAG 1.4.11) · ≤4 series then small multiples · dashed = projection · never Navy/Gold/Teal-CTA as series.
+
+## Positive/negative (B3→R2 — A locked)
+Positive = Realized green (`#46C9A0` dark / `#00A86B` fill + `#00754B` labels light) · drawdown = **Terracotta bars** (`#E2725B`/`#C55B43`) · **value labels with signs on every bar, mandatory** (non-colour cue law) · zero-based · gap ≈40% bar width · Crimson reserved for alert lines, quarantined from gold.
+
+## Markers & annotations (B4 — APPROVED)
+Solid vertical = event · dashed = NOW/last-value · glyphs when dense · **every line and band carries a label ≤50 chars — a bare line is a failure** · annotation labels/leaders = Steel Orchid (`#9D8CC4` dark / `#6E5D94` light) ≤15% · milestones = gold micro ≤2 · annotation info duplicated in text (a11y).
+
+## Bands (B5 — winner A)
+**Threshold band = Soft-Alert @8%** + dashed labelled boundary · range band = Light Cyan ~28% · positive regime = sage-class ~12% · one band per chart unless range+threshold.
+
+## Legends (B6 — winner B, OWNER OVERRIDE of research)
+**Right-stacked legend block is the default** ("most understandable quickly, very readable") — overrides the direct-labeling research recommendation; direct series-end labels remain a sanctioned alternative; stacked bars use horizontal legend above, stack-ordered.
+
+## Iconography (B7→R3)
+1.5px single-weight outline on the 24px grid ("etched") · 16px cuts redrawn · icon colour = adjacent text token · **light-theme icon labels = solid `#4A535C`** (contrast fix) · active = accent + 1.75px · duotone only ≥40px marketing · custody motifs: vault-ring / partition / ledger-seal (**padlock & shield retired**) · arrows = direction-of-funds only · 44px targets · label-paired.
+
+## Diagrams (B8→R4)
+Card-contained nodes, 1.5px strokes matching icons, no shadows · **diagram arrows are STRUCTURE: ink-tone `#9A917F` dark, never accent colour** (de-neon law — "arrows must not overshadow text importance") · **muted-has-a-floor law: explainer text never below the strengthened meta register** (`#A89F8C` dark / `#4A535C` light) · ≤5 horizontal steps → vertical on mobile · flows ≤3 nodes/stage, ≤8, values in labels · org ≤7–9 nodes · max one diagram per section.
+
+## Stat devices (B9→R5)
+Stat-card (locked A2) = default · **anchor panel = deep fill `#1F4F60`**, labels rgba(255,255,255,.82)/.70 · stat-row labels = solid `#4A535C` + key-stat underline · **sparklines** = pure data-ink, text-height, value at right, last-point dot · gold KPI micro · slate capacity chips · F4 comparison construction.
+
+## Ramps (B10→R6 — B locked, flipped)
+Diverging = **teal→amber→red REVERSED to read stressed-LEFT → calm/growth-RIGHT** (owner reading-direction law) · neutral midpoint labelled · lightness-monotonic · **raw red-green ramps BANNED (judged)**.
+
+## Status glyphs (B11→R7 — extends the locked status system)
+**Colour + shape + symbol, never colour alone** (Carbon): ○ Latent · ◇ Anticipated · △ Elevated · ⬣ Alert · ✓ Realized · persistence scales with severity (Alert = persistent banner, Latent = dismissible) · **light chips = 22% tint + one-step-darker text** (`#39434D/#75490F/#8F3535/#9E2533/#00603E`).
+
+## Motion law (B12 — APPROVED)
+**No load animation — charts render complete** (research: transient false trends) · sanctioned motion only: state-change transitions 150–250ms staged ease-out (Heer-Robertson) · dim-others hover instant (≤100ms) · hover −15% · tooltips = crosshair + pinned value strip (top-left, never occludes) + axis-edge tags, long-press on touch · no looping/pulsing/number tick-ups · nothing >400ms, never linear · `prefers-reduced-motion` → everything instant · pause control for auto-updating >5s.
