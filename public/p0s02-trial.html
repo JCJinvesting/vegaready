@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P0-S02 Trial · Round 3 — H / D / E</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Fraunces:opsz,wght@9..144,300..700&family=Lora:ital,wght@0,400..700;1,500&display=swap" rel="stylesheet">
+<style>
+/* ════ Round 3 · Guide v4 + v4.1 licences: atmosphere, ambient data, numeral-icons,
+   premium CTA, gold-as-graphic · std elevation · contrast architecture ════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto!important}}
+body{font-family:'Fraunces',Georgia,serif;font-size:16.5px;line-height:1.65;background:#0D1626;color:#DCD4C2;transition:background .55s ease-out}
+:focus-visible{outline:2px solid #5FA897;outline-offset:2px;border-radius:4px}
+.num{font-family:'Lora',serif;font-variant-numeric:tabular-nums}
+
+/* trial chrome */
+.ctrl{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 16px;background:rgba(8,10,14,.94);backdrop-filter:blur(10px);border-bottom:1px solid #23262C;font-size:12px}
+.ctrl .t{font-family:'Lora',serif;font-weight:700;color:#9AA3AD;letter-spacing:.06em;margin-right:6px}
+.vtab{font-family:inherit;font-size:12.5px;padding:6px 14px;border-radius:7px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.vtab.on{background:#1C2128;color:#EDE6D6;border-color:#5FA897;font-weight:600}
+.vbtns{margin-left:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.vb{font-family:inherit;font-size:11.5px;padding:5px 11px;border-radius:6px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.vb.app.sel{background:rgba(70,201,160,.15);color:#46C9A0;border-color:#46C9A0}
+.vb.con.sel{background:rgba(224,178,98,.15);color:#E0B262;border-color:#E0B262}
+.vb.rej.sel{background:rgba(225,100,112,.15);color:#E16470;border-color:#E16470}
+.vnote{font-family:inherit;font-size:11.5px;padding:5px 10px;border-radius:6px;border:1px solid #2E3239;background:#0E1116;color:#D5CFC0;width:230px}
+.vcopy{font-family:inherit;font-size:11.5px;padding:5px 12px;border-radius:6px;border:1px solid #3A6B5E;background:#14201C;color:#7FC4AE;cursor:pointer}
+.variant{display:none}.variant.on{display:block}
+main{padding-top:46px}
+
+/* shared spine */
+.wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+.goldgrad{background:linear-gradient(90deg,#A8843C,#E3C77E 45%,#A8843C)}
+.btn-p{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:15.5px;font-weight:600;padding:13px 28px;border-radius:9px;border:none;cursor:pointer;text-decoration:none;background:#36BBA6;color:#0B0E13}
+.btn-p:hover{filter:brightness(.88)}
+.btn-gold{display:inline-flex;align-items:center;gap:12px;font-family:inherit;font-size:16px;font-weight:600;padding:14px 32px;border-radius:9px;cursor:pointer;text-decoration:none;background:transparent;color:#F2EBDC;border:1px solid transparent;background-image:linear-gradient(#0D1626,#0D1626),linear-gradient(110deg,#A8843C,#E3C77E,#A8843C);background-origin:border-box;background-clip:padding-box,border-box}
+.btn-gold:hover{color:#F4C37D}
+.btn-glight{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:15px;font-weight:500;padding:12px 24px;border-radius:9px;cursor:pointer;text-decoration:none;background:transparent;color:#DCD4C2;border:1px solid color-mix(in srgb,#F2EBDC 24%,transparent)}
+.kick{font-family:'Lora',serif;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;color:#F4C37D}
+.kick::after{content:"";flex:0 0 56px;height:1px;background:linear-gradient(90deg,#A8843C,#E3C77E);opacity:.8}
+.h0{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(48px,6.6vw,76px);line-height:1.03;letter-spacing:-0.018em;color:#F2EBDC}
+.h0 em{font-style:italic;font-weight:500;color:#F4C37D}
+.h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-0.012em;color:#F2EBDC}
+.sub{font-size:18px;line-height:1.62;max-width:56ch;color:#C2BAA7}
+.eyebrow{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;color:#C9A24A}
+.met{font-size:12px;color:#97917F}
+.statN{font-family:'Lora',serif;font-weight:700;font-size:clamp(64px,9vw,96px);line-height:1;letter-spacing:-0.015em;color:#F2EBDC;transition:font-size .55s ease-out}
+
+/* ambient metric strip (v4.1 ambient-data licence: illustrative snapshot) */
+.mstrip{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid color-mix(in srgb,#F2EBDC 14%,transparent);border-bottom:1px solid color-mix(in srgb,#F2EBDC 14%,transparent)}
+.mcell{flex:1;min-width:150px;padding:14px 18px;border-right:1px solid color-mix(in srgb,#F2EBDC 10%,transparent)}
+.mcell:last-child{border-right:none}
+.mcell .mk{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#97917F;margin-bottom:3px}
+.mcell .mv{font-family:'Lora',serif;font-size:17px;font-weight:600;color:#F2EBDC}
+.mcell .md{font-family:'Lora',serif;font-size:12px;font-weight:700;margin-left:8px}
+.md.up{color:#46C9A0}.md.dn{color:#E2725B}
+.mnote{font-size:10.5px;color:#97917F;font-family:'Lora',serif;letter-spacing:.04em;padding:6px 18px 0}
+
+/* ledger card (with sparkline — ambient data) */
+.ledger{border-radius:12px;overflow:hidden;background:color-mix(in srgb,#F2EBDC 9%,#0D1626);border:1px solid color-mix(in srgb,#F2EBDC 20%,#0D1626)}
+.ledger .lhead{display:flex;align-items:center;gap:10px;padding:12px 18px;font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:color-mix(in srgb,#F2EBDC 13%,#0D1626);color:#F4C37D;border-bottom:1px solid color-mix(in srgb,#F2EBDC 20%,#0D1626)}
+.ledger .lrow{display:flex;gap:14px;padding:9px 18px;font-size:14px;line-height:1.5;border-bottom:1px solid color-mix(in srgb,#F2EBDC 11%,#0D1626)}
+.ledger .lrow:last-child{border-bottom:none}
+.ledger .lk{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;flex:0 0 92px;padding-top:3px;color:#97917F}
+.ledger .lv{flex:1;color:#DCD4C2}
+.ledger .lrow.edge .lv{color:#F2EBDC;font-weight:600}
+.ledger .lrow.edge .lk{color:#36BBA6}
+.lspark{padding:12px 18px 14px;border-top:1px solid color-mix(in srgb,#F2EBDC 11%,#0D1626)}
+
+/* gold seal (gold-as-graphic licence: the one gold object) */
+.seal{width:44px;height:44px}
+
+/* ghost numerals (numeral-icon licence) */
+.gnum{font-family:'Playfair Display',serif;font-weight:800;font-size:64px;line-height:1;color:#F2EBDC;opacity:.1;letter-spacing:-.02em}
+
+/* cascade as numbered rail */
+.rail{display:grid;grid-template-columns:repeat(5,1fr);gap:22px}
+@media(max-width:980px){.rail{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.rail{grid-template-columns:1fr}}
+.rnode{position:relative;padding-top:8px}
+.rnode .rl{font-family:'Lora',serif;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#F2EBDC;margin:10px 0 7px}
+.rnode .rd{font-size:13px;line-height:1.55;color:#A59D8B}
+.rnode::before{content:"";position:absolute;top:0;left:0;width:34px;height:1px;background:linear-gradient(90deg,#A8843C,#E3C77E)}
+.rnode.tnode{background:color-mix(in srgb,#5FA897 11%,transparent);border:1px solid color-mix(in srgb,#5FA897 38%,transparent);border-radius:10px;padding:14px 16px 16px;margin-top:-6px}
+.rnode.tnode::before{left:16px;top:8px;background:#5FA897}
+
+/* capabilities */
+.caps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:980px){.caps{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.caps{grid-template-columns:1fr}}
+.cap{border-radius:11px;padding:24px 22px;background:color-mix(in srgb,#F2EBDC 9%,#0D1626);border:1px solid color-mix(in srgb,#F2EBDC 18%,#0D1626)}
+.cap .cl{font-family:'Playfair Display',serif;font-size:18.5px;font-weight:700;margin:0 0 9px;color:#F2EBDC}
+.cap .cd{font-size:13.5px;line-height:1.6;color:#A59D8B}
+.cap .cn{font-family:'Playfair Display',serif;font-weight:800;font-size:30px;color:#F2EBDC;opacity:.14;display:block;margin-bottom:6px}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.road{grid-template-columns:1fr}}
+.ritem{display:flex;align-items:center;gap:12px;border-radius:9px;padding:13px 16px;font-size:14px;background:color-mix(in srgb,#F2EBDC 8%,#0D1626);border:1px solid color-mix(in srgb,#F2EBDC 16%,#0D1626)}
+.rdot{width:8px;height:8px;border-radius:99px;flex:0 0 8px}
+.rdot.live{background:#46C9A0}.rdot.soon{background:#7E796B}
+.rlab{font-weight:600;flex:1;color:#F2EBDC}
+.rst{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.rst.live{color:#46C9A0}.rst.soon{color:#97917F}
+.bfoot{padding:54px 0 38px;font-size:13px;color:#97917F;border-top:1px solid color-mix(in srgb,#F2EBDC 14%,transparent)}
+.bfoot b{color:#C7BFAC;font-weight:600}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px}
+@media(max-width:720px){.fgrid{grid-template-columns:1fr}}
+.fbrand{font-family:'Lora',serif;font-weight:700;font-size:16px;color:#EDE6D6}
+.fbrand span{color:#5FA897}
+.ftag{margin-top:8px;font-size:13px;line-height:1.6;max-width:34ch}
+.fh{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#C9A24A;margin-bottom:12px}
+.flink{display:block;color:#B5AD9A;text-decoration:none;padding:4px 0;font-size:13.5px}
+.flink:hover{color:#EDE6D6}
+.flegal{margin-top:34px;padding-top:18px;border-top:1px solid color-mix(in srgb,#F2EBDC 9%,transparent);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11.5px;color:#7E796B}
+
+/* ════ H · HYBRID UNLEASHED — Oxford + Abyss crossfade · ν watermark · ambient data · asymmetry ════ */
+.vH .hero{position:relative;padding:120px 0 70px;overflow:hidden}
+.vH .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(110% 90% at 18% 8%, color-mix(in srgb,#16294a 55%,transparent), transparent 62%);pointer-events:none} /* atmosphere licence: same-hue, sub-perceptual */
+.vH .nu{position:absolute;right:-1%;top:-12%;font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:52vw;line-height:1;color:#F2EBDC;opacity:.045;pointer-events:none;user-select:none} /* ghost glyph: texture, not text */
+.vH .heroflex{position:relative;display:flex;gap:70px;align-items:flex-start;flex-wrap:wrap}
+.vH .hl{flex:1.3;min-width:340px}
+.vH .hr{flex:1;min-width:330px;margin-top:46px}
+.vH .tag{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:#9FB8C9;margin:0 0 36px}
+.vH .tinted{background:color-mix(in srgb,#36BBA6 9%,#0D1626);border:1px solid color-mix(in srgb,#36BBA6 38%,transparent);border-radius:14px;padding:46px 50px}
+body.cv-abyss .vH .statN{font-size:clamp(76px,10.5vw,112px)} /* the moment deepens, not just the paint */
+.vH .inverted{background:#F7F3EA;color:#4A4438;border-radius:14px;padding:44px 48px;max-width:700px}
+.vH .inverted .ih{font-family:'Playfair Display',serif;font-weight:700;font-size:27px;color:#33302A;margin-bottom:10px}
+.vH .inverted .ip{font-size:15px;color:#5C5546;margin-bottom:24px}
+.vH .inverted .btn-gold{background-image:linear-gradient(#F7F3EA,#F7F3EA),linear-gradient(110deg,#A8843C,#E3C77E,#A8843C);color:#33302A}
+.vH .inverted .btn-gold:hover{color:#8A6420}
+
+/* ════ D · THE DOSSIER — Indigo Ink · editorial briefing · dossier numerals · marginalia ════ */
+.vD{background:transparent}
+.vD section{background:#131726}
+.vD .dhero{position:relative;padding:130px 0 90px;overflow:hidden}
+.vD .dhero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb,#1b2140 40%,transparent),transparent 55%);pointer-events:none}
+.vD .dmast{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#97917F;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-bottom:14px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 16%,transparent);margin-bottom:60px}
+.vD .dmast b{color:#F4C37D}
+.vD .dh0{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(44px,5.8vw,70px);line-height:1.06;letter-spacing:-0.016em;color:#F2EBDC;max-width:18ch}
+.vD .dh0 em{font-style:italic;font-weight:500;color:#F4C37D}
+.vD .dlede{margin-top:30px;max-width:62ch}
+.vD .dlede p{font-size:19px;line-height:1.7;color:#C9C1AE}
+.vD .dlede p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-size:64px;font-weight:700;float:left;line-height:.82;padding:6px 12px 0 0;color:#F4C37D}
+.vD .dsec{display:grid;grid-template-columns:120px 1fr;gap:34px;padding:74px 0 0;position:relative}
+.vD .dsec::before{content:"";position:absolute;left:0;top:74px;bottom:-74px;width:1px;background:color-mix(in srgb,#F2EBDC 13%,transparent)} /* the dossier spine */
+.vD .dsec:last-of-type::before{bottom:0}
+.vD .dnum{padding-left:22px}
+@media(max-width:760px){.vD .dsec{grid-template-columns:1fr}.vD .dsec::before{display:none}.vD .dnum{padding-left:0}}
+.vD .dnum{font-family:'Playfair Display',serif;font-weight:800;font-size:74px;line-height:.9;color:#F2EBDC;opacity:.12}
+.vD .dnum span{display:block;font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:1;color:#C9A24A;margin-top:10px}
+.vD .dbody{max-width:60ch}
+.vD .dbody h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#F2EBDC;margin-bottom:12px}
+.vD .dbody p{font-size:15.5px;line-height:1.7;color:#B4AC99}
+.vD .daside{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.vD .dchip{border:1px solid color-mix(in srgb,#F2EBDC 18%,transparent);border-radius:8px;padding:9px 13px;font-size:12px;color:#A59D8B}
+.vD .dchip b{font-family:'Lora',serif;color:#F2EBDC;font-weight:600}
+.vD .dchip .md{margin-left:6px}
+.vD .pquote{margin:84px auto 0;max-width:30ch;text-align:center}
+.vD .pquote p{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:clamp(24px,3vw,34px);line-height:1.35;color:#EFE7D5}
+.vD .pquote .met{margin-top:14px;letter-spacing:.08em;text-transform:uppercase;font-family:'Lora',serif;font-weight:700}
+.vD .keyline{margin-top:80px;display:flex;align-items:baseline;gap:26px;flex-wrap:wrap}
+.vD .keyN{font-family:'Lora',serif;font-weight:700;font-size:64px;color:#F2EBDC;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#A8843C,#E3C77E) 1}
+.vD .dcta{padding:90px 0 110px;text-align:center}
+.vD .dcta .lnk{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,32px);font-weight:700;color:#F2EBDC;text-decoration:none;border-bottom:2px solid transparent;border-image:linear-gradient(90deg,#A8843C,#E3C77E) 1;padding-bottom:6px}
+.vD .dcta .lnk:hover{color:#F4C37D}
+.vD .bone{background:#F2EDE2!important;color:#4A4438}
+.vD .bone .eyebrow{color:#8A6420}
+.vD .bone .ritem{background:#FBF9F4;border:1px solid #DDD5C4}
+.vD .bone .rlab{color:#33302A}
+.vD .bone .rdot.live{background:#1F7A5C}.vD .bone .rdot.soon{background:#B5AC97}
+.vD .bone .rst.live{color:#1F7A5C}.vD .bone .rst.soon{color:#8A8274}
+
+/* ════ E · THE DESK — Petrol Black (hue-committed; round-3.5 fix for "faded") · analyst dialect ════ */
+.vE section{background:#0F1B1F}
+.vE{color:#D9DBDE}
+.vE .kick{color:#E0A24A}
+.vE .kick::after{background:linear-gradient(90deg,#9C6F2E,#E8C07A)}
+.vE .eyebrow{color:#E0A24A}
+.vE .h0,.vE .h2{color:#E8EAEE}
+.vE .h0 em{color:#5E83D9}
+.vE .sub{color:#B3B7BC}
+.vE .ehero{position:relative;padding:120px 0 80px;overflow:hidden}
+.vE .ehero::before{content:"";position:absolute;inset:0;background:radial-gradient(100% 85% at 82% 0%, color-mix(in srgb,#15303a 60%,transparent), transparent 60%);pointer-events:none}
+.vE .eflex{position:relative;display:flex;gap:64px;align-items:stretch;flex-wrap:wrap}
+.vE .el{flex:1.15;min-width:340px}
+.vE .er{flex:1;min-width:340px}
+.vE .desk{background:color-mix(in srgb,#000 30%,#0F1B1F);border:1px solid color-mix(in srgb,#E8EAEE 14%,transparent);border-radius:14px;overflow:hidden;height:100%;display:flex;flex-direction:column}
+.vE .deskhead{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E0A24A;border-bottom:1px solid color-mix(in srgb,#E8EAEE 12%,transparent)}
+.vE .deskspark{padding:18px 18px 6px}
+.vE .deskrow{display:flex;gap:0;border-top:1px solid color-mix(in srgb,#E8EAEE 10%,transparent)}
+.vE .dcell{flex:1;padding:12px 16px;border-right:1px solid color-mix(in srgb,#E8EAEE 8%,transparent)}
+.vE .dcell:last-child{border-right:none}
+.vE .dcell .mk{font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8E939B;margin-bottom:2px}
+.vE .dcell .mv{font-family:'Lora',serif;font-size:15.5px;font-weight:600;color:#E8EAEE}
+.vE .dcell .md{font-size:11.5px}
+.vE .btn-p{background:#5E83D9;color:#0B0E13}
+.vE .btn-amber{display:inline-flex;align-items:center;gap:12px;font-family:inherit;font-size:16px;font-weight:600;padding:14px 32px;border-radius:9px;cursor:pointer;text-decoration:none;color:#E8EAEE;border:1px solid transparent;background-image:linear-gradient(#0F1B1F,#0F1B1F),linear-gradient(110deg,#9C6F2E,#E8C07A,#9C6F2E);background-origin:border-box;background-clip:padding-box,border-box}
+.vE .btn-amber:hover{color:#E8C07A}
+.vE .ewell{background:color-mix(in srgb,#000 30%,#0F1B1F);border-radius:14px;padding:48px 50px}
+.vE .rnode::before{background:linear-gradient(90deg,#9C6F2E,#E8C07A)}
+.vE .rnode .rl{color:#E8EAEE}
+.vE .rnode .rd{color:#9CA1A8}
+.vE .gnum{color:#E8EAEE}
+.vE .anchor{background:#1E3552;border-radius:14px;padding:44px 48px;border:1px solid color-mix(in srgb,#5E83D9 28%,transparent)} /* cobalt-dialect anchor: cross-family vs the petrol ground (same-family teal = mud) */
+.vE .anchor .statN{color:#F2F5F7}
+.vE .anchor .sub{color:#C9D4E4}
+.vE .anchor .met{color:#9DB0C7}
+.vE .cap{background:color-mix(in srgb,#E8EAEE 8%,#0F1B1F);border-color:color-mix(in srgb,#E8EAEE 15%,transparent)}
+.vE .cap .cl{color:#E8EAEE}.vE .cap .cd{color:#9CA1A8}.vE .cap .cn{color:#E8EAEE}
+.vE .ritem{background:color-mix(in srgb,#E8EAEE 8%,#0F1B1F);border-color:color-mix(in srgb,#E8EAEE 15%,transparent)}
+.vE .rlab{color:#E8EAEE}
+.vE .inverted{background:#FFFFFF;color:#3A434C;border-radius:14px;padding:42px 46px;max-width:680px}
+.vE .inverted .ih{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;color:#2B2F34;margin-bottom:10px}
+.vE .inverted .ip{font-size:15px;color:#4A535C;margin-bottom:22px}
+.vE .inverted .btn-p{background:#2A6478;color:#fff}
+.vE .mstrip,.vE .mcell{border-color:color-mix(in srgb,#E8EAEE 12%,transparent)}
+.vE .mcell .mv{color:#E8EAEE}
+.vE .bfoot{border-color:color-mix(in srgb,#E8EAEE 12%,transparent)}
+</style>
+</head>
+<body>
+
+<div class="ctrl">
+  <span class="t">P0-S02 · ROUND 3</span>
+  <button class="vtab on" data-v="H">H · Hybrid Unleashed</button>
+  <button class="vtab" data-v="D">D · The Dossier</button>
+  <button class="vtab" data-v="E">E · The Desk</button>
+  <div class="vbtns">
+    <button class="vb app" data-verdict="APPROVE">Approve</button>
+    <button class="vb con" data-verdict="CONDITIONAL">Conditional</button>
+    <button class="vb rej" data-verdict="REJECT">Reject</button>
+    <input class="vnote" id="vnote" placeholder="note for this variant…">
+    <button class="vcopy" id="vcopy">Copy verdicts</button>
+  </div>
+</div>
+
+<main>
+<!-- ═══════════ H · HYBRID UNLEASHED ═══════════ -->
+<section class="variant vH on" id="varH">
+
+  <div class="hero cvbeat" data-cv="oxford">
+    <div class="nu" aria-hidden="true">ν</div>
+    <div class="wrap heroflex">
+      <div class="hl">
+        <div class="kick">JCJ Investing · Macro Event Intelligence</div>
+        <h1 class="h0">Sensitivity to<br><em>volatility.</em></h1>
+        <p class="sub" style="margin:28px 0 14px">Markets move when the world shakes. VegaReady tracks global events, maps how they connect across sectors and regions, and turns complexity into positioning clarity.</p>
+        <div class="tag">Volatility isn't risk. It's signal.</div>
+        <div style="display:flex;gap:26px;flex-wrap:wrap;align-items:center">
+          <a class="btn-gold" href="#">Open the dashboard →</a>
+          <a href="#" style="font-size:15px;color:#C2BAA7;text-decoration:none;border-bottom:1px solid #97917F;padding-bottom:2px">How it works →</a>
+        </div>
+      </div>
+      <div class="hr">
+        <div class="ledger">
+          <div class="lhead">
+            <svg class="seal" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="url(#gold1)" stroke-width="1.5" style="width:20px;height:20px"><defs><linearGradient id="gold1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A8843C"/><stop offset="1" stop-color="#E3C77E"/></linearGradient></defs><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="12.5" x2="16" y2="12.5"/><circle cx="15.5" cy="16.5" r="2.2"/></svg>
+            Vega — the definition
+          </div>
+          <div class="lrow"><span class="lk">term</span><span class="lv num">Vega (ν)</span></div>
+          <div class="lrow"><span class="lk">meaning</span><span class="lv">How sensitive a position is to changes in market volatility</span></div>
+          <div class="lrow"><span class="lk">problem</span><span class="lv">Most traders absorb volatility — they react after the damage</span></div>
+          <div class="lrow edge"><span class="lk">our edge</span><span class="lv">We see it coming. We enter fast, exit faster. We make you vega-ready.</span></div>
+          <div class="lspark">
+            <div class="met" style="margin-bottom:6px;font-family:'Lora',serif;letter-spacing:.06em">VOLATILITY REGIME · 90 DAYS <span style="opacity:.7">· illustrative</span></div>
+            <svg viewBox="0 0 460 64" width="100%" aria-hidden="true">
+              <polyline points="0,44 30,40 60,46 90,38 120,42 150,30 180,34 210,22 240,28 270,14 300,24 330,18 360,26 390,10 430,16 460,8" fill="none" stroke="#5FA897" stroke-width="2"/>
+              <circle cx="460" cy="8" r="3" fill="#46C9A0"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:68px;border-top:1px solid color-mix(in srgb,#F2EBDC 14%,transparent);border-bottom:1px solid color-mix(in srgb,#F2EBDC 14%,transparent);background:color-mix(in srgb,#F2EBDC 4%,transparent)">
+      <div class="wrap" style="padding:0 40px">
+        <div class="mstrip" style="border:none">
+          <div class="mcell"><div class="mk">Brent</div><span class="mv num">$86.40</span><span class="md up">+2.1%</span></div>
+          <div class="mcell"><div class="mk">VIX</div><span class="mv num">19.8</span><span class="md dn">−0.8</span></div>
+          <div class="mcell"><div class="mk">BTC</div><span class="mv num">$97,210</span><span class="md up">+1.4%</span></div>
+          <div class="mcell"><div class="mk">Gold</div><span class="mv num">$2,648</span><span class="md up">+0.6%</span></div>
+          <div class="mcell"><div class="mk">Hormuz risk</div><span class="mv num">Elevated</span><span class="md dn">▲</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><div class="mnote" style="padding:8px 0 0">Desk snapshot · illustrative · full data lives in the dashboard</div></div>
+  </div>
+
+  <div class="cvbeat" data-cv="oxford" style="padding:90px 0 70px">
+    <div class="wrap">
+      <div class="eyebrow">The cascade</div>
+      <h2 class="h2" style="max-width:18ch">Global events. Market reactions. Connected.</h2>
+      <div class="rail" style="margin-top:48px">
+        <div class="rnode"><div class="gnum">01</div><div class="rl">Global event</div><div class="rd">Conflicts, sanctions, policy shifts, supply shocks.</div></div>
+        <div class="rnode"><div class="gnum">02</div><div class="rl">Fundamentals</div><div class="rd">Commodities, energy, trade flows, currency stress.</div></div>
+        <div class="rnode"><div class="gnum">03</div><div class="rl">Market sectors</div><div class="rd">Crypto, equities, fixed income, FX, risk premia.</div></div>
+        <div class="rnode"><div class="gnum">04</div><div class="rl">Technical signals</div><div class="rd">Momentum, volatility regimes, correlation breaks.</div></div>
+        <div class="rnode tnode"><div class="gnum">05</div><div class="rl">Position</div><div class="rd">Enter fast, defend the drawdown, capitalize.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cvbeat" data-cv="abyss" style="padding:150px 0;position:relative;overflow:hidden">
+    <svg aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:140px;opacity:.22;pointer-events:none" viewBox="0 0 1400 140" preserveAspectRatio="none">
+      <polyline points="0,110 90,100 180,116 270,88 360,98 450,70 540,82 630,52 720,66 810,36 900,54 990,42 1080,58 1170,24 1300,38 1400,18" fill="none" stroke="#5FA897" stroke-width="2"/>
+    </svg>
+    <div class="wrap" style="position:relative">
+      <div class="eyebrow">JCJ Investing</div>
+      <h2 class="h2" style="max-width:16ch">Built by people who trade on this data.</h2>
+      <p class="sub" style="margin-top:18px">Not academic research. Not news aggregation. <b style="color:#F2EBDC">The same intelligence we trade on, every day.</b></p>
+      <div style="display:flex;gap:60px;align-items:flex-end;flex-wrap:wrap;margin-top:50px">
+        <div><div class="statN num">40+</div><hr style="height:1px;border:none;width:130px;margin-top:12px" class="goldgrad"><div class="met" style="margin-top:10px;max-width:24ch">markets tracked daily across five asset classes</div></div>
+        <div class="met" style="max-width:26ch;padding-bottom:10px;font-size:13px;color:#A59D8B">Every event scored for transmission. Every connection mapped. Every signal timestamped.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cvbeat" data-cv="oxford" style="padding:100px 0 130px">
+    <div class="wrap">
+      <div class="eyebrow">The platform</div>
+      <div class="caps" style="margin-top:24px">
+        <div class="cap"><span class="cn">01</span><div class="cl">Geopolitical</div><div class="cd">Conflicts and operations with their market transmission paths, tracked in real time.</div></div>
+        <div class="cap"><span class="cn">02</span><div class="cl">Macro &amp; economic</div><div class="cd">Policy, sanctions, trade, inflation — the drivers of every asset class.</div></div>
+        <div class="cap"><span class="cn">03</span><div class="cl">Crypto &amp; digital</div><div class="cd">On-chain signals, regulation, exchange dynamics — where our engine trades daily.</div></div>
+        <div class="cap"><span class="cn">04</span><div class="cl">Technical metrics</div><div class="cd">Momentum indicators and volatility-regime detection from JCJ's systems.</div></div>
+      </div>
+      <div class="road" style="margin-top:40px">
+        <div class="ritem"><span class="rdot live"></span><span class="rlab">Live dashboard</span><span class="rst live">Active</span></div>
+        <div class="ritem"><span class="rdot soon"></span><span class="rlab">Market briefings</span><span class="rst soon">Coming soon</span></div>
+        <div class="ritem"><span class="rdot soon"></span><span class="rlab">Podcast &amp; analysis</span><span class="rst soon">Coming soon</span></div>
+        <div class="ritem"><span class="rdot soon"></span><span class="rlab">Technical signals feed</span><span class="rst soon">Coming soon</span></div>
+      </div>
+      <div class="inverted" style="margin-top:52px">
+        <div class="ih">The dashboard is live.</div>
+        <div class="ip">Open intelligence, no account needed — see the world the way a trading desk does.</div>
+        <a class="btn-gold" href="#">Explore the dashboard →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bfoot"><div class="wrap">
+    <div class="fgrid">
+      <div><div class="fbrand">Vega<span>Ready</span></div><div class="ftag">The working map of a quantitative trading desk — global events, market cascades, published openly.</div></div>
+      <div><div class="fh">Platform</div><a class="flink" href="#">Dashboard</a><a class="flink" href="#">Markets</a><a class="flink" href="#">Briefings</a><a class="flink" href="#">About</a></div>
+      <div><div class="fh">JCJ Investing</div><a class="flink" href="#">The firm</a><a class="flink" href="#">Methodology</a><a class="flink" href="#">Contact</a></div>
+    </div>
+    <div class="flegal"><span>© JCJ Investing · Source: desk marks</span><span>Information, not investment advice.</span></div>
+  </div></div>
+</section>
+
+<!-- ═══════════ D · THE DOSSIER — the front door as an intelligence briefing ═══════════ -->
+<section class="variant vD" id="varD">
+
+  <div class="dhero">
+    <div class="wrap">
+      <div class="dmast"><span style="display:inline-flex;align-items:center;gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="url(#goldD)" stroke-width="1.5" aria-hidden="true"><defs><linearGradient id="goldD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A8843C"/><stop offset="1" stop-color="#E3C77E"/></linearGradient></defs><rect x="5" y="4" width="14" height="16" rx="2"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="12.5" x2="16" y2="12.5"/><circle cx="15.5" cy="16.5" r="2.2"/></svg>VegaReady · <b>Macro Event Intelligence</b></span><span class="num">Briefing nº 001 · updated daily</span></div>
+      <h1 class="dh0">When the world shakes, markets <em>move first.</em></h1>
+      <div class="dlede">
+        <p>Vega — ν — measures how sensitive a position is to changes in volatility. Most investors absorb volatility; they react after the damage is done. VegaReady exists for the other kind: the reader who wants to see it coming.</p>
+        <p style="margin-top:18px;font-size:16.5px;color:#B4AC99">We track global events, map how they cascade through markets, and publish the intelligence openly — the same intelligence JCJ Investing trades on, every day.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:0 0 60px">
+    <div class="wrap">
+      <div class="dsec">
+        <div class="dnum">01<span>The event</span></div>
+        <div class="dbody">
+          <h3>Everything starts with a shock.</h3>
+          <p>Conflicts, sanctions, policy shifts, supply shocks — we catalogue them as they break, score them for market transmission, and timestamp every claim.</p>
+          <div class="daside">
+            <div class="dchip"><b class="num">Brent $86.40</b><span class="md up num">+2.1%</span></div>
+            <div class="dchip"><b class="num">VIX 19.8</b><span class="md dn num">−0.8</span></div>
+            <div class="dchip"><b>Hormuz risk</b><span class="md dn">▲ Elevated</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="dsec">
+        <div class="dnum">02<span>The cascade</span></div>
+        <div class="dbody">
+          <h3>Shocks travel along mapped routes.</h3>
+          <p>Fundamentals first — commodities, energy, trade flows, currency stress. Then sectors: crypto, equities, fixed income, FX. Then the technical layer — momentum shifts, volatility regimes, correlation breaks. We draw the route, not just the headline.</p>
+          <div class="daside">
+            <div class="dchip"><b>Route</b> · Event → Energy → FX → Equities</div>
+            <div class="dchip"><b class="num">12</b> sectors mapped</div>
+          </div>
+        </div>
+      </div>
+      <div class="dsec">
+        <div class="dnum">03<span>The position</span></div>
+        <div class="dbody">
+          <h3>Clarity is a trade, not an opinion.</h3>
+          <p>The cascade ends where it matters: enter fast, defend the drawdown, capitalize on dislocation. This is not academic research and not news aggregation — it's a working desk's map of the world, published.</p>
+          <div class="daside">
+            <div class="dchip"><b>Posture</b> · Long vega</div>
+            <div class="dchip"><b>Claims</b> · Realized / Anticipated / Latent</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pquote">
+        <p>"Good intelligence gets better when more eyes are on it."</p>
+        <div class="met">JCJ Investing · why VegaReady is open</div>
+      </div>
+
+      <div class="keyline">
+        <div class="keyN num">40+</div>
+        <div style="max-width:40ch;font-size:14.5px;color:#B4AC99;padding-bottom:8px">markets tracked daily across five asset classes — every event scored, every connection mapped, every signal timestamped.</div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:80px">The platform</div>
+      <div class="road" style="margin-top:18px">
+        <div class="ritem" style="background:color-mix(in srgb,#F2EBDC 8%,#131726);border-color:color-mix(in srgb,#F2EBDC 16%,#131726)"><span class="rdot live"></span><span class="rlab">Live dashboard</span><span class="rst live">Active</span></div>
+        <div class="ritem" style="background:color-mix(in srgb,#F2EBDC 8%,#131726);border-color:color-mix(in srgb,#F2EBDC 16%,#131726)"><span class="rdot soon"></span><span class="rlab">Market briefings</span><span class="rst soon">Coming soon</span></div>
+        <div class="ritem" style="background:color-mix(in srgb,#F2EBDC 8%,#131726);border-color:color-mix(in srgb,#F2EBDC 16%,#131726)"><span class="rdot soon"></span><span class="rlab">Podcast &amp; analysis</span><span class="rst soon">Coming soon</span></div>
+        <div class="ritem" style="background:color-mix(in srgb,#F2EBDC 8%,#131726);border-color:color-mix(in srgb,#F2EBDC 16%,#131726)"><span class="rdot soon"></span><span class="rlab">Technical signals feed</span><span class="rst soon">Coming soon</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- the singular inverse, correctly allocated: the page's highest-emphasis beat — the ask -->
+  <div class="bone" style="padding:96px 0 104px;text-align:center">
+    <div class="wrap">
+      <div class="eyebrow">Today's board is open</div>
+      <a class="lnk" href="#" style="color:#33302A">Read today's board — open the dashboard&nbsp;→</a>
+      <p style="margin-top:20px;font-size:13px;color:#8A8274">No account needed · updated daily · share freely</p>
+    </div>
+  </div>
+
+  <div class="bfoot"><div class="wrap">
+    <div class="fgrid">
+      <div><div class="fbrand">Vega<span>Ready</span></div><div class="ftag">The working map of a quantitative trading desk — global events, market cascades, published openly.</div></div>
+      <div><div class="fh">Platform</div><a class="flink" href="#">Dashboard</a><a class="flink" href="#">Markets</a><a class="flink" href="#">Briefings</a><a class="flink" href="#">About</a></div>
+      <div><div class="fh">JCJ Investing</div><a class="flink" href="#">The firm</a><a class="flink" href="#">Methodology</a><a class="flink" href="#">Contact</a></div>
+    </div>
+    <div class="flegal"><span>© JCJ Investing · Source: desk marks</span><span>Information, not investment advice.</span></div>
+  </div></div>
+</section>
+
+<!-- ═══════════ E · THE DESK — the front door as an analyst's terminal ═══════════ -->
+<section class="variant vE" id="varE">
+
+  <div class="ehero">
+    <div class="wrap eflex">
+      <div class="el">
+        <div class="kick">JCJ Investing · Macro Event Intelligence</div>
+        <h1 class="h0">The desk view,<br><em>published.</em></h1>
+        <p class="sub" style="margin:26px 0 34px">VegaReady is the working map of a quantitative trading desk — global events, their market cascades, and the signals they trip. Open to everyone; built for people who position.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <a class="btn-amber" href="#">Open the dashboard →</a>
+          <a class="btn-glight" href="#" style="color:#D9DBDE;border-color:color-mix(in srgb,#E8EAEE 22%,transparent)">How it works</a>
+        </div>
+      </div>
+      <div class="er">
+        <div class="desk">
+          <div class="deskhead"><span>World risk · 90 days</span><span class="num" style="color:#8E939B">illustrative</span></div>
+          <div class="deskspark">
+            <svg viewBox="0 0 460 110" width="100%" aria-hidden="true">
+              <polyline points="0,80 30,74 60,82 90,68 120,74 150,56 180,62 210,42 240,52 270,30 300,44 330,34 360,46 390,20 430,30 460,16" fill="none" stroke="#5E83D9" stroke-width="2.2"/>
+              <polyline points="0,92 60,90 120,88 180,84 240,86 300,80 360,82 430,76 460,77" fill="none" stroke="#8E939B" stroke-width="1.4"/>
+              <circle cx="460" cy="16" r="3.2" fill="#5E83D9"/>
+              <text x="380" y="12" fill="#9CA1A8" font-size="10" font-family="Lora">risk index</text>
+              <text x="392" y="70" fill="#8E939B" font-size="10" font-family="Lora">baseline</text>
+            </svg>
+          </div>
+          <div class="deskrow">
+            <div class="dcell"><div class="mk">Brent</div><span class="mv num">$86.40</span> <span class="md up num">+2.1%</span></div>
+            <div class="dcell"><div class="mk">VIX</div><span class="mv num">19.8</span> <span class="md dn num">−0.8</span></div>
+            <div class="dcell"><div class="mk">BTC</div><span class="mv num">$97,210</span> <span class="md up num">+1.4%</span></div>
+          </div>
+          <div class="deskrow">
+            <div class="dcell"><div class="mk">Gold</div><span class="mv num">$2,648</span> <span class="md up num">+0.6%</span></div>
+            <div class="dcell"><div class="mk">Hormuz</div><span class="mv">Elevated</span></div>
+            <div class="dcell"><div class="mk">Posture</div><span class="mv">Long vega</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:80px 0 70px">
+    <div class="wrap">
+      <div class="ewell">
+        <div class="eyebrow">The cascade</div>
+        <h2 class="h2" style="max-width:18ch">From shock to position, five steps.</h2>
+        <div class="rail" style="margin-top:44px">
+          <div class="rnode"><div class="gnum">01</div><div class="rl">Global event</div><div class="rd">Conflicts, sanctions, policy shifts, supply shocks.</div></div>
+          <div class="rnode"><div class="gnum">02</div><div class="rl">Fundamentals</div><div class="rd">Commodities, energy, trade flows, currency stress.</div></div>
+          <div class="rnode"><div class="gnum">03</div><div class="rl">Market sectors</div><div class="rd">Crypto, equities, fixed income, FX, risk premia.</div></div>
+          <div class="rnode"><div class="gnum">04</div><div class="rl">Technical signals</div><div class="rd">Momentum, volatility regimes, correlation breaks.</div></div>
+          <div class="rnode"><div class="gnum">05</div><div class="rl">Position</div><div class="rd">Enter fast, defend the drawdown, capitalize.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:0 0 80px">
+    <div class="wrap">
+      <div class="anchor">
+        <div class="eyebrow" style="color:#E8C07A">JCJ Investing</div>
+        <h2 class="h2" style="color:#F2F5F7;max-width:17ch">Built by people who trade on this data.</h2>
+        <div style="display:flex;gap:60px;align-items:flex-end;flex-wrap:wrap;margin-top:40px">
+          <div><div class="statN num">40+</div><div class="met" style="margin-top:10px;max-width:24ch">markets tracked daily across five asset classes</div></div>
+          <div class="met" style="max-width:28ch;padding-bottom:10px;font-size:13px">Every event scored for transmission. Every connection mapped. Every signal timestamped.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:0 0 120px">
+    <div class="wrap">
+      <div class="eyebrow">The platform</div>
+      <div class="caps" style="margin-top:24px">
+        <div class="cap"><span class="cn">I</span><div class="cl">Geopolitical</div><div class="cd">Conflicts and operations with their market transmission paths.</div></div>
+        <div class="cap"><span class="cn">II</span><div class="cl">Macro &amp; economic</div><div class="cd">Policy, sanctions, trade, inflation — every asset class's drivers.</div></div>
+        <div class="cap"><span class="cn">III</span><div class="cl">Crypto &amp; digital</div><div class="cd">On-chain signals, regulation, exchange dynamics.</div></div>
+        <div class="cap"><span class="cn">IV</span><div class="cl">Technical metrics</div><div class="cd">Momentum indicators and volatility-regime detection.</div></div>
+      </div>
+      <div class="road" style="margin-top:40px">
+        <div class="ritem"><span class="rdot live"></span><span class="rlab">Live dashboard</span><span class="rst live">Active</span></div>
+        <div class="ritem"><span class="rdot soon"></span><span class="rlab">Market briefings</span><span class="rst soon">Coming soon</span></div>
+        <div class="ritem"><span class="rdot soon"></span><span class="rlab">Podcast &amp; analysis</span><span class="rst soon">Coming soon</span></div>
+        <div class="ritem"><span class="rdot soon"></span><span class="rlab">Technical signals feed</span><span class="rst soon">Coming soon</span></div>
+      </div>
+      <div class="inverted" style="margin-top:52px">
+        <div class="ih">The dashboard is live.</div>
+        <div class="ip">Open intelligence, no account needed — see the world the way a trading desk does.</div>
+        <a class="btn-p" href="#">Explore the dashboard →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bfoot"><div class="wrap">
+    <div class="fgrid">
+      <div><div class="fbrand">Vega<span>Ready</span></div><div class="ftag">The working map of a quantitative trading desk — global events, market cascades, published openly.</div></div>
+      <div><div class="fh">Platform</div><a class="flink" href="#">Dashboard</a><a class="flink" href="#">Markets</a><a class="flink" href="#">Briefings</a><a class="flink" href="#">About</a></div>
+      <div><div class="fh">JCJ Investing</div><a class="flink" href="#">The firm</a><a class="flink" href="#">Methodology</a><a class="flink" href="#">Contact</a></div>
+    </div>
+    <div class="flegal"><span>© JCJ Investing · Source: desk marks</span><span>Information, not investment advice.</span></div>
+  </div></div>
+</section>
+</main>
+
+<script>
+const KEY='p0s02r3-verdicts';
+let cur='H';
+const store=()=>JSON.parse(localStorage.getItem(KEY)||'{}');
+function save(o){localStorage.setItem(KEY,JSON.stringify(o))}
+function refresh(){
+  const s=store()[cur]||{};
+  document.querySelectorAll('.vb').forEach(b=>b.classList.toggle('sel',b.dataset.verdict===s.verdict));
+  document.getElementById('vnote').value=s.note||'';
+}
+function resetBg(){document.body.classList.remove('cv-abyss');
+  document.body.style.background = cur==='D' ? '#131726' : cur==='E' ? '#0F1B1F' : '#0D1626';}
+document.querySelectorAll('.vtab').forEach(t=>t.addEventListener('click',()=>{
+  cur=t.dataset.v;
+  document.querySelectorAll('.vtab').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.variant').forEach(v=>v.classList.toggle('on',v.id==='var'+cur));
+  window.scrollTo({top:0,behavior:'auto'});resetBg();refresh();
+}));
+document.querySelectorAll('.vb').forEach(b=>b.addEventListener('click',()=>{
+  const o=store();o[cur]=o[cur]||{};o[cur].verdict=b.dataset.verdict;save(o);refresh();
+}));
+document.getElementById('vnote').addEventListener('input',e=>{
+  const o=store();o[cur]=o[cur]||{};o[cur].note=e.target.value;save(o);
+});
+document.getElementById('vcopy').addEventListener('click',()=>{
+  const o=store();
+  const txt=['P0-S02 round-3 verdicts:',...['H','D','E'].map(v=>`${v}: ${(o[v]&&o[v].verdict)||'—'}${o[v]&&o[v].note?' — '+o[v].note:''}`)].join('\n');
+  navigator.clipboard&&navigator.clipboard.writeText(txt);
+  const b=document.getElementById('vcopy');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1400);
+});
+refresh();resetBg();
+
+/* H's crossfade: body morphs Oxford <-> Abyss; the stat moment DEEPENS (scales) via the body class */
+const io=new IntersectionObserver(es=>{
+  if(cur!=='H')return;
+  es.forEach(e=>{
+    if(e.isIntersecting&&e.intersectionRatio>0.4){
+      const ab=e.target.dataset.cv==='abyss';
+      document.body.classList.toggle('cv-abyss',ab);
+      document.body.style.background=ab?'#0A0F1A':'#0D1626';
+    }
+  });
+},{threshold:[0.4]});
+document.querySelectorAll('.vH .cvbeat').forEach(b=>io.observe(b));
+</script>
+</body>
+</html>

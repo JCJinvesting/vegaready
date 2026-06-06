@@ -118,7 +118,8 @@
 | **Canvas (default)** | Soft White `#DDE2E6` | "Cooler off-white canvas… text: Charcoal" — answers the "real, not too warm" brief |
 | Canvas siblings | Cool Paper `#E8EAEE` · Modal `#E9EDF2` | identical treatment, one step brighter |
 | **Card** | `#FFFFFF` + hairline `#C2CAD1` | white-lift (X3-A approved); zebra `rgba(82,92,102,.055)` |
-| **Ink** | cool-black `#2B2F34` | warm-black `#33302A` reserved for warm canvases (Bone) |
+| **Ink** | cool-black `#2B2F34` | headings/labels/emphasis only — never paragraph body (Comfort Ceiling, 2026-06-05); warm-black `#33302A` reserved for warm canvases (Bone) |
+| **Body text** | `#3A434C` | 10.1:1 on white cards, 8.2:1 on surface — the Comfort Ceiling band (8–12:1); the light two-step mirroring dark's ink→body drop |
 | Ink ramp | muted `#4A535C` · metadata `#67727E` (≥12px only) | never faint labels — v1 lesson |
 | **Headers** | **ink at weight** — Playfair 600/700, sentence case, tracking ≥ −0.01em | hue-neutral by default ("won't match whatever changes") |
 | Labels (card/table) | Lora **700** · 11px · caps · `.06em` · ink | corpus micro-label pattern; never thin, never colored |
@@ -261,3 +262,110 @@ Diverging = **teal→amber→red REVERSED to read stressed-LEFT → calm/growth-
 
 ## Motion law (B12 — APPROVED)
 **No load animation — charts render complete** (research: transient false trends) · sanctioned motion only: state-change transitions 150–250ms staged ease-out (Heer-Robertson) · dim-others hover instant (≤100ms) · hover −15% · tooltips = crosshair + pinned value strip (top-left, never occludes) + axis-edge tags, long-press on touch · no looping/pulsing/number tick-ups · nothing >400ms, never linear · `prefers-reduced-motion` → everything instant · pause control for auto-updating >5s.
+
+---
+
+# Guide v3.1 Addendum — Emotion Layer + Corpus Fragments — LOCKED 2026-06-05
+
+**Source:** coverage-gap sweep → `research/COLOUR-EMOTION-REGISTER.md` (33 corpus colours verbatim: feelings/frictions/fears/transition maps, 198 pairings) + v3.1 fragments pulls (47 verbatim quotes). Relevance-filtered by owner (print/platform/regional/triads/governance layers PARKED in research; RTL flag EXCLUDED — no market/language differentiation). Owner conflict-rulings 2026-06-05: ① one-CTA keeps the section-summary exception · ② disclaimers floor 12px web, corpus 9pt licence = print-only · ③ Teal full-background corpus permission overruled — verdict ban stands (OVERRIDE).
+
+## The emotion layer (Guide Ch1 + tokens.emotionLayer)
+Every combo carries an emotional-intent line — **evokes · calms · avoid-for** — derived from constituent colours' dictionary entries, verdict-filtered, current hexes only, orphans excluded; `(derived)` marks interpolation from a bridged relative. Pick the combo whose **calms** matches the page's friction. Purpose: content↔tone matched on purpose; the visual undertone supports persuasive goals while protecting credibility — the palette never promises what content can't back, never pressures where trust is the asset.
+
+## Emotional transitions (scroll-order grammar)
+The 198 deck pairings web-translated: **section follows section in scroll order**. 46 allowed corridors · 8 conditional (buffer/framing required) · 28 forbidden — full per-pair logic in `tokens.emotionLayer.transitions`. Gold↔ETF echo resolved to FORBIDDEN (stricter verdict). JCJ Teal = CTA-only, no section adjacency. Class inheritance for map-less tones (Amber→gold-family · Soft Alert/Terracotta→crimson-alert · Slate/Teal/Royal Blue→cobalt-class).
+
+## New laws (Guide Ch5)
+- **No-Risk-Chain** — never two risk tones in adjacent scroll sections; Modal buffer intervenes ("Double risk = allocator exit").
+- **Scarcity ≁ Legal** — urgency/timing framing never adjacent to legal/disclaimer, either direction ("Scarcity → Legal fear = manipulative").
+- **No-running-text class** — no status/alert/gold-metal/bright-accent tone ever sets running text (14 corpus flags; generalised to class; list in tokens).
+- **Disclaimer floor** — legal/footnote ≥12px web (ruling ②).
+- **Single-line footer** — never stacked multi-field footer lines ("overwhelms allocator").
+- **One-CTA + summary exception** — one CTA per viewport; long-scroll section-summary may carry its own (ruling ①); never two visible at once.
+- **CTA-at-resolution** — the CTA lands at the page's resolution tone; never entry zone, never inside risk, never after a pull-quote.
+
+## Scroll-zone anatomy (gradient zones, web-translated)
+**Entry (first ~30%):** base tone, no risk/urgency/CTA — trust is decided here. **Transition (30–70%):** data/logic/risk; risk arcs complete inside, Modal buffers between strong sections. **Resolution (final ~30%):** decompress (Sage/Bone) → soft exit; legal footers close after the emotional close. **The CTA lands at the resolution tone.**
+
+## Typography additions
+**Bullet-label role** — Medium 16, 5–10 words, list-lead (corpus Layer Type) · **weight↔role ladder** — Light=captions · Regular=body · Medium=bullet labels · SemiBold=section headers · Bold=titles · Ultra-Bold=hero stat; one job per weight · **disclaimer 12px web floor**.
+
+**Artifacts:** `artifacts/VegaReady-Guide-v3.1.html` (emotion layer rendered + embedded tokens v3.1.x) · `artifacts/vegaready-tokens-v3.1.json` · `research/COLOUR-EMOTION-REGISTER.md` · `research/v31-fragments.md` (verbatim pulls + corpus conflict documentation).
+
+---
+
+# The Comfort Ceiling Law — LOCKED 2026-06-05 (v3.1.1)
+
+**Trigger:** owner light-mode re-read of Guide v3.1 — *"very deep heavy black on a pure white surface… very hard to want to read… so disruptive and distracting with the amount of contrast."* Diagnosis: light `--body` was a copy of `--ink` (#2B2F34, ~12.5:1 on white cards) — the softening two-step that dark has (ink #F2EBDC → body #E3DCCB) never existed in light. Structural gap exposed: the system had floors everywhere (muted-has-a-floor, visibility floor, 4.5:1 minimums) and **no ceilings**.
+
+**The law:** every element targets a salience **band**, never a maximum. Ambient/structural elements (body text, surfaces, lifts, connectors, gridlines) sit inside the band — light body **8–12:1**, never ink-on-white at paragraph length; full salience is **spent** on what carries meaning (headings, labels, the data line, emphasis). One element's excess creates another's deficiency. **Theme-conditional** (the band's numbers differ per theme — B11 precedent) · **cumulative across scroll** (limit consecutive heavy bands — A5/A8 precedent). The floors' sibling: muted-has-a-floor caps the bottom, this caps the top.
+
+**Token fix:** light `--body` = `#3A434C` (10.1:1 on white, 8.2:1 on surface); `--ink #2B2F34` reserved for headings/labels/emphasis. White card + hairline verdict untouched.
+
+**Provenance — verdict-evidence sweep (17 excess + 10 deficiency verdicts mined from the full trial record):** strongest pieces — B2-R1 (both edges judged in one chart: "very heavy for the neon green" + "faintly visible — should be more impactful"; fix landed both in a band, not at max) · A2-C strong-lift card "too much pop" · B9 anchor "fill too bright against the grey, **value hard to read**" (the causal mechanism stated) · light ban #4 (both extremes rejected, midpoint locked — a literal band verdict) · E13 Saturation-Footprint ("neon at scale") · founding 2026-06-03 ruling "bright colour at scale distracts **and mutes surrounding text**". Counter-evidence: none — every "more contrast" demand landed at a target (~4.5–4.7:1), never at maximum. Pre-existing scoped ceilings now citable under this law: chart-hero ban, arrows-are-structure, gridline-whisper, Saturation-Footprint (chroma×area), consecutive-dark-band limit, no-running-text class.
+
+**Provenance caveat:** Light Trial v1/v2 verbatim quotes ("way too bright of a blue", "neon sign… tacky", Y3 "too much contrast against blue") survive only in session chat — those trial HTMLs were never committed; the law cites committed traces.
+
+---
+
+# Guide v4.0.0 — THE REBALANCE — LOCKED 2026-06-06
+
+**Triggers (owner verdicts on the live P0-S01 port):** *"almost TOO structured… it all looks the same everywhere… not high end"* · Deep Desk *"too faded"* · first journey trial *"too chaotic with so much change."* **Evidence:** 66-rule classification analysis + two cited research rounds (high-end dark craft · canvas-transition grammar). Full dossiers: `research/rebalance-analysis.md` · `research/highend-references.md` · `research/canvas-grammar-research` (agent report, summarized in DECISIONS).
+
+## The diagnosis
+Specimen-scale verdicts codified as global LAWs stacked into an accidental meta-law — "minimize salience everywhere." None of the owner's strongest reactions required flatness; they were reactions to *cheapness*, not drama. Confirmed root causes of "faded": tokens hard-coded subtle-step (WB5's own save says **std**), all-mid-band contrast architecture, zero emphasis spend in legacy markup.
+
+## What changed (66 rules assessed)
+- **36 KEEP-LAW unchanged** — every WCAG floor, owner OVERRIDE, owner-named reaction, judged rejection.
+- **8 KEEP-LAW + scope reword** — Saturation-Footprint **depth clause** ("depth is not brightness — the law meters chroma, never lightness; low-chroma deep fills are canvas-class, full-bleed legal") · Comfort Ceiling **heavy defined** (deep low-chroma grounds are not heavy) · caps-confinement split (LAW: never thin letterspaced caps / running text; licence list = DEFAULT) · consecutive-dark count → **relief rule** (breathing band every 2–3 high-salience sections) · hero/footer registries genuinely open (role assignments = defaults, Ch8 extension) · motion 400ms scoped to timed transitions (scroll-linked travel exempt) · emotion corridors: **only forbidden pairs ban** (no bans-by-omission; tone class = dominant register) · "never beside Oxford" satisfied by a buffer band.
+- **14 → DEFAULT** — Quote≁CTA · device hierarchy (guardrail: never colour first) · in-flow shadow ban (tint-step method stays LAW) · footer cramming (structured premium footers legal) · CTA-at-resolution (front-door hero exempt per A5) · decision rules 1/2/4 · hue-journey (route-level scope only) · weight-role ladder · left-align-all · one-diagram & one-idea per section · charts-in-cards · alternate-dense/light · scroll-zone anatomy.
+- **6 → RANGE** — elevation subtle↔standard↔one-above by canvas depth (deep canvases take std; steps ≥3 L-points) · rhythm ladder true bands (32–44/24–32/20–28/40–52) · **H0 display register 48–72px** (new) · hero stat 64–96px in the full-bleed construction (once/page stays LAW) · context budgets as bands · coverage counters **per viewport**.
+
+## New: Canvas Grammar (owner "too chaotic" + research)
+**LAWS:** canvas budget max 3 tones/page (Base ≥60% + Sibling + one reserved Inverse; 60-30-10) · return-to-base (never two consecutive non-Base) · singular inverse (band OR inverted card) · earned change (narrative beats only) · one seam grammar per page + bans (waves, diagonals, multi-stop, cross-mode gradients) · chrome coherence (two states, whole flip, never scroll-scrubbed). **Seam registry (DEFAULT):** hard cut (breathing rules) → straddle card (the premium stitch, tonal lift) → 2-stop sibling gradient (≤⅛ viewport) → scroll crossfade (**OPEN**, pending its judged trial). **Surface register ladder (DEFAULT, the conservative posture):** density → sunken well → neutral card → tinted card → inverted card; ≤1 rung between sections; one departing cell per grid. **Composition order:** corridors choose tones, grammar sets rhythm.
+
+## New: Decisive Moves (Ch7) — 12 sanctioned bold moves with guardrails
+Full-bleed statement band · H0 display · 64–96px stat · front-door ask-up-top · Bone premium band · Champagne ceremony · gradient act-breaks · canvas travel · anchor panel · Payne's register shift · key-stat underline · standard elevation on deep canvases. *"A page that uses none of them is probably under-designed."*
+
+## Default change
+**WB5 Deep Desk DEMOTED from system default** (owner site-scale OVERRIDE: "too faded, not high end" — workbench-scale rank stands, site-scale duty revoked). **Interim default: Oxford Black (A4)**; final default set by the P0-S02 flagship trial verdict.
+
+**Artifacts:** `artifacts/VegaReady-Guide-v4.html` · `artifacts/vegaready-tokens-v4.json` · v3.1.x artifacts retained for diff-tracking.
+
+---
+
+# v4.1.0 — Data Precedence · the Five Licences · Anchor-Dialect — LOCKED 2026-06-06
+
+## Data Precedence (LAW — owner question: "are there rules that will invalidate the content when there is too much emotion stacked for data which is required to be labeled?")
+Data-integrity laws outrank emotional treatment, always. When a tone, band, or card choice would push any required label, series, axis, or status element below its floors — **the emotional treatment changes, never the data.** Emotional styling never recolours data marks (chart set / status / pos-neg are semantic, not mood) · no washes, grain, duotone, or gradients over charts or dense tables · tinted/inverted cards host data only if the full skeleton + floors survive inside them · on canvas travel, every data element re-validates against its **local** band (adaptive-ramp logic generalized). *Emotion serves the data, never the reverse.*
+
+## The five licences (DEFAULT — from the fresh-lens friction audit of trial round 3; owner: "approve the 5 suggested")
+1. **Atmosphere** — sub-perceptual depth washes within a band (same hue, ≤4 L-points, no visible edge) are atmosphere, not gradients; never under dense text/data, never glow-like. (The corpus "radial — avoid" governed dividers.)
+2. **Ambient data** — sparklines ≤80px, delta chips, metric strips exempt from the full chart skeleton when illustrative/non-analytical; pos-neg semantic pair + sign+value still required; any precision claim → full Data Precedence.
+3. **Numeral-icons** — ghost numerals (01–05), glyphs (ν), drop caps licensed as icon alternatives; ghost ≤12% opacity = texture, never information alone.
+4. **Premium CTA variant** — gold-hairline-framed CTA + large text-link with gold underline ceremony, registered beside main-solid; one CTA register per page.
+5. **Gold-as-graphic** — the accent headline ban governs gold *text*; one gold graphic *object* per page is legal (seal/monogram/outlined glyph), gradient-gold preferred, inside the gold budget.
+
+## Anchor-dialect-bound (clause on the Anchor-panel move — owner verdict: teal anchor on Petrol "clashes… too heavy and mismatched")
+Deep-fill anchor panels never share the canvas's hue family — same-family panel-on-canvas reads as mud (the Tonal-Ladder mechanism at panel scale). The panel's hue comes from the page's own dialect, cross-family vs the ground (e.g. cobalt-navy `#1E3552` on Petrol Black). Owner confirmed the fix: "good change, looks better now."
+
+**Trial state:** round-3 variants H (Hybrid Unleashed) · D (Dossier) · E (Desk, Petrol) at `public/p0s02-trial.html` + `artifacts/VegaReady-P0S02-Trial-R3.html`, round-3.5 polish applied; owner verdicts pending → final direction + default canvas lock.
+
+---
+
+# DEVICE REGISTRY — locked families (Device Lab, in progress 2026-06-06)
+
+All devices are **FEATURES** (optional vocabulary), never defaults — owner directive: "these are all features not laws." Each carries WHERE (route) + WHY (job). Labs: `public/device-lab-structural.html` (S) · `public/device-lab-decorative.html` (D).
+
+## Locked rules from the lab loop
+- **Divider-salience formula (owner-authored):** divider/rail salience = thickness × brightness. Bright colours divide at ≤1px; anything ≥2px must be muted or transparent; brightness and thickness never rise together. (Explains the stripe rejection: faint frames make bright members pop harder — contrast framing.)
+- **Hairline alpha ladder (researched tokens):** on dark — subtle 10% · default 14% · strong 26% ink-alpha; nobody legitimate ships brighter than ~40% at 1px. Adopt as `--rule-subtle/default/strong`.
+- **Context-scoping principle (owner-authored via swelled rule):** approvals may be scoped to a content context ("breaks long unrelieved text only — never where cards already break content"). The registry records context with every approval.
+- **WHERE/WHY discipline:** every device names its route and its job; devices without a real substrate on the site are registered DORMANT (e.g. neatline until a map figure ships).
+
+## S-Family 1 · Separation bars — LOCKED
+APPROVED: **3px ink @8%** quiet slab + **Oxford rule** (3px ink @10% + 3px gap + 1px gradient-gold edge) as the two chapter-grade dividers (R3 A + D) · **labeled rule** ("THE CASCADE ───") for sub-sections · **gold underscore** 34–46×2px under headings · **swelled rule** (context-scoped: long unrelieved text only). REJECTED: thick bright bars (S1.1/1.2 v1, "tacky, thinner is better") · multi-stripe brand bar (3 rounds: bright members at thickness = neon; faint framing amplifies — RETIRED). DEFERRED: gold identity top bar → full-page round.
+
+## D-Family 1 · Cartographic textures — LOCKED
+APPROVED: **contour field ≤5%** (owner cap: "9% tacky and overpowering" — section openers/heroes only) · **dot-grid world map** (abstract, one gold focus point — hero/section panels) · **dotted route arcs** (teal 55%, endpoints labeled, truth-only, ≤2/surface) · **graticule panel** (60px mesh @5%, file/dossier panels) · **crosshair watch-mark** (18px @65% teal, INLINE with its label — owner fix — watchlist cards) · **radar rings** (static always, 9–18% teal, panel corners) · **neatline + scale bar** (APPROVED-DORMANT: map figures on structural/chokepoints when they ship). REJECTED: blueprint leader-line annotation (no imagery layer on the site — dormant-rejected unless imagery enters) · coordinates-as-metadata ("nobody would use this") · compass mark ("looks cheap").
+**Standing guardrail (all cartographic):** never under dense text or real charts — Data Precedence.
