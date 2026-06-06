@@ -369,3 +369,18 @@ APPROVED: **3px ink @8%** quiet slab + **Oxford rule** (3px ink @10% + 3px gap +
 ## D-Family 1 · Cartographic textures — LOCKED
 APPROVED: **contour field ≤5%** (owner cap: "9% tacky and overpowering" — section openers/heroes only) · **dot-grid world map** (abstract, one gold focus point — hero/section panels) · **dotted route arcs** (teal 55%, endpoints labeled, truth-only, ≤2/surface) · **graticule panel** (60px mesh @5%, file/dossier panels) · **crosshair watch-mark** (18px @65% teal, INLINE with its label — owner fix — watchlist cards) · **radar rings** (static always, 9–18% teal, panel corners) · **neatline + scale bar** (APPROVED-DORMANT: map figures on structural/chokepoints when they ship). REJECTED: blueprint leader-line annotation (no imagery layer on the site — dormant-rejected unless imagery enters) · coordinates-as-metadata ("nobody would use this") · compass mark ("looks cheap").
 **Standing guardrail (all cartographic):** never under dense text or real charts — Data Precedence.
+
+---
+
+## v4.2-prep · Perplexity-verified gates (2026-06-06)
+
+External-research-verified numeric gates from the Perplexity reconciliation round (A–E approved), queued for the v4.2 guide cut:
+
+- **Elevation chroma:** ΔC ∈ [0,+0.008] across elevation steps — chroma HOLDS with lightness (the "chroma rises" claim was Radix-only).
+- **Hue drift:** ≤6° across an elevation ramp.
+- **Border-default contrast:** ≤2:1 vs its ground.
+- **Card lift at rest:** ΔL ≤0.12 vs canvas.
+- **Canvas chroma:** C ≤0.025 for full-page grounds (Oxford measures 0.035 → CHROMA axis `capped` variant).
+- **Colour-area budgets:** app surface ≥80% neutral · brand colour ≤3% · atmosphere ≤4%.
+- **Status-chip pairing:** chip text L ≥0.62 · wash L = surface ±0.04 · wash C 0.04–0.09.
+- **Market pair similar-lightness rule:** |ΔL_up − ΔL_down| ≤0.04 (up/down semantic pair stays lightness-balanced; SEM s3 Desk Standard #26A69A/#EF5350 satisfies it).
