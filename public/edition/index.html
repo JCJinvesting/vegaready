@@ -1020,6 +1020,9 @@ footer{
    hr elements keep their own ::after (oxford gold line etc.) — they get hover outline + title only.
    v6: the always-on dashed outlines covered content (owner ruling) — outline is HOVER-ONLY now. */
 html[data-dev] [data-ax]{position:relative}
+/* keep absolutely-positioned decorative elements OUT of flow in Labels mode
+   (blanket position:relative above would drop them into flow and shift the page) */
+html[data-dev] .nu-ghost[data-ax]{position:absolute}
 html[data-dev] [data-ax]:hover{outline:1px solid rgba(227,199,126,.45);outline-offset:2px}
 html[data-dev] [data-ax]:not(hr)::after{
   content:attr(data-ax);
@@ -1051,7 +1054,9 @@ html[data-dev] [data-ax]{cursor:pointer}
   position:fixed;left:22px;bottom:22px;z-index:95;
   background:#15181D;border:1px solid #2E3239;border-radius:10px;
   padding:10px;max-width:210px;
-  display:flex;flex-direction:column;max-height:calc(100vh - 44px);
+  display:flex;flex-direction:column;
+  max-height:calc(100vh - 44px);
+  max-height:calc(100svh - 44px); /* svh = visible viewport on mobile (toolbars shown) → Hide stays on screen */
   font-family:'Lora',serif;font-size:10px;color:#9AA3AD;line-height:1.4;
 }
 #edpanel .ep-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:0 0 auto}
