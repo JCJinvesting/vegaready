@@ -1,9 +1,9 @@
 {
   "state": "ok",
-  "checkedAt": "2026-06-08T12:39:16.089Z",
+  "checkedAt": "2026-06-08T12:53:13.027Z",
   "summary": "Data current as of 2026-05-31.",
   "dataDate": "2026-05-31",
-  "publishedAt": "2026-06-08T12:39:16.089Z",
+  "publishedAt": "2026-06-08T12:53:13.027Z",
   "metrics": {
     "keyCount": 54,
     "arrayCount": 46,
@@ -66,7 +66,7 @@
       "PROVENANCE": 233
     },
     "newest": "2026-05-31",
-    "generatedAt": "2026-06-08T12:39:16.084Z"
+    "generatedAt": "2026-06-08T12:53:13.021Z"
   },
   "warnings": []
 }
