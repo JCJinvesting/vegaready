@@ -1,100 +1,116 @@
-# VegaReady — DESIGN CONTRACT
+# VegaReady — DESIGN CONTRACT v2.0
 
-*Frozen design tokens + component registry. Read-only for specialist models. Token or component changes are a Phase-0, Opus-4.8-only action, logged in `DECISIONS.md`. Every PR runs a token lint: no colour/font/size literal may appear outside the token layer.*
+*Frozen design tokens + component registry. Read-only for specialist models. Token or component changes are an Opus-only action, logged in `DECISIONS.md`. Every PR runs a token lint: no colour/font/size literal may appear outside the token layer (`src/styles/global.css`).*
 
-**Status:** locked 2026-06-03 (owner-approved via the live theme composer). Reference build: `VegaReady-Themeable-Demo.html`.
-
----
-
-## 1 · Governing colour principle (the rule behind the tokens)
-
-**Main and Accent are different jobs.** A structural colour spread over large areas must be *muted* or it competes with the text; the saturated, attention-grabbing colour belongs on small surfaces — buttons, marks, a single prominent figure — chosen to match the tone of the section. Concretely:
-
-- **Main** is muted and structural. It carries headings rules, labels, links, nav-active, and large filled bands (which are rendered *even deeper/muted* via `--band`). Never a bright fill at scale.
-- **Accent** is saturated and reserved. Buttons/CTAs, the brand mark (ν), the single prominent metric figure, the "priced-in" badge. Used at ~10% — to pull the eye, not absorb it.
-- **Dense data stays calm.** Hero/standalone figures may use Accent; figures inside tables use ink, so numbers don't shout everywhere.
-- Body text is always dark ink on a warm ground (readability first). Colour never fills body text or large content panels.
+**Status:** cut 2026-06-06 from the locked five-layer system (all judged verdicts).
+**Machine payload:** `_program/artifacts/vegaready-tokens-v3.1.json` (v3.1.2) — this contract consumes it; do not hand-edit either.
+**Deep registers:** `_program/APPROVED-THEMES.md` (source of truth) · `_program/artifacts/VegaReady-Guide-v3.1.html` (v3.1.2, full law text + specimens).
+**Rule classes:** LAW (never violate) · DEFAULT (use unless a logged decision says otherwise) · RANGE (stay inside the band) · OPEN (registry choice, log the pick).
 
 ---
 
-## 2 · Tokens
+## 1 · Governing principles
 
-### Surfaces / grounds
-| Token | Hex | Role |
-|---|---|---|
-| `--bg` | `#F4F3EE` (Ivory-Grey) | Primary ground — the card-based analysis UI |
-| `--bg2` | `#F3EAD6` (Almanac) | Reporting/long-form ground — prose surfaces, not card grids |
-| `--card` | `#FBF7EF` (Cream) | Card / raised surface |
-| `--line` | `#D7CDB8` (Stronger) | Primary hairline border |
-| `--line2` | `#C9BDA3` | Stronger border / dividers |
-| Paper grain | on | Subtle fractal-noise overlay (~5% opacity) — "real paper", not a flat fill |
+1. **Dark-primary.** The site default is the dark system (working combo **WB5 Deep Desk**); light ("Soft White Desk" L1) is the alternate under `data-theme="light"`. Persist the choice (localStorage).
+2. **Comfort Ceiling (LAW).** Every element targets a salience *band*, never a maximum. Ambient/structural elements (body text, surfaces, lifts, connectors, gridlines) sit inside the band; full salience is *spent* on meaning-carriers. Light body band 8–12:1 (`--body` #3A434C, never ink at paragraph length); dark keeps the ink→body two-step. Cumulative across scroll.
+3. **Main ≠ Accent.** Main is the working colour (links, CTA, nav-active); Accent (gold family) is reserved optimism/premium moments. **JCJ Teal #36BBA6 is CTA-register only — BANNED as chart hero** ("neon"). **Gold ✕ Crimson quarantine:** no gold inside alert/disclosure components.
+4. **Weight Law.** Weight rises as contrast or chroma falls; coloured text is always bold. Fix ladder: weight → 7:1 → Tier-1 colour.
+5. **Colour + shape + symbol** for every status — never colour alone. Latent is never red; Alert is reserved for genuine live events.
 
-### Ink (text)
-| Token | Hex | Role |
-|---|---|---|
-| `--ink` | `#20211D` | Primary text (~14:1 on `--bg`) |
-| `--inksoft` | `#45463E` | Secondary text, body copy |
-| `--muted` | `#76756A` | Labels, captions |
-| `--faint` | `#A29F92` | Tertiary / placeholder |
+---
 
-### Colour roles
-| Token | Hex | Role |
-|---|---|---|
-| `--main` | `#2F4853` (Muted Petrol) | Muted structural — headings rules, labels, links, nav-active, edge/quote/theme rules |
-| `--band` | `color-mix(--main 82%, #1e1c18)` | Darkened/muted Main for large filled bands (JCJ band, field-of-forces); white text |
-| `--accent` | `#B5532E` (Terracotta) | Saturated attention — buttons, brand ν, prominent figures, priced-in badge |
-| `--accent-ink` | `#fff` | Text on Accent fills |
+## 2 · Canonical token layer (the lint surface)
 
-### Status / reality semantics (theme-independent — meaning, not brand)
-| Token | Hex | Meaning |
+`global.css` `:root` = dark; `[data-theme="light"]` overrides. One name, per-theme resolution — new components consume these and inherit both themes automatically.
+
+### Surfaces & ink
+| Token | Dark (WB5) | Light (L1) | Class |
+|---|---|---|---|
+| `--canvas` | `#0E1217` | `#DDE2E6` | DEFAULT (dark register OPEN: 20 combos) |
+| `--surface` | mix(ink 5%, canvas) | `#E8EAEE` (Cool Paper) | DEFAULT |
+| `--raised` / card | mix(ink 9%, canvas), borderless | `#FFFFFF` + `1px #C2CAD1` | DEFAULT (cards: dark=tint, light=hairline) |
+| `--hairline` | mix(ink 14%, canvas) | `#C2CAD1` | DEFAULT |
+| `--ink` | `#F2EBDC` (Cream) | `#2B2F34` — headings/labels/emphasis ONLY | LAW (light) |
+| `--body` | `#E3DCCB` | `#3A434C` (10.1:1 white / 8.2:1 surface) | LAW (Comfort Ceiling) |
+| `--muted` | `#A89F8C` | `#4A535C` | RANGE (muted-has-a-floor: ≥4.5:1) |
+| `--faint` | `#968F81` | `#67727E` — white cards only, ≥12px | RANGE |
+
+### Roles & actions
+| Token | Dark | Light | Notes |
+|---|---|---|---|
+| `--main` | `#36BBA6` JCJ Teal | `#367588` Teal Blue | links · nav-active · CTA fill |
+| `--accent` | `#C9A24A` Brass | `#4169E1` Royal Blue (numerals only) | dark gold register OPEN; light Royal = hero-stat numerals, never bg |
+| `--cta-text` | `#0E1217` (ink-on-bright; white-on-Teal BANNED 2.38:1) | `#FFFFFF` (5.0:1 on Teal Blue) | LAW |
+| `--link` | =main, ≥14px, hover −15% | =main idem | LAW |
+| `--title-zone` | n/a (use band surfaces) | `#0B2E4E` Navy + white text + `#F4C37D` kicker | DEFAULT |
+| `--key-stat-underline` | `#C9A24A` | `#4169E1` | ≤5%, never running text |
+
+### Status & reality (glyphs: ○ latent · ◇ anticipated · △ elevated · ⬣ alert · ✓ realized)
+| Register | Dark tint / text | Light tint / text |
 |---|---|---|
-| `--realized` | `#2F7D5B` (green) | Happened / observed / positive / "Tracked" |
-| `--anticipated` | `#C77E22` (amber) | Forward effect, sound mechanism, not yet observed / caution |
-| `--latent` | `#8A8576` (warm grey) | Hasn't happened, may not — deliberately neutral, **never red** |
-| Alert (reserved) | `#A81E1E` (deep red) | Genuine live alerts / negative data only — reserved so it stays meaningful |
+| Latent | `rgba(132,144,158,.16)` / `#9AA5B1` | `#D8DCE0` / `#39434D` |
+| Anticipated | `rgba(224,178,98,.15)` / `#E0B262` | `#F0DCBA` / `#75490F` |
+| Elevated | `rgba(209,109,109,.15)` / `#D16D6D` | `#EDCFCF` / `#8F3535` |
+| Alert | `rgba(225,100,112,.17)` / `#E16470` | `#F0C5CB` / `#9E2533` |
+| Realized | `rgba(70,201,160,.15)` / `#46C9A0` | `#C6E6D6` / `#00603E` |
+
+### Charts & data
+| Token | Dark | Light | Law |
+|---|---|---|---|
+| `--chart-hero` | `#5FA897` Verdigris | `#2A6478` | JCJ Teal banned as hero |
+| `--benchmark` | `#FFD89A` ETF Yellow | `#67727E` slate | dashed 1.5–1.8px; no gold lines on light |
+| `--series-2` / `--series-3` | `#5E83D9` / `#8B7FD9` | `#4A6FA5` / `#6A5ACD` | ≤3 data colours per chart |
+| `--series-context` | `#8A8274` | `#67727E` | visibility floor ~4.5:1, full opacity |
+| `--annotation` | `#9D8CC4` | `#6E5D94` | ≤15% |
+| `--pos` / label | `#46C9A0` | `#00A86B` / `#00754B` | sign+value labels mandatory |
+| `--neg` / label | `#E2725B` | `#C55B43` / `#A14430` | idem |
+| `--gridline` / `--baseline` | `rgba(242,235,220,.07)` / `.28` | `#D5DADE` / `#9AA5B1` | whispering grid, heavier baseline |
+| `--range-band` | `#A8D5E2` @ .28 | idem | — |
+| `--threshold-band` | `#D16D6D` @ .08 | idem | boundary dashed + labelled |
+| `--diagram-arrow` | `#9A917F` | `#2B2F34` | arrows-are-structure: ink-tone, never accent |
+
+Diverging ramps: stressed-LEFT → calm-RIGHT (reading-direction LAW), lightness-monotonic, labelled midpoint, raw red-green BANNED. Right-stacked legends for 3+ series (owner override).
+
+### Legacy aliases (Phase-0 compat — values remapped, names kept)
+`--bg`→canvas · `--bg-surface`→surface · `--bg-card`→raised · `--bg-elevated`→mix(ink 12%) · `--border(-light)`→hairlines · `--text`→body · `--text-muted`→muted · `--text-dim`→faint · `--cyan`→main · `--red`→alert text · `--amber`→anticipated text · `--green`→realized text · `--blue`→series-2 · `--indigo`→series-3 · `--gradient-bar`→locked-palette 4-stop. Components migrate to canonical names opportunistically; no new code may use `--cyan`.
 
 ---
 
 ## 3 · Type
 
-| Role | Family | Notes |
+| Role | Family | Spec |
 |---|---|---|
-| Headlines (`--display`) | **Playfair Display** | High-contrast Didone; display sizes only |
-| Body (`--body`) | **Fraunces** | Optical-size serif; readable at body sizes |
-| Numerals (`--numfont`) | **Lora** | Best figure legibility of the set; tabular-nums on |
-| Labels / tiers / IDs (`--mono`) | **IBM Plex Mono** | Eyebrows, source tiers, route paths, codes |
+| Display | **Playfair Display** | H1 28px/700/1.15 (≤8 words) · H2 20–24px/600 · H3 17–18px/600 |
+| Body | **Fraunces** | 15.5–16px/400 · lh **1.5 light / 1.6 dark** (contrast-graded LAW) · 25–35 words/block |
+| Numerals | **Lora** | tabular-nums; hero stat 48–56px/700 once per page; inline stat 14–15px/600–700 |
+| Mono (legacy) | JetBrains Mono | sanctioned only for existing label/data registers pending type-migration step; max-3-families law applies to new surfaces |
 
-**Scale:** H1 `clamp(2rem,4vw,2.7rem)`/1.08 · section H2 ~1.7rem · card H3 ~20px/1.3 · lead 17–18px · body 16px/1.6 at 62–72ch · label 10.5px mono .14em caps · prominent figure 24–30px · caption 13px. **Spacing:** 4px base ramp (4/8/12/16/24/32/48/64); card padding ~20px; radius 8px. Motion restrained; respect `prefers-reduced-motion`.
-
----
-
-## 4 · Two-ground system
-
-- **Ivory-Grey + cards** = "scan this": discrete findings, the analysis pages, the dashboard.
-- **Almanac + prose** = "read this": briefings, long-form reports, editorial — fewer borders, no card grid, drop-cap lede.
-- Same type system and colour roles on both; the ground signals the mode of attention.
+Micro-label 10.5–11px/700/caps/+.05em — caps licences: micro-label + kicker + table headers, nothing else. Metadata floor 12px; footnote 11px; disclaimer 12px web. Quotes 19–20px italic ≤20 words (quote ≁ CTA). Rhythm ladder 36/28/24/44; left-align reasoning. Weight-role ladder: each weight has one job.
 
 ---
 
-## 5 · Theming (the user-selectable slider)
+## 4 · Budgets (measured, CI-lintable)
 
-All of the above are CSS custom properties; a theme is a swap of the token set under a `data-theme` switch. Ship a small curated set (2–4 themes) for QA/contract sanity even though the mechanism could hold more. A dark **"Desk"** theme is reserved as an optional Analyst-mode skin — never the default. Persist the user's choice (localStorage).
-
----
-
-## 6 · Component registry (compose these; don't reinvent)
-
-- **Finding-first analysis card** — category · plain H3 finding · single **H/M/L confidence pill** (hover for nuance) · 2–3 hero metrics · collapsed detail/sources. Simple shows the finding; Analyst adds the apparatus + trade.
-- **Reality badge** — Realized / Anticipated / Latent dot-badge; pairs with the causal-edge Tracked/Proposed status; plus a global reality filter (show only realized / +anticipated / +latent).
-- **Confidence pill** — single H/M/L, colour = status set; links to a one-time source-tier (T1/T2/T3) explainer.
-- **Cascade rail** — 6-step "where am I / what's next" stepper (what happened → spreads → moved → exposed → connects → profits).
-- **Scenario / situation split** — realized facts vs latent risks, visually separated (never mixed); conflict-specific state lives in its own section, not global chrome.
-- **Report surface** — full-width Almanac-ground prose block.
-- **Band** — muted-Main filled band (white text) for trust/positioning moments; its CTA uses Accent.
-- **Dual-mode toggle** — persistent Simple ⇄ Analyst; every page renders meaningfully in both.
-- **Trust badges** — verified / second-engine verified / PROVISIONAL / illustrative (T3).
-- **Honest freshness banner** — "Last reviewed" from real data timestamps; never a stale "Live".
+- Five-layer envelope: background 70–100% · overlay 20–40% · structural 15–30% · ink ~20% cap · **CTA/action 1–5% of painted area**.
+- 70-20-10 coverage · ≤5 colours/view · ≤2 non-neutral outside Tier-1 · 1 hero stat · **1 CTA** (long-scroll section-summary exception; never two visible) · 1 gradient · ≤3 data colours/chart.
+- Blank space: ≥3× cap-height around CTAs · canvas ≥40% visible · 20–30% neutral between strong colours.
+- Scroll zones: Entry (no risk/urgency/CTA) → Transition (risk arcs complete in 2–3 sections, modal-class buffers) → Resolution (**CTA-at-resolution LAW**; decompress before legal close). No-Risk-Chain · Scarcity ≁ Legal · no CTA inside risk content.
+- Adjacency grammar: 46 allowed / 8 conditional / 28 forbidden pairs — see `emotionLayer.transitions` in the tokens payload.
 
 ---
 
-*Changes to this contract are Opus-4.8-only and must be logged in `DECISIONS.md`.*
+## 5 · Components (compose these; don't reinvent)
+
+**Locked registries** (full text in APPROVED-THEMES): 7 layout archetypes + 24 page IDs · nav = canvas-chrome + main-indicator (**NO-SCROLLING-HEADERS LAW**: hamburger/stacked, never horizontal scroll) · heroes role-assigned (title-zone default; Navy full-bleed front-door only) · footers (plain meta default; single-line LAW) · tables = zebra only + ink bold caps header (row-hairlines & header-fill REJECTED) · cards (strong-lift & surround-block REJECTED) · forms: text vertically centered (LAW). Radius 12/8–10/999 · card padding 24–32px · buttons ≥44px mobile, ≥36px desktop · modal ≤40% viewport, 1px border.
+
+**Product components** (roadmap P0–P2): finding-first analysis card (category · plain H3 finding · H/M/L confidence pill · 2–3 hero metrics · collapsed sources) · reality badge Realized/Anticipated/Latent + global reality filter · confidence pill → source-tier explainer · cascade rail (6-step stepper) · scenario/situation split (realized facts never mixed with latent risks) · report surface · dual-mode toggle (Simple ⇄ Analyst — every page renders meaningfully in both) · trust badges · honest freshness banner (real timestamps, never stale "Live").
+
+**Icons:** 1.5px etched outline, 24-grid, monochrome, adjacent-text colour; custody motifs (vault-ring/partition/ledger-seal), padlock/shield retired; no emoji/clipart/animation.
+
+**Motion (LAW):** NO load animation — charts render complete. State-change only, 150–250ms ease-out staged; hover −15%; max 400ms; `prefers-reduced-motion` = instant; no looping/pulsing/tick-ups.
+
+---
+
+## 6 · Change control
+
+Token/registry changes only via the trial protocol (spec → judged exhibits → verdict) and logged in `DECISIONS.md`. The GCC gate (no Burnt Orange; Terracotta over Coral) applies to all GCC-facing surfaces. *Supersedes the 2026-06-03 Themeable-Demo contract (Muted Petrol/Terracotta light-primary) — that system is retired.*

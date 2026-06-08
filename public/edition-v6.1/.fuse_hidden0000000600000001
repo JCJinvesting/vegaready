@@ -37,11 +37,6 @@
   d.setAttribute('data-sx-rail',   g('ed-sx-index-rail',    'base', SXRE));
   d.setAttribute('data-sx-abyss',  g('ed-sx-index-abyss',   'deep', /^(deep|deeper|black|navy|pine|charcoal)$/));
   d.setAttribute('data-sx-caps',   g('ed-sx-index-caps',    'base', SXRE));
-  /* v6 QC · GROUND sections — full-page-width grounds that were canvas-classified (uncontrollable):
-     Footer band + Masthead bar. Own 7-option ladder: Canvas (default) + 6 shades. */
-  var GRE = /^(canvas|deep|deeper|neutral|navy|pine|charcoal)$/;
-  d.setAttribute('data-sx-foot', g('ed-sx-index-foot', 'canvas', GRE));
-  d.setAttribute('data-sx-mast', g('ed-sx-index-mast', 'canvas', GRE));
   /* v6.1 · CTA FRAME — .btn-gold frame colour; gold (default) follows the GOLD axis */
   d.setAttribute('data-ctafi', g('ed-ctaf-index', 'gold', /^(gold|metal|bronze|l-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood))$/));
   try { localStorage.removeItem('ed-ptone'); localStorage.removeItem('ed-scheme'); localStorage.removeItem('ed-box2'); localStorage.removeItem('ed-sx-desk-cta'); } catch(e){} /* legacy: ptone (v3) + scheme/box2 tiers (v6) + desk single-CTA section (v6.1 split) retired */
@@ -51,8 +46,6 @@
   var TRIMRE = /^(-2|-1|0|1|2)$/;
   d.setAttribute('data-trim-util',  g('ed-trim-index-utility', '0', TRIMRE));
   d.setAttribute('data-trim-abyss', g('ed-trim-index-abyss',   '0', TRIMRE));
-  d.setAttribute('data-trim-foot',  g('ed-trim-index-foot',    '0', TRIMRE));
-  d.setAttribute('data-trim-mast',  g('ed-trim-index-mast',    '0', TRIMRE));
   /* per-element override CSS builder — ONE builder, shared with the panel script via
      window.__edOvr. Declarations are !important so the element-level rule beats both the
      html-level section vars (custom props set ON the consuming element win over inherited
@@ -273,7 +266,6 @@ html{
   --sx-rail:var(--box);--sx-railline:var(--boxline);
   --sx-abyss:var(--deep);
   --sx-caps:var(--box);--sx-capsline:var(--boxline);
-  --sx-foot:var(--canvas);--sx-mast:var(--canvas); /* v6 QC: GROUND sections — footer + masthead grounds, default = canvas */
 }
 /* BOX — main box colour, 13 hues */
 html[data-box="b-tonal"]{--box:var(--card);--boxline:var(--cardline)}
@@ -387,21 +379,6 @@ html[data-sx-abyss="black"]{--sx-abyss:#0B0D10}
 html[data-sx-abyss="navy"]{--sx-abyss:#0C1422}
 html[data-sx-abyss="pine"]{--sx-abyss:#0C1714}
 html[data-sx-abyss="charcoal"]{--sx-abyss:#14171B}
-/* GROUND sections (v6 QC) — Footer band + Masthead bar grounds. Own 6-shade ladder shared with the
-   Abyss construction; "canvas" carries no rule (the ground keeps following --canvas). These are the
-   full-page-width grounds behind the footer columns / masthead nav — previously canvas-classified. */
-html[data-sx-foot="deep"]{--sx-foot:var(--deep)}
-html[data-sx-foot="deeper"]{--sx-foot:color-mix(in srgb,#000 35%,var(--canvas))}
-html[data-sx-foot="neutral"]{--sx-foot:#0B0D10}
-html[data-sx-foot="navy"]{--sx-foot:#0C1422}
-html[data-sx-foot="pine"]{--sx-foot:#0C1714}
-html[data-sx-foot="charcoal"]{--sx-foot:#14171B}
-html[data-sx-mast="deep"]{--sx-mast:var(--deep)}
-html[data-sx-mast="deeper"]{--sx-mast:color-mix(in srgb,#000 35%,var(--canvas))}
-html[data-sx-mast="neutral"]{--sx-mast:#0B0D10}
-html[data-sx-mast="navy"]{--sx-mast:#0C1422}
-html[data-sx-mast="pine"]{--sx-mast:#0C1714}
-html[data-sx-mast="charcoal"]{--sx-mast:#14171B}
 /* CTA FRAME (v6.1) — .btn-gold frame colour; gold carries no rule (follows the GOLD axis via
    --gold-grad, so g4's metal restop rides through). Solids ship as two-stop gradients so the
    border-box layer is always an image. */
@@ -472,7 +449,6 @@ html[data-theme="t8"]{
   --sx-rail:var(--card);--sx-railline:var(--cardline);
   --sx-caps:var(--card);--sx-capsline:var(--cardline);
   --ctafi:var(--gold-grad); /* v6.1: fixed-hue frames are dark-canvas constructions — t8 returns to gold */
-  --sx-foot:var(--canvas);--sx-mast:var(--canvas); /* v6 QC: GROUND shades are dark-canvas constructions — t8 returns to its own canvas */
 }
 /* t8 gravity band — its .abyss local var remap outranks the html-level axes,
    so re-apply gold/grey there (resolved against the band's own remapped inks) */
@@ -514,11 +490,8 @@ html[data-theme="t8"][data-cov="auto"],html[data-theme="t8"][data-cov="literal"]
    Negative trims mix #000 at 5%/10%; positive mix #fff at 4%/8%. */
 html{
   --tc-util:#fff;--ta-util:0%;--tc-abyss:#fff;--ta-abyss:0%;
-  --tc-foot:#fff;--ta-foot:0%;--tc-mast:#fff;--ta-mast:0%; /* v6 QC: GROUND trims */
   --sx-utilR:color-mix(in srgb,var(--tc-util) var(--ta-util),var(--sx-util));
   --sx-abyssR:color-mix(in srgb,var(--tc-abyss) var(--ta-abyss),var(--sx-abyss));
-  --sx-footR:color-mix(in srgb,var(--tc-foot) var(--ta-foot),var(--sx-foot));
-  --sx-mastR:color-mix(in srgb,var(--tc-mast) var(--ta-mast),var(--sx-mast));
   /* theme-ink backups for per-element override restores — resolve at html, pre-flip */
   --ink0:var(--ink);--body0:var(--body);--muted0:var(--muted);--eyeb0:var(--eyeb);
   --struct0:var(--struct);--goldacc0:var(--gold-accent);--pos0:var(--pos);--neg0:var(--neg);--slate0:var(--slate);
@@ -531,14 +504,6 @@ html[data-trim-abyss="-2"]{--tc-abyss:#000;--ta-abyss:10%}
 html[data-trim-abyss="-1"]{--tc-abyss:#000;--ta-abyss:5%}
 html[data-trim-abyss="1"]{--tc-abyss:#fff;--ta-abyss:4%}
 html[data-trim-abyss="2"]{--tc-abyss:#fff;--ta-abyss:8%}
-html[data-trim-foot="-2"]{--tc-foot:#000;--ta-foot:10%}
-html[data-trim-foot="-1"]{--tc-foot:#000;--ta-foot:5%}
-html[data-trim-foot="1"]{--tc-foot:#fff;--ta-foot:4%}
-html[data-trim-foot="2"]{--tc-foot:#fff;--ta-foot:8%}
-html[data-trim-mast="-2"]{--tc-mast:#000;--ta-mast:10%}
-html[data-trim-mast="-1"]{--tc-mast:#000;--ta-mast:5%}
-html[data-trim-mast="1"]{--tc-mast:#fff;--ta-mast:4%}
-html[data-trim-mast="2"]{--tc-mast:#fff;--ta-mast:8%}
 
 :root{
   /* brand constants — never themed */
@@ -604,7 +569,7 @@ img,svg{display:block}
 @media (max-width:640px){.utility li:nth-child(5){display:none}.utility .meta{display:none}}
 
 /* ── 3. Masthead ── */
-.masthead{border-bottom:1px solid var(--rule7);background:var(--sx-mastR)} /* GROUND · Masthead (v6 QC): top-bar ground — default canvas = pure canvas, now tunable */
+.masthead{border-bottom:1px solid var(--rule7)}
 .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;height:66px}
 .wordmark{font:700 21px/1 "Lora",serif;letter-spacing:.01em;color:var(--ink)}
 .wordmark .rdy{color:var(--struct)}
@@ -968,7 +933,7 @@ html[data-theme="t8"] .abyss{
 
 /* ── 11. Footer ── */
 footer{
-  background:color-mix(in srgb,#000 14%,var(--sx-footR)); /* GROUND · Footer (v6 QC): canvas-darkened band — ground tunable (default canvas keeps the 14% darken) */
+  background:color-mix(in srgb,#000 14%,var(--canvas));
   border-top:1px solid var(--rule7);
   padding:78px 0 54px;
 }
@@ -1113,7 +1078,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
 </div>
 
 <!-- 3 · masthead -->
-<header class="masthead" data-ax="GREY · masthead nav · GROUND · Masthead">
+<header class="masthead" data-ax="GREY · masthead nav">
   <div class="wrap">
     <a class="wordmark" href="index.html" data-ax="DIALECT · wordmark accent">Vega<span class="rdy">Ready</span></a>
     <nav class="mast-nav" aria-label="Primary">
@@ -1332,7 +1297,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
 </section>
 
 <!-- 11 · premium footer -->
-<footer id="footer" data-dev="premium footer" data-ax="GROUND · Footer">
+<footer id="footer" data-dev="premium footer" data-ax="CANVAS · footer band (darkened)">
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
@@ -1367,7 +1332,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
 <!-- options panel (bottom-left) -->
 <div id="edpanel" role="group" aria-label="Display options">
   <div class="ep-head">
-    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8">V6 LIVE</span> <a href="/edition-v6.1/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">v6.1 &#8599;</a> <a href="/edition-v5/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V5 &#8599;</a> <a href="/edition-v4/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V4 &#8599;</a> <a href="/edition-v3/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V3 &#8599;</a> <a href="/edition-v2/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V2 &#8599;</a> <a href="/edition-v1/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
+    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8">V6 LIVE</span> <a href="/edition-v5/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V5 &#8599;</a> <a href="/edition-v4/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V4 &#8599;</a> <a href="/edition-v3/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V3 &#8599;</a> <a href="/edition-v2/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V2 &#8599;</a> <a href="/edition-v1/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
     <button type="button" class="ep-toggle" id="eptoggle" aria-expanded="true" aria-label="Collapse options panel">Hide</button>
   </div>
   <div class="ep-body">
@@ -1383,9 +1348,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       <button type="button" class="ep-preset" data-preset="p1">P1 Formula</button>
       <button type="button" class="ep-preset" data-preset="p2">P2 Conservative</button>
       <button type="button" class="ep-preset" data-preset="p3">P3 Baseline</button>
-    </div>
-    <div class="ep-presets" role="group" aria-label="Reset" style="margin-top:6px">
-      <button type="button" class="ep-preset" id="epresetall" style="flex:1 1 auto">↺ Reset all</button>
     </div>
     <!-- fields run in PAGE ORDER, top of page → bottom (owner ruling, June 2026):
          canvas → chroma → grey → gold → data (hero spark) → boxes base → SECTIONS in page order
@@ -1483,18 +1445,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
         <option value="sunk2">Sunken Desaturated</option>
         <option value="sunk3">Sunken Navy</option>
         <option value="sunk4">Sunken Neutral</option>
-      </select>
-    </div>
-    <div class="ep-field">
-      <label for="opt-sx-mast">Ground · Masthead band</label>
-      <select id="opt-sx-mast">
-        <option value="canvas" selected>Canvas (default)</option>
-        <option value="deep">Deep</option>
-        <option value="deeper">Deeper · 35% black mix</option>
-        <option value="neutral">Neutral black</option>
-        <option value="navy">Navy depth</option>
-        <option value="pine">Pine depth</option>
-        <option value="charcoal">Charcoal</option>
       </select>
     </div>
     <div class="ep-field">
@@ -1601,18 +1551,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       </select>
     </div>
     <div class="ep-field">
-      <label for="opt-sx-foot">Ground · Footer band</label>
-      <select id="opt-sx-foot">
-        <option value="canvas" selected>Canvas (default)</option>
-        <option value="deep">Deep</option>
-        <option value="deeper">Deeper · 35% black mix</option>
-        <option value="neutral">Neutral black</option>
-        <option value="navy">Navy depth</option>
-        <option value="pine">Pine depth</option>
-        <option value="charcoal">Charcoal</option>
-      </select>
-    </div>
-    <div class="ep-field">
       <label for="opt-bline">Border · box lines</label>
       <select id="opt-bline">
         <option value="auto" selected>Auto</option>
@@ -1650,7 +1588,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       <div class="ep-ovr-h" id="epovrh">Overrides (0)</div>
       <div id="epovrrows"></div>
     </div>
-    <div class="ep-hint" style="margin-top:9px;font-size:8px;line-height:1.5;color:#6E7681">⊙ Labels on → click any element for fine controls (tone, opacity, trim, frame, this-element-only).</div>
     <div id="epviol" role="status" aria-live="polite"></div>
   </div>
 </div>
@@ -1686,8 +1623,6 @@ anno.onclick = function(){
     { id:'opt-sx-rail',   attr:'data-sx-rail',   key:'ed-sx-index-rail'    },
     { id:'opt-sx-abyss',  attr:'data-sx-abyss',  key:'ed-sx-index-abyss'   },
     { id:'opt-sx-caps',   attr:'data-sx-caps',   key:'ed-sx-index-caps'    },
-    { id:'opt-sx-mast',   attr:'data-sx-mast',   key:'ed-sx-index-mast'    }, /* v6 QC · GROUND */
-    { id:'opt-sx-foot',   attr:'data-sx-foot',   key:'ed-sx-index-foot'    }, /* v6 QC · GROUND */
     { id:'opt-bline',     attr:'data-bline',     key:'ed-bline'   }
   ];
   function syncSel(sel, v){
@@ -1715,11 +1650,11 @@ anno.onclick = function(){
   /* presets — style axes only; the canvas/theme is never touched */
   var PRESETS = {
     p1:{ 'data-gold':'g1','data-grey':'cool','data-sem':'s3','data-dialect':'auto','data-chroma':'capped','data-box':'b-tonal','data-bline':'auto',
-         'data-sx-util':'base','data-sx-cta':'base','data-sx-ledger':'base','data-sx-rail':'sunk1','data-sx-abyss':'deep','data-sx-caps':'base','data-sx-mast':'canvas','data-sx-foot':'canvas' },
+         'data-sx-util':'base','data-sx-cta':'base','data-sx-ledger':'base','data-sx-rail':'sunk1','data-sx-abyss':'deep','data-sx-caps':'base' },
     p2:{ 'data-gold':'g2','data-grey':'warm','data-sem':'s1','data-dialect':'auto','data-chroma':'rich','data-box':'b-tonal','data-bline':'auto',
-         'data-sx-util':'base','data-sx-cta':'base','data-sx-ledger':'base','data-sx-rail':'sunk1','data-sx-abyss':'deep','data-sx-caps':'base','data-sx-mast':'canvas','data-sx-foot':'canvas' },
+         'data-sx-util':'base','data-sx-cta':'base','data-sx-ledger':'base','data-sx-rail':'sunk1','data-sx-abyss':'deep','data-sx-caps':'base' },
     p3:{ 'data-gold':'g3','data-grey':'warm','data-sem':'s2','data-dialect':'fixed','data-box':'b-tonal','data-bline':'auto',
-         'data-sx-util':'base','data-sx-cta':'base','data-sx-ledger':'base','data-sx-rail':'sunk1','data-sx-abyss':'deep','data-sx-caps':'base','data-sx-mast':'canvas','data-sx-foot':'canvas' }
+         'data-sx-util':'base','data-sx-cta':'base','data-sx-ledger':'base','data-sx-rail':'sunk1','data-sx-abyss':'deep','data-sx-caps':'base' }
   };
   Array.prototype.forEach.call(document.querySelectorAll('.ep-preset'), function(b){
     b.addEventListener('click', function(){
@@ -1809,45 +1744,6 @@ anno.onclick = function(){
       });
       if (axpopSync) axpopSync();
     }
-    maybeCrossPageNote(c); /* v6 QC · cross-page combo note */
-  }
-  /* ── v6 QC · CROSS-PAGE COMBO NOTE — combos carry page-scoped section/override keys; when a
-     combo's keys belong to a different page than this one (index), the global axes apply but the
-     per-page section/override choices were saved elsewhere. Transient, non-blocking. */
-  var THIS_PAGE = 'index';
-  function comboHasForeignKeys(c){
-    var foreign = false;
-    function scan(k){ var m = /^ed-(?:sx|trim|ovr)-(index|brief|desk)\b/.exec(k); if (m && m[1] !== THIS_PAGE) foreign = true; }
-    if (c.axes) for (var k in c.axes) scan(k);
-    if (c.trim) for (var k3 in c.trim) scan(k3);
-    if (c.ovr) ['ed-ovr-brief','ed-ovr-desk'].forEach(function(pk){
-      if (c.ovr[pk] && typeof c.ovr[pk] === 'object' && Object.keys(c.ovr[pk]).length) foreign = true;
-    });
-    return foreign;
-  }
-  function foreignPageOf(c){
-    var found = THIS_PAGE;
-    function scan(k){ var m = /^ed-(?:sx|trim|ovr)-(index|brief|desk)\b/.exec(k); if (m && m[1] !== THIS_PAGE) found = m[1]; }
-    if (c.axes) for (var k in c.axes) scan(k);
-    if (c.trim) for (var k3 in c.trim) scan(k3);
-    if (c.ovr) for (var k2 in c.ovr) if (c.ovr[k2] && Object.keys(c.ovr[k2]||{}).length) scan(k2);
-    return found === 'desk' ? 'The Desk' : (found === 'brief' ? 'The Brief' : found);
-  }
-  var cpNote = null, cpTimer = null;
-  function dismissCpNote(){ if (cpNote) cpNote.style.display = 'none'; if (cpTimer) clearTimeout(cpTimer); }
-  function maybeCrossPageNote(c){
-    if (!comboHasForeignKeys(c)) return;
-    if (!cpNote){
-      cpNote = document.createElement('div');
-      cpNote.style.cssText = 'position:fixed;left:22px;bottom:calc(100vh - 40px);z-index:130;max-width:230px;background:#15181D;border:1px solid #A8843C;border-radius:8px;padding:7px 10px;font-family:Lora,serif;font-size:9px;line-height:1.5;color:#C8CDD3';
-      cpNote.setAttribute('role','status');
-      document.body.appendChild(cpNote);
-    }
-    cpNote.textContent = 'Global axes applied · section & override choices are per-page (saved on ' + foreignPageOf(c) + ').';
-    cpNote.style.display = 'block';
-    if (cpTimer) clearTimeout(cpTimer);
-    cpTimer = setTimeout(function(){ if (cpNote) cpNote.style.display = 'none'; }, 6000);
-    document.addEventListener('click', dismissCpNote, { once:true });
   }
   function renderCombos(){
     var rows = document.getElementById('epcomborows');
@@ -1937,12 +1833,10 @@ anno.onclick = function(){
      stored ed-trim-index-*. Both ride in saved combos (full-state snapshot). */
   var OVR_KEY = 'ed-ovr-index';
   var OVR_PAGE_KEYS = ['ed-ovr-index', 'ed-ovr-brief', 'ed-ovr-desk'];
-  var TRIM_KEYS = ['ed-trim-index-utility', 'ed-trim-index-abyss', 'ed-trim-index-foot', 'ed-trim-index-mast', 'ed-trim-desk-utility', 'ed-trim-desk-bleed', 'ed-trim-desk-funnel', 'ed-trim-desk-ctaz', 'ed-trim-desk-foot', 'ed-trim-desk-mast'];
+  var TRIM_KEYS = ['ed-trim-index-utility', 'ed-trim-index-abyss', 'ed-trim-desk-utility', 'ed-trim-desk-bleed', 'ed-trim-desk-funnel'];
   var TRIM_SECS = [
     { re:/SECTION · Utility strip/, attr:'data-trim-util',  key:'ed-trim-index-utility' },
-    { re:/SECTION · Abyss band/,    attr:'data-trim-abyss', key:'ed-trim-index-abyss'   },
-    { re:/GROUND · Footer/,         attr:'data-trim-foot',  key:'ed-trim-index-foot'    }, /* v6 QC · GROUND trim */
-    { re:/GROUND · Masthead/,       attr:'data-trim-mast',  key:'ed-trim-index-mast'    }  /* v6 QC · GROUND trim */
+    { re:/SECTION · Abyss band/,    attr:'data-trim-abyss', key:'ed-trim-index-abyss'   }
   ];
   /* ── v6.1 · popover-only keys — CTA frame colours + desk dot tone/opacity; ride combos like trims ── */
   var FRAME_RE = /^(gold|metal|bronze|l-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood))$/;
@@ -1995,26 +1889,6 @@ anno.onclick = function(){
     });
   }
   renderOvr();
-  /* ── v6 QC · RESET ALL — clean slate for this page: every axis to default, overrides/trims/grounds
-     cleared, CTA frame to Gold, coverage auto. Clears this page's localStorage, then re-renders. */
-  var AXIS_DEFAULTS = {
-    'opt-theme':'t1','opt-gold':'g3','opt-grey':'warm','opt-sem':'s2','opt-dialect':'fixed',
-    'opt-chroma':'rich','opt-data':'d1','opt-box':'b-tonal','opt-cov':'auto','opt-bline':'auto',
-    'opt-sx-util':'base','opt-sx-cta':'base','opt-sx-ledger':'base','opt-sx-rail':'base',
-    'opt-sx-abyss':'deep','opt-sx-caps':'base','opt-sx-mast':'canvas','opt-sx-foot':'canvas'
-  };
-  var resetBtn = document.getElementById('epresetall');
-  if (resetBtn) resetBtn.addEventListener('click', function(){
-    if (!confirm('Reset all controls on this page to their defaults? (overrides, trims, frame, grounds)')) return;
-    try { localStorage.removeItem(OVR_KEY); } catch(e){}
-    applyOvrCss(); renderOvr();
-    ['ed-trim-index-utility','ed-trim-index-abyss','ed-trim-index-foot','ed-trim-index-mast'].forEach(function(k){ try { localStorage.removeItem(k); } catch(e){} });
-    TRIM_SECS.forEach(function(t){ d.setAttribute(t.attr, '0'); });
-    XKEYS.forEach(function(x){ try { localStorage.removeItem(x.key); } catch(e){} if (x.attr) d.setAttribute(x.attr, x.def); });
-    d.setAttribute('data-ctafi','gold');
-    AXES.forEach(function(a){ if (AXIS_DEFAULTS[a.id] != null) setAxis(a, AXIS_DEFAULTS[a.id]); });
-    if (axpopSync) axpopSync();
-  });
   /* collapse — state on <html>; restored pre-paint by the head script */
   var panel = document.getElementById('edpanel');
   var tog = document.getElementById('eptoggle');
@@ -2108,25 +1982,6 @@ anno.onclick = function(){
     if (sem === 's2') msgs.push('⚠ S2 pair: green/red lightness mismatch');
     out.textContent = msgs.join(' · ');
     out.style.display = msgs.length ? 'block' : 'none';
-    refreshBaseCounts();
-  }
-  /* ── v6 QC · LIVE COUNTS — Boxes base + Border labels show how many sections they still drive.
-     M = the hue-following sections (SECTION_FLAGS); N = those still at Base (Border: at bline auto). */
-  function refreshBaseCounts(){
-    var M = SECTION_FLAGS.length, atBase = 0;
-    var bline = d.getAttribute('data-bline');
-    SECTION_FLAGS.forEach(function(s){ if (d.getAttribute(s.attr) === 'base') atBase++; });
-    var boxLbl = document.querySelector('label[for="opt-box"]');
-    if (boxLbl){
-      if (!boxLbl.getAttribute('data-base')) boxLbl.setAttribute('data-base', 'Boxes · base — all sections');
-      boxLbl.innerHTML = boxLbl.getAttribute('data-base') + ' <span style="color:#6E7681;font-weight:400">(driving ' + atBase + ' of ' + M + ' sections)</span>';
-    }
-    var blLbl = document.querySelector('label[for="opt-bline"]');
-    if (blLbl){
-      if (!blLbl.getAttribute('data-base')) blLbl.setAttribute('data-base', 'Border · box lines');
-      var n = (bline === 'auto') ? atBase : 0;
-      blLbl.innerHTML = blLbl.getAttribute('data-base') + ' <span style="color:#6E7681;font-weight:400">(' + n + ' of ' + M + ' at base)</span>';
-    }
   }
 
   /* 2 · CLICK-TO-EDIT POPOVER — Labels mode only; every edit routes through setAxis (the single path) */
@@ -2143,8 +1998,6 @@ anno.onclick = function(){
     { re:/SECTION · Rail nodes/,       id:'opt-sx-rail',   label:'Rail'     },
     { re:/SECTION · Abyss band/,       id:'opt-sx-abyss',  label:'Abyss'    },
     { re:/SECTION · Capability cards/, id:'opt-sx-caps',   label:'Caps'     },
-    { re:/GROUND · Footer/,            id:'opt-sx-foot',   label:'Foot grnd'},
-    { re:/GROUND · Masthead/,          id:'opt-sx-mast',   label:'Mast grnd'},
     { re:/\bBORDER\b/,                 id:'opt-bline',     label:'Border'   },
     { re:/\bSEM\b/,                    id:'opt-sem',       label:'Semantic' },
     { re:/\bDIALECT\b/,                id:'opt-dialect',   label:'Dialect'  }

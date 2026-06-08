@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Device Lab S — Structural &amp; Chrome (43 exhibits)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Fraunces:opsz,wght@9..144,300..700&family=Lora:ital,wght@0,400..700;1,500&display=swap" rel="stylesheet">
+<style>
+/* ════ DEVICE LAB S · Guide v4.1 compliant · every exhibit = real context, judged ════ */
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto!important}}
+body{font-family:'Fraunces',Georgia,serif;font-size:15.5px;line-height:1.6;background:#0D1626;color:#DCD4C2}
+:focus-visible{outline:2px solid #5FA897;outline-offset:2px;border-radius:4px}
+.num{font-family:'Lora',serif;font-variant-numeric:tabular-nums}
+
+/* lab chrome */
+.ctrl{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 14px;background:rgba(8,10,14,.95);backdrop-filter:blur(10px);border-bottom:1px solid #23262C;font-size:11.5px}
+.ctrl .t{font-family:'Lora',serif;font-weight:700;color:#9AA3AD;letter-spacing:.06em;margin-right:4px}
+.ftab{font-family:inherit;font-size:11.5px;padding:5px 11px;border-radius:7px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.ftab.on{background:#1C2128;color:#EDE6D6;border-color:#5FA897;font-weight:600}
+.vcopy{margin-left:auto;font-family:inherit;font-size:11.5px;padding:5px 12px;border-radius:6px;border:1px solid #3A6B5E;background:#14201C;color:#7FC4AE;cursor:pointer}
+main{padding:64px 0 90px;max-width:1080px;margin:0 auto;padding-left:32px;padding-right:32px}
+.fam{display:none}.fam.on{display:block}
+.famhead{margin:26px 0 6px;font-family:'Playfair Display',serif;font-weight:700;font-size:26px;color:#F2EBDC}
+.famsub{font-size:13px;color:#97917F;margin-bottom:26px}
+
+/* exhibit frame */
+.ex{border:1px solid color-mix(in srgb,#F2EBDC 16%,#0D1626);border-radius:12px;margin-bottom:26px;overflow:hidden;background:color-mix(in srgb,#F2EBDC 4%,#0D1626)}
+.exhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 12%,#0D1626)}
+.exid{font-family:'Lora',serif;font-weight:700;font-size:12px;color:#F4C37D}
+.exname{font-family:'Lora',serif;font-weight:600;font-size:13.5px;color:#F2EBDC}
+.cls{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.07em;padding:2px 8px;border-radius:99px}
+.cls-def{background:rgba(94,131,217,.14);color:#8FA8E8;border:1px solid rgba(94,131,217,.4)}
+.cls-open{background:rgba(95,168,151,.14);color:#5FA897;border:1px solid rgba(95,168,151,.4)}
+.cls-avoid{background:rgba(225,100,112,.12);color:#E16470;border:1px solid rgba(225,100,112,.4)}
+.cls-rule{background:rgba(224,178,98,.15);color:#E0B262;border:1px solid rgba(224,178,98,.5)}
+.q{font-size:12px;color:#97917F;font-style:italic;margin-left:auto}
+.exstrip{position:relative;background:#0D1626}
+.exfoot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 16px;border-top:1px solid color-mix(in srgb,#F2EBDC 12%,#0D1626);font-size:11.5px;color:#97917F}
+.spec{flex:1;min-width:240px}
+.vset{display:flex;align-items:center;gap:5px}
+.vb{font-family:inherit;font-size:10.5px;padding:4px 10px;border-radius:6px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.vb.app.sel{background:rgba(70,201,160,.15);color:#46C9A0;border-color:#46C9A0}
+.vb.con.sel{background:rgba(224,178,98,.15);color:#E0B262;border-color:#E0B262}
+.vb.rej.sel{background:rgba(225,100,112,.15);color:#E16470;border-color:#E16470}
+.vn{font-family:inherit;font-size:10.5px;padding:4px 9px;border-radius:6px;border:1px solid #2E3239;background:#0E1116;color:#D5CFC0;width:170px}
+.optset{display:inline-flex;gap:4px;margin-left:6px}
+.opt{font-family:inherit;font-size:10px;padding:3px 9px;border-radius:6px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.opt.on{background:#1C2128;color:#EDE6D6;border-color:#C9A24A;font-weight:600}
+
+/* shared content vocabulary for context strips */
+.pad{padding:34px 38px}
+.eyebrow{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A24A;margin-bottom:10px}
+.h3{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:#F2EBDC;margin-bottom:8px}
+.p{font-size:14px;color:#B4AC99;max-width:64ch}
+.pm{font-size:11.5px;color:#97917F}
+.card{background:color-mix(in srgb,#F2EBDC 9%,#0D1626);border:1px solid color-mix(in srgb,#F2EBDC 18%,#0D1626);border-radius:10px;padding:16px 18px}
+.goldgrad{background:linear-gradient(90deg,#A8843C,#E3C77E 45%,#A8843C)}
+</style>
+</head>
+<body>
+
+<div class="ctrl">
+  <span class="t">LAB S</span>
+  <button class="ftab on" data-f="f1">1 · Bars</button>
+  <button class="ftab" data-f="f2">2 · Side rails</button>
+  <button class="ftab" data-f="f3">3 · Frames</button>
+  <button class="ftab" data-f="f4">4 · Sticky</button>
+  <button class="ftab" data-f="f5">5 · Chrome</button>
+  <button class="ftab" data-f="f6">6 · Layout</button>
+  <button class="ftab" data-f="f7">7 · Timelines</button>
+  <button class="ftab" data-f="fr">✗ Rejects</button>
+  <button class="vcopy" id="vcopy">Copy verdicts</button>
+</div>
+
+<main>
+
+<!-- ══════════ FAMILY 1 · SEPARATION BARS ══════════ -->
+<section class="fam on" id="f1">
+  <div class="famhead">Family 1 · Separation bars of colour</div>
+  <div class="famsub">The print/editorial band divider — judged between real sections, full scale.</div>
+
+  <div class="ex" data-id="S1.1R">
+    <div class="exhead"><span class="exid">S1.1-R3</span><span class="exname">Chapter bar — researched set</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · 3px ink 8%</button><button class="opt" data-o="b">B · 3px ink 12%</button><button class="opt" data-o="c">C · Oxford (ink)</button><button class="opt" data-o="d">D · Oxford (gold)</button><button class="opt" data-o="e">E · swelled</button></span>
+      <span class="q">A/B = your ask, alpha-laddered · C/D = the print answer: muted mass + bright hairline edge · E = taper</span></div>
+    <div class="exstrip">
+      <div class="pad" style="padding-bottom:30px">
+        <div class="eyebrow">The cascade</div><div class="h3">Shocks travel along mapped routes.</div>
+        <p class="p">Fundamentals reprice first — commodities, energy, trade flows, currency stress move within hours of a credible threat to the strait. Sectors follow: tanker rates, insurance premia, refining margins.</p>
+        <div style="display:flex;gap:12px;margin-top:16px"><div class="card" style="flex:1"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A;margin-bottom:5px">INSURANCE</div><p class="pm">moves first, always</p></div><div class="card" style="flex:1"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A;margin-bottom:5px">RATES</div><p class="pm">second, within days</p></div></div>
+      </div>
+      <div data-show="a" style="height:3px;background:rgba(242,235,220,.08)"></div>
+      <div data-show="b" style="display:none;height:3px;background:rgba(242,235,220,.12)"></div>
+      <div data-show="c" style="display:none"><div style="height:3px;background:rgba(242,235,220,.10)"></div><div style="height:3px"></div><div style="height:1px;background:rgba(242,235,220,.38)"></div></div>
+      <div data-show="d" style="display:none"><div style="height:3px;background:rgba(242,235,220,.10)"></div><div style="height:3px"></div><div style="height:1px;background:linear-gradient(90deg,#A8843C,#E3C77E 50%,#A8843C)"></div></div>
+      <div data-show="e" style="display:none;height:1px;background:linear-gradient(90deg,transparent,rgba(242,235,220,.35) 50%,transparent)"></div>
+      <div class="pad" style="padding-top:30px">
+        <div class="eyebrow">What we track</div><div class="h3">Four lenses, one picture.</div>
+        <p class="p">Each domain feeds the same cascade — what happened, what it touches, what it moves. The chapter bar above is the only thing changing as you toggle.</p>
+      </div>
+    </div>
+    <div class="exfoot"><span class="spec">R3, researched: system alpha-ladder on dark = 10/14/26% (shadcn·Atlassian·M2·Carbon·Radix) · GOV.UK: thicker breaks = more whitespace, same hairline · Oxford rule = the canonical premium thick divider (thick muted + thin bright pair; bright pixel ≤1px by construction)</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="winner(s): A–E + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S1.3">
+    <div class="exhead"><span class="exid">S1.3</span><span class="exname">Rule-with-text divider</span><span class="cls cls-def">DEFAULT</span><span class="q">the quieter cousin — standard section furniture?</span></div>
+    <div class="exstrip">
+      <div class="pad" style="padding-bottom:24px"><p class="p">…risk premia reprice long before the headline confirms the route closure.</p></div>
+      <div style="display:flex;align-items:center;gap:16px;padding:0 38px"><span style="font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:#97917F">THE CASCADE</span><div style="flex:1;height:1px;background:color-mix(in srgb,#F2EBDC 18%,transparent)"></div></div>
+      <div class="pad" style="padding-top:24px"><p class="p">We track macro events across geopolitics, regulation, economics, and technology.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">label (Lora 10.5 caps, muted) + 1px hairline to edge · between sub-sections</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S1.4">
+    <div class="exhead"><span class="exid">S1.4-R</span><span class="exname">Brand stripe — researched rehab</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · rehab</button><button class="opt" data-o="b">B · old (ref)</button></span>
+      <span class="q">IBM/Gucci discipline: 2 hues · A-B-A · brightest member thinnest — does the fix hold?</span></div>
+    <div class="exstrip">
+      <div class="pad" style="padding-bottom:22px"><div class="eyebrow">The platform</div><p class="p">…roadmap closes the page. The brand stripe sits once, above the footer:</p></div>
+      <div data-show="a"><div style="height:2.5px;background:rgba(242,235,220,.06)"></div><div style="height:1px;background:linear-gradient(90deg,#A8843C,#E3C77E 50%,#A8843C)"></div><div style="height:2.5px;background:rgba(242,235,220,.06)"></div></div>
+      <div data-show="b" style="display:none"><div style="height:3px;background:#0B2E4E"></div><div style="height:2px;background:linear-gradient(90deg,#A8843C,#E3C77E,#A8843C)"></div><div style="height:3px;background:#1F4F60"></div></div>
+      <div class="pad" style="padding-top:22px"><p class="pm" style="color:#7E796B">© JCJ Investing · Source: desk marks · footer begins…</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">A: faint-tint 2.5px / gradient-gold 1px / faint-tint 2.5px (mirrored Oxford pair) · B: the old reject for reference · one identity moment per page</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S1.6">
+    <div class="exhead"><span class="exid">S1.6</span><span class="exname">Identity top bar</span><span class="cls cls-rule">DEFERRED · full-page round</span><span class="q">owner 06-06: "worth keeping for review of a full page"</span></div>
+    <div class="exstrip">
+      <div style="height:4px;background:linear-gradient(90deg,#A8843C,#E3C77E 50%,#A8843C)"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 38px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 14%,transparent)"><span style="font-family:'Lora',serif;font-weight:700;font-size:15px;color:#EDE6D6">Vega<span style="color:#5FA897">Ready</span></span><span class="pm num">Friday, June 6, 2026 · Day 247</span></div>
+      <div class="pad"><p class="pm">…page begins. The 4px gold crown sits above everything, on every page.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">4px gradient-gold viewport-top bar · site-wide identity mark · counts as the page's gold object</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S1.7">
+    <div class="exhead"><span class="exid">S1.7</span><span class="exname">Heading underscore rule</span><span class="cls cls-def">DEFAULT</span><span class="q">promote to standard heading furniture?</span></div>
+    <div class="exstrip"><div class="pad">
+      <div class="eyebrow">JCJ Investing</div>
+      <div class="h3">Built by people who trade on this data.</div>
+      <div style="width:46px;height:2px;margin:2px 0 14px" class="goldgrad"></div>
+      <p class="p">The short gold rule anchors the heading — already used under hero stats; this promotes it to every section head.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">34–46px × 2px gradient-gold under H2/H3 · hairline-scale gold (budget-cheap)</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<!-- ══════════ FAMILY 2 · SIDE RAILS ══════════ -->
+<section class="fam" id="f2">
+  <div class="famhead">Family 2 · Side panel bars &amp; vertical rails</div>
+  <div class="famsub">Edges that carry identity, wayfinding, or semantics.</div>
+
+  <div class="ex" data-id="S2.1">
+    <div class="exhead"><span class="exid">S2.1</span><span class="exname">Full-height edge rail — formula set</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · 1px ink 26%</button><button class="opt" data-o="b">B · 3px ink 10%</button><button class="opt" data-o="c">C · 3px muted teal</button></span>
+      <span class="q">rail salience = width × brightness — which earns a permanent edge?</span></div>
+    <div class="exstrip" style="display:flex">
+      <div data-show="a" style="width:1px;background:rgba(242,235,220,.26);flex:0 0 1px"></div>
+      <div data-show="b" style="display:none;width:3px;background:rgba(242,235,220,.10);flex:0 0 3px"></div>
+      <div data-show="c" style="display:none;width:3px;background:#2E4A52;flex:0 0 3px"></div>
+      <div class="pad" style="flex:1"><div class="eyebrow">Structural · Chokepoints</div><div class="h3">Hormuz at Day 247</div><p class="p">The rail runs the full page height on the left viewport edge — always present, never moving. A fifth of the world's oil through a corridor 21 miles wide; the price of that fact changes daily.</p><div style="display:flex;gap:12px;margin-top:14px"><div class="card" style="flex:1"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A;margin-bottom:5px">TRANSITS</div><p class="pm num">41 today · normal band</p></div><div class="card" style="flex:1"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A;margin-bottom:5px">PREMIA</div><p class="pm num">+38bp w/w</p></div></div></div>
+    </div>
+    <div class="exfoot"><span class="spec">no bright-thick option — the formula already killed it · viewport-fixed · disappears ≤720px</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="winner: A/B/C + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S2.2">
+    <div class="exhead"><span class="exid">S2.2</span><span class="exname">Wide side panel — ground-logic set</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · Navy</button><button class="opt" data-o="b">B · canvas-darker</button><button class="opt" data-o="c">C · ink-tint</button></span>
+      <span class="q">a 64px element is a canvas, so canvas rules apply — which ground?</span></div>
+    <div class="exstrip" style="display:flex;min-height:240px">
+      <div data-show="a" data-disp="flex" style="width:64px;background:#0B2E4E;flex:0 0 64px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px"><span style="writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.22em;color:#9FB8C9">VEGAREADY · MACRO EVENT INTELLIGENCE</span></div>
+      <div data-show="b" data-disp="flex" style="display:none;width:64px;background:color-mix(in srgb,#000 26%,#0D1626);flex:0 0 64px;align-items:flex-end;justify-content:center;padding-bottom:18px"><span style="writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.22em;color:#97917F;display:block;margin:0 auto">VEGAREADY · MACRO EVENT INTELLIGENCE</span></div>
+      <div data-show="c" data-disp="flex" style="display:none;width:64px;background:color-mix(in srgb,#F2EBDC 7%,#0D1626);flex:0 0 64px;align-items:flex-end;justify-content:center;padding-bottom:18px;border-right:1px solid color-mix(in srgb,#F2EBDC 14%,transparent)"><span style="writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.22em;color:#97917F;display:block;margin:0 auto">VEGAREADY · MACRO EVENT INTELLIGENCE</span></div>
+      <div class="pad" style="flex:1"><div class="eyebrow">Morning brief</div><div class="h3">The brief, framed by its spine.</div><p class="p">The 64px panel holds the vertical wordmark — annual-report architecture, fixed while content scrolls. Toggle the three grounds: brand Navy, a sunken step of the canvas itself, or a lifted ink-tint with hairline.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">B/C show display:flex when active via JS (layout preserved) · desktop only · one per site, not per page</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="winner: A/B/C + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S2.3">
+    <div class="exhead"><span class="exid">S2.3</span><span class="exname">Rotated section label</span><span class="cls cls-open">OPEN</span><span class="q">vertical type — taste call</span></div>
+    <div class="exstrip" style="display:flex;min-height:200px">
+      <div style="flex:0 0 44px;display:flex;align-items:center;justify-content:center;border-right:1px solid color-mix(in srgb,#F2EBDC 12%,transparent)"><span style="writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.3em;color:#97917F">STRUCTURAL RISK</span></div>
+      <div class="pad" style="flex:1"><div class="h3">Chokepoints under stress</div><p class="p">The section's name rides its left gutter, rotated — readable when you want it, invisible when you don't.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">rotated Lora 10px caps +.3em · muted ink · gutter-aligned, per-section</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S2.4">
+    <div class="exhead"><span class="exid">S2.4</span><span class="exname">Sticky gutter chapter numeral</span><span class="cls cls-open">OPEN→DEFAULT</span><span class="q">the dossier signature (scroll this strip)</span></div>
+    <div class="exstrip" style="display:flex;max-height:260px;overflow-y:auto">
+      <div style="flex:0 0 90px;position:relative"><div style="position:sticky;top:14px;padding:14px 0 0 30px"><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:44px;color:#F2EBDC;opacity:.14;line-height:1">02</div><div style="font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.12em;color:#C9A24A;margin-top:6px">CASCADE</div></div></div>
+      <div class="pad" style="flex:1"><p class="p">Scroll inside this strip — the numeral holds while the chapter passes.</p><p class="p" style="margin-top:14px">Fundamentals first: commodities, energy, trade flows, currency stress reprice within hours of a credible threat to the strait.</p><p class="p" style="margin-top:14px">Sectors follow: tanker rates, insurance premia, refining margins, then the equity complexes that carry them.</p><p class="p" style="margin-top:14px">The technical layer confirms: momentum shifts, volatility regime changes, correlation breaks that mark the new state.</p><p class="p" style="margin-top:14px">— end of chapter 02.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">sticky ghost numeral + gold chapter tag in a 90px gutter · per-chapter on briefs</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S2.6">
+    <div class="exhead"><span class="exid">S2.6</span><span class="exname">Semantic spines — formula-tuned set</span><span class="cls cls-def">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · 3px muted hues</button><button class="opt" data-o="b">B · 6px neutral + label colour</button></span>
+      <span class="q">semantics in the spine, or in the label only (GOV.UK model)?</span></div>
+    <div class="exstrip">
+      <div data-show="a" class="pad" style="display:grid;gap:12px">
+        <div style="border-left:3px solid #3D5A82;padding:10px 16px;background:color-mix(in srgb,#5E83D9 5%,transparent)"><span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#8FA8E8">ASSESSMENT</span><p class="p" style="margin-top:4px;font-size:13.5px">Closure risk remains priced below desk estimate; the gap is the trade.</p></div>
+        <div style="border-left:3px solid #8A6B3A;padding:10px 16px;background:color-mix(in srgb,#E0A24A 5%,transparent)"><span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#E0B262">WATCH</span><p class="p" style="margin-top:4px;font-size:13.5px">Insurance reset on the 15th — premiums move first.</p></div>
+        <div style="border-left:3px solid #5C574C;padding:10px 16px;background:color-mix(in srgb,#F2EBDC 4%,transparent)"><span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#97917F">SOURCE</span><p class="p" style="margin-top:4px;font-size:13.5px">Three wires + AIS reconciliation, timestamped 06:40 GST.</p></div>
+        <div style="border-left:2px solid;border-image:linear-gradient(180deg,#A8843C,#E3C77E) 1;padding:10px 16px"><p style="font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:#EFE7D5">"Volatility isn't risk. It's signal."</p></div>
+      </div>
+      <div data-show="b" class="pad" style="display:none;gap:12px">
+        <div style="border-left:6px solid rgba(242,235,220,.12);padding:10px 16px;margin-bottom:12px"><span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#8FA8E8">ASSESSMENT</span><p class="p" style="margin-top:4px;font-size:13.5px">Closure risk remains priced below desk estimate; the gap is the trade.</p></div>
+        <div style="border-left:6px solid rgba(242,235,220,.12);padding:10px 16px;margin-bottom:12px"><span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#E0B262">WATCH</span><p class="p" style="margin-top:4px;font-size:13.5px">Insurance reset on the 15th — premiums move first.</p></div>
+        <div style="border-left:6px solid rgba(242,235,220,.12);padding:10px 16px;margin-bottom:12px"><span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#97917F">SOURCE</span><p class="p" style="margin-top:4px;font-size:13.5px">Three wires + AIS reconciliation, timestamped 06:40 GST.</p></div>
+        <div style="border-left:2px solid;border-image:linear-gradient(180deg,#A8843C,#E3C77E) 1;padding:10px 16px"><p style="font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:#EFE7D5">"Volatility isn't risk. It's signal."</p></div>
+      </div>
+    </div>
+    <div class="exfoot"><span class="spec">A: desaturated semantic hues at 3px (formula: saturated spines cap ~3px) · B: GOV.UK model — 6px neutral spine, semantics live in the label colour only · gold quote-spine 2px in both</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="winner: A/B + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S2.7">
+    <div class="exhead"><span class="exid">S2.7</span><span class="exname">Split layout, fixed-colour side panel</span><span class="cls cls-open">OPEN</span><span class="q">the 40/60 split as a page archetype</span></div>
+    <div class="exstrip" style="display:flex;min-height:230px">
+      <div style="flex:0 0 38%;background:#0B2E4E;padding:30px 28px"><div class="eyebrow" style="color:#F4C37D">The strait</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:30px;color:#F5F1E6;line-height:1.1">Hormuz,<br>priced honestly.</div><div class="pm num" style="margin-top:14px;color:#9FB8C9">26.5667° N · 56.2500° E</div></div>
+      <div class="pad" style="flex:1"><p class="p">A fifth of the world's oil moves through a corridor 21 miles wide. The desk's question is never whether it matters — it's what the market is charging today for the risk that it stops.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">38/62 split · Navy statement panel + reading column · section-grade archetype</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<!-- ══════════ FAMILY 3 · PAGE FRAMES ══════════ -->
+<section class="fam" id="f3">
+  <div class="famhead">Family 3 · Page frames &amp; print furniture</div>
+  <div class="famsub">The document as an object.</div>
+
+  <div class="ex" data-id="S3.1">
+    <div class="exhead"><span class="exid">S3.1</span><span class="exname">Thin viewport frame</span><span class="cls cls-open">OPEN</span><span class="q">the framed-document feel</span></div>
+    <div class="exstrip"><div style="margin:14px;border:1px solid color-mix(in srgb,#F2EBDC 22%,transparent);border-radius:4px;padding:28px 32px"><div class="eyebrow">Morning brief</div><div class="h3">Day 247 — the strait holds.</div><p class="p">Everything on the page lives inside a 1px hairline frame inset 14px from the viewport — the screen becomes a document.</p></div></div>
+    <div class="exfoot"><span class="spec">1px hairline · 12–16px inset · fixed (frames the viewport, not the page) · brief pages only</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S3.2">
+    <div class="exhead"><span class="exid">S3.2</span><span class="exname">Corner marks — two registers</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · HUD brackets</button><button class="opt" data-o="b">B · print corners</button></span>
+      <span class="q">same device, two voices: intelligence-HUD vs print-craft</span></div>
+    <div class="exstrip">
+      <div data-show="a" class="pad" style="text-align:center">
+        <div style="position:relative;display:inline-block;padding:30px 48px">
+          <svg width="16" height="16" style="position:absolute;top:0;left:0" stroke="rgba(95,168,151,.6)" stroke-width="1.2" fill="none"><path d="M0 16 V0 H16"/></svg>
+          <svg width="16" height="16" style="position:absolute;top:0;right:0" stroke="rgba(95,168,151,.6)" stroke-width="1.2" fill="none"><path d="M0 0 H16 V16"/></svg>
+          <svg width="16" height="16" style="position:absolute;bottom:0;left:0" stroke="rgba(95,168,151,.6)" stroke-width="1.2" fill="none"><path d="M0 0 V16 H16"/></svg>
+          <svg width="16" height="16" style="position:absolute;bottom:0;right:0" stroke="rgba(95,168,151,.6)" stroke-width="1.2" fill="none"><path d="M16 0 V16 H0"/></svg>
+          <div style="font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:#97917F">THE TRACKING</div>
+          <div class="num" style="font-family:'Lora',serif;font-weight:700;font-size:54px;color:#F2EBDC;line-height:1.1">DAY 247</div>
+        </div>
+        <p class="pm" style="margin-top:10px">targeting brackets around the day-counter — the Palantir/Anduril register</p>
+      </div>
+      <div data-show="b" class="pad" style="display:none"><div style="position:relative;background:#F2EDE2;border-radius:6px;padding:30px 34px;max-width:520px;margin:0 auto">
+        <svg width="14" height="14" style="position:absolute;top:8px;left:8px" stroke="#8A8274" stroke-width="1" fill="none"><path d="M0 14 V0 H14"/></svg>
+        <svg width="14" height="14" style="position:absolute;top:8px;right:8px" stroke="#8A8274" stroke-width="1" fill="none"><path d="M0 0 H14 V14"/></svg>
+        <svg width="14" height="14" style="position:absolute;bottom:8px;left:8px" stroke="#8A8274" stroke-width="1" fill="none"><path d="M0 0 V14 H14"/></svg>
+        <svg width="14" height="14" style="position:absolute;bottom:8px;right:8px" stroke="#8A8274" stroke-width="1" fill="none"><path d="M14 0 V14 H0"/></svg>
+        <div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:#8A6420;margin-bottom:8px">JCJ INVESTING · PRIVATE CIRCULATION</div>
+        <p style="font-size:14px;color:#5C5546">Print crop-marks on the Bone certificate — the artifact was printed, then published.</p>
+      </div></div>
+    </div>
+    <div class="exfoot"><span class="spec">A: teal@60% 16px brackets, day-counter + map figures only · B: ink crop-marks, Bone panels only · never around charts (Data Precedence) · one mark-class per site</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A / B / both / neither"></div></div>
+  </div>
+
+  <div class="ex" data-id="S3.3">
+    <div class="exhead"><span class="exid">S3.3</span><span class="exname">Matted page — two plates</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · paper plate</button><button class="opt" data-o="b">B · navy plate</button></span>
+      <span class="q">lit paper object, or tone-on-tone navy (stays dark-primary)?</span></div>
+    <div class="exstrip">
+      <div data-show="a" style="background:#0A0F1A;padding:26px"><div style="background:#F7F3EA;border-radius:4px;max-width:560px;margin:0 auto;padding:34px 38px"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:#8A6420;margin-bottom:10px">BRIEF № 117 · ENERGY DESK</div><div style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:#33302A;margin-bottom:8px">Premia ahead of the reset</div><p style="font-size:14px;color:#5C5546;line-height:1.65">The Abyss mat lights a paper object — maximum contrast, the gallery move.</p></div></div>
+      <div data-show="b" style="display:none;background:#080C14;padding:26px"><div style="background:#10203A;border:1px solid rgba(242,235,220,.14);border-radius:4px;max-width:560px;margin:0 auto;padding:34px 38px"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:#F4C37D;margin-bottom:10px">BRIEF № 117 · ENERGY DESK</div><div style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:#F2EBDC;margin-bottom:8px">Premia ahead of the reset</div><p style="font-size:14px;color:#C2BAA7;line-height:1.65">Tone-on-tone: a navy plate one step up from a near-black mat — the matted feel without leaving dark-primary.</p></div></div>
+    </div>
+    <div class="exfoot"><span class="spec">A: Bone/white page on Abyss mat (counts as the page's inverse moment) · B: navy-on-navy, no inverse spent · covers/long-form only · never with the viewport frame (the mat IS the frame)</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A / B + note"></div></div>
+  </div>
+</section>
+
+<!-- Families 4–7 + rejection wing arrive in Phase 2 -->
+<section class="fam" id="f4">
+  <div class="famhead">Family 4 · Sticky &amp; scroll furniture</div>
+  <div class="famsub">Wayfinding that rides the scroll — all reduced-motion safe, nothing animates on its own.</div>
+
+  <div class="ex" data-id="S4.1">
+    <div class="exhead"><span class="exid">S4.1</span><span class="exname">Wayfinding rail — plain vs chapter-spine assembly</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · plain TOC</button><button class="opt" data-o="b">B · chapter spine</button></span>
+      <span class="q">research's claim: TOC + numerals + 02/05 compose into ONE device. (scroll the strip)</span></div>
+    <div class="exstrip" style="display:flex;max-height:250px;overflow-y:auto">
+      <div style="flex:0 0 185px;position:relative">
+        <div data-show="a" style="position:sticky;top:14px;padding:16px 0 0 26px;font-size:12px">
+          <div style="color:#F2EBDC;font-weight:600;border-left:2px solid #5FA897;padding-left:10px;margin-bottom:8px">The event</div>
+          <div style="color:#97917F;padding-left:12px;margin-bottom:8px">The cascade</div>
+          <div style="color:#97917F;padding-left:12px">The position</div>
+        </div>
+        <div data-show="b" style="display:none;position:sticky;top:14px;padding:16px 0 0 26px;font-size:12px">
+          <div class="num" style="font-family:'Lora',serif;font-size:10px;color:#C9A24A;letter-spacing:.1em;margin-bottom:10px">01 / 03</div>
+          <div style="color:#F2EBDC;font-weight:600;border-left:2px solid #5FA897;padding-left:10px;margin-bottom:8px"><span class="num" style="font-family:'Lora',serif;color:#5FA897;font-size:11px">01</span>&nbsp; The event</div>
+          <div style="color:#97917F;padding-left:12px;margin-bottom:8px"><span class="num" style="font-family:'Lora',serif;font-size:11px">02</span>&nbsp; The cascade</div>
+          <div style="color:#97917F;padding-left:12px"><span class="num" style="font-family:'Lora',serif;font-size:11px">03</span>&nbsp; The position</div>
+        </div>
+      </div>
+      <div class="pad" style="flex:1"><p class="p">Scroll — the rail holds. Toggle B adds the numerals and the 01/03 position counter: the full assembly that replaces TOC + gutter numeral + progress indicator as one device.</p><p class="p" style="margin-top:14px">Conflicts, sanctions, policy shifts, supply shocks: catalogued as they break, scored for transmission, timestamped.</p><p class="p" style="margin-top:14px">Fundamentals reprice first; sectors follow; the technical layer confirms the new regime.</p><p class="p" style="margin-top:14px">The cascade ends at a position: enter fast, defend the drawdown, capitalize on dislocation.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">A: plain TOC (Stripe-docs class) · B: chapter-spine assembly (numerals + labels + position counter) — candidate brief-default; supersedes S4.4 if chosen · hidden ≤900px</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A / B + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S4.4">
+    <div class="exhead"><span class="exid">S4.4</span><span class="exname">Numbered section indicator</span><span class="cls cls-open">FEATURE</span><span class="q">the quiet "02 / 05" progress device (scroll the strip)</span></div>
+    <div class="exstrip" style="display:flex;max-height:220px;overflow-y:auto">
+      <div class="pad" style="flex:1"><p class="p">The indicator sits in the gutter and counts chapters as you pass them — progress without a progress bar.</p><p class="p" style="margin-top:14px">Tanker rates moved 48 hours before the headline; the desk's question is who was paying attention.</p><p class="p" style="margin-top:14px">Premia reset on the 15th. Watch insurance first — it always moves first.</p><p class="p" style="margin-top:14px">— end of section.</p></div>
+      <div style="flex:0 0 90px;position:relative"><div style="position:sticky;top:80px;text-align:center"><span class="num" style="font-family:'Lora',serif;font-size:13px;color:#F2EBDC;font-weight:600">02</span><span class="num" style="font-size:11px;color:#7E796B"> / 05</span><div style="width:1px;height:38px;background:color-mix(in srgb,#F2EBDC 18%,transparent);margin:8px auto 0"></div></div></div>
+    </div>
+    <div class="exfoot"><span class="spec">Lora tabular numerals, right gutter, sticky · long multi-chapter pages only</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S4.5">
+    <div class="exhead"><span class="exid">S4.5</span><span class="exname">Pinned split scrollytelling</span><span class="cls cls-rule">RULING NEEDED</span><span class="q">sticky pane + scrolling steps: does pinning thread the motion law? (scroll the strip)</span></div>
+    <div class="exstrip" style="display:flex;max-height:280px;overflow-y:auto">
+      <div style="flex:0 0 46%;position:relative"><div style="position:sticky;top:0;height:280px;background:#0A0F1A;display:flex;align-items:center;justify-content:center;border-right:1px solid color-mix(in srgb,#F2EBDC 12%,transparent)">
+        <svg viewBox="0 0 200 120" width="80%" aria-hidden="true"><circle cx="100" cy="60" r="44" fill="none" stroke="#5FA897" stroke-width="1.2" opacity=".5"/><circle cx="100" cy="60" r="26" fill="none" stroke="#5FA897" stroke-width="1.2" opacity=".7"/><circle cx="100" cy="60" r="3" fill="#F4C37D"/><text x="100" y="112" fill="#97917F" font-size="9" text-anchor="middle" font-family="Lora">STRAIT OF HORMUZ · pinned map pane (static)</text></svg>
+      </div></div>
+      <div class="pad" style="flex:1">
+        <p class="p"><b style="color:#F2EBDC">Step 1.</b> The map pane pins while these steps scroll past it.</p>
+        <p class="p" style="margin-top:40px"><b style="color:#F2EBDC">Step 2.</b> In production, each step hard-cuts the pane's content (no tween, no fade-scrub).</p>
+        <p class="p" style="margin-top:40px"><b style="color:#F2EBDC">Step 3.</b> Under reduced-motion the layout serves a static stacked fallback — pane, then steps.</p>
+        <p class="p" style="margin-top:40px;color:#97917F">Pinning is scroll-coupled <i>positioning</i>, not animation. Your ruling decides if that distinction holds.</p>
+      </div>
+    </div>
+    <div class="exfoot"><span class="spec">position:sticky pane 46% · hard-cut content swaps only · static stacked fallback · YOUR RULING</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="ruling note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S4.6">
+    <div class="exhead"><span class="exid">S4.6</span><span class="exname">Sticky section eyebrow</span><span class="cls cls-open">FEATURE</span><span class="q">micro-wayfinding (scroll the strip)</span></div>
+    <div class="exstrip" style="max-height:200px;overflow-y:auto">
+      <div style="position:sticky;top:0;background:color-mix(in srgb,#0D1626 92%,transparent);backdrop-filter:blur(6px);padding:8px 38px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 10%,transparent)"><span class="eyebrow" style="margin:0">Structural · Chokepoints</span></div>
+      <div class="pad"><p class="p">The section's eyebrow stays pinned while its body scrolls — you always know which chapter you're in.</p><p class="p" style="margin-top:14px">A fifth of the world's oil through a corridor 21 miles wide; the price of that fact changes daily.</p><p class="p" style="margin-top:14px">Premia, rates, routings — each is a sentence in the same paragraph.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">eyebrow pins at top of its own section only · canvas-tint + blur backing</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S4.7">
+    <div class="exhead"><span class="exid">S4.7</span><span class="exname">Back-to-top, footer-resident</span><span class="cls cls-def">FEATURE</span><span class="q">quiet footer link vs floating button (floating = rejects wing)</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid color-mix(in srgb,#F2EBDC 12%,transparent)"><span class="pm">© JCJ Investing · Source: desk marks</span><a href="#" style="font-size:12.5px;color:#B5AD9A;text-decoration:none;border-bottom:1px solid #7E796B;padding-bottom:1px">Back to top ↑</a></div></div>
+    <div class="exfoot"><span class="spec">text link in footer meta row · instant jump (no smooth scroll under reduced-motion)</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="f5">
+  <div class="famhead">Family 5 · Chrome &amp; utility furniture</div>
+  <div class="famsub">The page's working edges — where the desk shows.</div>
+
+  <div class="ex" data-id="S5.1">
+    <div class="exhead"><span class="exid">S5.1</span><span class="exname">Utility bar + static markets strip</span><span class="cls cls-def">FEATURE</span><span class="q">THE lawful ticker answer — masthead-grade?</span></div>
+    <div class="exstrip">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:18px;padding:7px 38px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);font-size:11.5px;background:color-mix(in srgb,#000 18%,#0D1626)">
+        <div style="display:flex;gap:22px;flex-wrap:wrap"><span class="num" style="color:#B5AD9A">Brent <b style="color:#F2EBDC">86.40</b> <span style="color:#46C9A0">+2.1%</span></span><span class="num" style="color:#B5AD9A">VIX <b style="color:#F2EBDC">19.8</b> <span style="color:#E2725B">−0.8</span></span><span class="num" style="color:#B5AD9A">BTC <b style="color:#F2EBDC">97,210</b> <span style="color:#46C9A0">+1.4%</span></span><span class="num" style="color:#B5AD9A">Gold <b style="color:#F2EBDC">2,648</b> <span style="color:#46C9A0">+0.6%</span></span></div>
+        <span class="num" style="color:#7E796B">06:40 GST · illustrative</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 38px"><span style="font-family:'Lora',serif;font-weight:700;font-size:15px;color:#EDE6D6">Vega<span style="color:#5FA897">Ready</span></span><span class="pm">Markets · Structural · Briefings · About</span></div>
+    </div>
+    <div class="exfoot"><span class="spec">32px utility bar above masthead · static values + timestamp (never scrolls/marquees) · tabular Lora</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S5.2">
+    <div class="exhead"><span class="exid">S5.2</span><span class="exname">Premium breadcrumb</span><span class="cls cls-def">FEATURE</span><span class="q">the path, dressed properly</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:20px;padding-bottom:20px"><span style="font-family:'Lora',serif;font-size:11px;letter-spacing:.08em;color:#97917F">MARKETS</span><span style="color:#7E796B;margin:0 8px">▸</span><span style="font-family:'Lora',serif;font-size:11px;letter-spacing:.08em;color:#F2EBDC;font-weight:600">ENERGY</span><div class="h3" style="margin-top:12px">Energy under escalation</div></div></div>
+    <div class="exfoot"><span class="spec">Lora 11 caps · muted ▸ separators · current = ink weight 600 · analysis pages</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S5.3">
+    <div class="exhead"><span class="exid">S5.3</span><span class="exname">Command-palette affordance</span><span class="cls cls-open">FEATURE</span><span class="q">the desk-tool tell — fits a public site?</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;justify-content:space-between;align-items:center;padding-top:18px;padding-bottom:18px"><span class="pm">Markets · Structural · Briefings</span><span style="display:inline-flex;align-items:center;gap:8px;border:1px solid color-mix(in srgb,#F2EBDC 18%,transparent);border-radius:7px;padding:6px 12px;font-size:12px;color:#97917F">Search the desk<kbd style="font-family:'Lora',serif;font-size:10px;border:1px solid color-mix(in srgb,#F2EBDC 22%,transparent);border-radius:4px;padding:1px 6px;color:#B5AD9A">⌘K</kbd></span></div></div>
+    <div class="exfoot"><span class="spec">nav-resident search affordance with kbd badge · signals instrument, not brochure</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S5.4">
+    <div class="exhead"><span class="exid">S5.4</span><span class="exname">Masthead edition stamp</span><span class="cls cls-def">FEATURE</span><span class="q">the fusion device — date ⟂ day-count ⟂ edition</span></div>
+    <div class="exstrip"><div class="pad" style="text-align:center;padding-top:26px;padding-bottom:26px">
+      <div style="font-family:'Lora',serif;font-weight:700;font-size:20px;color:#EDE6D6">Vega<span style="color:#5FA897">Ready</span></div>
+      <div class="num" style="font-family:'Lora',serif;font-size:11.5px;letter-spacing:.1em;color:#97917F;margin-top:8px">FRIDAY, JUNE 6, 2026 · DAY 247 OF THE TRACKING · BRIEF № 117</div>
+      <div style="width:200px;height:1px;margin:14px auto 0" class="goldgrad"></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">centered masthead stamp · Lora caps tabular · the newspaper's dateline made ours</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S5.5">
+    <div class="exhead"><span class="exid">S5.5</span><span class="exname">Static live-dot doctrine</span><span class="cls cls-def">FEATURE</span><span class="q">"LIVE" without the pulse</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;gap:26px;align-items:center;padding-top:20px;padding-bottom:20px">
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#B5AD9A"><span style="width:7px;height:7px;border-radius:99px;background:#46C9A0;display:inline-block"></span>LIVE · updated 09:40 GST</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#B5AD9A"><span style="width:7px;height:7px;border-radius:99px;background:#E0B262;display:inline-block"></span>RECONCILING · AIS gap 11:02–11:20</span>
+    </div></div>
+    <div class="exfoot"><span class="spec">static dot + timestamp — the timestamp IS the liveness claim · no pulsing, ever</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S5.6">
+    <div class="exhead"><span class="exid">S5.6</span><span class="exname">Data-state pills</span><span class="cls cls-def">FEATURE</span><span class="q">status furniture for a data product</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;gap:10px;flex-wrap:wrap;padding-top:20px;padding-bottom:20px">
+      <span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:99px;background:rgba(70,201,160,.13);color:#46C9A0;border:1px solid rgba(70,201,160,.4)">VERIFIED · 3 SOURCES</span>
+      <span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:99px;background:rgba(224,178,98,.13);color:#E0B262;border:1px solid rgba(224,178,98,.4)">RECONCILING</span>
+      <span style="font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:99px;background:rgba(132,144,158,.14);color:#9aa5b1;border:1px solid rgba(132,144,158,.4)">DELAYED FEED</span>
+    </div></div>
+    <div class="exfoot"><span class="spec">extends the locked status-chip system to data-provenance states · colour+shape+text</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+<section class="fam" id="f6">
+  <div class="famhead">Family 6 · Layout structures</div>
+  <div class="famsub">Compositions we haven't formally used.</div>
+
+  <div class="ex" data-id="S6.1">
+    <div class="exhead"><span class="exid">S6.1</span><span class="exname">Split-screen 50/50 hero</span><span class="cls cls-open">FEATURE</span><span class="q">statement + evidence, side by side</span></div>
+    <div class="exstrip" style="display:flex;min-height:240px;flex-wrap:wrap">
+      <div style="flex:1;min-width:280px;padding:38px;display:flex;flex-direction:column;justify-content:center"><div class="eyebrow">Markets · Energy</div><div style="font-family:'Playfair Display',serif;font-weight:800;font-size:32px;color:#F2EBDC;line-height:1.08">Energy under<br><em style="font-style:italic;font-weight:500;color:#F4C37D">escalation.</em></div></div>
+      <div style="flex:1;min-width:280px;background:#0A0F1A;display:flex;align-items:center;justify-content:center;position:relative">
+        <svg viewBox="0 0 300 150" width="86%" aria-hidden="true"><polyline points="0,110 40,98 80,112 120,84 160,92 200,60 240,72 300,38" fill="none" stroke="#5FA897" stroke-width="2"/><text x="150" y="142" fill="#97917F" font-size="9" text-anchor="middle" font-family="Lora">Brent risk premium · illustrative</text></svg>
+      </div>
+    </div>
+    <div class="exfoot"><span class="spec">50/50 at section grade · statement left, evidence right · stacks on mobile</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S6.3">
+    <div class="exhead"><span class="exid">S6.3</span><span class="exname">Broken-grid overlap</span><span class="cls cls-open">FEATURE</span><span class="q">controlled overlap — confident or messy?</span></div>
+    <div class="exstrip"><div class="pad" style="position:relative;padding-bottom:60px">
+      <div style="background:#0A0F1A;border-radius:10px;height:150px;display:flex;align-items:center;justify-content:center;margin-right:120px"><span class="pm">duotone strait imagery (placeholder)</span></div>
+      <div class="card" style="position:absolute;right:38px;bottom:24px;width:230px;border-color:color-mix(in srgb,#5FA897 40%,transparent)"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A;margin-bottom:6px">TRANSIT COUNT · TODAY</div><div class="num" style="font-family:'Lora',serif;font-size:30px;font-weight:700;color:#F2EBDC">41 <span style="font-size:13px;color:#46C9A0">▲ normal</span></div></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">stat card overlaps the image corner · tonal lift + border (no shadow) · one overlap per view</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S6.4">
+    <div class="exhead"><span class="exid">S6.4</span><span class="exname">8/4 marginalia columns</span><span class="cls cls-open">FEATURE</span><span class="q">the Tufte layout — sourcing in the margin</span></div>
+    <div class="exstrip"><div class="pad" style="display:grid;grid-template-columns:2fr 1fr;gap:30px">
+      <div><p class="p">Closure risk remains priced below the desk estimate. The market is treating Hormuz as a headline, not a balance sheet — and the gap between those two readings is where positioning lives.<sup style="color:#C9A24A;font-family:'Lora',serif">1</sup></p><p class="p" style="margin-top:12px">Insurance moves first, rates second, equities last. The sequence hasn't changed in four decades of incidents.<sup style="color:#C9A24A;font-family:'Lora',serif">2</sup></p></div>
+      <div style="border-left:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);padding-left:18px;font-size:11.5px;color:#97917F;line-height:1.6">
+        <p><span style="color:#C9A24A;font-family:'Lora',serif">1</span> Desk estimate D+247; methodology in the dashboard.</p>
+        <p style="margin-top:10px"><span style="color:#C9A24A;font-family:'Lora',serif">2</span> 1984–2024 incident set, 14 events. Confidence: high.</p>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">8/4 grid · numbered margin notes (gold numerals) · analysis pages · collapses inline ≤760px</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S6.6">
+    <div class="exhead"><span class="exid">S6.6</span><span class="exname">Full-bleed chart breakout</span><span class="cls cls-def">FEATURE</span><span class="q">the reading column yields to the data</span></div>
+    <div class="exstrip">
+      <div style="max-width:560px;margin:0 auto;padding:30px 0 16px"><p class="p">The reading column holds 62 characters — until the data needs the room:</p></div>
+      <div style="background:color-mix(in srgb,#F2EBDC 7%,#0D1626);border-top:1px solid color-mix(in srgb,#F2EBDC 14%,transparent);border-bottom:1px solid color-mix(in srgb,#F2EBDC 14%,transparent);padding:22px 38px">
+        <svg viewBox="0 0 900 130" width="100%" aria-hidden="true"><line x1="0" y1="110" x2="900" y2="110" stroke="#4A4438" stroke-width="1.5"/><polyline points="0,90 80,82 160,94 240,66 320,76 400,48 480,60 560,34 640,48 720,26 820,38 900,18" fill="none" stroke="#5FA897" stroke-width="2.4"/><text x="890" y="14" fill="#E3DCCB" font-size="11" text-anchor="end" font-family="Lora">war-risk premium</text></svg>
+      </div>
+      <div style="max-width:560px;margin:0 auto;padding:16px 0 26px"><p class="p" style="font-size:13px;color:#97917F">…then the column resumes. Data Precedence made visible: the chart gets the full bleed, the prose gets the measure.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">chart escapes the 62ch column to full width · prose never does · the layout admits what matters</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="f7">
+  <div class="famhead">Family 7 · Timeline &amp; stepper spines</div>
+  <div class="famsub">Time made structural — Day 247 is a product feature.</div>
+
+  <div class="ex" data-id="S7.1">
+    <div class="exhead"><span class="exid">S7.1</span><span class="exname">Vertical conflict timeline</span><span class="cls cls-def">FEATURE</span><span class="q">gold nodes = phase changes; the registry made visible</span></div>
+    <div class="exstrip"><div class="pad" style="padding-left:60px">
+      <div style="position:relative;border-left:1px solid color-mix(in srgb,#F2EBDC 18%,transparent);padding-left:26px;display:grid;gap:22px">
+        <div style="position:relative"><span style="position:absolute;left:-31px;top:5px;width:9px;height:9px;border-radius:99px;background:#9A917F"></span><div class="num" style="font-family:'Lora',serif;font-size:10.5px;color:#97917F">DAY 201</div><p class="p" style="font-size:13.5px">Tanker rates reprice on AIS-gap cluster near the strait.</p></div>
+        <div style="position:relative"><span style="position:absolute;left:-32px;top:4px;width:11px;height:11px;border-radius:99px;background:linear-gradient(135deg,#A8843C,#E3C77E);outline:1px solid #E3C77E;outline-offset:2px"></span><div class="num" style="font-family:'Lora',serif;font-size:10.5px;color:#E0B262">DAY 214 · PHASE CHANGE</div><p class="p" style="font-size:13.5px;color:#E3DCCB"><b>Ceasefire declared.</b> Registry enters CEASEFIRE mode; intercept rules tighten.</p></div>
+        <div style="position:relative"><span style="position:absolute;left:-31px;top:5px;width:9px;height:9px;border-radius:99px;background:#9A917F"></span><div class="num" style="font-family:'Lora',serif;font-size:10.5px;color:#97917F">DAY 239</div><p class="p" style="font-size:13.5px">Insurance premia normalize to pre-escalation band.</p></div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">1px hairline rail · ink nodes · gradient-gold node reserved for phase changes only</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S7.2">
+    <div class="exhead"><span class="exid">S7.2</span><span class="exname">Horizontal stepper</span><span class="cls cls-open">FEATURE</span><span class="q">How-it-works register</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="display:flex;align-items:flex-start;gap:0">
+        <div style="flex:1;text-align:center"><div style="width:26px;height:26px;border-radius:99px;background:#5FA897;color:#0B0E13;font-family:'Lora',serif;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">1</div><div class="pm" style="color:#F2EBDC;font-weight:600">Event</div></div>
+        <div style="flex:1;height:1px;background:color-mix(in srgb,#F2EBDC 18%,transparent);margin-top:13px"></div>
+        <div style="flex:1;text-align:center"><div style="width:26px;height:26px;border-radius:99px;border:1px solid #5FA897;color:#5FA897;font-family:'Lora',serif;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">2</div><div class="pm">Cascade</div></div>
+        <div style="flex:1;height:1px;background:color-mix(in srgb,#F2EBDC 18%,transparent);margin-top:13px"></div>
+        <div style="flex:1;text-align:center"><div style="width:26px;height:26px;border-radius:99px;border:1px solid color-mix(in srgb,#F2EBDC 24%,transparent);color:#97917F;font-family:'Lora',serif;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">3</div><div class="pm">Position</div></div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">numbered discs + hairline connectors · active=filled teal · onboarding/how-it-works only</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S7.3">
+    <div class="exhead"><span class="exid">S7.3</span><span class="exname">Ruled ledger progression</span><span class="cls cls-def">FEATURE</span><span class="q">events as account-book rows</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:22px;padding-bottom:22px">
+      <div style="display:flex;gap:14px;padding:10px 4px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);align-items:baseline"><span class="num" style="font-family:'Lora',serif;font-size:11px;color:#97917F;flex:0 0 64px">D+244</span><span style="flex:1;font-size:13.5px;color:#C2BAA7">Bahrain intercepts two UAVs over eastern grid</span><span style="font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:99px;background:rgba(70,201,160,.13);color:#46C9A0">REALIZED</span></div>
+      <div style="display:flex;gap:14px;padding:10px 4px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);align-items:baseline"><span class="num" style="font-family:'Lora',serif;font-size:11px;color:#97917F;flex:0 0 64px">D+246</span><span style="flex:1;font-size:13.5px;color:#C2BAA7">Insurance reset window opens; premia bid early</span><span style="font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:99px;background:rgba(224,178,98,.13);color:#E0B262">ANTICIPATED</span></div>
+      <div style="display:flex;gap:14px;padding:10px 4px;align-items:baseline"><span class="num" style="font-family:'Lora',serif;font-size:11px;color:#97917F;flex:0 0 64px">D+250</span><span style="flex:1;font-size:13.5px;color:#C2BAA7">Strait transit slowdown scenario, unpriced</span><span style="font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:99px;background:rgba(132,144,158,.14);color:#9aa5b1">LATENT</span></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">hairline-ruled rows · day numerals + claim-status pills (the locked reality model, worn)</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="S7.4">
+    <div class="exhead"><span class="exid">S7.4</span><span class="exname">Day-counter hero device</span><span class="cls cls-open">FEATURE</span><span class="q">the count as identity</span></div>
+    <div class="exstrip"><div class="pad" style="text-align:center;padding-top:30px;padding-bottom:30px">
+      <div style="font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.18em;color:#97917F">THE TRACKING</div>
+      <div class="num" style="font-family:'Lora',serif;font-weight:700;font-size:72px;color:#F2EBDC;line-height:1.05">DAY 247</div>
+      <div style="width:120px;height:1px;margin:12px auto" class="goldgrad"></div>
+      <div class="pm">since the first strike · every claim timestamped against it</div>
+    </div></div>
+    <div class="exfoot"><span class="spec">Lora tabular 64–80px · the product's clock, made monumental · one per page</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="fr">
+  <div class="famhead">✗ Rejection wing</div>
+  <div class="famsub">The catalog's AVOIDs, rendered small with their reasons. Silence confirms the rejection; Approve overrules it.</div>
+
+  <div class="ex" data-id="SR1.5">
+    <div class="exhead"><span class="exid">S1.5</span><span class="exname">Gradient divider bar</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: reads decorative; solid/hairline does the job honestly</span></div>
+    <div class="exstrip"><div style="height:5px;background:linear-gradient(90deg,#0B2E4E,#5FA897,#0B2E4E);margin:26px 0"></div></div>
+    <div class="exfoot"><span class="spec">multi-hue gradient bar between sections</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SR2.5">
+    <div class="exhead"><span class="exid">S2.5</span><span class="exname">Viewport edge tab</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: feedback-widget association; cheapens instantly</span></div>
+    <div class="exstrip" style="position:relative;min-height:110px"><span style="position:absolute;right:0;top:34px;writing-mode:vertical-rl;background:#1F4F60;color:#E8EAEE;font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;padding:12px 6px;border-radius:6px 0 0 6px">BRIEF INDEX</span><div class="pad"><p class="pm">fixed tab clinging to the viewport edge…</p></div></div>
+    <div class="exfoot"><span class="spec">fixed edge tab</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SR3.4">
+    <div class="exhead"><span class="exid">S3.4</span><span class="exname">Margin tick rulers</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: fake instrument next to real data = Data-Precedence hazard</span></div>
+    <div class="exstrip" style="display:flex"><div style="flex:0 0 26px;background-image:repeating-linear-gradient(to bottom,transparent,transparent 11px,color-mix(in srgb,#F2EBDC 24%,transparent) 11px,color-mix(in srgb,#F2EBDC 24%,transparent) 12px)"></div><div class="pad"><p class="pm">decorative ruler ticks along the margin…</p></div></div>
+    <div class="exfoot"><span class="spec">tick-mark ruler edge</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SR3.5">
+    <div class="exhead"><span class="exid">S3.5</span><span class="exname">Visible column guides</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: scaffolding as decoration; portfolio-site cliché</span></div>
+    <div class="exstrip" style="position:relative"><div style="position:absolute;inset:0;background-image:repeating-linear-gradient(to right,transparent,transparent calc(25% - 1px),color-mix(in srgb,#F2EBDC 7%,transparent) calc(25% - 1px),color-mix(in srgb,#F2EBDC 7%,transparent) 25%)"></div><div class="pad" style="position:relative"><p class="pm">permanent faint column lines behind everything…</p></div></div>
+    <div class="exfoot"><span class="spec">permanent grid guides</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SR4.2">
+    <div class="exhead"><span class="exid">S4.2</span><span class="exname">Top scroll-progress bar</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: blog furniture; motion-adjacent; the TOC does the job with dignity</span></div>
+    <div class="exstrip"><div style="height:3px;background:color-mix(in srgb,#F2EBDC 12%,transparent)"><div style="height:3px;width:38%;background:#5FA897"></div></div><div class="pad"><p class="pm">the reading-progress bar pinned under the nav…</p></div></div>
+    <div class="exfoot"><span class="spec">scroll-scrubbed progress bar</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SR4.3">
+    <div class="exhead"><span class="exid">S4.3</span><span class="exname">Side progress dots</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: one-page-template association (2014 parallax era)</span></div>
+    <div class="exstrip" style="position:relative;min-height:110px"><div style="position:absolute;right:18px;top:24px;display:grid;gap:8px"><span style="width:7px;height:7px;border-radius:99px;background:#5FA897"></span><span style="width:7px;height:7px;border-radius:99px;background:color-mix(in srgb,#F2EBDC 22%,transparent)"></span><span style="width:7px;height:7px;border-radius:99px;background:color-mix(in srgb,#F2EBDC 22%,transparent)"></span></div><div class="pad"><p class="pm">section dots riding the right edge…</p></div></div>
+    <div class="exfoot"><span class="spec">vertical dot rail</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SR6.2">
+    <div class="exhead"><span class="exid">S6.2</span><span class="exname">Bento marketing grid</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: 2023–24 SaaS trend marker; fights the editorial register</span></div>
+    <div class="exstrip"><div class="pad" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:70px 70px;gap:10px">
+      <div class="card" style="grid-row:span 2;display:flex;align-items:center;justify-content:center"><span class="pm">feature cell</span></div>
+      <div class="card" style="display:flex;align-items:center;justify-content:center"><span class="pm">cell</span></div>
+      <div class="card" style="background:color-mix(in srgb,#36BBA6 10%,#0D1626);display:flex;align-items:center;justify-content:center"><span class="pm">accent</span></div>
+      <div class="card" style="grid-column:span 2;display:flex;align-items:center;justify-content:center"><span class="pm">wide cell</span></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">bento grid section</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SR6.5">
+    <div class="exhead"><span class="exid">S6.5</span><span class="exname">Horizontal-scroll section</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: accessibility cost + content hidden off-axis</span></div>
+    <div class="exstrip"><div class="pad" style="overflow-x:auto;white-space:nowrap"><span class="card" style="display:inline-block;width:200px;margin-right:10px;white-space:normal;vertical-align:top"><span class="pm">card 1 — drag sideways…</span></span><span class="card" style="display:inline-block;width:200px;margin-right:10px;white-space:normal;vertical-align:top"><span class="pm">card 2</span></span><span class="card" style="display:inline-block;width:200px;white-space:normal;vertical-align:top"><span class="pm">card 3 (half-hidden)</span></span></div></div>
+    <div class="exfoot"><span class="spec">sideways-scrolling card strip</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="SRbtt">
+    <div class="exhead"><span class="exid">S4.7-b</span><span class="exname">Floating back-to-top button</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: utility clutter; the footer link suffices</span></div>
+    <div class="exstrip" style="position:relative;min-height:110px"><div class="pad"><p class="pm">content…</p></div><span style="position:absolute;right:20px;bottom:16px;width:38px;height:38px;border-radius:99px;background:color-mix(in srgb,#F2EBDC 12%,#0D1626);border:1px solid color-mix(in srgb,#F2EBDC 22%,transparent);display:flex;align-items:center;justify-content:center;color:#B5AD9A">↑</span></div>
+    <div class="exfoot"><span class="spec">fixed circular button, bottom-right</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const KEY='devlab-s';
+const store=()=>JSON.parse(localStorage.getItem(KEY)||'{}');
+const save=o=>localStorage.setItem(KEY,JSON.stringify(o));
+document.querySelectorAll('.ftab').forEach(t=>{t.addEventListener('click',()=>{
+  document.querySelectorAll('.ftab').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.fam').forEach(f=>f.classList.toggle('on',f.id===t.dataset.f));
+  window.scrollTo({top:0,behavior:'auto'});
+});});
+document.querySelectorAll('.ex').forEach(ex=>{
+  const id=ex.dataset.id,o=store()[id]||{};
+  const bs=ex.querySelectorAll('.vb'),note=ex.querySelector('.vn');
+  const V={app:'APPROVE',con:'CONDITIONAL',rej:'REJECT'};
+  bs.forEach(b=>{const v=V[[...b.classList].find(c=>V[c])];
+    if(o.v===v)b.classList.add('sel');
+    b.addEventListener('click',()=>{const s=store();s[id]=s[id]||{};s[id].v=v;save(s);
+      bs.forEach(x=>x.classList.remove('sel'));b.classList.add('sel');});});
+  if(o.note)note.value=o.note;
+  note.addEventListener('input',e=>{const s=store();s[id]=s[id]||{};s[id].note=e.target.value;save(s);});
+});
+/* option toggles: one variant visible at a time, full context each */
+document.querySelectorAll('.ex').forEach(ex=>{
+  const opts=ex.querySelectorAll('.opt');if(!opts.length)return;
+  opts.forEach(b=>b.addEventListener('click',()=>{
+    opts.forEach(x=>x.classList.toggle('on',x===b));
+    ex.querySelectorAll('[data-show]').forEach(el=>el.style.display=el.dataset.show===b.dataset.o?(el.dataset.disp||''):'none');
+  }));
+});
+document.getElementById('vcopy').addEventListener('click',()=>{
+  const s=store();
+  const lines=Object.keys(s).sort().map(k=>`${k}: ${s[k].v||'—'}${s[k].note?' — '+s[k].note:''}`);
+  navigator.clipboard&&navigator.clipboard.writeText(['DEVICE LAB S verdicts:',...lines].join('\n'));
+  const b=document.getElementById('vcopy');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1400);
+});
+</script>
+</body>
+</html>

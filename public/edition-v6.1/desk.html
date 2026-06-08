@@ -39,12 +39,6 @@
   d.setAttribute('data-sx-map',    g('ed-sx-desk-map',     'base', SXRE));
   d.setAttribute('data-sx-funnel', g('ed-sx-desk-funnel',  'deep', /^(deep|deeper|black|navy|pine|charcoal)$/));
   d.setAttribute('data-sx-sub',    g('ed-sx-desk-sub',     'base', SXRE));
-  /* v6 QC · GROUND sections — full-page-width grounds that were canvas-classified (uncontrollable).
-     Own 7-option ladder: Canvas (default, = var(--canvas)) + 6 shades (Deep/Deeper/Neutral/Navy/Pine/Charcoal). */
-  var GRE = /^(canvas|deep|deeper|neutral|navy|pine|charcoal)$/;
-  d.setAttribute('data-sx-ctaz', g('ed-sx-desk-ctaz', 'canvas', GRE));
-  d.setAttribute('data-sx-foot', g('ed-sx-desk-foot', 'canvas', GRE));
-  d.setAttribute('data-sx-mast', g('ed-sx-desk-mast', 'canvas', GRE));
   /* v6.1 · DOT GRID — tone + opacity replace the old 3-step intensity
      (legacy ed-dots-desk migrated: faint→4.5, strong→15, off→off; std falls to the 9% default) */
   try {
@@ -69,9 +63,6 @@
   d.setAttribute('data-trim-util',   g('ed-trim-desk-utility', '0', TRIMRE));
   d.setAttribute('data-trim-bleed',  g('ed-trim-desk-bleed',   '0', TRIMRE));
   d.setAttribute('data-trim-funnel', g('ed-trim-desk-funnel',  '0', TRIMRE));
-  d.setAttribute('data-trim-ctaz',   g('ed-trim-desk-ctaz',    '0', TRIMRE));
-  d.setAttribute('data-trim-foot',   g('ed-trim-desk-foot',    '0', TRIMRE));
-  d.setAttribute('data-trim-mast',   g('ed-trim-desk-mast',    '0', TRIMRE));
   /* per-element override CSS builder — ONE builder, shared with the panel script via
      window.__edOvr. Declarations are !important so the element-level rule beats both the
      html-level section vars (custom props set ON the consuming element win over inherited
@@ -264,7 +255,6 @@ html{
   --sx-map:var(--box);--sx-mapline:var(--boxline);
   --sx-funnel:var(--deep);
   --sx-sub:var(--box);--sx-subline:var(--boxline);
-  --sx-ctaz:var(--canvas);--sx-foot:var(--canvas);--sx-mast:var(--canvas); /* v6 QC: GROUND sections — full-page-width grounds, default = canvas */
   --dotc:var(--ink);--dota:9%; /* v6.1: dot TONE (default = canvas-ink construction) × OPACITY */
   --ctagold:linear-gradient(90deg,#A8843C,#E3C77E 55%,#A8843C); /* the literal gold frame construction (g4 restops it) */
   --ctafh:var(--ctagold);--ctafc:var(--ctagold); /* v6.1: per-CTA frame colours, default = gold */
@@ -453,28 +443,6 @@ html[data-sx-funnel="black"]{--sx-funnel:#0B0D10}
 html[data-sx-funnel="navy"]{--sx-funnel:#0C1422}
 html[data-sx-funnel="pine"]{--sx-funnel:#0C1714}
 html[data-sx-funnel="charcoal"]{--sx-funnel:#14171B}
-/* GROUND sections (v6 QC) — CTA-zone band, Footer, Masthead grounds. Own 6-shade ladder shared
-   with the Funnel construction; "canvas" carries no rule (the ground keeps following --canvas).
-   These are the full-page-width grounds behind the dot grid / footer columns / masthead bar —
-   previously canvas-classified and uncontrollable. */
-html[data-sx-ctaz="deep"]{--sx-ctaz:var(--deep)}
-html[data-sx-ctaz="deeper"]{--sx-ctaz:color-mix(in srgb,#000 35%,var(--canvas))}
-html[data-sx-ctaz="neutral"]{--sx-ctaz:#0B0D10}
-html[data-sx-ctaz="navy"]{--sx-ctaz:#0C1422}
-html[data-sx-ctaz="pine"]{--sx-ctaz:#0C1714}
-html[data-sx-ctaz="charcoal"]{--sx-ctaz:#14171B}
-html[data-sx-foot="deep"]{--sx-foot:var(--deep)}
-html[data-sx-foot="deeper"]{--sx-foot:color-mix(in srgb,#000 35%,var(--canvas))}
-html[data-sx-foot="neutral"]{--sx-foot:#0B0D10}
-html[data-sx-foot="navy"]{--sx-foot:#0C1422}
-html[data-sx-foot="pine"]{--sx-foot:#0C1714}
-html[data-sx-foot="charcoal"]{--sx-foot:#14171B}
-html[data-sx-mast="deep"]{--sx-mast:var(--deep)}
-html[data-sx-mast="deeper"]{--sx-mast:color-mix(in srgb,#000 35%,var(--canvas))}
-html[data-sx-mast="neutral"]{--sx-mast:#0B0D10}
-html[data-sx-mast="navy"]{--sx-mast:#0C1422}
-html[data-sx-mast="pine"]{--sx-mast:#0C1714}
-html[data-sx-mast="charcoal"]{--sx-mast:#14171B}
 /* DOT GRID (bottom) — v6.1: TONE (--dotc, 9 hues, default Ink = the original canvas-ink
    construction, no rule) × OPACITY (--dota, 8-step ladder, default 9%, no rule; off removes the image) */
 html[data-dott="slate"]{--dotc:#6B7686}
@@ -591,7 +559,6 @@ html[data-theme="t8"]{
   --sx-bleed:var(--card);
   --sx-map:var(--card);--sx-mapline:var(--cardline);
   --sx-sub:var(--card);--sx-subline:var(--cardline);
-  --sx-ctaz:var(--canvas);--sx-foot:var(--canvas);--sx-mast:var(--canvas); /* v6 QC: GROUND shades are dark-canvas constructions — t8 returns to its own canvas */
 }
 
 /* ════ COVERAGE axis (v6 final layer) — owner's coverage law: colour intensity scales
@@ -647,13 +614,9 @@ html[data-theme="t8"][data-cov="auto"],html[data-theme="t8"][data-cov="literal"]
    Negative trims mix #000 at 5%/10%; positive mix #fff at 4%/8%. */
 html{
   --tc-util:#fff;--ta-util:0%;--tc-bleed:#fff;--ta-bleed:0%;--tc-funnel:#fff;--ta-funnel:0%;
-  --tc-ctaz:#fff;--ta-ctaz:0%;--tc-foot:#fff;--ta-foot:0%;--tc-mast:#fff;--ta-mast:0%; /* v6 QC: GROUND trims */
   --sx-utilR:color-mix(in srgb,var(--tc-util) var(--ta-util),var(--sx-util));
   --sx-bleedR:color-mix(in srgb,var(--tc-bleed) var(--ta-bleed),var(--sx-bleed));
   --sx-funnelR:color-mix(in srgb,var(--tc-funnel) var(--ta-funnel),var(--sx-funnel));
-  --sx-ctazR:color-mix(in srgb,var(--tc-ctaz) var(--ta-ctaz),var(--sx-ctaz));
-  --sx-footR:color-mix(in srgb,var(--tc-foot) var(--ta-foot),var(--sx-foot));
-  --sx-mastR:color-mix(in srgb,var(--tc-mast) var(--ta-mast),var(--sx-mast));
   /* theme-ink backups for per-element override restores — resolve at html, pre-flip */
   --ink0:var(--ink);--body0:var(--body);--muted0:var(--muted);--eyeb0:var(--eyeb);--struct0:var(--struct);
   --emph0:var(--emph);--data0:var(--data);--bench0:var(--bench);--latent0:var(--latent);
@@ -671,18 +634,6 @@ html[data-trim-funnel="-2"]{--tc-funnel:#000;--ta-funnel:10%}
 html[data-trim-funnel="-1"]{--tc-funnel:#000;--ta-funnel:5%}
 html[data-trim-funnel="1"]{--tc-funnel:#fff;--ta-funnel:4%}
 html[data-trim-funnel="2"]{--tc-funnel:#fff;--ta-funnel:8%}
-html[data-trim-ctaz="-2"]{--tc-ctaz:#000;--ta-ctaz:10%}
-html[data-trim-ctaz="-1"]{--tc-ctaz:#000;--ta-ctaz:5%}
-html[data-trim-ctaz="1"]{--tc-ctaz:#fff;--ta-ctaz:4%}
-html[data-trim-ctaz="2"]{--tc-ctaz:#fff;--ta-ctaz:8%}
-html[data-trim-foot="-2"]{--tc-foot:#000;--ta-foot:10%}
-html[data-trim-foot="-1"]{--tc-foot:#000;--ta-foot:5%}
-html[data-trim-foot="1"]{--tc-foot:#fff;--ta-foot:4%}
-html[data-trim-foot="2"]{--tc-foot:#fff;--ta-foot:8%}
-html[data-trim-mast="-2"]{--tc-mast:#000;--ta-mast:10%}
-html[data-trim-mast="-1"]{--tc-mast:#000;--ta-mast:5%}
-html[data-trim-mast="1"]{--tc-mast:#fff;--ta-mast:4%}
-html[data-trim-mast="2"]{--tc-mast:#fff;--ta-mast:8%}
 
 *{margin:0;padding:0;box-sizing:border-box}
 @media (prefers-reduced-motion: reduce){
@@ -750,7 +701,7 @@ svg .tallyg{stroke:var(--body)}
 .tickers{display:flex;gap:22px;white-space:nowrap;overflow:hidden}
 .tickers span b{font-weight:600;color:var(--body)}
 .utility .stamp-time{color:var(--muted);letter-spacing:.08em;white-space:nowrap}
-.masthead{border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas));background:var(--sx-mastR)} /* GROUND · Masthead (v6 QC): top-bar ground — default canvas = pure canvas, now tunable */
+.masthead{border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas))}
 .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;padding-top:22px;padding-bottom:18px}
 .wordmark{font-family:'Playfair Display',serif;font-weight:800;font-size:23px;letter-spacing:.02em;color:var(--ink);text-decoration:none}
 .wordmark i{font-style:normal;color:var(--eyeb)}
@@ -955,7 +906,6 @@ svg .tallyg{stroke:var(--body)}
 /* ── 10 · CTA section (D5.1-A dot grid) — full section presence ── */
 .ctazone{
   padding:110px 0;text-align:center;
-  background-color:var(--sx-ctazR); /* GROUND · CTA zone band (v6 QC): the full-width strip BEHIND the dots — own ground control, default = canvas */
   background-image:radial-gradient(color-mix(in srgb,var(--dotc) var(--dota),transparent) 1px,transparent 1px); /* DOT GRID v6.1: --dotc = tone (default theme ink) · --dota = opacity (3–18% ladder · off removes the image) */
   background-size:22px 22px;
   border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent);
@@ -964,7 +914,7 @@ svg .tallyg{stroke:var(--body)}
 .ctazone h2{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(26px,3vw,36px);margin-bottom:30px}
 
 /* ── 11 · footer ──────────────────────────────────────────── */
-footer{border-top:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas));padding:58px 0 40px;background:color-mix(in srgb,#000 14%,var(--sx-footR))} /* GROUND · Footer (v6 QC): canvas-darkened band — ground is now tunable (default canvas keeps the 14% darken) */
+footer{border-top:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas));padding:58px 0 40px;background:color-mix(in srgb,#000 14%,var(--canvas))}
 .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
 .fbrand .wordmark{font-size:20px}
 .fbrand p{font-size:13.5px;color:var(--muted);margin-top:12px;max-width:34ch}
@@ -1088,7 +1038,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
 </div>
 
 <!-- ════ MASTHEAD ════ -->
-<header class="masthead" data-ax="GREY · masthead · GROUND · Masthead">
+<header class="masthead" data-ax="GREY · masthead">
   <div class="wrap">
     <a class="wordmark" href="index.html" data-ax="GOLD · wordmark accent">VEGA<i>READY</i></a>
     <nav class="mast-right" aria-label="Edition navigation">
@@ -1366,7 +1316,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
 </section>
 
 <!-- ════ 10 · CTA SECTION (D5.1-A dot grid) ════ -->
-<section class="ctazone" id="dashboard" data-dev="D5.1-A · CTA-zone dot grid" data-ax="GROUND · CTA zone · DOTS · CTA dot grid">
+<section class="ctazone" id="dashboard" data-dev="D5.1-A · CTA-zone dot grid" data-ax="DOTS · CTA dot grid">
   <div class="wrap">
     <div class="eyebrow cz-eyebrow">The live board</div>
     <h2>Every number on this page, live.</h2>
@@ -1375,7 +1325,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
 </section>
 
 <!-- ════ 11 · FOOTER ════ -->
-<footer data-ax="GROUND · Footer">
+<footer data-ax="CANVAS · footer band (darkened)">
   <div class="wrap">
     <div class="fgrid">
       <div class="fbrand">
@@ -1405,7 +1355,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
 <!-- options panel (bottom-left) -->
 <div id="edpanel" role="group" aria-label="Display options">
   <div class="ep-head">
-    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8">V6 LIVE</span> <a href="/edition-v6.1/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">v6.1 &#8599;</a> <a href="/edition-v5/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V5 &#8599;</a> <a href="/edition-v4/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V4 &#8599;</a> <a href="/edition-v3/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V3 &#8599;</a> <a href="/edition-v2/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V2 &#8599;</a> <a href="/edition-v1/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
+    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8;color:#E0B262">V6.1 FROZEN</span> <a href="/edition-v5/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V5 &#8599;</a> <a href="/edition-v4/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V4 &#8599;</a> <a href="/edition-v3/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V3 &#8599;</a> <a href="/edition-v2/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V2 &#8599;</a> <a href="/edition-v1/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
     <button type="button" class="ep-toggle" id="eptoggle" aria-expanded="true" aria-label="Collapse options panel">Hide</button>
   </div>
   <div class="ep-body">
@@ -1421,9 +1371,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       <button type="button" class="ep-preset" data-preset="p1">P1 Formula</button>
       <button type="button" class="ep-preset" data-preset="p2">P2 Conservative</button>
       <button type="button" class="ep-preset" data-preset="p3">P3 Baseline</button>
-    </div>
-    <div class="ep-presets" role="group" aria-label="Reset" style="margin-top:6px">
-      <button type="button" class="ep-preset" id="epresetall" style="flex:1 1 auto">↺ Reset all</button>
     </div>
     <!-- fields run in PAGE ORDER, top of page → bottom (owner ruling, June 2026):
          canvas → chroma → grey → gold → data (hero chart) → boxes base → SECTIONS in page order
@@ -1523,18 +1470,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
         <option value="sunk2">Sunken Desaturated</option>
         <option value="sunk3">Sunken Navy</option>
         <option value="sunk4">Sunken Neutral</option>
-      </select>
-    </div>
-    <div class="ep-field">
-      <label for="opt-sx-mast">Ground · Masthead band</label>
-      <select id="opt-sx-mast">
-        <option value="canvas" selected>Canvas (default)</option>
-        <option value="deep">Deep</option>
-        <option value="deeper">Deeper · 35% black mix</option>
-        <option value="neutral">Neutral black</option>
-        <option value="navy">Navy depth</option>
-        <option value="pine">Pine depth</option>
-        <option value="charcoal">Charcoal</option>
       </select>
     </div>
     <div class="ep-field">
@@ -1724,18 +1659,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       </select>
     </div>
     <div class="ep-field">
-      <label for="opt-sx-ctaz">Ground · CTA zone band (behind dots)</label>
-      <select id="opt-sx-ctaz">
-        <option value="canvas" selected>Canvas (default)</option>
-        <option value="deep">Deep</option>
-        <option value="deeper">Deeper · 35% black mix</option>
-        <option value="neutral">Neutral black</option>
-        <option value="navy">Navy depth</option>
-        <option value="pine">Pine depth</option>
-        <option value="charcoal">Charcoal</option>
-      </select>
-    </div>
-    <div class="ep-field">
       <label for="opt-sx-ctac">CTA · closing</label>
       <select id="opt-sx-ctac">
         <option value="base" selected>Base (follows Boxes)</option>
@@ -1756,18 +1679,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
         <option value="sunk2">Sunken Desaturated</option>
         <option value="sunk3">Sunken Navy</option>
         <option value="sunk4">Sunken Neutral</option>
-      </select>
-    </div>
-    <div class="ep-field">
-      <label for="opt-sx-foot">Ground · Footer band</label>
-      <select id="opt-sx-foot">
-        <option value="canvas" selected>Canvas (default)</option>
-        <option value="deep">Deep</option>
-        <option value="deeper">Deeper · 35% black mix</option>
-        <option value="neutral">Neutral black</option>
-        <option value="navy">Navy depth</option>
-        <option value="pine">Pine depth</option>
-        <option value="charcoal">Charcoal</option>
       </select>
     </div>
     <div class="ep-field">
@@ -1805,7 +1716,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       </select>
     </div>
     <div class="ep-field">
-      <label for="opt-deep" title="Sets the base depth that the Funnel band's 'Deep' option and the map sea plate derive from.">Deep · funnel base + map plate</label>
+      <label for="opt-deep">Deep · funnel base + map plate</label>
       <select id="opt-deep">
         <option value="b1">B1 · Guaranteed step</option>
         <option value="b2" selected>B2 · Current</option>
@@ -1815,7 +1726,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       <div class="ep-ovr-h" id="epovrh">Overrides (0)</div>
       <div id="epovrrows"></div>
     </div>
-    <div class="ep-hint" style="margin-top:9px;font-size:8px;line-height:1.5;color:#6E7681">⊙ Labels on → click any element for fine controls (tone, opacity, trim, frame, this-element-only).</div>
     <div id="epviol" role="status" aria-live="polite"></div>
   </div>
 </div>
@@ -1853,9 +1763,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       { id:'opt-sx-funnel', attr:'data-sx-funnel', key:'ed-sx-desk-funnel'  },
       { id:'opt-sx-sub',    attr:'data-sx-sub',    key:'ed-sx-desk-sub'     },
       { id:'opt-dots',      attr:'data-dott',      key:'ed-dott-desk'       },
-      { id:'opt-sx-ctaz',   attr:'data-sx-ctaz',   key:'ed-sx-desk-ctaz'    }, /* v6 QC · GROUND */
-      { id:'opt-sx-foot',   attr:'data-sx-foot',   key:'ed-sx-desk-foot'    }, /* v6 QC · GROUND */
-      { id:'opt-sx-mast',   attr:'data-sx-mast',   key:'ed-sx-desk-mast'    }, /* v6 QC · GROUND */
       { id:'opt-bline',     attr:'data-bline',     key:'ed-bline'   }
     ];
     function syncSel(sel, v){
@@ -1883,11 +1790,11 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
     /* presets — style axes only; the canvas/theme is never touched */
     var PRESETS = {
       p1:{ 'data-gold':'g1','data-grey':'cool','data-sem':'s3','data-dialect':'auto','data-deep':'b1','data-chroma':'capped','data-box':'b-tonal','data-bline':'auto',
-           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink','data-sx-ctaz':'canvas','data-sx-foot':'canvas','data-sx-mast':'canvas' },
+           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink' },
       p2:{ 'data-gold':'g2','data-grey':'warm','data-sem':'s1','data-dialect':'auto','data-deep':'b1','data-chroma':'rich','data-box':'b-tonal','data-bline':'auto',
-           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink','data-sx-ctaz':'canvas','data-sx-foot':'canvas','data-sx-mast':'canvas' },
+           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink' },
       p3:{ 'data-gold':'g3','data-grey':'warm','data-sem':'s2','data-dialect':'fixed','data-deep':'b2','data-box':'b-tonal','data-bline':'auto',
-           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink','data-sx-ctaz':'canvas','data-sx-foot':'canvas','data-sx-mast':'canvas' }
+           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink' }
     };
     Array.prototype.forEach.call(document.querySelectorAll('.ep-preset'), function(b){
       b.addEventListener('click', function(){
@@ -1977,50 +1884,7 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
         });
         if (axpopSync) axpopSync();
       }
-      maybeCrossPageNote(c); /* v6 QC · cross-page combo note */
     }
-    /* ── v6 QC · CROSS-PAGE COMBO NOTE — combos carry page-scoped section/override keys; when a
-       combo's keys belong to a different page than this one (desk), the global axes apply but the
-       per-page section/override choices were saved elsewhere. Transient, non-blocking. */
-    var THIS_PAGE = 'desk';
-    function comboHasForeignKeys(c){
-      var foreign = false;
-      function scan(k){
-        var m = /^ed-(?:sx|trim)-(index|brief|desk)\b/.exec(k) || /^ed-ovr-(index|brief|desk)\b/.exec(k);
-        if (m && m[1] !== THIS_PAGE) foreign = true;
-      }
-      if (c.axes) for (var k in c.axes) scan(k);
-      if (c.trim) for (var k3 in c.trim) scan(k3);
-      /* an ovr object keyed to another page that actually carries entries */
-      if (c.ovr) ['ed-ovr-index','ed-ovr-brief'].forEach(function(pk){
-        if (c.ovr[pk] && typeof c.ovr[pk] === 'object' && Object.keys(c.ovr[pk]).length) foreign = true;
-      });
-      return foreign;
-    }
-    var cpNote = null, cpTimer = null;
-    function maybeCrossPageNote(c){
-      if (!comboHasForeignKeys(c)) return;
-      if (!cpNote){
-        cpNote = document.createElement('div');
-        cpNote.style.cssText = 'position:fixed;left:22px;bottom:calc(100vh - 40px);z-index:130;max-width:230px;background:#15181D;border:1px solid #A8843C;border-radius:8px;padding:7px 10px;font-family:Lora,serif;font-size:9px;line-height:1.5;color:#C8CDD3';
-        cpNote.setAttribute('role','status');
-        document.body.appendChild(cpNote);
-      }
-      cpNote.textContent = 'Global axes applied · section & override choices are per-page (saved on ' + foreignPageOf(c) + ').';
-      cpNote.style.display = 'block';
-      if (cpTimer) clearTimeout(cpTimer);
-      cpTimer = setTimeout(function(){ if (cpNote) cpNote.style.display = 'none'; }, 6000);
-      document.addEventListener('click', dismissCpNote, { once:true });
-    }
-    function foreignPageOf(c){
-      var found = THIS_PAGE;
-      function scan(k){ var m = /^ed-(?:sx|trim|ovr)-(index|brief|desk)\b/.exec(k); if (m && m[1] !== THIS_PAGE) found = m[1]; }
-      if (c.axes) for (var k in c.axes) scan(k);
-      if (c.ovr)  for (var k2 in c.ovr) if (c.ovr[k2] && Object.keys(c.ovr[k2]||{}).length) scan(k2);
-      if (c.trim) for (var k3 in c.trim) scan(k3);
-      return found === 'index' ? 'the front door' : (found === 'brief' ? 'The Brief' : found);
-    }
-    function dismissCpNote(){ if (cpNote) cpNote.style.display = 'none'; if (cpTimer) clearTimeout(cpTimer); }
     function renderCombos(){
       var rows = document.getElementById('epcomborows');
       if (!rows) return;
@@ -2109,14 +1973,11 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
        stored ed-trim-desk-*. Both ride in saved combos (full-state snapshot). */
     var OVR_KEY = 'ed-ovr-desk';
     var OVR_PAGE_KEYS = ['ed-ovr-index', 'ed-ovr-brief', 'ed-ovr-desk'];
-    var TRIM_KEYS = ['ed-trim-index-utility', 'ed-trim-index-abyss', 'ed-trim-desk-utility', 'ed-trim-desk-bleed', 'ed-trim-desk-funnel', 'ed-trim-desk-ctaz', 'ed-trim-desk-foot', 'ed-trim-desk-mast'];
+    var TRIM_KEYS = ['ed-trim-index-utility', 'ed-trim-index-abyss', 'ed-trim-desk-utility', 'ed-trim-desk-bleed', 'ed-trim-desk-funnel'];
     var TRIM_SECS = [
       { re:/SECTION · Utility band/,  attr:'data-trim-util',   key:'ed-trim-desk-utility' },
       { re:/SECTION · Breakout band/, attr:'data-trim-bleed',  key:'ed-trim-desk-bleed'   },
-      { re:/SECTION · Funnel band/,   attr:'data-trim-funnel', key:'ed-trim-desk-funnel'  },
-      { re:/GROUND · CTA zone/,       attr:'data-trim-ctaz',   key:'ed-trim-desk-ctaz'    }, /* v6 QC · GROUND trim */
-      { re:/GROUND · Footer/,         attr:'data-trim-foot',   key:'ed-trim-desk-foot'    }, /* v6 QC · GROUND trim */
-      { re:/GROUND · Masthead/,       attr:'data-trim-mast',   key:'ed-trim-desk-mast'    }  /* v6 QC · GROUND trim */
+      { re:/SECTION · Funnel band/,   attr:'data-trim-funnel', key:'ed-trim-desk-funnel'  }
     ];
     /* ── v6.1 · popover-only keys — dot opacity + per-CTA frame colours; ride combos like trims ── */
     var FRAME_RE = /^(gold|metal|bronze|l-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood))$/;
@@ -2170,32 +2031,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       });
     }
     renderOvr();
-    /* ── v6 QC · RESET ALL — clean slate: every axis to its default, all overrides/trims/grounds
-       cleared, dots to Ink/9%, CTA frames to Gold, coverage auto. Clears the page's localStorage
-       too, then re-renders through the single setAxis path. */
-    var AXIS_DEFAULTS = {
-      'opt-theme':'t1','opt-gold':'g3','opt-grey':'warm','opt-sem':'s2','opt-dialect':'fixed',
-      'opt-deep':'b2','opt-chroma':'rich','opt-data':'d1','opt-box':'b-tonal','opt-cov':'auto','opt-bline':'auto',
-      'opt-sx-util':'base','opt-sx-ctah':'base','opt-sx-ctac':'base','opt-sx-hero':'base','opt-sx-stat':'base',
-      'opt-sx-anchor':'base','opt-sx-bleed':'base','opt-sx-map':'base','opt-sx-funnel':'deep','opt-sx-sub':'base',
-      'opt-dots':'ink','opt-sx-ctaz':'canvas','opt-sx-foot':'canvas','opt-sx-mast':'canvas'
-    };
-    var resetBtn = document.getElementById('epresetall');
-    if (resetBtn) resetBtn.addEventListener('click', function(){
-      if (!confirm('Reset all controls on this page to their defaults? (overrides, trims, dots, frames, grounds)')) return;
-      /* element overrides for this page */
-      try { localStorage.removeItem(OVR_KEY); } catch(e){}
-      applyOvrCss(); renderOvr();
-      /* trims (this page's keys) + grounds ride the same trim chain */
-      ['ed-trim-desk-utility','ed-trim-desk-bleed','ed-trim-desk-funnel','ed-trim-desk-ctaz','ed-trim-desk-foot','ed-trim-desk-mast'].forEach(function(k){ try { localStorage.removeItem(k); } catch(e){} });
-      TRIM_SECS.forEach(function(t){ d.setAttribute(t.attr, '0'); });
-      /* popover-only keys (dot opacity + CTA frames) */
-      XKEYS.forEach(function(x){ try { localStorage.removeItem(x.key); } catch(e){} if (x.attr) d.setAttribute(x.attr, x.def); });
-      d.setAttribute('data-dota','9'); d.setAttribute('data-ctafh','gold'); d.setAttribute('data-ctafc','gold');
-      /* every axis to its default through the single path (sets attr + store + select + flags) */
-      AXES.forEach(function(a){ if (AXIS_DEFAULTS[a.id] != null) setAxis(a, AXIS_DEFAULTS[a.id]); });
-      if (axpopSync) axpopSync();
-    });
     /* collapse — state on <html>; restored pre-paint by the head script */
     var panel = document.getElementById('edpanel');
     var tog = document.getElementById('eptoggle');
@@ -2293,30 +2128,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       if (sem === 's2') msgs.push('⚠ S2 pair: green/red lightness mismatch');
       out.textContent = msgs.join(' · ');
       out.style.display = msgs.length ? 'block' : 'none';
-      refreshBaseCounts();
-    }
-    /* ── v6 QC · LIVE COUNTS — Boxes base + Border labels show how many sections they still drive.
-       M = the hue-following sections (SECTION_FLAGS); N = those still at Base (Border: at bline auto). */
-    function refreshBaseCounts(){
-      var M = SECTION_FLAGS.length;
-      var atBase = 0, atAutoLine = 0;
-      var bline = d.getAttribute('data-bline');
-      SECTION_FLAGS.forEach(function(s){
-        var v = d.getAttribute(s.attr);
-        if (v === 'base') atBase++;
-        if (v === 'base') atAutoLine++; /* a section at Base takes the BASE line; an overridden section keeps its own */
-      });
-      var boxLbl = document.querySelector('label[for="opt-box"]');
-      if (boxLbl){
-        if (!boxLbl.getAttribute('data-base')) boxLbl.setAttribute('data-base', 'Boxes · base — all sections');
-        boxLbl.innerHTML = boxLbl.getAttribute('data-base') + ' <span style="color:#6E7681;font-weight:400">(driving ' + atBase + ' of ' + M + ' sections)</span>';
-      }
-      var blLbl = document.querySelector('label[for="opt-bline"]');
-      if (blLbl){
-        if (!blLbl.getAttribute('data-base')) blLbl.setAttribute('data-base', 'Border · box lines + tape rules');
-        var n = (bline === 'auto') ? atAutoLine : 0;
-        blLbl.innerHTML = blLbl.getAttribute('data-base') + ' <span style="color:#6E7681;font-weight:400">(' + n + ' of ' + M + ' at base)</span>';
-      }
     }
 
     /* 2 · CLICK-TO-EDIT POPOVER — Labels mode only; every edit routes through setAxis (the single path) */
@@ -2338,9 +2149,6 @@ html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-siz
       { re:/SECTION · Funnel band/,       id:'opt-sx-funnel', label:'Funnel'   },
       { re:/SECTION · Subscribe card/,    id:'opt-sx-sub',    label:'Subscribe'},
       { re:/\bDOTS\b/,                    id:'opt-dots',      label:'Dot tone' },
-      { re:/GROUND · CTA zone/,           id:'opt-sx-ctaz',   label:'CTA grnd' },
-      { re:/GROUND · Footer/,             id:'opt-sx-foot',   label:'Foot grnd'},
-      { re:/GROUND · Masthead/,           id:'opt-sx-mast',   label:'Mast grnd'},
       { re:/\bBORDER\b/,                  id:'opt-bline',     label:'Border'   },
       { re:/\bSEM\b/,                     id:'opt-sem',       label:'Semantic' },
       { re:/\bDIALECT\b/,                 id:'opt-dialect',   label:'Dialect'  },

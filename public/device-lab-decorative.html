@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Device Lab D — Decorative &amp; Micro-craft (61 exhibits)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Fraunces:opsz,wght@9..144,300..700&family=Lora:ital,wght@0,400..700;1,500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto!important}}
+body{font-family:'Fraunces',Georgia,serif;font-size:15.5px;line-height:1.6;background:#0D1626;color:#DCD4C2}
+:focus-visible{outline:2px solid #5FA897;outline-offset:2px;border-radius:4px}
+.num{font-family:'Lora',serif;font-variant-numeric:tabular-nums}
+.ctrl{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 14px;background:rgba(8,10,14,.95);backdrop-filter:blur(10px);border-bottom:1px solid #23262C;font-size:11.5px}
+.ctrl .t{font-family:'Lora',serif;font-weight:700;color:#9AA3AD;letter-spacing:.06em;margin-right:4px}
+.ftab{font-family:inherit;font-size:11.5px;padding:5px 11px;border-radius:7px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.ftab.on{background:#1C2128;color:#EDE6D6;border-color:#5FA897;font-weight:600}
+.vcopy{margin-left:auto;font-family:inherit;font-size:11.5px;padding:5px 12px;border-radius:6px;border:1px solid #3A6B5E;background:#14201C;color:#7FC4AE;cursor:pointer}
+main{padding:64px 32px 90px;max-width:1080px;margin:0 auto}
+.fam{display:none}.fam.on{display:block}
+.famhead{margin:26px 0 6px;font-family:'Playfair Display',serif;font-weight:700;font-size:26px;color:#F2EBDC}
+.famsub{font-size:13px;color:#97917F;margin-bottom:26px}
+.ex{border:1px solid color-mix(in srgb,#F2EBDC 16%,#0D1626);border-radius:12px;margin-bottom:26px;overflow:hidden;background:color-mix(in srgb,#F2EBDC 4%,#0D1626)}
+.exhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid color-mix(in srgb,#F2EBDC 12%,#0D1626)}
+.exid{font-family:'Lora',serif;font-weight:700;font-size:12px;color:#F4C37D}
+.exname{font-family:'Lora',serif;font-weight:600;font-size:13.5px;color:#F2EBDC}
+.cls{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.07em;padding:2px 8px;border-radius:99px}
+.cls-open{background:rgba(95,168,151,.14);color:#5FA897;border:1px solid rgba(95,168,151,.4)}
+.cls-avoid{background:rgba(225,100,112,.12);color:#E16470;border:1px solid rgba(225,100,112,.4)}
+.cls-rule{background:rgba(224,178,98,.15);color:#E0B262;border:1px solid rgba(224,178,98,.5)}
+.q{font-size:12px;color:#97917F;font-style:italic;margin-left:auto}
+.exstrip{position:relative;background:#0D1626}
+.exfoot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:9px 16px;border-top:1px solid color-mix(in srgb,#F2EBDC 12%,#0D1626);font-size:11.5px;color:#97917F}
+.spec{flex:1;min-width:240px}
+.vset{display:flex;align-items:center;gap:5px}
+.vb{font-family:inherit;font-size:10.5px;padding:4px 10px;border-radius:6px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.vb.app.sel{background:rgba(70,201,160,.15);color:#46C9A0;border-color:#46C9A0}
+.vb.con.sel{background:rgba(224,178,98,.15);color:#E0B262;border-color:#E0B262}
+.vb.rej.sel{background:rgba(225,100,112,.15);color:#E16470;border-color:#E16470}
+.vn{font-family:inherit;font-size:10.5px;padding:4px 9px;border-radius:6px;border:1px solid #2E3239;background:#0E1116;color:#D5CFC0;width:170px}
+.optset{display:inline-flex;gap:4px;margin-left:6px}
+.opt{font-family:inherit;font-size:10px;padding:3px 9px;border-radius:6px;border:1px solid #2E3239;background:transparent;color:#9AA3AD;cursor:pointer}
+.opt.on{background:#1C2128;color:#EDE6D6;border-color:#C9A24A;font-weight:600}
+.pad{padding:34px 38px}
+.eyebrow{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#C9A24A;margin-bottom:10px}
+.h3{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:#F2EBDC;margin-bottom:8px}
+.p{font-size:14px;color:#B4AC99;max-width:64ch}
+.pm{font-size:11.5px;color:#97917F}
+.card{background:color-mix(in srgb,#F2EBDC 9%,#0D1626);border:1px solid color-mix(in srgb,#F2EBDC 18%,#0D1626);border-radius:10px;padding:16px 18px}
+.stamp{display:inline-block;font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.16em;color:#C9A24A;border:1.5px solid rgba(201,162,74,.65);border-radius:3px;padding:5px 12px}
+</style>
+</head>
+<body>
+
+<div class="ctrl">
+  <span class="t">LAB D</span>
+  <button class="ftab on" data-f="f1">1 · Cartographic</button>
+  <button class="ftab" data-f="f2">2 · Print artifacts</button>
+  <button class="ftab" data-f="f3">3 · Micro-type</button>
+  <button class="ftab" data-f="f4">4 · Data-furniture</button>
+  <button class="ftab" data-f="f5">5 · Fields</button>
+  <button class="ftab" data-f="f6">6 · Material</button>
+  <button class="ftab" data-f="f7">7 · Editorial</button>
+  <button class="ftab" data-f="fr">✗ Rejects</button>
+  <button class="vcopy" id="vcopy">Copy verdicts</button>
+</div>
+
+<main>
+
+<!-- ══════ D-FAMILY 1 · CARTOGRAPHIC & TECHNICAL TEXTURES ══════ -->
+<section class="fam on" id="f1">
+  <div class="famhead">Family 1 · Cartographic &amp; technical textures</div>
+  <div class="famsub">The chart-room made ambient — the most on-brand family in the catalog. Nothing here ever sits under dense text or real charts (Data Precedence).</div>
+
+  <div class="ex" data-id="D1.1">
+    <div class="exhead"><span class="exid">D1.1</span><span class="exname">Topographic contour field</span><span class="cls cls-open">APPROVED ≤5% · owner 06-06</span>
+      <span class="optset"><button class="opt on" data-o="a">A · 5% (locked cap)</button><button class="opt" data-o="b">B · 9% (rejected ref)</button></span>
+      <span class="q">"5% or less — 9% tacky and overpowering for this contrast"</span></div>
+    <div class="exstrip" style="position:relative;overflow:hidden">
+      <svg data-show="a" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;opacity:.05" viewBox="0 0 800 260" preserveAspectRatio="none">
+        <path d="M-20 200 Q150 120 320 170 T700 130 T900 160" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 170 Q160 90 330 140 T710 100 T900 130" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 140 Q170 60 340 110 T720 70 T900 100" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 230 Q140 150 310 200 T690 160 T900 190" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 110 Q180 30 350 80 T730 40 T900 70" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+      </svg>
+      <svg data-show="b" aria-hidden="true" style="display:none;position:absolute;inset:0;width:100%;height:100%;opacity:.09" viewBox="0 0 800 260" preserveAspectRatio="none">
+        <path d="M-20 200 Q150 120 320 170 T700 130 T900 160" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 170 Q160 90 330 140 T710 100 T900 130" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 140 Q170 60 340 110 T720 70 T900 100" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 230 Q140 150 310 200 T690 160 T900 190" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+        <path d="M-20 110 Q180 30 350 80 T730 40 T900 70" fill="none" stroke="#F2EBDC" stroke-width="1"/>
+      </svg>
+      <div class="pad" style="position:relative"><div class="eyebrow">Structural · Chokepoints</div><div class="h3">The terrain under the trade.</div><p class="p">Contour lines breathe behind the section opener — never under the body that follows, never under data.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">ink contours @5–9% · section openers/heroes only · stops before running text begins</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A/B + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.2">
+    <div class="exhead"><span class="exid">D1.2</span><span class="exname">Dot-grid world map backdrop</span><span class="cls cls-open">FEATURE</span><span class="q">THE on-brand backdrop — abstract enough?</span></div>
+    <div class="exstrip" style="position:relative;overflow:hidden;min-height:230px">
+      <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 800 230">
+        <g fill="#F2EBDC" opacity=".10">
+          <!-- abstract dot landmass band -->
+          <circle cx="430" cy="80" r="1.6"/><circle cx="442" cy="78" r="1.6"/><circle cx="454" cy="80" r="1.6"/><circle cx="466" cy="84" r="1.6"/><circle cx="478" cy="90" r="1.6"/><circle cx="438" cy="90" r="1.6"/><circle cx="450" cy="92" r="1.6"/><circle cx="462" cy="96" r="1.6"/><circle cx="474" cy="102" r="1.6"/><circle cx="446" cy="104" r="1.6"/><circle cx="458" cy="108" r="1.6"/><circle cx="470" cy="114" r="1.6"/><circle cx="452" cy="118" r="1.6"/><circle cx="464" cy="124" r="1.6"/><circle cx="440" cy="116" r="1.6"/>
+          <circle cx="500" cy="70" r="1.6"/><circle cx="512" cy="66" r="1.6"/><circle cx="524" cy="64" r="1.6"/><circle cx="536" cy="66" r="1.6"/><circle cx="548" cy="70" r="1.6"/><circle cx="508" cy="78" r="1.6"/><circle cx="520" cy="76" r="1.6"/><circle cx="532" cy="78" r="1.6"/><circle cx="544" cy="82" r="1.6"/><circle cx="516" cy="88" r="1.6"/><circle cx="528" cy="90" r="1.6"/><circle cx="540" cy="94" r="1.6"/>
+          <circle cx="380" cy="100" r="1.6"/><circle cx="392" cy="96" r="1.6"/><circle cx="404" cy="94" r="1.6"/><circle cx="416" cy="96" r="1.6"/><circle cx="388" cy="108" r="1.6"/><circle cx="400" cy="106" r="1.6"/><circle cx="412" cy="108" r="1.6"/><circle cx="396" cy="118" r="1.6"/><circle cx="408" cy="120" r="1.6"/>
+          <circle cx="560" cy="100" r="1.6"/><circle cx="572" cy="104" r="1.6"/><circle cx="584" cy="110" r="1.6"/><circle cx="566" cy="114" r="1.6"/><circle cx="578" cy="120" r="1.6"/><circle cx="590" cy="126" r="1.6"/>
+        </g>
+        <circle cx="468" cy="98" r="3.4" fill="#F4C37D"/>
+        <text x="480" y="94" fill="#97917F" font-size="9.5" font-family="Lora" letter-spacing="1">HORMUZ</text>
+      </svg>
+      <div class="pad" style="position:relative;max-width:54%"><div class="eyebrow">The watch</div><div class="h3">Where the world tightens.</div><p class="p" style="font-size:13.5px">An abstract dot-field suggests the map; one gold point marks the desk's focus.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">1.6px ink dots @10% · abstract (never a clipart map) · one gold focus point max · hero/section panels only</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.3">
+    <div class="exhead"><span class="exid">D1.3</span><span class="exname">Dotted route arcs</span><span class="cls cls-open">FEATURE</span><span class="q">shipping-lane romance on the dot field</span></div>
+    <div class="exstrip" style="position:relative;overflow:hidden;min-height:200px">
+      <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 800 200">
+        <g fill="#F2EBDC" opacity=".08"><circle cx="180" cy="120" r="1.5"/><circle cx="192" cy="116" r="1.5"/><circle cx="204" cy="114" r="1.5"/><circle cx="186" cy="128" r="1.5"/><circle cx="198" cy="126" r="1.5"/><circle cx="620" cy="70" r="1.5"/><circle cx="632" cy="66" r="1.5"/><circle cx="644" cy="68" r="1.5"/><circle cx="626" cy="78" r="1.5"/><circle cx="638" cy="76" r="1.5"/></g>
+        <path d="M195 120 Q400 -10 630 72" fill="none" stroke="#5FA897" stroke-width="1.2" stroke-dasharray="2 6" opacity=".55"/>
+        <circle cx="195" cy="120" r="2.6" fill="#5FA897"/><circle cx="630" cy="72" r="2.6" fill="#5FA897"/>
+        <text x="170" y="140" fill="#97917F" font-size="9.5" font-family="Lora" letter-spacing="1">RAS TANURA</text>
+        <text x="600" y="92" fill="#97917F" font-size="9.5" font-family="Lora" letter-spacing="1">ROTTERDAM</text>
+      </svg>
+      <div class="pad" style="position:relative"><div class="eyebrow">Transmission</div><p class="p" style="font-size:13.5px">A great-circle arc, dotted, between two named points — the route as quiet decoration.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">2-6 dash teal @55% · endpoints labeled (truth-only — real routes) · ≤2 arcs per surface</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.4">
+    <div class="exhead"><span class="exid">D1.4</span><span class="exname">Graticule + corner coordinates</span><span class="cls cls-open">FEATURE</span><span class="q">the chart-room panel</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="position:relative;border:1px solid color-mix(in srgb,#F2EBDC 16%,transparent);border-radius:8px;overflow:hidden;padding:26px 30px;background-image:repeating-linear-gradient(to right,transparent,transparent 59px,rgba(242,235,220,.05) 59px,rgba(242,235,220,.05) 60px),repeating-linear-gradient(to bottom,transparent,transparent 59px,rgba(242,235,220,.05) 59px,rgba(242,235,220,.05) 60px)">
+        <div class="eyebrow">Chokepoint file</div><div class="h3" style="font-size:19px">Strait of Hormuz</div>
+        <p class="p" style="font-size:13.5px">The faint lat/long mesh dresses the panel as a chart-room document.</p>
+        <div class="num" style="position:absolute;right:14px;bottom:10px;font-family:'Lora',serif;font-size:9.5px;letter-spacing:.08em;color:#97917F">26.5667° N · 56.2500° E</div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">60px mesh @5% · coordinates corner-set, truth-only · file/dossier panels, never under charts</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.5">
+    <div class="exhead"><span class="exid">D1.5</span><span class="exname">Crosshair / reticle motif</span><span class="cls cls-open">FEATURE</span><span class="q">targeting language — precise, or too military?</span></div>
+    <div class="exstrip"><div class="pad">
+      <div class="card" style="max-width:480px">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+          <svg aria-hidden="true" width="18" height="18" style="opacity:.65;flex:0 0 18px" viewBox="0 0 22 22" stroke="#5FA897" stroke-width="1.2" fill="none"><circle cx="11" cy="11" r="7"/><line x1="11" y1="0" x2="11" y2="5"/><line x1="11" y1="17" x2="11" y2="22"/><line x1="0" y1="11" x2="5" y2="11"/><line x1="17" y1="11" x2="22" y2="11"/></svg>
+          <span style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A">WATCH ITEM</span>
+        </div>
+        <p class="p" style="font-size:13.5px">Insurance reset, June 15 — premia bid early in three of four past cycles.</p>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">APPROVED 06-06 (inline fix confirmed) · 18px @65% teal · WHERE: watchlist cards on dashboard + structural/watch · WHY: marks the item being tracked</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.6">
+    <div class="exhead"><span class="exid">D1.6</span><span class="exname">Radar rings</span><span class="cls cls-open">FEATURE</span><span class="q">range-ring texture behind the watchlist</span></div>
+    <div class="exstrip" style="position:relative;overflow:hidden;min-height:190px">
+      <svg aria-hidden="true" style="position:absolute;right:-90px;top:50%;transform:translateY(-50%);opacity:.5" width="340" height="340" viewBox="0 0 340 340" fill="none">
+        <circle cx="170" cy="170" r="60" stroke="rgba(95,168,151,.18)" stroke-width="1"/><circle cx="170" cy="170" r="105" stroke="rgba(95,168,151,.13)" stroke-width="1"/><circle cx="170" cy="170" r="150" stroke="rgba(95,168,151,.09)" stroke-width="1"/><circle cx="170" cy="170" r="2.5" fill="#5FA897"/>
+      </svg>
+      <div class="pad" style="position:relative;max-width:60%"><div class="eyebrow">The watchlist</div><div class="h3" style="font-size:19px">Five items inside the rings.</div><p class="p" style="font-size:13.5px">Static range rings anchor the panel's right edge — sonar without the sweep (nothing animates).</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">3 rings, teal 9–18% · corner/edge-anchored · STATIC always (no sweep, no pulse)</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.7">
+    <div class="exhead"><span class="exid">D1.7</span><span class="exname">Blueprint leader-line annotation</span><span class="cls cls-avoid">REJECTED · owner 06-06</span><span class="q">"context doesn't make sense" — the site has no imagery layer to annotate; dormant unless imagery ever enters</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="position:relative;background:#0A0F1A;border-radius:8px;min-height:170px;overflow:hidden">
+        <div style="position:absolute;inset:0;background:linear-gradient(120deg,#10202b,#0A0F1A);opacity:.9"></div>
+        <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 700 170">
+          <path d="M210 108 C 260 96, 420 96, 470 108 L470 118 C 420 130, 260 130, 210 118 Z" fill="#13242e" stroke="rgba(242,235,220,.25)" stroke-width="1"/>
+          <line x1="340" y1="96" x2="340" y2="46" stroke="#9A917F" stroke-width="1"/><circle cx="340" cy="100" r="2" fill="#9A917F"/>
+          <text x="348" y="42" fill="#C2BAA7" font-size="10" font-family="Lora" letter-spacing="1">VLCC · LADEN · 18.2 KN</text>
+          <line x1="452" y1="120" x2="520" y2="148" stroke="#9A917F" stroke-width="1"/><circle cx="452" cy="118" r="2" fill="#9A917F"/>
+          <text x="526" y="152" fill="#C2BAA7" font-size="10" font-family="Lora" letter-spacing="1">EASTBOUND LANE</text>
+        </svg>
+      </div>
+      <p class="pm" style="margin-top:10px">leader lines + technical labels turn the duotone image into examined evidence (labels truth-only)</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">1px ink-tone leaders, detached 2px from target · Lora 10px caps labels · imagery only, never charts</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.8">
+    <div class="exhead"><span class="exid">D1.8</span><span class="exname">Coordinates as metadata</span><span class="cls cls-avoid">REJECTED · owner 06-06</span><span class="q">"nobody would use this"</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:24px;padding-bottom:24px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);padding-bottom:10px;margin-bottom:14px"><div class="eyebrow" style="margin:0">Chokepoint brief · Hormuz</div><span class="num" style="font-family:'Lora',serif;font-size:10px;letter-spacing:.1em;color:#97917F">26.5667° N · 56.2500° E · D+247</span></div>
+      <p class="p">The section signs itself with its place and its day — metadata as dress.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">Lora 10px tabular · real coordinates only · header-rule right slot</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.9">
+    <div class="exhead"><span class="exid">D1.9</span><span class="exname">Compass / north mark</span><span class="cls cls-avoid">REJECTED · owner 06-06</span><span class="q">"looks cheap"</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;align-items:center;gap:18px">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true"><circle cx="17" cy="17" r="14" stroke="rgba(242,235,220,.25)" stroke-width="1"/><path d="M17 6 L20 17 L17 14.5 L14 17 Z" fill="#C9A24A"/><text x="17" y="31.5" fill="#97917F" font-size="7" font-family="Lora" text-anchor="middle">N</text></svg>
+      <p class="p" style="font-size:13.5px">A minimal north mark sits beside any map figure — the sheet knows which way it faces.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">34px · gold needle inside ink ring · map figures only, one per figure</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D1.10">
+    <div class="exhead"><span class="exid">D1.10</span><span class="exname">Neatline + scale bar</span><span class="cls cls-open">FEATURE</span><span class="q">map-sheet authority framing</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="border:1px solid rgba(242,235,220,.22);outline:1px solid rgba(242,235,220,.08);outline-offset:4px;border-radius:2px;padding:22px 26px;position:relative">
+        <div class="eyebrow" style="margin-bottom:6px">Figure 2 · The strait</div>
+        <p class="p" style="font-size:13.5px">Double-line neatline frames the map figure; the scale bar sits in its margin.</p>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:16px"><div style="width:60px;height:3px;background:linear-gradient(90deg,#F2EBDC 0 50%,transparent 50% 100%);background-size:20px 3px;border:1px solid rgba(242,235,220,.4)"></div><span class="num" style="font-size:9px;color:#97917F;font-family:'Lora',serif">0 — 40 NM</span></div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">APPROVED 06-06 · WHERE: map figures on structural/chokepoints + briefs that embed a static map · WHY: frames the map as an authoritative sheet, separates it from charts · dormant until a map figure ships</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<!-- ══════ D-FAMILY 2 · PRINT & ARCHIVAL ARTIFACTS ══════ -->
+<section class="fam" id="f2">
+  <div class="famhead">Family 2 · Print &amp; archival artifacts</div>
+  <div class="famsub">The intelligence-product dress. Invented vocabulary only — never real classification markings.</div>
+
+  <div class="ex" data-id="D2.1">
+    <div class="exhead"><span class="exid">D2.1</span><span class="exname">Desk stamp system</span><span class="cls cls-open">FEATURE</span><span class="q">the boxed stamp — instantly "intelligence product"?</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap">
+        <div><div class="eyebrow">Morning brief</div><div class="h3">Day 247 — the strait holds.</div><p class="p" style="font-size:13.5px">The stamp sits top-right of the brief head, set straight (never angled — angled = novelty).</p></div>
+        <div style="display:grid;gap:8px;justify-items:end"><span class="stamp">DESK COPY</span><span class="stamp" style="color:#8FA8E8;border-color:rgba(94,131,217,.55)">ASSESSMENT</span></div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">Lora 10px caps +.16em in 1.5px box · invented vocabulary only (DESK COPY / ASSESSMENT / MORNING BRIEF) · 1–2 per page head</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D2.2">
+    <div class="exhead"><span class="exid">D2.2</span><span class="exname">Edition numbering block</span><span class="cls cls-open">FEATURE</span><span class="q">print-run notation as masthead furniture</span></div>
+    <div class="exstrip"><div class="pad" style="text-align:center;padding-top:24px;padding-bottom:24px">
+      <div class="num" style="font-family:'Lora',serif;font-size:11px;letter-spacing:.14em;color:#97917F">BRIEF № 117 · SERIES III · COMPILED 06:40 GST</div>
+      <div style="width:160px;height:1px;background:linear-gradient(90deg,#A8843C,#E3C77E 50%,#A8843C);margin:10px auto 0"></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">№ glyph + tabular Lora caps · real counters (briefs actually numbered) · masthead or brief-head</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D2.3">
+    <div class="exhead"><span class="exid">D2.3</span><span class="exname">Perforated ticket-edge card</span><span class="cls cls-open">FEATURE</span><span class="q">the tear-off CTA — playful, or off-register?</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="max-width:430px;background:#F7F3EA;border-radius:8px;padding:24px 28px;position:relative">
+        <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:#33302A">The morning brief, daily.</div>
+        <p style="font-size:13px;color:#5C5546;margin:6px 0 16px">One email at the open. Tear here.</p>
+        <div style="border-top:2px dashed #B5AC97;margin:0 -28px;padding:14px 28px 0"><a href="#" style="font-family:'Fraunces',serif;font-weight:600;font-size:14px;color:#2A6478;text-decoration:none;border-bottom:1px solid #2A6478">Subscribe →</a></div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">dashed perforation + light-surface card · newsletter CTA only · one per site</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D2.5">
+    <div class="exhead"><span class="exid">D2.5</span><span class="exname">Letterpress impression (paper-object exception)</span><span class="cls cls-open">FEATURE</span><span class="q">ink pressed into Bone — works only on light surfaces</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="max-width:480px;background:#F2EDE2;border-radius:8px;padding:30px 34px;text-align:center">
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:26px;color:#4A4438;text-shadow:0 1px 0 rgba(255,255,255,.75)">JCJ INVESTING</div>
+        <div style="font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;color:#8A8274;margin-top:6px">EST. PRIVATE CIRCULATION</div>
+      </div>
+      <p class="pm" style="margin-top:10px">the 1px light under-edge reads as pressure, not glow — the only "shadow-like" pixel, scoped to paper objects</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">text-shadow 0 1px white@75% on Bone only (the paper-object exception) · ceremonial marks, never body text</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D2.6">
+    <div class="exhead"><span class="exid">D2.6</span><span class="exname">Typeset marginalia / revision notes</span><span class="cls cls-open">FEATURE</span><span class="q">visible corrections = the trust claim</span></div>
+    <div class="exstrip"><div class="pad" style="display:grid;grid-template-columns:2fr 1fr;gap:26px">
+      <p class="p">Closure risk remains priced below the desk estimate. The market is treating Hormuz as a headline, not a balance sheet — the gap between those readings is where positioning lives.</p>
+      <div style="border-left:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);padding-left:14px;font-size:11px;color:#97917F;font-style:italic;line-height:1.55">— revised 06:40, sourcing upgraded to three wires<br><span style="color:#7E796B">— ¶2 corrected: premium figure restated</span></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">italic Fraunces 11px in margin · real revision history only · analysis pages</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D2.7">
+    <div class="exhead"><span class="exid">D2.7</span><span class="exname">Redaction-bar tease</span><span class="cls cls-open">FEATURE</span><span class="q">the 506(c) wing's flirt — members see the full line</span></div>
+    <div class="exstrip"><div class="pad">
+      <div class="card" style="max-width:560px">
+        <div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A;margin-bottom:8px">DESK POSITIONING · MEMBERS</div>
+        <p class="p" style="font-size:14px">Into the reset we are <span style="background:rgba(242,235,220,.16);border-radius:2px;color:transparent;user-select:none">long vega via Q3 strangles</span> with <span style="background:rgba(242,235,220,.16);border-radius:2px;color:transparent;user-select:none">tanker-equity</span> hedges.</p>
+        <p class="pm" style="margin-top:10px"><a href="#" style="color:#7FC4AE;text-decoration:none;border-bottom:1px solid #3A6B5E">Verify accreditation to read →</a></p>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">ink-tint redaction bars @16% · fund-section teasers ONLY (never public analysis — Data Precedence on truth) · the tease must be real content behind the gate</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D2.10">
+    <div class="exhead"><span class="exid">D2.10</span><span class="exname">"Filed under" metadata block</span><span class="cls cls-open">FEATURE</span><span class="q">archival dress on real metadata — the safest device in the family</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:24px;padding-bottom:24px">
+      <p class="p" style="margin-bottom:16px">…the arc closes. Every brief signs off with its file card:</p>
+      <div style="border-top:1px solid color-mix(in srgb,#F2EBDC 14%,transparent);padding-top:12px;font-family:'Lora',serif;font-size:10.5px;letter-spacing:.06em;color:#97917F">
+        FILED UNDER&nbsp;&nbsp;<span style="color:#C2BAA7">Energy · Chokepoints · Insurance</span><br>
+        <span style="display:inline-block;margin-top:5px">DAY&nbsp;&nbsp;<span class="num" style="color:#C2BAA7">D+247</span>&nbsp;&nbsp;·&nbsp;&nbsp;SOURCES&nbsp;&nbsp;<span class="num" style="color:#C2BAA7">14</span>&nbsp;&nbsp;·&nbsp;&nbsp;NEXT REVIEW&nbsp;&nbsp;<span class="num" style="color:#C2BAA7">JUNE 15</span></span>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">Lora caps ledger lines · all values real (tags, day, source count) · brief sign-offs</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="f3">
+  <div class="famhead">Family 3 · Micro-typography craft</div>
+  <div class="famsub">Detail invisible until it's missing. Each exhibit names its WHERE and WHY.</div>
+
+  <div class="ex" data-id="D3.2">
+    <div class="exhead"><span class="exid">D3.2</span><span class="exname">Oversized quotation glyph</span><span class="cls cls-open">FEATURE</span><span class="q">the 130px mark behind a real pull-quote</span></div>
+    <div class="exstrip"><div class="pad" style="position:relative;text-align:center;padding-top:44px">
+      <div aria-hidden="true" style="position:absolute;top:2px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:130px;line-height:1;color:#F2EBDC;opacity:.07">&#8220;</div>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:21px;color:#EFE7D5;max-width:30ch;margin:0 auto;position:relative">Volatility isn't risk. It's signal.</p>
+      <p class="pm" style="margin-top:10px;font-family:'Lora',serif;letter-spacing:.08em">DESK MAXIM</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">130px Playfair " @7% behind the quote · WHERE: pull-quotes on briefs + the homepage maxim · WHY: gives the quote a stage without colour spend</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D3.3">
+    <div class="exhead"><span class="exid">D3.3</span><span class="exname">Drop caps</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · ink</button><button class="opt" data-o="b">B · gold</button><button class="opt" data-o="c">C · boxed</button></span>
+      <span class="q">which register opens a brief?</span></div>
+    <div class="exstrip">
+      <div data-show="a" class="pad"><p class="p" style="max-width:58ch"><span style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;float:left;line-height:.8;padding:5px 10px 0 0;color:#F2EBDC">M</span>arkets move when the world shakes. The desk's question is never whether the strait matters — it's what the market is charging today for the risk that it stops, and who collects when that price is wrong.</p></div>
+      <div data-show="b" class="pad" style="display:none"><p class="p" style="max-width:58ch"><span style="font-family:'Playfair Display',serif;font-size:54px;font-weight:700;float:left;line-height:.8;padding:5px 10px 0 0;color:#F4C37D">M</span>arkets move when the world shakes. The desk's question is never whether the strait matters — it's what the market is charging today for the risk that it stops, and who collects when that price is wrong.</p></div>
+      <div data-show="c" class="pad" style="display:none"><p class="p" style="max-width:58ch"><span style="font-family:'Playfair Display',serif;font-size:38px;font-weight:700;float:left;line-height:1;padding:8px 13px;margin:4px 12px 0 0;color:#F2EBDC;border:1px solid rgba(242,235,220,.25)">M</span>arkets move when the world shakes. The desk's question is never whether the strait matters — it's what the market is charging today for the risk that it stops, and who collects when that price is wrong.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">WHERE: first paragraph of long-form briefs only (one per page) · WHY: marks "the reading begins here" · gold version counts against the gold budget</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A/B/C + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D3.4">
+    <div class="exhead"><span class="exid">D3.4</span><span class="exname">Numeral discipline — oldstyle vs lining</span><span class="cls cls-open">FEATURE</span><span class="q">two numeral voices, hard-separated by job</span></div>
+    <div class="exstrip"><div class="pad" style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div><div class="eyebrow" style="font-size:9.5px">PROSE · OLDSTYLE</div><p class="p" style="font-size:14.5px;font-feature-settings:'onum'">Premia rose 38 points across 14 events since 1984 — the sequence held in 12 of them.</p><p class="pm" style="margin-top:6px">numerals duck into the text like lowercase</p></div>
+      <div><div class="eyebrow" style="font-size:9.5px">DATA · LINING TABULAR</div><div class="card"><div style="display:flex;justify-content:space-between;font-family:'Lora',serif;font-size:13px;color:#E3DCCB"><span>Brent</span><span class="num">86.40</span></div><div style="display:flex;justify-content:space-between;font-family:'Lora',serif;font-size:13px;color:#E3DCCB;margin-top:4px"><span>VIX</span><span class="num">19.80</span></div></div><p class="pm" style="margin-top:6px">columns align; numbers stand at attention</p></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">WHERE: oldstyle in brief prose · lining-tabular in every table/strip/stat · WHY: prose reads calm, data reads precise · HARD RULE: oldstyle never touches financial tables</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D3.6">
+    <div class="exhead"><span class="exid">D3.6</span><span class="exname">True small-caps eyebrow</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · current caps</button><button class="opt" data-o="b">B · small-caps</button></span>
+      <span class="q">upgrade the eyebrow voice?</span></div>
+    <div class="exstrip">
+      <div data-show="a" class="pad" style="padding-top:24px;padding-bottom:24px"><div class="eyebrow">Structural · Chokepoints</div><div class="h3" style="font-size:19px">Hormuz at Day 247</div></div>
+      <div data-show="b" class="pad" style="display:none;padding-top:24px;padding-bottom:24px"><div style="font-family:'Lora',serif;font-variant-caps:small-caps;letter-spacing:.08em;font-size:13.5px;font-weight:600;color:#C9A24A;margin-bottom:10px">Structural · Chokepoints</div><div class="h3" style="font-size:19px">Hormuz at Day 247</div></div>
+    </div>
+    <div class="exfoot"><span class="spec">WHERE: every eyebrow site-wide if approved · WHY: small-caps read softer/more literary than letterspaced caps · A/B same colour, different case mechanics</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A/B + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D3.10">
+    <div class="exhead"><span class="exid">D3.10</span><span class="exname">Punctuation as ornament</span><span class="cls cls-open">FEATURE</span><span class="q">which marks enter the register: · — § ∴</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:24px;padding-bottom:24px">
+      <p class="pm" style="margin-bottom:12px">inline separators in metadata lines:</p>
+      <div class="num" style="font-family:'Lora',serif;font-size:12px;color:#B5AD9A;letter-spacing:.04em">FRIDAY, JUNE 6 <span style="color:#C9A24A">·</span> DAY 247 <span style="color:#C9A24A">·</span> BRIEF № 117</div>
+      <div class="num" style="font-family:'Lora',serif;font-size:12px;color:#B5AD9A;letter-spacing:.04em;margin-top:8px">ENERGY DESK <span style="color:#C9A24A">—</span> COMPILED 06:40 GST</div>
+      <div class="num" style="font-family:'Lora',serif;font-size:12px;color:#B5AD9A;letter-spacing:.04em;margin-top:8px">§ 2 · THE CASCADE&nbsp;&nbsp;&nbsp;<span style="color:#7E796B">∴ therefore-mark closing a logic chain</span></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">WHERE: metadata lines (·), datelines (—), brief section numbers (§), logic sign-offs (∴, sparing) · WHY: typographic jewelry at zero colour cost — gold dots count as hairline-scale gold</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="which marks + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D3.11">
+    <div class="exhead"><span class="exid">D3.11</span><span class="exname">Tufte sidenotes</span><span class="cls cls-open">FEATURE</span><span class="q">numbered margin sourcing — the trust apparatus</span></div>
+    <div class="exstrip"><div class="pad" style="display:grid;grid-template-columns:2fr 1fr;gap:26px">
+      <p class="p">Closure risk remains priced below the desk estimate.<sup style="color:#C9A24A;font-family:'Lora',serif;font-size:11px"> 1</sup> The market is treating Hormuz as a headline, not a balance sheet — and the gap between those two readings is where positioning lives.<sup style="color:#C9A24A;font-family:'Lora',serif;font-size:11px"> 2</sup></p>
+      <div style="font-size:11.5px;color:#97917F;line-height:1.6"><p><span style="color:#C9A24A;font-family:'Lora',serif">1</span> Desk estimate D+247; methodology on the dashboard.</p><p style="margin-top:10px"><span style="color:#C9A24A;font-family:'Lora',serif">2</span> 1984–2024 incident set, 14 events. Confidence: high.</p></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">WHERE: analysis prose on markets/structural pages · WHY: sources visible at the point of claim — decoration that IS the credibility · collapses inline ≤760px (same device as Lab-S 6.4; judged once here)</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D3.8">
+    <div class="exhead"><span class="exid">D3.8</span><span class="exname">Financial micro-notation</span><span class="cls cls-open">FEATURE</span><span class="q">bp, fractions, superscripts — desk typography</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:24px;padding-bottom:24px">
+      <p class="p" style="font-size:15px">War-risk premia widened <span class="num" style="color:#E3DCCB">+38<span style="font-size:11px;vertical-align:super">bp</span></span> week-on-week; the curve steepened at the <span class="num" style="color:#E3DCCB">3<span style="font-size:11px;vertical-align:super">rd</span></span> month; charter quotes moved in <span class="num" style="color:#E3DCCB">&frac18;</span>-point steps.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">WHERE: running analysis text on markets pages · WHY: the desk's shorthand, typeset properly (superior bp/ordinals, real fraction glyphs) · always Lora numerals inline</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+<section class="fam" id="f4">
+  <div class="famhead">Family 4 · Data-furniture decoration</div>
+  <div class="famsub">The highest-risk family — only devices carrying REAL values survive Data Precedence. The fakes are in the rejection wing.</div>
+
+  <div class="ex" data-id="D4.1">
+    <div class="exhead"><span class="exid">D4.1</span><span class="exname">Ruled ledger background</span><span class="cls cls-open">FEATURE</span><span class="q">account-book ground under an event list</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="background-image:repeating-linear-gradient(to bottom,transparent,transparent 35px,rgba(242,235,220,.07) 35px,rgba(242,235,220,.07) 36px);padding:6px 4px">
+        <div style="display:flex;gap:14px;height:36px;align-items:center"><span class="num" style="font-family:'Lora',serif;font-size:11px;color:#97917F;flex:0 0 60px">D+244</span><span style="flex:1;font-size:13.5px;color:#C2BAA7">Bahrain intercepts two UAVs over eastern grid</span></div>
+        <div style="display:flex;gap:14px;height:36px;align-items:center"><span class="num" style="font-family:'Lora',serif;font-size:11px;color:#97917F;flex:0 0 60px">D+246</span><span style="flex:1;font-size:13.5px;color:#C2BAA7">Insurance reset window opens; premia bid early</span></div>
+        <div style="display:flex;gap:14px;height:36px;align-items:center"><span class="num" style="font-family:'Lora',serif;font-size:11px;color:#97917F;flex:0 0 60px">D+247</span><span style="flex:1;font-size:13.5px;color:#C2BAA7">Strait transits normal; tanker rates stable</span></div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">36px ruled lines @7%, rows sit ON the rules · WHERE: event ledgers on dashboard + briefings index · WHY: the account-book ground says "kept records"</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D4.3">
+    <div class="exhead"><span class="exid">D4.3</span><span class="exname">Waffle counter (real values)</span><span class="cls cls-open">FEATURE</span><span class="q">the lawful counter — labeled, true numbers</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+      <div style="display:grid;grid-template-columns:repeat(10,12px);gap:4px" aria-hidden="true">
+        <span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span>
+        <span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:#46C9A0"></span><span style="width:12px;height:12px;border-radius:2px;background:rgba(242,235,220,.14)"></span><span style="width:12px;height:12px;border-radius:2px;background:rgba(242,235,220,.14)"></span><span style="width:12px;height:12px;border-radius:2px;background:rgba(242,235,220,.14)"></span><span style="width:12px;height:12px;border-radius:2px;background:rgba(242,235,220,.14)"></span><span style="width:12px;height:12px;border-radius:2px;background:rgba(242,235,220,.14)"></span><span style="width:12px;height:12px;border-radius:2px;background:rgba(242,235,220,.14)"></span>
+      </div>
+      <div><div class="num" style="font-family:'Lora',serif;font-size:20px;font-weight:600;color:#F2EBDC">14 of 20</div><div class="pm">chokepoints at LATENT or calmer</div></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">12px cells, Realized-green filled / ink-14% empty · value labeled beside it, always real · WHERE: structural overview stats · WHY: countable at a glance, honest by construction</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D4.5">
+    <div class="exhead"><span class="exid">D4.5</span><span class="exname">Tally marks</span><span class="cls cls-open">FEATURE</span><span class="q">analog charm for day-counts — ours or twee?</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;align-items:center;gap:18px">
+      <svg width="92" height="30" viewBox="0 0 92 30" aria-hidden="true" stroke="#C2BAA7" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="4" x2="4" y2="26"/><line x1="12" y1="4" x2="12" y2="26"/><line x1="20" y1="4" x2="20" y2="26"/><line x1="28" y1="4" x2="28" y2="26"/><line x1="0" y1="24" x2="32" y2="6"/><line x1="46" y1="4" x2="46" y2="26"/><line x1="54" y1="4" x2="54" y2="26"/></svg>
+      <p class="p" style="font-size:13.5px"><span class="num" style="color:#F2EBDC">7 sessions</span> since the last ceasefire violation — tallied on the watch card.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">1.6px ink strokes, five-bar gate · real counts ≤15 only · WHERE: small watch cards · WHY: human bookkeeping inside a machine product</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="f5">
+  <div class="famhead">Family 5 · Background field systems</div>
+  <div class="famsub">Quiet texture grounds — plus the guilloché, the banknote move. Two ruling exhibits live here.</div>
+
+  <div class="ex" data-id="D5.1">
+    <div class="exhead"><span class="exid">D5.1</span><span class="exname">Field grids</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · dots</button><button class="opt" data-o="b">B · plus</button><button class="opt" data-o="c">C · mesh</button></span>
+      <span class="q">one quiet field for CTA/empty zones — which voice?</span></div>
+    <div class="exstrip">
+      <div data-show="a" style="background-image:radial-gradient(rgba(242,235,220,.10) 1px,transparent 1px);background-size:22px 22px"><div class="pad" style="text-align:center"><div class="h3" style="font-size:19px">The dashboard is live.</div><a href="#" style="display:inline-block;margin-top:8px;font-size:14px;color:#F2EBDC;border:1px solid transparent;background-image:linear-gradient(#0D1626,#0D1626),linear-gradient(110deg,#A8843C,#E3C77E,#A8843C);background-origin:border-box;background-clip:padding-box,border-box;border-radius:8px;padding:11px 24px;text-decoration:none">Open the dashboard →</a></div></div>
+      <div data-show="b" style="display:none;background-image:radial-gradient(rgba(242,235,220,0) 0),linear-gradient(rgba(242,235,220,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(242,235,220,.09) 1px,transparent 1px);background-size:100%,22px 22px,22px 22px;background-position:0 0,10px 10px,10px 10px"><div class="pad" style="text-align:center"><div class="h3" style="font-size:19px">The dashboard is live.</div><a href="#" style="display:inline-block;margin-top:8px;font-size:14px;color:#F2EBDC;border:1px solid rgba(242,235,220,.3);border-radius:8px;padding:11px 24px;text-decoration:none">Open the dashboard →</a></div></div>
+      <div data-show="c" style="display:none;background-image:linear-gradient(rgba(242,235,220,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(242,235,220,.05) 1px,transparent 1px);background-size:44px 44px"><div class="pad" style="text-align:center"><div class="h3" style="font-size:19px">The dashboard is live.</div><a href="#" style="display:inline-block;margin-top:8px;font-size:14px;color:#F2EBDC;border:1px solid rgba(242,235,220,.3);border-radius:8px;padding:11px 24px;text-decoration:none">Open the dashboard →</a></div></div>
+    </div>
+    <div class="exfoot"><span class="spec">dots @10% / plus-grid @9% / 44px mesh @5% · WHERE: CTA zones, empty states · WHY: fills silence without saying anything · never under text blocks or data</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A/B/C + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D5.5">
+    <div class="exhead"><span class="exid">D5.5</span><span class="exname">Flow-field line art</span><span class="cls cls-rule">RULING NEEDED</span>
+      <span class="optset"><button class="opt on" data-o="a">A · 5% teal</button><button class="opt" data-o="b">B · 5% ink</button></span>
+      <span class="q">may texture use teal, given teal's CTA-only register? both shown</span></div>
+    <div class="exstrip">
+      <div data-show="a" style="position:relative;overflow:hidden;min-height:170px"><svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;opacity:.5" viewBox="0 0 800 170" fill="none" stroke="rgba(95,168,151,.12)" stroke-width="1"><path d="M-10 140 C 150 100, 250 160, 400 120 S 650 60, 810 100"/><path d="M-10 110 C 160 70, 260 130, 410 90 S 660 30, 810 70"/><path d="M-10 80 C 170 40, 270 100, 420 60 S 670 0, 810 40"/><path d="M-10 165 C 140 130, 240 185, 390 150 S 640 95, 810 130"/></svg><div class="pad" style="position:relative"><div class="eyebrow">Connections</div><p class="p" style="font-size:13.5px">Static flow-lines suggest currents of transmission behind the section opener.</p></div></div>
+      <div data-show="b" style="display:none;position:relative;overflow:hidden;min-height:170px"><svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;opacity:.5" viewBox="0 0 800 170" fill="none" stroke="rgba(242,235,220,.10)" stroke-width="1"><path d="M-10 140 C 150 100, 250 160, 400 120 S 650 60, 810 100"/><path d="M-10 110 C 160 70, 260 130, 410 90 S 660 30, 810 70"/><path d="M-10 80 C 170 40, 270 100, 420 60 S 670 0, 810 40"/><path d="M-10 165 C 140 130, 240 185, 390 150 S 640 95, 810 130"/></svg><div class="pad" style="position:relative"><div class="eyebrow">Connections</div><p class="p" style="font-size:13.5px">The same field in ink — neutral, register-safe.</p></div></div>
+    </div>
+    <div class="exfoot"><span class="spec">YOUR RULING: is 5%-opacity teal "texture" (not a UI signal, so legal) or does the CTA-register own the hue absolutely? · WHERE: connections/transmission section openers</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="ruling: teal ok / ink only"></div></div>
+  </div>
+
+  <div class="ex" data-id="D5.6">
+    <div class="exhead"><span class="exid">D5.6</span><span class="exname">Constellation node-link field</span><span class="cls cls-open">FEATURE</span><span class="q">the network made ambient — Connections' own texture</span></div>
+    <div class="exstrip" style="position:relative;overflow:hidden;min-height:180px">
+      <svg aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 800 180">
+        <g stroke="rgba(242,235,220,.08)" stroke-width="1"><line x1="120" y1="60" x2="240" y2="110"/><line x1="240" y1="110" x2="390" y2="70"/><line x1="390" y1="70" x2="540" y2="120"/><line x1="540" y1="120" x2="680" y2="80"/><line x1="240" y1="110" x2="320" y2="160"/><line x1="390" y1="70" x2="460" y2="30"/></g>
+        <g fill="rgba(242,235,220,.22)"><circle cx="120" cy="60" r="2.4"/><circle cx="240" cy="110" r="2.4"/><circle cx="390" cy="70" r="2.4"/><circle cx="540" cy="120" r="2.4"/><circle cx="680" cy="80" r="2.4"/><circle cx="320" cy="160" r="2.4"/><circle cx="460" cy="30" r="2.4"/></g>
+        <circle cx="390" cy="70" r="3.6" fill="#5FA897"/>
+      </svg>
+      <div class="pad" style="position:relative"><div class="eyebrow">Connections</div><p class="p" style="font-size:13.5px;max-width:46ch">Nodes and links at whisper opacity — the product's graph, abstracted into ground.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">links @8%, nodes @22%, one teal focus node · WHERE: /connections opener only · WHY: the page's subject as its own texture</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D5.7">
+    <div class="exhead"><span class="exid">D5.7</span><span class="exname">Guilloché — the banknote move</span><span class="cls cls-open">FEATURE</span><span class="q">security-print engraving on ONE ceremonial surface</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="position:relative;max-width:560px;margin:0 auto;background:#10203A;border:1px solid rgba(201,162,74,.4);border-radius:8px;overflow:hidden;padding:30px 34px;text-align:center">
+        <svg aria-hidden="true" style="position:absolute;right:-60px;top:50%;transform:translateY(-50%);opacity:.5" width="260" height="260" viewBox="0 0 260 260" fill="none" stroke="rgba(201,162,74,.16)" stroke-width=".8">
+          <ellipse cx="130" cy="130" rx="110" ry="46"/><ellipse cx="130" cy="130" rx="110" ry="46" transform="rotate(30 130 130)"/><ellipse cx="130" cy="130" rx="110" ry="46" transform="rotate(60 130 130)"/><ellipse cx="130" cy="130" rx="110" ry="46" transform="rotate(90 130 130)"/><ellipse cx="130" cy="130" rx="110" ry="46" transform="rotate(120 130 130)"/><ellipse cx="130" cy="130" rx="110" ry="46" transform="rotate(150 130 130)"/>
+        </svg>
+        <div style="position:relative"><div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.2em;color:#C9A24A">JCJ INVESTING · MEMBERS</div>
+        <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:#F2EBDC;margin-top:8px">Accredited access</div>
+        <p style="font-size:13px;color:#C3CDD8;margin-top:6px;max-width:38ch;margin-left:auto;margin-right:auto">The engraved rosette dresses the one surface where the fund speaks — the language of the instrument itself.</p></div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">rotated-ellipse rosette, gold @16%, .8px strokes · WHERE: the 506(c) gate panel ONLY (one surface site-wide) · WHY: banknote engraving = trust-instrument vocabulary</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D5.8">
+    <div class="exhead"><span class="exid">D5.8</span><span class="exname">Microtext border rule</span><span class="cls cls-open">FEATURE</span><span class="q">the security-print hairline — readable only if you lean in</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:26px;padding-bottom:26px">
+      <div style="font-family:'Lora',serif;font-size:4.5px;letter-spacing:1.5px;color:rgba(201,162,74,.45);white-space:nowrap;overflow:hidden;user-select:none" aria-hidden="true">VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ·VEGAREADY·JCJ</div>
+      <p class="p" style="margin-top:14px;font-size:13.5px">From reading distance it's a hairline; at lean-in it's the mark, repeating — the security-print trick.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">4.5px Lora caps @45% gold, reads as a rule at distance · WHERE: ceremonial panel edges (members card, certificates) · WHY: craft reveal that rewards attention</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D5.4">
+    <div class="exhead"><span class="exid">D5.4</span><span class="exname">Concentric ring corner field</span><span class="cls cls-open">FEATURE</span><span class="q">the sonar corner vs D1.6's radar — one survives?</span></div>
+    <div class="exstrip" style="position:relative;overflow:hidden;min-height:160px">
+      <svg aria-hidden="true" style="position:absolute;left:-110px;bottom:-110px;opacity:.6" width="300" height="300" viewBox="0 0 300 300" fill="none" stroke="rgba(242,235,220,.07)" stroke-width="1"><circle cx="150" cy="150" r="70"/><circle cx="150" cy="150" r="105"/><circle cx="150" cy="150" r="140"/></svg>
+      <div class="pad" style="position:relative"><div class="eyebrow">Outlook</div><p class="p" style="font-size:13.5px">Ink rings anchored off-corner — quieter, hue-free cousin of the radar rings.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">3 ink rings @7%, corner-anchored · WHERE: outlook/scenario section corners · WHY: a horizon suggestion with zero hue spend — if D1.6 approved, pick one ring device, not both</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="f6">
+  <div class="famhead">Family 6 · Object &amp; material accents</div>
+  <div class="famsub">Relief and metal without shadows. One ruling exhibit.</div>
+
+  <div class="ex" data-id="D6.1">
+    <div class="exhead"><span class="exid">D6.1</span><span class="exname">Embossed panel via paired hairlines</span><span class="cls cls-open">FEATURE</span><span class="q">shadow-free relief — does it read?</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="max-width:480px;border-radius:10px;padding:22px 26px;background:color-mix(in srgb,#F2EBDC 7%,#0D1626);border-top:1px solid rgba(242,235,220,.22);border-left:1px solid rgba(242,235,220,.14);border-bottom:1px solid rgba(0,0,0,.5);border-right:1px solid rgba(0,0,0,.35)">
+        <div style="font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;color:#C9A24A;margin-bottom:6px">DESK NOTE</div>
+        <p class="p" style="font-size:13.5px">Light top/left hairline + dark bottom/right hairline = pressed relief, zero blur.</p>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">asymmetric 1px borders (light 22%/14% · dark 50%/35%) · WHERE: feature cards needing tactile lift · WHY: relief inside the no-shadow law's letter</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D6.4">
+    <div class="exhead"><span class="exid">D6.4</span><span class="exname">Beveled hairline divider</span><span class="cls cls-rule">RULING NEEDED</span><span class="q">1px light over 1px dark — does this count as a "shadow"?</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:26px;padding-bottom:26px">
+      <p class="p" style="margin-bottom:18px">…section above ends here.</p>
+      <div><div style="height:1px;background:rgba(0,0,0,.55)"></div><div style="height:1px;background:rgba(242,235,220,.14)"></div></div>
+      <p class="p" style="margin-top:18px">…the seam reads carved into the canvas, not drawn onto it.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">YOUR RULING: zero blur, two solid 1px lines — engraving or shadow? · WHERE (if legal): card edges + dividers wanting physicality</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="ruling note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D6.2">
+    <div class="exhead"><span class="exid">D6.2</span><span class="exname">A second metal — platinum</span><span class="cls cls-open">FEATURE</span><span class="q">silver-gradient beside the gold: depth or dilution?</span></div>
+    <div class="exstrip"><div class="pad" style="display:flex;gap:26px;flex-wrap:wrap;align-items:center;padding-top:24px;padding-bottom:24px">
+      <div><div style="width:140px;height:1.5px;background:linear-gradient(90deg,#8E959D,#D8DEE4 50%,#8E959D)"></div><p class="pm" style="margin-top:6px">platinum rule — data/system contexts</p></div>
+      <div><div style="width:140px;height:1.5px;background:linear-gradient(90deg,#A8843C,#E3C77E 50%,#A8843C)"></div><p class="pm" style="margin-top:6px">gold rule — editorial/ceremony (existing)</p></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">platinum = cool metal for the desk/terminal register (E-variant pages), gold keeps editorial · WHERE: E-style desk surfaces only · WHY: two-metal system mirrors the two voices — or is one metal the brand?</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D6.5">
+    <div class="exhead"><span class="exid">D6.5</span><span class="exname">Engraved text on Bone plaque</span><span class="cls cls-open">FEATURE</span><span class="q">the plaque register for ceremonial marks</span></div>
+    <div class="exstrip"><div class="pad">
+      <div style="max-width:440px;margin:0 auto;background:#EDE7DA;border-radius:8px;padding:26px 30px;text-align:center">
+        <div style="font-family:'Playfair Display',serif;font-weight:800;font-size:22px;letter-spacing:.04em;color:#B5AC97;text-shadow:0 1px 0 rgba(255,255,255,.8), 0 -1px 0 rgba(0,0,0,.18)">VEGAREADY</div>
+        <div style="font-family:'Lora',serif;font-size:9.5px;letter-spacing:.22em;color:#8A8274;margin-top:4px">A JCJ INVESTING PLATFORM</div>
+      </div>
+    </div></div>
+    <div class="exfoot"><span class="spec">paper-object exception (light surface): tone-on-tone letterform + 1px light/dark edges = carved · WHERE: about/colophon plaque, certificates · WHY: permanence register</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="f7">
+  <div class="famhead">Family 7 · Editorial story devices</div>
+  <div class="famsub">The brief's voice, dressed. These serve the meaning layer directly.</div>
+
+  <div class="ex" data-id="D7.1">
+    <div class="exhead"><span class="exid">D7.1</span><span class="exname">Pull-stat mid-paragraph</span><span class="cls cls-open">FEATURE</span><span class="q">the number interrupts the read — earned drama?</span></div>
+    <div class="exstrip"><div class="pad">
+      <p class="p" style="max-width:58ch">Re-routing around the Cape adds twelve days and burns charter margin at both ends. The arithmetic is unforgiving —</p>
+      <div style="margin:18px 0;padding-left:22px;border-left:2px solid;border-image:linear-gradient(180deg,#A8843C,#E3C77E) 1"><span class="num" style="font-family:'Lora',serif;font-weight:700;font-size:34px;color:#F2EBDC">$4.2m<span style="font-size:16px;color:#97917F"> / day</span></span><div class="pm">the cost of the slow transit, per laden VLCC</div></div>
+      <p class="p" style="max-width:58ch">— and it lands on whoever is short the route when the premium reprices.</p>
+    </div></div>
+    <div class="exfoot"><span class="spec">34px Lora stat + gold spine, breaking the paragraph · real values only · WHERE: brief body, ≤1 per chapter · WHY: the claim's strongest number gets its own beat</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D7.2">
+    <div class="exhead"><span class="exid">D7.2</span><span class="exname">Inline highlight treatments</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · gold wash</button><button class="opt" data-o="b">B · underline</button><button class="opt" data-o="c">C · ink bold</button></span>
+      <span class="q">how does a key phrase get marked mid-prose?</span></div>
+    <div class="exstrip">
+      <div data-show="a" class="pad"><p class="p" style="max-width:58ch">The market is pricing the strait as a headline. The desk's read: <span style="background:rgba(201,162,74,.16);border-radius:2px;padding:1px 4px;color:#EFE7D5">closure risk is under-priced by roughly a third</span> — and the gap is widest in the front month.</p></div>
+      <div data-show="b" class="pad" style="display:none"><p class="p" style="max-width:58ch">The market is pricing the strait as a headline. The desk's read: <span style="color:#EFE7D5;border-bottom:2px solid;border-image:linear-gradient(90deg,#A8843C,#E3C77E) 1;padding-bottom:1px">closure risk is under-priced by roughly a third</span> — and the gap is widest in the front month.</p></div>
+      <div data-show="c" class="pad" style="display:none"><p class="p" style="max-width:58ch">The market is pricing the strait as a headline. The desk's read: <b style="color:#F2EBDC">closure risk is under-priced by roughly a third</b> — and the gap is widest in the front month.</p></div>
+    </div>
+    <div class="exfoot"><span class="spec">WHERE: ≤1 marked phrase per chapter, the thesis sentence only · WHY: the editorial "remember this line" device · A counts against gold budget</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A/B/C + note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D7.6">
+    <div class="exhead"><span class="exid">D7.6</span><span class="exname">Wire dateline</span><span class="cls cls-open">FEATURE</span><span class="q">the wire-service voice opening a brief</span></div>
+    <div class="exstrip"><div class="pad"><p class="p" style="max-width:58ch"><span style="font-family:'Lora',serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:#C9A24A">ENERGY DESK, D+247 —</span> Premia widened into the reset for the third consecutive session, and the curve is finally saying what the wires wouldn't: the market believes the window.</p></div></div>
+    <div class="exfoot"><span class="spec">Lora caps + em-dash, gold · WHERE: first line of every brief · WHY: borrowed wire-service authority, instantly scannable provenance</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D7.3">
+    <div class="exhead"><span class="exid">D7.3</span><span class="exname">Signature block</span><span class="cls cls-open">FEATURE</span><span class="q">the signed brief — human close</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:24px;padding-bottom:24px">
+      <p class="p" style="max-width:58ch;margin-bottom:18px">…we'll be watching the reset window from the open. ∎</p>
+      <div style="display:flex;align-items:center;gap:14px"><div style="width:34px;height:1px" class="num"></div><div><div style="font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:#EFE7D5">— the desk</div><div class="pm" style="font-family:'Lora',serif;letter-spacing:.08em;font-size:10px">JCJ INVESTING · 06:40 GST</div></div></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">italic Playfair sign-off + Lora timestamp · WHERE: brief endings · WHY: a person wrote this — the anti-feed signal</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D7.5">
+    <div class="exhead"><span class="exid">D7.5</span><span class="exname">Section colophon</span><span class="cls cls-open">FEATURE</span><span class="q">the trust footer — compiled from what?</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:22px;padding-bottom:22px">
+      <div style="text-align:center;font-family:'Lora',serif;font-size:10.5px;letter-spacing:.1em;color:#97917F">COMPILED FROM <span class="num" style="color:#C2BAA7">14</span> SOURCES · <span class="num" style="color:#C2BAA7">3</span> WIRES · AIS RECONCILED · <span style="color:#C2BAA7">REVIEWED BY THE DESK</span></div>
+      <div style="width:120px;height:1px;background:rgba(242,235,220,.18);margin:12px auto 0"></div>
+    </div></div>
+    <div class="exfoot"><span class="spec">centered Lora caps ledger line · real counts only · WHERE: end of each major section/brief · WHY: methodology worn lightly = credibility</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="D7.8">
+    <div class="exhead"><span class="exid">D7.8</span><span class="exname">End-mark</span><span class="cls cls-open">FEATURE</span>
+      <span class="optset"><button class="opt on" data-o="a">A · ∎</button><button class="opt" data-o="b">B · ν</button></span>
+      <span class="q">the signature full-stop closing every brief</span></div>
+    <div class="exstrip">
+      <div data-show="a" class="pad" style="padding-top:24px;padding-bottom:24px"><p class="p" style="max-width:58ch">…and that's the day's read: the window is real, the price isn't yet. <span style="color:#C9A24A">∎</span></p></div>
+      <div data-show="b" class="pad" style="display:none;padding-top:24px;padding-bottom:24px"><p class="p" style="max-width:58ch">…and that's the day's read: the window is real, the price isn't yet. <span style="font-family:'Playfair Display',serif;font-style:italic;color:#C9A24A;font-size:17px">ν</span></p></div>
+    </div>
+    <div class="exfoot"><span class="spec">Halmos/New Yorker lineage · WHERE: the last line of every brief · WHY: the cheapest brand ritual in the catalog — compounds daily</span><div class="vset"><button class="vb app">Approve</button><button class="vb con">Cond</button><button class="vb rej">Reject</button><input class="vn" placeholder="A/B + note"></div></div>
+  </div>
+</section>
+
+<section class="fam" id="fr">
+  <div class="famhead">✗ Rejection wing</div>
+  <div class="famsub">The catalog's AVOIDs in honest context. Approve = overrule · Reject = confirm ban.</div>
+
+  <div class="ex" data-id="DR4.2">
+    <div class="exhead"><span class="exid">D4.2</span><span class="exname">Heat-strip row</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: reads as data, carries none — Data Precedence</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:20px;padding-bottom:20px"><div style="display:flex;gap:2px;border-radius:4px;overflow:hidden;max-width:420px"><div style="flex:1;height:14px;background:#46C9A0"></div><div style="flex:1;height:14px;background:#7FB48A"></div><div style="flex:1;height:14px;background:#B5A26B"></div><div style="flex:1;height:14px;background:#D08552"></div><div style="flex:1;height:14px;background:#D16D6D"></div></div><p class="pm" style="margin-top:8px">an unlabeled severity gradient decorating a card edge…</p></div></div>
+    <div class="exfoot"><span class="spec">unlabeled heat ramp as ornament</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="DR4.4">
+    <div class="exhead"><span class="exid">D4.4</span><span class="exname">Gauge arc</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: dashboard-kitsch; implies measurement it doesn't make</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:20px;padding-bottom:20px;display:flex;align-items:center;gap:18px"><svg width="90" height="52" viewBox="0 0 90 52" fill="none"><path d="M8 48 A 38 38 0 0 1 82 48" stroke="rgba(242,235,220,.15)" stroke-width="7"/><path d="M8 48 A 38 38 0 0 1 58 14" stroke="#E0B262" stroke-width="7"/></svg><p class="pm">a "risk gauge" with no scale, no source…</p></div></div>
+    <div class="exfoot"><span class="spec">decorative meter</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="DR4.8">
+    <div class="exhead"><span class="exid">D4.8</span><span class="exname">EKG / sparkline-shaped divider</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: a fake chart used as a rule — the worst Data Precedence breach</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:20px;padding-bottom:20px"><svg width="100%" height="22" viewBox="0 0 800 22" preserveAspectRatio="none"><polyline points="0,11 120,11 150,4 180,18 210,11 400,11 430,6 460,16 490,11 800,11" fill="none" stroke="rgba(95,168,151,.4)" stroke-width="1.5"/></svg></div></div>
+    <div class="exfoot"><span class="spec">heartbeat-line divider</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="DR2.9">
+    <div class="exhead"><span class="exid">D2.9</span><span class="exname">Watermark text repeat</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: fights body text on dark; stock-photo association</span></div>
+    <div class="exstrip" style="position:relative;overflow:hidden"><div aria-hidden="true" style="position:absolute;inset:-20px;display:flex;flex-wrap:wrap;gap:30px;transform:rotate(-18deg);opacity:.06;font-family:'Playfair Display',serif;font-size:34px;color:#F2EBDC;pointer-events:none"><span>VEGAREADY</span><span>VEGAREADY</span><span>VEGAREADY</span><span>VEGAREADY</span><span>VEGAREADY</span><span>VEGAREADY</span></div><div class="pad" style="position:relative"><p class="p" style="font-size:13.5px">body text trying to read over the repeating mark…</p></div></div>
+    <div class="exfoot"><span class="spec">rotated brand watermark field</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="DR2.4">
+    <div class="exhead"><span class="exid">D2.4 + D2.8</span><span class="exname">Fold marks · deckle edges</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: physically light-mode-native; on dark they read as rendering errors</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:20px;padding-bottom:20px"><div style="max-width:380px;background:#F7F3EA;border-radius:4px;padding:18px 22px;position:relative"><div style="position:absolute;left:0;right:0;top:46%;height:1px;background:rgba(0,0,0,.10)"></div><p style="font-size:12.5px;color:#5C5546">a crease line across the paper card — the fold artifact…</p></div></div></div>
+    <div class="exfoot"><span class="spec">crease/deckle paper artifacts</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+
+  <div class="ex" data-id="DR4.6">
+    <div class="exhead"><span class="exid">D4.6 + D4.7</span><span class="exname">Candlestick ornament · ticker-tape texture</span><span class="cls cls-avoid">AVOID</span><span class="q">reason: finance-clipart class; the utility strip (Lab-S 5.1) does the real job</span></div>
+    <div class="exstrip"><div class="pad" style="padding-top:20px;padding-bottom:20px;display:flex;gap:30px;align-items:center;flex-wrap:wrap">
+      <svg width="120" height="44" viewBox="0 0 120 44"><g stroke="#46C9A0" fill="#46C9A0"><line x1="10" y1="4" x2="10" y2="40"/><rect x="6" y="12" width="8" height="16"/></g><g stroke="#E2725B" fill="#E2725B"><line x1="34" y1="2" x2="34" y2="38"/><rect x="30" y="8" width="8" height="20"/></g><g stroke="#46C9A0" fill="#46C9A0"><line x1="58" y1="6" x2="58" y2="42"/><rect x="54" y="18" width="8" height="14"/></g></svg>
+      <span class="pm" style="font-family:'Lora',serif;letter-spacing:.06em;opacity:.6">BRENT 86.40 ▲ · VIX 19.8 ▼ · BTC 97,210 ▲ · GOLD 2,648 ▲ ·</span>
+    </div></div>
+    <div class="exfoot"><span class="spec">candles as decor · tape as texture</span><div class="vset"><button class="vb app">Overrule</button><button class="vb rej">Confirm ban</button><input class="vn" placeholder="note"></div></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const KEY='devlab-d';
+const store=()=>JSON.parse(localStorage.getItem(KEY)||'{}');
+const save=o=>localStorage.setItem(KEY,JSON.stringify(o));
+document.querySelectorAll('.ftab').forEach(t=>{t.addEventListener('click',()=>{
+  document.querySelectorAll('.ftab').forEach(x=>x.classList.toggle('on',x===t));
+  document.querySelectorAll('.fam').forEach(f=>f.classList.toggle('on',f.id===t.dataset.f));
+  window.scrollTo({top:0,behavior:'auto'});
+});});
+document.querySelectorAll('.ex').forEach(ex=>{
+  const id=ex.dataset.id,o=store()[id]||{};
+  const bs=ex.querySelectorAll('.vb'),note=ex.querySelector('.vn');
+  const V={app:'APPROVE',con:'CONDITIONAL',rej:'REJECT'};
+  bs.forEach(b=>{const v=V[[...b.classList].find(c=>V[c])];
+    if(o.v===v)b.classList.add('sel');
+    b.addEventListener('click',()=>{const s=store();s[id]=s[id]||{};s[id].v=v;save(s);
+      bs.forEach(x=>x.classList.remove('sel'));b.classList.add('sel');});});
+  if(o.note)note.value=o.note;
+  note.addEventListener('input',e=>{const s=store();s[id]=s[id]||{};s[id].note=e.target.value;save(s);});
+  const opts=ex.querySelectorAll('.opt');
+  opts.forEach(b=>b.addEventListener('click',()=>{
+    opts.forEach(x=>x.classList.toggle('on',x===b));
+    ex.querySelectorAll('[data-show]').forEach(el=>el.style.display=el.dataset.show===b.dataset.o?(el.dataset.disp||''):'none');
+  }));
+});
+document.getElementById('vcopy').addEventListener('click',()=>{
+  const s=store();
+  const lines=Object.keys(s).sort().map(k=>`${k}: ${s[k].v||'—'}${s[k].note?' — '+s[k].note:''}`);
+  navigator.clipboard&&navigator.clipboard.writeText(['DEVICE LAB D verdicts:',...lines].join('\n'));
+  const b=document.getElementById('vcopy');b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy verdicts',1400);
+});
+</script>
+</body>
+</html>

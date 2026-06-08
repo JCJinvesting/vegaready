@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VegaReady — Sensitivity to Volatility | JCJ Investing</title>
+<meta name="description" content="VegaReady tracks global events, maps how they connect across sectors and regions, and turns complexity into positioning clarity. Open macro event intelligence by JCJ Investing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600;1,700;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<script>
+/* option-axis init — all six stores read before first paint to avoid flash */
+(function(){
+  var d = document.documentElement;
+  function g(k, f, re){
+    var v = null;
+    try { v = localStorage.getItem(k); } catch(e){}
+    return (v && re.test(v)) ? v : f;
+  }
+  d.setAttribute('data-theme',   g('ed-theme',   't1',    /^t[1-8]$/));
+  d.setAttribute('data-gold',    g('ed-gold',    'g3',    /^g[1-3]$/));
+  d.setAttribute('data-grey',    g('ed-grey',    'warm',  /^(warm|cool)$/));
+  d.setAttribute('data-sem',     g('ed-sem',     's2',    /^s[12]$/));
+  d.setAttribute('data-dialect', g('ed-dialect', 'fixed', /^(auto|fixed)$/));
+  d.setAttribute('data-deep',    g('ed-deep',    'b2',    /^b[12]$/));
+  d.setAttribute('data-ptone',   g('ed-ptone',   'pa',    /^p[a-d]$/));
+  if (g('ed-panel', 'open', /^(open|collapsed)$/) === 'collapsed') d.setAttribute('data-panel','collapsed');
+})();
+</script>
+<style>
+/* ════════ THE EDITION · FRONT DOOR · VegaReady ════════ */
+
+/* ── Theme architecture ──
+   Every theme is a block of 12 custom properties on html[data-theme].
+   Gold gradient stays literal — brand constant across all themes. */
+:root,
+html[data-theme="t1"]{ /* Oxford (baseline) */
+  --canvas:#0D1626;
+  --card:#131E32;        /* RECIPE: hue-held OKLCH L+0.035, chroma rises — never cream-mix */
+  --cardline:#1E2E4A;    /* border-subtle: L+0.10, same hue */
+  --deep:#0A0F1A;
+  --inverse:#EDE5D2;
+  --inv-ink:#33302A;
+  --inv-body:#5C5546;
+  --ink:#F2EBDC;
+  --body:#DCD4C2;
+  --muted:#97917F;
+  --eyeb:#C9A24A;
+  --struct:#5FA897;
+  /* theme-tuned accents (default = navy-family values) */
+  --gold-accent:#F4C37D;
+  --slate:#9FB8C9;
+  --pos:#46C9A0;
+  --neg:#E2725B;
+  --inv-accent:#8A6A26;
+  --well:color-mix(in srgb,#000 22%,var(--canvas));
+}
+html[data-theme="t2"]{ /* Abyss + Navy cards */
+  --canvas:#0A0F1A;
+  --card:#111C30;       /* RECIPE: Abyss's own hue-held card (navy by nature) */
+  --cardline:#1C2A44;
+  --deep:#070B12;
+}
+html[data-theme="t3"]{ /* Charcoal Blue */
+  --canvas:#13171D;
+  --card:#1C2129;
+  --cardline:#262E3A;
+  --deep:#0A0F1A;
+}
+html[data-theme="t4"]{ /* Pine Black */
+  --canvas:#11201C;
+  --card:#172924;
+  --cardline:#223B34;
+  --deep:#0A1410;
+}
+html[data-theme="t5"]{ /* Petrol Black */
+  --canvas:#0F1B1F;
+  --card:#152429;
+  --cardline:#20353B;
+  --deep:#0A1216;
+}
+html[data-theme="t6"]{ /* Near-black + Oxford cards */
+  --canvas:#0B0D11;
+  --card:#0D1626;       /* the owner's hypothesis: Oxford AS the card */
+  --cardline:#1E2E4A;   /* border belongs to the card's hue, not the canvas */
+  --deep:#070B12;
+}
+html[data-theme="t7"]{ /* Gunmetal sunken */
+  --canvas:#232B33;
+  --card:#1C2229;       /* RECIPE sunken: L−0.035, same hue */
+  --cardline:#394551;
+  --deep:#161B21;
+  --inverse:#F2EDE2;
+  --muted:#A39D8E;      /* per-hue contrast lift (4.7:1 → ≥5:1 on raised) */
+}
+html[data-theme="t8"]{ /* Soft White Desk (light) */
+  --canvas:#DDE2E6;
+  --card:#FFFFFF;
+  --cardline:#C2CAD1;
+  --deep:#0B2E4E;
+  --inverse:#0B2E4E;
+  --inv-ink:#F5F1E6;
+  --inv-body:#C3CDD8;
+  --ink:#2B2F34;
+  --body:#3A434C;
+  --muted:#4A535C;
+  --eyeb:#8A6420;
+  --struct:#2A6478;
+  --gold-accent:#8A6420;
+  --slate:#3E617C;
+  --pos:#1E7A5F;
+  --neg:#B0452C;
+  --inv-accent:#E3C77E;
+  --well:#EFF2F4;
+}
+
+/* ════ OPTION AXES — attribute layers; override theme vars by cascade ════ */
+/* GOLD ladder — g3 = current rich gold, no override */
+html[data-gold="g1"]{--eyeb:color-mix(in srgb,var(--muted) 60%,var(--ink))}  /* eyebrows→warm ink-grey; metal stays only where gradients are literal */
+html[data-gold="g1"] .kick::after{opacity:.3}
+html[data-gold="g2"]{--eyeb:#B09A66}
+html[data-gold="g2"] .kick::after{opacity:.6}
+/* GREY temperature — per-theme cool values, hue-following */
+html[data-grey="cool"]{--muted:#8C96A4}
+html[data-grey="cool"][data-theme="t4"],html[data-grey="cool"][data-theme="t5"]{--muted:#8A9892}
+html[data-grey="cool"][data-theme="t7"]{--muted:#9AA3AE}
+html[data-grey="cool"][data-theme="t8"]{--muted:#4A535C}
+/* SEMANTIC recipe'd — s2 = current values; this page defines --pos/--neg only */
+html[data-sem="s1"]{--pos:#33A07E;--neg:#C2604C}
+/* DIALECT — auto keeps verdigris #5FA897 on navy themes (t1/t2/t3/t6/t7); fixed = current everywhere */
+html[data-dialect="auto"][data-theme="t4"],html[data-dialect="auto"][data-theme="t5"]{--struct:#5878B8}
+html[data-dialect="auto"][data-theme="t8"]{--struct:#2A6478}
+/* DEEP guaranteed step (−6L-ish per theme; t8 unchanged) */
+html[data-deep="b1"][data-theme="t1"]{--deep:#070D18}
+html[data-deep="b1"][data-theme="t2"]{--deep:#05080F}
+html[data-deep="b1"][data-theme="t3"]{--deep:#080B10}
+html[data-deep="b1"][data-theme="t4"]{--deep:#07120D}
+html[data-deep="b1"][data-theme="t5"]{--deep:#081014}
+html[data-deep="b1"][data-theme="t6"]{--deep:#04060A}
+html[data-deep="b1"][data-theme="t7"]{--deep:#12161C}
+/* PANELS — special surfaces that bypass --card. pa per-role defaults live on the
+   elements themselves (.rail-node.tnode below); pb/pc/pd re-tone them here.
+   html[data-ptone] + element selector outranks the element's own locals. */
+html[data-ptone="pb"] .rail-node.tnode{--panel:var(--card);--panelline:var(--cardline)}
+html[data-ptone="pc"] .rail-node.tnode{--panel:color-mix(in srgb,#000 26%,var(--canvas));--panelline:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-ptone="pd"] .rail-node.tnode{--panel:color-mix(in srgb,#fff 5%,var(--card));--panelline:color-mix(in srgb,#fff 9%,var(--cardline))}
+/* t8 light page: sunken must not go near-black */
+html[data-ptone="pc"][data-theme="t8"] .rail-node.tnode{--panel:#D2D9DF;--panelline:#B6C0C9}
+/* t8 gravity band — its .abyss local var remap outranks the html-level axes,
+   so re-apply gold/grey there (resolved against the band's own remapped inks) */
+html[data-gold="g1"][data-theme="t8"] .abyss{--eyeb:color-mix(in srgb,var(--muted) 60%,var(--ink))}
+html[data-gold="g2"][data-theme="t8"] .abyss{--eyeb:#B09A66}
+html[data-grey="cool"][data-theme="t8"] .abyss{--muted:#8C96A4}
+
+:root{
+  /* brand constants — never themed */
+  --gold-a:#A8843C;
+  --gold-b:#E3C77E;
+  --gold-grad:linear-gradient(90deg,#A8843C 0%,#E3C77E 50%,#A8843C 100%);
+  /* derived secondaries & hairlines — recompute under every theme */
+  --sec1:color-mix(in srgb,var(--ink) 50%,var(--muted));
+  --sec2:color-mix(in srgb,var(--ink) 33%,var(--muted));
+  --rule7:color-mix(in srgb,var(--ink) 7%,transparent);
+  --rule10:color-mix(in srgb,var(--ink) 10%,transparent);
+  --maxw:1140px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--canvas);
+  color:var(--body);
+  font:400 16.5px/1.65 "Fraunces",Georgia,serif;
+  transition:background .55s ease-out;
+  -webkit-font-smoothing:antialiased;
+}
+body.cv-abyss{background:var(--deep)}
+section{background:transparent}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+:focus-visible{outline:2px solid var(--struct);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+
+/* ── 1. Identity bar ── */
+.id-bar{height:4px;background:var(--gold-grad)}
+
+/* ── 2. Utility markets strip ── */
+.utility{
+  height:32px;
+  background:color-mix(in srgb,#000 18%,var(--canvas));
+  border-bottom:1px solid var(--rule7);
+}
+.utility .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.utility ul{display:flex;list-style:none;gap:22px;align-items:center;min-width:0;overflow:hidden}
+.utility li{
+  font:500 11px/1 "Lora",serif;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+  color:var(--sec1);
+  white-space:nowrap;
+}
+.utility .lbl{color:var(--muted)}
+.utility .pos{color:var(--pos)}
+.utility .neg{color:var(--neg)}
+.utility .hrz{color:var(--gold-accent)}
+.utility .meta{
+  font:500 10.5px/1 "Lora",serif;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.06em;color:var(--muted);white-space:nowrap;
+}
+@media (max-width:900px){.utility li:nth-child(3),.utility li:nth-child(4){display:none}}
+@media (max-width:640px){.utility li:nth-child(5){display:none}.utility .meta{display:none}}
+
+/* ── 3. Masthead ── */
+.masthead{border-bottom:1px solid var(--rule7)}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;height:66px}
+.wordmark{font:700 21px/1 "Lora",serif;letter-spacing:.01em;color:var(--ink)}
+.wordmark .rdy{color:var(--struct)}
+.mast-nav{display:flex;align-items:center;gap:26px}
+.mast-nav a{
+  font:500 13px/1 "Fraunces",serif;color:var(--muted);
+  transition:color .2s ease;
+}
+.mast-nav a:hover{color:var(--ink)}
+.mast-nav .ed-link{color:var(--sec1);font-style:italic}
+.mast-nav .ed-link:hover{color:var(--gold-accent)}
+.mast-nav .sep{width:1px;height:14px;background:var(--rule10)}
+.cmdk{
+  display:inline-flex;align-items:center;
+  font:500 11px/1 "Lora",serif;letter-spacing:.08em;color:var(--muted);
+  border:1px solid var(--cardline);border-radius:6px;
+  padding:8px 14px;background:color-mix(in srgb,var(--ink) 4%,var(--canvas));
+  cursor:pointer;transition:color .2s ease,border-color .2s ease;
+}
+.cmdk:hover{color:var(--sec1);border-color:color-mix(in srgb,var(--ink) 28%,var(--canvas))}
+@media (max-width:860px){.mast-nav a:not(.ed-link){display:none}.mast-nav .sep{display:none}}
+
+/* ── 4. Edition stamp ── */
+.stamp{padding:18px 40px 0;text-align:center}
+.stamp p{
+  font:700 11px/1 "Lora",serif;letter-spacing:.14em;
+  font-variant-numeric:tabular-nums;
+  text-transform:uppercase;color:var(--sec2);
+}
+.stamp .rule{
+  width:64px;height:1px;background:var(--gold-grad);
+  margin:14px auto 0;
+}
+
+/* ── 5. Hero ── */
+.hero{position:relative;overflow:hidden}
+/* atmosphere wash — navy-family themes only (same-hue glow) */
+html:not([data-theme]) .hero,
+html[data-theme="t1"] .hero,
+html[data-theme="t2"] .hero,
+html[data-theme="t3"] .hero{
+  background:radial-gradient(ellipse 70% 60% at 18% 8%,
+    color-mix(in srgb,#16294a 55%,transparent) 0%,transparent 70%);
+}
+.hero .wrap{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1.08fr .92fr;gap:64px;
+  align-items:center;
+  padding-top:96px;padding-bottom:118px;
+}
+.nu-ghost{
+  position:absolute;z-index:1;
+  right:-7vw;top:-14vw;
+  font:800 italic 46vw/1 "Playfair Display",serif;
+  color:var(--ink);opacity:.045;
+  pointer-events:none;user-select:none;
+}
+html[data-theme="t8"] .nu-ghost{opacity:.03}
+.eyebrow{
+  display:flex;align-items:center;gap:14px;
+  font:700 11px/1 "Lora",serif;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--eyeb);
+}
+.eyebrow.kick::after{
+  content:"";width:56px;height:1px;background:var(--gold-grad);flex:none;
+}
+.hero h1{
+  margin-top:26px;
+  font:800 clamp(48px,6.6vw,76px)/1.04 "Playfair Display",serif;
+  letter-spacing:-.018em;color:var(--ink);
+}
+.hero h1 em{font-style:italic;color:var(--gold-accent)}
+.hero .sub{
+  margin-top:24px;max-width:56ch;
+  font-size:18px;line-height:1.68;color:var(--body);
+}
+.hero .tagline{
+  margin-top:20px;
+  font:600 italic 19px/1.5 "Playfair Display",serif;
+  color:var(--slate);
+}
+.cta-row{margin-top:38px;display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+
+/* gold-hairline-framed CTA */
+.btn-gold{
+  display:inline-flex;align-items:center;gap:9px;
+  font:600 15px/1 "Fraunces",serif;color:var(--ink);
+  padding:15px 28px;border-radius:7px;
+  border:1px solid transparent;
+  background:
+    linear-gradient(var(--canvas),var(--canvas)) padding-box,
+    var(--gold-grad) border-box;
+  cursor:pointer;
+  transition:color .2s ease;
+}
+.btn-gold:hover{color:var(--gold-accent)}
+.txt-link{
+  font:600 15px/1 "Fraunces",serif;color:var(--sec1);
+  border-bottom:1px solid color-mix(in srgb,var(--ink) 32%,var(--canvas));
+  padding-bottom:3px;
+  transition:color .2s ease,border-color .2s ease;
+}
+.txt-link:hover{color:var(--ink);border-color:var(--eyeb)}
+
+/* ── Ledger card ── */
+.ledger{
+  background:var(--card);
+  border:1px solid var(--cardline);
+  border-radius:12px;
+  overflow:hidden;
+}
+.ledger-head{
+  display:flex;align-items:center;gap:11px;
+  padding:18px 26px;
+  border-bottom:1px solid var(--rule10);
+  background:color-mix(in srgb,var(--ink) 4%,var(--card));
+}
+.ledger-head h2{
+  font:700 11px/1 "Lora",serif;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--eyeb);
+}
+.ledger-rows{padding:8px 26px 0}
+.ledger-row{
+  display:grid;grid-template-columns:88px 1fr;gap:18px;
+  padding:15px 0;
+  border-bottom:1px solid var(--rule7);
+}
+.ledger-row:last-child{border-bottom:none}
+.ledger-row dt{
+  font:700 10.5px/1.5 "Lora",serif;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);padding-top:3px;
+}
+.ledger-row dd{font-size:14.5px;line-height:1.6;color:var(--body)}
+.ledger-row.edge dt{color:var(--struct)}
+.ledger-row.edge dd{color:var(--ink);font-weight:500}
+.ledger-row .term{
+  font:800 19px/1.2 "Playfair Display",serif;color:var(--ink);
+}
+.ledger-row .term i{font-style:italic;color:var(--gold-accent)}
+.spark-inset{
+  margin:14px 26px 26px;
+  background:var(--well);
+  border:1px solid var(--rule7);
+  border-radius:8px;
+  padding:16px 18px 14px;
+}
+.spark-inset .cap{
+  font:700 10px/1 "Lora",serif;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  margin-bottom:12px;
+}
+.spark-inset svg{width:100%;height:58px}
+.spark-inset svg path{stroke:var(--struct)}
+.spark-inset svg circle{fill:var(--struct)}
+
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;gap:56px;padding-top:72px;padding-bottom:88px}
+  .nu-ghost{font-size:72vw;top:-8vw;right:-18vw}
+}
+
+/* ── 6. Oxford rule divider ── */
+.oxford-rule{
+  height:7px;width:100%;
+  background:
+    linear-gradient(var(--rule10),var(--rule10)) 0 0/100% 3px no-repeat,
+    var(--gold-grad) 0 6px/100% 1px no-repeat;
+}
+
+/* ── 7. Cascade ── */
+.cascade{padding:118px 0 126px}
+.cascade h2,.platform h2,.abyss h2{
+  font:700 clamp(28px,3.6vw,42px)/1.18 "Playfair Display",serif;
+  letter-spacing:-.012em;color:var(--ink);
+  margin-top:22px;
+}
+.h2-underscore{width:46px;height:2px;background:var(--gold-grad);margin-top:22px}
+.cascade .lede{margin-top:24px;max-width:58ch;color:var(--sec1);font-size:17px}
+.rail{
+  margin-top:72px;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:22px;
+}
+.rail-node{
+  border-top:1px solid var(--rule7);
+  padding-top:0;
+  position:relative;
+}
+.rail-node::before{
+  content:"";position:absolute;top:-1px;left:0;
+  width:34px;height:1px;background:var(--gold-grad);
+}
+.rail-node .num{
+  display:block;
+  font:800 64px/1 "Playfair Display",serif;
+  color:var(--ink);opacity:.10;
+  margin:22px 0 10px;
+}
+.rail-node h3{
+  font:700 17.5px/1.3 "Playfair Display",serif;color:var(--ink);
+}
+.rail-node p{margin-top:10px;font-size:13.5px;line-height:1.62;color:var(--sec2)}
+.rail-node.tnode{
+  /* PANELS axis pa defaults — replicate the current tinted construction exactly */
+  --panel:color-mix(in srgb,var(--struct) 9%,var(--canvas));
+  --panelline:color-mix(in srgb,var(--struct) 32%,var(--canvas));
+  border:1px solid var(--panelline);
+  border-radius:10px;
+  background:var(--panel);
+  padding:0 20px 22px;
+}
+.rail-node.tnode::before{left:20px}
+.rail-node.tnode h3{color:var(--ink)}
+.rail-node.tnode p{color:color-mix(in srgb,var(--struct) 55%,var(--body))}
+.rail-node.tnode .num{opacity:.14;color:var(--struct)}
+@media (max-width:1020px){.rail{grid-template-columns:repeat(2,1fr);gap:28px}.rail-node.tnode{grid-column:1/-1}}
+@media (max-width:560px){.rail{grid-template-columns:1fr}}
+
+/* ── 8. Abyss gravity beat ── */
+.abyss{position:relative;padding:138px 0 0;overflow:hidden}
+.abyss .wrap{position:relative;z-index:2;text-align:center;padding-bottom:96px}
+.abyss h2{margin-top:24px}
+.abyss .lead{
+  margin:26px auto 0;max-width:54ch;font-size:17.5px;color:var(--body);
+}
+.abyss .lead strong{color:var(--ink);font-weight:600}
+.statN{
+  display:block;
+  margin:58px auto 0;
+  font:700 clamp(64px,9vw,88px)/1 "Lora",serif;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+  transition:font-size .55s ease-out;
+}
+body.cv-abyss .statN{font-size:clamp(70px,9.9vw,96px)}
+.stat-rule{width:130px;height:1px;background:var(--gold-grad);margin:26px auto 0}
+.stat-cap{
+  margin-top:18px;
+  font:700 11px/1.6 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--sec2);
+}
+.abyss .met{
+  margin:54px auto 0;max-width:52ch;
+  font:600 italic 17px/1.7 "Playfair Display",serif;color:var(--slate);
+}
+/* t8: the gravity beat renders as the Navy band — deep var with inverse text.
+   Local var remap means every rule inside resolves to navy-legible colours. */
+html[data-theme="t8"] .abyss{
+  --ink:var(--inv-ink);
+  --body:var(--inv-body);
+  --muted:#97917F;
+  --eyeb:#C9A24A;
+  --struct:#5FA897;
+  --slate:#9FB8C9;
+  /* re-derive secondaries locally — custom props resolve where declared,
+     so the html-level --sec/--rule values would not pick up the remapped inks */
+  --sec1:color-mix(in srgb,var(--ink) 50%,var(--muted));
+  --sec2:color-mix(in srgb,var(--ink) 33%,var(--muted));
+  --rule7:color-mix(in srgb,var(--ink) 7%,transparent);
+  --rule10:color-mix(in srgb,var(--ink) 10%,transparent);
+  background:var(--deep);
+}
+.horizon{
+  position:relative;z-index:1;
+  width:100%;height:90px;opacity:.22;
+}
+.horizon svg{width:100%;height:100%}
+.horizon svg polyline{stroke:var(--struct)}
+
+/* ── 9. Platform ── */
+.platform{padding:122px 0 126px}
+.cap-grid{
+  margin-top:64px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+}
+.cap-card{
+  background:var(--card);
+  border:1px solid var(--cardline);
+  border-radius:10px;
+  padding:26px 24px 28px;
+}
+.cap-card .num{
+  font:800 30px/1 "Playfair Display",serif;
+  color:var(--ink);opacity:.14;
+}
+.cap-card h3{
+  margin-top:16px;
+  font:700 16.5px/1.3 "Playfair Display",serif;color:var(--ink);
+}
+.cap-card p{margin-top:9px;font-size:13.5px;line-height:1.6;color:var(--sec2)}
+@media (max-width:980px){.cap-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.cap-grid{grid-template-columns:1fr}}
+
+.roadmap{margin-top:86px}
+.roadmap .rm-eyebrow{
+  font:700 10.5px/1 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+}
+.rm-rows{margin-top:22px;border-top:1px solid var(--rule7)}
+.rm-row{
+  display:grid;grid-template-columns:240px 1fr auto;gap:28px;align-items:center;
+  padding:21px 4px;
+  border-bottom:1px solid var(--rule7);
+}
+.rm-row h4{font:700 16px/1.3 "Playfair Display",serif;color:var(--ink)}
+.rm-row p{font-size:14px;color:var(--sec2)}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  font:700 10px/1 "Lora",serif;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 13px;border-radius:99px;white-space:nowrap;
+}
+.pill.active{
+  color:var(--pos);
+  border:1px solid color-mix(in srgb,var(--pos) 38%,var(--canvas));
+  background:color-mix(in srgb,var(--pos) 8%,var(--canvas));
+}
+.pill.active .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--pos);flex:none;
+}
+.pill.soon{
+  color:var(--muted);
+  border:1px solid var(--rule10);
+}
+@media (max-width:760px){.rm-row{grid-template-columns:1fr auto;gap:14px}.rm-row p{grid-column:1/-1;margin-top:-8px}}
+
+/* ── 10. Inverse CTA card ── */
+.invite{padding:0 0 126px}
+.inverse-card{
+  background:var(--inverse);
+  border-radius:14px;
+  padding:64px 48px 58px;
+  text-align:center;
+  max-width:640px;
+  margin:48px auto 0;
+}
+.inverse-card h2{
+  font:700 27px/1.25 "Playfair Display",serif;
+  letter-spacing:-.01em;color:var(--inv-ink);
+}
+.inverse-card p{
+  margin:18px auto 0;max-width:52ch;
+  font-size:16.5px;line-height:1.65;color:var(--inv-body);
+}
+.btn-gold-light{
+  display:inline-flex;align-items:center;gap:9px;
+  margin-top:36px;
+  font:600 15px/1 "Fraunces",serif;color:var(--inv-ink);
+  padding:15px 28px;border-radius:7px;
+  border:1px solid transparent;
+  background:
+    linear-gradient(var(--inverse),var(--inverse)) padding-box,
+    var(--gold-grad) border-box;
+  cursor:pointer;
+  transition:color .2s ease;
+}
+.btn-gold-light:hover{color:var(--inv-accent)}
+.inverse-card .met-line{
+  margin-top:24px;
+  font:700 10.5px/1 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;
+  color:color-mix(in srgb,var(--inv-ink) 58%,var(--inverse));
+}
+@media (max-width:640px){.inverse-card{padding:56px 28px}}
+
+/* ── 11. Footer ── */
+footer{
+  background:color-mix(in srgb,#000 14%,var(--canvas));
+  border-top:1px solid var(--rule7);
+  padding:78px 0 54px;
+}
+.foot-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:56px;
+}
+.foot-brand .wordmark{font-size:19px}
+.foot-brand p{
+  margin-top:16px;max-width:34ch;
+  font-size:14px;line-height:1.65;color:var(--sec2);
+}
+.foot-col h5{
+  font:700 10.5px/1 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:20px;
+}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:12px}
+.foot-col a{
+  font-size:14px;color:var(--sec1);
+  transition:color .2s ease;
+}
+.foot-col a:hover{color:var(--ink)}
+.foot-legal{
+  margin-top:64px;padding-top:26px;
+  border-top:1px solid var(--rule7);
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.foot-legal p{font:500 12px/1.6 "Lora",serif;color:var(--muted)}
+.foot-legal .top-link{
+  font:600 13px/1 "Fraunces",serif;color:var(--sec2);
+  border-bottom:1px solid var(--rule10);padding-bottom:2px;
+  transition:color .2s ease,border-color .2s ease;
+}
+.foot-legal .top-link:hover{color:var(--ink);border-color:var(--eyeb)}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr;gap:44px}}
+
+/* ── Annotation mode ── */
+#anno{
+  position:fixed;bottom:22px;right:22px;z-index:90;
+  font:700 11px/1 "Lora",serif;letter-spacing:.05em;
+  color:#E3C77E;background:#1C2128;
+  border:1px solid rgba(227,199,126,.35);
+  border-radius:99px;padding:10px 16px;cursor:pointer;
+}
+body.anno-on [data-dev]{outline:1px dashed rgba(227,199,126,.65);outline-offset:3px;position:relative}
+body.anno-on [data-dev]::after{
+  content:attr(data-dev);
+  position:absolute;top:-9px;left:0;
+  font:700 9px "Lora",serif;letter-spacing:.05em;
+  background:#1C2128;color:#E3C77E;
+  padding:2px 7px;border-radius:4px;
+  z-index:80;white-space:nowrap;
+}
+
+/* ── Options panel (bottom-left, fixed dark chrome — legible on every theme) ── */
+#edpanel{
+  position:fixed;left:22px;bottom:22px;z-index:95;
+  background:#15181D;border:1px solid #2E3239;border-radius:10px;
+  padding:10px;max-width:210px;
+  font-family:'Lora',serif;font-size:10px;color:#9AA3AD;line-height:1.4;
+}
+#edpanel .ep-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#edpanel .ep-title{font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+#edpanel .ep-toggle{background:none;border:0;color:#9AA3AD;font-size:12px;line-height:1;padding:0 2px;cursor:pointer}
+#edpanel .ep-toggle:hover{color:#E3C77E}
+#edpanel .ep-presets{display:flex;gap:4px;margin:9px 0 1px}
+#edpanel .ep-preset{flex:1 1 auto;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 3px;cursor:pointer}
+#edpanel .ep-preset:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-field{margin-top:8px}
+#edpanel .ep-field label{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:3px}
+#edpanel .ep-field select{width:100%;font-family:'Lora',serif;font-size:10px;color:#C8CDD3;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-field select option{background:#1C2026;color:#C8CDD3}
+/* collapsed → 34px gear chip; state lives on <html> so the head script restores it pre-paint */
+html[data-panel="collapsed"] #edpanel{width:34px;height:34px;max-width:34px;padding:0;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+html[data-panel="collapsed"] #edpanel .ep-title,
+html[data-panel="collapsed"] #edpanel .ep-body{display:none}
+html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-size:15px;color:#E3C77E}
+</style>
+</head>
+<body>
+
+<!-- 1 · gold identity bar -->
+<div class="id-bar" data-dev="S1.6 · gold identity bar" aria-hidden="true"></div>
+
+<!-- 2 · utility markets strip -->
+<div class="utility" data-dev="S5.1 · utility markets strip">
+  <div class="wrap">
+    <ul>
+      <li><span class="lbl">Brent</span> $86.40 <span class="pos">+2.1%</span></li>
+      <li><span class="lbl">VIX</span> 19.8 <span class="neg">&minus;0.8</span></li>
+      <li><span class="lbl">BTC</span> $97,210 <span class="pos">+1.4%</span></li>
+      <li><span class="lbl">Gold</span> $2,648 <span class="pos">+0.6%</span></li>
+      <li><span class="lbl">Hormuz risk:</span> <span class="hrz">Elevated</span></li>
+    </ul>
+    <span class="meta">06:40 GST · illustrative snapshot</span>
+  </div>
+</div>
+
+<!-- 3 · masthead -->
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">Vega<span class="rdy">Ready</span></a>
+    <nav class="mast-nav" aria-label="Primary">
+      <a href="#platform">Markets</a>
+      <a href="#cascade">Structural</a>
+      <a href="#platform">Briefings</a>
+      <a href="#footer">About</a>
+      <span class="sep" aria-hidden="true"></span>
+      <a class="ed-link" href="brief.html">The Brief &rarr;</a>
+      <a class="ed-link" href="desk.html">The Desk &rarr;</a>
+      <button class="cmdk" type="button" data-dev="S5.3 · quiet search chip" aria-label="Search">
+        Search
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- 4 · edition stamp -->
+<div class="stamp" data-dev="S5.4 · edition stamp">
+  <p>Friday, June 6, 2026 &nbsp;·&nbsp; Day 247 of the Tracking &nbsp;·&nbsp; Brief &#8470; 117</p>
+  <div class="rule" aria-hidden="true"></div>
+</div>
+
+<!-- 5 · hero -->
+<section class="hero" data-dev="v4.1 · atmosphere">
+  <span class="nu-ghost" aria-hidden="true" data-dev="H-ν · ghost glyph">&nu;</span>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow kick">JCJ Investing · Macro Event Intelligence</p>
+      <h1>Sensitivity to <em>volatility.</em></h1>
+      <p class="sub">Markets move when the world shakes. VegaReady tracks global events, maps how they connect across sectors and regions, and turns complexity into positioning clarity.</p>
+      <p class="tagline">Volatility isn&rsquo;t risk. It&rsquo;s signal.</p>
+      <div class="cta-row">
+        <a class="btn-gold" href="/" data-dev="S3.2 · gold-frame CTA">Open the dashboard &rarr;</a>
+        <a class="txt-link" href="#cascade">How it works &rarr;</a>
+      </div>
+    </div>
+
+    <!-- the ledger card -->
+    <aside class="ledger" data-dev="H-ledger · definition card" aria-label="Vega, the definition">
+      <div class="ledger-head">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <defs>
+            <linearGradient id="gg" x1="0" y1="0" x2="18" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#A8843C"/><stop offset=".5" stop-color="#E3C77E"/><stop offset="1" stop-color="#A8843C"/>
+            </linearGradient>
+          </defs>
+          <circle cx="9" cy="9" r="8" fill="none" stroke="url(#gg)" stroke-width="1"/>
+          <circle cx="9" cy="9" r="5.2" fill="none" stroke="url(#gg)" stroke-width=".6" opacity=".7"/>
+          <path d="M6.2 5.8 L9 12.4 L11.8 5.8" fill="none" stroke="url(#gg)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2>Vega &mdash; The Definition</h2>
+      </div>
+      <dl class="ledger-rows">
+        <div class="ledger-row">
+          <dt>Term</dt>
+          <dd class="term">Vega <i>(&nu;)</i></dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Meaning</dt>
+          <dd>How much a position gains or loses when volatility itself moves.</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Problem</dt>
+          <dd>Most investors feel volatility only after it has repriced everything they own.</dd>
+        </div>
+        <div class="ledger-row edge">
+          <dt>Our edge</dt>
+          <dd>We see it coming. We enter fast, exit faster. We make you vega&#8209;ready.</dd>
+        </div>
+      </dl>
+      <div class="spark-inset" data-dev="D-amb · ambient sparkline">
+        <p class="cap">Volatility regime · 90 days · illustrative</p>
+        <svg viewBox="0 0 360 58" preserveAspectRatio="none" role="img" aria-label="Illustrative 90-day volatility regime, rising">
+          <path d="M0,45 C26,46 48,43.5 76,42.5 C104,41.5 122,39.5 150,37.5 C178,35.5 198,32.5 226,29.5 C254,26.5 276,23.5 300,20"
+            fill="none" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M300,20 C316,17.6 330,15.4 344,12.5" fill="none" stroke-width="1.6"
+            stroke-dasharray="2 5" stroke-linecap="round"/>
+          <circle cx="348" cy="11.5" r="3"/>
+        </svg>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 6 · Oxford rule -->
+<div class="oxford-rule" data-dev="S1.1 · Oxford rule" aria-hidden="true"></div>
+
+<!-- 7 · the cascade -->
+<section class="cascade" id="cascade">
+  <div class="wrap">
+    <p class="eyebrow">The cascade</p>
+    <h2>Global events. Market reactions. Connected.</h2>
+    <div class="h2-underscore" data-dev="S1.7 · gold underscore" aria-hidden="true"></div>
+    <p class="lede">Every position begins as a headline. We trace the shock through the system &mdash; from catalyst to fundamentals to sectors to signal &mdash; until it becomes something you can act on.</p>
+
+    <div class="rail" data-dev="v4.1 · numeral icons">
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">01</span>
+        <h3>Global event</h3>
+        <p>A strike, a sanction, an election, a blockade. The catalyst lands &mdash; usually before the tape admits it.</p>
+      </div>
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">02</span>
+        <h3>Fundamentals</h3>
+        <p>Supply, demand, and policy assumptions get repriced at the source. The story changes before the price does.</p>
+      </div>
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">03</span>
+        <h3>Market sectors</h3>
+        <p>Energy, shipping, defense, FX &mdash; the shock propagates outward by exposure, not by geography.</p>
+      </div>
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">04</span>
+        <h3>Technical signals</h3>
+        <p>Volatility regimes shift. Structure either confirms the move or rejects it &mdash; and tells you which.</p>
+      </div>
+      <div class="rail-node tnode" data-dev="tnode · terminal node">
+        <span class="num" aria-hidden="true">05</span>
+        <h3>Position</h3>
+        <p>Sized, timed, and risk-defined. Enter fast, exit faster &mdash; vega&#8209;ready before the crowd is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · abyss gravity beat -->
+<section class="abyss" data-cv="abyss" data-dev="C-grammar · gravity crossfade">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center">JCJ Investing</p>
+    <h2>Built by people who trade on this data.</h2>
+    <p class="lead">This is not research about markets. It is <strong>the same macro intelligence we use to make real trading decisions, every day</strong> &mdash; published as we see it.</p>
+
+    <span class="statN" data-dev="H0 · stat numeral">40+</span>
+    <div class="stat-rule" aria-hidden="true"></div>
+    <p class="stat-cap">markets tracked daily across five asset classes</p>
+
+    <p class="met">Every event scored for transmission. Every connection mapped. Every signal timestamped.</p>
+  </div>
+  <div class="horizon" data-dev="D-amb · horizon sparkline" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <polyline points="0,62 60,58 120,64 180,55 240,60 300,50 360,56 420,46 480,53 540,42 600,49 660,38 720,46 780,34 840,42 900,30 960,38 1020,27 1080,34 1140,23 1200,30 1260,19 1320,26 1380,15 1440,21"
+        fill="none" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 9 · the platform -->
+<section class="platform" id="platform">
+  <div class="wrap">
+    <p class="eyebrow">The platform</p>
+    <h2>One desk. Four lenses.</h2>
+    <div class="h2-underscore" aria-hidden="true"></div>
+
+    <div class="cap-grid">
+      <div class="cap-card">
+        <span class="num" aria-hidden="true">01</span>
+        <h3>Geopolitical</h3>
+        <p>Conflict trackers, sanctions flow, and regional risk scored for market transmission.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num" aria-hidden="true">02</span>
+        <h3>Macro &amp; economic</h3>
+        <p>Rates, inflation prints, and central-bank posture read in one continuous ledger.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num" aria-hidden="true">03</span>
+        <h3>Crypto &amp; digital</h3>
+        <p>Digital-asset regimes tracked with the same event discipline as the physical world.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num" aria-hidden="true">04</span>
+        <h3>Technical metrics</h3>
+        <p>Volatility surfaces, breadth, and momentum across 40+ markets, updated daily.</p>
+      </div>
+    </div>
+
+    <div class="roadmap" data-dev="S7.3 · ledger rows">
+      <p class="rm-eyebrow">What ships, and when</p>
+      <div class="rm-rows">
+        <div class="rm-row">
+          <h4>Live dashboard</h4>
+          <p>Open intelligence across five asset classes &mdash; no account needed.</p>
+          <span class="pill active"><span class="dot" aria-hidden="true"></span>Active</span>
+        </div>
+        <div class="rm-row">
+          <h4>Market briefings</h4>
+          <p>The morning brief &mdash; what moved, why, and what it connects to.</p>
+          <span class="pill soon">Coming soon</span>
+        </div>
+        <div class="rm-row">
+          <h4>Podcast &amp; analysis</h4>
+          <p>Desk conversations on the macro tape, in plain language.</p>
+          <span class="pill soon">Coming soon</span>
+        </div>
+        <div class="rm-row">
+          <h4>Technical signals feed</h4>
+          <p>Timestamped signals with full history &mdash; nothing edited after the fact.</p>
+          <span class="pill soon">Coming soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · inverse CTA card -->
+<section class="invite">
+  <div class="wrap">
+    <div class="inverse-card" data-dev="C-grammar · singular inverse">
+      <h2>The dashboard is live.</h2>
+      <p>Open intelligence, no account needed &mdash; see the world the way a trading desk does.</p>
+      <a class="btn-gold-light" href="/" data-dev="S3.2 · gold-frame CTA (inverse)">Open the dashboard &rarr;</a>
+      <p class="met-line">No signup · Updated daily · Share freely</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · premium footer -->
+<footer id="footer" data-dev="premium footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="index.html">Vega<span class="rdy">Ready</span></a>
+        <p>The working map of a quantitative trading desk &mdash; global events, market cascades, published openly.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Platform</h5>
+        <ul>
+          <li><a href="/">Live dashboard</a></li>
+          <li><a href="brief.html">The Brief</a></li>
+          <li><a href="desk.html">The Desk</a></li>
+          <li><a href="#cascade">How the cascade works</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>JCJ Investing</h5>
+        <ul>
+          <li><a href="#footer">About the desk</a></li>
+          <li><a href="#cascade">Methodology</a></li>
+          <li><a href="mailto:GP@jcjinvesting.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p>&copy; JCJ Investing · Source: desk marks &mdash; Information, not investment advice.</p>
+      <a class="top-link" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+<!-- options panel (bottom-left) -->
+<div id="edpanel" role="group" aria-label="Display options">
+  <div class="ep-head">
+    <span class="ep-title">Options<span style="color:#E0B262;font-size:9px;letter-spacing:.05em"> · V1 FROZEN</span></span>
+    <button type="button" class="ep-toggle" id="eptoggle" aria-expanded="true" aria-label="Collapse options panel">&#8964;</button>
+  </div>
+  <div class="ep-body">
+    <div class="ep-presets" role="group" aria-label="Presets">
+      <button type="button" class="ep-preset" data-preset="p1">P1 Formula</button>
+      <button type="button" class="ep-preset" data-preset="p2">P2 Conservative</button>
+      <button type="button" class="ep-preset" data-preset="p3">P3 Baseline</button>
+    </div>
+    <div class="ep-field">
+      <label for="opt-theme">Canvas</label>
+      <select id="opt-theme">
+        <option value="t1" selected>t1 · Oxford (baseline)</option>
+        <option value="t2">t2 · Abyss + Navy cards</option>
+        <option value="t3">t3 · Charcoal Blue</option>
+        <option value="t4">t4 · Pine Black</option>
+        <option value="t5">t5 · Petrol Black</option>
+        <option value="t6">t6 · Near-black + Oxford cards</option>
+        <option value="t7">t7 · Gunmetal sunken</option>
+        <option value="t8">t8 · Soft White Desk (light)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-gold">Gold</label>
+      <select id="opt-gold">
+        <option value="g1">G1 · Signature</option>
+        <option value="g2">G2 · Whisper</option>
+        <option value="g3" selected>G3 · Rich (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-grey">Grey</label>
+      <select id="opt-grey">
+        <option value="warm" selected>Warm (current)</option>
+        <option value="cool">Cool</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sem">Semantic</label>
+      <select id="opt-sem">
+        <option value="s1">S1 · Recipe&rsquo;d</option>
+        <option value="s2" selected>S2 · Current</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-dialect">Dialect</label>
+      <select id="opt-dialect">
+        <option value="auto">Auto · Cross-family</option>
+        <option value="fixed" selected>Fixed · Teal (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-deep">Deep bands</label>
+      <select id="opt-deep">
+        <option value="b1">B1 · Guaranteed step</option>
+        <option value="b2" selected>B2 · Current</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-ptone">Panels</label>
+      <select id="opt-ptone">
+        <option value="pa" selected>Per-role (current)</option>
+        <option value="pb">Unified card</option>
+        <option value="pc">Sunken</option>
+        <option value="pd">Raised</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- annotation toggle (bottom-right) -->
+<button id="anno" type="button">&#8857; Annotate</button>
+
+<script>
+// ── annotation mode ──
+var anno = document.getElementById('anno');
+anno.onclick = function(){
+  var on = document.body.classList.toggle('anno-on');
+  anno.textContent = on ? '⊙ Hide notes' : '⊙ Annotate';
+};
+
+// ── options panel — six axes + presets + collapse (shared keys across The Edition) ──
+(function(){
+  var d = document.documentElement;
+  var AXES = [
+    { id:'opt-theme',   attr:'data-theme',   key:'ed-theme'   },
+    { id:'opt-gold',    attr:'data-gold',    key:'ed-gold'    },
+    { id:'opt-grey',    attr:'data-grey',    key:'ed-grey'    },
+    { id:'opt-sem',     attr:'data-sem',     key:'ed-sem'     },
+    { id:'opt-dialect', attr:'data-dialect', key:'ed-dialect' },
+    { id:'opt-deep',    attr:'data-deep',    key:'ed-deep'    },
+    { id:'opt-ptone',   attr:'data-ptone',   key:'ed-ptone'   }
+  ];
+  function syncSel(sel, v){
+    for (var i = 0; i < sel.options.length; i++){
+      if (sel.options[i].value === v){ sel.value = v; return; }
+    }
+  }
+  function setAxis(a, v){
+    d.setAttribute(a.attr, v);
+    try { localStorage.setItem(a.key, v); } catch(e){}
+    var sel = document.getElementById(a.id);
+    if (sel) syncSel(sel, v);
+  }
+  AXES.forEach(function(a){
+    var sel = document.getElementById(a.id);
+    if (!sel) return;
+    var cur = d.getAttribute(a.attr);
+    if (cur) syncSel(sel, cur);
+    sel.addEventListener('change', function(){ setAxis(a, sel.value); });
+  });
+  /* presets — style axes only; the canvas/theme is never touched */
+  var PRESETS = {
+    p1:{ 'data-gold':'g1','data-grey':'cool','data-sem':'s1','data-dialect':'auto','data-deep':'b1','data-ptone':'pb' },
+    p2:{ 'data-gold':'g2','data-grey':'warm','data-sem':'s1','data-dialect':'auto','data-deep':'b1','data-ptone':'pa' },
+    p3:{ 'data-gold':'g3','data-grey':'warm','data-sem':'s2','data-dialect':'fixed','data-deep':'b2','data-ptone':'pa' }
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('.ep-preset'), function(b){
+    b.addEventListener('click', function(){
+      var p = PRESETS[b.getAttribute('data-preset')];
+      if (!p) return;
+      AXES.forEach(function(a){ if (p[a.attr]) setAxis(a, p[a.attr]); });
+    });
+  });
+  /* collapse — state on <html>; restored pre-paint by the head script */
+  var panel = document.getElementById('edpanel');
+  var tog = document.getElementById('eptoggle');
+  function paintToggle(){
+    var c = d.getAttribute('data-panel') === 'collapsed';
+    tog.textContent = c ? '⚙' : '⌄';
+    tog.setAttribute('aria-expanded', c ? 'false' : 'true');
+    tog.setAttribute('aria-label', c ? 'Expand options panel' : 'Collapse options panel');
+  }
+  function setCollapsed(c){
+    if (c) d.setAttribute('data-panel','collapsed'); else d.removeAttribute('data-panel');
+    try { localStorage.setItem('ed-panel', c ? 'collapsed' : 'open'); } catch(e){}
+    paintToggle();
+  }
+  tog.addEventListener('click', function(ev){
+    ev.stopPropagation();
+    setCollapsed(d.getAttribute('data-panel') !== 'collapsed');
+  });
+  panel.addEventListener('click', function(){
+    if (d.getAttribute('data-panel') === 'collapsed') setCollapsed(false);
+  });
+  paintToggle();
+})();
+
+// ── canvas grammar: abyss gravity crossfade (targets var(--deep) via .cv-abyss) ──
+(function(){
+  var beat = document.querySelector('[data-cv="abyss"]');
+  if (!beat || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      document.body.classList.toggle('cv-abyss', e.isIntersecting);
+    });
+  }, { threshold: 0.32 });
+  io.observe(beat);
+})();
+</script>
+
+</body>
+</html>

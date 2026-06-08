@@ -1,47 +1,377 @@
 {
-  "updated": "2026-06-03",
-  "updated_by": "Cowork Opus · P0-S01 in progress",
-  "current_phase": 0,
-  "phase_gate": "preview-first: each step reviewed in local preview; deploy to live only on owner approval of a phase",
-  "steps": [
-    {"id":"P0-S01","title":"Port DESIGN-CONTRACT tokens into Astro theme layer","status":"in_progress","owner":"Cowork Opus","branch":"p0-s01-design-tokens","depends":[],"notes":"global.css token values remapped to locked palette + new tokens + data-theme; awaiting local-preview review"},
-    {"id":"P0-S02","title":"Standardized finding-first analysis card","status":"todo","owner":null,"branch":"p0-s02-analysis-card","depends":["P0-S01"],"notes":""},
-    {"id":"P0-S03","title":"Confidence chip + tier hook","status":"todo","owner":null,"branch":"p0-s03-confidence-chip","depends":["P0-S01"],"notes":""},
-    {"id":"P0-S04","title":"Reality badge + status tokens + filter","status":"todo","owner":null,"branch":"p0-s04-reality-badge","depends":["P0-S01"],"notes":""},
-    {"id":"P0-S05","title":"Honest freshness banner (kill May-29 stamp)","status":"todo","owner":null,"branch":"p0-s05-freshness","depends":["P0-S01"],"notes":"quick-win, credibility"},
-    {"id":"P0-S06","title":"Shared parts: cascade rail, situation strip, badges, band, report surface","status":"todo","owner":null,"branch":"p0-s06-shared-parts","depends":["P0-S01"],"notes":""},
-    {"id":"P0-S07","title":"CI gates + preview workflow","status":"todo","owner":null,"branch":"p0-s07-ci-preview","depends":["P0-S01"],"notes":"token-lint, trace-grep, dual-mode assertion"},
-    {"id":"P1-S01","title":"Persistent Simple/Analyst toggle","status":"todo","owner":null,"branch":"p1-s01-mode-toggle","depends":["P0-S02"],"notes":""},
-    {"id":"P1-S02","title":"Dual-mode contract + drill-down","status":"todo","owner":null,"branch":"p1-s02-dualmode","depends":["P1-S01"],"notes":"Analyst adds depth, not reformat"},
-    {"id":"P2-S01","title":"Glossary inline tooltips","status":"todo","owner":null,"branch":"p2-s01-glossary","depends":["P0-S01"],"notes":""},
-    {"id":"P2-S02","title":"TL;DR + key-asymmetry band","status":"todo","owner":null,"branch":"p2-s02-tldr","depends":["P0-S02"],"notes":""},
-    {"id":"P2-S03","title":"Collapsible thesis","status":"todo","owner":null,"branch":"p2-s03-thesis","depends":["P2-S02"],"notes":""},
-    {"id":"P2-S04","title":"Source-tier/confidence explainer","status":"todo","owner":null,"branch":"p2-s04-tier-explainer","depends":["P0-S03"],"notes":""},
-    {"id":"P2-S05","title":"Outcome-renamed nav","status":"todo","owner":null,"branch":"p2-s05-nav-rename","depends":["P1-S01"],"notes":""},
-    {"id":"P3-S01","title":"Homepage hero rewrite","status":"todo","owner":null,"branch":"p3-s01-hero","depends":["P0-S01"],"notes":""},
-    {"id":"P3-S02","title":"Demote 'coming soon'","status":"todo","owner":null,"branch":"p3-s02-coming-soon","depends":["P0-S01"],"notes":""},
-    {"id":"P3-S03","title":"Cascade as interactive nav spine","status":"todo","owner":null,"branch":"p3-s03-cascade-nav","depends":["P0-S06"],"notes":""},
-    {"id":"P3-S04","title":"About = methodology anchor","status":"todo","owner":null,"branch":"p3-s04-about-method","depends":["P2-S04"],"notes":""},
-    {"id":"P3-S05","title":"Verify freshness site-wide","status":"todo","owner":null,"branch":"p3-s05-freshness-verify","depends":["P0-S05"],"notes":""},
-    {"id":"P4-S01","title":"Standardized card across 12 market pages","status":"todo","owner":null,"branch":"p4-s01-markets-card","depends":["P0-S02","P1-S02"],"notes":""},
-    {"id":"P4-S02","title":"Mobile-safe tables","status":"todo","owner":null,"branch":"p4-s02-tables","depends":["P0-S02"],"notes":""},
-    {"id":"P4-S03","title":"Charts/maps where flagged","status":"todo","owner":null,"branch":"p4-s03-visuals","depends":["P4-S01"],"notes":""},
-    {"id":"P4-S04","title":"Situation section (realized vs latent)","status":"todo","owner":null,"branch":"p4-s04-situation","depends":["P0-S06"],"notes":""},
-    {"id":"P5-S01","title":"Connections causal graph","status":"todo","owner":null,"branch":"p5-s01-causal-graph","depends":["P4-S01"],"notes":""},
-    {"id":"P5-S02","title":"Exposure winners/losers map","status":"todo","owner":null,"branch":"p5-s02-exposure-map","depends":["P4-S01"],"notes":""},
-    {"id":"P5-S03","title":"Who Profits cards + name blank groups","status":"todo","owner":null,"branch":"p5-s03-who-profits","depends":["P4-S01"],"notes":""},
-    {"id":"P5-S04","title":"Cascade rail everywhere + footer","status":"todo","owner":null,"branch":"p5-s04-rail-footer","depends":["P3-S03"],"notes":""},
-    {"id":"P6-S01","title":"Dashboard War Room tab + SSR fallback","status":"todo","owner":null,"branch":"p6-s01-war-room","depends":["P1-S02"],"notes":""},
-    {"id":"P6-S02","title":"Gloss dashboard codes","status":"todo","owner":null,"branch":"p6-s02-dash-gloss","depends":["P2-S01"],"notes":""},
-    {"id":"P6-S03","title":"Human /signals board","status":"todo","owner":null,"branch":"p6-s03-signals-board","depends":["P0-S02"],"notes":""},
-    {"id":"P6-S04","title":"Reconcile anchor figures [research]","status":"todo","owner":null,"branch":"p6-s04-figures","depends":[],"notes":"Comet lane; canonical JSON then regenerate"},
-    {"id":"P6-S05","title":"Unify conflict naming","status":"todo","owner":null,"branch":"p6-s05-naming","depends":[],"notes":""},
-    {"id":"P6-S06","title":"Consistency QA close-out","status":"todo","owner":null,"branch":"p6-s06-qa","depends":["P5-S04"],"notes":"program definition-of-done"}
-  ],
-  "open_questions": [
-    "Deploy automation: stay manual (owner cmd, preview-first) or wire GitHub Actions -> Cloudflare later? (currently manual + preview-first)",
-    "Theme slider: how many themes ship at launch (recommend 2-4)?",
-    "Build the stakeholder HTML 'Build Roadmap' app, or keep ROADMAP.json only? (currently JSON only)"
-  ],
-  "deploy": {"last_preview": null, "last_promoted": null, "commit": null, "mode": "preview-first / manual"}
+ "updated": "2026-06-06",
+ "updated_by": "Cowork Opus \u00b7 DESIGN-CONTRACT v2.0 cut + P0-S01 re-port",
+ "current_phase": 0,
+ "phase_gate": "preview-first: each step reviewed in local preview; deploy to live only on owner approval of a phase",
+ "steps": [
+  {
+   "id": "P0-S01",
+   "title": "Port DESIGN-CONTRACT tokens into Astro theme layer",
+   "status": "in_review",
+   "owner": "Cowork Opus",
+   "branch": "p0-s01-design-tokens",
+   "depends": [],
+   "notes": "RE-PORTED 2026-06-06 from DESIGN-CONTRACT v2.0 (tokens v3.1.2): dark-primary WB5 + light L1 via data-theme, canonical token layer + legacy aliases remapped. Awaiting owner local build + astro preview review (preview-first gate). Theme toggle UI deferred to P1-S01 sibling; data-theme attribute mechanism ready."
+  },
+  {
+   "id": "P0-S02",
+   "title": "Standardized finding-first analysis card",
+   "status": "todo",
+   "owner": null,
+   "branch": "p0-s02-analysis-card",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P0-S03",
+   "title": "Confidence chip + tier hook",
+   "status": "todo",
+   "owner": null,
+   "branch": "p0-s03-confidence-chip",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P0-S04",
+   "title": "Reality badge + status tokens + filter",
+   "status": "todo",
+   "owner": null,
+   "branch": "p0-s04-reality-badge",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P0-S05",
+   "title": "Honest freshness banner (kill May-29 stamp)",
+   "status": "todo",
+   "owner": null,
+   "branch": "p0-s05-freshness",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": "quick-win, credibility"
+  },
+  {
+   "id": "P0-S06",
+   "title": "Shared parts: cascade rail, situation strip, badges, band, report surface",
+   "status": "todo",
+   "owner": null,
+   "branch": "p0-s06-shared-parts",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P0-S07",
+   "title": "CI gates + preview workflow",
+   "status": "todo",
+   "owner": null,
+   "branch": "p0-s07-ci-preview",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": "token-lint, trace-grep, dual-mode assertion"
+  },
+  {
+   "id": "P1-S01",
+   "title": "Persistent Simple/Analyst toggle",
+   "status": "todo",
+   "owner": null,
+   "branch": "p1-s01-mode-toggle",
+   "depends": [
+    "P0-S02"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P1-S02",
+   "title": "Dual-mode contract + drill-down",
+   "status": "todo",
+   "owner": null,
+   "branch": "p1-s02-dualmode",
+   "depends": [
+    "P1-S01"
+   ],
+   "notes": "Analyst adds depth, not reformat"
+  },
+  {
+   "id": "P2-S01",
+   "title": "Glossary inline tooltips",
+   "status": "todo",
+   "owner": null,
+   "branch": "p2-s01-glossary",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P2-S02",
+   "title": "TL;DR + key-asymmetry band",
+   "status": "todo",
+   "owner": null,
+   "branch": "p2-s02-tldr",
+   "depends": [
+    "P0-S02"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P2-S03",
+   "title": "Collapsible thesis",
+   "status": "todo",
+   "owner": null,
+   "branch": "p2-s03-thesis",
+   "depends": [
+    "P2-S02"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P2-S04",
+   "title": "Source-tier/confidence explainer",
+   "status": "todo",
+   "owner": null,
+   "branch": "p2-s04-tier-explainer",
+   "depends": [
+    "P0-S03"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P2-S05",
+   "title": "Outcome-renamed nav",
+   "status": "todo",
+   "owner": null,
+   "branch": "p2-s05-nav-rename",
+   "depends": [
+    "P1-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P3-S01",
+   "title": "Homepage hero rewrite",
+   "status": "todo",
+   "owner": null,
+   "branch": "p3-s01-hero",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P3-S02",
+   "title": "Demote 'coming soon'",
+   "status": "todo",
+   "owner": null,
+   "branch": "p3-s02-coming-soon",
+   "depends": [
+    "P0-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P3-S03",
+   "title": "Cascade as interactive nav spine",
+   "status": "todo",
+   "owner": null,
+   "branch": "p3-s03-cascade-nav",
+   "depends": [
+    "P0-S06"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P3-S04",
+   "title": "About = methodology anchor",
+   "status": "todo",
+   "owner": null,
+   "branch": "p3-s04-about-method",
+   "depends": [
+    "P2-S04"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P3-S05",
+   "title": "Verify freshness site-wide",
+   "status": "todo",
+   "owner": null,
+   "branch": "p3-s05-freshness-verify",
+   "depends": [
+    "P0-S05"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P4-S01",
+   "title": "Standardized card across 12 market pages",
+   "status": "todo",
+   "owner": null,
+   "branch": "p4-s01-markets-card",
+   "depends": [
+    "P0-S02",
+    "P1-S02"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P4-S02",
+   "title": "Mobile-safe tables",
+   "status": "todo",
+   "owner": null,
+   "branch": "p4-s02-tables",
+   "depends": [
+    "P0-S02"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P4-S03",
+   "title": "Charts/maps where flagged",
+   "status": "todo",
+   "owner": null,
+   "branch": "p4-s03-visuals",
+   "depends": [
+    "P4-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P4-S04",
+   "title": "Situation section (realized vs latent)",
+   "status": "todo",
+   "owner": null,
+   "branch": "p4-s04-situation",
+   "depends": [
+    "P0-S06"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P5-S01",
+   "title": "Connections causal graph",
+   "status": "todo",
+   "owner": null,
+   "branch": "p5-s01-causal-graph",
+   "depends": [
+    "P4-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P5-S02",
+   "title": "Exposure winners/losers map",
+   "status": "todo",
+   "owner": null,
+   "branch": "p5-s02-exposure-map",
+   "depends": [
+    "P4-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P5-S03",
+   "title": "Who Profits cards + name blank groups",
+   "status": "todo",
+   "owner": null,
+   "branch": "p5-s03-who-profits",
+   "depends": [
+    "P4-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P5-S04",
+   "title": "Cascade rail everywhere + footer",
+   "status": "todo",
+   "owner": null,
+   "branch": "p5-s04-rail-footer",
+   "depends": [
+    "P3-S03"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P6-S01",
+   "title": "Dashboard War Room tab + SSR fallback",
+   "status": "todo",
+   "owner": null,
+   "branch": "p6-s01-war-room",
+   "depends": [
+    "P1-S02"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P6-S02",
+   "title": "Gloss dashboard codes",
+   "status": "todo",
+   "owner": null,
+   "branch": "p6-s02-dash-gloss",
+   "depends": [
+    "P2-S01"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P6-S03",
+   "title": "Human /signals board",
+   "status": "todo",
+   "owner": null,
+   "branch": "p6-s03-signals-board",
+   "depends": [
+    "P0-S02"
+   ],
+   "notes": ""
+  },
+  {
+   "id": "P6-S04",
+   "title": "Reconcile anchor figures [research]",
+   "status": "todo",
+   "owner": null,
+   "branch": "p6-s04-figures",
+   "depends": [],
+   "notes": "Comet lane; canonical JSON then regenerate"
+  },
+  {
+   "id": "P6-S05",
+   "title": "Unify conflict naming",
+   "status": "todo",
+   "owner": null,
+   "branch": "p6-s05-naming",
+   "depends": [],
+   "notes": ""
+  },
+  {
+   "id": "P6-S06",
+   "title": "Consistency QA close-out",
+   "status": "todo",
+   "owner": null,
+   "branch": "p6-s06-qa",
+   "depends": [
+    "P5-S04"
+   ],
+   "notes": "program definition-of-done"
+  }
+ ],
+ "open_questions": [
+  "Deploy automation: stay manual (owner cmd, preview-first) or wire GitHub Actions -> Cloudflare later? (currently manual + preview-first)",
+  "Theme slider: how many themes ship at launch (recommend 2-4)?",
+  "Build the stakeholder HTML 'Build Roadmap' app, or keep ROADMAP.json only? (currently JSON only)"
+ ],
+ "deploy": {
+  "last_preview": null,
+  "last_promoted": null,
+  "commit": null,
+  "mode": "preview-first / manual"
+ }
 }
