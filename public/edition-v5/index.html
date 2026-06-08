@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VegaReady — Sensitivity to Volatility | JCJ Investing</title>
+<meta name="description" content="VegaReady tracks global events, maps how they connect across sectors and regions, and turns complexity into positioning clarity. Open macro event intelligence by JCJ Investing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,600;1,700;1,800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<script>
+/* option-axis init — all six stores read before first paint to avoid flash */
+(function(){
+  var d = document.documentElement;
+  function g(k, f, re){
+    var v = null;
+    try { v = localStorage.getItem(k); } catch(e){}
+    return (v && re.test(v)) ? v : f;
+  }
+  d.setAttribute('data-theme',   g('ed-theme',   't1',    /^t[1-8]$/));
+  d.setAttribute('data-gold',    g('ed-gold',    'g3',    /^g[1-4]$/));
+  d.setAttribute('data-grey',    g('ed-grey',    'warm',  /^(warm|cool)$/));
+  d.setAttribute('data-sem',     g('ed-sem',     's2',    /^s[1-3]$/));
+  d.setAttribute('data-dialect', g('ed-dialect', 'fixed', /^(auto|fixed)$/));
+  d.setAttribute('data-deep',    g('ed-deep',    'b2',    /^b[12]$/));
+  d.setAttribute('data-chroma',  g('ed-chroma',  'rich',  /^(rich|capped)$/));
+  d.setAttribute('data-data',    g('ed-data',    'd1',    /^d[1-5]$/));
+  /* BOX system — single colour control for every box (replaces the retired ptone axis) */
+  var HUE = 'b-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood)';
+  d.setAttribute('data-box',    g('ed-box',    'b-tonal', new RegExp('^' + HUE + '$')));
+  d.setAttribute('data-scheme', g('ed-scheme', 'tworole', /^(uniform|tworole)$/));
+  d.setAttribute('data-box2',   g('ed-box2',   'sunk1',   new RegExp('^(' + HUE + '|sunk[1-4])$')));
+  d.setAttribute('data-bline',  g('ed-bline',  'auto',    new RegExp('^(auto|' + HUE + ')$')));
+  try { localStorage.removeItem('ed-ptone'); } catch(e){} /* legacy migration: ptone axis retired June 2026 */
+  if (g('ed-panel', 'open', /^(open|collapsed)$/) === 'collapsed') d.setAttribute('data-panel','collapsed');
+})();
+</script>
+<style>
+/* ════════ THE EDITION · FRONT DOOR · VegaReady ════════ */
+
+/* ── Theme architecture ──
+   Every theme is a block of 12 custom properties on html[data-theme].
+   Gold gradient stays literal — brand constant across all themes. */
+:root,
+html[data-theme="t1"]{ /* Oxford (baseline) */
+  color-scheme:dark; /* QC: native scrollbars/controls render dark */
+  --canvas:#0D1626;
+  --card:#131E32;        /* RECIPE: hue-held OKLCH L+0.035, chroma rises — never cream-mix */
+  --cardline:#1E2E4A;    /* border-subtle: L+0.10, same hue */
+  --deep:#0A0F1A;
+  --inverse:#EDE5D2;
+  --inv-ink:#33302A;
+  --inv-body:#5C5546;
+  --ink:#F2EBDC;
+  --body:#DCD4C2;
+  --muted:#97917F;
+  --eyeb:#C9A24A;
+  --struct:#5FA897;
+  /* theme-tuned accents (default = navy-family values) */
+  --gold-accent:#F4C37D;
+  --slate:#9FB8C9;
+  --pos:#46C9A0;
+  --neg:#E2725B;
+  --inv-accent:#8A6A26;
+  --well:color-mix(in srgb,#000 22%,var(--box)); /* BOX system: the spark well is an inset of the box colour */
+}
+html[data-theme="t2"]{ /* Abyss + Navy cards */
+  --canvas:#0A0F1A;
+  --card:#111C30;       /* RECIPE: Abyss's own hue-held card (navy by nature) */
+  --cardline:#1C2A44;
+  --deep:#070B12;
+}
+html[data-theme="t3"]{ /* Charcoal Blue */
+  --canvas:#13171D;
+  --card:#1C2129;
+  --cardline:#262E3A;
+  --deep:#0A0F1A;
+}
+html[data-theme="t4"]{ /* Pine Black */
+  --canvas:#11201C;
+  --card:#172924;
+  --cardline:#223B34;
+  --deep:#0A1410;
+}
+html[data-theme="t5"]{ /* Petrol Black */
+  --canvas:#0F1B1F;
+  --card:#152429;
+  --cardline:#20353B;
+  --deep:#0A1216;
+}
+html[data-theme="t6"]{ /* Near-black + Oxford cards */
+  --canvas:#0B0D11;
+  --card:#0D1626;       /* the owner's hypothesis: Oxford AS the card */
+  --cardline:#1E2E4A;   /* border belongs to the card's hue, not the canvas */
+  --deep:#070B12;
+}
+html[data-theme="t7"]{ /* Gunmetal sunken */
+  --canvas:#232B33;
+  --card:#1C2229;       /* RECIPE sunken: L−0.035, same hue */
+  --cardline:#394551;
+  --deep:#161B21;
+  --inverse:#F2EDE2;
+  --muted:#A39D8E;      /* per-hue contrast lift (4.7:1 → ≥5:1 on raised) */
+}
+html[data-theme="t8"]{ /* Soft White Desk (light) */
+  color-scheme:light; /* QC: light theme gets light native controls */
+  --canvas:#DDE2E6;
+  --card:#FFFFFF;
+  --cardline:#C2CAD1;
+  --deep:#0B2E4E;
+  --inverse:#0B2E4E;
+  --inv-ink:#F5F1E6;
+  --inv-body:#C3CDD8;
+  --ink:#2B2F34;
+  --body:#3A434C;
+  --muted:#4A535C;
+  --eyeb:#8A6420;
+  --struct:#2A6478;
+  --gold-accent:#8A6420;
+  --slate:#3E617C;
+  --pos:#1E7A5F;
+  --neg:#B0452C;
+  --inv-accent:#E3C77E;
+  --well:#EFF2F4;
+}
+
+/* ════ CHROMA axis — canvas saturation cap (placed after the theme blocks so it wins the cascade).
+   Research gate: large grounds ≤ C 0.025; Oxford measures C 0.035, Abyss similar.
+   capped re-tunes ONLY the two over-chromatic navy themes (t1/t2); t3–t8 already pass the cap — no rules needed. */
+html[data-chroma="capped"][data-theme="t1"]{--canvas:#0E1520;--card:#131D2B;--cardline:#1E2B3F;--deep:#0A0F18}
+html[data-chroma="capped"][data-theme="t2"]{--canvas:#101826;--card:#162133;--cardline:#21304A;--deep:#0C1220}
+
+/* ════ OPTION AXES — attribute layers; override theme vars by cascade ════ */
+/* GOLD ladder — g3 = current rich gold, no override */
+html[data-gold="g1"]{--eyeb:color-mix(in srgb,var(--muted) 60%,var(--ink))}  /* eyebrows→warm ink-grey; metal stays only where gradients are literal */
+html[data-gold="g1"] .kick::after{opacity:.3}
+html[data-gold="g2"]{--eyeb:#B09A66}
+html[data-gold="g2"] .kick::after{opacity:.6}
+/* g4 Metal Ramp — research-verified Radix-gold-dark metallic construction:
+   chroma FALLS as lightness rises. base #978365 · mid #CBB99F · highlight #E8E2D9 */
+html[data-gold="g4"]{
+  --eyeb:#CBB99F;
+  --gold-accent:#E8E2D9;
+  --inv-accent:#978365;
+  --gold-a:#978365;
+  --gold-b:#E8E2D9;
+  --gold-grad:linear-gradient(90deg,#978365 0%,#CBB99F 30%,#E8E2D9 50%,#CBB99F 70%,#978365 100%);
+}
+/* the ledger-head SVG gradient is literal — restop it for the metal ramp */
+html[data-gold="g4"] #gg stop:nth-of-type(1){stop-color:#978365}
+html[data-gold="g4"] #gg stop:nth-of-type(2){stop-color:#E8E2D9}
+html[data-gold="g4"] #gg stop:nth-of-type(3){stop-color:#978365}
+/* light desk: the cream ramp would wash out — fall back to the dark metal base */
+html[data-gold="g4"][data-theme="t8"]{--eyeb:#978365;--gold-accent:#978365}
+/* GREY temperature — per-theme cool values, hue-following */
+html[data-grey="cool"]{--muted:#8C96A4}
+html[data-grey="cool"][data-theme="t4"],html[data-grey="cool"][data-theme="t5"]{--muted:#8A9892}
+html[data-grey="cool"][data-theme="t7"]{--muted:#9AA3AE}
+html[data-grey="cool"][data-theme="t8"]{--muted:#4A535C}
+/* SEMANTIC recipe'd — s2 = current values; this page defines --pos/--neg only */
+html[data-sem="s1"]{--pos:#33A07E;--neg:#C2604C}
+/* s3 Desk Standard — TradingView/Coinbase pair */
+html[data-sem="s3"]{--pos:#26A69A;--neg:#EF5350}
+/* DIALECT — auto keeps verdigris #5FA897 on navy themes (t1/t2/t3/t6/t7); fixed = current everywhere */
+html[data-dialect="auto"][data-theme="t4"],html[data-dialect="auto"][data-theme="t5"]{--struct:#5878B8}
+html[data-dialect="auto"][data-theme="t8"]{--struct:#2A6478}
+/* ════ DATA axis — chart & sparkline line colour (June 2026 total-coverage audit).
+   d1 Auto = page current: on this page the spark + horizon lines follow --struct (DIALECT).
+   d2–d5 force a hue everywhere a data line is drawn; t8 light desk remaps to
+   dark-on-light counterparts so the line stays legible on white cards. */
+html{--data:var(--struct)}
+html[data-data="d2"]{--data:#5E83D9}
+html[data-data="d3"]{--data:#5FA897}
+html[data-data="d4"]{--data:#8FA8C8}
+html[data-data="d5"]{--data:#CBB99F}
+html[data-theme="t8"][data-data="d2"]{--data:#2A5FA8}
+html[data-theme="t8"][data-data="d3"]{--data:#2A6478}
+html[data-theme="t8"][data-data="d4"]{--data:#46627E}
+html[data-theme="t8"][data-data="d5"]{--data:#8A6420}
+/* DEEP guaranteed step (−6L-ish per theme; t8 unchanged) */
+html[data-deep="b1"][data-theme="t1"]{--deep:#070D18}
+html[data-deep="b1"][data-theme="t2"]{--deep:#05080F}
+html[data-deep="b1"][data-theme="t3"]{--deep:#080B10}
+html[data-deep="b1"][data-theme="t4"]{--deep:#07120D}
+html[data-deep="b1"][data-theme="t5"]{--deep:#081014}
+html[data-deep="b1"][data-theme="t6"]{--deep:#04060A}
+html[data-deep="b1"][data-theme="t7"]{--deep:#12161C}
+/* ════ BOX COLOUR system — owner ruling: "anything that has a box is a card or a panel".
+   Replaces the retired PANELS/ptone axis. ONE selector recolours every box on the page.
+   Two tiers:
+   — main tier consumes var(--box) bg / var(--boxline) border
+     (.ledger, .cap-card, .utility strip, .btn-gold fill, .cmdk frame, spark-inset well)
+   — instrument tier consumes var(--box2)/var(--box2line) (.rail-node.tnode)
+   data-scheme="uniform" collapses the instrument tier onto the main box colour. */
+html{
+  --box:var(--card);--boxline:var(--cardline);
+  --box2:color-mix(in srgb,#000 26%,var(--canvas));--box2line:color-mix(in srgb,var(--ink) 12%,var(--canvas));
+}
+/* BOX — main box colour, 13 hues */
+html[data-box="b-tonal"]{--box:var(--card);--boxline:var(--cardline)}
+html[data-box="b-navy"]{--box:#1E3552;--boxline:#2C466B}
+html[data-box="b-teal"]{--box:#15332F;--boxline:#214841}
+html[data-box="b-petrol"]{--box:#1B313A;--boxline:#28444F}
+html[data-box="b-pine"]{--box:#1E332C;--boxline:#2B463D}
+html[data-box="b-slate"]{--box:#232932;--boxline:#323A46}
+html[data-box="b-graphite"]{--box:#262421;--boxline:#36332E}
+html[data-box="b-gunmetal"]{--box:#252B33;--boxline:#353D47}
+html[data-box="b-lifted"]{--box:color-mix(in srgb,#fff 9%,var(--card));--boxline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-box="b-bone"]{--box:#EDE5D2;--boxline:#D5C9AE}
+html[data-box="b-plum"]{--box:#2B2230;--boxline:#3D3144}
+html[data-box="b-bronze"]{--box:#2E2619;--boxline:#443A28}
+html[data-box="b-oxblood"]{--box:#2E1D1F;--boxline:#452C2F}
+/* BOX 2 — instrument tier under tworole: same 13 hues + the four surviving sunken constructions */
+html[data-box2="b-tonal"]{--box2:var(--card);--box2line:var(--cardline)}
+html[data-box2="b-navy"]{--box2:#1E3552;--box2line:#2C466B}
+html[data-box2="b-teal"]{--box2:#15332F;--box2line:#214841}
+html[data-box2="b-petrol"]{--box2:#1B313A;--box2line:#28444F}
+html[data-box2="b-pine"]{--box2:#1E332C;--box2line:#2B463D}
+html[data-box2="b-slate"]{--box2:#232932;--box2line:#323A46}
+html[data-box2="b-graphite"]{--box2:#262421;--box2line:#36332E}
+html[data-box2="b-gunmetal"]{--box2:#252B33;--box2line:#353D47}
+html[data-box2="b-lifted"]{--box2:color-mix(in srgb,#fff 9%,var(--card));--box2line:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-box2="b-bone"]{--box2:#EDE5D2;--box2line:#D5C9AE}
+html[data-box2="b-plum"]{--box2:#2B2230;--box2line:#3D3144}
+html[data-box2="b-bronze"]{--box2:#2E2619;--box2line:#443A28}
+html[data-box2="b-oxblood"]{--box2:#2E1D1F;--box2line:#452C2F}
+html[data-box2="sunk1"]{--box2:color-mix(in srgb,#000 26%,var(--canvas));--box2line:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-box2="sunk2"]{--box2:color-mix(in srgb,#13161B 62%,var(--canvas));--box2line:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-box2="sunk3"]{--box2:color-mix(in srgb,#0B1326 72%,var(--canvas));--box2line:#25324B}
+html[data-box2="sunk4"]{--box2:#0C0E12;--box2line:#232830}
+/* SCHEME — uniform collapses both tiers to one colour (after the box2 hues, so it wins the cascade) */
+html[data-scheme="uniform"]{--box2:var(--box);--box2line:var(--boxline)}
+/* BORDER override — auto = lines follow the box colours (no rule); a hue forces BOTH lines */
+html[data-bline="b-tonal"]{--boxline:var(--cardline);--box2line:var(--cardline)}
+html[data-bline="b-navy"]{--boxline:#2C466B;--box2line:#2C466B}
+html[data-bline="b-teal"]{--boxline:#214841;--box2line:#214841}
+html[data-bline="b-petrol"]{--boxline:#28444F;--box2line:#28444F}
+html[data-bline="b-pine"]{--boxline:#2B463D;--box2line:#2B463D}
+html[data-bline="b-slate"]{--boxline:#323A46;--box2line:#323A46}
+html[data-bline="b-graphite"]{--boxline:#36332E;--box2line:#36332E}
+html[data-bline="b-gunmetal"]{--boxline:#353D47;--box2line:#353D47}
+html[data-bline="b-lifted"]{--boxline:color-mix(in srgb,#fff 16%,var(--card));--box2line:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-bline="b-bone"]{--boxline:#D5C9AE;--box2line:#D5C9AE}
+html[data-bline="b-plum"]{--boxline:#3D3144;--box2line:#3D3144}
+html[data-bline="b-bronze"]{--boxline:#443A28;--box2line:#443A28}
+html[data-bline="b-oxblood"]{--boxline:#452C2F;--box2line:#452C2F}
+/* b-bone TEXT FLIP — bone is a light box on a dark canvas: re-ink every box that consumes it.
+   Local var remap (the .abyss/t8 pattern): descendants pick up the dark inks automatically;
+   secondaries/rules re-derive locally because custom props resolve where declared.
+   Accent values mirror the t8 light-desk tunings. Instrument tier flips under data-box2
+   AND under uniform scheme (where --box2 inherits the bone main box). */
+html[data-box="b-bone"] .ledger,
+html[data-box="b-bone"] .cap-card,
+html[data-box="b-bone"] .utility,
+html[data-box="b-bone"] .btn-gold,
+html[data-box2="b-bone"] .rail-node.tnode,
+html[data-scheme="uniform"][data-box="b-bone"] .rail-node.tnode{
+  --ink:#2E2A22;--body:#4A443A;--muted:#6E6754;
+  --sec1:color-mix(in srgb,var(--ink) 50%,var(--muted));
+  --sec2:color-mix(in srgb,var(--ink) 33%,var(--muted));
+  --rule7:color-mix(in srgb,var(--ink) 7%,transparent);
+  --rule10:color-mix(in srgb,var(--ink) 10%,transparent);
+  --eyeb:#8A6420;--struct:#2A6478;--gold-accent:#8A6420;
+  --pos:#1E7A5F;--neg:#B0452C;--slate:#3E617C;
+}
+/* t8 LIGHT-THEME GUARD — the fixed box hexes and bone are dark-canvas constructions;
+   on the light desk every box returns to t8's own card/cardline. Placed last in the
+   block so it outranks every box/box2/bline rule above (equal specificity, later source). */
+html[data-theme="t8"]{--box:var(--card);--boxline:var(--cardline);--box2:var(--card);--box2line:var(--cardline)}
+/* t8 gravity band — its .abyss local var remap outranks the html-level axes,
+   so re-apply gold/grey there (resolved against the band's own remapped inks) */
+html[data-gold="g1"][data-theme="t8"] .abyss{--eyeb:color-mix(in srgb,var(--muted) 60%,var(--ink))}
+html[data-gold="g2"][data-theme="t8"] .abyss{--eyeb:#B09A66}
+html[data-gold="g4"][data-theme="t8"] .abyss{--eyeb:#CBB99F} /* the gravity band stays dark on t8 — light metal reads */
+html[data-grey="cool"][data-theme="t8"] .abyss{--muted:#8C96A4}
+
+:root{
+  /* brand constants — never themed */
+  --gold-a:#A8843C;
+  --gold-b:#E3C77E;
+  --gold-grad:linear-gradient(90deg,#A8843C 0%,#E3C77E 50%,#A8843C 100%);
+  /* derived secondaries & hairlines — recompute under every theme */
+  --sec1:color-mix(in srgb,var(--ink) 50%,var(--muted));
+  --sec2:color-mix(in srgb,var(--ink) 33%,var(--muted));
+  --rule7:color-mix(in srgb,var(--ink) 7%,transparent);
+  --rule10:color-mix(in srgb,var(--ink) 10%,transparent);
+  --maxw:1140px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--canvas);
+  color:var(--body);
+  font:400 16.5px/1.65 "Fraunces",Georgia,serif;
+  transition:background .55s ease-out;
+  -webkit-font-smoothing:antialiased;
+}
+body.cv-abyss{background:var(--deep)}
+section{background:transparent}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+:focus-visible{outline:2px solid var(--struct);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto!important}
+}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+
+/* ── 1. Identity bar ── */
+.id-bar{height:4px;background:var(--gold-grad)}
+
+/* ── 2. Utility markets strip ── */
+.utility{
+  height:32px;
+  background:color-mix(in srgb,#000 18%,var(--box)); /* BOX system: the strip is a darkened band of the box colour */
+  border-bottom:1px solid var(--rule7);
+}
+.utility .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.utility ul{display:flex;list-style:none;gap:22px;align-items:center;min-width:0;overflow:hidden}
+.utility li{
+  font:500 11px/1 "Lora",serif;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.04em;
+  color:var(--sec1);
+  white-space:nowrap;
+}
+.utility .lbl{color:var(--muted)}
+.utility .pos{color:var(--pos)}
+.utility .neg{color:var(--neg)}
+.utility .hrz{color:var(--gold-accent)}
+.utility .meta{
+  font:500 10.5px/1 "Lora",serif;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.06em;color:var(--muted);white-space:nowrap;
+}
+@media (max-width:900px){.utility li:nth-child(3),.utility li:nth-child(4){display:none}}
+@media (max-width:640px){.utility li:nth-child(5){display:none}.utility .meta{display:none}}
+
+/* ── 3. Masthead ── */
+.masthead{border-bottom:1px solid var(--rule7)}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:28px;height:66px}
+.wordmark{font:700 21px/1 "Lora",serif;letter-spacing:.01em;color:var(--ink)}
+.wordmark .rdy{color:var(--struct)}
+.mast-nav{display:flex;align-items:center;gap:26px}
+.mast-nav a{
+  font:500 13px/1 "Fraunces",serif;color:var(--muted);
+  transition:color .2s ease;
+}
+.mast-nav a:hover{color:var(--ink)}
+.mast-nav .ed-link{color:var(--sec1);font-style:italic}
+.mast-nav .ed-link:hover{color:var(--gold-accent)}
+.mast-nav .sep{width:1px;height:14px;background:var(--rule10)}
+.cmdk{
+  display:inline-flex;align-items:center;
+  font:500 11px/1 "Lora",serif;letter-spacing:.08em;color:var(--muted);
+  border:1px solid var(--boxline);border-radius:6px;
+  padding:8px 14px;background:color-mix(in srgb,var(--ink) 4%,var(--canvas));
+  cursor:pointer;transition:color .2s ease,border-color .2s ease;
+}
+.cmdk:hover{color:var(--sec1);border-color:color-mix(in srgb,var(--ink) 28%,var(--canvas))}
+@media (max-width:860px){.mast-nav a:not(.ed-link){display:none}.mast-nav .sep{display:none}}
+
+/* ── 4. Edition stamp ── */
+.stamp{padding:18px 40px 0;text-align:center}
+.stamp p{
+  font:700 11px/1 "Lora",serif;letter-spacing:.14em;
+  font-variant-numeric:tabular-nums;
+  text-transform:uppercase;color:var(--sec2);
+}
+.stamp .rule{
+  width:64px;height:1px;background:var(--gold-grad);
+  margin:14px auto 0;
+}
+
+/* ── 5. Hero ── */
+.hero{position:relative;overflow:hidden}
+/* atmosphere wash — navy-family themes only (same-hue glow) */
+html:not([data-theme]) .hero,
+html[data-theme="t1"] .hero,
+html[data-theme="t2"] .hero,
+html[data-theme="t3"] .hero{
+  background:radial-gradient(ellipse 70% 60% at 18% 8%,
+    color-mix(in srgb,#16294a 55%,transparent) 0%,transparent 70%);
+}
+.hero .wrap{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1.08fr .92fr;gap:64px;
+  align-items:center;
+  padding-top:96px;padding-bottom:118px;
+}
+.nu-ghost{
+  position:absolute;z-index:1;
+  right:-7vw;top:-14vw;
+  font:800 italic 46vw/1 "Playfair Display",serif;
+  color:var(--ink);opacity:.045;
+  pointer-events:none;user-select:none;
+}
+html[data-theme="t8"] .nu-ghost{opacity:.03}
+.eyebrow{
+  display:flex;align-items:center;gap:14px;
+  font:700 11px/1 "Lora",serif;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--eyeb);
+}
+.eyebrow.kick::after{
+  content:"";width:56px;height:1px;background:var(--gold-grad);flex:none;
+}
+.hero h1{
+  margin-top:26px;
+  font:800 clamp(48px,6.6vw,76px)/1.04 "Playfair Display",serif;
+  letter-spacing:-.018em;color:var(--ink);
+}
+.hero h1 em{font-style:italic;color:var(--gold-accent)}
+.hero .sub{
+  margin-top:24px;max-width:56ch;
+  font-size:18px;line-height:1.68;color:var(--body);
+}
+.hero .tagline{
+  margin-top:20px;
+  font:600 italic 19px/1.5 "Playfair Display",serif;
+  color:var(--slate);
+}
+.cta-row{margin-top:38px;display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+
+/* gold-hairline-framed CTA */
+.btn-gold{
+  display:inline-flex;align-items:center;gap:9px;
+  font:600 15px/1 "Fraunces",serif;color:var(--ink);
+  padding:15px 28px;border-radius:7px;
+  border:1px solid transparent;
+  background:
+    linear-gradient(var(--box),var(--box)) padding-box, /* BOX system: framed CTA fill */
+    var(--gold-grad) border-box;
+  cursor:pointer;
+  transition:color .2s ease;
+}
+.btn-gold:hover{color:var(--gold-accent)}
+.txt-link{
+  font:600 15px/1 "Fraunces",serif;color:var(--sec1);
+  border-bottom:1px solid color-mix(in srgb,var(--ink) 32%,var(--canvas));
+  padding-bottom:3px;
+  transition:color .2s ease,border-color .2s ease;
+}
+.txt-link:hover{color:var(--ink);border-color:var(--eyeb)}
+
+/* ── Ledger card ── */
+.ledger{
+  background:var(--box);
+  border:1px solid var(--boxline);
+  border-radius:12px;
+  overflow:hidden;
+}
+.ledger-head{
+  display:flex;align-items:center;gap:11px;
+  padding:18px 26px;
+  border-bottom:1px solid var(--rule10);
+  background:color-mix(in srgb,var(--ink) 4%,var(--box));
+}
+.ledger-head h2{
+  font:700 11px/1 "Lora",serif;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--eyeb);
+}
+.ledger-rows{padding:8px 26px 0}
+.ledger-row{
+  display:grid;grid-template-columns:88px 1fr;gap:18px;
+  padding:15px 0;
+  border-bottom:1px solid var(--rule7);
+}
+.ledger-row:last-child{border-bottom:none}
+.ledger-row dt{
+  font:700 10.5px/1.5 "Lora",serif;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);padding-top:3px;
+}
+.ledger-row dd{font-size:14.5px;line-height:1.6;color:var(--body)}
+.ledger-row.edge dt{color:var(--struct)}
+.ledger-row.edge dd{color:var(--ink);font-weight:500}
+.ledger-row .term{
+  font:800 19px/1.2 "Playfair Display",serif;color:var(--ink);
+}
+.ledger-row .term i{font-style:italic;color:var(--gold-accent)}
+.spark-inset{
+  margin:14px 26px 26px;
+  background:var(--well);
+  border:1px solid var(--rule7);
+  border-radius:8px;
+  padding:16px 18px 14px;
+}
+.spark-inset .cap{
+  font:700 10px/1 "Lora",serif;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+  margin-bottom:12px;
+}
+.spark-inset svg{width:100%;height:58px}
+.spark-inset svg path{stroke:var(--data)}
+.spark-inset svg circle{fill:var(--data)}
+
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;gap:56px;padding-top:72px;padding-bottom:88px}
+  .nu-ghost{font-size:72vw;top:-8vw;right:-18vw}
+}
+
+/* ── 6. Oxford rule divider ── */
+.oxford-rule{
+  height:7px;width:100%;
+  background:
+    linear-gradient(var(--rule10),var(--rule10)) 0 0/100% 3px no-repeat,
+    var(--gold-grad) 0 6px/100% 1px no-repeat;
+}
+
+/* ── 7. Cascade ── */
+.cascade{padding:118px 0 126px}
+.cascade h2,.platform h2,.abyss h2{
+  font:700 clamp(28px,3.6vw,42px)/1.18 "Playfair Display",serif;
+  letter-spacing:-.012em;color:var(--ink);
+  margin-top:22px;
+}
+.h2-underscore{width:46px;height:2px;background:var(--gold-grad);margin-top:22px}
+.cascade .lede{margin-top:24px;max-width:58ch;color:var(--sec1);font-size:17px}
+.rail{
+  margin-top:72px;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:22px;
+}
+.rail-node{
+  border-top:1px solid var(--rule7);
+  padding-top:0;
+  position:relative;
+}
+.rail-node::before{
+  content:"";position:absolute;top:-1px;left:0;
+  width:34px;height:1px;background:var(--gold-grad);
+}
+.rail-node .num{
+  display:block;
+  font:800 64px/1 "Playfair Display",serif;
+  color:var(--ink);opacity:.10;
+  margin:22px 0 10px;
+}
+.rail-node h3{
+  font:700 17.5px/1.3 "Playfair Display",serif;color:var(--ink);
+}
+.rail-node p{margin-top:10px;font-size:13.5px;line-height:1.62;color:var(--sec2)}
+.rail-node.tnode{
+  /* BOX system instrument tier — colour comes from --box2/--box2line on html */
+  border:1px solid var(--box2line);
+  border-radius:10px;
+  background:var(--box2);
+  padding:0 20px 22px;
+}
+.rail-node.tnode::before{left:20px}
+.rail-node.tnode h3{color:var(--ink)}
+.rail-node.tnode p{color:color-mix(in srgb,var(--struct) 55%,var(--body))}
+.rail-node.tnode .num{opacity:.14;color:var(--struct)}
+@media (max-width:1020px){.rail{grid-template-columns:repeat(2,1fr);gap:28px}.rail-node.tnode{grid-column:1/-1}}
+@media (max-width:560px){.rail{grid-template-columns:1fr}}
+
+/* ── 8. Abyss gravity beat ── */
+.abyss{position:relative;padding:138px 0 0;overflow:hidden}
+.abyss .wrap{position:relative;z-index:2;text-align:center;padding-bottom:96px}
+.abyss h2{margin-top:24px}
+.abyss .lead{
+  margin:26px auto 0;max-width:54ch;font-size:17.5px;color:var(--body);
+}
+.abyss .lead strong{color:var(--ink);font-weight:600}
+.statN{
+  display:block;
+  margin:58px auto 0;
+  font:700 clamp(64px,9vw,88px)/1 "Lora",serif;
+  font-variant-numeric:tabular-nums;
+  color:var(--ink);
+  transition:font-size .55s ease-out;
+}
+body.cv-abyss .statN{font-size:clamp(70px,9.9vw,96px)}
+.stat-rule{width:130px;height:1px;background:var(--gold-grad);margin:26px auto 0}
+.stat-cap{
+  margin-top:18px;
+  font:700 11px/1.6 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--sec2);
+}
+.abyss .met{
+  margin:54px auto 0;max-width:52ch;
+  font:600 italic 17px/1.7 "Playfair Display",serif;color:var(--slate);
+}
+/* t8: the gravity beat renders as the Navy band — deep var with inverse text.
+   Local var remap means every rule inside resolves to navy-legible colours. */
+html[data-theme="t8"] .abyss{
+  --ink:var(--inv-ink);
+  --body:var(--inv-body);
+  --muted:#97917F;
+  --eyeb:#C9A24A;
+  --struct:#5FA897;
+  --slate:#9FB8C9;
+  /* re-derive secondaries locally — custom props resolve where declared,
+     so the html-level --sec/--rule values would not pick up the remapped inks */
+  --sec1:color-mix(in srgb,var(--ink) 50%,var(--muted));
+  --sec2:color-mix(in srgb,var(--ink) 33%,var(--muted));
+  --rule7:color-mix(in srgb,var(--ink) 7%,transparent);
+  --rule10:color-mix(in srgb,var(--ink) 10%,transparent);
+  background:var(--deep);
+}
+.horizon{
+  position:relative;z-index:1;
+  width:100%;height:90px;opacity:.22;
+}
+.horizon svg{width:100%;height:100%}
+.horizon svg polyline{stroke:var(--data)}
+
+/* ── 9. Platform ── */
+.platform{padding:122px 0 126px}
+.cap-grid{
+  margin-top:64px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+}
+.cap-card{
+  background:var(--box);
+  border:1px solid var(--boxline);
+  border-radius:10px;
+  padding:26px 24px 28px;
+}
+.cap-card .num{
+  font:800 30px/1 "Playfair Display",serif;
+  color:var(--ink);opacity:.14;
+}
+.cap-card h3{
+  margin-top:16px;
+  font:700 16.5px/1.3 "Playfair Display",serif;color:var(--ink);
+}
+.cap-card p{margin-top:9px;font-size:13.5px;line-height:1.6;color:var(--sec2)}
+@media (max-width:980px){.cap-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.cap-grid{grid-template-columns:1fr}}
+
+.roadmap{margin-top:86px}
+.roadmap .rm-eyebrow{
+  font:700 10.5px/1 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+}
+.rm-rows{margin-top:22px;border-top:1px solid var(--rule7)}
+.rm-row{
+  display:grid;grid-template-columns:240px 1fr auto;gap:28px;align-items:center;
+  padding:21px 4px;
+  border-bottom:1px solid var(--rule7);
+}
+.rm-row h4{font:700 16px/1.3 "Playfair Display",serif;color:var(--ink)}
+.rm-row p{font-size:14px;color:var(--sec2)}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  font:700 10px/1 "Lora",serif;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 13px;border-radius:99px;white-space:nowrap;
+}
+.pill.active{
+  color:var(--pos);
+  border:1px solid color-mix(in srgb,var(--pos) 38%,var(--canvas));
+  background:color-mix(in srgb,var(--pos) 8%,var(--canvas));
+}
+.pill.active .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--pos);flex:none;
+}
+.pill.soon{
+  color:var(--muted);
+  border:1px solid var(--rule10);
+}
+@media (max-width:760px){.rm-row{grid-template-columns:1fr auto;gap:14px}.rm-row p{grid-column:1/-1;margin-top:-8px}}
+
+/* ── 10. Inverse CTA card ── */
+.invite{padding:0 0 126px}
+.inverse-card{
+  background:var(--inverse);
+  border-radius:14px;
+  padding:64px 48px 58px;
+  text-align:center;
+  max-width:640px;
+  margin:48px auto 0;
+}
+.inverse-card h2{
+  font:700 27px/1.25 "Playfair Display",serif;
+  letter-spacing:-.01em;color:var(--inv-ink);
+}
+.inverse-card p{
+  margin:18px auto 0;max-width:52ch;
+  font-size:16.5px;line-height:1.65;color:var(--inv-body);
+}
+.btn-gold-light{
+  display:inline-flex;align-items:center;gap:9px;
+  margin-top:36px;
+  font:600 15px/1 "Fraunces",serif;color:var(--inv-ink);
+  padding:15px 28px;border-radius:7px;
+  border:1px solid transparent;
+  background:
+    linear-gradient(var(--inverse),var(--inverse)) padding-box,
+    var(--gold-grad) border-box;
+  cursor:pointer;
+  transition:color .2s ease;
+}
+.btn-gold-light:hover{color:var(--inv-accent)}
+.inverse-card .met-line{
+  margin-top:24px;
+  font:700 10.5px/1 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;
+  color:color-mix(in srgb,var(--inv-ink) 58%,var(--inverse));
+}
+@media (max-width:640px){.inverse-card{padding:56px 28px}}
+
+/* ── 11. Footer ── */
+footer{
+  background:color-mix(in srgb,#000 14%,var(--canvas));
+  border-top:1px solid var(--rule7);
+  padding:78px 0 54px;
+}
+.foot-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:56px;
+}
+.foot-brand .wordmark{font-size:19px}
+.foot-brand p{
+  margin-top:16px;max-width:34ch;
+  font-size:14px;line-height:1.65;color:var(--sec2);
+}
+.foot-col h5{
+  font:700 10.5px/1 "Lora",serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:20px;
+}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:12px}
+.foot-col a{
+  font-size:14px;color:var(--sec1);
+  transition:color .2s ease;
+}
+.foot-col a:hover{color:var(--ink)}
+.foot-legal{
+  margin-top:64px;padding-top:26px;
+  border-top:1px solid var(--rule7);
+  display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.foot-legal p{font:500 12px/1.6 "Lora",serif;color:var(--muted)}
+.foot-legal .top-link{
+  font:600 13px/1 "Fraunces",serif;color:var(--sec2);
+  border-bottom:1px solid var(--rule10);padding-bottom:2px;
+  transition:color .2s ease,border-color .2s ease;
+}
+.foot-legal .top-link:hover{color:var(--ink);border-color:var(--eyeb)}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr;gap:44px}}
+
+/* ── Annotation mode ── */
+#anno{
+  position:fixed;bottom:22px;right:22px;z-index:90;
+  font:700 11px/1 "Lora",serif;letter-spacing:.05em;
+  color:#E3C77E;background:#1C2128;
+  border:1px solid rgba(227,199,126,.35);
+  border-radius:99px;padding:10px 16px;cursor:pointer;
+}
+/* total-coverage axis badges (June 2026 ruling): every axis-controlled element carries
+   data-ax naming its controlling axis exactly as the settings label reads; FIXED zones
+   are badged with their reason. One generic rule = coverage matches the audit table.
+   hr elements keep their own ::after (oxford gold line etc.) — they get outline + title only. */
+html[data-dev] [data-ax]{position:relative;outline:1px dashed rgba(227,199,126,.5);outline-offset:2px}
+html[data-dev] [data-ax]:not(hr)::after{
+  content:attr(data-ax);
+  position:absolute;top:2px;right:2px;
+  font:700 8px "Lora",serif;letter-spacing:.05em;
+  background:#15181D;color:#E3C77E;border:1px solid #2E3239;
+  padding:2px 6px;border-radius:4px;
+  z-index:99;white-space:nowrap;pointer-events:none;
+}
+
+/* ── v5 exploration UX — change-flash · click-to-edit popover · rule flags · crown ── */
+.ax-flash{outline:2px solid #E3C77E!important;outline-offset:3px!important;animation:axflash 1s ease-out forwards}
+@keyframes axflash{from{outline-color:#E3C77E}to{outline-color:rgba(227,199,126,0)}}
+/* reduced motion: the global animation kill leaves a static gold outline; JS removes it after ~1s */
+html[data-dev] [data-ax]{cursor:pointer}
+#axpop{position:fixed;z-index:120;background:#15181D;border:1px solid #2E3239;border-radius:8px;padding:8px 10px;max-width:250px;font-family:'Lora',serif;font-size:10px;color:#C8CDD3;line-height:1.5}
+#axpop .axp-h{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E3C77E;margin-bottom:4px}
+#axpop .axp-row{display:flex;align-items:center;gap:6px;margin-top:4px}
+#axpop .axp-l{flex:0 0 52px;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6E7681}
+#axpop .axp-v{flex:1 1 auto;min-width:0;font-size:9px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#axpop .axp-b{flex:0 0 auto;background:#1C2026;border:1px solid #2E3239;border-radius:4px;color:#C8CDD3;font-family:'Lora',serif;font-size:9px;line-height:1;padding:3px 6px;cursor:pointer}
+#axpop .axp-b:hover{color:#E3C77E;border-color:#3A4149}
+#axpop .axp-fixed{margin-top:5px;font-size:9px;font-style:italic;color:#9AA3AD}
+#epviol{display:none;margin-top:8px;font:700 8px/1.6 'Lora',serif;letter-spacing:.04em;color:#C99A55}
+.ep-combo-crown{flex:0 0 auto;font-family:'Lora',serif;font-size:9px;line-height:1;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 5px;cursor:pointer}
+.ep-combo-crown:hover{border-color:#3A4149}
+.ep-combo-crown.on{color:#E3C77E;border-color:#A8843C}
+.ep-combo-row.crowned .ep-combo-apply{border-left:3px solid #E3C77E}
+
+/* ── Options panel (bottom-left, fixed dark chrome — legible on every theme) ── */
+#edpanel{
+  position:fixed;left:22px;bottom:22px;z-index:95;
+  background:#15181D;border:1px solid #2E3239;border-radius:10px;
+  padding:10px;max-width:210px;
+  display:flex;flex-direction:column;max-height:calc(100vh - 44px);
+  font-family:'Lora',serif;font-size:10px;color:#9AA3AD;line-height:1.4;
+}
+#edpanel .ep-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:0 0 auto}
+/* body scrolls internally so the Hide control is ALWAYS on screen, however many axes we add */
+#edpanel .ep-body{overflow-y:auto;min-height:0;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#2E3239 transparent;margin-right:-4px;padding-right:4px}
+#edpanel .ep-title{font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+#edpanel .ep-toggle{background:#1C2026;border:1px solid #2E3239;border-radius:5px;color:#C8CDD3;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1;padding:4px 7px;cursor:pointer;flex:0 0 auto}
+#edpanel .ep-toggle:hover{color:#E3C77E}
+#edpanel .ep-presets{display:flex;gap:4px;margin:9px 0 1px}
+#edpanel .ep-preset{flex:1 1 auto;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 3px;cursor:pointer}
+#edpanel .ep-preset:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-field{margin-top:8px}
+#edpanel .ep-field label{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:3px}
+#edpanel .ep-field select{width:100%;font-family:'Lora',serif;font-size:10px;color:#C8CDD3;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-field select option{background:#1C2026;color:#C8CDD3}
+/* saved combos — owner's preferred axis combinations, shared across The Edition (ed-combos) */
+#edpanel .ep-combos{margin:9px 0 1px;border-bottom:1px solid #2E3239;padding-bottom:9px}
+#edpanel .ep-combos-h{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:5px}
+#edpanel .ep-combo-row{display:flex;gap:4px;margin-bottom:4px}
+#edpanel .ep-combo-apply{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.02em;color:#C8CDD3;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-combo-apply:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-combo-del{flex:0 0 auto;font-family:'Lora',serif;font-size:9px;line-height:1;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-combo-del:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-combo-none{font-size:9px;font-style:italic;color:#6E7681;margin-bottom:5px}
+#edpanel .ep-combo-actions{display:flex;gap:4px}
+#edpanel .ep-cbtn{flex:1 1 auto;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 3px;cursor:pointer}
+#edpanel .ep-cbtn:hover{color:#E3C77E;border-color:#3A4149}
+/* collapsed → 34px gear chip; state lives on <html> so the head script restores it pre-paint */
+html[data-panel="collapsed"] #edpanel{width:34px;height:34px;max-width:34px;padding:0;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+html[data-panel="collapsed"] #edpanel .ep-title,
+html[data-panel="collapsed"] #edpanel .ep-body{display:none}
+html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-size:15px;color:#E3C77E;background:none;border:0;padding:0}
+</style>
+</head>
+<body>
+
+<!-- 1 · gold identity bar -->
+<div class="id-bar" data-dev="S1.6 · gold identity bar" data-ax="GOLD · identity bar" aria-hidden="true"></div>
+
+<!-- 2 · utility markets strip -->
+<div class="utility" data-dev="S5.1 · utility markets strip" data-ax="BOX · utility strip">
+  <div class="wrap">
+    <ul data-ax="SEM · pos/neg ticks · GOLD Hormuz flag">
+      <li><span class="lbl">Brent</span> $86.40 <span class="pos">+2.1%</span></li>
+      <li><span class="lbl">VIX</span> 19.8 <span class="neg">&minus;0.8</span></li>
+      <li><span class="lbl">BTC</span> $97,210 <span class="pos">+1.4%</span></li>
+      <li><span class="lbl">Gold</span> $2,648 <span class="pos">+0.6%</span></li>
+      <li><span class="lbl">Hormuz risk:</span> <span class="hrz">Elevated</span></li>
+    </ul>
+    <span class="meta">06:40 GST · illustrative snapshot</span>
+  </div>
+</div>
+
+<!-- 3 · masthead -->
+<header class="masthead" data-ax="GREY · masthead nav">
+  <div class="wrap">
+    <a class="wordmark" href="index.html" data-ax="DIALECT · wordmark accent">Vega<span class="rdy">Ready</span></a>
+    <nav class="mast-nav" aria-label="Primary">
+      <a href="#platform">Markets</a>
+      <a href="#cascade">Structural</a>
+      <a href="#platform">Briefings</a>
+      <a href="#footer">About</a>
+      <span class="sep" aria-hidden="true"></span>
+      <a class="ed-link" href="brief.html">The Brief &rarr;</a>
+      <a class="ed-link" href="desk.html">The Desk &rarr;</a>
+      <button class="cmdk" type="button" data-dev="S5.3 · quiet search chip" data-ax="BORDER follows BOX · search chip" aria-label="Search">
+        Search
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- 4 · edition stamp -->
+<div class="stamp" data-dev="S5.4 · edition stamp" data-ax="GREY · edition stamp">
+  <p>Friday, June 6, 2026 &nbsp;·&nbsp; Day 247 of the Tracking &nbsp;·&nbsp; Brief &#8470; 117</p>
+  <div class="rule" aria-hidden="true" data-ax="GOLD · stamp rule"></div>
+</div>
+
+<!-- 5 · hero -->
+<section class="hero" data-dev="v4.1 · atmosphere" data-ax="CANVAS · whole page + hero wash">
+  <span class="nu-ghost" aria-hidden="true" data-dev="H-ν · ghost glyph" data-ax="CANVAS · ghost glyph (ink)">&nu;</span>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow kick">JCJ Investing · Macro Event Intelligence</p>
+      <h1 data-ax="GOLD · headline italic">Sensitivity to <em>volatility.</em></h1>
+      <p class="sub">Markets move when the world shakes. VegaReady tracks global events, maps how they connect across sectors and regions, and turns complexity into positioning clarity.</p>
+      <p class="tagline" data-ax="CANVAS · tagline slate">Volatility isn&rsquo;t risk. It&rsquo;s signal.</p>
+      <div class="cta-row">
+        <a class="btn-gold" href="/" data-dev="S3.2 · gold-frame CTA" data-ax="GOLD frame · BOX fill · CTA">Open the dashboard &rarr;</a>
+        <a class="txt-link" href="#cascade">How it works &rarr;</a>
+      </div>
+    </div>
+
+    <!-- the ledger card -->
+    <aside class="ledger" data-dev="H-ledger · definition card" data-ax="BOX · Ledger" aria-label="Vega, the definition">
+      <div class="ledger-head">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+          <defs>
+            <linearGradient id="gg" x1="0" y1="0" x2="18" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#A8843C"/><stop offset=".5" stop-color="#E3C77E"/><stop offset="1" stop-color="#A8843C"/>
+            </linearGradient>
+          </defs>
+          <circle cx="9" cy="9" r="8" fill="none" stroke="url(#gg)" stroke-width="1"/>
+          <circle cx="9" cy="9" r="5.2" fill="none" stroke="url(#gg)" stroke-width=".6" opacity=".7"/>
+          <path d="M6.2 5.8 L9 12.4 L11.8 5.8" fill="none" stroke="url(#gg)" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2>Vega &mdash; The Definition</h2>
+      </div>
+      <dl class="ledger-rows">
+        <div class="ledger-row">
+          <dt>Term</dt>
+          <dd class="term">Vega <i>(&nu;)</i></dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Meaning</dt>
+          <dd>How much a position gains or loses when volatility itself moves.</dd>
+        </div>
+        <div class="ledger-row">
+          <dt>Problem</dt>
+          <dd>Most investors feel volatility only after it has repriced everything they own.</dd>
+        </div>
+        <div class="ledger-row edge" data-ax="DIALECT · edge row">
+          <dt>Our edge</dt>
+          <dd>We see it coming. We enter fast, exit faster. We make you vega&#8209;ready.</dd>
+        </div>
+      </dl>
+      <div class="spark-inset" data-dev="D-amb · ambient sparkline" data-ax="DATA · sparkline (well follows BOX)">
+        <p class="cap">Volatility regime · 90 days · illustrative</p>
+        <svg viewBox="0 0 360 58" preserveAspectRatio="none" role="img" aria-label="Illustrative 90-day volatility regime, rising">
+          <path d="M0,45 C26,46 48,43.5 76,42.5 C104,41.5 122,39.5 150,37.5 C178,35.5 198,32.5 226,29.5 C254,26.5 276,23.5 300,20"
+            fill="none" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M300,20 C316,17.6 330,15.4 344,12.5" fill="none" stroke-width="1.6"
+            stroke-dasharray="2 5" stroke-linecap="round"/>
+          <circle cx="348" cy="11.5" r="3"/>
+        </svg>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 6 · Oxford rule -->
+<div class="oxford-rule" data-dev="S1.1 · Oxford rule" data-ax="GOLD · Oxford rule" aria-hidden="true"></div>
+
+<!-- 7 · the cascade -->
+<section class="cascade" id="cascade">
+  <div class="wrap">
+    <p class="eyebrow">The cascade</p>
+    <h2>Global events. Market reactions. Connected.</h2>
+    <div class="h2-underscore" data-dev="S1.7 · gold underscore" data-ax="GOLD · underscore" aria-hidden="true"></div>
+    <p class="lede">Every position begins as a headline. We trace the shock through the system &mdash; from catalyst to fundamentals to sectors to signal &mdash; until it becomes something you can act on.</p>
+
+    <div class="rail" data-dev="v4.1 · numeral icons" data-ax="GOLD ticks · CANVAS numerals · rail">
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">01</span>
+        <h3>Global event</h3>
+        <p>A strike, a sanction, an election, a blockade. The catalyst lands &mdash; usually before the tape admits it.</p>
+      </div>
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">02</span>
+        <h3>Fundamentals</h3>
+        <p>Supply, demand, and policy assumptions get repriced at the source. The story changes before the price does.</p>
+      </div>
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">03</span>
+        <h3>Market sectors</h3>
+        <p>Energy, shipping, defense, FX &mdash; the shock propagates outward by exposure, not by geography.</p>
+      </div>
+      <div class="rail-node">
+        <span class="num" aria-hidden="true">04</span>
+        <h3>Technical signals</h3>
+        <p>Volatility regimes shift. Structure either confirms the move or rejects it &mdash; and tells you which.</p>
+      </div>
+      <div class="rail-node tnode" data-dev="tnode · terminal node" data-ax="BOX 2 · terminal node">
+        <span class="num" aria-hidden="true">05</span>
+        <h3>Position</h3>
+        <p>Sized, timed, and risk-defined. Enter fast, exit faster &mdash; vega&#8209;ready before the crowd is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · abyss gravity beat -->
+<section class="abyss" data-cv="abyss" data-dev="C-grammar · gravity crossfade" data-ax="DEEP · Abyss band">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center">JCJ Investing</p>
+    <h2>Built by people who trade on this data.</h2>
+    <p class="lead">This is not research about markets. It is <strong>the same macro intelligence we use to make real trading decisions, every day</strong> &mdash; published as we see it.</p>
+
+    <span class="statN" data-dev="H0 · stat numeral">40+</span>
+    <div class="stat-rule" aria-hidden="true" data-ax="GOLD · stat rule"></div>
+    <p class="stat-cap">markets tracked daily across five asset classes</p>
+
+    <p class="met">Every event scored for transmission. Every connection mapped. Every signal timestamped.</p>
+  </div>
+  <div class="horizon" data-dev="D-amb · horizon sparkline" data-ax="DATA · horizon sparkline" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <polyline points="0,62 60,58 120,64 180,55 240,60 300,50 360,56 420,46 480,53 540,42 600,49 660,38 720,46 780,34 840,42 900,30 960,38 1020,27 1080,34 1140,23 1200,30 1260,19 1320,26 1380,15 1440,21"
+        fill="none" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 9 · the platform -->
+<section class="platform" id="platform">
+  <div class="wrap">
+    <p class="eyebrow">The platform</p>
+    <h2>One desk. Four lenses.</h2>
+    <div class="h2-underscore" aria-hidden="true"></div>
+
+    <div class="cap-grid">
+      <div class="cap-card" data-ax="BOX · capability cards">
+        <span class="num" aria-hidden="true">01</span>
+        <h3>Geopolitical</h3>
+        <p>Conflict trackers, sanctions flow, and regional risk scored for market transmission.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num" aria-hidden="true">02</span>
+        <h3>Macro &amp; economic</h3>
+        <p>Rates, inflation prints, and central-bank posture read in one continuous ledger.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num" aria-hidden="true">03</span>
+        <h3>Crypto &amp; digital</h3>
+        <p>Digital-asset regimes tracked with the same event discipline as the physical world.</p>
+      </div>
+      <div class="cap-card">
+        <span class="num" aria-hidden="true">04</span>
+        <h3>Technical metrics</h3>
+        <p>Volatility surfaces, breadth, and momentum across 40+ markets, updated daily.</p>
+      </div>
+    </div>
+
+    <div class="roadmap" data-dev="S7.3 · ledger rows">
+      <p class="rm-eyebrow">What ships, and when</p>
+      <div class="rm-rows">
+        <div class="rm-row">
+          <h4>Live dashboard</h4>
+          <p>Open intelligence across five asset classes &mdash; no account needed.</p>
+          <span class="pill active" data-ax="SEM · status pill"><span class="dot" aria-hidden="true"></span>Active</span>
+        </div>
+        <div class="rm-row">
+          <h4>Market briefings</h4>
+          <p>The morning brief &mdash; what moved, why, and what it connects to.</p>
+          <span class="pill soon" data-ax="GREY · soon pill">Coming soon</span>
+        </div>
+        <div class="rm-row">
+          <h4>Podcast &amp; analysis</h4>
+          <p>Desk conversations on the macro tape, in plain language.</p>
+          <span class="pill soon">Coming soon</span>
+        </div>
+        <div class="rm-row">
+          <h4>Technical signals feed</h4>
+          <p>Timestamped signals with full history &mdash; nothing edited after the fact.</p>
+          <span class="pill soon">Coming soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · inverse CTA card -->
+<section class="invite">
+  <div class="wrap">
+    <div class="inverse-card" data-dev="C-grammar · singular inverse" data-ax="FIXED · sanctioned inverse card">
+      <h2>The dashboard is live.</h2>
+      <p>Open intelligence, no account needed &mdash; see the world the way a trading desk does.</p>
+      <a class="btn-gold-light" href="/" data-dev="S3.2 · gold-frame CTA (inverse)" data-ax="GOLD frame · FIXED inverse fill">Open the dashboard &rarr;</a>
+      <p class="met-line">No signup · Updated daily · Share freely</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · premium footer -->
+<footer id="footer" data-dev="premium footer" data-ax="CANVAS · footer band (darkened)">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="index.html">Vega<span class="rdy">Ready</span></a>
+        <p>The working map of a quantitative trading desk &mdash; global events, market cascades, published openly.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Platform</h5>
+        <ul>
+          <li><a href="/">Live dashboard</a></li>
+          <li><a href="brief.html">The Brief</a></li>
+          <li><a href="desk.html">The Desk</a></li>
+          <li><a href="#cascade">How the cascade works</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>JCJ Investing</h5>
+        <ul>
+          <li><a href="#footer">About the desk</a></li>
+          <li><a href="#cascade">Methodology</a></li>
+          <li><a href="mailto:GP@jcjinvesting.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <p>&copy; JCJ Investing · Source: desk marks &mdash; Information, not investment advice.</p>
+      <a class="top-link" href="#top" onclick="window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});return false;">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+<!-- options panel (bottom-left) -->
+<div id="edpanel" role="group" aria-label="Display options">
+  <div class="ep-head">
+    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8;color:#E0B262">V5 FROZEN</span> <a href="/edition-v4/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V4 &#8599;</a> <a href="/edition-v3/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V3 &#8599;</a> <a href="/edition-v2/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V2 &#8599;</a> <a href="/edition-v1/index.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
+    <button type="button" class="ep-toggle" id="eptoggle" aria-expanded="true" aria-label="Collapse options panel">Hide</button>
+  </div>
+  <div class="ep-body">
+    <div class="ep-combos" role="group" aria-label="Saved combos">
+      <div class="ep-combos-h">Saved Combos</div>
+      <div id="epcomborows"></div>
+      <div class="ep-combo-actions">
+        <button type="button" class="ep-cbtn" id="epcsave">&#9733; Save current</button>
+        <button type="button" class="ep-cbtn" id="epccopy">Copy all</button>
+      </div>
+    </div>
+    <div class="ep-presets" role="group" aria-label="Presets">
+      <button type="button" class="ep-preset" data-preset="p1">P1 Formula</button>
+      <button type="button" class="ep-preset" data-preset="p2">P2 Conservative</button>
+      <button type="button" class="ep-preset" data-preset="p3">P3 Baseline</button>
+    </div>
+    <!-- fields run in PAGE ORDER, top of page → bottom (owner ruling, June 2026):
+         canvas → chroma → grey → gold → data (hero spark) → scheme/box/box2 → border → semantic → dialect → deep (abyss band) -->
+    <div class="ep-field">
+      <label for="opt-theme">Canvas · whole page</label>
+      <select id="opt-theme">
+        <option value="t1" selected>t1 · Oxford (baseline)</option>
+        <option value="t2">t2 · Abyss + Navy cards</option>
+        <option value="t3">t3 · Charcoal Blue</option>
+        <option value="t4">t4 · Pine Black</option>
+        <option value="t5">t5 · Petrol Black</option>
+        <option value="t6">t6 · Near-black + Oxford cards</option>
+        <option value="t7">t7 · Gunmetal sunken</option>
+        <option value="t8">t8 · Soft White Desk (light)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-chroma">Chroma · canvas saturation</label>
+      <select id="opt-chroma">
+        <option value="rich" selected>Rich (current)</option>
+        <option value="capped">Capped · institutional</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-grey">Grey · text register</label>
+      <select id="opt-grey">
+        <option value="warm" selected>Warm (current)</option>
+        <option value="cool">Cool</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-gold">Gold · masthead + accents</label>
+      <select id="opt-gold">
+        <option value="g1">G1 · Signature</option>
+        <option value="g2">G2 · Whisper</option>
+        <option value="g3" selected>G3 · Rich (current)</option>
+        <option value="g4">G4 · Metal ramp</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-data">Data · sparklines</label>
+      <select id="opt-data">
+        <option value="d1" selected>D1 · Auto (current)</option>
+        <option value="d2">D2 · Cobalt</option>
+        <option value="d3">D3 · Verdigris</option>
+        <option value="d4">D4 · Steel</option>
+        <option value="d5">D5 · Gold-line</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-scheme">Scheme · box tiers</label>
+      <select id="opt-scheme">
+        <option value="uniform">Uniform</option>
+        <option value="tworole" selected>Two-role</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-box">Box · all boxes</label>
+      <select id="opt-box">
+        <option value="b-tonal" selected>Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-box2">Box 2 &middot; instrument boxes <span style="text-transform:none;letter-spacing:.02em;opacity:.75">&middot; two-role</span></label>
+      <select id="opt-box2">
+        <option value="sunk1" selected>Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-bline">Border · box lines</label>
+      <select id="opt-bline">
+        <option value="auto" selected>Auto</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sem">Semantic · status colours</label>
+      <select id="opt-sem">
+        <option value="s1">S1 · Recipe&rsquo;d</option>
+        <option value="s2" selected>S2 · Current</option>
+        <option value="s3">S3 · Desk standard (TradingView/Coinbase pair)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-dialect">Dialect · structure accent</label>
+      <select id="opt-dialect">
+        <option value="auto">Auto · Cross-family</option>
+        <option value="fixed" selected>Fixed · Teal (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-deep">Deep · bottom bands</label>
+      <select id="opt-deep">
+        <option value="b1">B1 · Guaranteed step</option>
+        <option value="b2" selected>B2 · Current</option>
+      </select>
+    </div>
+    <div id="epviol" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- annotation toggle (bottom-right) -->
+<button id="anno" type="button" aria-pressed="false">&#8857; Labels</button>
+
+<script>
+// ── annotation mode — toggles data-dev on <html>; every [data-ax] element badges its axis ──
+var anno = document.getElementById('anno');
+anno.onclick = function(){
+  var on = document.documentElement.toggleAttribute('data-dev');
+  anno.setAttribute('aria-pressed', on ? 'true' : 'false');
+  anno.textContent = on ? '⊙ Hide labels' : '⊙ Labels';
+};
+
+// ── options panel — six axes + presets + collapse (shared keys across The Edition) ──
+(function(){
+  var d = document.documentElement;
+  var AXES = [
+    { id:'opt-theme',   attr:'data-theme',   key:'ed-theme'   },
+    { id:'opt-gold',    attr:'data-gold',    key:'ed-gold'    },
+    { id:'opt-grey',    attr:'data-grey',    key:'ed-grey'    },
+    { id:'opt-sem',     attr:'data-sem',     key:'ed-sem'     },
+    { id:'opt-dialect', attr:'data-dialect', key:'ed-dialect' },
+    { id:'opt-deep',    attr:'data-deep',    key:'ed-deep'    },
+    { id:'opt-chroma',  attr:'data-chroma',  key:'ed-chroma'  },
+    { id:'opt-data',    attr:'data-data',    key:'ed-data'    },
+    { id:'opt-scheme',  attr:'data-scheme',  key:'ed-scheme'  },
+    { id:'opt-box',     attr:'data-box',     key:'ed-box'     },
+    { id:'opt-box2',    attr:'data-box2',    key:'ed-box2'    },
+    { id:'opt-bline',   attr:'data-bline',   key:'ed-bline'   }
+  ];
+  function syncSel(sel, v){
+    for (var i = 0; i < sel.options.length; i++){
+      if (sel.options[i].value === v){ sel.value = v; return; }
+    }
+  }
+  function setAxis(a, v){
+    var changed = d.getAttribute(a.attr) !== v;
+    d.setAttribute(a.attr, v);
+    try { localStorage.setItem(a.key, v); } catch(e){}
+    var sel = document.getElementById(a.id);
+    if (sel) syncSel(sel, v);
+    /* v5: every entry point (select, preset, combo, popover) flashes + re-flags through this single path */
+    if (changed) flashAxis(a.attr);
+    refreshFlags();
+    if (axpopSync) axpopSync();
+  }
+  AXES.forEach(function(a){
+    var sel = document.getElementById(a.id);
+    if (!sel) return;
+    var cur = d.getAttribute(a.attr);
+    if (cur) syncSel(sel, cur);
+    sel.addEventListener('change', function(){ setAxis(a, sel.value); });
+  });
+  /* presets — style axes only; the canvas/theme is never touched */
+  var PRESETS = {
+    p1:{ 'data-gold':'g1','data-grey':'cool','data-sem':'s3','data-dialect':'auto','data-deep':'b1','data-chroma':'capped','data-scheme':'tworole','data-box':'b-tonal','data-box2':'sunk1','data-bline':'auto' },
+    p2:{ 'data-gold':'g2','data-grey':'warm','data-sem':'s1','data-dialect':'auto','data-deep':'b1','data-chroma':'rich','data-scheme':'tworole','data-box':'b-tonal','data-box2':'sunk1','data-bline':'auto' },
+    p3:{ 'data-gold':'g3','data-grey':'warm','data-sem':'s2','data-dialect':'fixed','data-deep':'b2','data-scheme':'tworole','data-box':'b-tonal','data-box2':'sunk1','data-bline':'auto' }
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('.ep-preset'), function(b){
+    b.addEventListener('click', function(){
+      var p = PRESETS[b.getAttribute('data-preset')];
+      if (!p) return;
+      AXES.forEach(function(a){ if (p[a.attr]) setAxis(a, p[a.attr]); });
+    });
+  });
+  /* ── saved combos — owner's preferred axis combinations, shared across The Edition.
+     localStorage 'ed-combos' = [{name, axes:{'ed-theme':'t1',...}, ts}] · cap 20.
+     Apply goes through setAxis so attributes, stores AND selects all update;
+     values the page's own select can't represent are skipped silently. */
+  var COMBO_KEY = 'ed-combos', COMBO_MAX = 20;
+  function readCombos(){
+    try {
+      var v = JSON.parse(localStorage.getItem(COMBO_KEY) || '[]');
+      if (!Array.isArray(v)) return [];
+      return v.filter(function(c){ return c && typeof c.name === 'string' && c.axes && typeof c.axes === 'object'; }).slice(0, COMBO_MAX);
+    } catch(e){ return []; }
+  }
+  function writeCombos(list){
+    try { localStorage.setItem(COMBO_KEY, JSON.stringify(list.slice(0, COMBO_MAX))); } catch(e){}
+  }
+  function comboVal(c, a){
+    var v = c.axes[a.key];
+    if (v == null) v = c.axes[a.attr];
+    return (typeof v === 'string') ? v : null;
+  }
+  function comboFormula(c){
+    return AXES.map(function(a){
+      var v = comboVal(c, a);
+      return a.key.replace(/^ed-/, '') + '=' + (v == null ? '?' : v);
+    }).join(' · ');
+  }
+  function axisValid(a, v){
+    var sel = document.getElementById(a.id);
+    if (!sel || v == null) return false;
+    for (var i = 0; i < sel.options.length; i++){ if (sel.options[i].value === v) return true; }
+    return false;
+  }
+  function applyCombo(c){
+    AXES.forEach(function(a){
+      var v = comboVal(c, a);
+      if (axisValid(a, v)) setAxis(a, v); /* per-axis skip: invalid-for-this-page values dropped silently */
+    });
+  }
+  function renderCombos(){
+    var rows = document.getElementById('epcomborows');
+    if (!rows) return;
+    var list = readCombos();
+    rows.innerHTML = '';
+    if (!list.length){
+      var none = document.createElement('div');
+      none.className = 'ep-combo-none';
+      none.textContent = 'None saved yet';
+      rows.appendChild(none);
+      return;
+    }
+    list.forEach(function(c){
+      var row = document.createElement('div'); row.className = 'ep-combo-row' + (c.crowned ? ' crowned' : '');
+      var ap = document.createElement('button'); ap.type = 'button'; ap.className = 'ep-combo-apply';
+      ap.textContent = (c.crowned ? '👑 ' : '') + c.name; ap.title = comboFormula(c);
+      ap.addEventListener('click', function(){ applyCombo(c); });
+      /* v5 crown — marks a combo as a formula candidate for the guide */
+      var cr = document.createElement('button'); cr.type = 'button'; cr.className = 'ep-combo-crown' + (c.crowned ? ' on' : '');
+      cr.textContent = '👑'; cr.title = 'Crown = this combination is a formula candidate for the guide.';
+      cr.setAttribute('aria-pressed', c.crowned ? 'true' : 'false');
+      cr.setAttribute('aria-label', (c.crowned ? 'Uncrown' : 'Crown') + ' combo ' + c.name);
+      cr.addEventListener('click', function(){
+        var l = readCombos();
+        for (var j = 0; j < l.length; j++){ if (l[j].ts === c.ts && l[j].name === c.name){ l[j].crowned = !l[j].crowned; break; } }
+        writeCombos(l); renderCombos();
+      });
+      var del = document.createElement('button'); del.type = 'button'; del.className = 'ep-combo-del';
+      del.textContent = '✕'; del.setAttribute('aria-label', 'Delete combo ' + c.name);
+      del.addEventListener('click', function(){
+        if (!confirm('Delete combo “' + c.name + '”?')) return;
+        var l = readCombos(), idx = -1;
+        for (var j = 0; j < l.length; j++){ if (l[j].ts === c.ts && l[j].name === c.name){ idx = j; break; } }
+        if (idx > -1){ l.splice(idx, 1); writeCombos(l); }
+        renderCombos();
+      });
+      row.appendChild(ap); row.appendChild(cr); row.appendChild(del); rows.appendChild(row);
+    });
+  }
+  var csave = document.getElementById('epcsave');
+  if (csave) csave.addEventListener('click', function(){
+    var list = readCombos();
+    if (list.length >= COMBO_MAX){ alert('Combo limit (' + COMBO_MAX + ') reached — delete one first.'); return; }
+    var name = prompt('Name this combo:', 'C' + (list.length + 1));
+    if (!name) return;
+    var axes = {};
+    AXES.forEach(function(a){ var v = d.getAttribute(a.attr); if (v) axes[a.key] = v; });
+    list.push({ name: name.slice(0, 40), axes: axes, ts: Date.now() });
+    writeCombos(list); renderCombos();
+  });
+  var ccopy = document.getElementById('epccopy');
+  if (ccopy) ccopy.addEventListener('click', function(){
+    var list = readCombos();
+    var text = list.map(function(c){ return (c.crowned ? '👑 FORMULA — ' : '') + c.name + ': ' + comboFormula(c); }).join('\n');
+    function done(label){ ccopy.textContent = label; setTimeout(function(){ ccopy.textContent = 'Copy all'; }, 1400); }
+    if (!text){ done('Nothing saved'); return; }
+    function fallback(){ window.prompt('Copy combos:', text); }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ done('Copied ✓'); }, fallback);
+    } else { fallback(); }
+  });
+  /* cross-tab freshness — re-render when another Edition page writes ed-combos */
+  window.addEventListener('storage', function(ev){
+    if (!ev || ev.key === null || ev.key === COMBO_KEY) renderCombos();
+  });
+  renderCombos();
+  /* collapse — state on <html>; restored pre-paint by the head script */
+  var panel = document.getElementById('edpanel');
+  var tog = document.getElementById('eptoggle');
+  function paintToggle(){
+    var c = d.getAttribute('data-panel') === 'collapsed';
+    tog.textContent = c ? '⚙' : 'Hide';
+    tog.setAttribute('aria-expanded', c ? 'false' : 'true');
+    tog.setAttribute('aria-label', c ? 'Expand options panel' : 'Collapse options panel');
+  }
+  function setCollapsed(c){
+    if (c) d.setAttribute('data-panel','collapsed'); else d.removeAttribute('data-panel');
+    try { localStorage.setItem('ed-panel', c ? 'collapsed' : 'open'); } catch(e){}
+    paintToggle();
+  }
+  tog.addEventListener('click', function(ev){
+    ev.stopPropagation();
+    setCollapsed(d.getAttribute('data-panel') !== 'collapsed');
+  });
+  panel.addEventListener('click', function(){
+    if (d.getAttribute('data-panel') === 'collapsed') setCollapsed(false);
+  });
+  paintToggle();
+
+  /* ════ v5 exploration UX ════ */
+  /* 1 · CHANGE-FLASH — every element whose data-ax mentions the changed axis pulses gold ~1s.
+     Hooked into setAxis above, so selects, presets, combos AND the popover all trigger it. */
+  var FLASH_RE = {
+    'data-theme':   /\bCANVAS\b/,
+    'data-chroma':  /\bCHROMA\b|\bCANVAS\b/, /* chroma retunes the canvas — flash both */
+    'data-grey':    /\bGREY\b/,
+    'data-gold':    /\bGOLD\b/,
+    'data-data':    /\bDATA\b/,
+    'data-scheme':  /\bBOX\b/,               /* scheme affects both tiers: BOX and BOX 2 */
+    'data-box':     /\bBOX\b(?!\s*2)/,       /* BOX but never BOX 2; "BORDER follows BOX" matches by design */
+    'data-box2':    /\bBOX\s*2\b/,
+    'data-bline':   /\bBORDER\b/,
+    'data-sem':     /\bSEM\b/,
+    'data-dialect': /\bDIALECT\b/,
+    'data-deep':    /\bDEEP\b/
+  };
+  function flashAxis(attr){
+    var re = FLASH_RE[attr];
+    if (!re) return;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ax]'), function(el){
+      if (!re.test(el.getAttribute('data-ax') || '')) return;
+      el.classList.remove('ax-flash');
+      void el.offsetWidth; /* restart the animation on rapid axis bursts (presets/combos) */
+      el.classList.add('ax-flash');
+      if (el.__axT) clearTimeout(el.__axT);
+      el.__axT = setTimeout(function(){ el.classList.remove('ax-flash'); }, 1100); /* fallback + reduced-motion path */
+    });
+  }
+  document.addEventListener('animationend', function(ev){
+    if (ev.animationName === 'axflash') ev.target.classList.remove('ax-flash');
+  });
+
+  /* 3 · RULE FLAGS — static OKLCH validator output (run 2026-06-06). Flag, never block (owner ruling). */
+  var THEME_NAME = { t1:'Oxford', t2:'Abyss', t3:'Charcoal', t4:'Pine', t5:'Petrol', t6:'Near-black', t7:'Gunmetal', t8:'Light desk', tm:'Matted plate' };
+  var BOX_DL = { /* ΔL>0.12 stacked-boxes gate per box hue × theme (b-navy fails t1 rich AND capped) */
+    'b-navy':{t1:1,t2:1,t3:1,t6:1}, 'b-teal':{t2:1,t6:1}, 'b-petrol':{t2:1,t6:1},
+    'b-pine':{t2:1,t6:1}, 'b-gunmetal':{t6:1}, 'b-slate':{t6:1}, 'b-lifted':{t2:1,t3:1,t6:1}
+  };
+  function boxChromaViol(hue, theme, chroma){ /* chroma gate */
+    if (hue === 'b-tonal') return (theme === 't2' && chroma === 'rich') || theme === 't6';
+    if (hue === 'b-lifted') return theme === 't6';
+    return false;
+  }
+  function boxViol(hue, theme, chroma){
+    return !!(BOX_DL[hue] && BOX_DL[hue][theme]) || boxChromaViol(hue, theme, chroma);
+  }
+  function borderViol(theme, chroma, box, bline){ /* tonal border under the 1.2 visibility band */
+    var tonal = bline === 'b-tonal' || (bline === 'auto' && box === 'b-tonal');
+    return tonal && (theme === 't2' || theme === 't3' || (theme === 't1' && chroma === 'capped'));
+  }
+  var BASE_LBL = {};
+  ['opt-box','opt-sem'].forEach(function(id){
+    var sel = document.getElementById(id);
+    if (sel) BASE_LBL[id] = Array.prototype.map.call(sel.options, function(o){ return o.text; });
+  });
+  function boxName(v){
+    var sel = document.getElementById('opt-box');
+    if (sel && BASE_LBL['opt-box']) for (var i = 0; i < sel.options.length; i++){
+      if (sel.options[i].value === v) return BASE_LBL['opt-box'][i];
+    }
+    return v;
+  }
+  function refreshFlags(){
+    var theme = d.getAttribute('data-theme'), chroma = d.getAttribute('data-chroma');
+    var boxSel = document.getElementById('opt-box');
+    if (boxSel && BASE_LBL['opt-box']) Array.prototype.forEach.call(boxSel.options, function(o, i){
+      var t = BASE_LBL['opt-box'][i] + (boxViol(o.value, theme, chroma) ? ' ⚠' : '');
+      if (o.text !== t) o.text = t;
+    });
+    var semSel = document.getElementById('opt-sem');
+    if (semSel && BASE_LBL['opt-sem']) Array.prototype.forEach.call(semSel.options, function(o, i){
+      var t = BASE_LBL['opt-sem'][i] + (o.value === 's2' ? ' ⚠' : ''); /* s2 pair fails |ΔL|≤0.04 on ALL themes */
+      if (o.text !== t) o.text = t;
+    });
+    var out = document.getElementById('epviol');
+    if (!out) return;
+    var box = d.getAttribute('data-box'), bline = d.getAttribute('data-bline'), sem = d.getAttribute('data-sem');
+    var tn = THEME_NAME[theme] || theme, msgs = [];
+    if (boxViol(box, theme, chroma)) msgs.push('⚠ ' + boxName(box) + ' box on ' + tn + ': ' + (BOX_DL[box] && BOX_DL[box][theme] ? 'box/canvas gap exceeds gate' : 'box chroma exceeds gate'));
+    if (borderViol(theme, chroma, box, bline)) msgs.push('⚠ Tonal border on ' + tn + ': line under the visibility band');
+    if (sem === 's2') msgs.push('⚠ S2 pair: green/red lightness mismatch');
+    out.textContent = msgs.join(' · ');
+    out.style.display = msgs.length ? 'block' : 'none';
+  }
+
+  /* 2 · CLICK-TO-EDIT POPOVER — Labels mode only; every edit routes through setAxis (the single path) */
+  var AX_ROWS = [
+    { re:/\bCANVAS\b/,      id:'opt-theme',   label:'Canvas'   },
+    { re:/\bCHROMA\b/,      id:'opt-chroma',  label:'Chroma'   },
+    { re:/\bGREY\b/,        id:'opt-grey',    label:'Grey'     },
+    { re:/\bGOLD\b/,        id:'opt-gold',    label:'Gold'     },
+    { re:/\bDATA\b/,        id:'opt-data',    label:'Data'     },
+    { re:/\bSCHEME\b/,      id:'opt-scheme',  label:'Scheme'   },
+    { re:/\bBOX\b(?!\s*2)/, id:'opt-box',     label:'Box'      },
+    { re:/\bBOX\s*2\b/,     id:'opt-box2',    label:'Box 2'    },
+    { re:/\bBORDER\b/,      id:'opt-bline',   label:'Border'   },
+    { re:/\bSEM\b/,         id:'opt-sem',     label:'Semantic' },
+    { re:/\bDIALECT\b/,     id:'opt-dialect', label:'Dialect'  },
+    { re:/\bDEEP\b/,        id:'opt-deep',    label:'Deep'     }
+  ];
+  var AX_BY_ID = {};
+  AXES.forEach(function(a){ AX_BY_ID[a.id] = a; });
+  var axpop = null, axpopSync = null;
+  function closePop(){
+    if (axpop && axpop.parentNode) axpop.parentNode.removeChild(axpop);
+    axpop = null; axpopSync = null;
+  }
+  function rotateAxis(a, dir){
+    var sel = document.getElementById(a.id);
+    if (!sel) return;
+    var n = sel.options.length;
+    setAxis(a, sel.options[(sel.selectedIndex + dir + n) % n].value);
+  }
+  function openPop(el, x, y){
+    closePop();
+    var ax = el.getAttribute('data-ax') || '';
+    axpop = document.createElement('div'); axpop.id = 'axpop';
+    var h = document.createElement('div'); h.className = 'axp-h'; h.textContent = ax;
+    axpop.appendChild(h);
+    var painters = [];
+    AX_ROWS.forEach(function(r){
+      if (!r.re.test(ax)) return;
+      var a = AX_BY_ID[r.id], sel = document.getElementById(r.id);
+      if (!a || !sel) return;
+      var row = document.createElement('div'); row.className = 'axp-row';
+      var lb = document.createElement('span'); lb.className = 'axp-l'; lb.textContent = r.label;
+      var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'axp-b'; prev.textContent = '◀'; prev.setAttribute('aria-label', 'Previous ' + r.label + ' option');
+      var val = document.createElement('span'); val.className = 'axp-v';
+      var next = document.createElement('button'); next.type = 'button'; next.className = 'axp-b'; next.textContent = '▶'; next.setAttribute('aria-label', 'Next ' + r.label + ' option');
+      function paint(){ var o = sel.options[sel.selectedIndex]; val.textContent = o ? o.text : ''; val.title = val.textContent; }
+      prev.addEventListener('click', function(ev){ ev.stopPropagation(); rotateAxis(a, -1); });
+      next.addEventListener('click', function(ev){ ev.stopPropagation(); rotateAxis(a, +1); });
+      paint(); painters.push(paint);
+      row.appendChild(lb); row.appendChild(prev); row.appendChild(val); row.appendChild(next);
+      axpop.appendChild(row);
+    });
+    if (/\bFIXED\b/.test(ax)){
+      var fx = document.createElement('div'); fx.className = 'axp-fixed';
+      fx.textContent = painters.length ? 'Part of this element is fixed by design.' : 'Fixed by design — not adjustable.';
+      axpop.appendChild(fx);
+    }
+    axpopSync = function(){ painters.forEach(function(p){ p(); }); };
+    document.body.appendChild(axpop);
+    var left = Math.max(8, Math.min(x + 12, window.innerWidth - axpop.offsetWidth - 8));
+    var top  = Math.max(8, Math.min(y + 12, window.innerHeight - axpop.offsetHeight - 8));
+    axpop.style.left = left + 'px'; axpop.style.top = top + 'px';
+  }
+  document.addEventListener('click', function(ev){
+    if (!d.hasAttribute('data-dev')){ closePop(); return; } /* popover lives only in Labels mode */
+    var t = ev.target;
+    if (!t || !t.closest){ closePop(); return; }
+    if (t.closest('#axpop')) return;                         /* popover controls handle themselves */
+    if (t.closest('#edpanel') || t.closest('#anno')) return; /* panel + Labels button never element-click */
+    var el = t.closest('[data-ax]');
+    if (!el){ closePop(); return; }
+    ev.preventDefault(); ev.stopPropagation();               /* links must not navigate in Labels mode */
+    openPop(el, ev.clientX, ev.clientY);
+  });
+  document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closePop(); });
+  refreshFlags(); /* initial ⚠ labels + readout for the restored axes */
+})();
+
+// ── canvas grammar: abyss gravity crossfade (targets var(--deep) via .cv-abyss) ──
+(function(){
+  /* reduced motion: skip the crossfade entirely — canvas stays put, content unaffected */
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var beat = document.querySelector('[data-cv="abyss"]');
+  if (!beat || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      document.body.classList.toggle('cv-abyss', e.isIntersecting);
+    });
+  }, { threshold: 0.32 });
+  io.observe(beat);
+})();
+</script>
+
+</body>
+</html>

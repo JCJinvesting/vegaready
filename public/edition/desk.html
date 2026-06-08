@@ -1,0 +1,2312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="t1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Desk · Markets — VegaReady</title>
+<meta name="description" content="VegaReady markets desk: energy under escalation. War-risk premia, chokepoint files, and the free morning brief from JCJ Investing's public regime filter.">
+<script>
+/* option-axis init — all six stores read before first paint to avoid flash */
+(function(){
+  var d = document.documentElement;
+  function g(k, f, re){
+    var v = null;
+    try { v = localStorage.getItem(k); } catch(e){}
+    return (v && re.test(v)) ? v : f;
+  }
+  d.setAttribute('data-theme',   g('ed-theme',   't1',    /^t[1-8]$/));
+  d.setAttribute('data-gold',    g('ed-gold',    'g3',    /^g[1-4]$/));
+  d.setAttribute('data-grey',    g('ed-grey',    'warm',  /^(warm|cool)$/));
+  d.setAttribute('data-sem',     g('ed-sem',     's2',    /^s[1-3]$/));
+  d.setAttribute('data-dialect', g('ed-dialect', 'fixed', /^(auto|fixed)$/));
+  d.setAttribute('data-deep',    g('ed-deep',    'b2',    /^b[12]$/));
+  d.setAttribute('data-chroma',  g('ed-chroma',  'rich',  /^(rich|capped)$/));
+  d.setAttribute('data-data',    g('ed-data',    'd1',    /^d[1-5]$/));
+  /* BOX system v6 — one BASE colour + per-SECTION overrides (scheme/box2 tiers retired June 2026).
+     Each section's vars default to the base; a data-sx-* attribute overrides that section only,
+     so a change at the top of the page never invisibly mutates something below the fold. */
+  var HUE = 'b-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood)';
+  var SXRE = new RegExp('^(base|' + HUE + '|sunk[1-4])$');
+  d.setAttribute('data-box',   g('ed-box',   'b-tonal', new RegExp('^' + HUE + '$')));
+  d.setAttribute('data-bline', g('ed-bline', 'auto',    new RegExp('^(auto|' + HUE + ')$')));
+  d.setAttribute('data-sx-util',   g('ed-sx-desk-utility', 'base', SXRE));
+  d.setAttribute('data-sx-ctah',   g('ed-sx-desk-ctah',    'base', SXRE));
+  d.setAttribute('data-sx-ctac',   g('ed-sx-desk-ctac',    'base', SXRE));
+  d.setAttribute('data-sx-hero',   g('ed-sx-desk-hero',    'base', SXRE));
+  d.setAttribute('data-sx-stat',   g('ed-sx-desk-stat',    'base', SXRE));
+  d.setAttribute('data-sx-anchor', g('ed-sx-desk-anchor',  'base', SXRE));
+  d.setAttribute('data-sx-bleed',  g('ed-sx-desk-bleed',   'base', SXRE));
+  d.setAttribute('data-sx-map',    g('ed-sx-desk-map',     'base', SXRE));
+  d.setAttribute('data-sx-funnel', g('ed-sx-desk-funnel',  'deep', /^(deep|deeper|black|navy|pine|charcoal)$/));
+  d.setAttribute('data-sx-sub',    g('ed-sx-desk-sub',     'base', SXRE));
+  /* v6.1 · DOT GRID — tone + opacity replace the old 3-step intensity
+     (legacy ed-dots-desk migrated: faint→4.5, strong→15, off→off; std falls to the 9% default) */
+  try {
+    var od = localStorage.getItem('ed-dots-desk');
+    if (od){
+      var om = { faint:'4.5', strong:'15', off:'off' }[od];
+      if (om && !localStorage.getItem('ed-dota-desk')) localStorage.setItem('ed-dota-desk', om);
+      localStorage.removeItem('ed-dots-desk');
+    }
+  } catch(e){}
+  d.setAttribute('data-dott', g('ed-dott-desk', 'ink', /^(ink|slate|steel|navy|teal|verdigris|gold|bone|graphite)$/));
+  d.setAttribute('data-dota', g('ed-dota-desk', '9',   /^(3|4\.5|6|7\.5|9|12|15|18|off)$/));
+  /* v6.1 · CTA FRAMES — per-CTA frame colour; gold (default) follows the GOLD axis */
+  var FRE = /^(gold|metal|bronze|l-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood))$/;
+  d.setAttribute('data-ctafh', g('ed-ctaf-desk-h', 'gold', FRE));
+  d.setAttribute('data-ctafc', g('ed-ctaf-desk-c', 'gold', FRE));
+  try { localStorage.removeItem('ed-ptone'); localStorage.removeItem('ed-scheme'); localStorage.removeItem('ed-box2'); localStorage.removeItem('ed-sx-desk-cta'); } catch(e){} /* legacy: ptone (v3) + scheme/box2 tiers (v6) + single-CTA section (v6.1 split) retired */
+  if (g('ed-panel', 'open', /^(open|collapsed)$/) === 'collapsed') d.setAttribute('data-panel','collapsed');
+  /* ── v6 FINAL LAYER · coverage + trim + per-element overrides — all pre-paint ── */
+  d.setAttribute('data-cov', g('ed-cov', 'auto', /^(auto|literal)$/));
+  var TRIMRE = /^(-2|-1|0|1|2)$/;
+  d.setAttribute('data-trim-util',   g('ed-trim-desk-utility', '0', TRIMRE));
+  d.setAttribute('data-trim-bleed',  g('ed-trim-desk-bleed',   '0', TRIMRE));
+  d.setAttribute('data-trim-funnel', g('ed-trim-desk-funnel',  '0', TRIMRE));
+  /* per-element override CSS builder — ONE builder, shared with the panel script via
+     window.__edOvr. Declarations are !important so the element-level rule beats both the
+     html-level section vars (custom props set ON the consuming element win over inherited
+     values) and the element-scoped bone flips; :not([data-theme="t8"]) keeps the
+     light-desk guard authoritative (overrides go dormant on t8). The Corridor map keeps
+     its own guard and carries NO override hook — its interior is fixed atlas cartography. */
+  window.__edOvr = (function(){
+    var HX = {
+      'b-tonal':['var(--card)','var(--cardline)'],
+      'b-navy':['#1E3552','#2C466B'], 'b-teal':['#15332F','#214841'], 'b-petrol':['#1B313A','#28444F'],
+      'b-pine':['#1E332C','#2B463D'], 'b-slate':['#232932','#323A46'], 'b-graphite':['#262421','#36332E'],
+      'b-gunmetal':['#252B33','#353D47'],
+      'b-lifted':['color-mix(in srgb,#fff 9%,var(--card))','color-mix(in srgb,#fff 16%,var(--card))'],
+      'b-bone':['#EDE5D2','#D5C9AE'], 'b-plum':['#2B2230','#3D3144'], 'b-bronze':['#2E2619','#443A28'], 'b-oxblood':['#2E1D1F','#452C2F'],
+      'sunk1':['color-mix(in srgb,#000 26%,var(--canvas))','color-mix(in srgb,var(--ink) 12%,var(--canvas))'],
+      'sunk2':['color-mix(in srgb,#13161B 62%,var(--canvas))','color-mix(in srgb,#C8CDD3 12%,var(--canvas))'],
+      'sunk3':['color-mix(in srgb,#0B1326 72%,var(--canvas))','#25324B'],
+      'sunk4':['#0C0E12','#232830']
+    };
+    /* bone re-ink (mirrors the section bone flip) · theme-ink restore via the --*0 backups
+       (a non-bone unlink beats a section-level bone flip on the same element) */
+    var BONE = '--ink:#2E2A22 !important;--body:#4A443A !important;--muted:#6E6754 !important;--eyeb:#8A6420 !important;--struct:#2A6478 !important;--emph:#8A6420 !important;--data:#2A5FA8 !important;--bench:#67727E !important;--latent:#5C6670 !important;--pos:#1E7A5F !important;--neg:#B0452C !important;--warn:#95621B !important;';
+    var REST = '--ink:var(--ink0) !important;--body:var(--body0) !important;--muted:var(--muted0) !important;--eyeb:var(--eyeb0) !important;--struct:var(--struct0) !important;--emph:var(--emph0) !important;--data:var(--data0) !important;--bench:var(--bench0) !important;--latent:var(--latent0) !important;--pos:var(--pos0) !important;--neg:var(--neg0) !important;--warn:var(--warn0) !important;';
+    var DEFS = {
+      'desk-util':   { f:'--sx-util', R:'util' },
+      'desk-ctah':   { f:'--sx-ctah' },
+      'desk-ctac':   { f:'--sx-ctac' },
+      'desk-hero':   { f:'--sx-hero', l:'--sx-heroline' },
+      'desk-wells':  { f:'--sx-hero' },
+      'desk-stat':   { f:'--sx-stat', l:'--sx-statline' },
+      'desk-anchor': { f:'--sx-anchor', l:'--sx-anchorline' },
+      'desk-bleed':  { f:'--sx-bleed', R:'bleed' },
+      'desk-grat':   { f:'--sx-map', l:'--sx-mapline' },
+      'desk-funnel': { f:'--sx-funnel', R:'funnel' },
+      'desk-sub':    { f:'--sx-sub', l:'--sx-subline' }
+    };
+    return function(map){
+      var out = '';
+      for (var id in map){
+        var o = DEFS[id], hx = HX[map[id]];
+        if (!o || !hx) continue;
+        var r = o.f + ':' + hx[0] + ' !important;';
+        if (o.l) r += o.l + ':' + hx[1] + ' !important;';
+        if (o.R) r += '--sx-' + o.R + 'R:color-mix(in srgb,var(--tc-' + o.R + ') var(--ta-' + o.R + '),' + hx[0] + ') !important;'; /* keep the trim chain live on large bands */
+        r += (map[id] === 'b-bone' ? BONE : REST);
+        out += 'html:not([data-theme="t8"]) [data-ovr="' + id + '"]{' + r + '}\n';
+      }
+      return out;
+    };
+  })();
+  try {
+    var ovrMap = JSON.parse(localStorage.getItem('ed-ovr-desk') || '{}') || {};
+    /* v6.1: CTA split — migrate the old single-CTA element override to both halves */
+    if (ovrMap['desk-cta']){
+      ovrMap['desk-ctah'] = ovrMap['desk-ctah'] || ovrMap['desk-cta'];
+      ovrMap['desk-ctac'] = ovrMap['desk-ctac'] || ovrMap['desk-cta'];
+      delete ovrMap['desk-cta'];
+      try { localStorage.setItem('ed-ovr-desk', JSON.stringify(ovrMap)); } catch(e2){}
+    }
+    var ovrSt = document.createElement('style'); ovrSt.id = 'ovrcss';
+    ovrSt.textContent = window.__edOvr(ovrMap);
+    document.head.appendChild(ovrSt);
+  } catch(e){}
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..800&family=Fraunces:opsz,wght@9..144,300..700&family=Lora:ital,wght@0,400..700;1,500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════════
+   THE DESK — page 3 of The Edition · markets/data surface + free-brief funnel
+   Shared theme architecture: vars on html[data-theme], t1–t8.
+   No shadows. No animations. All data static & labeled illustrative.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── THEMES ───────────────────────────────────────────────── */
+html{
+  /* t1 Oxford (baseline) */
+  color-scheme:dark; /* QC: native scrollbars/controls render dark */
+  --canvas:#0D1626;
+  --card:#131E32;     /* RECIPE: hue-held, chroma rises */
+  --cardline:#1E2E4A;
+  --deep:#0A0F1A;
+  --inverse:#EDE5D2;--inv-ink:#33302A;--inv-body:#5C5546;--inv-link:#2A6478;
+  --ink:#F2EBDC;--body:#DCD4C2;--muted:#97917F;
+  --eyeb:#C9A24A;--struct:#5FA897;
+  --data:#5E83D9;--anchor:#1E3552;--bench:#FFD89A;
+  --pos:#46C9A0;--neg:#E2725B;--warn:#E0B262;--latent:#9AA5B1;--emph:#E3C77E;
+  /* the deep departure band is dark in every theme — fixed light register */
+  --deep-ink:#F2EBDC;--deep-body:#DCD4C2;--deep-muted:#97917F;--deep-eyeb:#C9A24A;--deep-link:#7FC4AE;
+}
+html[data-theme="t2"]{--canvas:#0A0F1A;--card:#111C30;--cardline:#1C2A44;--deep:#070B12}
+html[data-theme="t3"]{--canvas:#13171D;--card:#1C2129;--cardline:#262E3A;--deep:#0C0F13}
+html[data-theme="t4"]{--canvas:#11201C;--card:#172924;--cardline:#223B34;--deep:#0A1410}
+html[data-theme="t5"]{--canvas:#0F1B1F;--card:#152429;--cardline:#20353B;--deep:#0A1216}
+html[data-theme="t6"]{--canvas:#0B0D11;--card:#0D1626;--cardline:#1E2E4A;--deep:#07090D}
+html[data-theme="t7"]{--canvas:#232B33;--card:#1C2229;--cardline:#394551;--deep:#161B21;--inverse:#F2EDE2;--muted:#A39D8E}
+html[data-theme="t8"]{
+  color-scheme:light; /* QC: light theme gets light native controls */
+  --canvas:#DDE2E6;--card:#FFFFFF;--cardline:#C2CAD1;--deep:#0B2E4E;
+  --ink:#2B2F34;--body:#3A434C;--muted:#4A535C;--eyeb:#8A6420;--struct:#2A6478;
+  --inverse:#0B2E4E;--inv-ink:#E9EFF6;--inv-body:#B9C8D8;--inv-link:#7EC9B4;
+  --data:#2A5FA8;--anchor:#0B2E4E;--bench:#67727E;
+  --pos:#1E7A5F;--neg:#B0452C;--warn:#95621B;--latent:#5C6670;--emph:#8A6420;
+}
+
+/* ════ CHROMA axis — canvas saturation cap (placed after the theme blocks so it wins the cascade).
+   Research gate: large grounds ≤ C 0.025; Oxford measures C 0.035, Abyss similar.
+   capped re-tunes ONLY the two over-chromatic navy themes (t1/t2); t3–t8 already pass the cap — no rules needed. */
+html[data-chroma="capped"][data-theme="t1"]{--canvas:#0E1520;--card:#131D2B;--cardline:#1E2B3F;--deep:#0A0F18}
+html[data-chroma="capped"][data-theme="t2"]{--canvas:#101826;--card:#162133;--cardline:#21304A;--deep:#0C1220}
+
+/* ════ OPTION AXES — attribute layers; override theme vars by cascade ════ */
+/* GOLD ladder — g3 = current rich gold, no override */
+html[data-gold="g1"]{--eyeb:color-mix(in srgb,var(--muted) 60%,var(--ink))}  /* eyebrows→warm ink-grey; metal stays only where gradients are literal */
+html[data-gold="g1"] .kick::after{opacity:.3}
+html[data-gold="g2"]{--eyeb:#B09A66}
+html[data-gold="g2"] .kick::after{opacity:.6}
+/* the deep funnel band runs a fixed light-on-dark register; ladder the band's own eyebrow var
+   against its fixed inks so gold steps bite there too */
+html[data-gold="g1"]{--deep-eyeb:color-mix(in srgb,#97917F 60%,#F2EBDC)}
+html[data-gold="g2"]{--deep-eyeb:#B09A66}
+/* g4 Metal Ramp — research-verified Radix-gold-dark metallic construction:
+   chroma FALLS as lightness rises. base #978365 · mid #CBB99F · highlight #E8E2D9 */
+html[data-gold="g4"]{--eyeb:#CBB99F;--emph:#E8E2D9;--deep-eyeb:#CBB99F}
+/* light desk: the cream ramp would wash out — fall back to the dark metal base
+   (--deep-eyeb keeps the mid value: the funnel band stays dark on t8) */
+html[data-gold="g4"][data-theme="t8"]{--eyeb:#978365;--emph:#978365}
+/* the page's gold gradients are literal — restop them for the metal ramp */
+html[data-gold="g4"] .hairline-gold{background:linear-gradient(90deg,#978365,#CBB99F 25%,#E8E2D9 50%,#CBB99F 75%,#978365)}
+html[data-gold="g4"]{--ctagold:linear-gradient(90deg,#978365,#CBB99F 28%,#E8E2D9 55%,#CBB99F 80%,#978365)} /* v6.1: CTA frames consume --ctagold — the metal restop rides the var */
+/* GREY temperature — per-theme cool values, hue-following */
+html[data-grey="cool"]{--muted:#8C96A4}
+html[data-grey="cool"][data-theme="t4"],html[data-grey="cool"][data-theme="t5"]{--muted:#8A9892}
+html[data-grey="cool"][data-theme="t7"]{--muted:#9AA3AE}
+html[data-grey="cool"][data-theme="t8"]{--muted:#4A535C}
+/* SEMANTIC recipe'd — s2 = current; this page defines --pos/--neg/--data/--warn/--latent,
+   so s1 deepens pos/neg/data/warn (--latent has no s1 value, stays current) */
+html[data-sem="s1"]{--pos:#33A07E;--neg:#C2604C;--data:#5878B8;--warn:#C99A55}
+/* s3 Desk Standard — TradingView/Coinbase pair (pos/neg/warn only; --data/--latent stay current) */
+html[data-sem="s3"]{--pos:#26A69A;--neg:#EF5350;--warn:#F89656}
+/* DIALECT — auto keeps verdigris #5FA897 on navy themes (t1/t2/t3/t6/t7); fixed = current everywhere */
+html[data-dialect="auto"][data-theme="t4"],html[data-dialect="auto"][data-theme="t5"]{--struct:#5878B8}
+html[data-dialect="auto"][data-theme="t8"]{--struct:#2A6478}
+/* ════ DATA axis — chart & sparkline line colour (June 2026 total-coverage audit).
+   d1 Auto = page current: --data keeps the theme cobalt #5E83D9 (SEM s1 may deepen it).
+   d2–d5 force a hue — placed after SEM/DIALECT so an explicit choice wins the cascade;
+   t8 light desk remaps to dark-on-light counterparts. The bone text-flip's local --data
+   remains element-scoped and still outranks these (legibility guard). */
+html[data-data="d2"]{--data:#5E83D9}
+html[data-data="d3"]{--data:#5FA897}
+html[data-data="d4"]{--data:#8FA8C8}
+html[data-data="d5"]{--data:#CBB99F}
+html[data-theme="t8"][data-data="d2"]{--data:#2A5FA8}
+html[data-theme="t8"][data-data="d3"]{--data:#2A6478}
+html[data-theme="t8"][data-data="d4"]{--data:#46627E}
+html[data-theme="t8"][data-data="d5"]{--data:#8A6420}
+/* DEEP guaranteed step (−6L-ish per theme; t8 unchanged) */
+html[data-deep="b1"][data-theme="t1"]{--deep:#070D18}
+html[data-deep="b1"][data-theme="t2"]{--deep:#05080F}
+html[data-deep="b1"][data-theme="t3"]{--deep:#080B10}
+html[data-deep="b1"][data-theme="t4"]{--deep:#07120D}
+html[data-deep="b1"][data-theme="t5"]{--deep:#081014}
+html[data-deep="b1"][data-theme="t6"]{--deep:#04060A}
+html[data-deep="b1"][data-theme="t7"]{--deep:#12161C}
+/* ════ BOX COLOUR system v6 — SECTION SEPARATION (owner coverage-ratio ruling).
+   ONE base selector (data-box → --box/--boxline) plus per-SECTION selectors:
+   each section's vars default to the base, and a data-sx-* attribute on <html>
+   overrides that section ONLY. Sections on this page, in page order:
+   — Utility band     .utility                       --sx-util
+   — CTA · header     hero .cta-frame fill           --sx-ctah (frame = --ctafh, default GOLD)
+   — CTA · closing    close .cta-frame fill          --sx-ctac (frame = --ctafc, default GOLD)
+   — Hero instrument  .deskpanel + metric wells      --sx-hero/--sx-heroline
+   — Stat cards       .card.statcell (waffle/tally)  --sx-stat/--sx-statline
+   — Anchor panel     .anchor-mini                   --sx-anchor/--sx-anchorline
+   — Breakout band    .bleed                         --sx-bleed
+   — Map frame        .corridor + .card.graticule    --sx-map/--sx-mapline
+   — Funnel band      .funnel bg                     --sx-funnel (own 6-shade table, decoupled from DEEP)
+   — Subscribe card   .perf-card                     --sx-sub/--sx-subline
+   — Dot grid         .ctazone dots                  --dotc (tone) × --dota (opacity)
+   .cmdk frame + .ruled event-tape lines stay on the BASE box line. */
+html{
+  --box:var(--card);--boxline:var(--cardline);
+  --sx-util:var(--box);
+  --sx-ctah:var(--box);--sx-ctac:var(--box);
+  --sx-hero:var(--box);--sx-heroline:var(--boxline);
+  --sx-stat:var(--box);--sx-statline:var(--boxline);
+  --sx-anchor:var(--box);--sx-anchorline:var(--boxline);
+  --sx-bleed:var(--box);
+  --sx-map:var(--box);--sx-mapline:var(--boxline);
+  --sx-funnel:var(--deep);
+  --sx-sub:var(--box);--sx-subline:var(--boxline);
+  --dotc:var(--ink);--dota:9%; /* v6.1: dot TONE (default = canvas-ink construction) × OPACITY */
+  --ctagold:linear-gradient(90deg,#A8843C,#E3C77E 55%,#A8843C); /* the literal gold frame construction (g4 restops it) */
+  --ctafh:var(--ctagold);--ctafc:var(--ctagold); /* v6.1: per-CTA frame colours, default = gold */
+}
+/* BOX — main box colour, 13 hues */
+html[data-box="b-tonal"]{--box:var(--card);--boxline:var(--cardline)}
+html[data-box="b-navy"]{--box:#1E3552;--boxline:#2C466B}
+html[data-box="b-teal"]{--box:#15332F;--boxline:#214841}
+html[data-box="b-petrol"]{--box:#1B313A;--boxline:#28444F}
+html[data-box="b-pine"]{--box:#1E332C;--boxline:#2B463D}
+html[data-box="b-slate"]{--box:#232932;--boxline:#323A46}
+html[data-box="b-graphite"]{--box:#262421;--boxline:#36332E}
+html[data-box="b-gunmetal"]{--box:#252B33;--boxline:#353D47}
+html[data-box="b-lifted"]{--box:color-mix(in srgb,#fff 9%,var(--card));--boxline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-box="b-bone"]{--box:#EDE5D2;--boxline:#D5C9AE}
+html[data-box="b-plum"]{--box:#2B2230;--boxline:#3D3144}
+html[data-box="b-bronze"]{--box:#2E2619;--boxline:#443A28}
+html[data-box="b-oxblood"]{--box:#2E1D1F;--boxline:#452C2F}
+/* SECTION tables — same 17-option construction per section (13 hues + sunk1–4);
+   "base" carries no rule, so the section vars keep following --box/--boxline. */
+/* SECTION · Utility band (top) */
+html[data-sx-util="b-tonal"]{--sx-util:var(--card)}
+html[data-sx-util="b-navy"]{--sx-util:#1E3552}
+html[data-sx-util="b-teal"]{--sx-util:#15332F}
+html[data-sx-util="b-petrol"]{--sx-util:#1B313A}
+html[data-sx-util="b-pine"]{--sx-util:#1E332C}
+html[data-sx-util="b-slate"]{--sx-util:#232932}
+html[data-sx-util="b-graphite"]{--sx-util:#262421}
+html[data-sx-util="b-gunmetal"]{--sx-util:#252B33}
+html[data-sx-util="b-lifted"]{--sx-util:color-mix(in srgb,#fff 9%,var(--card))}
+html[data-sx-util="b-bone"]{--sx-util:#EDE5D2}
+html[data-sx-util="b-plum"]{--sx-util:#2B2230}
+html[data-sx-util="b-bronze"]{--sx-util:#2E2619}
+html[data-sx-util="b-oxblood"]{--sx-util:#2E1D1F}
+html[data-sx-util="sunk1"]{--sx-util:color-mix(in srgb,#000 26%,var(--canvas))}
+html[data-sx-util="sunk2"]{--sx-util:color-mix(in srgb,#13161B 62%,var(--canvas))}
+html[data-sx-util="sunk3"]{--sx-util:color-mix(in srgb,#0B1326 72%,var(--canvas))}
+html[data-sx-util="sunk4"]{--sx-util:#0C0E12}
+/* SECTION · CTA header (hero .cta-frame fill — frame rides --ctafh, v6.1 split) */
+html[data-sx-ctah="b-tonal"]{--sx-ctah:var(--card)}
+html[data-sx-ctah="b-navy"]{--sx-ctah:#1E3552}
+html[data-sx-ctah="b-teal"]{--sx-ctah:#15332F}
+html[data-sx-ctah="b-petrol"]{--sx-ctah:#1B313A}
+html[data-sx-ctah="b-pine"]{--sx-ctah:#1E332C}
+html[data-sx-ctah="b-slate"]{--sx-ctah:#232932}
+html[data-sx-ctah="b-graphite"]{--sx-ctah:#262421}
+html[data-sx-ctah="b-gunmetal"]{--sx-ctah:#252B33}
+html[data-sx-ctah="b-lifted"]{--sx-ctah:color-mix(in srgb,#fff 9%,var(--card))}
+html[data-sx-ctah="b-bone"]{--sx-ctah:#EDE5D2}
+html[data-sx-ctah="b-plum"]{--sx-ctah:#2B2230}
+html[data-sx-ctah="b-bronze"]{--sx-ctah:#2E2619}
+html[data-sx-ctah="b-oxblood"]{--sx-ctah:#2E1D1F}
+html[data-sx-ctah="sunk1"]{--sx-ctah:color-mix(in srgb,#000 26%,var(--canvas))}
+html[data-sx-ctah="sunk2"]{--sx-ctah:color-mix(in srgb,#13161B 62%,var(--canvas))}
+html[data-sx-ctah="sunk3"]{--sx-ctah:color-mix(in srgb,#0B1326 72%,var(--canvas))}
+html[data-sx-ctah="sunk4"]{--sx-ctah:#0C0E12}
+/* SECTION · CTA closing (close .cta-frame fill — frame rides --ctafc, v6.1 split) */
+html[data-sx-ctac="b-tonal"]{--sx-ctac:var(--card)}
+html[data-sx-ctac="b-navy"]{--sx-ctac:#1E3552}
+html[data-sx-ctac="b-teal"]{--sx-ctac:#15332F}
+html[data-sx-ctac="b-petrol"]{--sx-ctac:#1B313A}
+html[data-sx-ctac="b-pine"]{--sx-ctac:#1E332C}
+html[data-sx-ctac="b-slate"]{--sx-ctac:#232932}
+html[data-sx-ctac="b-graphite"]{--sx-ctac:#262421}
+html[data-sx-ctac="b-gunmetal"]{--sx-ctac:#252B33}
+html[data-sx-ctac="b-lifted"]{--sx-ctac:color-mix(in srgb,#fff 9%,var(--card))}
+html[data-sx-ctac="b-bone"]{--sx-ctac:#EDE5D2}
+html[data-sx-ctac="b-plum"]{--sx-ctac:#2B2230}
+html[data-sx-ctac="b-bronze"]{--sx-ctac:#2E2619}
+html[data-sx-ctac="b-oxblood"]{--sx-ctac:#2E1D1F}
+html[data-sx-ctac="sunk1"]{--sx-ctac:color-mix(in srgb,#000 26%,var(--canvas))}
+html[data-sx-ctac="sunk2"]{--sx-ctac:color-mix(in srgb,#13161B 62%,var(--canvas))}
+html[data-sx-ctac="sunk3"]{--sx-ctac:color-mix(in srgb,#0B1326 72%,var(--canvas))}
+html[data-sx-ctac="sunk4"]{--sx-ctac:#0C0E12}
+/* SECTION · Hero instrument (top) */
+html[data-sx-hero="b-tonal"]{--sx-hero:var(--card);--sx-heroline:var(--cardline)}
+html[data-sx-hero="b-navy"]{--sx-hero:#1E3552;--sx-heroline:#2C466B}
+html[data-sx-hero="b-teal"]{--sx-hero:#15332F;--sx-heroline:#214841}
+html[data-sx-hero="b-petrol"]{--sx-hero:#1B313A;--sx-heroline:#28444F}
+html[data-sx-hero="b-pine"]{--sx-hero:#1E332C;--sx-heroline:#2B463D}
+html[data-sx-hero="b-slate"]{--sx-hero:#232932;--sx-heroline:#323A46}
+html[data-sx-hero="b-graphite"]{--sx-hero:#262421;--sx-heroline:#36332E}
+html[data-sx-hero="b-gunmetal"]{--sx-hero:#252B33;--sx-heroline:#353D47}
+html[data-sx-hero="b-lifted"]{--sx-hero:color-mix(in srgb,#fff 9%,var(--card));--sx-heroline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-sx-hero="b-bone"]{--sx-hero:#EDE5D2;--sx-heroline:#D5C9AE}
+html[data-sx-hero="b-plum"]{--sx-hero:#2B2230;--sx-heroline:#3D3144}
+html[data-sx-hero="b-bronze"]{--sx-hero:#2E2619;--sx-heroline:#443A28}
+html[data-sx-hero="b-oxblood"]{--sx-hero:#2E1D1F;--sx-heroline:#452C2F}
+html[data-sx-hero="sunk1"]{--sx-hero:color-mix(in srgb,#000 26%,var(--canvas));--sx-heroline:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-sx-hero="sunk2"]{--sx-hero:color-mix(in srgb,#13161B 62%,var(--canvas));--sx-heroline:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-sx-hero="sunk3"]{--sx-hero:color-mix(in srgb,#0B1326 72%,var(--canvas));--sx-heroline:#25324B}
+html[data-sx-hero="sunk4"]{--sx-hero:#0C0E12;--sx-heroline:#232830}
+/* SECTION · Stat cards (mid) */
+html[data-sx-stat="b-tonal"]{--sx-stat:var(--card);--sx-statline:var(--cardline)}
+html[data-sx-stat="b-navy"]{--sx-stat:#1E3552;--sx-statline:#2C466B}
+html[data-sx-stat="b-teal"]{--sx-stat:#15332F;--sx-statline:#214841}
+html[data-sx-stat="b-petrol"]{--sx-stat:#1B313A;--sx-statline:#28444F}
+html[data-sx-stat="b-pine"]{--sx-stat:#1E332C;--sx-statline:#2B463D}
+html[data-sx-stat="b-slate"]{--sx-stat:#232932;--sx-statline:#323A46}
+html[data-sx-stat="b-graphite"]{--sx-stat:#262421;--sx-statline:#36332E}
+html[data-sx-stat="b-gunmetal"]{--sx-stat:#252B33;--sx-statline:#353D47}
+html[data-sx-stat="b-lifted"]{--sx-stat:color-mix(in srgb,#fff 9%,var(--card));--sx-statline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-sx-stat="b-bone"]{--sx-stat:#EDE5D2;--sx-statline:#D5C9AE}
+html[data-sx-stat="b-plum"]{--sx-stat:#2B2230;--sx-statline:#3D3144}
+html[data-sx-stat="b-bronze"]{--sx-stat:#2E2619;--sx-statline:#443A28}
+html[data-sx-stat="b-oxblood"]{--sx-stat:#2E1D1F;--sx-statline:#452C2F}
+html[data-sx-stat="sunk1"]{--sx-stat:color-mix(in srgb,#000 26%,var(--canvas));--sx-statline:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-sx-stat="sunk2"]{--sx-stat:color-mix(in srgb,#13161B 62%,var(--canvas));--sx-statline:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-sx-stat="sunk3"]{--sx-stat:color-mix(in srgb,#0B1326 72%,var(--canvas));--sx-statline:#25324B}
+html[data-sx-stat="sunk4"]{--sx-stat:#0C0E12;--sx-statline:#232830}
+/* SECTION · Anchor panel (mid) */
+html[data-sx-anchor="b-tonal"]{--sx-anchor:var(--card);--sx-anchorline:var(--cardline)}
+html[data-sx-anchor="b-navy"]{--sx-anchor:#1E3552;--sx-anchorline:#2C466B}
+html[data-sx-anchor="b-teal"]{--sx-anchor:#15332F;--sx-anchorline:#214841}
+html[data-sx-anchor="b-petrol"]{--sx-anchor:#1B313A;--sx-anchorline:#28444F}
+html[data-sx-anchor="b-pine"]{--sx-anchor:#1E332C;--sx-anchorline:#2B463D}
+html[data-sx-anchor="b-slate"]{--sx-anchor:#232932;--sx-anchorline:#323A46}
+html[data-sx-anchor="b-graphite"]{--sx-anchor:#262421;--sx-anchorline:#36332E}
+html[data-sx-anchor="b-gunmetal"]{--sx-anchor:#252B33;--sx-anchorline:#353D47}
+html[data-sx-anchor="b-lifted"]{--sx-anchor:color-mix(in srgb,#fff 9%,var(--card));--sx-anchorline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-sx-anchor="b-bone"]{--sx-anchor:#EDE5D2;--sx-anchorline:#D5C9AE}
+html[data-sx-anchor="b-plum"]{--sx-anchor:#2B2230;--sx-anchorline:#3D3144}
+html[data-sx-anchor="b-bronze"]{--sx-anchor:#2E2619;--sx-anchorline:#443A28}
+html[data-sx-anchor="b-oxblood"]{--sx-anchor:#2E1D1F;--sx-anchorline:#452C2F}
+html[data-sx-anchor="sunk1"]{--sx-anchor:color-mix(in srgb,#000 26%,var(--canvas));--sx-anchorline:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-sx-anchor="sunk2"]{--sx-anchor:color-mix(in srgb,#13161B 62%,var(--canvas));--sx-anchorline:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-sx-anchor="sunk3"]{--sx-anchor:color-mix(in srgb,#0B1326 72%,var(--canvas));--sx-anchorline:#25324B}
+html[data-sx-anchor="sunk4"]{--sx-anchor:#0C0E12;--sx-anchorline:#232830}
+/* SECTION · Breakout band (mid — borderless bleed) */
+html[data-sx-bleed="b-tonal"]{--sx-bleed:var(--card)}
+html[data-sx-bleed="b-navy"]{--sx-bleed:#1E3552}
+html[data-sx-bleed="b-teal"]{--sx-bleed:#15332F}
+html[data-sx-bleed="b-petrol"]{--sx-bleed:#1B313A}
+html[data-sx-bleed="b-pine"]{--sx-bleed:#1E332C}
+html[data-sx-bleed="b-slate"]{--sx-bleed:#232932}
+html[data-sx-bleed="b-graphite"]{--sx-bleed:#262421}
+html[data-sx-bleed="b-gunmetal"]{--sx-bleed:#252B33}
+html[data-sx-bleed="b-lifted"]{--sx-bleed:color-mix(in srgb,#fff 9%,var(--card))}
+html[data-sx-bleed="b-bone"]{--sx-bleed:#EDE5D2}
+html[data-sx-bleed="b-plum"]{--sx-bleed:#2B2230}
+html[data-sx-bleed="b-bronze"]{--sx-bleed:#2E2619}
+html[data-sx-bleed="b-oxblood"]{--sx-bleed:#2E1D1F}
+html[data-sx-bleed="sunk1"]{--sx-bleed:color-mix(in srgb,#000 26%,var(--canvas))}
+html[data-sx-bleed="sunk2"]{--sx-bleed:color-mix(in srgb,#13161B 62%,var(--canvas))}
+html[data-sx-bleed="sunk3"]{--sx-bleed:color-mix(in srgb,#0B1326 72%,var(--canvas))}
+html[data-sx-bleed="sunk4"]{--sx-bleed:#0C0E12}
+/* SECTION · Map frame (lower — sea plate + graticule card; interior cartography untouched) */
+html[data-sx-map="b-tonal"]{--sx-map:var(--card);--sx-mapline:var(--cardline)}
+html[data-sx-map="b-navy"]{--sx-map:#1E3552;--sx-mapline:#2C466B}
+html[data-sx-map="b-teal"]{--sx-map:#15332F;--sx-mapline:#214841}
+html[data-sx-map="b-petrol"]{--sx-map:#1B313A;--sx-mapline:#28444F}
+html[data-sx-map="b-pine"]{--sx-map:#1E332C;--sx-mapline:#2B463D}
+html[data-sx-map="b-slate"]{--sx-map:#232932;--sx-mapline:#323A46}
+html[data-sx-map="b-graphite"]{--sx-map:#262421;--sx-mapline:#36332E}
+html[data-sx-map="b-gunmetal"]{--sx-map:#252B33;--sx-mapline:#353D47}
+html[data-sx-map="b-lifted"]{--sx-map:color-mix(in srgb,#fff 9%,var(--card));--sx-mapline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-sx-map="b-bone"]{--sx-map:#EDE5D2;--sx-mapline:#D5C9AE}
+html[data-sx-map="b-plum"]{--sx-map:#2B2230;--sx-mapline:#3D3144}
+html[data-sx-map="b-bronze"]{--sx-map:#2E2619;--sx-mapline:#443A28}
+html[data-sx-map="b-oxblood"]{--sx-map:#2E1D1F;--sx-mapline:#452C2F}
+html[data-sx-map="sunk1"]{--sx-map:color-mix(in srgb,#000 26%,var(--canvas));--sx-mapline:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-sx-map="sunk2"]{--sx-map:color-mix(in srgb,#13161B 62%,var(--canvas));--sx-mapline:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-sx-map="sunk3"]{--sx-map:color-mix(in srgb,#0B1326 72%,var(--canvas));--sx-mapline:#25324B}
+html[data-sx-map="sunk4"]{--sx-map:#0C0E12;--sx-mapline:#232830}
+/* SECTION · Subscribe card (bottom) */
+html[data-sx-sub="b-tonal"]{--sx-sub:var(--card);--sx-subline:var(--cardline)}
+html[data-sx-sub="b-navy"]{--sx-sub:#1E3552;--sx-subline:#2C466B}
+html[data-sx-sub="b-teal"]{--sx-sub:#15332F;--sx-subline:#214841}
+html[data-sx-sub="b-petrol"]{--sx-sub:#1B313A;--sx-subline:#28444F}
+html[data-sx-sub="b-pine"]{--sx-sub:#1E332C;--sx-subline:#2B463D}
+html[data-sx-sub="b-slate"]{--sx-sub:#232932;--sx-subline:#323A46}
+html[data-sx-sub="b-graphite"]{--sx-sub:#262421;--sx-subline:#36332E}
+html[data-sx-sub="b-gunmetal"]{--sx-sub:#252B33;--sx-subline:#353D47}
+html[data-sx-sub="b-lifted"]{--sx-sub:color-mix(in srgb,#fff 9%,var(--card));--sx-subline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-sx-sub="b-bone"]{--sx-sub:#EDE5D2;--sx-subline:#D5C9AE}
+html[data-sx-sub="b-plum"]{--sx-sub:#2B2230;--sx-subline:#3D3144}
+html[data-sx-sub="b-bronze"]{--sx-sub:#2E2619;--sx-subline:#443A28}
+html[data-sx-sub="b-oxblood"]{--sx-sub:#2E1D1F;--sx-subline:#452C2F}
+html[data-sx-sub="sunk1"]{--sx-sub:color-mix(in srgb,#000 26%,var(--canvas));--sx-subline:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-sx-sub="sunk2"]{--sx-sub:color-mix(in srgb,#13161B 62%,var(--canvas));--sx-subline:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-sx-sub="sunk3"]{--sx-sub:color-mix(in srgb,#0B1326 72%,var(--canvas));--sx-subline:#25324B}
+html[data-sx-sub="sunk4"]{--sx-sub:#0C0E12;--sx-subline:#232830}
+/* SECTION · Funnel band (bottom) — own 6-shade table, decoupled from canvas/DEEP. Band only. */
+html[data-sx-funnel="deeper"]{--sx-funnel:color-mix(in srgb,#000 35%,var(--canvas))}
+html[data-sx-funnel="black"]{--sx-funnel:#0B0D10}
+html[data-sx-funnel="navy"]{--sx-funnel:#0C1422}
+html[data-sx-funnel="pine"]{--sx-funnel:#0C1714}
+html[data-sx-funnel="charcoal"]{--sx-funnel:#14171B}
+/* DOT GRID (bottom) — v6.1: TONE (--dotc, 9 hues, default Ink = the original canvas-ink
+   construction, no rule) × OPACITY (--dota, 8-step ladder, default 9%, no rule; off removes the image) */
+html[data-dott="slate"]{--dotc:#6B7686}
+html[data-dott="steel"]{--dotc:#8FA8C8}
+html[data-dott="navy"]{--dotc:#34507E}
+html[data-dott="teal"]{--dotc:#3E7E72}
+html[data-dott="verdigris"]{--dotc:#5FA897}
+html[data-dott="gold"]{--dotc:#B09A66}
+html[data-dott="bone"]{--dotc:#C9BFA8}
+html[data-dott="graphite"]{--dotc:#6A655C}
+html[data-dota="3"]{--dota:3%}
+html[data-dota="4.5"]{--dota:4.5%}
+html[data-dota="6"]{--dota:6%}
+html[data-dota="7.5"]{--dota:7.5%}
+html[data-dota="12"]{--dota:12%}
+html[data-dota="15"]{--dota:15%}
+html[data-dota="18"]{--dota:18%}
+html[data-dota="off"] .ctazone{background-image:none}
+/* CTA FRAME (v6.1) — per-CTA frame colour; gold carries no rule (follows the GOLD axis via
+   --ctagold). Solids ship as two-stop gradients so the frame var is always an image. */
+html[data-ctafh="metal"]{--ctafh:linear-gradient(#CBB99F,#CBB99F)}
+html[data-ctafh="bronze"]{--ctafh:linear-gradient(#8C7A4A,#8C7A4A)}
+html[data-ctafh="l-tonal"]{--ctafh:linear-gradient(var(--cardline),var(--cardline))}
+html[data-ctafh="l-navy"]{--ctafh:linear-gradient(#2C466B,#2C466B)}
+html[data-ctafh="l-teal"]{--ctafh:linear-gradient(#214841,#214841)}
+html[data-ctafh="l-petrol"]{--ctafh:linear-gradient(#28444F,#28444F)}
+html[data-ctafh="l-pine"]{--ctafh:linear-gradient(#2B463D,#2B463D)}
+html[data-ctafh="l-slate"]{--ctafh:linear-gradient(#323A46,#323A46)}
+html[data-ctafh="l-graphite"]{--ctafh:linear-gradient(#36332E,#36332E)}
+html[data-ctafh="l-gunmetal"]{--ctafh:linear-gradient(#353D47,#353D47)}
+html[data-ctafh="l-lifted"]{--ctafh:linear-gradient(color-mix(in srgb,#fff 16%,var(--card)),color-mix(in srgb,#fff 16%,var(--card)))}
+html[data-ctafh="l-bone"]{--ctafh:linear-gradient(#D5C9AE,#D5C9AE)}
+html[data-ctafh="l-plum"]{--ctafh:linear-gradient(#3D3144,#3D3144)}
+html[data-ctafh="l-bronze"]{--ctafh:linear-gradient(#443A28,#443A28)}
+html[data-ctafh="l-oxblood"]{--ctafh:linear-gradient(#452C2F,#452C2F)}
+html[data-ctafc="metal"]{--ctafc:linear-gradient(#CBB99F,#CBB99F)}
+html[data-ctafc="bronze"]{--ctafc:linear-gradient(#8C7A4A,#8C7A4A)}
+html[data-ctafc="l-tonal"]{--ctafc:linear-gradient(var(--cardline),var(--cardline))}
+html[data-ctafc="l-navy"]{--ctafc:linear-gradient(#2C466B,#2C466B)}
+html[data-ctafc="l-teal"]{--ctafc:linear-gradient(#214841,#214841)}
+html[data-ctafc="l-petrol"]{--ctafc:linear-gradient(#28444F,#28444F)}
+html[data-ctafc="l-pine"]{--ctafc:linear-gradient(#2B463D,#2B463D)}
+html[data-ctafc="l-slate"]{--ctafc:linear-gradient(#323A46,#323A46)}
+html[data-ctafc="l-graphite"]{--ctafc:linear-gradient(#36332E,#36332E)}
+html[data-ctafc="l-gunmetal"]{--ctafc:linear-gradient(#353D47,#353D47)}
+html[data-ctafc="l-lifted"]{--ctafc:linear-gradient(color-mix(in srgb,#fff 16%,var(--card)),color-mix(in srgb,#fff 16%,var(--card)))}
+html[data-ctafc="l-bone"]{--ctafc:linear-gradient(#D5C9AE,#D5C9AE)}
+html[data-ctafc="l-plum"]{--ctafc:linear-gradient(#3D3144,#3D3144)}
+html[data-ctafc="l-bronze"]{--ctafc:linear-gradient(#443A28,#443A28)}
+html[data-ctafc="l-oxblood"]{--ctafc:linear-gradient(#452C2F,#452C2F)}
+/* BORDER override — auto = lines follow the box colours (no rule); a hue forces the BASE line.
+   Sections at Base inherit it; a section overridden to its own colour keeps its own line. */
+html[data-bline="b-tonal"]{--boxline:var(--cardline)}
+html[data-bline="b-navy"]{--boxline:#2C466B}
+html[data-bline="b-teal"]{--boxline:#214841}
+html[data-bline="b-petrol"]{--boxline:#28444F}
+html[data-bline="b-pine"]{--boxline:#2B463D}
+html[data-bline="b-slate"]{--boxline:#323A46}
+html[data-bline="b-graphite"]{--boxline:#36332E}
+html[data-bline="b-gunmetal"]{--boxline:#353D47}
+html[data-bline="b-lifted"]{--boxline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-bline="b-bone"]{--boxline:#D5C9AE}
+html[data-bline="b-plum"]{--boxline:#3D3144}
+html[data-bline="b-bronze"]{--boxline:#443A28}
+html[data-bline="b-oxblood"]{--boxline:#452C2F}
+/* b-bone TEXT FLIP — bone is a light box on a dark canvas: re-ink every box that consumes it.
+   Local var remap; chart/semantic accents mirror the t8 light-desk tunings.
+   v6: scoped PER SECTION — a section flips when ITS value is bone, or when it sits at Base
+   under a bone base box. */
+html[data-sx-stat="b-bone"] .card.statcell,
+html[data-box="b-bone"][data-sx-stat="base"] .card.statcell,
+html[data-sx-map="b-bone"] .card.graticule,
+html[data-box="b-bone"][data-sx-map="base"] .card.graticule,
+html[data-sx-util="b-bone"] .utility,
+html[data-box="b-bone"][data-sx-util="base"] .utility,
+html[data-sx-ctah="b-bone"] .cta-frame.cta-h a,
+html[data-box="b-bone"][data-sx-ctah="base"] .cta-frame.cta-h a,
+html[data-sx-ctac="b-bone"] .cta-frame.cta-c a,
+html[data-box="b-bone"][data-sx-ctac="base"] .cta-frame.cta-c a,
+html[data-sx-sub="b-bone"] .perf-card,
+html[data-box="b-bone"][data-sx-sub="base"] .perf-card,
+html[data-sx-hero="b-bone"] .deskpanel,
+html[data-box="b-bone"][data-sx-hero="base"] .deskpanel,
+html[data-sx-bleed="b-bone"] .bleed,
+html[data-box="b-bone"][data-sx-bleed="base"] .bleed,
+html[data-sx-anchor="b-bone"] .anchor-mini,
+html[data-box="b-bone"][data-sx-anchor="base"] .anchor-mini{
+  --ink:#2E2A22;--body:#4A443A;--muted:#6E6754;
+  --eyeb:#8A6420;--struct:#2A6478;--emph:#8A6420;
+  --data:#2A5FA8;--bench:#67727E;--latent:#5C6670;
+  --pos:#1E7A5F;--neg:#B0452C;--warn:#95621B;
+}
+/* CORRIDOR GUARD — the map's interior cartography (atlas land tones, cream port labels)
+   is a literal light-on-dark construction; the sea plate follows the Map-frame section across
+   the 12 dark hues but must stay dark under bone and on the light desk (mirrors the brief's
+   pane guard). Effective-bone = section bone, or section at Base under a bone base box. */
+html[data-sx-map="b-bone"] .corridor,
+html[data-box="b-bone"][data-sx-map="base"] .corridor,
+html[data-theme="t8"] .corridor{--sx-map:var(--deep);--ink:#F2EBDC} /* local --ink keeps the ink-mix neatlines cream on the dark sea plate */
+/* t8 LIGHT-THEME GUARD — the fixed box hexes and bone are dark-canvas constructions;
+   on the light desk every box AND every section returns to t8's own card/cardline.
+   Placed last in the block so it outranks every box/section/bline rule above
+   (equal specificity, later source). The Funnel band keeps its own shade table on t8 —
+   the band is dark by design in every theme. */
+html[data-theme="t8"]{
+  --box:var(--card);--boxline:var(--cardline);
+  --sx-util:var(--card);
+  --sx-ctah:var(--card);--sx-ctac:var(--card);
+  --ctafh:var(--ctagold);--ctafc:var(--ctagold); /* v6.1: fixed-hue frames are dark-canvas constructions — t8 returns to gold */
+  --dotc:var(--ink);                             /* v6.1: dot tones are dark-canvas hues — t8 returns to the ink construction */
+  --sx-hero:var(--card);--sx-heroline:var(--cardline);
+  --sx-stat:var(--card);--sx-statline:var(--cardline);
+  --sx-anchor:var(--card);--sx-anchorline:var(--cardline);
+  --sx-bleed:var(--card);
+  --sx-map:var(--card);--sx-mapline:var(--cardline);
+  --sx-sub:var(--card);--sx-subline:var(--cardline);
+}
+
+/* ════ COVERAGE axis (v6 final layer) — owner's coverage law: colour intensity scales
+   inversely with page coverage. LARGE bands on this page (Utility band, Breakout band;
+   the Funnel band rides trim only) auto-quiet an explicit hue to a 55% canvas mix;
+   Literal renders exact hexes. The Funnel shade ladder is already canvas-derived —
+   excluded. b-tonal/b-lifted are card-derived, b-bone carries the text flip, sunk1–4 are
+   sunken-canvas constructions — all stay literal under either mode. */
+html[data-cov="literal"][data-sx-util="b-navy"]{--sx-util:#1E3552}
+html[data-cov="auto"][data-sx-util="b-navy"]{--sx-util:color-mix(in srgb,#1E3552 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-teal"]{--sx-util:#15332F}
+html[data-cov="auto"][data-sx-util="b-teal"]{--sx-util:color-mix(in srgb,#15332F 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-petrol"]{--sx-util:#1B313A}
+html[data-cov="auto"][data-sx-util="b-petrol"]{--sx-util:color-mix(in srgb,#1B313A 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-pine"]{--sx-util:#1E332C}
+html[data-cov="auto"][data-sx-util="b-pine"]{--sx-util:color-mix(in srgb,#1E332C 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-slate"]{--sx-util:#232932}
+html[data-cov="auto"][data-sx-util="b-slate"]{--sx-util:color-mix(in srgb,#232932 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-graphite"]{--sx-util:#262421}
+html[data-cov="auto"][data-sx-util="b-graphite"]{--sx-util:color-mix(in srgb,#262421 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-gunmetal"]{--sx-util:#252B33}
+html[data-cov="auto"][data-sx-util="b-gunmetal"]{--sx-util:color-mix(in srgb,#252B33 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-plum"]{--sx-util:#2B2230}
+html[data-cov="auto"][data-sx-util="b-plum"]{--sx-util:color-mix(in srgb,#2B2230 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-bronze"]{--sx-util:#2E2619}
+html[data-cov="auto"][data-sx-util="b-bronze"]{--sx-util:color-mix(in srgb,#2E2619 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-util="b-oxblood"]{--sx-util:#2E1D1F}
+html[data-cov="auto"][data-sx-util="b-oxblood"]{--sx-util:color-mix(in srgb,#2E1D1F 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-navy"]{--sx-bleed:#1E3552}
+html[data-cov="auto"][data-sx-bleed="b-navy"]{--sx-bleed:color-mix(in srgb,#1E3552 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-teal"]{--sx-bleed:#15332F}
+html[data-cov="auto"][data-sx-bleed="b-teal"]{--sx-bleed:color-mix(in srgb,#15332F 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-petrol"]{--sx-bleed:#1B313A}
+html[data-cov="auto"][data-sx-bleed="b-petrol"]{--sx-bleed:color-mix(in srgb,#1B313A 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-pine"]{--sx-bleed:#1E332C}
+html[data-cov="auto"][data-sx-bleed="b-pine"]{--sx-bleed:color-mix(in srgb,#1E332C 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-slate"]{--sx-bleed:#232932}
+html[data-cov="auto"][data-sx-bleed="b-slate"]{--sx-bleed:color-mix(in srgb,#232932 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-graphite"]{--sx-bleed:#262421}
+html[data-cov="auto"][data-sx-bleed="b-graphite"]{--sx-bleed:color-mix(in srgb,#262421 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-gunmetal"]{--sx-bleed:#252B33}
+html[data-cov="auto"][data-sx-bleed="b-gunmetal"]{--sx-bleed:color-mix(in srgb,#252B33 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-plum"]{--sx-bleed:#2B2230}
+html[data-cov="auto"][data-sx-bleed="b-plum"]{--sx-bleed:color-mix(in srgb,#2B2230 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-bronze"]{--sx-bleed:#2E2619}
+html[data-cov="auto"][data-sx-bleed="b-bronze"]{--sx-bleed:color-mix(in srgb,#2E2619 55%,var(--canvas))}
+html[data-cov="literal"][data-sx-bleed="b-oxblood"]{--sx-bleed:#2E1D1F}
+html[data-cov="auto"][data-sx-bleed="b-oxblood"]{--sx-bleed:color-mix(in srgb,#2E1D1F 55%,var(--canvas))}
+/* t8 coverage guard — the light desk re-asserts its card (equal specificity, later source) */
+html[data-theme="t8"][data-cov="auto"],html[data-theme="t8"][data-cov="literal"]{--sx-util:var(--card);--sx-bleed:var(--card)}
+/* TRIM (v6 final layer) — per-LARGE-band −2…+2 final overlay over the rendered fill
+   (popover-only control). R = rendered fill: trim mix over the coverage-resolved colour.
+   Negative trims mix #000 at 5%/10%; positive mix #fff at 4%/8%. */
+html{
+  --tc-util:#fff;--ta-util:0%;--tc-bleed:#fff;--ta-bleed:0%;--tc-funnel:#fff;--ta-funnel:0%;
+  --sx-utilR:color-mix(in srgb,var(--tc-util) var(--ta-util),var(--sx-util));
+  --sx-bleedR:color-mix(in srgb,var(--tc-bleed) var(--ta-bleed),var(--sx-bleed));
+  --sx-funnelR:color-mix(in srgb,var(--tc-funnel) var(--ta-funnel),var(--sx-funnel));
+  /* theme-ink backups for per-element override restores — resolve at html, pre-flip */
+  --ink0:var(--ink);--body0:var(--body);--muted0:var(--muted);--eyeb0:var(--eyeb);--struct0:var(--struct);
+  --emph0:var(--emph);--data0:var(--data);--bench0:var(--bench);--latent0:var(--latent);
+  --pos0:var(--pos);--neg0:var(--neg);--warn0:var(--warn);
+}
+html[data-trim-util="-2"]{--tc-util:#000;--ta-util:10%}
+html[data-trim-util="-1"]{--tc-util:#000;--ta-util:5%}
+html[data-trim-util="1"]{--tc-util:#fff;--ta-util:4%}
+html[data-trim-util="2"]{--tc-util:#fff;--ta-util:8%}
+html[data-trim-bleed="-2"]{--tc-bleed:#000;--ta-bleed:10%}
+html[data-trim-bleed="-1"]{--tc-bleed:#000;--ta-bleed:5%}
+html[data-trim-bleed="1"]{--tc-bleed:#fff;--ta-bleed:4%}
+html[data-trim-bleed="2"]{--tc-bleed:#fff;--ta-bleed:8%}
+html[data-trim-funnel="-2"]{--tc-funnel:#000;--ta-funnel:10%}
+html[data-trim-funnel="-1"]{--tc-funnel:#000;--ta-funnel:5%}
+html[data-trim-funnel="1"]{--tc-funnel:#fff;--ta-funnel:4%}
+html[data-trim-funnel="2"]{--tc-funnel:#fff;--ta-funnel:8%}
+
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto!important}
+}
+:focus-visible{outline:2px solid var(--struct);outline-offset:2px;border-radius:4px}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Fraunces',Georgia,serif;font-size:16.5px;line-height:1.65;
+  background:var(--canvas);color:var(--body);
+  -webkit-font-smoothing:antialiased;
+}
+.num{font-family:'Lora',serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+a{color:inherit}
+h1,h2,h3{color:var(--ink)}
+.muted{color:var(--muted)}
+
+/* ── shared atoms ─────────────────────────────────────────── */
+.eyebrow{
+  font-family:'Lora',serif;font-size:11px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--eyeb);
+}
+.hairline-gold{height:1px;border:none;background:linear-gradient(90deg,#A8843C,#E3C77E 50%,#A8843C)}
+.card{
+  background:var(--box);
+  border:1px solid var(--boxline);
+  border-radius:10px;
+}
+/* SECTION re-points — stat cards and the graticule file card answer their own sections */
+.card.statcell{background:var(--sx-stat);border-color:var(--sx-statline)}
+.card.graticule{background-color:var(--sx-map);border-color:var(--sx-mapline)}
+.cta-frame{display:inline-block;padding:1px;border-radius:10px;background:var(--ctagold)} /* v6.1: frame colour is a var — gold default, per-CTA frame below */
+.cta-frame.cta-h{--sx-cta:var(--sx-ctah);background:var(--ctafh)} /* SECTION · CTA header: own fill + own frame */
+.cta-frame.cta-c{--sx-cta:var(--sx-ctac);background:var(--ctafc)} /* SECTION · CTA closing: own fill + own frame */
+.cta-frame a{
+  display:inline-flex;align-items:center;gap:10px;border-radius:9px;
+  background:var(--sx-cta);color:var(--ink);text-decoration:none; /* SECTION system: framed CTA fill (v6.1: --sx-cta is a local alias of the CTA's own section var) */
+  font-family:'Fraunces',serif;font-size:15px;font-weight:600;padding:12px 26px;
+}
+.cta-frame a:hover{background:color-mix(in srgb,var(--ink) 7%,var(--sx-cta))}
+.pos{color:var(--pos)}.neg{color:var(--neg)}.warn{color:var(--warn)}.latent{color:var(--latent)}
+
+/* themed SVG strokes/fills */
+svg .ax{stroke:color-mix(in srgb,var(--ink) 8%,transparent);stroke-width:1}
+svg .ln-base{stroke:var(--latent)}
+svg .ln-data{stroke:var(--data)}
+svg .ln-prem{stroke:var(--struct)}
+svg .ln-bench{stroke:var(--bench)}
+svg .t-base{fill:var(--latent)}
+svg .t-data{fill:var(--data)}
+svg .t-prem{fill:var(--struct)}
+svg .t-bench{fill:var(--bench)}
+svg .t-mut{fill:var(--muted)}
+svg .tallyg{stroke:var(--body)}
+
+/* ── 1 · utility bar + masthead ───────────────────────────── */
+.utility{
+  height:32px;background:color-mix(in srgb,#000 18%,var(--sx-utilR)); /* SECTION system: darkened band of its section colour (R = coverage+trim rendered fill) */
+  border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,var(--canvas));
+  font-family:'Lora',serif;font-size:11.5px;font-variant-numeric:tabular-nums;
+}
+.utility .wrap{height:32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tickers{display:flex;gap:22px;white-space:nowrap;overflow:hidden}
+.tickers span b{font-weight:600;color:var(--body)}
+.utility .stamp-time{color:var(--muted);letter-spacing:.08em;white-space:nowrap}
+.masthead{border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas))}
+.masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;padding-top:22px;padding-bottom:18px}
+.wordmark{font-family:'Playfair Display',serif;font-weight:800;font-size:23px;letter-spacing:.02em;color:var(--ink);text-decoration:none}
+.wordmark i{font-style:normal;color:var(--eyeb)}
+.mast-right{display:flex;align-items:center;gap:26px}
+.mast-right a.navlink{
+  font-family:'Lora',serif;font-size:12.5px;letter-spacing:.06em;color:var(--body);
+  text-decoration:none;border-bottom:1px solid transparent;
+}
+.mast-right a.navlink:hover{color:var(--ink);border-bottom-color:var(--struct)}
+.cmdk{
+  font-family:'Lora',serif;font-size:11px;letter-spacing:.08em;color:var(--muted);
+  border:1px solid var(--boxline);border-radius:6px;
+  padding:4px 10px;background:color-mix(in srgb,var(--ink) 5%,var(--canvas));white-space:nowrap;
+}
+
+/* ── 2 · breadcrumb ───────────────────────────────────────── */
+.crumb{padding:20px 0 0}
+.crumb .wrap{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.crumb b{color:var(--eyeb);font-weight:600}
+.crumb .sep{color:var(--struct);margin:0 8px}
+
+/* ── 3 · split hero (S6.1) ────────────────────────────────── */
+.hero{padding:54px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero h1{
+  font-family:'Playfair Display',serif;font-weight:800;
+  font-size:clamp(34px,4.4vw,52px);line-height:1.08;letter-spacing:-.01em;margin:18px 0 16px;
+}
+.hero h1 em{font-style:italic;color:var(--emph)}
+.hero .sub{font-size:17px;color:var(--body);max-width:46ch;margin-bottom:30px}
+/* desk panel — SECTION · Hero instrument; colour comes from --sx-hero/--sx-heroline on html */
+.deskpanel{
+  background:var(--sx-hero);
+  border:1px solid var(--sx-heroline);
+  border-radius:12px;padding:22px 24px 18px;
+}
+.deskpanel .ph{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
+}
+.deskpanel .ph b{color:var(--ink);font-weight:600}
+.metric-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:color-mix(in srgb,var(--ink) 12%,var(--sx-hero));border:1px solid color-mix(in srgb,var(--ink) 12%,var(--sx-hero));border-radius:8px;overflow:hidden;margin-top:10px}
+.mcell{background:color-mix(in srgb,#000 22%,var(--sx-hero));padding:10px 12px} /* SECTION system: cells are wells of the Hero-instrument colour */
+.mcell .ml{font-family:'Lora',serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.mcell .mv{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-size:15px;font-weight:600;color:var(--ink)}
+.mcell .mv.mv-struct{color:var(--struct)}
+.mcell .md{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-size:11px;margin-left:6px}
+
+/* ── 4 · day counter + HUD brackets (S3.2-A + S7.4) ───────── */
+.dayband{padding:74px 0 70px;text-align:center}
+.hud{position:relative;display:inline-block;padding:30px 56px}
+.hud .ck{position:absolute;width:16px;height:16px;border:0 solid color-mix(in srgb,var(--struct) 60%,transparent)}
+.hud .ck.tl{top:0;left:0;border-top-width:2px;border-left-width:2px}
+.hud .ck.tr{top:0;right:0;border-top-width:2px;border-right-width:2px}
+.hud .ck.bl{bottom:0;left:0;border-bottom-width:2px;border-left-width:2px}
+.hud .ck.br{bottom:0;right:0;border-bottom-width:2px;border-right-width:2px}
+.hud .tk-label{font-family:'Lora',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.hud .tk-day{font-family:'Lora',serif;font-weight:700;font-size:64px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.dayband .cap{font-family:'Lora',serif;font-size:12px;color:var(--muted);margin-top:18px;letter-spacing:.04em}
+
+/* ── 5 · event ledger (D4.1) ──────────────────────────────── */
+.ledger-sec{padding:10px 0 64px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px;gap:20px;flex-wrap:wrap}
+.sec-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:30px;margin-top:10px}
+.live-cluster{display:flex;gap:18px;align-items:center}
+.livedot{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'Lora',serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+}
+.livedot .d{width:6px;height:6px;border-radius:50%;background:var(--pos);display:inline-block}
+.livedot.amber .d{background:var(--warn)}
+.livedot.amber{color:var(--warn)}
+.ruled{
+  /* BOX system: the event-tape rules follow the box line hue (kept translucent like the old ink-7% hairlines) */
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 35px,color-mix(in srgb,var(--boxline) 65%,transparent) 35px,color-mix(in srgb,var(--boxline) 65%,transparent) 36px);
+  border-top:1px solid color-mix(in srgb,var(--boxline) 65%,transparent);
+}
+.lrow{display:flex;align-items:center;gap:18px;height:36px;font-size:14.5px}
+.lrow .lday{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-weight:600;font-size:12px;color:var(--eyeb);width:58px;flex:none;letter-spacing:.06em}
+.lrow .ltext{color:var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .lpills{margin-left:auto;display:flex;gap:8px;flex:none}
+.pill{
+  font-family:'Lora',serif;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  padding:2px 8px;border-radius:3px;border:1px solid;white-space:nowrap;
+}
+.pill.realized{color:var(--pos);border-color:color-mix(in srgb,var(--pos) 40%,transparent);background:color-mix(in srgb,var(--pos) 8%,transparent)}
+.pill.anticipated{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent);background:color-mix(in srgb,var(--warn) 8%,transparent)}
+.pill.latent{color:var(--latent);border-color:color-mix(in srgb,var(--latent) 35%,transparent);background:color-mix(in srgb,var(--latent) 7%,transparent)}
+.pill.verified{color:var(--struct);border-color:color-mix(in srgb,var(--struct) 45%,transparent);background:color-mix(in srgb,var(--struct) 8%,transparent);font-size:8.5px}
+
+/* ── 6 · stat strip ───────────────────────────────────────── */
+.statstrip{padding:0 0 70px}
+.statstrip .wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.statcell{padding:24px 26px}
+.statcell .sl{font-family:'Lora',serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:14px;line-height:1.6}
+.waffle{display:grid;grid-template-columns:repeat(10,12px);grid-auto-rows:12px;gap:4px}
+.waffle i{display:block;border-radius:2px;background:color-mix(in srgb,var(--ink) 14%,transparent)}
+.waffle i.on{background:var(--pos)}
+/* anchor panel — SECTION · Anchor panel; text runs on theme inks so it reads on every
+   section value (bone flip re-inks darker still) */
+.anchor-mini{background:var(--sx-anchor);border:1px solid var(--sx-anchorline);border-radius:10px;padding:24px 26px}
+.anchor-mini .av{font-family:'Lora',serif;font-weight:700;font-size:40px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.anchor-mini .av sup{font-size:15px;font-weight:600;color:var(--data);letter-spacing:.04em;vertical-align:super}
+.anchor-mini .sl{color:var(--muted)}
+
+/* ── 7 · full-bleed chart breakout (S6.6) ─────────────────── */
+.prose-narrow{max-width:62ch;margin:0 auto;padding:0 40px;font-size:17px}
+.prose-narrow p{margin-bottom:16px}
+.bleed{margin:38px 0;background:var(--sx-bleedR)} /* SECTION · Breakout band (R = coverage+trim rendered fill) */
+.bleed .inner{max-width:1140px;margin:0 auto;padding:30px 40px 22px}
+.bleed .bh{display:flex;justify-content:space-between;align-items:baseline;font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.bleed .bh b{color:var(--ink);font-weight:600}
+.axiscap{font-family:'Lora',serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px;text-align:right}
+
+/* ── 8 · graticule file + THE CORRIDOR map ────────────────── */
+.geo-sec{padding:64px 0 70px}
+.geo-sec .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:stretch}
+.graticule{
+  position:relative;padding:26px 28px;overflow:hidden;
+  background-image:
+    repeating-linear-gradient(to right,color-mix(in srgb,var(--ink) 5%,transparent) 0,color-mix(in srgb,var(--ink) 5%,transparent) 1px,transparent 1px,transparent 60px),
+    repeating-linear-gradient(to bottom,color-mix(in srgb,var(--ink) 5%,transparent) 0,color-mix(in srgb,var(--ink) 5%,transparent) 1px,transparent 1px,transparent 60px);
+}
+.graticule .gh{font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.graticule .gh b{color:var(--ink);font-weight:600}
+.gfact{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent);font-size:14px}
+.gfact:last-child{border-bottom:none}
+.gfact .gk{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.gfact .gv{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink);white-space:nowrap}
+/* THE CORRIDOR — real-geography map · sea = var(--deep), dark in all 8 themes.
+   Map register colours are owner-licensed familiar atlas tones, scoped to maps only. */
+.corridor{
+  background:var(--sx-map); /* SECTION system: the map FRAME (container) follows the Map-frame section; interior cartography untouched */
+  border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);   /* neatline outer @8% — ink-following so it reads on any box */
+  border-radius:10px;padding:7px;
+}
+.corridor .neat{
+  border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);  /* neatline inner @22% */
+  border-radius:6px;padding:18px 20px 10px;height:100%;
+  display:flex;flex-direction:column;
+}
+.corridor .ch{
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--deep-muted);margin-bottom:10px;
+}
+.corridor .ch b{color:var(--deep-ink);font-weight:600}
+.corridor svg{display:block;width:100%;height:auto;flex:1}
+.corridor .land{fill:#3E4637;stroke:#6B7361;stroke-width:1;stroke-linejoin:round}
+.corridor .landlbl{font-family:'Lora',serif;font-size:8.5px;font-weight:600;letter-spacing:.26em;fill:#8E947F}
+.corridor .sealbl{font-family:'Lora',serif;font-style:italic;font-size:9px;letter-spacing:.2em;fill:#7E8B95}
+.corridor .route{fill:none;stroke:#5FA897;stroke-width:1.6;stroke-dasharray:1.5 5;stroke-linecap:round}
+.corridor .routelbl{font-family:'Lora',serif;font-size:8.5px;letter-spacing:.18em;fill:#5FA897}
+.corridor .portlbl{font-family:'Lora',serif;font-size:8.5px;letter-spacing:.16em;fill:#DCD4C2}
+.corridor .goldlbl{font-family:'Lora',serif;font-size:7.5px;font-weight:600;letter-spacing:.18em;fill:#C9A24A}
+
+/* ── 9 · THE FUNNEL — free-brief band, the page's single departure ── */
+.funnel{
+  background:var(--sx-funnelR);padding:88px 0 92px; /* SECTION · Funnel band — own shade table, default = theme deep (R = trim-rendered) */
+  border-top:1px solid color-mix(in srgb,#F2EBDC 8%,transparent);
+  border-bottom:1px solid color-mix(in srgb,#F2EBDC 8%,transparent);
+}
+.funnel .eyebrow{color:var(--deep-eyeb)}
+.funnel h2{
+  font-family:'Playfair Display',serif;font-weight:800;
+  font-size:clamp(28px,3.4vw,40px);color:var(--deep-ink);margin:14px 0 12px;
+}
+.funnel .lede{font-size:17px;color:var(--deep-body);max-width:54ch;margin-bottom:42px}
+/* perforated subscribe card (D2.3) — BOX system: now a box like everything else
+   (same construction; text on theme inks so any box colour reads; the bone flip
+   restores the old inverse register when Bone Inverse is selected) */
+.perf-card{
+  display:inline-block;background:var(--sx-sub);color:var(--body);
+  border:1px solid var(--sx-subline);
+  border-radius:10px;padding:34px 52px 28px;max-width:520px;text-align:center;
+}
+.perf-card h3{font-family:'Playfair Display',serif;font-weight:800;font-size:26px;color:var(--ink);margin-bottom:6px}
+.perf-card .pc-sub{font-size:14.5px;color:var(--body);margin-bottom:20px}
+.tearline{border:none;border-top:1.5px dashed color-mix(in srgb,var(--ink) 38%,var(--sx-sub));margin:0 -28px 18px}
+.perf-card .sub-link{
+  font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--struct);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.perf-card .sub-link:hover{color:color-mix(in srgb,var(--struct) 80%,var(--ink))}
+.perf-card .pc-fine{font-family:'Lora',serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--body) 85%,var(--sx-sub));margin-top:14px}
+/* quiet fund note */
+.fundnote{
+  margin-top:46px;max-width:62ch;
+  border-top:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);
+  padding-top:22px;
+}
+.fundnote .fn-label{font-family:'Lora',serif;font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-muted);margin-bottom:10px}
+.fundnote p{font-size:15.5px;color:var(--deep-body)}
+.fundnote a{
+  display:inline-block;margin-top:12px;text-decoration:none;
+  font-family:'Lora',serif;font-size:13.5px;letter-spacing:.03em;
+  color:var(--deep-link);border-bottom:1px solid color-mix(in srgb,var(--deep-link) 55%,transparent);
+}
+.fundnote a:hover{color:#A4DCC9;border-bottom-color:#A4DCC9}
+
+/* ── 10 · CTA section (D5.1-A dot grid) — full section presence ── */
+.ctazone{
+  padding:110px 0;text-align:center;
+  background-image:radial-gradient(color-mix(in srgb,var(--dotc) var(--dota),transparent) 1px,transparent 1px); /* DOT GRID v6.1: --dotc = tone (default theme ink) · --dota = opacity (3–18% ladder · off removes the image) */
+  background-size:22px 22px;
+  border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent);
+}
+.ctazone .cz-eyebrow{margin-bottom:18px}
+.ctazone h2{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(26px,3vw,36px);margin-bottom:30px}
+
+/* ── 11 · footer ──────────────────────────────────────────── */
+footer{border-top:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas));padding:58px 0 40px;background:color-mix(in srgb,#000 14%,var(--canvas))}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
+.fbrand .wordmark{font-size:20px}
+.fbrand p{font-size:13.5px;color:var(--muted);margin-top:12px;max-width:34ch}
+.fcol h4{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--eyeb);font-weight:600;margin-bottom:16px}
+.fcol a{display:block;font-size:14px;color:var(--body);text-decoration:none;margin-bottom:10px}
+.fcol a:hover{color:var(--ink)}
+.legal{margin-top:46px;padding-top:22px;border-top:1px solid color-mix(in srgb,var(--ink) 10%,transparent);font-family:'Lora',serif;font-size:11px;color:var(--muted);line-height:1.8}
+
+/* ── annotation mode (bottom-right) ───────────────────────── */
+#anno{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  font-family:'Lora',serif;font-size:12px;letter-spacing:.06em;
+  background:#1C2128;color:#E3C77E;border:1px solid rgba(227,199,126,.45);
+  border-radius:8px;padding:8px 14px;cursor:pointer;
+}
+#anno:hover{background:#242A33}
+/* total-coverage axis badges (June 2026 ruling): every axis-controlled element carries
+   data-ax naming its controlling axis exactly as the settings label reads; FIXED zones
+   are badged with their reason. One generic rule = coverage matches the audit table.
+   hr elements keep their own rendering — they get hover outline + title only.
+   v6: the always-on dashed outlines covered content (owner ruling) — outline is HOVER-ONLY now. */
+html[data-dev] [data-ax]{position:relative}
+html[data-dev] [data-ax]:hover{outline:1px solid rgba(227,199,126,.45);outline-offset:2px}
+html[data-dev] [data-ax]:not(hr)::after{
+  content:attr(data-ax);
+  position:absolute;top:2px;right:2px;
+  font:700 8px Lora,serif;letter-spacing:.05em;
+  background:#15181D;color:#E3C77E;border:1px solid #2E3239;
+  padding:2px 6px;border-radius:4px;
+  z-index:99;white-space:nowrap;pointer-events:none;
+}
+
+/* ── v6 exploration UX — click-to-edit popover · rule flags · crown (change-flash removed, owner ruling) ── */
+html[data-dev] [data-ax]{cursor:pointer}
+#axpop{position:fixed;z-index:120;background:#15181D;border:1px solid #2E3239;border-radius:8px;padding:8px 10px;max-width:250px;font-family:'Lora',serif;font-size:10px;color:#C8CDD3;line-height:1.5}
+#axpop .axp-h{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#E3C77E;margin-bottom:4px}
+#axpop .axp-row{display:flex;align-items:center;gap:6px;margin-top:4px}
+#axpop .axp-l{flex:0 0 52px;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6E7681}
+#axpop .axp-v{flex:1 1 auto;min-width:0;font-size:9px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#axpop .axp-b{flex:0 0 auto;background:#1C2026;border:1px solid #2E3239;border-radius:4px;color:#C8CDD3;font-family:'Lora',serif;font-size:9px;line-height:1;padding:3px 6px;cursor:pointer}
+#axpop .axp-b:hover{color:#E3C77E;border-color:#3A4149}
+#axpop .axp-fixed{margin-top:5px;font-size:9px;font-style:italic;color:#9AA3AD}
+#epviol{display:none;margin-top:8px;font:700 8px/1.6 'Lora',serif;letter-spacing:.04em;color:#C99A55}
+.ep-combo-crown{flex:0 0 auto;font-family:'Lora',serif;font-size:9px;line-height:1;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 5px;cursor:pointer}
+.ep-combo-crown:hover{border-color:#3A4149}
+.ep-combo-crown.on{color:#E3C77E;border-color:#A8843C}
+.ep-combo-row.crowned .ep-combo-apply{border-left:3px solid #E3C77E}
+
+/* ── Options panel (bottom-left, fixed dark chrome — legible on every theme) ── */
+#edpanel{
+  position:fixed;left:22px;bottom:22px;z-index:95;
+  background:#15181D;border:1px solid #2E3239;border-radius:10px;
+  padding:10px;max-width:210px;
+  display:flex;flex-direction:column;max-height:calc(100vh - 44px);
+  font-family:'Lora',serif;font-size:10px;color:#9AA3AD;line-height:1.4;
+}
+#edpanel .ep-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:0 0 auto}
+/* body scrolls internally so the Hide control is ALWAYS on screen, however many axes we add */
+#edpanel .ep-body{overflow-y:auto;min-height:0;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#2E3239 transparent;margin-right:-4px;padding-right:4px}
+#edpanel .ep-title{font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+#edpanel .ep-toggle{background:#1C2026;border:1px solid #2E3239;border-radius:5px;color:#C8CDD3;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1;padding:4px 7px;cursor:pointer;flex:0 0 auto}
+#edpanel .ep-toggle:hover{color:#E3C77E}
+#edpanel .ep-presets{display:flex;gap:4px;margin:9px 0 1px}
+#edpanel .ep-preset{flex:1 1 auto;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 3px;cursor:pointer}
+#edpanel .ep-preset:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-field{margin-top:8px}
+#edpanel .ep-field label{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:3px}
+#edpanel .ep-field select{width:100%;font-family:'Lora',serif;font-size:10px;color:#C8CDD3;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-field select option{background:#1C2026;color:#C8CDD3}
+/* saved combos — owner's preferred axis combinations, shared across The Edition (ed-combos) */
+#edpanel .ep-combos{margin:9px 0 1px;border-bottom:1px solid #2E3239;padding-bottom:9px}
+#edpanel .ep-combos-h{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:5px}
+#edpanel .ep-combo-row{display:flex;gap:4px;margin-bottom:4px}
+#edpanel .ep-combo-apply{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left;font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.02em;color:#C8CDD3;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-combo-apply:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-combo-del{flex:0 0 auto;font-family:'Lora',serif;font-size:9px;line-height:1;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-combo-del:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-combo-none{font-size:9px;font-style:italic;color:#6E7681;margin-bottom:5px}
+#edpanel .ep-combo-actions{display:flex;gap:4px}
+#edpanel .ep-cbtn{flex:1 1 auto;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 3px;cursor:pointer}
+#edpanel .ep-cbtn:hover{color:#E3C77E;border-color:#3A4149}
+/* element overrides readout (v6 final layer) — populated by renderOvr() */
+#edpanel .ep-ovr{margin-top:9px;border-top:1px solid #2E3239;padding-top:8px}
+#edpanel .ep-ovr-h{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:5px}
+#edpanel .ep-ovr-row{display:flex;gap:4px;align-items:center;margin-bottom:4px}
+#edpanel .ep-ovr-t{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;color:#C8CDD3}
+#edpanel .ep-ovr-x{flex:0 0 auto;font-family:'Lora',serif;font-size:9px;line-height:1;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-ovr-x:hover{color:#E3C77E;border-color:#3A4149}
+/* collapsed → 34px gear chip; state lives on <html> so the head script restores it pre-paint */
+html[data-panel="collapsed"] #edpanel{width:34px;height:34px;max-width:34px;padding:0;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+html[data-panel="collapsed"] #edpanel .ep-title,
+html[data-panel="collapsed"] #edpanel .ep-body{display:none}
+html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-size:15px;color:#E3C77E;background:none;border:0;padding:0}
+
+/* ── responsive ───────────────────────────────────────────── */
+@media (max-width:920px){
+  .hero .wrap,.geo-sec .wrap{grid-template-columns:1fr}
+  .statstrip .wrap{grid-template-columns:1fr;gap:18px}
+  .fgrid{grid-template-columns:1fr;gap:32px}
+  .lrow .ltext{white-space:normal}
+  .lrow{height:auto;min-height:36px;padding:4px 0}
+  .ruled{background-image:none}
+  .tickers span:nth-child(n+3){display:none}
+  .perf-card{padding:30px 32px 26px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ 1 · UTILITY BAR ════ -->
+<div class="utility" data-ax="SECTION · Utility band (darkened)" data-ovr="desk-util">
+  <div class="wrap">
+    <div class="tickers" data-dev="S5.1 · markets utility row" data-ax="SEM · pos/neg ticks">
+      <span><b>BRENT</b> $86.40 <span class="pos">+2.1%</span></span>
+      <span><b>VIX</b> 19.8 <span class="neg">−0.8</span></span>
+      <span><b>BTC</b> $97,210 <span class="pos">+1.4%</span></span>
+      <span><b>GOLD</b> $2,648 <span class="pos">+0.6%</span></span>
+    </div>
+    <div class="stamp-time">06:40 GST · illustrative</div>
+  </div>
+</div>
+
+<!-- ════ MASTHEAD ════ -->
+<header class="masthead" data-ax="GREY · masthead">
+  <div class="wrap">
+    <a class="wordmark" href="index.html" data-ax="GOLD · wordmark accent">VEGA<i>READY</i></a>
+    <nav class="mast-right" aria-label="Edition navigation">
+      <a class="navlink" href="index.html">← Front door</a>
+      <a class="navlink" href="brief.html">The Brief</a>
+      <span class="cmdk" data-dev="S5.2 · ⌘K command chip" data-ax="BORDER follows BOX · ⌘K chip" aria-hidden="true">⌘K&ensp;Search the desk</span>
+    </nav>
+  </div>
+</header>
+
+<!-- ════ 2 · BREADCRUMB ════ -->
+<nav class="crumb" aria-label="Breadcrumb">
+  <div class="wrap"><span data-dev="S5.3 · breadcrumb trail" data-ax="GREY · breadcrumb (b GOLD · sep DIALECT)">MARKETS <span class="sep">▸</span> <b>ENERGY</b></span></div>
+</nav>
+
+<!-- ════ 3 · SPLIT HERO (S6.1) ════ -->
+<section class="hero">
+  <div class="wrap">
+    <div data-dev="S6.1 · split hero — editorial column">
+      <div class="eyebrow" data-ax="GOLD · eyebrow">Markets · Energy</div>
+      <h1 data-ax="GOLD · headline italic">Energy under <em>escalation.</em></h1>
+      <p class="sub">What the strait is pricing, what the tape confirmed, and what the desk is doing about it — one page, updated three times a day.</p>
+      <span class="cta-frame cta-h" data-ax="SECTION · CTA header" data-ovr="desk-ctah"><a href="#dashboard">Open the live board →</a></span>
+    </div>
+    <div class="deskpanel" data-dev="S6.1 · desk panel" data-ax="SECTION · Hero instrument" data-ovr="desk-hero">
+      <div class="ph" data-ax="DATA · risk line (chart below)"><b>World Risk · 90 Days</b><span>— illustrative</span></div>
+      <svg viewBox="0 0 480 170" width="100%" role="img" aria-label="World risk index versus baseline over ninety days, illustrative. Risk index ends higher and above baseline.">
+        <line class="ax" x1="8" y1="40" x2="420" y2="40"/>
+        <line class="ax" x1="8" y1="85" x2="420" y2="85"/>
+        <line class="ax" x1="8" y1="130" x2="420" y2="130"/>
+        <!-- baseline -->
+        <polyline class="ln-base" fill="none" stroke-width="1.4"
+          points="8,112 50,110 92,113 134,109 176,111 218,108 260,110 302,107 344,109 386,106 420,107"/>
+        <!-- risk index · cobalt data colour -->
+        <polyline class="ln-data" fill="none" stroke-width="2.2" stroke-linejoin="round"
+          points="8,118 40,112 72,116 104,98 136,104 168,82 200,90 232,64 264,74 296,58 328,66 360,46 392,52 420,38"/>
+        <text class="t-data" x="426" y="41" font-family="Lora,serif" font-size="9" letter-spacing=".08em">RISK</text>
+        <text class="t-base" x="426" y="110" font-family="Lora,serif" font-size="9" letter-spacing=".08em">BASE</text>
+        <text class="t-mut" x="8" y="158" font-family="Lora,serif" font-size="8.5" letter-spacing=".18em">MAR</text>
+        <text class="t-mut" x="200" y="158" font-family="Lora,serif" font-size="8.5" letter-spacing=".18em">APR</text>
+        <text class="t-mut" x="392" y="158" font-family="Lora,serif" font-size="8.5" letter-spacing=".18em">JUN</text>
+      </svg>
+      <div class="metric-row" data-ax="SECTION · Hero instrument wells · SEM deltas" data-ovr="desk-wells">
+        <div class="mcell"><div class="ml">Brent</div><span class="mv">$86.40</span><span class="md pos">+2.1%</span></div>
+        <div class="mcell"><div class="ml">VIX</div><span class="mv">19.8</span><span class="md neg">−0.8</span></div>
+        <div class="mcell"><div class="ml">BTC</div><span class="mv">$97,210</span><span class="md pos">+1.4%</span></div>
+      </div>
+      <div class="metric-row">
+        <div class="mcell"><div class="ml">Gold</div><span class="mv">$2,648</span><span class="md pos">+0.6%</span></div>
+        <div class="mcell"><div class="ml">Hormuz</div><span class="mv warn" style="font-size:13px">ELEVATED</span></div>
+        <div class="mcell"><div class="ml">Posture</div><span class="mv mv-struct" style="font-size:13px">LONG VEGA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 4 · DAY COUNTER w/ HUD BRACKETS (S3.2-A + S7.4) ════ -->
+<section class="dayband">
+  <div class="wrap">
+    <div class="hud" data-dev="S3.2-A + S7.4 · day counter w/ HUD brackets" data-ax="DIALECT · HUD brackets · CANVAS numeral">
+      <span class="ck tl" aria-hidden="true"></span><span class="ck tr" aria-hidden="true"></span>
+      <span class="ck bl" aria-hidden="true"></span><span class="ck br" aria-hidden="true"></span>
+      <div class="tk-label">The Tracking</div>
+      <div class="tk-day num">DAY 247</div>
+    </div>
+    <div class="cap">since the first strike · every claim timestamped against it</div>
+  </div>
+</section>
+
+<!-- ════ 5 · EVENT LEDGER (D4.1) ════ -->
+<section class="ledger-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">The tape</div>
+        <h2>The week, ruled and reconciled.</h2>
+      </div>
+      <div class="live-cluster">
+        <span class="livedot" data-dev="S5.5 · live dot (static)" data-ax="SEM · live dot"><span class="d" aria-hidden="true"></span>LIVE · updated 09:40 GST</span>
+        <span class="livedot amber" data-dev="S5.5 · live dot — reconciling variant" data-ax="SEM · amber variant"><span class="d" aria-hidden="true"></span>RECONCILING</span>
+      </div>
+    </div>
+    <div class="ruled" data-dev="D4.1 · ruled ledger — rows on the rules" data-ax="BORDER follows BOX · tape rules">
+      <div class="lrow">
+        <span class="lday num">D+244</span>
+        <span class="ltext">Drone wave off Mokha intercepted by escort screen; no hull losses</span>
+        <span class="lpills" data-ax="SEM · state pills (verified follows DIALECT)">
+          <span class="pill verified" data-dev="S5.6 · data-state pill">VERIFIED · 3 SOURCES</span>
+          <span class="pill realized">Realized</span>
+        </span>
+      </div>
+      <div class="lrow">
+        <span class="lday num">D+246</span>
+        <span class="ltext">EIA print: crude draw 4.1 mb against 1.8 consensus; curve steepens</span>
+        <span class="lpills"><span class="pill realized">Realized</span></span>
+      </div>
+      <div class="lrow">
+        <span class="lday num">D+248</span>
+        <span class="ltext">IAEA board session; censure draft circulating among E3 delegations</span>
+        <span class="lpills"><span class="pill anticipated">Anticipated</span></span>
+      </div>
+      <div class="lrow">
+        <span class="lday num">D+250</span>
+        <span class="ltext">Hormuz war-risk insurance re-rate window; underwriters polled</span>
+        <span class="lpills"><span class="pill latent">Latent</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 6 · STAT STRIP ════ -->
+<section class="statstrip">
+  <div class="wrap">
+    <div class="card statcell" data-dev="D4.3 · waffle counter" data-ax="SECTION · Stat cards" data-ovr="desk-stat">
+      <div class="waffle" role="img" aria-label="14 of 20 chokepoints at latent or calmer" data-ax="SEM · waffle fill">
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="sl">14 of 20 · chokepoints at LATENT or calmer</div>
+    </div>
+    <div class="card statcell" data-dev="D4.5 · tally marks">
+      <svg viewBox="0 0 120 40" width="108" height="36" role="img" aria-label="Seven tally marks">
+        <g class="tallyg" fill="none" stroke-width="2.4" stroke-linecap="round">
+          <line x1="8"  y1="6" x2="8"  y2="34"/>
+          <line x1="20" y1="6" x2="20" y2="34"/>
+          <line x1="32" y1="6" x2="32" y2="34"/>
+          <line x1="44" y1="6" x2="44" y2="34"/>
+          <line x1="0"  y1="30" x2="52" y2="10"/>
+          <line x1="68" y1="6" x2="68" y2="34"/>
+          <line x1="80" y1="6" x2="80" y2="34"/>
+        </g>
+      </svg>
+      <div class="sl">7 sessions since last violation</div>
+    </div>
+    <div class="anchor-mini" data-dev="ANCHOR · navy panel + D3.8 micro-notation" data-ax="SECTION · Anchor panel (sup follows DATA)" data-ovr="desk-anchor">
+      <div class="av num">+38<sup>bp</sup></div>
+      <div class="sl">premia w/w · Gulf loadings, war-risk addl.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 7 · FULL-BLEED CHART BREAKOUT (S6.6) ════ -->
+<section>
+  <div class="prose-narrow">
+    <div class="eyebrow" style="margin-bottom:12px">The premium</div>
+    <p>The war-risk premium is no longer an event spike — it is a standing line item, repriced weekly and increasingly sticky on the way down. Tanker equities, by contrast, have flat-lined since April, which tells you the market is paying for the risk, not the freight.</p>
+  </div>
+  <div class="bleed" data-dev="S6.6 · full-bleed chart breakout" data-ax="SECTION · Breakout band" data-ovr="desk-bleed">
+    <hr class="hairline-gold" aria-hidden="true" data-ax="GOLD · hairline" title="GOLD · hairline">
+    <div class="inner">
+      <div class="bh" data-ax="DIALECT · premium line · FIXED bench gold"><b>War-Risk Premium vs Benchmark</b><span>— illustrative</span></div>
+      <svg viewBox="0 0 1100 250" width="100%" role="img" aria-label="War-risk premium rising from index 100 to roughly 170 between March and June, versus a tanker ETF benchmark drifting near 105. Illustrative.">
+        <line class="ax" x1="20" y1="50"  x2="1010" y2="50"/>
+        <line class="ax" x1="20" y1="110" x2="1010" y2="110"/>
+        <line class="ax" x1="20" y1="170" x2="1010" y2="170"/>
+        <!-- benchmark · tanker ETF -->
+        <polyline class="ln-bench" fill="none" stroke-width="1.4" stroke-dasharray="5 6"
+          points="20,178 120,174 220,176 320,170 420,173 520,168 620,171 720,166 820,169 920,165 1010,167"/>
+        <!-- war-risk premium · hero line -->
+        <polyline class="ln-prem" fill="none" stroke-width="2.4" stroke-linejoin="round"
+          points="20,196 100,188 180,190 260,164 340,170 420,138 500,146 580,112 660,120 740,92 820,98 900,72 960,76 1010,62"/>
+        <text class="t-prem"  x="1018" y="64"  font-family="Lora,serif" font-size="10" letter-spacing=".08em">PREMIUM</text>
+        <text class="t-bench" x="1018" y="170" font-family="Lora,serif" font-size="10" letter-spacing=".08em">TANKER ETF</text>
+        <text class="t-mut" x="20"  y="236" font-family="Lora,serif" font-size="9" letter-spacing=".18em">MAR</text>
+        <text class="t-mut" x="500" y="236" font-family="Lora,serif" font-size="9" letter-spacing=".18em">APR</text>
+        <text class="t-mut" x="970" y="236" font-family="Lora,serif" font-size="9" letter-spacing=".18em">JUN</text>
+      </svg>
+      <div class="axiscap">index, rebased to 100 at Mar 1 · weekly closes · illustrative</div>
+    </div>
+    <hr class="hairline-gold" aria-hidden="true" data-ax="GOLD · hairline" title="GOLD · hairline">
+  </div>
+  <div class="prose-narrow">
+    <p>That divergence is the whole trade. When insurance reprices faster than equity, the desk reads it as the underwriters knowing something the screen does not — and positions accordingly.</p>
+  </div>
+</section>
+
+<!-- ════ 8 · GRATICULE FILE + THE CORRIDOR ════ -->
+<section class="geo-sec">
+  <div class="wrap">
+    <div class="card graticule" data-dev="D1.4 · graticule file card (60px mesh @5%)" data-ax="SECTION · Map frame · graticule card (mesh follows CANVAS ink)" data-ovr="desk-grat">
+      <div class="gh"><b>Chokepoint File</b> · Strait of Hormuz</div>
+      <div style="height:14px"></div>
+      <div class="gfact"><span class="gk">Width at narrowest</span><span class="gv num">21 nmi</span></div>
+      <div class="gfact"><span class="gk">Crude + condensate throughput</span><span class="gv num">20.9 mb/d</span></div>
+      <div class="gfact"><span class="gk">Current posture</span><span class="gv warn">ELEVATED</span></div>
+      <p style="font-family:'Lora',serif;font-size:11px;color:var(--muted);margin-top:18px;letter-spacing:.04em">A fifth of seaborne oil clears this strait. The file updates whenever the posture grade changes.</p>
+    </div>
+    <div class="corridor" data-dev="MAP · corridor geography" data-ax="SECTION · Map frame (sea plate)">
+      <div class="neat" data-ax="FIXED · map plate — atlas cartography">
+        <div class="ch"><b>The Corridor</b><span>Ras Tanura → Rotterdam · illustrative</span></div>
+        <svg viewBox="0 0 560 320" role="img" aria-label="Simplified map of the Persian Gulf: the Arabian peninsula lower left with the Qatar peninsula and Musandam, Iran upper right, the Gulf narrowing to the Strait of Hormuz and opening into the Gulf of Oman. A dotted route runs from Ras Tanura through the strait toward Rotterdam. Illustrative.">
+          <!-- IRAN — north shore of the Gulf, Makran coast on the Gulf of Oman -->
+          <path class="land" d="M30,0 L560,0 L560,178
+            C522,172 478,168 448,160
+            C428,155 416,153 405,148
+            C398,145 394,141 386,137
+            C362,125 330,116 296,107
+            C258,97 218,90 180,80
+            C140,70 96,60 62,50
+            C48,46 38,44 30,42 Z"/>
+          <!-- Qeshm island, hugging the Iranian shore at the strait -->
+          <path class="land" d="M334,136
+            C352,131 374,135 388,143
+            C393,146 389,151 380,151
+            C362,150 344,146 336,142
+            C331,140 330,137 334,136 Z"/>
+          <!-- ARABIAN PENINSULA — Kuwait corner, Saudi coast, Qatar bump, UAE, Musandam dagger, Oman -->
+          <path class="land" d="M0,74
+            C16,80 28,86 32,96
+            C40,112 54,124 68,134
+            C84,146 96,152 106,162
+            C120,174 130,184 142,194
+            C148,186 152,172 160,162
+            C166,154 174,154 180,160
+            C186,168 188,180 192,190
+            C196,198 202,202 212,206
+            C240,214 270,220 300,224
+            C330,228 352,228 366,224
+            C376,220 384,206 390,194
+            C394,186 398,178 404,174
+            C408,180 410,190 412,202
+            C414,214 420,224 430,232
+            C450,246 472,262 494,278
+            C512,292 528,304 542,316
+            L548,320 L0,320 Z"/>
+          <!-- Bahrain -->
+          <ellipse class="land" cx="106" cy="174" rx="4" ry="8"/>
+          <!-- gold focus ring at the strait -->
+          <circle cx="400" cy="163" r="30" fill="none" stroke="#C9A24A" stroke-opacity=".25" stroke-width="1"/>
+          <circle cx="400" cy="163" r="22" fill="none" stroke="#C9A24A" stroke-opacity=".85" stroke-width="1.2"/>
+          <line x1="374" y1="190" x2="386" y2="178" stroke="#C9A24A" stroke-opacity=".55" stroke-width=".7"/>
+          <text class="goldlbl" x="370" y="196" text-anchor="end">STRAIT OF HORMUZ · 21 NM</text>
+          <!-- route: Ras Tanura → through the pinch → Gulf of Oman exit -->
+          <polyline class="route"
+            points="100,158 140,152 190,146 240,150 290,156 335,162 372,164 400,165 416,176 436,194 462,216 492,240 516,262"/>
+          <circle cx="100" cy="158" r="3.5" fill="#C9A24A"/>
+          <text class="portlbl" x="110" y="144">RAS TANURA</text>
+          <text class="routelbl" x="450" y="206" transform="rotate(39 450 206)">TO ROTTERDAM →</text>
+          <!-- land labels -->
+          <text class="landlbl" x="56" y="238">SAUDI ARABIA</text>
+          <text class="landlbl" x="290" y="52">IRAN</text>
+          <text class="landlbl" x="468" y="306">OMAN</text>
+          <!-- sea labels -->
+          <text class="sealbl" x="168" y="120">PERSIAN GULF</text>
+          <text class="sealbl" x="444" y="186">GULF OF OMAN</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 9 · THE FUNNEL — free brief, the page's single departure ════ -->
+<section class="funnel" data-dev="FUNNEL · free-brief section" data-ax="SECTION · Funnel band" data-ovr="desk-funnel">
+  <div class="wrap">
+    <div class="eyebrow">The brief</div>
+    <h2>The morning brief, free.</h2>
+    <p class="lede">One email at the open — what moved, what&rsquo;s mispriced, what the desk is watching. No account, no paywall.</p>
+
+    <!-- perforated subscribe card (D2.3) — the page's singular inverse -->
+    <div class="perf-card" data-dev="D2.3 · perforated subscribe card — singular inverse" data-ax="SECTION · Subscribe card (link follows DIALECT)" data-ovr="desk-sub">
+      <h3>The morning brief, daily.</h3>
+      <p class="pc-sub">Six paragraphs, one chart, no noise — on your desk by 06:40 GST.</p>
+      <hr class="tearline" aria-hidden="true">
+      <a class="sub-link" href="brief.html">Subscribe →</a>
+      <div class="pc-fine">Free · no account required</div>
+    </div>
+
+    <!-- quiet fund note -->
+    <div class="fundnote" data-dev="FUNNEL · fund note" data-ax="SECTION · Funnel band · fund note (FIXED mint link)">
+      <div class="fn-label">About JCJ</div>
+      <p>VegaReady is the public regime filter of JCJ Investing — an algorithmic trading fund. The intelligence is open; the engine is ours.</p>
+      <a href="#about">About the fund →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 10 · CTA SECTION (D5.1-A dot grid) ════ -->
+<section class="ctazone" id="dashboard" data-dev="D5.1-A · CTA-zone dot grid" data-ax="DOTS · CTA dot grid">
+  <div class="wrap">
+    <div class="eyebrow cz-eyebrow">The live board</div>
+    <h2>Every number on this page, live.</h2>
+    <span class="cta-frame cta-c" data-ax="SECTION · CTA closing" data-ovr="desk-ctac"><a href="#">Open the dashboard →</a></span>
+  </div>
+</section>
+
+<!-- ════ 11 · FOOTER ════ -->
+<footer data-ax="CANVAS · footer band (darkened)">
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="wordmark" href="index.html">VEGA<i>READY</i></a>
+        <p>Markets coverage of the Gulf escalation — timestamped, sourced, and reconciled against the tape.</p>
+      </div>
+      <div class="fcol">
+        <h4>The Edition</h4>
+        <a href="index.html">Front door</a>
+        <a href="brief.html">The Brief</a>
+        <a href="desk.html">The Desk</a>
+      </div>
+      <div class="fcol">
+        <h4>The Desk</h4>
+        <a href="#dashboard">Live board</a>
+        <a href="#">Methodology</a>
+        <a href="#about">About the fund</a>
+      </div>
+    </div>
+    <div class="legal">
+      © 2026 JCJ Investing · VegaReady. All market figures on this page are illustrative and timestamped as such. Nothing here is investment advice.
+    </div>
+  </div>
+</footer>
+
+<button id="anno" type="button" aria-pressed="false">⊙ Labels</button>
+<!-- options panel (bottom-left) -->
+<div id="edpanel" role="group" aria-label="Display options">
+  <div class="ep-head">
+    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8">V6 LIVE</span> <a href="/edition-v5/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V5 &#8599;</a> <a href="/edition-v4/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V4 &#8599;</a> <a href="/edition-v3/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V3 &#8599;</a> <a href="/edition-v2/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V2 &#8599;</a> <a href="/edition-v1/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
+    <button type="button" class="ep-toggle" id="eptoggle" aria-expanded="true" aria-label="Collapse options panel">Hide</button>
+  </div>
+  <div class="ep-body">
+    <div class="ep-combos" role="group" aria-label="Saved combos">
+      <div class="ep-combos-h">Saved Combos</div>
+      <div id="epcomborows"></div>
+      <div class="ep-combo-actions">
+        <button type="button" class="ep-cbtn" id="epcsave">&#9733; Save current</button>
+        <button type="button" class="ep-cbtn" id="epccopy">Copy all</button>
+      </div>
+    </div>
+    <div class="ep-presets" role="group" aria-label="Presets">
+      <button type="button" class="ep-preset" data-preset="p1">P1 Formula</button>
+      <button type="button" class="ep-preset" data-preset="p2">P2 Conservative</button>
+      <button type="button" class="ep-preset" data-preset="p3">P3 Baseline</button>
+    </div>
+    <!-- fields run in PAGE ORDER, top of page → bottom (owner ruling, June 2026):
+         canvas → chroma → grey → gold → data (hero chart) → boxes base → SECTIONS in page order
+         (utility / CTA header / hero instrument / stat cards / anchor / breakout / map frame /
+          funnel band / subscribe card / dot tone / CTA closing) → border → semantic → dialect → deep.
+         v6: scheme + box2 tiers retired; DEEP stays here (funnel Deep base + bone-map sea plate).
+         v6.1: CTA split (header/closing, each fill + popover Frame); dot grid = tone select + popover Opacity. -->
+    <div class="ep-field">
+      <label for="opt-theme">Canvas · whole page</label>
+      <select id="opt-theme">
+        <option value="t1" selected>T1 Oxford (baseline)</option>
+        <option value="t2">T2 Abyss · Navy Cards</option>
+        <option value="t3">T3 Charcoal</option>
+        <option value="t4">T4 Pine</option>
+        <option value="t5">T5 Petrol</option>
+        <option value="t6">T6 Near-Black · Oxford Cards</option>
+        <option value="t7">T7 Gunmetal</option>
+        <option value="t8">T8 Soft White Desk (light)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-chroma">Chroma · canvas saturation</label>
+      <select id="opt-chroma">
+        <option value="rich" selected>Rich (current)</option>
+        <option value="capped">Capped · institutional</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-grey">Grey · text register</label>
+      <select id="opt-grey">
+        <option value="warm" selected>Warm (current)</option>
+        <option value="cool">Cool</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-gold">Gold · masthead + frames</label>
+      <select id="opt-gold">
+        <option value="g1">G1 · Signature</option>
+        <option value="g2">G2 · Whisper</option>
+        <option value="g3" selected>G3 · Rich (current)</option>
+        <option value="g4">G4 · Metal ramp</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-data">Data · chart lines</label>
+      <select id="opt-data">
+        <option value="d1" selected>D1 · Auto (Cobalt, current)</option>
+        <option value="d2">D2 · Cobalt</option>
+        <option value="d3">D3 · Verdigris</option>
+        <option value="d4">D4 · Steel</option>
+        <option value="d5">D5 · Gold-line</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-box">Boxes · base — all sections</label>
+      <select id="opt-box">
+        <option value="b-tonal" selected>Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-cov">Coverage · large areas</label>
+      <select id="opt-cov">
+        <option value="auto" selected>Auto-quiet · large areas</option>
+        <option value="literal">Literal</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-util">Utility band · top</label>
+      <select id="opt-sx-util">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-ctah">CTA · header</label>
+      <select id="opt-sx-ctah">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-hero">Hero instrument · top</label>
+      <select id="opt-sx-hero">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-stat">Stat cards · mid</label>
+      <select id="opt-sx-stat">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-anchor">Anchor panel · mid</label>
+      <select id="opt-sx-anchor">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-bleed">Breakout band · mid</label>
+      <select id="opt-sx-bleed">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-map">Map frame · lower</label>
+      <select id="opt-sx-map">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-funnel">Funnel band · bottom</label>
+      <select id="opt-sx-funnel">
+        <option value="deep" selected>Deep (current)</option>
+        <option value="deeper">Deeper · 35% black mix</option>
+        <option value="black">Neutral black</option>
+        <option value="navy">Navy depth</option>
+        <option value="pine">Pine depth</option>
+        <option value="charcoal">Charcoal</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-sub">Subscribe card · bottom</label>
+      <select id="opt-sx-sub">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-dots">Dot tone · bottom</label>
+      <select id="opt-dots">
+        <option value="ink" selected>Ink (current)</option>
+        <option value="slate">Slate</option>
+        <option value="steel">Steel</option>
+        <option value="navy">Navy</option>
+        <option value="teal">Teal</option>
+        <option value="verdigris">Verdigris</option>
+        <option value="gold">Gold</option>
+        <option value="bone">Bone</option>
+        <option value="graphite">Graphite</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sx-ctac">CTA · closing</label>
+      <select id="opt-sx-ctac">
+        <option value="base" selected>Base (follows Boxes)</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+        <option value="sunk1">Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-bline">Border · box lines + tape rules</label>
+      <select id="opt-bline">
+        <option value="auto" selected>Auto</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sem">Semantic · pills + ticks</label>
+      <select id="opt-sem">
+        <option value="s1">S1 · Recipe&rsquo;d</option>
+        <option value="s2" selected>S2 · Current</option>
+        <option value="s3">S3 · Desk standard (TradingView/Coinbase pair)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-dialect">Dialect · accents + brackets</label>
+      <select id="opt-dialect">
+        <option value="auto">Auto · Cross-family</option>
+        <option value="fixed" selected>Fixed · Teal (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-deep">Deep · funnel base + map plate</label>
+      <select id="opt-deep">
+        <option value="b1">B1 · Guaranteed step</option>
+        <option value="b2" selected>B2 · Current</option>
+      </select>
+    </div>
+    <div class="ep-ovr" id="epovr" style="display:none" role="group" aria-label="Element overrides">
+      <div class="ep-ovr-h" id="epovrh">Overrides (0)</div>
+      <div id="epovrrows"></div>
+    </div>
+    <div id="epviol" role="status" aria-live="polite"></div>
+  </div>
+</div>
+<script>
+(function(){
+  /* annotation mode — toggles data-dev on <html>; every [data-ax] element badges its axis */
+  var b=document.getElementById('anno');
+  b.addEventListener('click',function(){
+    var on=document.documentElement.toggleAttribute('data-dev');
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'⊙ Hide labels':'⊙ Labels';
+  });
+  /* ── options panel — six axes + presets + collapse (shared keys across The Edition) ── */
+  (function(){
+    var d = document.documentElement;
+    var AXES = [
+      { id:'opt-theme',     attr:'data-theme',     key:'ed-theme'   },
+      { id:'opt-gold',      attr:'data-gold',      key:'ed-gold'    },
+      { id:'opt-grey',      attr:'data-grey',      key:'ed-grey'    },
+      { id:'opt-sem',       attr:'data-sem',       key:'ed-sem'     },
+      { id:'opt-dialect',   attr:'data-dialect',   key:'ed-dialect' },
+      { id:'opt-deep',      attr:'data-deep',      key:'ed-deep'    },
+      { id:'opt-chroma',    attr:'data-chroma',    key:'ed-chroma'  },
+      { id:'opt-data',      attr:'data-data',      key:'ed-data'    },
+      { id:'opt-box',       attr:'data-box',       key:'ed-box'     },
+      { id:'opt-cov',       attr:'data-cov',       key:'ed-cov'     },
+      { id:'opt-sx-util',   attr:'data-sx-util',   key:'ed-sx-desk-utility' },
+      { id:'opt-sx-ctah',   attr:'data-sx-ctah',   key:'ed-sx-desk-ctah'    },
+      { id:'opt-sx-ctac',   attr:'data-sx-ctac',   key:'ed-sx-desk-ctac'    },
+      { id:'opt-sx-hero',   attr:'data-sx-hero',   key:'ed-sx-desk-hero'    },
+      { id:'opt-sx-stat',   attr:'data-sx-stat',   key:'ed-sx-desk-stat'    },
+      { id:'opt-sx-anchor', attr:'data-sx-anchor', key:'ed-sx-desk-anchor'  },
+      { id:'opt-sx-bleed',  attr:'data-sx-bleed',  key:'ed-sx-desk-bleed'   },
+      { id:'opt-sx-map',    attr:'data-sx-map',    key:'ed-sx-desk-map'     },
+      { id:'opt-sx-funnel', attr:'data-sx-funnel', key:'ed-sx-desk-funnel'  },
+      { id:'opt-sx-sub',    attr:'data-sx-sub',    key:'ed-sx-desk-sub'     },
+      { id:'opt-dots',      attr:'data-dott',      key:'ed-dott-desk'       },
+      { id:'opt-bline',     attr:'data-bline',     key:'ed-bline'   }
+    ];
+    function syncSel(sel, v){
+      for (var i = 0; i < sel.options.length; i++){
+        if (sel.options[i].value === v){ sel.value = v; return; }
+      }
+    }
+    function setAxis(a, v){
+      d.setAttribute(a.attr, v);
+      try { localStorage.setItem(a.key, v); } catch(e){}
+      var sel = document.getElementById(a.id);
+      if (sel) syncSel(sel, v);
+      /* v6: every entry point (select, preset, combo, popover) re-flags through this single path
+         (change-flash removed — owner ruling) */
+      refreshFlags();
+      if (axpopSync) axpopSync();
+    }
+    AXES.forEach(function(a){
+      var sel = document.getElementById(a.id);
+      if (!sel) return;
+      var cur = d.getAttribute(a.attr);
+      if (cur) syncSel(sel, cur);
+      sel.addEventListener('change', function(){ setAxis(a, sel.value); });
+    });
+    /* presets — style axes only; the canvas/theme is never touched */
+    var PRESETS = {
+      p1:{ 'data-gold':'g1','data-grey':'cool','data-sem':'s3','data-dialect':'auto','data-deep':'b1','data-chroma':'capped','data-box':'b-tonal','data-bline':'auto',
+           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink' },
+      p2:{ 'data-gold':'g2','data-grey':'warm','data-sem':'s1','data-dialect':'auto','data-deep':'b1','data-chroma':'rich','data-box':'b-tonal','data-bline':'auto',
+           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink' },
+      p3:{ 'data-gold':'g3','data-grey':'warm','data-sem':'s2','data-dialect':'fixed','data-deep':'b2','data-box':'b-tonal','data-bline':'auto',
+           'data-sx-util':'base','data-sx-ctah':'base','data-sx-ctac':'base','data-sx-hero':'sunk1','data-sx-stat':'base','data-sx-anchor':'base','data-sx-bleed':'base','data-sx-map':'base','data-sx-funnel':'deep','data-sx-sub':'base','data-dott':'ink' }
+    };
+    Array.prototype.forEach.call(document.querySelectorAll('.ep-preset'), function(b){
+      b.addEventListener('click', function(){
+        var p = PRESETS[b.getAttribute('data-preset')];
+        if (!p) return;
+        AXES.forEach(function(a){ if (p[a.attr]) setAxis(a, p[a.attr]); });
+      });
+    });
+    /* ── saved combos — owner's preferred axis combinations, shared across The Edition.
+       localStorage 'ed-combos' = [{name, axes:{'ed-theme':'t1',...}, ts}] · cap 20.
+       Apply goes through setAxis so attributes, stores AND selects all update;
+       values the page's own select can't represent are skipped silently. */
+    var COMBO_KEY = 'ed-combos', COMBO_MAX = 20;
+    function readCombos(){
+      try {
+        var v = JSON.parse(localStorage.getItem(COMBO_KEY) || '[]');
+        if (!Array.isArray(v)) return [];
+        return v.filter(function(c){ return c && typeof c.name === 'string' && c.axes && typeof c.axes === 'object'; }).slice(0, COMBO_MAX);
+      } catch(e){ return []; }
+    }
+    function writeCombos(list){
+      try { localStorage.setItem(COMBO_KEY, JSON.stringify(list.slice(0, COMBO_MAX))); } catch(e){}
+    }
+    function comboVal(c, a){
+      var v = c.axes[a.key];
+      if (v == null) v = c.axes[a.attr];
+      return (typeof v === 'string') ? v : null;
+    }
+    function comboFormula(c){
+      var f = AXES.map(function(a){
+        var v = comboVal(c, a);
+        return a.key.replace(/^ed-/, '') + '=' + (v == null ? '?' : v);
+      }).join(' · ');
+      /* v6 final layer: surface per-element overrides in the formula line (compact) */
+      if (c.ovr && typeof c.ovr === 'object'){
+        var m = {};
+        for (var k in c.ovr){ var o = c.ovr[k]; if (o && typeof o === 'object') for (var id in o) m[id] = o[id]; }
+        var s = JSON.stringify(m);
+        if (s !== '{}') f += ' · ovr:' + s;
+      }
+      if (c.xtra && typeof c.xtra === 'object'){ /* v6.1: dot opacity + CTA frames */
+        var xs = JSON.stringify(c.xtra);
+        if (xs !== '{}') f += ' · x:' + xs;
+      }
+      return f;
+    }
+    function axisValid(a, v){
+      var sel = document.getElementById(a.id);
+      if (!sel || v == null) return false;
+      for (var i = 0; i < sel.options.length; i++){ if (sel.options[i].value === v) return true; }
+      return false;
+    }
+    function applyCombo(c){
+      AXES.forEach(function(a){
+        var v = comboVal(c, a);
+        if (axisValid(a, v)) setAxis(a, v); /* per-axis skip: invalid-for-this-page values dropped silently */
+      });
+      /* v6 final layer: combos are full-state snapshots — restore per-element overrides +
+         large-band trims across all Edition pages (legacy combos without the fields are left untouched) */
+      if (c.ovr && typeof c.ovr === 'object'){
+        OVR_PAGE_KEYS.forEach(function(k){
+          try {
+            var v = c.ovr[k];
+            if (v && typeof v === 'object' && Object.keys(v).length) localStorage.setItem(k, JSON.stringify(v));
+            else localStorage.removeItem(k);
+          } catch(e){}
+        });
+        applyOvrCss(); renderOvr();
+      }
+      if (c.trim && typeof c.trim === 'object'){
+        TRIM_KEYS.forEach(function(k){
+          var v = (typeof c.trim[k] === 'string' && /^(-2|-1|1|2)$/.test(c.trim[k])) ? c.trim[k] : '0';
+          try { if (v === '0') localStorage.removeItem(k); else localStorage.setItem(k, v); } catch(e){}
+        });
+        TRIM_SECS.forEach(function(t){
+          var v = null; try { v = localStorage.getItem(t.key); } catch(e){}
+          d.setAttribute(t.attr, (v && /^(-2|-1|0|1|2)$/.test(v)) ? v : '0');
+        });
+        if (axpopSync) axpopSync();
+      }
+      /* v6.1: popover-only keys (dot opacity + CTA frames) ride combos like trims */
+      if (c.xtra && typeof c.xtra === 'object'){
+        XKEYS.forEach(function(x){
+          var v = (typeof c.xtra[x.key] === 'string' && x.re.test(c.xtra[x.key])) ? c.xtra[x.key] : x.def;
+          try { if (v === x.def) localStorage.removeItem(x.key); else localStorage.setItem(x.key, v); } catch(e){}
+          if (x.attr) d.setAttribute(x.attr, v);
+        });
+        if (axpopSync) axpopSync();
+      }
+    }
+    function renderCombos(){
+      var rows = document.getElementById('epcomborows');
+      if (!rows) return;
+      var list = readCombos();
+      rows.innerHTML = '';
+      if (!list.length){
+        var none = document.createElement('div');
+        none.className = 'ep-combo-none';
+        none.textContent = 'None saved yet';
+        rows.appendChild(none);
+        return;
+      }
+      list.forEach(function(c){
+        var row = document.createElement('div'); row.className = 'ep-combo-row' + (c.crowned ? ' crowned' : '');
+        var ap = document.createElement('button'); ap.type = 'button'; ap.className = 'ep-combo-apply';
+        ap.textContent = (c.crowned ? '👑 ' : '') + c.name; ap.title = comboFormula(c);
+        ap.addEventListener('click', function(){ applyCombo(c); });
+        /* v5 crown — marks a combo as a formula candidate for the guide */
+        var cr = document.createElement('button'); cr.type = 'button'; cr.className = 'ep-combo-crown' + (c.crowned ? ' on' : '');
+        cr.textContent = '👑'; cr.title = 'Crown = this combination is a formula candidate for the guide.';
+        cr.setAttribute('aria-pressed', c.crowned ? 'true' : 'false');
+        cr.setAttribute('aria-label', (c.crowned ? 'Uncrown' : 'Crown') + ' combo ' + c.name);
+        cr.addEventListener('click', function(){
+          var l = readCombos();
+          for (var j = 0; j < l.length; j++){ if (l[j].ts === c.ts && l[j].name === c.name){ l[j].crowned = !l[j].crowned; break; } }
+          writeCombos(l); renderCombos();
+        });
+        var del = document.createElement('button'); del.type = 'button'; del.className = 'ep-combo-del';
+        del.textContent = '✕'; del.setAttribute('aria-label', 'Delete combo ' + c.name);
+        del.addEventListener('click', function(){
+          if (!confirm('Delete combo “' + c.name + '”?')) return;
+          var l = readCombos(), idx = -1;
+          for (var j = 0; j < l.length; j++){ if (l[j].ts === c.ts && l[j].name === c.name){ idx = j; break; } }
+          if (idx > -1){ l.splice(idx, 1); writeCombos(l); }
+          renderCombos();
+        });
+        row.appendChild(ap); row.appendChild(cr); row.appendChild(del); rows.appendChild(row);
+      });
+    }
+    var csave = document.getElementById('epcsave');
+    if (csave) csave.addEventListener('click', function(){
+      var list = readCombos();
+      if (list.length >= COMBO_MAX){ alert('Combo limit (' + COMBO_MAX + ') reached — delete one first.'); return; }
+      var name = prompt('Name this combo:', 'C' + (list.length + 1));
+      if (!name) return;
+      var axes = {};
+      AXES.forEach(function(a){ var v = d.getAttribute(a.attr); if (v) axes[a.key] = v; });
+      /* v6 final layer: snapshot per-element overrides + trims across all Edition pages
+         (always present on new combos — empty objects mean "clear on apply") */
+      var ovr = {};
+      OVR_PAGE_KEYS.forEach(function(k){
+        try { var v = JSON.parse(localStorage.getItem(k) || '{}'); if (v && typeof v === 'object' && Object.keys(v).length) ovr[k] = v; } catch(e){}
+      });
+      var trim = {};
+      TRIM_KEYS.forEach(function(k){
+        var v = null; try { v = localStorage.getItem(k); } catch(e){}
+        if (v && /^(-2|-1|1|2)$/.test(v)) trim[k] = v;
+      });
+      var xtra = {}; /* v6.1: dot opacity + CTA frame keys (non-default values only) */
+      XKEYS.forEach(function(x){
+        var v = null; try { v = localStorage.getItem(x.key); } catch(e){}
+        if (v && x.re.test(v) && v !== x.def) xtra[x.key] = v;
+      });
+      list.push({ name: name.slice(0, 40), axes: axes, ovr: ovr, trim: trim, xtra: xtra, ts: Date.now() });
+      writeCombos(list); renderCombos();
+    });
+    var ccopy = document.getElementById('epccopy');
+    if (ccopy) ccopy.addEventListener('click', function(){
+      var list = readCombos();
+      var text = list.map(function(c){ return (c.crowned ? '👑 FORMULA — ' : '') + c.name + ': ' + comboFormula(c); }).join('\n');
+      function done(label){ ccopy.textContent = label; setTimeout(function(){ ccopy.textContent = 'Copy all'; }, 1400); }
+      if (!text){ done('Nothing saved'); return; }
+      function fallback(){ window.prompt('Copy combos:', text); }
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ done('Copied ✓'); }, fallback);
+      } else { fallback(); }
+    });
+    /* cross-tab freshness — re-render when another Edition page writes ed-combos */
+    window.addEventListener('storage', function(ev){
+      if (!ev || ev.key === null || ev.key === COMBO_KEY) renderCombos();
+    });
+    renderCombos();
+    /* ── v6 FINAL LAYER · per-element overrides + large-band trims ─────────────
+       Overrides: localStorage ed-ovr-desk (JSON id→value), painted into #ovrcss by the
+       shared head-script builder (window.__edOvr). Trims: data-trim-* attrs on <html>,
+       stored ed-trim-desk-*. Both ride in saved combos (full-state snapshot). */
+    var OVR_KEY = 'ed-ovr-desk';
+    var OVR_PAGE_KEYS = ['ed-ovr-index', 'ed-ovr-brief', 'ed-ovr-desk'];
+    var TRIM_KEYS = ['ed-trim-index-utility', 'ed-trim-index-abyss', 'ed-trim-desk-utility', 'ed-trim-desk-bleed', 'ed-trim-desk-funnel'];
+    var TRIM_SECS = [
+      { re:/SECTION · Utility band/,  attr:'data-trim-util',   key:'ed-trim-desk-utility' },
+      { re:/SECTION · Breakout band/, attr:'data-trim-bleed',  key:'ed-trim-desk-bleed'   },
+      { re:/SECTION · Funnel band/,   attr:'data-trim-funnel', key:'ed-trim-desk-funnel'  }
+    ];
+    /* ── v6.1 · popover-only keys — dot opacity + per-CTA frame colours; ride combos like trims ── */
+    var FRAME_RE = /^(gold|metal|bronze|l-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood))$/;
+    var FRAME_OPTS = ['gold','metal','bronze','l-tonal','l-navy','l-teal','l-petrol','l-pine','l-slate','l-graphite','l-gunmetal','l-lifted','l-bone','l-plum','l-bronze','l-oxblood'];
+    var FRAME_NAMES = { gold:'Gold (GOLD axis)', metal:'Metal', bronze:'Bronze metal', 'l-tonal':'Tonal line', 'l-navy':'Navy line', 'l-teal':'Teal line', 'l-petrol':'Petrol line', 'l-pine':'Pine line', 'l-slate':'Slate line', 'l-graphite':'Graphite line', 'l-gunmetal':'Gunmetal line', 'l-lifted':'Lifted line', 'l-bone':'Bone line', 'l-plum':'Plum line', 'l-bronze':'Bronze line', 'l-oxblood':'Oxblood line' };
+    var FRAME_SECS = [
+      { re:/SECTION · CTA header/,  attr:'data-ctafh', key:'ed-ctaf-desk-h' },
+      { re:/SECTION · CTA closing/, attr:'data-ctafc', key:'ed-ctaf-desk-c' }
+    ];
+    var DOTA_OPTS = ['3','4.5','6','7.5','9','12','15','18','off'];
+    var XKEYS = [
+      { key:'ed-dota-desk',   def:'9',    re:/^(3|4\.5|6|7\.5|9|12|15|18|off)$/, attr:'data-dota' },
+      { key:'ed-ctaf-desk-h', def:'gold', re:FRAME_RE, attr:'data-ctafh' },
+      { key:'ed-ctaf-desk-c', def:'gold', re:FRAME_RE, attr:'data-ctafc' },
+      { key:'ed-ctaf-index',  def:'gold', re:FRAME_RE }
+    ];
+    var OVR_OPTS = ['', 'b-tonal', 'b-navy', 'b-teal', 'b-petrol', 'b-pine', 'b-slate', 'b-graphite', 'b-gunmetal', 'b-lifted', 'b-bone', 'b-plum', 'b-bronze', 'b-oxblood', 'sunk1', 'sunk2', 'sunk3', 'sunk4'];
+    var OVR_NAMES = { 'b-tonal':'Tonal', 'b-navy':'Cobalt Navy', 'b-teal':'Teal Glass', 'b-petrol':'Petrol', 'b-pine':'Pine', 'b-slate':'Slate', 'b-graphite':'Warm Graphite', 'b-gunmetal':'Gunmetal', 'b-lifted':'Lifted', 'b-bone':'Bone Inverse', 'b-plum':'Aubergine', 'b-bronze':'Bronze', 'b-oxblood':'Oxblood', 'sunk1':'Sunken Canvas', 'sunk2':'Sunken Desaturated', 'sunk3':'Sunken Navy', 'sunk4':'Sunken Neutral' };
+    function readOvr(){
+      try { var m = JSON.parse(localStorage.getItem(OVR_KEY) || '{}'); return (m && typeof m === 'object') ? m : {}; } catch(e){ return {}; }
+    }
+    function applyOvrCss(){
+      var st = document.getElementById('ovrcss');
+      if (!st){ st = document.createElement('style'); st.id = 'ovrcss'; document.head.appendChild(st); }
+      st.textContent = window.__edOvr ? window.__edOvr(readOvr()) : '';
+    }
+    function writeOvr(m){
+      try { if (Object.keys(m).length) localStorage.setItem(OVR_KEY, JSON.stringify(m)); else localStorage.removeItem(OVR_KEY); } catch(e){}
+      applyOvrCss(); renderOvr();
+    }
+    function ovrLabel(id){
+      var el = document.querySelector('[data-ovr="' + id + '"]');
+      return (el && el.getAttribute('data-ax')) || id;
+    }
+    function renderOvr(){
+      var box = document.getElementById('epovr'), rows = document.getElementById('epovrrows'), h = document.getElementById('epovrh');
+      if (!box || !rows || !h) return;
+      var m = readOvr(), ids = Object.keys(m);
+      h.textContent = 'Overrides (' + ids.length + ')';
+      rows.innerHTML = '';
+      if (!ids.length){ box.style.display = 'none'; return; }
+      box.style.display = 'block';
+      ids.forEach(function(id){
+        var row = document.createElement('div'); row.className = 'ep-ovr-row';
+        var t = document.createElement('span'); t.className = 'ep-ovr-t';
+        t.textContent = ovrLabel(id) + ' → ' + (OVR_NAMES[m[id]] || m[id]); t.title = t.textContent;
+        var x = document.createElement('button'); x.type = 'button'; x.className = 'ep-ovr-x'; x.textContent = '✕';
+        x.setAttribute('aria-label', 'Remove element override ' + id);
+        x.addEventListener('click', function(){ var mm = readOvr(); delete mm[id]; writeOvr(mm); });
+        row.appendChild(t); row.appendChild(x); rows.appendChild(row);
+      });
+    }
+    renderOvr();
+    /* collapse — state on <html>; restored pre-paint by the head script */
+    var panel = document.getElementById('edpanel');
+    var tog = document.getElementById('eptoggle');
+    function paintToggle(){
+      var c = d.getAttribute('data-panel') === 'collapsed';
+      tog.textContent = c ? '⚙' : 'Hide';
+      tog.setAttribute('aria-expanded', c ? 'false' : 'true');
+      tog.setAttribute('aria-label', c ? 'Expand options panel' : 'Collapse options panel');
+    }
+    function setCollapsed(c){
+      if (c) d.setAttribute('data-panel','collapsed'); else d.removeAttribute('data-panel');
+      try { localStorage.setItem('ed-panel', c ? 'collapsed' : 'open'); } catch(e){}
+      paintToggle();
+    }
+    tog.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      setCollapsed(d.getAttribute('data-panel') !== 'collapsed');
+    });
+    panel.addEventListener('click', function(){
+      if (d.getAttribute('data-panel') === 'collapsed') setCollapsed(false);
+    });
+    paintToggle();
+
+    /* ════ v6 exploration UX (change-flash removed — owner ruling: the popover is the workflow) ════ */
+    /* 3 · RULE FLAGS — static OKLCH validator output (run 2026-06-06). Flag, never block (owner ruling). */
+    var THEME_NAME = { t1:'Oxford', t2:'Abyss', t3:'Charcoal', t4:'Pine', t5:'Petrol', t6:'Near-black', t7:'Gunmetal', t8:'Light desk', tm:'Matted plate' };
+    var BOX_DL = { /* ΔL>0.12 stacked-boxes gate per box hue × theme (b-navy fails t1 rich AND capped) */
+      'b-navy':{t1:1,t2:1,t3:1,t6:1}, 'b-teal':{t2:1,t6:1}, 'b-petrol':{t2:1,t6:1},
+      'b-pine':{t2:1,t6:1}, 'b-gunmetal':{t6:1}, 'b-slate':{t6:1}, 'b-lifted':{t2:1,t3:1,t6:1}
+    };
+    function boxChromaViol(hue, theme, chroma){ /* chroma gate */
+      if (hue === 'b-tonal') return (theme === 't2' && chroma === 'rich') || theme === 't6';
+      if (hue === 'b-lifted') return theme === 't6';
+      return false;
+    }
+    function boxViol(hue, theme, chroma){
+      return !!(BOX_DL[hue] && BOX_DL[hue][theme]) || boxChromaViol(hue, theme, chroma);
+    }
+    function borderViol(theme, chroma, box, bline){ /* tonal border under the 1.2 visibility band */
+      var tonal = bline === 'b-tonal' || (bline === 'auto' && box === 'b-tonal');
+      return tonal && (theme === 't2' || theme === 't3' || (theme === 't1' && chroma === 'capped'));
+    }
+    /* v6: the same theme×hue ⚠ data now also relabels every SECTION select (same hue table). */
+    var SECTION_FLAGS = [
+      { id:'opt-sx-util',   attr:'data-sx-util',   name:'Utility band' },
+      { id:'opt-sx-ctah',   attr:'data-sx-ctah',   name:'CTA header' },
+      { id:'opt-sx-ctac',   attr:'data-sx-ctac',   name:'CTA closing' },
+      { id:'opt-sx-hero',   attr:'data-sx-hero',   name:'Hero instrument' },
+      { id:'opt-sx-stat',   attr:'data-sx-stat',   name:'Stat cards' },
+      { id:'opt-sx-anchor', attr:'data-sx-anchor', name:'Anchor panel' },
+      { id:'opt-sx-bleed',  attr:'data-sx-bleed',  name:'Breakout band' },
+      { id:'opt-sx-map',    attr:'data-sx-map',    name:'Map frame' },
+      { id:'opt-sx-sub',    attr:'data-sx-sub',    name:'Subscribe card' }
+    ];
+    var FLAG_SELS = ['opt-box','opt-sem'].concat(SECTION_FLAGS.map(function(s){ return s.id; }));
+    var BASE_LBL = {};
+    FLAG_SELS.forEach(function(id){
+      var sel = document.getElementById(id);
+      if (sel) BASE_LBL[id] = Array.prototype.map.call(sel.options, function(o){ return o.text; });
+    });
+    function boxName(v){
+      var sel = document.getElementById('opt-box');
+      if (sel && BASE_LBL['opt-box']) for (var i = 0; i < sel.options.length; i++){
+        if (sel.options[i].value === v) return BASE_LBL['opt-box'][i];
+      }
+      return v;
+    }
+    function relabelHueSel(id, theme, chroma){
+      var sel = document.getElementById(id);
+      if (!sel || !BASE_LBL[id]) return;
+      Array.prototype.forEach.call(sel.options, function(o, i){
+        var t = BASE_LBL[id][i] + (boxViol(o.value, theme, chroma) ? ' ⚠' : '');
+        if (o.text !== t) o.text = t;
+      });
+    }
+    function refreshFlags(){
+      var theme = d.getAttribute('data-theme'), chroma = d.getAttribute('data-chroma');
+      relabelHueSel('opt-box', theme, chroma);
+      SECTION_FLAGS.forEach(function(s){ relabelHueSel(s.id, theme, chroma); });
+      var semSel = document.getElementById('opt-sem');
+      if (semSel && BASE_LBL['opt-sem']) Array.prototype.forEach.call(semSel.options, function(o, i){
+        var t = BASE_LBL['opt-sem'][i] + (o.value === 's2' ? ' ⚠' : ''); /* s2 pair fails |ΔL|≤0.04 on ALL themes */
+        if (o.text !== t) o.text = t;
+      });
+      var out = document.getElementById('epviol');
+      if (!out) return;
+      var box = d.getAttribute('data-box'), bline = d.getAttribute('data-bline'), sem = d.getAttribute('data-sem');
+      var tn = THEME_NAME[theme] || theme, msgs = [];
+      if (boxViol(box, theme, chroma)) msgs.push('⚠ ' + boxName(box) + ' base box on ' + tn + ': ' + (BOX_DL[box] && BOX_DL[box][theme] ? 'box/canvas gap exceeds gate' : 'box chroma exceeds gate'));
+      SECTION_FLAGS.forEach(function(s){
+        var v = d.getAttribute(s.attr);
+        if (v && v !== 'base' && boxViol(v, theme, chroma)) msgs.push('⚠ ' + boxName(v) + ' on ' + tn + ' (' + s.name + '): ' + (BOX_DL[v] && BOX_DL[v][theme] ? 'box/canvas gap exceeds gate' : 'box chroma exceeds gate'));
+      });
+      if (borderViol(theme, chroma, box, bline)) msgs.push('⚠ Tonal border on ' + tn + ': line under the visibility band');
+      if (sem === 's2') msgs.push('⚠ S2 pair: green/red lightness mismatch');
+      out.textContent = msgs.join(' · ');
+      out.style.display = msgs.length ? 'block' : 'none';
+    }
+
+    /* 2 · CLICK-TO-EDIT POPOVER — Labels mode only; every edit routes through setAxis (the single path) */
+    var AX_ROWS = [
+      { re:/\bCANVAS\b/,                  id:'opt-theme',     label:'Canvas'   },
+      { re:/\bCHROMA\b/,                  id:'opt-chroma',    label:'Chroma'   },
+      { re:/\bGREY\b/,                    id:'opt-grey',      label:'Grey'     },
+      { re:/\bGOLD\b/,                    id:'opt-gold',      label:'Gold'     },
+      { re:/\bDATA\b/,                    id:'opt-data',      label:'Data'     },
+      { re:/\bBOX\b/,                     id:'opt-box',       label:'Boxes'    },
+      { re:/SECTION · Utility band/,      id:'opt-sx-util',   label:'Utility'  },
+      { re:/SECTION · CTA header/,        id:'opt-sx-ctah',   label:'CTA fill' },
+      { re:/SECTION · CTA closing/,       id:'opt-sx-ctac',   label:'CTA fill' },
+      { re:/SECTION · Hero instrument/,   id:'opt-sx-hero',   label:'Hero'     },
+      { re:/SECTION · Stat cards/,        id:'opt-sx-stat',   label:'Stats'    },
+      { re:/SECTION · Anchor panel/,      id:'opt-sx-anchor', label:'Anchor'   },
+      { re:/SECTION · Breakout band/,     id:'opt-sx-bleed',  label:'Breakout' },
+      { re:/SECTION · Map frame/,         id:'opt-sx-map',    label:'Map'      },
+      { re:/SECTION · Funnel band/,       id:'opt-sx-funnel', label:'Funnel'   },
+      { re:/SECTION · Subscribe card/,    id:'opt-sx-sub',    label:'Subscribe'},
+      { re:/\bDOTS\b/,                    id:'opt-dots',      label:'Dot tone' },
+      { re:/\bBORDER\b/,                  id:'opt-bline',     label:'Border'   },
+      { re:/\bSEM\b/,                     id:'opt-sem',       label:'Semantic' },
+      { re:/\bDIALECT\b/,                 id:'opt-dialect',   label:'Dialect'  },
+      { re:/\bDEEP\b/,                    id:'opt-deep',      label:'Deep'     }
+    ];
+    var AX_BY_ID = {};
+    AXES.forEach(function(a){ AX_BY_ID[a.id] = a; });
+    var axpop = null, axpopSync = null;
+    function closePop(){
+      if (axpop && axpop.parentNode) axpop.parentNode.removeChild(axpop);
+      axpop = null; axpopSync = null;
+    }
+    function rotateAxis(a, dir){
+      var sel = document.getElementById(a.id);
+      if (!sel) return;
+      var n = sel.options.length;
+      setAxis(a, sel.options[(sel.selectedIndex + dir + n) % n].value);
+    }
+    function openPop(el, x, y){
+      closePop();
+      var ax = el.getAttribute('data-ax') || '';
+      axpop = document.createElement('div'); axpop.id = 'axpop';
+      var h = document.createElement('div'); h.className = 'axp-h'; h.textContent = ax;
+      axpop.appendChild(h);
+      var painters = [];
+      AX_ROWS.forEach(function(r){
+        if (!r.re.test(ax)) return;
+        var a = AX_BY_ID[r.id], sel = document.getElementById(r.id);
+        if (!a || !sel) return;
+        var row = document.createElement('div'); row.className = 'axp-row';
+        var lb = document.createElement('span'); lb.className = 'axp-l'; lb.textContent = r.label;
+        var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'axp-b'; prev.textContent = '◀'; prev.setAttribute('aria-label', 'Previous ' + r.label + ' option');
+        var val = document.createElement('span'); val.className = 'axp-v';
+        var next = document.createElement('button'); next.type = 'button'; next.className = 'axp-b'; next.textContent = '▶'; next.setAttribute('aria-label', 'Next ' + r.label + ' option');
+        function paint(){ var o = sel.options[sel.selectedIndex]; val.textContent = o ? o.text : ''; val.title = val.textContent; }
+        prev.addEventListener('click', function(ev){ ev.stopPropagation(); rotateAxis(a, -1); });
+        next.addEventListener('click', function(ev){ ev.stopPropagation(); rotateAxis(a, +1); });
+        paint(); painters.push(paint);
+        row.appendChild(lb); row.appendChild(prev); row.appendChild(val); row.appendChild(next);
+        axpop.appendChild(row);
+      });
+      /* v6 final layer · TRIM — large bands only: −2…+2 final overlay over the rendered fill */
+      TRIM_SECS.forEach(function(t){
+        if (!t.re.test(ax)) return;
+        var row = document.createElement('div'); row.className = 'axp-row';
+        var lb = document.createElement('span'); lb.className = 'axp-l'; lb.textContent = 'Trim';
+        var mn = document.createElement('button'); mn.type = 'button'; mn.className = 'axp-b'; mn.textContent = '−'; mn.setAttribute('aria-label', 'Trim darker');
+        var val = document.createElement('span'); val.className = 'axp-v';
+        var pl = document.createElement('button'); pl.type = 'button'; pl.className = 'axp-b'; pl.textContent = '+'; pl.setAttribute('aria-label', 'Trim lighter');
+        function cur(){ var v = parseInt(d.getAttribute(t.attr), 10); return isNaN(v) ? 0 : v; }
+        function paint(){ var v = cur(); val.textContent = (v > 0 ? '+' : '') + v; val.title = 'Trim ' + val.textContent; }
+        function step(dir){
+          var v = Math.max(-2, Math.min(2, cur() + dir));
+          d.setAttribute(t.attr, String(v));
+          try { localStorage.setItem(t.key, String(v)); } catch(e){}
+          paint();
+        }
+        mn.addEventListener('click', function(ev){ ev.stopPropagation(); step(-1); });
+        pl.addEventListener('click', function(ev){ ev.stopPropagation(); step(+1); });
+        paint(); painters.push(paint);
+        row.appendChild(lb); row.appendChild(mn); row.appendChild(val); row.appendChild(pl);
+        axpop.appendChild(row);
+      });
+      /* v6.1 · FRAME — per-CTA frame colour (Gold default follows the GOLD axis); wraparound */
+      FRAME_SECS.forEach(function(fs){
+        if (!fs.re.test(ax)) return;
+        var row = document.createElement('div'); row.className = 'axp-row';
+        var lb = document.createElement('span'); lb.className = 'axp-l'; lb.textContent = 'Frame';
+        var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'axp-b'; prev.textContent = '◀'; prev.setAttribute('aria-label', 'Previous frame colour');
+        var val = document.createElement('span'); val.className = 'axp-v';
+        var next = document.createElement('button'); next.type = 'button'; next.className = 'axp-b'; next.textContent = '▶'; next.setAttribute('aria-label', 'Next frame colour');
+        function cur(){ var v = d.getAttribute(fs.attr); return FRAME_OPTS.indexOf(v) > -1 ? v : 'gold'; }
+        function paint(){ var v = cur(); val.textContent = FRAME_NAMES[v] || v; val.title = val.textContent; }
+        function step(dir){
+          var i = FRAME_OPTS.indexOf(cur()), n = FRAME_OPTS.length;
+          var v = FRAME_OPTS[(i + dir + n) % n];
+          d.setAttribute(fs.attr, v);
+          try { if (v === 'gold') localStorage.removeItem(fs.key); else localStorage.setItem(fs.key, v); } catch(e){}
+          paint();
+        }
+        prev.addEventListener('click', function(ev){ ev.stopPropagation(); step(-1); });
+        next.addEventListener('click', function(ev){ ev.stopPropagation(); step(+1); });
+        paint(); painters.push(paint);
+        row.appendChild(lb); row.appendChild(prev); row.appendChild(val); row.appendChild(next);
+        axpop.appendChild(row);
+      });
+      /* v6.1 · DOT OPACITY — popover-only fine ladder (3–18% + Off), wraparound */
+      if (/\bDOTS\b/.test(ax)){
+        var drow = document.createElement('div'); drow.className = 'axp-row';
+        var dlb = document.createElement('span'); dlb.className = 'axp-l'; dlb.textContent = 'Opacity';
+        var dprev = document.createElement('button'); dprev.type = 'button'; dprev.className = 'axp-b'; dprev.textContent = '◀'; dprev.setAttribute('aria-label', 'Previous dot opacity');
+        var dval = document.createElement('span'); dval.className = 'axp-v';
+        var dnext = document.createElement('button'); dnext.type = 'button'; dnext.className = 'axp-b'; dnext.textContent = '▶'; dnext.setAttribute('aria-label', 'Next dot opacity');
+        var dcur = function(){ var v = d.getAttribute('data-dota'); return DOTA_OPTS.indexOf(v) > -1 ? v : '9'; };
+        var dpaint = function(){ var v = dcur(); dval.textContent = v === 'off' ? 'Off' : v + '%' + (v === '9' ? ' (std)' : ''); dval.title = dval.textContent; };
+        var dstep = function(dir){
+          var i = DOTA_OPTS.indexOf(dcur()), n = DOTA_OPTS.length;
+          var v = DOTA_OPTS[(i + dir + n) % n];
+          d.setAttribute('data-dota', v);
+          try { if (v === '9') localStorage.removeItem('ed-dota-desk'); else localStorage.setItem('ed-dota-desk', v); } catch(e){}
+          dpaint();
+        };
+        dprev.addEventListener('click', function(ev){ ev.stopPropagation(); dstep(-1); });
+        dnext.addEventListener('click', function(ev){ ev.stopPropagation(); dstep(+1); });
+        dpaint(); painters.push(dpaint);
+        drow.appendChild(dlb); drow.appendChild(dprev); drow.appendChild(dval); drow.appendChild(dnext);
+        axpop.appendChild(drow);
+      }
+      /* v6 final layer · THIS ELEMENT ONLY — unlink override for the clicked element */
+      var oid = el.getAttribute('data-ovr');
+      if (oid && window.__edOvr){
+        var orow = document.createElement('div'); orow.className = 'axp-row';
+        var olb = document.createElement('span'); olb.className = 'axp-l'; olb.textContent = 'This only';
+        var oprev = document.createElement('button'); oprev.type = 'button'; oprev.className = 'axp-b'; oprev.textContent = '◀'; oprev.setAttribute('aria-label', 'Previous element-only colour');
+        var oval = document.createElement('span'); oval.className = 'axp-v';
+        var onext = document.createElement('button'); onext.type = 'button'; onext.className = 'axp-b'; onext.textContent = '▶'; onext.setAttribute('aria-label', 'Next element-only colour');
+        var oclr = document.createElement('button'); oclr.type = 'button'; oclr.className = 'axp-b'; oclr.textContent = '✕'; oclr.setAttribute('aria-label', 'Clear element override');
+        function ocur(){ return readOvr()[oid] || ''; }
+        function opaint(){ var v = ocur(); oval.textContent = v ? (OVR_NAMES[v] || v) : '(inherit)'; oval.title = oval.textContent; }
+        function oset(v){ var m = readOvr(); if (v) m[oid] = v; else delete m[oid]; writeOvr(m); opaint(); }
+        function orot(dir){
+          var i = OVR_OPTS.indexOf(ocur()); if (i < 0) i = 0;
+          var n = OVR_OPTS.length;
+          oset(OVR_OPTS[(i + dir + n) % n]);
+        }
+        oprev.addEventListener('click', function(ev){ ev.stopPropagation(); orot(-1); });
+        onext.addEventListener('click', function(ev){ ev.stopPropagation(); orot(+1); });
+        oclr.addEventListener('click', function(ev){ ev.stopPropagation(); oset(''); });
+        opaint(); painters.push(opaint);
+        orow.appendChild(olb); orow.appendChild(oprev); orow.appendChild(oval); orow.appendChild(onext); orow.appendChild(oclr);
+        axpop.appendChild(orow);
+      }
+      if (/\bFIXED\b/.test(ax)){
+        var fx = document.createElement('div'); fx.className = 'axp-fixed';
+        fx.textContent = painters.length ? 'Part of this element is fixed by design.' : 'Fixed by design — not adjustable.';
+        axpop.appendChild(fx);
+      }
+      axpopSync = function(){ painters.forEach(function(p){ p(); }); };
+      document.body.appendChild(axpop);
+      var left = Math.max(8, Math.min(x + 12, window.innerWidth - axpop.offsetWidth - 8));
+      var top  = Math.max(8, Math.min(y + 12, window.innerHeight - axpop.offsetHeight - 8));
+      axpop.style.left = left + 'px'; axpop.style.top = top + 'px';
+    }
+    document.addEventListener('click', function(ev){
+      if (!d.hasAttribute('data-dev')){ closePop(); return; } /* popover lives only in Labels mode */
+      var t = ev.target;
+      if (!t || !t.closest){ closePop(); return; }
+      if (t.closest('#axpop')) return;                         /* popover controls handle themselves */
+      if (t.closest('#edpanel') || t.closest('#anno')) return; /* panel + Labels button never element-click */
+      var el = t.closest('[data-ax]');
+      if (!el){ closePop(); return; }
+      ev.preventDefault(); ev.stopPropagation();               /* links must not navigate in Labels mode */
+      openPop(el, ev.clientX, ev.clientY);
+    });
+    document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closePop(); });
+    refreshFlags(); /* initial ⚠ labels + readout for the restored axes */
+  })();
+})();
+</script>
+</body>
+</html>
