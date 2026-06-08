@@ -50,6 +50,29 @@ const dashboardTabs = [
       </div>
     </nav>
 
+    <!-- Data freshness / QC status — fed by public/data-status.json (written by publish-from-iwt.cjs) -->
+    <div class="dash-status-bar"><span id="dashStatus" class="dash-status" aria-live="polite"></span></div>
+    <script is:inline>
+      (async function () {
+        var el = document.getElementById('dashStatus');
+        if (!el) return;
+        try {
+          var r = await fetch('/data-status.json', { cache: 'no-store' });
+          if (!r.ok) return;
+          var s = await r.json();
+          var when = s.dataDate || (s.metrics && s.metrics.newest) || (s.baseline && s.baseline.newest) || '';
+          if (s.state === 'ok') {
+            el.textContent = '● Data current as of ' + (when || '—') + (s.pushPending ? ' · sync pending' : '');
+            el.className = 'dash-status' + (s.pushPending ? ' warn' : '');
+          } else if (s.state === 'blocked' || s.state === 'error') {
+            el.textContent = '⚠ Latest refresh blocked — showing last good data' + (when ? ' (' + when + ')' : '');
+            el.className = 'dash-status warn';
+            if (s.failures && s.failures.length) el.title = s.failures.join(' · ');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- SEO content slot — each page provides static HTML context -->
     <div class="dash-seo">
       <slot name="seo" />
@@ -126,8 +149,21 @@ const dashboardTabs = [
     max-width: 100%;
     min-height: 60vh;
   }
+  .dash-status-bar {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 6px 2rem 0;
+  }
+  .dash-status {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.3px;
+  }
+  .dash-status.warn { color: #E0A030; font-weight: 700; }
   @media (max-width: 720px) {
     .dash-nav-inner { padding: 0 1rem; gap: 12px; }
     .dash-seo { padding: 1rem 1rem 0; }
+    .dash-status-bar { padding: 6px 1rem 0; }
   }
 </style>

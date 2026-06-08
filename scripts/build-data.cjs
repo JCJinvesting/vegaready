@@ -118,25 +118,31 @@ function main() {
   const iwtPath = args.includes('--iwt-path')
     ? args[args.indexOf('--iwt-path') + 1]
     : DEFAULT_IWT_PATH;
+  // Optional: write to a staging path instead of the live bundle. Used by
+  // publish-from-iwt.cjs to quality-check a regenerated bundle BEFORE it
+  // replaces the committed one. Defaults to OUTPUT (the live bundle).
+  const outPath = args.includes('--out')
+    ? path.resolve(args[args.indexOf('--out') + 1])
+    : OUTPUT;
 
   console.log(`[build-data] Reading IWT data from: ${iwtPath}`);
 
   const { payload, arrayCount, totalEntries, errors } = buildFromLocal(iwtPath);
 
   // Ensure output directory exists
-  const outputDir = path.dirname(OUTPUT);
+  const outputDir = path.dirname(outPath);
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  fs.writeFileSync(OUTPUT, JSON.stringify(payload), 'utf8');
+  fs.writeFileSync(outPath, JSON.stringify(payload), 'utf8');
 
   const sizeKB = (Buffer.byteLength(JSON.stringify(payload)) / 1024).toFixed(1);
   console.log(`[build-data] Bundled ${arrayCount} arrays, ${totalEntries} entries (${sizeKB} KB)`);
   if (errors.length > 0) {
     console.log(`[build-data] WARNINGS: ${errors.join('; ')}`);
   }
-  console.log(`[build-data] Output: ${OUTPUT}`);
+  console.log(`[build-data] Output: ${outPath}`);
 }
 
 main();

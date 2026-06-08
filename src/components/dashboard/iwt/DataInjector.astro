@@ -10,25 +10,19 @@
  * For Astro, we read the JSON files during the server-side render phase
  * and output a <script> tag with the data inline.
  */
-import fs from 'node:fs';
-import path from 'node:path';
+// Embed the IWT data bundle via a build-time JSON import. Vite parses and
+// inlines it into the compiled output, so window.__IWT_DATA__ is populated in
+// BOTH static prerender and Cloudflare Workers SSR.
+//
+// Previously this used fs.readFileSync('./src/data/iwt-bundle.json'), which
+// silently returned '{}' under the Workers runtime introduced by the
+// "Astro 6 + @astrojs/cloudflare 13" upgrade — node:fs can't read a src/ file
+// that isn't shipped inside the Worker bundle — which left every dashboard
+// scope (War Room, Gulf, Casualties, Iran, US, Israel, Analytics, Sources…)
+// blank even though the data was still committed to the repo.
+import iwtData from '../../../data/iwt-bundle.json';
 
-// In the Astro build, we need to locate the IWT data files.
-// They'll be copied into the vegaready project at build time via a script,
-// or fetched from the IWT Cloudflare Worker API.
-// For now, use the data baked into a static JSON bundle.
-
-let dataPayload = '{}';
-
-try {
-  // Try to read from a pre-built data bundle (created by the build script)
-  const bundlePath = path.resolve('./src/data/iwt-bundle.json');
-  if (fs.existsSync(bundlePath)) {
-    dataPayload = fs.readFileSync(bundlePath, 'utf8');
-  }
-} catch (e) {
-  console.warn('[DataInjector] Could not load data bundle:', e.message);
-}
+const dataPayload = JSON.stringify(iwtData);
 ---
 
 <script is:inline set:html={`window.__IWT_DATA__ = ${dataPayload};`}></script>
