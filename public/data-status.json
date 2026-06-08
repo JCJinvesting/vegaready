@@ -1,9 +1,10 @@
 {
   "state": "ok",
-  "checkedAt": "2026-06-08T12:53:13.027Z",
-  "summary": "Data current as of 2026-05-31.",
-  "dataDate": "2026-05-31",
-  "publishedAt": "2026-06-08T12:53:13.027Z",
+  "checkedAt": "2026-06-08T13:05:46.288Z",
+  "summary": "Data current as of Jun 8 (day 101).",
+  "dataDate": "Jun 8",
+  "day": 101,
+  "publishedAt": "2026-06-08T13:05:46.288Z",
   "metrics": {
     "keyCount": 54,
     "arrayCount": 46,
@@ -65,8 +66,11 @@
       "GULF_NAVAL_ASSETS": 14,
       "PROVENANCE": 233
     },
-    "newest": "2026-05-31",
-    "generatedAt": "2026-06-08T12:53:13.021Z"
+    "maxDay": 101,
+    "dayLabel": "Jun 8",
+    "newestISO": "2026-05-31",
+    "newest": "Jun 8",
+    "generatedAt": "2026-06-08T13:05:46.284Z"
   },
   "warnings": []
 }
