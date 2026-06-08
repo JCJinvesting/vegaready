@@ -29,3 +29,8 @@ SyntaxError: Missing initializer in const declaration
 ## 2026-06-08T13:05:46.289Z — PUBLISHED
 - 46 arrays · 4975 entries · 1642KB · day 101 (Jun 8)
 - Snapshot: iwt-bundle.Jun 8_130546.json
+
+## 2026-06-08T19:17:28.679Z — PUBLISHED
+- 46 arrays · 5030 entries · 1661KB · day 101 (Jun 8)
+- Snapshot: iwt-bundle.Jun 8_191728.json
+- warn Data has not advanced — still day 101 (Jun 8); the ingest ran but added no newer day.
