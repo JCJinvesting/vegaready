@@ -2137,4 +2137,163 @@ anno.onclick = function(){
     { re:/\bGOLD\b/,                   id:'opt-gold',      label:'Gold'     },
     { re:/\bDATA\b/,                   id:'opt-data',      label:'Data'     },
     { re:/\bBOX\b/,                    id:'opt-box',       label:'Boxes'    },
-    { re:/SECTION · Utili
+    { re:/SECTION · Utility strip/,    id:'opt-sx-util',   label:'Utility'  },
+    { re:/SECTION · CTA fill/,         id:'opt-sx-cta',    label:'CTA fill' },
+    { re:/SECTION · Ledger/,           id:'opt-sx-ledger', label:'Ledger'   },
+    { re:/SECTION · Rail nodes/,       id:'opt-sx-rail',   label:'Rail'     },
+    { re:/SECTION · Abyss band/,       id:'opt-sx-abyss',  label:'Abyss'    },
+    { re:/SECTION · Capability cards/, id:'opt-sx-caps',   label:'Caps'     },
+    { re:/GROUND · Footer/,            id:'opt-sx-foot',   label:'Foot grnd'},
+    { re:/GROUND · Masthead/,          id:'opt-sx-mast',   label:'Mast grnd'},
+    { re:/\bBORDER\b/,                 id:'opt-bline',     label:'Border'   },
+    { re:/\bSEM\b/,                    id:'opt-sem',       label:'Semantic' },
+    { re:/\bDIALECT\b/,                id:'opt-dialect',   label:'Dialect'  }
+  ];
+  var AX_BY_ID = {};
+  AXES.forEach(function(a){ AX_BY_ID[a.id] = a; });
+  var axpop = null, axpopSync = null;
+  function closePop(){
+    if (axpop && axpop.parentNode) axpop.parentNode.removeChild(axpop);
+    axpop = null; axpopSync = null;
+  }
+  function rotateAxis(a, dir){
+    var sel = document.getElementById(a.id);
+    if (!sel) return;
+    var n = sel.options.length;
+    setAxis(a, sel.options[(sel.selectedIndex + dir + n) % n].value);
+  }
+  function openPop(el, x, y){
+    closePop();
+    var ax = el.getAttribute('data-ax') || '';
+    axpop = document.createElement('div'); axpop.id = 'axpop';
+    var h = document.createElement('div'); h.className = 'axp-h'; h.textContent = ax;
+    axpop.appendChild(h);
+    var painters = [];
+    AX_ROWS.forEach(function(r){
+      if (!r.re.test(ax)) return;
+      var a = AX_BY_ID[r.id], sel = document.getElementById(r.id);
+      if (!a || !sel) return;
+      var row = document.createElement('div'); row.className = 'axp-row';
+      var lb = document.createElement('span'); lb.className = 'axp-l'; lb.textContent = r.label;
+      var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'axp-b'; prev.textContent = '◀'; prev.setAttribute('aria-label', 'Previous ' + r.label + ' option');
+      var val = document.createElement('span'); val.className = 'axp-v';
+      var next = document.createElement('button'); next.type = 'button'; next.className = 'axp-b'; next.textContent = '▶'; next.setAttribute('aria-label', 'Next ' + r.label + ' option');
+      function paint(){ var o = sel.options[sel.selectedIndex]; val.textContent = o ? o.text : ''; val.title = val.textContent; }
+      prev.addEventListener('click', function(ev){ ev.stopPropagation(); rotateAxis(a, -1); });
+      next.addEventListener('click', function(ev){ ev.stopPropagation(); rotateAxis(a, +1); });
+      paint(); painters.push(paint);
+      row.appendChild(lb); row.appendChild(prev); row.appendChild(val); row.appendChild(next);
+      axpop.appendChild(row);
+    });
+    /* v6 final layer · TRIM — large bands only: −2…+2 final overlay over the rendered fill */
+    TRIM_SECS.forEach(function(t){
+      if (!t.re.test(ax)) return;
+      var row = document.createElement('div'); row.className = 'axp-row';
+      var lb = document.createElement('span'); lb.className = 'axp-l'; lb.textContent = 'Trim';
+      var mn = document.createElement('button'); mn.type = 'button'; mn.className = 'axp-b'; mn.textContent = '−'; mn.setAttribute('aria-label', 'Trim darker');
+      var val = document.createElement('span'); val.className = 'axp-v';
+      var pl = document.createElement('button'); pl.type = 'button'; pl.className = 'axp-b'; pl.textContent = '+'; pl.setAttribute('aria-label', 'Trim lighter');
+      function cur(){ var v = parseInt(d.getAttribute(t.attr), 10); return isNaN(v) ? 0 : v; }
+      function paint(){ var v = cur(); val.textContent = (v > 0 ? '+' : '') + v; val.title = 'Trim ' + val.textContent; }
+      function step(dir){
+        var v = Math.max(-2, Math.min(2, cur() + dir));
+        d.setAttribute(t.attr, String(v));
+        try { localStorage.setItem(t.key, String(v)); } catch(e){}
+        paint();
+      }
+      mn.addEventListener('click', function(ev){ ev.stopPropagation(); step(-1); });
+      pl.addEventListener('click', function(ev){ ev.stopPropagation(); step(+1); });
+      paint(); painters.push(paint);
+      row.appendChild(lb); row.appendChild(mn); row.appendChild(val); row.appendChild(pl);
+      axpop.appendChild(row);
+    });
+    /* v6.1 · FRAME — .btn-gold frame colour (Gold default follows the GOLD axis); wraparound */
+    FRAME_SECS.forEach(function(fs){
+      if (!fs.re.test(ax)) return;
+      var row = document.createElement('div'); row.className = 'axp-row';
+      var lb = document.createElement('span'); lb.className = 'axp-l'; lb.textContent = 'Frame';
+      var prev = document.createElement('button'); prev.type = 'button'; prev.className = 'axp-b'; prev.textContent = '◀'; prev.setAttribute('aria-label', 'Previous frame colour');
+      var val = document.createElement('span'); val.className = 'axp-v';
+      var next = document.createElement('button'); next.type = 'button'; next.className = 'axp-b'; next.textContent = '▶'; next.setAttribute('aria-label', 'Next frame colour');
+      function paint(){ var v = d.getAttribute(fs.attr); v = FRAME_OPTS.indexOf(v) > -1 ? v : 'gold'; val.textContent = FRAME_NAMES[v] || v; val.title = val.textContent; }
+      function step(dir){
+        var v0 = d.getAttribute(fs.attr); if (FRAME_OPTS.indexOf(v0) < 0) v0 = 'gold';
+        var i = FRAME_OPTS.indexOf(v0), n = FRAME_OPTS.length;
+        var v = FRAME_OPTS[(i + dir + n) % n];
+        d.setAttribute(fs.attr, v);
+        try { if (v === 'gold') localStorage.removeItem(fs.key); else localStorage.setItem(fs.key, v); } catch(e){}
+        paint();
+      }
+      prev.addEventListener('click', function(ev){ ev.stopPropagation(); step(-1); });
+      next.addEventListener('click', function(ev){ ev.stopPropagation(); step(+1); });
+      paint(); painters.push(paint);
+      row.appendChild(lb); row.appendChild(prev); row.appendChild(val); row.appendChild(next);
+      axpop.appendChild(row);
+    });
+    /* v6 final layer · THIS ELEMENT ONLY — unlink override for the clicked element */
+    var oid = el.getAttribute('data-ovr');
+    if (oid && window.__edOvr){
+      var orow = document.createElement('div'); orow.className = 'axp-row';
+      var olb = document.createElement('span'); olb.className = 'axp-l'; olb.textContent = 'This only';
+      var oprev = document.createElement('button'); oprev.type = 'button'; oprev.className = 'axp-b'; oprev.textContent = '◀'; oprev.setAttribute('aria-label', 'Previous element-only colour');
+      var oval = document.createElement('span'); oval.className = 'axp-v';
+      var onext = document.createElement('button'); onext.type = 'button'; onext.className = 'axp-b'; onext.textContent = '▶'; onext.setAttribute('aria-label', 'Next element-only colour');
+      var oclr = document.createElement('button'); oclr.type = 'button'; oclr.className = 'axp-b'; oclr.textContent = '✕'; oclr.setAttribute('aria-label', 'Clear element override');
+      function ocur(){ return readOvr()[oid] || ''; }
+      function opaint(){ var v = ocur(); oval.textContent = v ? (OVR_NAMES[v] || v) : '(inherit)'; oval.title = oval.textContent; }
+      function oset(v){ var m = readOvr(); if (v) m[oid] = v; else delete m[oid]; writeOvr(m); opaint(); }
+      function orot(dir){
+        var i = OVR_OPTS.indexOf(ocur()); if (i < 0) i = 0;
+        var n = OVR_OPTS.length;
+        oset(OVR_OPTS[(i + dir + n) % n]);
+      }
+      oprev.addEventListener('click', function(ev){ ev.stopPropagation(); orot(-1); });
+      onext.addEventListener('click', function(ev){ ev.stopPropagation(); orot(+1); });
+      oclr.addEventListener('click', function(ev){ ev.stopPropagation(); oset(''); });
+      opaint(); painters.push(opaint);
+      orow.appendChild(olb); orow.appendChild(oprev); orow.appendChild(oval); orow.appendChild(onext); orow.appendChild(oclr);
+      axpop.appendChild(orow);
+    }
+    if (/\bFIXED\b/.test(ax)){
+      var fx = document.createElement('div'); fx.className = 'axp-fixed';
+      fx.textContent = painters.length ? 'Part of this element is fixed by design.' : 'Fixed by design — not adjustable.';
+      axpop.appendChild(fx);
+    }
+    axpopSync = function(){ painters.forEach(function(p){ p(); }); };
+    document.body.appendChild(axpop);
+    var left = Math.max(8, Math.min(x + 12, window.innerWidth - axpop.offsetWidth - 8));
+    var top  = Math.max(8, Math.min(y + 12, window.innerHeight - axpop.offsetHeight - 8));
+    axpop.style.left = left + 'px'; axpop.style.top = top + 'px';
+  }
+  document.addEventListener('click', function(ev){
+    if (!d.hasAttribute('data-dev')){ closePop(); return; } /* popover lives only in Labels mode */
+    var t = ev.target;
+    if (!t || !t.closest){ closePop(); return; }
+    if (t.closest('#axpop')) return;                         /* popover controls handle themselves */
+    if (t.closest('#edpanel') || t.closest('#anno')) return; /* panel + Labels button never element-click */
+    var el = t.closest('[data-ax]');
+    if (!el){ closePop(); return; }
+    ev.preventDefault(); ev.stopPropagation();               /* links must not navigate in Labels mode */
+    openPop(el, ev.clientX, ev.clientY);
+  });
+  document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') closePop(); });
+  refreshFlags(); /* initial ⚠ labels + readout for the restored axes */
+})();
+
+// ── canvas grammar: abyss gravity crossfade (targets var(--deep) via .cv-abyss) ──
+(function(){
+  /* reduced motion: skip the crossfade entirely — canvas stays put, content unaffected */
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var beat = document.querySelector('[data-cv="abyss"]');
+  if (!beat || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      document.body.classList.toggle('cv-abyss', e.isIntersecting);
+    });
+  }, { threshold: 0.32 });
+  io.observe(beat);
+})();
+</script>
+
+</body>
+</html>
