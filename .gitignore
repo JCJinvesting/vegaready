@@ -201,8 +201,14 @@ dist
 ### Astro ###
 .astro/
 
-# Generated data bundle (built from IWT at build time)
+# Generated data bundle (built from IWT at build time; tracked + committed so
+# Cloudflare can serve it without the IWT folder — see publish-from-iwt.cjs)
 src/data/iwt-bundle.json
+# Transient staging bundle — publish-from-iwt.cjs QC-checks this before it
+# replaces the live bundle; never commit it.
+src/data/iwt-bundle.staging.json
+# Local-only run status / alert (the COMMITTED status lives at public/data-status.json).
+_status/
 
 ### Repo backups & stray files (keep on disk, out of git) ###
 # Full-repo git bundle backups (e.g. vega.bundle) — belong outside the working tree
