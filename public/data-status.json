@@ -1,9 +1,10 @@
 {
   "state": "ok",
-  "checkedAt": "2026-06-08T11:55:22.740Z",
-  "summary": "DRY RUN — would publish 46 arrays · 4975 entries · 1642KB · newest 2026-05-31",
-  "dryRun": true,
-  "staged": {
+  "checkedAt": "2026-06-08T11:56:03.641Z",
+  "summary": "Data current as of 2026-05-31.",
+  "dataDate": "2026-05-31",
+  "publishedAt": "2026-06-08T11:56:03.641Z",
+  "metrics": {
     "keyCount": 54,
     "arrayCount": 46,
     "totalEntries": 4975,
@@ -65,7 +66,7 @@
       "PROVENANCE": 233
     },
     "newest": "2026-05-31",
-    "generatedAt": "2026-06-08T11:55:22.740Z"
+    "generatedAt": "2026-06-08T11:56:03.634Z"
   },
   "warnings": []
 }
