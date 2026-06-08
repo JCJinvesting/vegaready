@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="t1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Desk · Markets — VegaReady</title>
+<meta name="description" content="VegaReady markets desk: energy under escalation. War-risk premia, chokepoint files, and the free morning brief from JCJ Investing's public regime filter.">
+<script>
+/* option-axis init — all six stores read before first paint to avoid flash */
+(function(){
+  var d = document.documentElement;
+  function g(k, f, re){
+    var v = null;
+    try { v = localStorage.getItem(k); } catch(e){}
+    return (v && re.test(v)) ? v : f;
+  }
+  d.setAttribute('data-theme',   g('ed-theme',   't1',    /^t[1-8]$/));
+  d.setAttribute('data-gold',    g('ed-gold',    'g3',    /^g[1-3]$/));
+  d.setAttribute('data-grey',    g('ed-grey',    'warm',  /^(warm|cool)$/));
+  d.setAttribute('data-sem',     g('ed-sem',     's2',    /^s[1-3]$/));
+  d.setAttribute('data-dialect', g('ed-dialect', 'fixed', /^(auto|fixed)$/));
+  d.setAttribute('data-deep',    g('ed-deep',    'b2',    /^b[12]$/));
+  d.setAttribute('data-chroma',  g('ed-chroma',  'rich',  /^(rich|capped)$/));
+  /* BOX system — single colour control for every box (replaces the retired ptone axis) */
+  var HUE = 'b-(tonal|navy|teal|petrol|pine|slate|graphite|gunmetal|lifted|bone|plum|bronze|oxblood)';
+  d.setAttribute('data-box',    g('ed-box',    'b-tonal', new RegExp('^' + HUE + '$')));
+  d.setAttribute('data-scheme', g('ed-scheme', 'tworole', /^(uniform|tworole)$/));
+  d.setAttribute('data-box2',   g('ed-box2',   'sunk1',   new RegExp('^(' + HUE + '|sunk[1-4])$')));
+  d.setAttribute('data-bline',  g('ed-bline',  'auto',    new RegExp('^(auto|' + HUE + ')$')));
+  try { localStorage.removeItem('ed-ptone'); } catch(e){} /* legacy migration: ptone axis retired June 2026 */
+  if (g('ed-panel', 'open', /^(open|collapsed)$/) === 'collapsed') d.setAttribute('data-panel','collapsed');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..800&family=Fraunces:opsz,wght@9..144,300..700&family=Lora:ital,wght@0,400..700;1,500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════════
+   THE DESK — page 3 of The Edition · markets/data surface + free-brief funnel
+   Shared theme architecture: vars on html[data-theme], t1–t8.
+   No shadows. No animations. All data static & labeled illustrative.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── THEMES ───────────────────────────────────────────────── */
+html{
+  /* t1 Oxford (baseline) */
+  --canvas:#0D1626;
+  --card:#131E32;     /* RECIPE: hue-held, chroma rises */
+  --cardline:#1E2E4A;
+  --deep:#0A0F1A;
+  --inverse:#EDE5D2;--inv-ink:#33302A;--inv-body:#5C5546;--inv-link:#2A6478;
+  --ink:#F2EBDC;--body:#DCD4C2;--muted:#97917F;
+  --eyeb:#C9A24A;--struct:#5FA897;
+  --data:#5E83D9;--anchor:#1E3552;--bench:#FFD89A;
+  --pos:#46C9A0;--neg:#E2725B;--warn:#E0B262;--latent:#9AA5B1;--emph:#E3C77E;
+  /* the deep departure band is dark in every theme — fixed light register */
+  --deep-ink:#F2EBDC;--deep-body:#DCD4C2;--deep-muted:#97917F;--deep-eyeb:#C9A24A;--deep-link:#7FC4AE;
+}
+html[data-theme="t2"]{--canvas:#0A0F1A;--card:#111C30;--cardline:#1C2A44;--deep:#070B12}
+html[data-theme="t3"]{--canvas:#13171D;--card:#1C2129;--cardline:#262E3A;--deep:#0C0F13}
+html[data-theme="t4"]{--canvas:#11201C;--card:#172924;--cardline:#223B34;--deep:#0A1410}
+html[data-theme="t5"]{--canvas:#0F1B1F;--card:#152429;--cardline:#20353B;--deep:#0A1216}
+html[data-theme="t6"]{--canvas:#0B0D11;--card:#0D1626;--cardline:#1E2E4A;--deep:#07090D}
+html[data-theme="t7"]{--canvas:#232B33;--card:#1C2229;--cardline:#394551;--deep:#161B21;--inverse:#F2EDE2;--muted:#A39D8E}
+html[data-theme="t8"]{
+  --canvas:#DDE2E6;--card:#FFFFFF;--cardline:#C2CAD1;--deep:#0B2E4E;
+  --ink:#2B2F34;--body:#3A434C;--muted:#4A535C;--eyeb:#8A6420;--struct:#2A6478;
+  --inverse:#0B2E4E;--inv-ink:#E9EFF6;--inv-body:#B9C8D8;--inv-link:#7EC9B4;
+  --data:#2A5FA8;--anchor:#0B2E4E;--bench:#67727E;
+  --pos:#1E7A5F;--neg:#B0452C;--warn:#95621B;--latent:#5C6670;--emph:#8A6420;
+}
+
+/* ════ CHROMA axis — canvas saturation cap (placed after the theme blocks so it wins the cascade).
+   Research gate: large grounds ≤ C 0.025; Oxford measures C 0.035, Abyss similar.
+   capped re-tunes ONLY the two over-chromatic navy themes (t1/t2); t3–t8 already pass the cap — no rules needed. */
+html[data-chroma="capped"][data-theme="t1"]{--canvas:#0E1520;--card:#131D2B;--cardline:#1E2B3F;--deep:#0A0F18}
+html[data-chroma="capped"][data-theme="t2"]{--canvas:#101826;--card:#162133;--cardline:#21304A;--deep:#0C1220}
+
+/* ════ OPTION AXES — attribute layers; override theme vars by cascade ════ */
+/* GOLD ladder — g3 = current rich gold, no override */
+html[data-gold="g1"]{--eyeb:color-mix(in srgb,var(--muted) 60%,var(--ink))}  /* eyebrows→warm ink-grey; metal stays only where gradients are literal */
+html[data-gold="g1"] .kick::after{opacity:.3}
+html[data-gold="g2"]{--eyeb:#B09A66}
+html[data-gold="g2"] .kick::after{opacity:.6}
+/* the deep funnel band runs a fixed light-on-dark register; ladder the band's own eyebrow var
+   against its fixed inks so gold steps bite there too */
+html[data-gold="g1"]{--deep-eyeb:color-mix(in srgb,#97917F 60%,#F2EBDC)}
+html[data-gold="g2"]{--deep-eyeb:#B09A66}
+/* GREY temperature — per-theme cool values, hue-following */
+html[data-grey="cool"]{--muted:#8C96A4}
+html[data-grey="cool"][data-theme="t4"],html[data-grey="cool"][data-theme="t5"]{--muted:#8A9892}
+html[data-grey="cool"][data-theme="t7"]{--muted:#9AA3AE}
+html[data-grey="cool"][data-theme="t8"]{--muted:#4A535C}
+/* SEMANTIC recipe'd — s2 = current; this page defines --pos/--neg/--data/--warn/--latent,
+   so s1 deepens pos/neg/data/warn (--latent has no s1 value, stays current) */
+html[data-sem="s1"]{--pos:#33A07E;--neg:#C2604C;--data:#5878B8;--warn:#C99A55}
+/* s3 Desk Standard — TradingView/Coinbase pair (pos/neg/warn only; --data/--latent stay current) */
+html[data-sem="s3"]{--pos:#26A69A;--neg:#EF5350;--warn:#F89656}
+/* DIALECT — auto keeps verdigris #5FA897 on navy themes (t1/t2/t3/t6/t7); fixed = current everywhere */
+html[data-dialect="auto"][data-theme="t4"],html[data-dialect="auto"][data-theme="t5"]{--struct:#5878B8}
+html[data-dialect="auto"][data-theme="t8"]{--struct:#2A6478}
+/* DEEP guaranteed step (−6L-ish per theme; t8 unchanged) */
+html[data-deep="b1"][data-theme="t1"]{--deep:#070D18}
+html[data-deep="b1"][data-theme="t2"]{--deep:#05080F}
+html[data-deep="b1"][data-theme="t3"]{--deep:#080B10}
+html[data-deep="b1"][data-theme="t4"]{--deep:#07120D}
+html[data-deep="b1"][data-theme="t5"]{--deep:#081014}
+html[data-deep="b1"][data-theme="t6"]{--deep:#04060A}
+html[data-deep="b1"][data-theme="t7"]{--deep:#12161C}
+/* ════ BOX COLOUR system — owner ruling: "anything that has a box is a card or a panel".
+   Replaces the retired PANELS/ptone axis. ONE selector recolours every box on the page.
+   Two tiers:
+   — main tier consumes var(--box) bg / var(--boxline) border
+     (.card statcells + graticule, .utility band, .cta-frame fills, .cmdk frame,
+      .ruled event-tape lines, .corridor map frame, .perf-card subscribe card)
+   — instrument tier consumes var(--box2)/var(--box2line) (.deskpanel, .bleed, .anchor-mini)
+   data-scheme="uniform" collapses the instrument tier onto the main box colour. */
+html{
+  --box:var(--card);--boxline:var(--cardline);
+  --box2:color-mix(in srgb,#000 26%,var(--canvas));--box2line:color-mix(in srgb,var(--ink) 12%,var(--canvas));
+}
+/* BOX — main box colour, 13 hues */
+html[data-box="b-tonal"]{--box:var(--card);--boxline:var(--cardline)}
+html[data-box="b-navy"]{--box:#1E3552;--boxline:#2C466B}
+html[data-box="b-teal"]{--box:#15332F;--boxline:#214841}
+html[data-box="b-petrol"]{--box:#1B313A;--boxline:#28444F}
+html[data-box="b-pine"]{--box:#1E332C;--boxline:#2B463D}
+html[data-box="b-slate"]{--box:#232932;--boxline:#323A46}
+html[data-box="b-graphite"]{--box:#262421;--boxline:#36332E}
+html[data-box="b-gunmetal"]{--box:#252B33;--boxline:#353D47}
+html[data-box="b-lifted"]{--box:color-mix(in srgb,#fff 9%,var(--card));--boxline:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-box="b-bone"]{--box:#EDE5D2;--boxline:#D5C9AE}
+html[data-box="b-plum"]{--box:#2B2230;--boxline:#3D3144}
+html[data-box="b-bronze"]{--box:#2E2619;--boxline:#443A28}
+html[data-box="b-oxblood"]{--box:#2E1D1F;--boxline:#452C2F}
+/* BOX 2 — instrument tier under tworole: same 13 hues + the four surviving sunken constructions */
+html[data-box2="b-tonal"]{--box2:var(--card);--box2line:var(--cardline)}
+html[data-box2="b-navy"]{--box2:#1E3552;--box2line:#2C466B}
+html[data-box2="b-teal"]{--box2:#15332F;--box2line:#214841}
+html[data-box2="b-petrol"]{--box2:#1B313A;--box2line:#28444F}
+html[data-box2="b-pine"]{--box2:#1E332C;--box2line:#2B463D}
+html[data-box2="b-slate"]{--box2:#232932;--box2line:#323A46}
+html[data-box2="b-graphite"]{--box2:#262421;--box2line:#36332E}
+html[data-box2="b-gunmetal"]{--box2:#252B33;--box2line:#353D47}
+html[data-box2="b-lifted"]{--box2:color-mix(in srgb,#fff 9%,var(--card));--box2line:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-box2="b-bone"]{--box2:#EDE5D2;--box2line:#D5C9AE}
+html[data-box2="b-plum"]{--box2:#2B2230;--box2line:#3D3144}
+html[data-box2="b-bronze"]{--box2:#2E2619;--box2line:#443A28}
+html[data-box2="b-oxblood"]{--box2:#2E1D1F;--box2line:#452C2F}
+html[data-box2="sunk1"]{--box2:color-mix(in srgb,#000 26%,var(--canvas));--box2line:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-box2="sunk2"]{--box2:color-mix(in srgb,#13161B 62%,var(--canvas));--box2line:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-box2="sunk3"]{--box2:color-mix(in srgb,#0B1326 72%,var(--canvas));--box2line:#25324B}
+html[data-box2="sunk4"]{--box2:#0C0E12;--box2line:#232830}
+/* SCHEME — uniform collapses both tiers to one colour (after the box2 hues, so it wins the cascade) */
+html[data-scheme="uniform"]{--box2:var(--box);--box2line:var(--boxline)}
+/* BORDER override — auto = lines follow the box colours (no rule); a hue forces BOTH lines */
+html[data-bline="b-tonal"]{--boxline:var(--cardline);--box2line:var(--cardline)}
+html[data-bline="b-navy"]{--boxline:#2C466B;--box2line:#2C466B}
+html[data-bline="b-teal"]{--boxline:#214841;--box2line:#214841}
+html[data-bline="b-petrol"]{--boxline:#28444F;--box2line:#28444F}
+html[data-bline="b-pine"]{--boxline:#2B463D;--box2line:#2B463D}
+html[data-bline="b-slate"]{--boxline:#323A46;--box2line:#323A46}
+html[data-bline="b-graphite"]{--boxline:#36332E;--box2line:#36332E}
+html[data-bline="b-gunmetal"]{--boxline:#353D47;--box2line:#353D47}
+html[data-bline="b-lifted"]{--boxline:color-mix(in srgb,#fff 16%,var(--card));--box2line:color-mix(in srgb,#fff 16%,var(--card))}
+html[data-bline="b-bone"]{--boxline:#D5C9AE;--box2line:#D5C9AE}
+html[data-bline="b-plum"]{--boxline:#3D3144;--box2line:#3D3144}
+html[data-bline="b-bronze"]{--boxline:#443A28;--box2line:#443A28}
+html[data-bline="b-oxblood"]{--boxline:#452C2F;--box2line:#452C2F}
+/* b-bone TEXT FLIP — bone is a light box on a dark canvas: re-ink every box that consumes it.
+   Local var remap (extends the old anchor-mini text-retune pattern to the whole tier):
+   descendants pick up the dark inks automatically, chart/semantic accents mirror the t8
+   light-desk tunings. Instrument tier flips under data-box2 AND under the uniform scheme
+   (where --box2 inherits the bone main box). */
+html[data-box="b-bone"] .card,
+html[data-box="b-bone"] .utility,
+html[data-box="b-bone"] .cta-frame a,
+html[data-box="b-bone"] .perf-card,
+html[data-box2="b-bone"] .deskpanel,
+html[data-box2="b-bone"] .bleed,
+html[data-box2="b-bone"] .anchor-mini,
+html[data-scheme="uniform"][data-box="b-bone"] .deskpanel,
+html[data-scheme="uniform"][data-box="b-bone"] .bleed,
+html[data-scheme="uniform"][data-box="b-bone"] .anchor-mini{
+  --ink:#2E2A22;--body:#4A443A;--muted:#6E6754;
+  --eyeb:#8A6420;--struct:#2A6478;--emph:#8A6420;
+  --data:#2A5FA8;--bench:#67727E;--latent:#5C6670;
+  --pos:#1E7A5F;--neg:#B0452C;--warn:#95621B;
+}
+/* CORRIDOR GUARD — the map's interior cartography (atlas land tones, cream port labels)
+   is a literal light-on-dark construction; the sea plate follows --box across the 12 dark
+   hues but must stay dark under bone and on the light desk (mirrors the brief's pane guard). */
+html[data-box="b-bone"] .corridor,
+html[data-theme="t8"] .corridor{--box:var(--deep);--ink:#F2EBDC} /* local --ink keeps the ink-mix neatlines cream on the dark sea plate */
+/* t8 LIGHT-THEME GUARD — the fixed box hexes and bone are dark-canvas constructions;
+   on the light desk every box returns to t8's own card/cardline. Placed last in the
+   block so it outranks every box/box2/bline rule above (equal specificity, later source). */
+html[data-theme="t8"]{--box:var(--card);--boxline:var(--cardline);--box2:var(--card);--box2line:var(--cardline)}
+
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto!important}
+}
+:focus-visible{outline:2px solid var(--struct);outline-offset:2px;border-radius:4px}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Fraunces',Georgia,serif;font-size:16.5px;line-height:1.65;
+  background:var(--canvas);color:var(--body);
+  -webkit-font-smoothing:antialiased;
+}
+.num{font-family:'Lora',serif;font-variant-numeric:tabular-nums}
+.wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+a{color:inherit}
+h1,h2,h3{color:var(--ink)}
+.muted{color:var(--muted)}
+
+/* ── shared atoms ─────────────────────────────────────────── */
+.eyebrow{
+  font-family:'Lora',serif;font-size:11px;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--eyeb);
+}
+.hairline-gold{height:1px;border:none;background:linear-gradient(90deg,#A8843C,#E3C77E 50%,#A8843C)}
+.card{
+  background:var(--box);
+  border:1px solid var(--boxline);
+  border-radius:10px;
+}
+.cta-frame{display:inline-block;padding:1px;border-radius:10px;background:linear-gradient(90deg,#A8843C,#E3C77E 55%,#A8843C)}
+.cta-frame a{
+  display:inline-flex;align-items:center;gap:10px;border-radius:9px;
+  background:var(--box);color:var(--ink);text-decoration:none; /* BOX system: framed CTA fill */
+  font-family:'Fraunces',serif;font-size:15px;font-weight:600;padding:12px 26px;
+}
+.cta-frame a:hover{background:color-mix(in srgb,var(--ink) 7%,var(--box))}
+.pos{color:var(--pos)}.neg{color:var(--neg)}.warn{color:var(--warn)}.latent{color:var(--latent)}
+
+/* themed SVG strokes/fills */
+svg .ax{stroke:color-mix(in srgb,var(--ink) 8%,transparent);stroke-width:1}
+svg .ln-base{stroke:var(--latent)}
+svg .ln-data{stroke:var(--data)}
+svg .ln-prem{stroke:var(--struct)}
+svg .ln-bench{stroke:var(--bench)}
+svg .t-base{fill:var(--latent)}
+svg .t-data{fill:var(--data)}
+svg .t-prem{fill:var(--struct)}
+svg .t-bench{fill:var(--bench)}
+svg .t-mut{fill:var(--muted)}
+svg .tallyg{stroke:var(--body)}
+
+/* ── 1 · utility bar + masthead ───────────────────────────── */
+.utility{
+  height:32px;background:color-mix(in srgb,#000 18%,var(--box)); /* BOX system: darkened band of the box colour */
+  border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,var(--canvas));
+  font-family:'Lora',serif;font-size:11.5px;font-variant-numeric:tabular-nums;
+}
+.utility .wrap{height:32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tickers{display:flex;gap:22px;white-space:nowrap;overflow:hidden}
+.tickers span b{font-weight:600;color:var(--body)}
+.utility .stamp-time{color:var(--muted);letter-spacing:.08em;white-space:nowrap}
+.masthead{border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas))}
+.masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;padding-top:22px;padding-bottom:18px}
+.wordmark{font-family:'Playfair Display',serif;font-weight:800;font-size:23px;letter-spacing:.02em;color:var(--ink);text-decoration:none}
+.wordmark i{font-style:normal;color:var(--eyeb)}
+.mast-right{display:flex;align-items:center;gap:26px}
+.mast-right a.navlink{
+  font-family:'Lora',serif;font-size:12.5px;letter-spacing:.06em;color:var(--body);
+  text-decoration:none;border-bottom:1px solid transparent;
+}
+.mast-right a.navlink:hover{color:var(--ink);border-bottom-color:var(--struct)}
+.cmdk{
+  font-family:'Lora',serif;font-size:11px;letter-spacing:.08em;color:var(--muted);
+  border:1px solid var(--boxline);border-radius:6px;
+  padding:4px 10px;background:color-mix(in srgb,var(--ink) 5%,var(--canvas));white-space:nowrap;
+}
+
+/* ── 2 · breadcrumb ───────────────────────────────────────── */
+.crumb{padding:20px 0 0}
+.crumb .wrap{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.crumb b{color:var(--eyeb);font-weight:600}
+.crumb .sep{color:var(--struct);margin:0 8px}
+
+/* ── 3 · split hero (S6.1) ────────────────────────────────── */
+.hero{padding:54px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero h1{
+  font-family:'Playfair Display',serif;font-weight:800;
+  font-size:clamp(34px,4.4vw,52px);line-height:1.08;letter-spacing:-.01em;margin:18px 0 16px;
+}
+.hero h1 em{font-style:italic;color:var(--emph)}
+.hero .sub{font-size:17px;color:var(--body);max-width:46ch;margin-bottom:30px}
+/* desk panel — BOX system instrument tier; colour comes from --box2/--box2line on html */
+.deskpanel{
+  background:var(--box2);
+  border:1px solid var(--box2line);
+  border-radius:12px;padding:22px 24px 18px;
+}
+.deskpanel .ph{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
+}
+.deskpanel .ph b{color:var(--ink);font-weight:600}
+.metric-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:color-mix(in srgb,var(--ink) 12%,var(--box2));border:1px solid color-mix(in srgb,var(--ink) 12%,var(--box2));border-radius:8px;overflow:hidden;margin-top:10px}
+.mcell{background:color-mix(in srgb,#000 22%,var(--box2));padding:10px 12px} /* BOX system: cells are wells of the instrument colour */
+.mcell .ml{font-family:'Lora',serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.mcell .mv{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-size:15px;font-weight:600;color:var(--ink)}
+.mcell .mv.mv-struct{color:var(--struct)}
+.mcell .md{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-size:11px;margin-left:6px}
+
+/* ── 4 · day counter + HUD brackets (S3.2-A + S7.4) ───────── */
+.dayband{padding:74px 0 70px;text-align:center}
+.hud{position:relative;display:inline-block;padding:30px 56px}
+.hud .ck{position:absolute;width:16px;height:16px;border:0 solid color-mix(in srgb,var(--struct) 60%,transparent)}
+.hud .ck.tl{top:0;left:0;border-top-width:2px;border-left-width:2px}
+.hud .ck.tr{top:0;right:0;border-top-width:2px;border-right-width:2px}
+.hud .ck.bl{bottom:0;left:0;border-bottom-width:2px;border-left-width:2px}
+.hud .ck.br{bottom:0;right:0;border-bottom-width:2px;border-right-width:2px}
+.hud .tk-label{font-family:'Lora',serif;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.hud .tk-day{font-family:'Lora',serif;font-weight:700;font-size:64px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.dayband .cap{font-family:'Lora',serif;font-size:12px;color:var(--muted);margin-top:18px;letter-spacing:.04em}
+
+/* ── 5 · event ledger (D4.1) ──────────────────────────────── */
+.ledger-sec{padding:10px 0 64px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px;gap:20px;flex-wrap:wrap}
+.sec-head h2{font-family:'Playfair Display',serif;font-weight:700;font-size:30px;margin-top:10px}
+.live-cluster{display:flex;gap:18px;align-items:center}
+.livedot{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'Lora',serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+}
+.livedot .d{width:6px;height:6px;border-radius:50%;background:var(--pos);display:inline-block}
+.livedot.amber .d{background:var(--warn)}
+.livedot.amber{color:var(--warn)}
+.ruled{
+  /* BOX system: the event-tape rules follow the box line hue (kept translucent like the old ink-7% hairlines) */
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 35px,color-mix(in srgb,var(--boxline) 65%,transparent) 35px,color-mix(in srgb,var(--boxline) 65%,transparent) 36px);
+  border-top:1px solid color-mix(in srgb,var(--boxline) 65%,transparent);
+}
+.lrow{display:flex;align-items:center;gap:18px;height:36px;font-size:14.5px}
+.lrow .lday{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-weight:600;font-size:12px;color:var(--eyeb);width:58px;flex:none;letter-spacing:.06em}
+.lrow .ltext{color:var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .lpills{margin-left:auto;display:flex;gap:8px;flex:none}
+.pill{
+  font-family:'Lora',serif;font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  padding:2px 8px;border-radius:3px;border:1px solid;white-space:nowrap;
+}
+.pill.realized{color:var(--pos);border-color:color-mix(in srgb,var(--pos) 40%,transparent);background:color-mix(in srgb,var(--pos) 8%,transparent)}
+.pill.anticipated{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent);background:color-mix(in srgb,var(--warn) 8%,transparent)}
+.pill.latent{color:var(--latent);border-color:color-mix(in srgb,var(--latent) 35%,transparent);background:color-mix(in srgb,var(--latent) 7%,transparent)}
+.pill.verified{color:var(--struct);border-color:color-mix(in srgb,var(--struct) 45%,transparent);background:color-mix(in srgb,var(--struct) 8%,transparent);font-size:8.5px}
+
+/* ── 6 · stat strip ───────────────────────────────────────── */
+.statstrip{padding:0 0 70px}
+.statstrip .wrap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
+.statcell{padding:24px 26px}
+.statcell .sl{font-family:'Lora',serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:14px;line-height:1.6}
+.waffle{display:grid;grid-template-columns:repeat(10,12px);grid-auto-rows:12px;gap:4px}
+.waffle i{display:block;border-radius:2px;background:color-mix(in srgb,var(--ink) 14%,transparent)}
+.waffle i.on{background:var(--pos)}
+/* anchor panel — BOX system instrument tier; the old per-ptone text-retune is now the base:
+   text runs on theme inks so it reads on every --box2 value (bone flip re-inks darker still) */
+.anchor-mini{background:var(--box2);border:1px solid var(--box2line);border-radius:10px;padding:24px 26px}
+.anchor-mini .av{font-family:'Lora',serif;font-weight:700;font-size:40px;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.anchor-mini .av sup{font-size:15px;font-weight:600;color:var(--data);letter-spacing:.04em;vertical-align:super}
+.anchor-mini .sl{color:var(--muted)}
+
+/* ── 7 · full-bleed chart breakout (S6.6) ─────────────────── */
+.prose-narrow{max-width:62ch;margin:0 auto;padding:0 40px;font-size:17px}
+.prose-narrow p{margin-bottom:16px}
+.bleed{margin:38px 0;background:var(--box2)} /* BOX system instrument tier */
+.bleed .inner{max-width:1140px;margin:0 auto;padding:30px 40px 22px}
+.bleed .bh{display:flex;justify-content:space-between;align-items:baseline;font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.bleed .bh b{color:var(--ink);font-weight:600}
+.axiscap{font-family:'Lora',serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px;text-align:right}
+
+/* ── 8 · graticule file + THE CORRIDOR map ────────────────── */
+.geo-sec{padding:64px 0 70px}
+.geo-sec .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:24px;align-items:stretch}
+.graticule{
+  position:relative;padding:26px 28px;overflow:hidden;
+  background-image:
+    repeating-linear-gradient(to right,color-mix(in srgb,var(--ink) 5%,transparent) 0,color-mix(in srgb,var(--ink) 5%,transparent) 1px,transparent 1px,transparent 60px),
+    repeating-linear-gradient(to bottom,color-mix(in srgb,var(--ink) 5%,transparent) 0,color-mix(in srgb,var(--ink) 5%,transparent) 1px,transparent 1px,transparent 60px);
+}
+.graticule .gh{font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.graticule .gh b{color:var(--ink);font-weight:600}
+.gfact{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent);font-size:14px}
+.gfact:last-child{border-bottom:none}
+.gfact .gk{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.gfact .gv{font-family:'Lora',serif;font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink);white-space:nowrap}
+/* THE CORRIDOR — real-geography map · sea = var(--deep), dark in all 8 themes.
+   Map register colours are owner-licensed familiar atlas tones, scoped to maps only. */
+.corridor{
+  background:var(--box); /* BOX system: the map FRAME (container) follows the box; interior cartography untouched */
+  border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);   /* neatline outer @8% — ink-following so it reads on any box */
+  border-radius:10px;padding:7px;
+}
+.corridor .neat{
+  border:1px solid color-mix(in srgb,var(--ink) 22%,transparent);  /* neatline inner @22% */
+  border-radius:6px;padding:18px 20px 10px;height:100%;
+  display:flex;flex-direction:column;
+}
+.corridor .ch{
+  display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  font-family:'Lora',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--deep-muted);margin-bottom:10px;
+}
+.corridor .ch b{color:var(--deep-ink);font-weight:600}
+.corridor svg{display:block;width:100%;height:auto;flex:1}
+.corridor .land{fill:#3E4637;stroke:#6B7361;stroke-width:1;stroke-linejoin:round}
+.corridor .landlbl{font-family:'Lora',serif;font-size:8.5px;font-weight:600;letter-spacing:.26em;fill:#8E947F}
+.corridor .sealbl{font-family:'Lora',serif;font-style:italic;font-size:9px;letter-spacing:.2em;fill:#7E8B95}
+.corridor .route{fill:none;stroke:#5FA897;stroke-width:1.6;stroke-dasharray:1.5 5;stroke-linecap:round}
+.corridor .routelbl{font-family:'Lora',serif;font-size:8.5px;letter-spacing:.18em;fill:#5FA897}
+.corridor .portlbl{font-family:'Lora',serif;font-size:8.5px;letter-spacing:.16em;fill:#DCD4C2}
+.corridor .goldlbl{font-family:'Lora',serif;font-size:7.5px;font-weight:600;letter-spacing:.18em;fill:#C9A24A}
+
+/* ── 9 · THE FUNNEL — free-brief band, the page's single departure ── */
+.funnel{
+  background:var(--deep);padding:88px 0 92px;
+  border-top:1px solid color-mix(in srgb,#F2EBDC 8%,transparent);
+  border-bottom:1px solid color-mix(in srgb,#F2EBDC 8%,transparent);
+}
+.funnel .eyebrow{color:var(--deep-eyeb)}
+.funnel h2{
+  font-family:'Playfair Display',serif;font-weight:800;
+  font-size:clamp(28px,3.4vw,40px);color:var(--deep-ink);margin:14px 0 12px;
+}
+.funnel .lede{font-size:17px;color:var(--deep-body);max-width:54ch;margin-bottom:42px}
+/* perforated subscribe card (D2.3) — BOX system: now a box like everything else
+   (same construction; text on theme inks so any box colour reads; the bone flip
+   restores the old inverse register when Bone Inverse is selected) */
+.perf-card{
+  display:inline-block;background:var(--box);color:var(--body);
+  border:1px solid var(--boxline);
+  border-radius:10px;padding:34px 52px 28px;max-width:520px;text-align:center;
+}
+.perf-card h3{font-family:'Playfair Display',serif;font-weight:800;font-size:26px;color:var(--ink);margin-bottom:6px}
+.perf-card .pc-sub{font-size:14.5px;color:var(--body);margin-bottom:20px}
+.tearline{border:none;border-top:1.5px dashed color-mix(in srgb,var(--ink) 38%,var(--box));margin:0 -28px 18px}
+.perf-card .sub-link{
+  font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--struct);
+  text-decoration:underline;text-underline-offset:3px;
+}
+.perf-card .sub-link:hover{color:color-mix(in srgb,var(--struct) 80%,var(--ink))}
+.perf-card .pc-fine{font-family:'Lora',serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--body) 85%,var(--box));margin-top:14px}
+/* quiet fund note */
+.fundnote{
+  margin-top:46px;max-width:62ch;
+  border-top:1px solid color-mix(in srgb,#F2EBDC 12%,transparent);
+  padding-top:22px;
+}
+.fundnote .fn-label{font-family:'Lora',serif;font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--deep-muted);margin-bottom:10px}
+.fundnote p{font-size:15.5px;color:var(--deep-body)}
+.fundnote a{
+  display:inline-block;margin-top:12px;text-decoration:none;
+  font-family:'Lora',serif;font-size:13.5px;letter-spacing:.03em;
+  color:var(--deep-link);border-bottom:1px solid color-mix(in srgb,var(--deep-link) 55%,transparent);
+}
+.fundnote a:hover{color:#A4DCC9;border-bottom-color:#A4DCC9}
+
+/* ── 10 · CTA section (D5.1-A dot grid) — full section presence ── */
+.ctazone{
+  padding:110px 0;text-align:center;
+  background-image:radial-gradient(color-mix(in srgb,var(--ink) 9%,transparent) 1px,transparent 1px);
+  background-size:22px 22px;
+  border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent);
+}
+.ctazone .cz-eyebrow{margin-bottom:18px}
+.ctazone h2{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(26px,3vw,36px);margin-bottom:30px}
+
+/* ── 11 · footer ──────────────────────────────────────────── */
+footer{border-top:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas));padding:58px 0 40px;background:color-mix(in srgb,#000 14%,var(--canvas))}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px}
+.fbrand .wordmark{font-size:20px}
+.fbrand p{font-size:13.5px;color:var(--muted);margin-top:12px;max-width:34ch}
+.fcol h4{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--eyeb);font-weight:600;margin-bottom:16px}
+.fcol a{display:block;font-size:14px;color:var(--body);text-decoration:none;margin-bottom:10px}
+.fcol a:hover{color:var(--ink)}
+.legal{margin-top:46px;padding-top:22px;border-top:1px solid color-mix(in srgb,var(--ink) 10%,transparent);font-family:'Lora',serif;font-size:11px;color:var(--muted);line-height:1.8}
+
+/* ── annotation mode (bottom-right) ───────────────────────── */
+#anno{
+  position:fixed;right:18px;bottom:18px;z-index:90;
+  font-family:'Lora',serif;font-size:12px;letter-spacing:.06em;
+  background:#1C2128;color:#E3C77E;border:1px solid rgba(227,199,126,.45);
+  border-radius:8px;padding:8px 14px;cursor:pointer;
+}
+#anno:hover{background:#242A33}
+body.anno-on [data-dev]{outline:1px dashed rgba(227,199,126,.65);outline-offset:3px;position:relative}
+body.anno-on [data-dev]::after{
+  content:attr(data-dev);position:absolute;top:-9px;left:0;
+  font:700 9px Lora,serif;letter-spacing:.05em;
+  background:#1C2128;color:#E3C77E;padding:2px 7px;border-radius:4px;
+  z-index:80;white-space:nowrap;
+}
+
+/* ── Options panel (bottom-left, fixed dark chrome — legible on every theme) ── */
+#edpanel{
+  position:fixed;left:22px;bottom:22px;z-index:95;
+  background:#15181D;border:1px solid #2E3239;border-radius:10px;
+  padding:10px;max-width:210px;
+  display:flex;flex-direction:column;max-height:calc(100vh - 44px);
+  font-family:'Lora',serif;font-size:10px;color:#9AA3AD;line-height:1.4;
+}
+#edpanel .ep-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex:0 0 auto}
+/* body scrolls internally so the Hide control is ALWAYS on screen, however many axes we add */
+#edpanel .ep-body{overflow-y:auto;min-height:0;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#2E3239 transparent;margin-right:-4px;padding-right:4px}
+#edpanel .ep-title{font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+#edpanel .ep-toggle{background:#1C2026;border:1px solid #2E3239;border-radius:5px;color:#C8CDD3;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1;padding:4px 7px;cursor:pointer;flex:0 0 auto}
+#edpanel .ep-toggle:hover{color:#E3C77E}
+#edpanel .ep-presets{display:flex;gap:4px;margin:9px 0 1px}
+#edpanel .ep-preset{flex:1 1 auto;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 3px;cursor:pointer}
+#edpanel .ep-preset:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-field{margin-top:8px}
+#edpanel .ep-field label{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:3px}
+#edpanel .ep-field select{width:100%;font-family:'Lora',serif;font-size:10px;color:#C8CDD3;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-field select option{background:#1C2026;color:#C8CDD3}
+/* collapsed → 34px gear chip; state lives on <html> so the head script restores it pre-paint */
+html[data-panel="collapsed"] #edpanel{width:34px;height:34px;max-width:34px;padding:0;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+html[data-panel="collapsed"] #edpanel .ep-title,
+html[data-panel="collapsed"] #edpanel .ep-body{display:none}
+html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-size:15px;color:#E3C77E;background:none;border:0;padding:0}
+
+/* ── responsive ───────────────────────────────────────────── */
+@media (max-width:920px){
+  .hero .wrap,.geo-sec .wrap{grid-template-columns:1fr}
+  .statstrip .wrap{grid-template-columns:1fr;gap:18px}
+  .fgrid{grid-template-columns:1fr;gap:32px}
+  .lrow .ltext{white-space:normal}
+  .lrow{height:auto;min-height:36px;padding:4px 0}
+  .ruled{background-image:none}
+  .tickers span:nth-child(n+3){display:none}
+  .perf-card{padding:30px 32px 26px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ 1 · UTILITY BAR ════ -->
+<div class="utility">
+  <div class="wrap">
+    <div class="tickers" data-dev="S5.1 · markets utility row">
+      <span><b>BRENT</b> $86.40 <span class="pos">+2.1%</span></span>
+      <span><b>VIX</b> 19.8 <span class="neg">−0.8</span></span>
+      <span><b>BTC</b> $97,210 <span class="pos">+1.4%</span></span>
+      <span><b>GOLD</b> $2,648 <span class="pos">+0.6%</span></span>
+    </div>
+    <div class="stamp-time">06:40 GST · illustrative</div>
+  </div>
+</div>
+
+<!-- ════ MASTHEAD ════ -->
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">VEGA<i>READY</i></a>
+    <nav class="mast-right" aria-label="Edition navigation">
+      <a class="navlink" href="index.html">← Front door</a>
+      <a class="navlink" href="brief.html">The Brief</a>
+      <span class="cmdk" data-dev="S5.2 · ⌘K command chip" aria-hidden="true">⌘K&ensp;Search the desk</span>
+    </nav>
+  </div>
+</header>
+
+<!-- ════ 2 · BREADCRUMB ════ -->
+<nav class="crumb" aria-label="Breadcrumb">
+  <div class="wrap"><span data-dev="S5.3 · breadcrumb trail">MARKETS <span class="sep">▸</span> <b>ENERGY</b></span></div>
+</nav>
+
+<!-- ════ 3 · SPLIT HERO (S6.1) ════ -->
+<section class="hero">
+  <div class="wrap">
+    <div data-dev="S6.1 · split hero — editorial column">
+      <div class="eyebrow">Markets · Energy</div>
+      <h1>Energy under <em>escalation.</em></h1>
+      <p class="sub">What the strait is pricing, what the tape confirmed, and what the desk is doing about it — one page, updated three times a day.</p>
+      <span class="cta-frame"><a href="#dashboard">Open the live board →</a></span>
+    </div>
+    <div class="deskpanel" data-dev="S6.1 · desk panel (sunken)">
+      <div class="ph"><b>World Risk · 90 Days</b><span>— illustrative</span></div>
+      <svg viewBox="0 0 480 170" width="100%" role="img" aria-label="World risk index versus baseline over ninety days, illustrative. Risk index ends higher and above baseline.">
+        <line class="ax" x1="8" y1="40" x2="420" y2="40"/>
+        <line class="ax" x1="8" y1="85" x2="420" y2="85"/>
+        <line class="ax" x1="8" y1="130" x2="420" y2="130"/>
+        <!-- baseline -->
+        <polyline class="ln-base" fill="none" stroke-width="1.4"
+          points="8,112 50,110 92,113 134,109 176,111 218,108 260,110 302,107 344,109 386,106 420,107"/>
+        <!-- risk index · cobalt data colour -->
+        <polyline class="ln-data" fill="none" stroke-width="2.2" stroke-linejoin="round"
+          points="8,118 40,112 72,116 104,98 136,104 168,82 200,90 232,64 264,74 296,58 328,66 360,46 392,52 420,38"/>
+        <text class="t-data" x="426" y="41" font-family="Lora,serif" font-size="9" letter-spacing=".08em">RISK</text>
+        <text class="t-base" x="426" y="110" font-family="Lora,serif" font-size="9" letter-spacing=".08em">BASE</text>
+        <text class="t-mut" x="8" y="158" font-family="Lora,serif" font-size="8.5" letter-spacing=".18em">MAR</text>
+        <text class="t-mut" x="200" y="158" font-family="Lora,serif" font-size="8.5" letter-spacing=".18em">APR</text>
+        <text class="t-mut" x="392" y="158" font-family="Lora,serif" font-size="8.5" letter-spacing=".18em">JUN</text>
+      </svg>
+      <div class="metric-row">
+        <div class="mcell"><div class="ml">Brent</div><span class="mv">$86.40</span><span class="md pos">+2.1%</span></div>
+        <div class="mcell"><div class="ml">VIX</div><span class="mv">19.8</span><span class="md neg">−0.8</span></div>
+        <div class="mcell"><div class="ml">BTC</div><span class="mv">$97,210</span><span class="md pos">+1.4%</span></div>
+      </div>
+      <div class="metric-row">
+        <div class="mcell"><div class="ml">Gold</div><span class="mv">$2,648</span><span class="md pos">+0.6%</span></div>
+        <div class="mcell"><div class="ml">Hormuz</div><span class="mv warn" style="font-size:13px">ELEVATED</span></div>
+        <div class="mcell"><div class="ml">Posture</div><span class="mv mv-struct" style="font-size:13px">LONG VEGA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 4 · DAY COUNTER w/ HUD BRACKETS (S3.2-A + S7.4) ════ -->
+<section class="dayband">
+  <div class="wrap">
+    <div class="hud" data-dev="S3.2-A + S7.4 · day counter w/ HUD brackets">
+      <span class="ck tl" aria-hidden="true"></span><span class="ck tr" aria-hidden="true"></span>
+      <span class="ck bl" aria-hidden="true"></span><span class="ck br" aria-hidden="true"></span>
+      <div class="tk-label">The Tracking</div>
+      <div class="tk-day num">DAY 247</div>
+    </div>
+    <div class="cap">since the first strike · every claim timestamped against it</div>
+  </div>
+</section>
+
+<!-- ════ 5 · EVENT LEDGER (D4.1) ════ -->
+<section class="ledger-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">The tape</div>
+        <h2>The week, ruled and reconciled.</h2>
+      </div>
+      <div class="live-cluster">
+        <span class="livedot" data-dev="S5.5 · live dot (static)"><span class="d" aria-hidden="true"></span>LIVE · updated 09:40 GST</span>
+        <span class="livedot amber" data-dev="S5.5 · live dot — reconciling variant"><span class="d" aria-hidden="true"></span>RECONCILING</span>
+      </div>
+    </div>
+    <div class="ruled" data-dev="D4.1 · ruled ledger — rows on the rules">
+      <div class="lrow">
+        <span class="lday num">D+244</span>
+        <span class="ltext">Drone wave off Mokha intercepted by escort screen; no hull losses</span>
+        <span class="lpills">
+          <span class="pill verified" data-dev="S5.6 · data-state pill">VERIFIED · 3 SOURCES</span>
+          <span class="pill realized">Realized</span>
+        </span>
+      </div>
+      <div class="lrow">
+        <span class="lday num">D+246</span>
+        <span class="ltext">EIA print: crude draw 4.1 mb against 1.8 consensus; curve steepens</span>
+        <span class="lpills"><span class="pill realized">Realized</span></span>
+      </div>
+      <div class="lrow">
+        <span class="lday num">D+248</span>
+        <span class="ltext">IAEA board session; censure draft circulating among E3 delegations</span>
+        <span class="lpills"><span class="pill anticipated">Anticipated</span></span>
+      </div>
+      <div class="lrow">
+        <span class="lday num">D+250</span>
+        <span class="ltext">Hormuz war-risk insurance re-rate window; underwriters polled</span>
+        <span class="lpills"><span class="pill latent">Latent</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 6 · STAT STRIP ════ -->
+<section class="statstrip">
+  <div class="wrap">
+    <div class="card statcell" data-dev="D4.3 · waffle counter">
+      <div class="waffle" role="img" aria-label="14 of 20 chokepoints at latent or calmer">
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i>
+        <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="sl">14 of 20 · chokepoints at LATENT or calmer</div>
+    </div>
+    <div class="card statcell" data-dev="D4.5 · tally marks">
+      <svg viewBox="0 0 120 40" width="108" height="36" role="img" aria-label="Seven tally marks">
+        <g class="tallyg" fill="none" stroke-width="2.4" stroke-linecap="round">
+          <line x1="8"  y1="6" x2="8"  y2="34"/>
+          <line x1="20" y1="6" x2="20" y2="34"/>
+          <line x1="32" y1="6" x2="32" y2="34"/>
+          <line x1="44" y1="6" x2="44" y2="34"/>
+          <line x1="0"  y1="30" x2="52" y2="10"/>
+          <line x1="68" y1="6" x2="68" y2="34"/>
+          <line x1="80" y1="6" x2="80" y2="34"/>
+        </g>
+      </svg>
+      <div class="sl">7 sessions since last violation</div>
+    </div>
+    <div class="anchor-mini" data-dev="ANCHOR · navy panel + D3.8 micro-notation">
+      <div class="av num">+38<sup>bp</sup></div>
+      <div class="sl">premia w/w · Gulf loadings, war-risk addl.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 7 · FULL-BLEED CHART BREAKOUT (S6.6) ════ -->
+<section>
+  <div class="prose-narrow">
+    <div class="eyebrow" style="margin-bottom:12px">The premium</div>
+    <p>The war-risk premium is no longer an event spike — it is a standing line item, repriced weekly and increasingly sticky on the way down. Tanker equities, by contrast, have flat-lined since April, which tells you the market is paying for the risk, not the freight.</p>
+  </div>
+  <div class="bleed" data-dev="S6.6 · full-bleed chart breakout">
+    <hr class="hairline-gold" aria-hidden="true">
+    <div class="inner">
+      <div class="bh"><b>War-Risk Premium vs Benchmark</b><span>— illustrative</span></div>
+      <svg viewBox="0 0 1100 250" width="100%" role="img" aria-label="War-risk premium rising from index 100 to roughly 170 between March and June, versus a tanker ETF benchmark drifting near 105. Illustrative.">
+        <line class="ax" x1="20" y1="50"  x2="1010" y2="50"/>
+        <line class="ax" x1="20" y1="110" x2="1010" y2="110"/>
+        <line class="ax" x1="20" y1="170" x2="1010" y2="170"/>
+        <!-- benchmark · tanker ETF -->
+        <polyline class="ln-bench" fill="none" stroke-width="1.4" stroke-dasharray="5 6"
+          points="20,178 120,174 220,176 320,170 420,173 520,168 620,171 720,166 820,169 920,165 1010,167"/>
+        <!-- war-risk premium · hero line -->
+        <polyline class="ln-prem" fill="none" stroke-width="2.4" stroke-linejoin="round"
+          points="20,196 100,188 180,190 260,164 340,170 420,138 500,146 580,112 660,120 740,92 820,98 900,72 960,76 1010,62"/>
+        <text class="t-prem"  x="1018" y="64"  font-family="Lora,serif" font-size="10" letter-spacing=".08em">PREMIUM</text>
+        <text class="t-bench" x="1018" y="170" font-family="Lora,serif" font-size="10" letter-spacing=".08em">TANKER ETF</text>
+        <text class="t-mut" x="20"  y="236" font-family="Lora,serif" font-size="9" letter-spacing=".18em">MAR</text>
+        <text class="t-mut" x="500" y="236" font-family="Lora,serif" font-size="9" letter-spacing=".18em">APR</text>
+        <text class="t-mut" x="970" y="236" font-family="Lora,serif" font-size="9" letter-spacing=".18em">JUN</text>
+      </svg>
+      <div class="axiscap">index, rebased to 100 at Mar 1 · weekly closes · illustrative</div>
+    </div>
+    <hr class="hairline-gold" aria-hidden="true">
+  </div>
+  <div class="prose-narrow">
+    <p>That divergence is the whole trade. When insurance reprices faster than equity, the desk reads it as the underwriters knowing something the screen does not — and positions accordingly.</p>
+  </div>
+</section>
+
+<!-- ════ 8 · GRATICULE FILE + THE CORRIDOR ════ -->
+<section class="geo-sec">
+  <div class="wrap">
+    <div class="card graticule" data-dev="D1.4 · graticule file card (60px mesh @5%)">
+      <div class="gh"><b>Chokepoint File</b> · Strait of Hormuz</div>
+      <div style="height:14px"></div>
+      <div class="gfact"><span class="gk">Width at narrowest</span><span class="gv num">21 nmi</span></div>
+      <div class="gfact"><span class="gk">Crude + condensate throughput</span><span class="gv num">20.9 mb/d</span></div>
+      <div class="gfact"><span class="gk">Current posture</span><span class="gv warn">ELEVATED</span></div>
+      <p style="font-family:'Lora',serif;font-size:11px;color:var(--muted);margin-top:18px;letter-spacing:.04em">A fifth of seaborne oil clears this strait. The file updates whenever the posture grade changes.</p>
+    </div>
+    <div class="corridor" data-dev="MAP · corridor geography">
+      <div class="neat">
+        <div class="ch"><b>The Corridor</b><span>Ras Tanura → Rotterdam · illustrative</span></div>
+        <svg viewBox="0 0 560 320" role="img" aria-label="Simplified map of the Persian Gulf: the Arabian peninsula lower left with the Qatar peninsula and Musandam, Iran upper right, the Gulf narrowing to the Strait of Hormuz and opening into the Gulf of Oman. A dotted route runs from Ras Tanura through the strait toward Rotterdam. Illustrative.">
+          <!-- IRAN — north shore of the Gulf, Makran coast on the Gulf of Oman -->
+          <path class="land" d="M30,0 L560,0 L560,178
+            C522,172 478,168 448,160
+            C428,155 416,153 405,148
+            C398,145 394,141 386,137
+            C362,125 330,116 296,107
+            C258,97 218,90 180,80
+            C140,70 96,60 62,50
+            C48,46 38,44 30,42 Z"/>
+          <!-- Qeshm island, hugging the Iranian shore at the strait -->
+          <path class="land" d="M334,136
+            C352,131 374,135 388,143
+            C393,146 389,151 380,151
+            C362,150 344,146 336,142
+            C331,140 330,137 334,136 Z"/>
+          <!-- ARABIAN PENINSULA — Kuwait corner, Saudi coast, Qatar bump, UAE, Musandam dagger, Oman -->
+          <path class="land" d="M0,74
+            C16,80 28,86 32,96
+            C40,112 54,124 68,134
+            C84,146 96,152 106,162
+            C120,174 130,184 142,194
+            C148,186 152,172 160,162
+            C166,154 174,154 180,160
+            C186,168 188,180 192,190
+            C196,198 202,202 212,206
+            C240,214 270,220 300,224
+            C330,228 352,228 366,224
+            C376,220 384,206 390,194
+            C394,186 398,178 404,174
+            C408,180 410,190 412,202
+            C414,214 420,224 430,232
+            C450,246 472,262 494,278
+            C512,292 528,304 542,316
+            L548,320 L0,320 Z"/>
+          <!-- Bahrain -->
+          <ellipse class="land" cx="106" cy="174" rx="4" ry="8"/>
+          <!-- gold focus ring at the strait -->
+          <circle cx="400" cy="163" r="30" fill="none" stroke="#C9A24A" stroke-opacity=".25" stroke-width="1"/>
+          <circle cx="400" cy="163" r="22" fill="none" stroke="#C9A24A" stroke-opacity=".85" stroke-width="1.2"/>
+          <line x1="374" y1="190" x2="386" y2="178" stroke="#C9A24A" stroke-opacity=".55" stroke-width=".7"/>
+          <text class="goldlbl" x="370" y="196" text-anchor="end">STRAIT OF HORMUZ · 21 NM</text>
+          <!-- route: Ras Tanura → through the pinch → Gulf of Oman exit -->
+          <polyline class="route"
+            points="100,158 140,152 190,146 240,150 290,156 335,162 372,164 400,165 416,176 436,194 462,216 492,240 516,262"/>
+          <circle cx="100" cy="158" r="3.5" fill="#C9A24A"/>
+          <text class="portlbl" x="110" y="144">RAS TANURA</text>
+          <text class="routelbl" x="450" y="206" transform="rotate(39 450 206)">TO ROTTERDAM →</text>
+          <!-- land labels -->
+          <text class="landlbl" x="56" y="238">SAUDI ARABIA</text>
+          <text class="landlbl" x="290" y="52">IRAN</text>
+          <text class="landlbl" x="468" y="306">OMAN</text>
+          <!-- sea labels -->
+          <text class="sealbl" x="168" y="120">PERSIAN GULF</text>
+          <text class="sealbl" x="444" y="186">GULF OF OMAN</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 9 · THE FUNNEL — free brief, the page's single departure ════ -->
+<section class="funnel" data-dev="FUNNEL · free-brief section">
+  <div class="wrap">
+    <div class="eyebrow">The brief</div>
+    <h2>The morning brief, free.</h2>
+    <p class="lede">One email at the open — what moved, what&rsquo;s mispriced, what the desk is watching. No account, no paywall.</p>
+
+    <!-- perforated subscribe card (D2.3) — the page's singular inverse -->
+    <div class="perf-card" data-dev="D2.3 · perforated subscribe card — singular inverse">
+      <h3>The morning brief, daily.</h3>
+      <p class="pc-sub">Six paragraphs, one chart, no noise — on your desk by 06:40 GST.</p>
+      <hr class="tearline" aria-hidden="true">
+      <a class="sub-link" href="brief.html">Subscribe →</a>
+      <div class="pc-fine">Free · no account required</div>
+    </div>
+
+    <!-- quiet fund note -->
+    <div class="fundnote" data-dev="FUNNEL · fund note">
+      <div class="fn-label">About JCJ</div>
+      <p>VegaReady is the public regime filter of JCJ Investing — an algorithmic trading fund. The intelligence is open; the engine is ours.</p>
+      <a href="#about">About the fund →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 10 · CTA SECTION (D5.1-A dot grid) ════ -->
+<section class="ctazone" id="dashboard" data-dev="D5.1-A · CTA-zone dot grid">
+  <div class="wrap">
+    <div class="eyebrow cz-eyebrow">The live board</div>
+    <h2>Every number on this page, live.</h2>
+    <span class="cta-frame"><a href="#">Open the dashboard →</a></span>
+  </div>
+</section>
+
+<!-- ════ 11 · FOOTER ════ -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="wordmark" href="index.html">VEGA<i>READY</i></a>
+        <p>Markets coverage of the Gulf escalation — timestamped, sourced, and reconciled against the tape.</p>
+      </div>
+      <div class="fcol">
+        <h4>The Edition</h4>
+        <a href="index.html">Front door</a>
+        <a href="brief.html">The Brief</a>
+        <a href="desk.html">The Desk</a>
+      </div>
+      <div class="fcol">
+        <h4>The Desk</h4>
+        <a href="#dashboard">Live board</a>
+        <a href="#">Methodology</a>
+        <a href="#about">About the fund</a>
+      </div>
+    </div>
+    <div class="legal">
+      © 2026 JCJ Investing · VegaReady. All market figures on this page are illustrative and timestamped as such. Nothing here is investment advice.
+    </div>
+  </div>
+</footer>
+
+<button id="anno" type="button" aria-pressed="false">⊙ Annotate</button>
+<!-- options panel (bottom-left) -->
+<div id="edpanel" role="group" aria-label="Display options">
+  <div class="ep-head">
+    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8;color:#E0B262">V3 FROZEN</span> <a href="/edition-v2/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V2 &#8599;</a> <a href="/edition-v1/desk.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
+    <button type="button" class="ep-toggle" id="eptoggle" aria-expanded="true" aria-label="Collapse options panel">Hide</button>
+  </div>
+  <div class="ep-body">
+    <div class="ep-presets" role="group" aria-label="Presets">
+      <button type="button" class="ep-preset" data-preset="p1">P1 Formula</button>
+      <button type="button" class="ep-preset" data-preset="p2">P2 Conservative</button>
+      <button type="button" class="ep-preset" data-preset="p3">P3 Baseline</button>
+    </div>
+    <div class="ep-field">
+      <label for="opt-theme">Canvas</label>
+      <select id="opt-theme">
+        <option value="t1" selected>T1 Oxford (baseline)</option>
+        <option value="t2">T2 Abyss · Navy Cards</option>
+        <option value="t3">T3 Charcoal</option>
+        <option value="t4">T4 Pine</option>
+        <option value="t5">T5 Petrol</option>
+        <option value="t6">T6 Near-Black · Oxford Cards</option>
+        <option value="t7">T7 Gunmetal</option>
+        <option value="t8">T8 Soft White Desk (light)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-chroma">Chroma</label>
+      <select id="opt-chroma">
+        <option value="rich" selected>Rich (current)</option>
+        <option value="capped">Capped · institutional</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-gold">Gold</label>
+      <select id="opt-gold">
+        <option value="g1">G1 · Signature</option>
+        <option value="g2">G2 · Whisper</option>
+        <option value="g3" selected>G3 · Rich (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-grey">Grey</label>
+      <select id="opt-grey">
+        <option value="warm" selected>Warm (current)</option>
+        <option value="cool">Cool</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sem">Semantic</label>
+      <select id="opt-sem">
+        <option value="s1">S1 · Recipe&rsquo;d</option>
+        <option value="s2" selected>S2 · Current</option>
+        <option value="s3">S3 · Desk standard (TradingView/Coinbase pair)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-dialect">Dialect</label>
+      <select id="opt-dialect">
+        <option value="auto">Auto · Cross-family</option>
+        <option value="fixed" selected>Fixed · Teal (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-deep">Deep bands</label>
+      <select id="opt-deep">
+        <option value="b1">B1 · Guaranteed step</option>
+        <option value="b2" selected>B2 · Current</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-scheme">Scheme</label>
+      <select id="opt-scheme">
+        <option value="uniform">Uniform</option>
+        <option value="tworole" selected>Two-role</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-box">Box</label>
+      <select id="opt-box">
+        <option value="b-tonal" selected>Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-box2">Box 2 · Instruments <span style="text-transform:none;letter-spacing:.02em;opacity:.75">· two-role</span></label>
+      <select id="opt-box2">
+        <option value="sunk1" selected>Sunken Canvas</option>
+        <option value="sunk2">Sunken Desaturated</option>
+        <option value="sunk3">Sunken Navy</option>
+        <option value="sunk4">Sunken Neutral</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-bline">Border</label>
+      <select id="opt-bline">
+        <option value="auto" selected>Auto</option>
+        <option value="b-tonal">Tonal</option>
+        <option value="b-navy">Cobalt Navy</option>
+        <option value="b-teal">Teal Glass</option>
+        <option value="b-petrol">Petrol</option>
+        <option value="b-pine">Pine</option>
+        <option value="b-slate">Slate</option>
+        <option value="b-graphite">Warm Graphite</option>
+        <option value="b-gunmetal">Gunmetal</option>
+        <option value="b-lifted">Lifted</option>
+        <option value="b-bone">Bone Inverse</option>
+        <option value="b-plum">Aubergine</option>
+        <option value="b-bronze">Bronze</option>
+        <option value="b-oxblood">Oxblood</option>
+      </select>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('anno');
+  b.addEventListener('click',function(){
+    var on=document.body.classList.toggle('anno-on');
+    b.setAttribute('aria-pressed',on?'true':'false');
+    b.textContent=on?'⊙ Annotations on':'⊙ Annotate';
+  });
+  /* ── options panel — six axes + presets + collapse (shared keys across The Edition) ── */
+  (function(){
+    var d = document.documentElement;
+    var AXES = [
+      { id:'opt-theme',   attr:'data-theme',   key:'ed-theme'   },
+      { id:'opt-gold',    attr:'data-gold',    key:'ed-gold'    },
+      { id:'opt-grey',    attr:'data-grey',    key:'ed-grey'    },
+      { id:'opt-sem',     attr:'data-sem',     key:'ed-sem'     },
+      { id:'opt-dialect', attr:'data-dialect', key:'ed-dialect' },
+      { id:'opt-deep',    attr:'data-deep',    key:'ed-deep'    },
+      { id:'opt-chroma',  attr:'data-chroma',  key:'ed-chroma'  },
+      { id:'opt-scheme',  attr:'data-scheme',  key:'ed-scheme'  },
+      { id:'opt-box',     attr:'data-box',     key:'ed-box'     },
+      { id:'opt-box2',    attr:'data-box2',    key:'ed-box2'    },
+      { id:'opt-bline',   attr:'data-bline',   key:'ed-bline'   }
+    ];
+    function syncSel(sel, v){
+      for (var i = 0; i < sel.options.length; i++){
+        if (sel.options[i].value === v){ sel.value = v; return; }
+      }
+    }
+    function setAxis(a, v){
+      d.setAttribute(a.attr, v);
+      try { localStorage.setItem(a.key, v); } catch(e){}
+      var sel = document.getElementById(a.id);
+      if (sel) syncSel(sel, v);
+    }
+    AXES.forEach(function(a){
+      var sel = document.getElementById(a.id);
+      if (!sel) return;
+      var cur = d.getAttribute(a.attr);
+      if (cur) syncSel(sel, cur);
+      sel.addEventListener('change', function(){ setAxis(a, sel.value); });
+    });
+    /* presets — style axes only; the canvas/theme is never touched */
+    var PRESETS = {
+      p1:{ 'data-gold':'g1','data-grey':'cool','data-sem':'s3','data-dialect':'auto','data-deep':'b1','data-chroma':'capped','data-scheme':'tworole','data-box':'b-tonal','data-box2':'sunk1','data-bline':'auto' },
+      p2:{ 'data-gold':'g2','data-grey':'warm','data-sem':'s1','data-dialect':'auto','data-deep':'b1','data-chroma':'rich','data-scheme':'tworole','data-box':'b-tonal','data-box2':'sunk1','data-bline':'auto' },
+      p3:{ 'data-gold':'g3','data-grey':'warm','data-sem':'s2','data-dialect':'fixed','data-deep':'b2','data-scheme':'tworole','data-box':'b-tonal','data-box2':'sunk1','data-bline':'auto' }
+    };
+    Array.prototype.forEach.call(document.querySelectorAll('.ep-preset'), function(b){
+      b.addEventListener('click', function(){
+        var p = PRESETS[b.getAttribute('data-preset')];
+        if (!p) return;
+        AXES.forEach(function(a){ if (p[a.attr]) setAxis(a, p[a.attr]); });
+      });
+    });
+    /* collapse — state on <html>; restored pre-paint by the head script */
+    var panel = document.getElementById('edpanel');
+    var tog = document.getElementById('eptoggle');
+    function paintToggle(){
+      var c = d.getAttribute('data-panel') === 'collapsed';
+      tog.textContent = c ? '⚙' : 'Hide';
+      tog.setAttribute('aria-expanded', c ? 'false' : 'true');
+      tog.setAttribute('aria-label', c ? 'Expand options panel' : 'Collapse options panel');
+    }
+    function setCollapsed(c){
+      if (c) d.setAttribute('data-panel','collapsed'); else d.removeAttribute('data-panel');
+      try { localStorage.setItem('ed-panel', c ? 'collapsed' : 'open'); } catch(e){}
+      paintToggle();
+    }
+    tog.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      setCollapsed(d.getAttribute('data-panel') !== 'collapsed');
+    });
+    panel.addEventListener('click', function(){
+      if (d.getAttribute('data-panel') === 'collapsed') setCollapsed(false);
+    });
+    paintToggle();
+  })();
+})();
+</script>
+</body>
+</html>

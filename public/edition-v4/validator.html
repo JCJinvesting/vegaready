@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colour-Math Validator — The Edition · VegaReady</title>
+<style>
+/* ── Edition dark chrome ── */
+:root{
+  --canvas:#0D1626;
+  --panel:#15181D;
+  --panel2:#1C2026;
+  --line:#2E3239;
+  --line2:#3A4149;
+  --ink:#E8E2D4;
+  --body:#C8CDD3;
+  --muted:#9AA3AD;
+  --faint:#6E7681;
+  --gold:#E3C77E;
+  --gold-dim:#A8843C;
+  --pass:#46C9A0;
+  --warn:#E0B262;
+  --fail:#E2725B;
+  --info:#8FA8C8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--canvas);
+  color:var(--body);
+  font:400 14px/1.6 "Lora",Georgia,serif;
+  -webkit-font-smoothing:antialiased;
+  padding:0 0 80px;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.id-bar{height:4px;background:linear-gradient(90deg,#A8843C 0%,#E3C77E 50%,#A8843C 100%)}
+header.mast{border-bottom:1px solid var(--line);padding:26px 0 22px;margin-bottom:30px;background:#0A0F1A}
+header.mast h1{font:700 24px/1.2 "Lora",Georgia,serif;color:var(--ink);letter-spacing:.01em}
+header.mast h1 .v{color:var(--gold)}
+header.mast p.sub{margin-top:6px;font-size:12.5px;color:var(--muted);font-style:italic}
+header.mast .stamp{margin-top:10px;font:700 10px/1 "Lora",Georgia,serif;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* scoreboard */
+.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px;margin:26px 0 8px}
+.score-card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.score-card h3{font:700 10px/1.3 "Lora",Georgia,serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.score-card .nums{margin-top:9px;display:flex;gap:10px;font-variant-numeric:tabular-nums;font-size:13px;font-weight:700}
+.score-card .nums .p{color:var(--pass)}
+.score-card .nums .w{color:var(--warn)}
+.score-card .nums .f{color:var(--fail)}
+.score-card .verdict{margin-top:8px;font:700 10px/1 "Lora",Georgia,serif;letter-spacing:.1em;text-transform:uppercase}
+.score-card .verdict.ok{color:var(--pass)}
+.score-card .verdict.warn{color:var(--warn)}
+.score-card .verdict.bad{color:var(--fail)}
+#overall{background:var(--panel2);border-color:var(--line2)}
+#overall .big{font:700 20px/1.1 "Lora",Georgia,serif;margin-top:8px}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:22px 0 26px;padding:13px 16px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.controls label{font:700 10px/1 "Lora",Georgia,serif;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-right:6px}
+.controls select{font:500 12px "Lora",Georgia,serif;color:var(--body);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:6px 9px;cursor:pointer}
+.controls button{font:700 11px/1 "Lora",Georgia,serif;letter-spacing:.06em;color:var(--gold);background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:8px 14px;cursor:pointer}
+.controls button:hover{border-color:var(--gold-dim)}
+.controls .spacer{flex:1}
+#copy-note{font-size:11px;color:var(--pass);font-style:italic;display:none}
+
+/* gate sections */
+details.gate{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:18px;overflow:hidden}
+details.gate summary{cursor:pointer;list-style:none;padding:16px 20px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid transparent}
+details.gate[open] summary{border-bottom-color:var(--line)}
+details.gate summary::-webkit-details-marker{display:none}
+details.gate summary h2{font:700 15px/1.3 "Lora",Georgia,serif;color:var(--ink)}
+details.gate summary .why{font-size:11.5px;color:var(--muted);font-style:italic;flex-basis:100%;margin-top:2px}
+details.gate summary .mini{font-variant-numeric:tabular-nums;font-size:11px;font-weight:700;margin-left:auto;white-space:nowrap}
+.gate-body{padding:6px 20px 20px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+th{font:700 9.5px/1.4 "Lora",Georgia,serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);text-align:left;padding:9px 10px 7px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid #1E232A;color:var(--body);white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr.v-FAIL td:first-child{box-shadow:inset 3px 0 0 var(--fail)}
+tr.v-WARN td:first-child{box-shadow:inset 3px 0 0 var(--warn)}
+.chip{display:inline-block;width:14px;height:14px;border-radius:4px;border:1px solid rgba(255,255,255,.18);vertical-align:-3px;margin-right:6px}
+.pair .chip+.chip{margin-left:-3px}
+.hex{font-size:10.5px;color:var(--muted)}
+.vd{font:700 10px/1 "Lora",Georgia,serif;letter-spacing:.08em;padding:4px 9px;border-radius:99px;display:inline-block}
+.vd.PASS{color:var(--pass);border:1px solid rgba(70,201,160,.35);background:rgba(70,201,160,.07)}
+.vd.WARN{color:var(--warn);border:1px solid rgba(224,178,98,.4);background:rgba(224,178,98,.07)}
+.vd.FAIL{color:var(--fail);border:1px solid rgba(226,114,91,.4);background:rgba(226,114,91,.08)}
+.vd.EXEMPT,.vd.INFO,.vd.SKIP{color:var(--info);border:1px solid rgba(143,168,200,.3);background:rgba(143,168,200,.06)}
+.note{font-size:10.5px;color:var(--faint);font-style:italic}
+.num-pass{color:var(--pass)} .num-warn{color:var(--warn)} .num-fail{color:var(--fail)}
+
+/* self-test + reference */
+.selftest{margin:0 0 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.selftest h2{font:700 13px/1.3 "Lora",Georgia,serif;color:var(--ink);margin-bottom:4px}
+.selftest p{font-size:11.5px;color:var(--muted);font-style:italic;margin-bottom:10px}
+#selftest-verdict{font:700 11px/1 "Lora",Georgia,serif;letter-spacing:.1em}
+footer{margin-top:42px;border-top:1px solid var(--line);padding-top:18px;text-align:center}
+footer p{font:500 10.5px/1.8 "Lora",Georgia,serif;letter-spacing:.08em;color:var(--faint)}
+footer .g{color:var(--gold-dim)}
+@media (max-width:700px){.wrap{padding:0 14px}.gate-body{padding:6px 10px 14px}}
+</style>
+</head>
+<body>
+<div class="id-bar"></div>
+<header class="mast">
+  <div class="wrap">
+    <h1><span class="v">Colour-Math Validator</span> — The Edition</h1>
+    <p class="sub">Six research gates over every theme &times; box combination. OKLCH + WCAG, computed live in this page — zero dependencies.</p>
+    <p class="stamp">Values extracted from index.html + desk.html &middot; 2026-06-06 &middot; dark-primary baseline</p>
+  </div>
+</header>
+<div class="wrap">
+
+  <section class="selftest" id="selftest">
+    <h2>Math self-test</h2>
+    <p>Known conversions verified before any gate runs. If this fails, no gate result below can be trusted.</p>
+    <div id="selftest-rows"></div>
+    <p style="margin-top:10px"><span id="selftest-verdict"></span></p>
+  </section>
+
+  <div class="score-grid" id="scoreboard"></div>
+
+  <div class="controls">
+    <span><label for="f-theme">Theme</label>
+    <select id="f-theme"><option value="">All themes</option></select></span>
+    <span><label for="f-verdict">Verdict</label>
+    <select id="f-verdict">
+      <option value="">All verdicts</option>
+      <option value="FAIL">FAIL only</option>
+      <option value="WARN">WARN only</option>
+      <option value="FAILWARN">FAIL + WARN</option>
+      <option value="PASS">PASS only</option>
+    </select></span>
+    <span class="spacer"></span>
+    <span id="copy-note">Copied to clipboard.</span>
+    <button id="copy-fails" type="button">Copy failures</button>
+  </div>
+
+  <div id="gates"></div>
+
+  <footer>
+    <p>Gates from owner Perplexity research 2026-06-06 &middot; <span class="g">APPROVED-THEMES.md v4.2-prep</span></p>
+    <p>Source values: public/edition/index.html (themes t1&ndash;t8, chroma caps, 13 box hues, 4 sunken constructions, d2&ndash;d5, g1&ndash;g4) + desk.html (sem s1/s2/s3 incl. --warn) &middot; color-mix() values resolved per theme in sRGB.</p>
+  </footer>
+</div>
+
+<script>
+'use strict';
+/* ═══════════════════════════════════════════════════════════════════
+   EXTRACTED DESIGN-SYSTEM VALUES — hard-coded snapshot.
+   Source: C:\Users\cwm4t\ClaudeCode\vegaready\public\edition\index.html
+           (theme blocks t1–t8, data-chroma capped overrides, 13 data-box
+            hues + lines, 4 sunken box2 constructions, data-data d2–d5,
+            gold g1–g4, brand gold constants)
+           C:\Users\cwm4t\ClaudeCode\vegaready\public\edition\desk.html
+           (data-sem s1/s2/s3 pos/neg/warn — desk defines --warn; index
+            defines pos/neg only)
+   Extraction date: 2026-06-06. If the Edition pages change, re-extract.
+   color-mix(in srgb, A p%, B) values (b-lifted, sunk1–3, utility strip)
+   are computed per theme below with gamma-space sRGB interpolation —
+   the same interpolation the browser uses for `in srgb`.
+   ═══════════════════════════════════════════════════════════════════ */
+
+const THEMES = [
+ {id:'t1',  name:'Oxford',            variant:'rich',   canvas:'#0D1626', card:'#131E32', cardline:'#1E2E4A', deep:'#0A0F1A', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t1c', name:'Oxford',            variant:'capped', canvas:'#0E1520', card:'#131D2B', cardline:'#1E2B3F', deep:'#0A0F18', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t2',  name:'Abyss',             variant:'rich',   canvas:'#0A0F1A', card:'#111C30', cardline:'#1C2A44', deep:'#070B12', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t2c', name:'Abyss',             variant:'capped', canvas:'#101826', card:'#162133', cardline:'#21304A', deep:'#0C1220', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t3',  name:'Charcoal Blue',     variant:'rich',   canvas:'#13171D', card:'#1C2129', cardline:'#262E3A', deep:'#0A0F1A', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t4',  name:'Pine Black',        variant:'rich',   canvas:'#11201C', card:'#172924', cardline:'#223B34', deep:'#0A1410', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t5',  name:'Petrol Black',      variant:'rich',   canvas:'#0F1B1F', card:'#152429', cardline:'#20353B', deep:'#0A1216', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t6',  name:'Near-black+Oxford', variant:'rich',   canvas:'#0B0D11', card:'#0D1626', cardline:'#1E2E4A', deep:'#070B12', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t7',  name:'Gunmetal sunken',   variant:'rich',   canvas:'#232B33', card:'#1C2229', cardline:'#394551', deep:'#161B21', ink:'#F2EBDC', body:'#DCD4C2'},
+ {id:'t8',  name:'Soft White Desk',   variant:'rich',   canvas:'#DDE2E6', card:'#FFFFFF', cardline:'#C2CAD1', deep:'#0B2E4E', ink:'#2B2F34', body:'#3A434C', light:true, guard:true}
+];
+/* t8 guard (index.html): html[data-theme="t8"]{--box:var(--card);--boxline:var(--cardline);
+   --box2:var(--card);--box2line:var(--cardline)} — every non-tonal box collapses to t8 card. */
+
+const BOX_HUES = [
+ {id:'b-tonal',    kind:'tonal'},                                      /* --box:var(--card); --boxline:var(--cardline) */
+ {id:'b-navy',     box:'#1E3552', line:'#2C466B'},
+ {id:'b-teal',     box:'#15332F', line:'#214841'},
+ {id:'b-petrol',   box:'#1B313A', line:'#28444F'},
+ {id:'b-pine',     box:'#1E332C', line:'#2B463D'},
+ {id:'b-slate',    box:'#232932', line:'#323A46'},
+ {id:'b-graphite', box:'#262421', line:'#36332E'},
+ {id:'b-gunmetal', box:'#252B33', line:'#353D47'},
+ {id:'b-lifted',   kind:'lifted'},                                     /* color-mix(#fff 9%, card) / color-mix(#fff 16%, card) */
+ {id:'b-bone',     box:'#EDE5D2', line:'#D5C9AE', inverse:true},       /* sanctioned inverse — light box on dark canvas */
+ {id:'b-plum',     box:'#2B2230', line:'#3D3144'},
+ {id:'b-bronze',   box:'#2E2619', line:'#443A28'},
+ {id:'b-oxblood',  box:'#2E1D1F', line:'#452C2F'}
+];
+
+const SUNKEN = [
+ {id:'sunk1', family:'same',  desc:'mix(#000 26%, canvas) / mix(ink 12%, canvas)'},
+ {id:'sunk2', family:'cross', desc:'mix(#13161B 62%, canvas) / mix(#C8CDD3 12%, canvas)'},
+ {id:'sunk3', family:'cross', desc:'mix(#0B1326 72%, canvas) / #25324B'},
+ {id:'sunk4', family:'cross', desc:'#0C0E12 / #232830 (fixed)'}
+];
+
+const SEM = [
+ {id:'s1', name:'s1 Recipe',        pos:'#33A07E', neg:'#C2604C', warn:'#C99A55'},
+ {id:'s2', name:'s2 Default',       pos:'#46C9A0', neg:'#E2725B', warn:'#E0B262'},
+ {id:'s3', name:'s3 Desk Standard', pos:'#26A69A', neg:'#EF5350', warn:'#F89656'}
+];
+/* t8 light remaps (reference, not gated): pos #1E7A5F · neg #B0452C · warn #95621B */
+
+/* reference-only extractions (inventory completeness — no gate consumes these) */
+const DATA_AXIS = {d2:'#5E83D9', d3:'#5FA897', d4:'#8FA8C8', d5:'#CBB99F',
+  t8:{d2:'#2A5FA8', d3:'#2A6478', d4:'#46627E', d5:'#8A6420'}};
+const GOLD_AXIS = {g1:'color-mix(muted 60%, ink) — var-dependent', g2:'#B09A66',
+  g3:'#C9A24A (default --eyeb) · brand grad #A8843C→#E3C77E',
+  g4:{eyeb:'#CBB99F', accent:'#E8E2D9', invAccent:'#978365', ramp:['#978365','#CBB99F','#E8E2D9']}};
+
+/* ═══════════ COLOUR MATH — hex → linear sRGB → OKLab → OKLCH, WCAG ═══════════ */
+function hexToRgb(h){
+  h = h.replace('#','');
+  if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+  return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+}
+function rgbToHex(rgb){
+  return '#' + rgb.map(v => Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('').toUpperCase();
+}
+/* color-mix(in srgb, A p%, B (100−p)%) — gamma-space channel interpolation */
+function mixSrgb(hexA, p, hexB){
+  const a = hexToRgb(hexA), b = hexToRgb(hexB), t = p/100;
+  return rgbToHex([a[0]*t + b[0]*(1-t), a[1]*t + b[1]*(1-t), a[2]*t + b[2]*(1-t)]);
+}
+function srgbToLinear(c8){
+  const c = c8/255;
+  return c <= 0.04045 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4);
+}
+function hexToLinear(hex){ return hexToRgb(hex).map(srgbToLinear); }
+/* OKLab — Björn Ottosson's standard matrices */
+function linearToOklab([r,g,b]){
+  const l = 0.4122214708*r + 0.5363325363*g + 0.0514459929*b;
+  const m = 0.2119034982*r + 0.6806995451*g + 0.1073969566*b;
+  const s = 0.0883024619*r + 0.2817188376*g + 0.6299787005*b;
+  const l_ = Math.cbrt(l), m_ = Math.cbrt(m), s_ = Math.cbrt(s);
+  return {
+    L: 0.2104542553*l_ + 0.7936177850*m_ - 0.0040720468*s_,
+    a: 1.9779984951*l_ - 2.4285922050*m_ + 0.4505937099*s_,
+    b: 0.0259040371*l_ + 0.7827717662*m_ - 0.8086757660*s_
+  };
+}
+function hexToOklch(hex){
+  const lab = linearToOklab(hexToLinear(hex));
+  const C = Math.hypot(lab.a, lab.b);
+  let H = Math.atan2(lab.b, lab.a) * 180/Math.PI;
+  if (H < 0) H += 360;
+  return {L: lab.L, C, H};
+}
+/* WCAG 2.x relative luminance + contrast ratio */
+function wcagLum(hex){
+  const [r,g,b] = hexToLinear(hex);
+  return 0.2126*r + 0.7152*g + 0.0722*b;
+}
+function contrast(hexA, hexB){
+  const a = wcagLum(hexA), b = wcagLum(hexB);
+  const [hi,lo] = a >= b ? [a,b] : [b,a];
+  return (hi+0.05)/(lo+0.05);
+}
+function hueDelta(h1, h2){
+  const d = Math.abs(h1-h2) % 360;
+  return d > 180 ? 360-d : d;
+}
+const ACHROMATIC_C = 0.01;
+const f3 = n => n.toFixed(3), f4 = n => n.toFixed(4),
+      f1 = n => n.toFixed(1), f2 = n => n.toFixed(2);
+
+/* resolved box+line for a theme × hue (returns null if guarded away) */
+function resolveBox(theme, hue){
+  if (theme.guard && hue.id !== 'b-tonal')
+    return {box: theme.card, line: theme.cardline, guarded: true};
+  if (hue.kind === 'tonal')  return {box: theme.card, line: theme.cardline};
+  if (hue.kind === 'lifted') return {box: mixSrgb('#FFFFFF',9,theme.card), line: mixSrgb('#FFFFFF',16,theme.card)};
+  return {box: hue.box, line: hue.line};
+}
+function resolveSunk(theme, s){
+  if (theme.guard) return {box: theme.card, line: theme.cardline, guarded: true};
+  if (s.id === 'sunk1') return {box: mixSrgb('#000000',26,theme.canvas), line: mixSrgb(theme.ink,12,theme.canvas)};
+  if (s.id === 'sunk2') return {box: mixSrgb('#13161B',62,theme.canvas), line: mixSrgb('#C8CDD3',12,theme.canvas)};
+  if (s.id === 'sunk3') return {box: mixSrgb('#0B1326',72,theme.canvas), line: '#25324B'};
+  return {box: '#0C0E12', line: '#232830'};
+}
+const themeLabel = t => t.id + ' ' + t.name + ' (' + t.variant + ')';
+
+/* ═══════════ MATH SELF-TEST — known conversions ═══════════ */
+function runSelfTests(){
+  const tests = [];
+  const t = (name, got, want, tol) => tests.push({name, got, want, tol, ok: Math.abs(got-want) <= tol});
+  const w = hexToOklch('#FFFFFF');
+  t('#FFFFFF OKLCH L ≈ 1', w.L, 1.0, 0.001);
+  t('#FFFFFF OKLCH C ≈ 0', w.C, 0.0, 0.001);
+  const k = hexToOklch('#000000');
+  t('#000000 OKLCH L = 0', k.L, 0.0, 0.0001);
+  const r = hexToOklch('#FF0000');
+  t('#FF0000 OKLCH L ≈ 0.6280', r.L, 0.62796, 0.001);
+  t('#FF0000 OKLCH C ≈ 0.2577', r.C, 0.25768, 0.001);
+  t('#FF0000 OKLCH H ≈ 29.23°', r.H, 29.234, 0.2);
+  t('WCAG #FFF vs #000 = 21:1', contrast('#FFFFFF','#000000'), 21.0, 0.01);
+  t('WCAG #767676 vs #FFF ≈ 4.54', contrast('#767676','#FFFFFF'), 4.54, 0.05);
+  t('hue wrap |350°−8°| = 18°', hueDelta(350,8), 18, 0.001);
+  const mx = hexToRgb(mixSrgb('#000000',26,'#0D1626'));
+  t('color-mix(#000 26%, #0D1626) r≈10', mx[0], 9.62, 1.01);
+  t('color-mix(#000 26%, #0D1626) b≈28', mx[2], 28.12, 1.01);
+  const box = document.getElementById('selftest-rows');
+  let allOk = true, html = '<table><tr><th>Check</th><th>Computed</th><th>Expected</th><th>Verdict</th></tr>';
+  for (const x of tests){
+    if (!x.ok) allOk = false;
+    html += '<tr><td>'+x.name+'</td><td>'+x.got.toFixed(4)+'</td><td>'+x.want.toFixed(4)+' ±'+x.tol+'</td>'+
+            '<td><span class="vd '+(x.ok?'PASS':'FAIL')+'">'+(x.ok?'PASS':'FAIL')+'</span></td></tr>';
+  }
+  html += '</table>';
+  box.innerHTML = html;
+  const v = document.getElementById('selftest-verdict');
+  v.textContent = allOk ? 'MATH SELF-TEST: ALL PASS — gate results are trustworthy.'
+                        : 'MATH SELF-TEST: FAILURES PRESENT — do not trust gate results.';
+  v.style.color = allOk ? 'var(--pass)' : 'var(--fail)';
+  return allOk;
+}
+
+/* ═══════════ GATE EVALUATION ═══════════
+   Row shape: {theme, item, swatches:[{hex,label}], metrics:'', verdict, note}
+   verdict ∈ PASS | WARN | FAIL | EXEMPT | INFO | SKIP (only P/W/F counted)   */
+
+const GATES = [];
+
+/* ── Gate 1 · BORDER ── */
+function gateBorder(){
+  const rows = [];
+  for (const th of THEMES){
+    const items = [];
+    for (const hue of BOX_HUES) items.push({label: hue.id, r: resolveBox(th, hue)});
+    for (const s of SUNKEN)     items.push({label: s.id,  r: resolveSunk(th, s)});
+    const seen = new Set();
+    for (const it of items){
+      if (it.r.guarded){
+        if (!seen.has('guarded')){ seen.add('guarded');
+          rows.push({theme: th, item: it.label+' (+ all non-tonal)', swatches: [], metrics: 't8 guard forces card/cardline',
+                     verdict: 'SKIP', note: 'GUARDED — t8 light-theme guard collapses every box to tonal'});
+        }
+        continue;
+      }
+      const c = contrast(it.r.line, it.r.box);
+      let verdict = 'PASS', note = 'in 1.2–1.8 target band';
+      if (c > 2.0)       { verdict = 'FAIL'; note = '> 2.0 — wireframe-cheap'; }
+      else if (c > 1.8)  { verdict = 'WARN'; note = '1.8–2.0 — above band'; }
+      else if (c < 1.15) { verdict = 'WARN'; note = '< 1.15 — border invisible'; }
+      else if (c < 1.2)  { verdict = 'WARN'; note = '1.15–1.2 — just below band'; }
+      rows.push({theme: th, item: it.label,
+        swatches: [{hex: it.r.box, label:'box'},{hex: it.r.line, label:'line'}],
+        metrics: 'contrast '+f3(c), sort: c, verdict, note});
+    }
+  }
+  return rows;
+}
+GATES.push({id:'g1', title:'1 · Border Gate', band:'boxline vs box WCAG ∈ [1.2, 1.8]',
+  why:'Research: border contrast above 2:1 reads as wireframe-cheap; the premium register keeps hairlines felt, not drawn. Below ~1.15 the border disappears entirely.',
+  cols:['Theme','Box','Swatch','Contrast','Verdict','Note'], fn: gateBorder});
+
+/* ── Gate 2 · CARD ΔL ── */
+function gateDeltaL(){
+  const rows = [];
+  for (const th of THEMES){
+    const Lc = hexToOklch(th.canvas).L;
+    const items = [];
+    for (const hue of BOX_HUES) items.push({label: hue.id, r: resolveBox(th, hue), inverse: !!hue.inverse});
+    for (const s of SUNKEN)     items.push({label: s.id,  r: resolveSunk(th, s)});
+    const seen = new Set();
+    for (const it of items){
+      if (it.r.guarded){
+        if (!seen.has('g')){ seen.add('g');
+          rows.push({theme: th, item: it.label+' (+ all non-tonal)', swatches: [], metrics: '—',
+                     verdict: 'SKIP', note: 'GUARDED — t8 collapses to tonal'});
+        }
+        continue;
+      }
+      const Lb = hexToOklch(it.r.box).L;
+      const d = Math.abs(Lb - Lc);
+      if (it.inverse){
+        rows.push({theme: th, item: it.label,
+          swatches: [{hex: th.canvas, label:'canvas'},{hex: it.r.box, label:'box'}],
+          metrics: 'ΔL '+f4(d), sort: d, verdict: 'EXEMPT', note: 'Bone Inverse — sanctioned inverse card'});
+        continue;
+      }
+      const verdict = d <= 0.12 ? 'PASS' : 'FAIL';
+      rows.push({theme: th, item: it.label,
+        swatches: [{hex: th.canvas, label:'canvas'},{hex: it.r.box, label:'box'}],
+        metrics: 'L(canvas) '+f4(Lc)+' · L(box) '+f4(Lb)+' · ΔL '+f4(d),
+        sort: d, verdict, note: verdict==='FAIL' ? 'ΔL > 0.12 — box separates by lightness jump' : '≤ 0.12 at rest'});
+    }
+  }
+  return rows;
+}
+GATES.push({id:'g2', title:'2 · Card ΔL Gate', band:'|OKLCH L(box) − L(canvas)| ≤ 0.12',
+  why:'Research: lightness jumps over ~0.12 read as stacked grey boxes — the surface should separate by hue temperature and hairline, not by a lightness cliff. Bone Inverse is the sanctioned exception.',
+  cols:['Theme','Box','Swatch','Lightness','Verdict','Note'], fn: gateDeltaL});
+
+/* ── Gate 3 · HUE DRIFT ── */
+function gateHueDrift(){
+  const rows = [];
+  for (const th of THEMES){
+    const cv = hexToOklch(th.canvas);
+    const items = [];
+    for (const hue of BOX_HUES) items.push({label: hue.id, r: resolveBox(th, hue),
+      family: (hue.kind === 'tonal' || hue.kind === 'lifted') ? 'same' : 'cross'});
+    for (const s of SUNKEN) items.push({label: s.id, r: resolveSunk(th, s), family: s.family});
+    const seen = new Set();
+    for (const it of items){
+      if (it.r.guarded){
+        if (!seen.has('g')){ seen.add('g');
+          rows.push({theme: th, item: it.label+' (+ all non-tonal)', swatches: [], metrics: '—', verdict:'SKIP', note:'GUARDED'}); }
+        continue;
+      }
+      const bx = hexToOklch(it.r.box);
+      if (it.family === 'cross'){
+        rows.push({theme: th, item: it.label, swatches: [{hex: th.canvas},{hex: it.r.box}],
+          metrics: 'hue(canvas) '+f1(cv.H)+'° · hue(box) '+f1(bx.H)+'°',
+          verdict: 'INFO', note: 'CROSS-FAMILY — deliberate hue pairing, not gated'});
+        continue;
+      }
+      if (cv.C < ACHROMATIC_C || bx.C < ACHROMATIC_C){
+        rows.push({theme: th, item: it.label, swatches: [{hex: th.canvas},{hex: it.r.box}],
+          metrics: 'C(canvas) '+f4(cv.C)+' · C(box) '+f4(bx.C),
+          verdict: 'INFO', note: 'ACHROMATIC — C < 0.01, hue angle meaningless'});
+        continue;
+      }
+      const d = hueDelta(cv.H, bx.H);
+      const verdict = d <= 6 ? 'PASS' : 'FAIL';
+      rows.push({theme: th, item: it.label, swatches: [{hex: th.canvas},{hex: it.r.box}],
+        metrics: 'hue(canvas) '+f1(cv.H)+'° · hue(box) '+f1(bx.H)+'° · Δh '+f1(d)+'°',
+        sort: d, verdict, note: verdict==='FAIL' ? 'Δh > 6° — sepia/drift mechanism engaged' : 'hue held'});
+    }
+  }
+  return rows;
+}
+GATES.push({id:'g3', title:'3 · Hue Drift Gate', band:'|hue(canvas) − hue(box)| ≤ 6° · same-family only',
+  why:'Research: same-family surfaces that drift in hue read as accidental sepia — the cream-mix failure mechanism. Cross-family pairings (navy-on-pine etc.) are deliberate and exempt; near-neutrals (C < 0.01) have no meaningful hue.',
+  cols:['Theme','Box','Swatch','Hue','Verdict','Note'], fn: gateHueDrift});
+
+/* ── Gate 4 · CHROMA ── */
+function gateChroma(){
+  const rows = [];
+  for (const th of THEMES){
+    const cv = hexToOklch(th.canvas);
+    const items = [
+      {label: 'b-tonal',  box: th.card},
+      {label: 'b-lifted', box: th.guard ? null : mixSrgb('#FFFFFF',9,th.card)}
+    ];
+    for (const it of items){
+      if (it.box === null){
+        rows.push({theme: th, item: it.label, swatches: [], metrics: '—', verdict: 'SKIP', note: 'GUARDED — t8 collapses to tonal'});
+        continue;
+      }
+      const bx = hexToOklch(it.box);
+      const dC = bx.C - cv.C;
+      const verdict = (dC >= -0.002 && dC <= 0.008) ? 'PASS' : 'FAIL';
+      rows.push({theme: th, item: it.label, swatches: [{hex: th.canvas},{hex: it.box}],
+        metrics: 'C(canvas) '+f4(cv.C)+' · C(box) '+f4(bx.C)+' · ΔC '+(dC>=0?'+':'')+f4(dC),
+        sort: Math.abs(dC), verdict,
+        note: verdict==='FAIL'
+          ? (dC > 0.008 ? 'ΔC > +0.008 — chroma jump beyond the Radix-only rise' : 'ΔC < −0.002 — card washes out vs canvas')
+          : 'within [−0.002, +0.008]'});
+    }
+  }
+  return rows;
+}
+GATES.push({id:'g4', title:'4 · Chroma Gate', band:'ΔC(card vs canvas) ∈ [−0.002, +0.008] · tonal + lifted',
+  why:'Research: "chroma rises with elevation" was a Radix-dark-only behaviour; outside that system a chroma jump on raise reads synthetic. Cards may rise a whisker in C, never fall visibly.',
+  cols:['Theme','Surface','Swatch','Chroma','Verdict','Note'], fn: gateChroma});
+
+/* ── Gate 5 · MARKET PAIR ── */
+function gateMarketPair(){
+  const rows = [];
+  for (const s of SEM){
+    const p = hexToOklch(s.pos), n = hexToOklch(s.neg);
+    const dL = Math.abs(p.L - n.L);
+    const verdict = dL <= 0.04 ? 'PASS' : 'FAIL';
+    rows.push({theme: null, item: s.name, swatches: [{hex: s.pos, label:'pos'},{hex: s.neg, label:'neg'}],
+      metrics: 'L(pos) '+f4(p.L)+' · L(neg) '+f4(n.L)+' · |ΔL| '+f4(dL),
+      sort: dL, verdict,
+      note: verdict==='FAIL' ? '|ΔL| > 0.04 — pos/neg unequal visual weight' : 'pos and neg carry equal weight'});
+    const pIn = p.C >= 0.10 && p.C <= 0.16, nIn = n.C >= 0.16 && n.C <= 0.22;
+    rows.push({theme: null, item: s.name+' · chroma bands', swatches: [{hex: s.pos},{hex: s.neg}],
+      metrics: 'C(pos) '+f4(p.C)+' '+(pIn?'∈':'∉')+' [0.10–0.16] · C(neg) '+f4(n.C)+' '+(nIn?'∈':'∉')+' [0.16–0.22]',
+      verdict: 'INFO', note: (pIn&&nIn)?'both within research bands':(!pIn&&!nIn?'both outside research bands':(pIn?'neg outside band':'pos outside band'))});
+    rows.push({theme: null, item: s.name+' · warn (reference)', swatches: [{hex: s.warn}],
+      metrics: 'warn '+s.warn+' · L '+f4(hexToOklch(s.warn).L)+' · C '+f4(hexToOklch(s.warn).C),
+      verdict: 'INFO', note: 'desk.html --warn — no gate defined'});
+  }
+  return rows;
+}
+GATES.push({id:'g5', title:'5 · Market Pair Gate', band:'per sem option: |L(pos) − L(neg)| ≤ 0.04 · C bands as INFO',
+  why:'Research: pos/neg must sit at similar lightness so neither outweighs the other on a scan; reds carry chroma 0.16–0.22 and greens 0.10–0.16 to feel equally loud at equal L.',
+  cols:['Theme','Pair','Swatch','OKLCH','Verdict','Note'], fn: gateMarketPair});
+
+/* ── Gate 6 · TEXT FLOOR ── */
+function gateTextFloor(){
+  const rows = [];
+  for (const th of THEMES){
+    const c = contrast(th.body, th.canvas);
+    const verdict = c >= 4.5 ? 'PASS' : 'FAIL';
+    rows.push({theme: th, item: 'body text (--body '+th.body+')',
+      swatches: [{hex: th.canvas, label:'canvas'},{hex: th.body, label:'body'}],
+      metrics: 'contrast '+f2(c)+':1', sort: -c, verdict,
+      note: verdict==='PASS' ? '≥ 4.5:1 WCAG AA body floor' : 'BELOW 4.5:1 — body text fails AA'});
+  }
+  return rows;
+}
+GATES.push({id:'g6', title:'6 · Text Floor Gate', band:'--body vs --canvas ≥ 4.5:1 WCAG',
+  why:'WCAG AA body-text floor. Colour used: each theme\'s --body (t1–t7 inherit #DCD4C2 from the t1/:root block; t8 declares #3A434C). body{color:var(--body)} in index.html.',
+  cols:['Theme','Text','Swatch','Contrast','Verdict','Note'], fn: gateTextFloor});
+
+/* ═══════════ RENDER ═══════════ */
+const ORDER = {FAIL: 0, WARN: 1, PASS: 2, EXEMPT: 3, INFO: 4, SKIP: 5};
+let ALL_ROWS = [];   /* {gate, row} for copy-failures + filtering */
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+function swatchHtml(swatches){
+  if (!swatches || !swatches.length) return '<span class="note">—</span>';
+  return '<span class="pair">' + swatches.map(s =>
+    '<span class="chip" style="background:'+s.hex+'" title="'+(s.label?s.label+' ':'')+s.hex+'"></span>').join('') +
+    '</span> <span class="hex">' + swatches.map(s => s.hex).join(' / ') + '</span>';
+}
+function renderGate(g, rows){
+  const counts = {PASS:0, WARN:0, FAIL:0};
+  rows.forEach(r => { if (counts[r.verdict] !== undefined) counts[r.verdict]++; });
+  rows.sort((a,b) => (ORDER[a.verdict]-ORDER[b.verdict]) ||
+    ((b.sort!==undefined&&a.sort!==undefined) ? 0 : 0) ||
+    themeKey(a).localeCompare(themeKey(b)));
+  const det = document.createElement('details');
+  det.className = 'gate'; det.id = g.id;
+  det.open = counts.FAIL > 0 || counts.WARN > 0;
+  let mini = '<span class="num-pass">'+counts.PASS+' pass</span> · ' +
+             '<span class="num-warn">'+counts.WARN+' warn</span> · ' +
+             '<span class="num-fail">'+counts.FAIL+' fail</span>';
+  let html = '<summary><h2>'+g.title+'</h2><span class="note">'+g.band+'</span>' +
+             '<span class="mini">'+mini+'</span><span class="why">'+g.why+'</span></summary>' +
+             '<div class="gate-body"><table><thead><tr>' +
+             g.cols.map(c => '<th>'+c+'</th>').join('') + '</tr></thead><tbody>';
+  for (const r of rows){
+    const tName = r.theme ? themeLabel(r.theme) : '— all —';
+    const tId = r.theme ? r.theme.id : '';
+    html += '<tr class="v-'+r.verdict+'" data-theme="'+tId+'" data-verdict="'+r.verdict+'">' +
+      '<td>'+esc(tName)+'</td><td>'+esc(r.item)+'</td>' +
+      '<td>'+swatchHtml(r.swatches)+'</td>' +
+      '<td>'+esc(r.metrics)+'</td>' +
+      '<td><span class="vd '+r.verdict+'">'+r.verdict+'</span></td>' +
+      '<td class="note">'+esc(r.note)+'</td></tr>';
+    ALL_ROWS.push({gate: g.title, row: r});
+  }
+  html += '</tbody></table></div>';
+  det.innerHTML = html;
+  document.getElementById('gates').appendChild(det);
+  return counts;
+}
+function themeKey(r){ return r.theme ? r.theme.id : ''; }
+
+function renderScoreboard(perGate, mathOk){
+  const sb = document.getElementById('scoreboard');
+  let totF = 0, totW = 0, totP = 0;
+  let html = '';
+  perGate.forEach(pg => {
+    totF += pg.counts.FAIL; totW += pg.counts.WARN; totP += pg.counts.PASS;
+    const v = pg.counts.FAIL ? ['bad','FAIL'] : (pg.counts.WARN ? ['warn','WARN'] : ['ok','CLEAN']);
+    html += '<div class="score-card"><h3><a href="#'+pg.id+'" style="color:inherit;text-decoration:none">'+pg.title+'</a></h3>' +
+      '<div class="nums"><span class="p">'+pg.counts.PASS+'P</span><span class="w">'+pg.counts.WARN+'W</span><span class="f">'+pg.counts.FAIL+'F</span></div>' +
+      '<div class="verdict '+v[0]+'">'+v[1]+'</div></div>';
+  });
+  const overall = !mathOk ? ['bad','MATH BROKEN'] :
+    (totF ? ['bad', totF+' FAIL · '+totW+' WARN'] : (totW ? ['warn', totW+' WARN'] : ['ok','ALL GATES CLEAN']));
+  sb.innerHTML = '<div class="score-card" id="overall"><h3>Overall verdict</h3>' +
+    '<div class="big verdict '+overall[0]+'">'+overall[1]+'</div>' +
+    '<div class="nums"><span class="p">'+totP+' pass</span><span class="w">'+totW+' warn</span><span class="f">'+totF+' fail</span></div></div>' + html;
+}
+
+/* filters */
+function applyFilters(){
+  const th = document.getElementById('f-theme').value;
+  const vd = document.getElementById('f-verdict').value;
+  document.querySelectorAll('#gates tbody tr').forEach(tr => {
+    const tOk = !th || tr.dataset.theme === th || tr.dataset.theme === '';
+    let vOk = true;
+    if (vd === 'FAILWARN') vOk = tr.dataset.verdict === 'FAIL' || tr.dataset.verdict === 'WARN';
+    else if (vd) vOk = tr.dataset.verdict === vd;
+    tr.style.display = (tOk && vOk) ? '' : 'none';
+  });
+}
+
+/* copy failures */
+function copyFailures(){
+  const lines = ALL_ROWS
+    .filter(x => x.row.verdict === 'FAIL' || x.row.verdict === 'WARN')
+    .map(x => [x.row.verdict, x.gate, x.row.theme ? themeLabel(x.row.theme) : 'all',
+               x.row.item, x.row.metrics, x.row.note].join(' | '));
+  const text = lines.length
+    ? 'Edition colour-math validator — WARN/FAIL rows (' + new Date().toISOString().slice(0,10) + ')\n' + lines.join('\n')
+    : 'Edition colour-math validator — no WARN/FAIL rows.';
+  const done = () => {
+    const n = document.getElementById('copy-note');
+    n.style.display = 'inline'; setTimeout(() => { n.style.display = 'none'; }, 2200);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, () => window.prompt('Copy failures:', text));
+  } else {
+    window.prompt('Copy failures:', text);
+  }
+}
+
+/* boot */
+(function(){
+  const mathOk = runSelfTests();
+  const perGate = GATES.map(g => ({id: g.id, title: g.title, counts: renderGate(g, g.fn())}));
+  renderScoreboard(perGate, mathOk);
+  const sel = document.getElementById('f-theme');
+  THEMES.forEach(t => {
+    const o = document.createElement('option');
+    o.value = t.id; o.textContent = themeLabel(t);
+    sel.appendChild(o);
+  });
+  sel.addEventListener('change', applyFilters);
+  document.getElementById('f-verdict').addEventListener('change', applyFilters);
+  document.getElementById('copy-fails').addEventListener('click', copyFailures);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="t1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hormuz at Day 247 — The Brief · VegaReady</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Fraunces:opsz,wght@9..144,300..700&family=Lora:ital,wght@0,400..700;1,500&display=swap" rel="stylesheet">
+<script>
+/* option-axis init — all six stores read before first paint to avoid flash */
+(function(){
+  var d = document.documentElement;
+  function g(k, f, re){
+    var v = null;
+    try { v = localStorage.getItem(k); } catch(e){}
+    return (v && re.test(v)) ? v : f;
+  }
+  d.setAttribute('data-theme',   g('ed-theme',   't1',    /^(t[1-8]|tm)$/));
+  d.setAttribute('data-gold',    g('ed-gold',    'g3',    /^g[1-3]$/));
+  d.setAttribute('data-grey',    g('ed-grey',    'warm',  /^(warm|cool)$/));
+  d.setAttribute('data-sem',     g('ed-sem',     's2',    /^s[1-3]$/));
+  d.setAttribute('data-dialect', g('ed-dialect', 'fixed', /^(auto|fixed)$/));
+  d.setAttribute('data-deep',    g('ed-deep',    'b2',    /^b[12]$/));
+  d.setAttribute('data-chroma',  g('ed-chroma',  'rich',  /^(rich|capped)$/));
+  var pt = g('ed-ptone', 'pc1', /^(pa|pb|pd|pc[1-4])$/);
+  try { if (localStorage.getItem('ed-ptone') === 'pc') pt = 'pc1'; } catch(e){} /* legacy migration: 'pc' → 'pc1' */
+  d.setAttribute('data-ptone', pt);
+  if (g('ed-panel', 'open', /^(open|collapsed)$/) === 'collapsed') d.setAttribute('data-panel','collapsed');
+})();
+</script>
+<style>
+/* ════ THEME VARIABLES ════
+   t1 Oxford (default) on :root; t2–t8 + tm override on html[data-theme].
+   Gold gradient (#A8843C→#E3C77E) and semantic spine hues (WATCH amber #8A6B3A) stay literal. */
+:root{
+  --canvas:#0D1626;
+  --card:#131E32;     /* RECIPE: hue-held, chroma rises */
+  --cardline:#1E2E4A;
+  --deep:#0A0F1A;
+  --inverse:#EDE5D2;
+  --inv-ink:#33302A;
+  --inv-body:#5C5546;
+  --ink:#F2EBDC;
+  --body:#DCD4C2;
+  --muted:#97917F;
+  --eyeb:#C9A24A;
+  --struct:#5FA897;
+}
+html[data-theme="t2"]{--canvas:#0A0F1A;--card:#111C30;--cardline:#1C2A44;--deep:#070B12}
+html[data-theme="t3"]{--canvas:#13171D;--card:#1C2129;--cardline:#262E3A;--deep:#0C0F13}
+html[data-theme="t4"]{--canvas:#11201C;--card:#172924;--cardline:#223B34;--deep:#0A1410}
+html[data-theme="t5"]{--canvas:#0F1B1F;--card:#152429;--cardline:#20353B;--deep:#0A1216}
+html[data-theme="t6"]{--canvas:#0B0D11;--card:#0D1626;--cardline:#1E2E4A;--deep:#07090D}
+html[data-theme="t7"]{--canvas:#232B33;--card:#1C2229;--cardline:#394551;--deep:#161B21;--inverse:#F2EDE2;--muted:#A39D8E}
+html[data-theme="t8"]{--canvas:#DDE2E6;--card:#FFF;--cardline:#C2CAD1;--deep:#0B2E4E;--inverse:#0B2E4E;--inv-ink:#F2EBDC;--inv-body:#C9D4DE;--ink:#2B2F34;--body:#3A434C;--muted:#4A535C;--eyeb:#8A6420;--struct:#2A6478}
+/* tm — matted paper plate: vars carry the ON-PLATE ramp; mat + chrome handled by scoped rules below */
+html[data-theme="tm"]{--canvas:#080C14;--card:#10151E;--cardline:#DDD5C4;--deep:#0A0F1A;--inverse:#0B2E4E;--inv-ink:#F2EBDC;--inv-body:#C9D4DE;--ink:#33302A;--body:#4A4438;--muted:#8A8274;--eyeb:#8A6420;--struct:#2A6478}
+
+/* ════ CHROMA axis — canvas saturation cap (placed after the theme blocks so it wins the cascade).
+   Research gate: large grounds ≤ C 0.025; Oxford measures C 0.035, Abyss similar.
+   capped re-tunes ONLY the two over-chromatic navy themes (t1/t2); t3–t8/tm already pass the cap — no rules needed. */
+html[data-chroma="capped"][data-theme="t1"]{--canvas:#0E1520;--card:#131D2B;--cardline:#1E2B3F;--deep:#0A0F18}
+html[data-chroma="capped"][data-theme="t2"]{--canvas:#101826;--card:#162133;--cardline:#21304A;--deep:#0C1220}
+
+/* ════ OPTION AXES — attribute layers; override theme vars by cascade ════ */
+/* GOLD ladder — g3 = current rich gold, no override */
+html[data-gold="g1"]{--eyeb:color-mix(in srgb,var(--muted) 60%,var(--ink))}  /* eyebrows→warm ink-grey; metal stays only where gradients are literal */
+html[data-gold="g1"] .kick::after{opacity:.3}
+html[data-gold="g2"]{--eyeb:#B09A66}
+html[data-gold="g2"] .kick::after{opacity:.6}
+/* tm mat chrome: the crumb sep is literal dark-ramp gold (tm's --eyeb is the paper-plate value),
+   so the ladder gets explicit mat-register steps here */
+html[data-gold="g1"][data-theme="tm"] .crumb .sep{color:color-mix(in srgb,#97917F 60%,#F2EBDC)}
+html[data-gold="g2"][data-theme="tm"] .crumb .sep{color:#B09A66}
+/* GREY temperature — per-theme cool values, hue-following; tm keeps its own muted */
+html[data-grey="cool"]{--muted:#8C96A4}
+html[data-grey="cool"][data-theme="t4"],html[data-grey="cool"][data-theme="t5"]{--muted:#8A9892}
+html[data-grey="cool"][data-theme="t7"]{--muted:#9AA3AE}
+html[data-grey="cool"][data-theme="t8"]{--muted:#4A535C}
+html[data-grey="cool"][data-theme="tm"]{--muted:#8A8274}
+/* SEMANTIC recipe'd — s2 = current; this page defines no --pos/--neg/--data/--warn/--latent
+   (the WATCH amber spine #8A6B3A is literal by design) — rule kept for cross-page parity */
+html[data-sem="s1"]{--pos:#33A07E;--neg:#C2604C}
+/* s3 Desk Standard — TradingView/Coinbase pair; kept for cross-page parity */
+html[data-sem="s3"]{--pos:#26A69A;--neg:#EF5350}
+/* DIALECT — auto keeps verdigris #5FA897 on navy themes (t1/t2/t3/t6/t7); fixed = current everywhere */
+html[data-dialect="auto"][data-theme="t4"],html[data-dialect="auto"][data-theme="t5"]{--struct:#5878B8}
+html[data-dialect="auto"][data-theme="t8"]{--struct:#2A6478}
+/* DEEP guaranteed step (−6L-ish per theme; t8/tm unchanged) */
+html[data-deep="b1"][data-theme="t1"]{--deep:#070D18}
+html[data-deep="b1"][data-theme="t2"]{--deep:#05080F}
+html[data-deep="b1"][data-theme="t3"]{--deep:#080B10}
+html[data-deep="b1"][data-theme="t4"]{--deep:#07120D}
+html[data-deep="b1"][data-theme="t5"]{--deep:#081014}
+html[data-deep="b1"][data-theme="t6"]{--deep:#04060A}
+html[data-deep="b1"][data-theme="t7"]{--deep:#12161C}
+/* PANELS — special surfaces that bypass --card. pa per-role default (--panel:var(--deep))
+   lives on the pane elements themselves; pb/pc/pd re-tone them here.
+   html[data-ptone] + element selector outranks the elements' own locals. */
+html[data-ptone="pb"] .scrolly-sticky,html[data-ptone="pb"] .stepfig{--panel:var(--card);--panelline:var(--cardline)}
+/* sunken COLOUR family — pc1 Canvas (structural winner, = legacy pc) / pc2 Desaturated / pc3 Navy / pc4 Neutral */
+html[data-ptone="pc1"] .scrolly-sticky,html[data-ptone="pc1"] .stepfig{--panel:color-mix(in srgb,#000 26%,var(--canvas));--panelline:color-mix(in srgb,var(--ink) 12%,var(--canvas))}
+html[data-ptone="pc2"] .scrolly-sticky,html[data-ptone="pc2"] .stepfig{--panel:color-mix(in srgb,#13161B 62%,var(--canvas));--panelline:color-mix(in srgb,#C8CDD3 12%,var(--canvas))}
+html[data-ptone="pc3"] .scrolly-sticky,html[data-ptone="pc3"] .stepfig{--panel:color-mix(in srgb,#0B1326 72%,var(--canvas));--panelline:#25324B}
+html[data-ptone="pc4"] .scrolly-sticky,html[data-ptone="pc4"] .stepfig{--panel:#0C0E12;--panelline:#232830}
+html[data-ptone="pd"] .scrolly-sticky,html[data-ptone="pd"] .stepfig{--panel:color-mix(in srgb,#fff 5%,var(--card));--panelline:color-mix(in srgb,#fff 9%,var(--cardline))}
+/* t8 guard: the pane's figures + state chips are literal light-on-dark (pane "always dark"
+   by design) — keep the plate dark on the light theme under every ptone, incl. all four sunken variants */
+html[data-ptone="pb"][data-theme="t8"] .scrolly-sticky,html[data-ptone="pb"][data-theme="t8"] .stepfig,
+html[data-ptone="pc1"][data-theme="t8"] .scrolly-sticky,html[data-ptone="pc1"][data-theme="t8"] .stepfig,
+html[data-ptone="pc2"][data-theme="t8"] .scrolly-sticky,html[data-ptone="pc2"][data-theme="t8"] .stepfig,
+html[data-ptone="pc3"][data-theme="t8"] .scrolly-sticky,html[data-ptone="pc3"][data-theme="t8"] .stepfig,
+html[data-ptone="pc4"][data-theme="t8"] .scrolly-sticky,html[data-ptone="pc4"][data-theme="t8"] .stepfig,
+html[data-ptone="pd"][data-theme="t8"] .scrolly-sticky,html[data-ptone="pd"][data-theme="t8"] .stepfig{--panel:var(--deep);--panelline:var(--cardline)}
+
+/* ════ LOCKED SPINE ════ */
+*{margin:0;padding:0;box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto!important}}
+:focus-visible{outline:2px solid var(--struct);outline-offset:2px;border-radius:4px}
+html{scroll-behavior:auto}
+body{background:var(--canvas);color:var(--body);font-family:'Fraunces',Georgia,serif;font-size:17px;line-height:1.75}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+
+/* ── masthead ── */
+.mast{border-bottom:1px solid var(--cardline)}
+.mast .wrap{display:flex;align-items:center;gap:22px;padding-top:16px;padding-bottom:16px}
+.wordmark{font-family:'Playfair Display',serif;font-weight:800;font-size:19px;color:var(--ink);letter-spacing:.01em;text-decoration:none}
+.mastlinks{margin-left:auto;display:flex;align-items:center;gap:20px}
+.mastlinks a{font-family:'Lora',serif;font-size:11.5px;letter-spacing:.06em;color:var(--muted);text-decoration:none}
+.mastlinks a:hover{color:var(--body)}
+.cmdk{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.08em;color:var(--muted);border:1px solid var(--cardline);border-radius:6px;padding:3px 9px;background:var(--card)}
+
+/* ── breadcrumb ── */
+.crumb{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:26px 0 0}
+.crumb .sep{color:var(--eyeb);padding:0 8px;font-weight:400}
+.crumb .cur{color:color-mix(in srgb,var(--body) 55%,var(--muted))}
+.crumb a{text-decoration:none;color:var(--muted)}
+.crumb a:hover{color:var(--body)}
+
+/* ── brief head ── */
+.bhead{position:relative;padding:34px 0 38px;border-bottom:1px solid var(--cardline)}
+.eyebrow{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--eyeb)}
+h1.title{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(36px,4.6vw,54px);line-height:1.12;color:var(--ink);max-width:820px;margin:14px 0 12px}
+.subline{font-family:'Playfair Display',serif;font-style:italic;font-weight:500;font-size:19px;color:color-mix(in srgb,var(--body) 55%,var(--muted));max-width:680px}
+.meta{margin-top:22px;font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
+.meta .dot{color:var(--eyeb);padding:0 7px;font-weight:400}
+
+/* ── article grid ── */
+.article{display:grid;grid-template-columns:90px 1fr;column-gap:48px;padding:46px 0 30px}
+.spinecol{position:relative}
+.chspine{position:sticky;top:80px}
+.chspine .count{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--eyeb);margin-bottom:14px;font-variant-numeric:tabular-nums}
+.chspine a{display:block;text-decoration:none;font-family:'Lora',serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 0 7px 12px;border-left:2px solid transparent;line-height:1.45}
+.chspine a.active{border-left-color:var(--struct);color:var(--ink)}
+.chspine a:hover{color:var(--body)}
+.chspine a .n{display:block;font-size:9px;color:var(--muted);letter-spacing:.14em}
+
+/* ── body / measure ── */
+.bodycol{min-width:0;max-width:880px;font-feature-settings:'onum'} /* D3.4 oldstyle numerals across prose */
+/* prose measure: 62ch on text blocks; sections stay full-width so floats + scrolly can use the margin */
+.bodycol p,.bodycol .chh,.bodycol .dateline,.bodycol .watch,.bodycol .pullstat,.bodycol .maxim,
+.bodycol .sig,.bodycol .filed{max-width:62ch}
+.bodycol p{margin:0 0 22px;color:var(--body)}
+.bodycol p strong{color:var(--ink);font-weight:600}
+
+/* wire dateline */
+.dateline{font-family:'Lora',serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--eyeb);margin-bottom:10px}
+
+/* drop cap */
+.dropcap::first-letter{font-family:'Playfair Display',serif;font-weight:700;font-size:54px;line-height:.86;float:left;color:var(--ink);padding:5px 10px 0 0}
+
+/* sidenotes — float into right margin on desktop */
+.snref{font-family:'Lora',serif;font-size:11px;font-weight:700;color:var(--eyeb);vertical-align:super;line-height:0;padding-left:1px}
+.sidenote{float:right;clear:right;width:240px;margin:4px 0 20px 24px;font-size:11.5px;line-height:1.6;color:var(--muted)}
+.sidenote .sn-n{font-family:'Lora',serif;font-weight:700;color:var(--eyeb);font-size:10.5px;padding-right:5px}
+.sidenote.rev{font-style:italic;color:color-mix(in srgb,var(--body) 55%,var(--muted))}
+
+/* chapter heads */
+.chh{margin:6px 0 20px}
+.chh .ck{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--eyeb);display:block;margin-bottom:8px}
+.chh h2{font-family:'Playfair Display',serif;font-weight:700;font-size:28px;color:var(--ink);line-height:1.2}
+
+/* sticky chapter eyebrow (S4.6) */
+.stickyeyebrow{position:sticky;top:0;z-index:30;background:var(--canvas);padding:12px 0 10px;margin-bottom:18px;border-bottom:1px solid var(--cardline);font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--eyeb)}
+
+/* oxford rule (S1.1, locked) — ink-mix hairline + literal gold gradient */
+.oxford{border:0;height:0;border-top:3px solid color-mix(in srgb,var(--ink) 10%,transparent);margin:44px 0 0;position:relative;max-width:62ch}
+.oxford::after{content:'';display:block;height:1px;margin-top:3px;background:linear-gradient(90deg,#A8843C,#E3C77E)}
+.oxford + *{margin-top:44px}
+
+/* swelled rule */
+.swelled{border:0;height:1px;margin:38px 0;max-width:62ch;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--ink) 35%,transparent),transparent)}
+
+/* pull-stat (D7.1) */
+.pullstat{border-left:2px solid;border-image:linear-gradient(180deg,#A8843C,#E3C77E) 1;padding:6px 0 8px 22px;margin:30px 0 30px}
+.pullstat .v{font-family:'Lora',serif;font-size:34px;font-weight:700;color:var(--ink);font-variant-numeric:oldstyle-nums;line-height:1.15}
+.pullstat .c{font-size:13px;color:var(--muted);font-style:italic;margin-top:4px}
+
+/* inline highlight (D7.2-B) */
+.hl{color:var(--ink);background-image:linear-gradient(90deg,#A8843C,#E3C77E);background-repeat:no-repeat;background-size:100% 2px;background-position:0 100%;padding-bottom:2px}
+
+/* watch callout (S2.6-A) — semantic amber spine stays literal */
+.watch{border-left:3px solid #8A6B3A;background:color-mix(in srgb,#8A6B3A 9%,var(--canvas));padding:16px 20px;margin:28px 0;border-radius:0 8px 8px 0}
+.watch .wk{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--eyeb);display:block;margin-bottom:6px}
+.watch p{margin:0;font-size:15px;color:var(--body)}
+
+/* financial micro-notation (D3.8) */
+sup.bp{font-family:'Lora',serif;font-size:.62em;letter-spacing:.04em;color:color-mix(in srgb,var(--body) 55%,var(--muted));vertical-align:super;line-height:0}
+.frac{font-feature-settings:'onum';color:var(--ink)}
+
+/* desk maxim (D3.2 restyled) — quiet centered pull-quote, short gold rule above, no glyph */
+.maxim{text-align:center;margin:56px 0;padding:0 20px}
+.maxim::before{content:'';display:block;width:64px;height:2px;margin:0 auto 24px;background:linear-gradient(90deg,#A8843C,#E3C77E)}
+.maxim blockquote{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:26px;line-height:1.35;color:var(--ink)}
+.maxim .cap{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--muted);margin-top:14px;text-transform:uppercase}
+
+/* ════ scrollytelling (S4.5) — stacked base, sticky enhancement ════ */
+.scrolly{max-width:none;margin:34px 0 10px}
+/* PANELS axis pa defaults — pane keeps var(--deep) exactly as before */
+.scrolly-sticky{--panel:var(--deep);--panelline:var(--cardline);display:none}
+.sfig{display:none}
+.sfig.on{display:block}
+.stepfig{--panel:var(--deep);--panelline:var(--cardline);background:var(--panel);border:1px solid var(--panelline);border-radius:12px;padding:18px;margin:0 0 18px}
+.stepfig svg,.scrolly-sticky svg{display:block;width:100%;height:auto}
+.step{margin-bottom:42px}
+.step .stepk{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;color:var(--struct);text-transform:uppercase;display:block;margin-bottom:8px}
+.step p{max-width:62ch}
+/* manual state chips — pinned pane only; pane is always dark, so chip colours stay literal */
+.schips{position:absolute;top:14px;right:14px;display:flex;gap:6px;z-index:5}
+.schip{font-family:'Lora',serif;font-size:10px;font-weight:700;width:24px;height:24px;line-height:1;border-radius:6px;border:1px solid rgba(242,235,220,.25);background:transparent;color:#97917F;cursor:pointer;font-variant-numeric:tabular-nums}
+.schip:hover{color:#DCD4C2}
+.schip.on{border-color:#5FA897;color:#F2EBDC}
+@media (min-width:980px) and (prefers-reduced-motion: no-preference){
+  .scrolly{display:flex;gap:42px;align-items:flex-start}
+  .scrolly-sticky{display:block;flex:0 0 46%;position:sticky;top:70px;height:70vh;background:var(--panel);border:1px solid var(--panelline);border-radius:14px;padding:22px;overflow:hidden}
+  .scrolly-sticky .sfig{height:100%}
+  .scrolly-sticky svg{height:100%;max-height:calc(70vh - 44px);margin:0 auto}
+  .scrolly-steps{flex:1;min-width:0}
+  .step{min-height:70vh;display:flex;flex-direction:column;justify-content:center;margin-bottom:0}
+  .step .stepfig{display:none}
+}
+
+/* ── close blocks ── */
+.sig{margin-top:46px}
+.sig .name{font-family:'Playfair Display',serif;font-style:italic;font-size:21px;color:var(--ink)}
+.sig .org{font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-top:6px;text-transform:uppercase}
+.endmark{font-family:'Playfair Display',serif;font-style:italic;color:var(--eyeb);font-size:1.1em;padding-left:6px}
+.filed{border-top:1px solid var(--cardline);margin-top:38px;padding-top:18px;font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:2;font-variant-numeric:tabular-nums}
+.filed .k{color:var(--eyeb);padding-right:8px}
+.filed .v{color:color-mix(in srgb,var(--body) 55%,var(--muted))}
+.filed .compiled{font-weight:400;font-size:10.5px;letter-spacing:.05em;text-transform:none;color:var(--muted);margin-top:6px}
+
+/* ── footer ── */
+.foot{border-top:1px solid var(--cardline);margin-top:64px}
+.foot .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:34px;font-family:'Lora',serif;font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.foot a{color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--body)}
+
+/* ════ annotation mode + theme switcher — fixed chrome, deliberately literal dark ════ */
+#anno{position:fixed;right:18px;bottom:18px;z-index:90;font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.06em;color:#C9A24A;background:#1C2128;border:1px solid rgba(227,199,126,.4);border-radius:8px;padding:8px 14px;cursor:pointer}
+/* ── Options panel (bottom-left, fixed dark chrome — legible on every theme) ── */
+#edpanel{
+  position:fixed;left:22px;bottom:22px;z-index:95;
+  background:#15181D;border:1px solid #2E3239;border-radius:10px;
+  padding:10px;max-width:210px;
+  font-family:'Lora',serif;font-size:10px;color:#9AA3AD;line-height:1.4;
+}
+#edpanel .ep-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#edpanel .ep-title{font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+#edpanel .ep-toggle{background:none;border:0;color:#9AA3AD;font-size:12px;line-height:1;padding:0 2px;cursor:pointer}
+#edpanel .ep-toggle:hover{color:#E3C77E}
+#edpanel .ep-presets{display:flex;gap:4px;margin:9px 0 1px}
+#edpanel .ep-preset{flex:1 1 auto;font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.02em;white-space:nowrap;color:#9AA3AD;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 3px;cursor:pointer}
+#edpanel .ep-preset:hover{color:#E3C77E;border-color:#3A4149}
+#edpanel .ep-field{margin-top:8px}
+#edpanel .ep-field label{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6E7681;margin-bottom:3px}
+#edpanel .ep-field select{width:100%;font-family:'Lora',serif;font-size:10px;color:#C8CDD3;background:#1C2026;border:1px solid #2E3239;border-radius:5px;padding:4px 6px;cursor:pointer}
+#edpanel .ep-field select option{background:#1C2026;color:#C8CDD3}
+/* collapsed → 34px gear chip; state lives on <html> so the head script restores it pre-paint */
+html[data-panel="collapsed"] #edpanel{width:34px;height:34px;max-width:34px;padding:0;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+html[data-panel="collapsed"] #edpanel .ep-title,
+html[data-panel="collapsed"] #edpanel .ep-body{display:none}
+html[data-panel="collapsed"] #edpanel .ep-toggle{width:34px;height:34px;font-size:15px;color:#E3C77E}
+body.anno-on [data-dev]{outline:1px dashed rgba(227,199,126,.65);outline-offset:3px;position:relative}
+body.anno-on [data-dev]::after{content:attr(data-dev);position:absolute;top:-9px;left:0;font:700 9px 'Lora',serif;letter-spacing:.05em;background:#1C2128;color:#E3C77E;padding:2px 7px;border-radius:4px;z-index:80;white-space:nowrap}
+
+/* ════ tm — matted paper plate: scoped rules ════
+   The plate wrapper (bhead + article) becomes the paper sheet; masthead, crumb,
+   footer and fixed chrome stay on the dark mat with their dark-ramp colours. */
+html[data-theme="tm"] .plate{background:#F3EEE2;border-radius:6px;max-width:880px;margin:34px auto 0;padding:14px 56px 56px}
+html[data-theme="tm"] .stickyeyebrow{background:#F3EEE2}
+html[data-theme="tm"] .watch{background:color-mix(in srgb,#8A6B3A 8%,#F3EEE2)}
+html[data-theme="tm"] .sidenote{width:200px;margin-left:20px}
+html[data-theme="tm"] .mast{border-bottom-color:rgba(242,235,220,.14)}
+html[data-theme="tm"] .wordmark{color:#F2EBDC}
+html[data-theme="tm"] .mastlinks a{color:#97917F}
+html[data-theme="tm"] .mastlinks a:hover{color:#DCD4C2}
+html[data-theme="tm"] .cmdk{color:#97917F;border-color:rgba(242,235,220,.18);background:rgba(242,235,220,.06)}
+html[data-theme="tm"] .crumb,html[data-theme="tm"] .crumb a{color:#97917F}
+html[data-theme="tm"] .crumb a:hover{color:#DCD4C2}
+html[data-theme="tm"] .crumb .cur{color:#B4AC99}
+html[data-theme="tm"] .crumb .sep{color:#C9A24A}
+html[data-theme="tm"] .foot{border-top-color:rgba(242,235,220,.14)}
+html[data-theme="tm"] .foot .wrap,html[data-theme="tm"] .foot a{color:#97917F}
+html[data-theme="tm"] .foot a:hover{color:#DCD4C2}
+@media (max-width:760px){
+  html[data-theme="tm"] .plate{padding:8px 22px 40px}
+}
+
+/* ════ responsive collapse ════ */
+@media (max-width:1240px){
+  .sidenote{float:none;width:auto;max-width:62ch;margin:18px 0 24px;border-left:2px solid var(--cardline);padding-left:16px}
+  html[data-theme="tm"] .sidenote{width:auto;margin-left:0}
+}
+@media (max-width:980px){
+  .article{display:block}
+  .chspine{position:static;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:34px;border-bottom:1px solid var(--cardline);padding-bottom:14px}
+  .chspine .count{margin:0}
+  .chspine a{padding:0;border-left:0}
+  .chspine a.active{border-left:0;text-decoration:underline;text-decoration-color:var(--struct);text-underline-offset:4px}
+  .stickyeyebrow{top:0}
+}
+</style>
+</head>
+<body id="top">
+
+<!-- 1 · masthead -->
+<header class="mast">
+  <div class="wrap">
+    <a class="wordmark" href="index.html">VegaReady</a>
+    <nav class="mastlinks" aria-label="Edition navigation">
+      <a href="index.html">&larr; Front door</a>
+      <a href="desk.html">The Desk &rarr;</a>
+      <span class="cmdk">&#8984;K</span>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- 2 · breadcrumb -->
+  <nav class="crumb" aria-label="Breadcrumb" data-dev="S5.2 · breadcrumb">
+    <a href="index.html">Briefings</a><span class="sep">&#9656;</span><span class="cur">Energy Desk</span>
+  </nav>
+
+  <!-- plate wrapper: unstyled on t1–t8; becomes the paper sheet on tm -->
+  <div class="plate">
+
+  <!-- 3 · brief head -->
+  <header class="bhead">
+    <span class="eyebrow">The Edition &middot; No. 2</span>
+    <h1 class="title">Hormuz at Day 247: the window the market won&rsquo;t price.</h1>
+    <p class="subline">Premia into the June 15 reset &mdash; what the desk is watching.</p>
+    <p class="meta" data-dev="D7.7 · weight line (stamps folded in)">Morning Brief<span class="dot" data-dev="D3.10 · gold middot">&middot;</span>Assessment<span class="dot">&middot;</span>6 min read<span class="dot">&middot;</span>1,400 words<span class="dot">&middot;</span>14 sources<span class="dot">&middot;</span>D+247</p>
+  </header>
+
+  <!-- article grid: spine | prose(+sidenote margin) -->
+  <div class="article">
+
+    <!-- 6 · chapter spine (S4.1-B) — static active state on 01; pure CSS sticky -->
+    <div class="spinecol">
+      <nav class="chspine" aria-label="Chapters" data-dev="S4.1B · chapter spine">
+        <div class="count">01 / 03</div>
+        <a class="active" href="#ch1"><span class="n">01</span>The window</a>
+        <a href="#ch2"><span class="n">02</span>The cascade</a>
+        <a href="#ch3"><span class="n">03</span>The position</a>
+      </nav>
+    </div>
+
+    <div class="bodycol" data-dev="D3.4 · oldstyle numerals">
+
+      <!-- ═══ CHAPTER 01 ═══ -->
+      <section id="ch1">
+        <div class="chh">
+          <span class="ck">01 &middot; The window</span>
+        </div>
+
+        <!-- 4 · wire dateline -->
+        <p class="dateline" data-dev="D7.6 · wire dateline">Energy Desk, D+247 &mdash;</p>
+
+        <aside class="sidenote" data-dev="D3.11 · sidenote"><span class="sn-n">1</span>Desk estimate D+247; methodology on the dashboard.</aside>
+
+        <!-- 5 · drop cap, oldstyle numerals -->
+        <p class="dropcap" data-dev="D3.3 · drop cap">Two hundred and forty-seven days into the closure scare, the Strait of Hormuz is doing what it always does in the eighth month of a crisis: it is getting boring. Transits are down 11 per cent from the pre-war norm, tankers run the corridor at night in loose convoys, and the desk&rsquo;s reconciled AIS count shows 47 laden VLCCs westbound this week<sup class="snref">1</sup> &mdash; a number that would have read as catastrophe in October and now reads as Tuesday.</p>
+
+        <aside class="sidenote" data-dev="D3.11 · sidenote"><span class="sn-n">2</span>1984&ndash;2024 incident set, 14 events. Confidence: high.</aside>
+
+        <p>Boredom is the trade. The June 15 war-risk reset is nine days out, and the underwriting committees in London will reprice every hull that touches the Gulf. Our work says <span class="hl" data-dev="D7.2 · inline highlight">closure risk is under-priced by roughly a third</span>: the market is paying ceasefire prices for a strait that is still, by any honest reading of the incident set, contested.<sup class="snref">2</sup></p>
+
+        <!-- S2.6-A semantic callout -->
+        <div class="watch" data-dev="S2.6 · WATCH callout">
+          <span class="wk">Watch</span>
+          <p>Insurance reset on the 15th &mdash; premiums move first. In every prior repricing cycle, freight has followed the quote within four sessions.</p>
+        </div>
+
+        <p>Premia tell it plainly. War-risk cover for a Hormuz transit was quoted at <span class="frac" data-dev="D3.8 · micro-notation (fraction)">&#8539;&nbsp;per cent</span> of hull value before the war; it touched &frac12; per cent at the October peak; it sits near &frac14; today. The forward market treats that retracement as a destination. The desk treats it as a pause &mdash; a window between the calm of May and a committee decision that has not yet been made.</p>
+      </section>
+
+      <hr class="oxford" data-dev="S1.1 · oxford rule">
+
+      <!-- ═══ CHAPTER 02 ═══ -->
+      <section id="ch2">
+        <div class="chh">
+          <span class="ck">02 &middot; The cascade</span>
+        </div>
+
+        <aside class="sidenote" data-dev="D3.11 · sidenote"><span class="sn-n">3</span>AIS reconciliation 06:40 GST.</aside>
+        <aside class="sidenote rev" data-dev="D2.6 · revision marginalia">&mdash; revised 06:40, sourcing upgraded to three wires.</aside>
+
+        <p>When a chokepoint reprices, it does so in a fixed order. The desk has watched the sequence run fourteen times since the Tanker War and it has never varied: insurance first, freight second, equities last.<sup class="snref">3</sup> The lags between the three are not noise &mdash; they are the structure of the trade. Premiums reset on committee schedules, discrete and dated. Freight resets voyage by voyage as owners re-fix. Equities reset when the second-order arithmetic finally arrives in a strategy note, usually a week late and all at once.</p>
+
+        <p>Meanwhile the corridor itself keeps a meter running.</p>
+
+        <!-- D7.1 pull-stat -->
+        <figure class="pullstat" data-dev="D7.1 · pull-stat">
+          <div class="v">$4.2m / day</div>
+          <figcaption class="c">the cost of the slow transit, per laden VLCC</figcaption>
+        </figure>
+
+        <p>Demurrage, deviation fuel, the convoy wait at the western anchorages: that is what a laden VLCC bleeds for every day Hormuz runs slow, and it is the bill the cascade exists to allocate. The three figures that follow show the sequence as the desk charts it.</p>
+
+        <!-- ════ 9 · S4.5 pinned scrollytelling — stacked base, sticky enhancement ════ -->
+
+        <!-- figure symbols, defined once, instantiated in both sticky pane and inline steps -->
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+          <defs>
+            <symbol id="fig-premia" viewBox="0 0 520 380">
+              <text x="30" y="32" font-family="Lora,serif" font-size="11" font-weight="700" letter-spacing="1.4" fill="#F2EBDC">FIGURE 02&#183;A &#8212; PREMIA MOVE FIRST</text>
+              <text x="30" y="50" font-family="Lora,serif" font-size="9.5" letter-spacing="1" fill="#97917F">WAR-RISK QUOTE &#183; % OF HULL VALUE</text>
+              <!-- grid -->
+              <line x1="60" y1="93" x2="490" y2="93" stroke="rgba(242,235,220,.08)" stroke-width="1"/>
+              <line x1="60" y1="202" x2="490" y2="202" stroke="rgba(242,235,220,.08)" stroke-width="1"/>
+              <line x1="60" y1="256" x2="490" y2="256" stroke="rgba(242,235,220,.18)" stroke-width="1" stroke-dasharray="3 4"/>
+              <line x1="60" y1="310" x2="490" y2="310" stroke="rgba(242,235,220,.18)" stroke-width="1"/>
+              <text x="50" y="97" font-family="Lora,serif" font-size="11" fill="#97917F" text-anchor="end">&#189;</text>
+              <text x="50" y="206" font-family="Lora,serif" font-size="11" fill="#97917F" text-anchor="end">&#188;</text>
+              <text x="50" y="260" font-family="Lora,serif" font-size="11" fill="#97917F" text-anchor="end">&#8539;</text>
+              <text x="468" y="250" font-family="Lora,serif" font-size="9" letter-spacing="1" fill="#97917F" text-anchor="end">PRE-WAR &#183; &#8539;</text>
+              <!-- context: 2019 cycle -->
+              <path d="M60,180 L130,196 L200,212 L270,225 L340,233 L410,238 L490,241" fill="none" stroke="#97917F" stroke-width="1.3"/>
+              <text x="486" y="232" font-family="Lora,serif" font-size="9" letter-spacing="1" fill="#97917F" text-anchor="end">2019 CYCLE</text>
+              <!-- hero: current quote -->
+              <path d="M60,167 L130,172 L200,181 L270,191 L340,198 L410,202 L455,200 L490,193" fill="none" stroke="#5FA897" stroke-width="2.2"/>
+              <circle cx="490" cy="193" r="3" fill="#5FA897"/>
+              <text x="486" y="180" font-family="Lora,serif" font-size="9.5" font-weight="700" letter-spacing="1" fill="#5FA897" text-anchor="end">WAR-RISK QUOTE</text>
+              <text x="275" y="346" font-family="Lora,serif" font-size="9.5" letter-spacing="1.2" fill="#97917F" text-anchor="middle">D+200 &#8594; D+247 &#183; LONDON QUOTES &#183; DESK SERIES</text>
+            </symbol>
+            <symbol id="fig-rates" viewBox="0 0 520 380">
+              <text x="30" y="32" font-family="Lora,serif" font-size="11" font-weight="700" letter-spacing="1.4" fill="#F2EBDC">FIGURE 02&#183;B &#8212; FREIGHT LAGS THE QUOTE</text>
+              <text x="30" y="50" font-family="Lora,serif" font-size="9.5" letter-spacing="1" fill="#97917F">TD3C vs WAR-RISK &#183; INDEXED, 100 = D+200</text>
+              <line x1="60" y1="100" x2="490" y2="100" stroke="rgba(242,235,220,.08)" stroke-width="1"/>
+              <line x1="60" y1="190" x2="490" y2="190" stroke="rgba(242,235,220,.08)" stroke-width="1"/>
+              <line x1="60" y1="280" x2="490" y2="280" stroke="rgba(242,235,220,.18)" stroke-width="1"/>
+              <text x="50" y="104" font-family="Lora,serif" font-size="10" fill="#97917F" text-anchor="end">160</text>
+              <text x="50" y="194" font-family="Lora,serif" font-size="10" fill="#97917F" text-anchor="end">130</text>
+              <text x="50" y="284" font-family="Lora,serif" font-size="10" fill="#97917F" text-anchor="end">100</text>
+              <!-- lag bracket -->
+              <line x1="240" y1="58" x2="330" y2="58" stroke="#C9A24A" stroke-width="1"/>
+              <line x1="240" y1="58" x2="240" y2="66" stroke="#C9A24A" stroke-width="1"/>
+              <line x1="330" y1="58" x2="330" y2="66" stroke="#C9A24A" stroke-width="1"/>
+              <text x="285" y="74" font-family="Lora,serif" font-size="9" letter-spacing="1" fill="#C9A24A" text-anchor="middle">&#8776;4-SESSION LAG</text>
+              <!-- context: war-risk lead -->
+              <path d="M60,280 L120,270 L180,205 L240,110 L300,84 L380,74 L490,70" fill="none" stroke="#97917F" stroke-width="1.3"/>
+              <text x="200" y="160" font-family="Lora,serif" font-size="9" letter-spacing="1" fill="#97917F">WAR-RISK (LEAD)</text>
+              <!-- hero: TD3C -->
+              <path d="M60,280 L150,276 L210,250 L270,180 L330,120 L390,96 L450,86 L490,82" fill="none" stroke="#5FA897" stroke-width="2.2"/>
+              <circle cx="490" cy="82" r="3" fill="#5FA897"/>
+              <text x="486" y="110" font-family="Lora,serif" font-size="9.5" font-weight="700" letter-spacing="1" fill="#5FA897" text-anchor="end">TD3C FREIGHT</text>
+              <text x="275" y="346" font-family="Lora,serif" font-size="9.5" letter-spacing="1.2" fill="#97917F" text-anchor="middle">EVERY CYCLE SINCE 2019 &#183; FIXTURES vs COMMITTEE QUOTES</text>
+            </symbol>
+            <symbol id="fig-equities" viewBox="0 0 520 380">
+              <text x="30" y="32" font-family="Lora,serif" font-size="11" font-weight="700" letter-spacing="1.4" fill="#F2EBDC">FIGURE 02&#183;C &#8212; EQUITIES FOLLOW, LAST</text>
+              <text x="30" y="50" font-family="Lora,serif" font-size="9.5" letter-spacing="1" fill="#97917F">GCC ENERGY EQUITIES &#183; RELATIVE REPRICE, INDEXED</text>
+              <line x1="60" y1="100" x2="490" y2="100" stroke="rgba(242,235,220,.08)" stroke-width="1"/>
+              <line x1="60" y1="190" x2="490" y2="190" stroke="rgba(242,235,220,.08)" stroke-width="1"/>
+              <line x1="60" y1="280" x2="490" y2="280" stroke="rgba(242,235,220,.18)" stroke-width="1"/>
+              <text x="50" y="104" font-family="Lora,serif" font-size="10" fill="#97917F" text-anchor="end">150</text>
+              <text x="50" y="194" font-family="Lora,serif" font-size="10" fill="#97917F" text-anchor="end">125</text>
+              <text x="50" y="284" font-family="Lora,serif" font-size="10" fill="#97917F" text-anchor="end">100</text>
+              <!-- context: insurance+freight composite -->
+              <path d="M60,262 L140,200 L220,140 L300,112 L380,97 L490,92" fill="none" stroke="#97917F" stroke-width="1.3"/>
+              <text x="300" y="100" font-family="Lora,serif" font-size="9" letter-spacing="1" fill="#97917F">INSURANCE + FREIGHT COMPOSITE</text>
+              <!-- hero: GCC energy equities -->
+              <path d="M60,272 L150,275 L240,269 L330,263 L400,242 L450,212 L490,192" fill="none" stroke="#5FA897" stroke-width="2.2"/>
+              <circle cx="490" cy="192" r="3" fill="#5FA897"/>
+              <text x="430" y="232" font-family="Lora,serif" font-size="9.5" font-weight="700" letter-spacing="1" fill="#5FA897" text-anchor="end">GCC ENERGY EQUITIES</text>
+              <!-- the gap -->
+              <line x1="476" y1="96" x2="476" y2="188" stroke="#C9A24A" stroke-width="1" stroke-dasharray="3 4"/>
+              <text x="468" y="146" font-family="Lora,serif" font-size="9" letter-spacing="1" fill="#C9A24A" text-anchor="end">THE GAP</text>
+              <text x="275" y="346" font-family="Lora,serif" font-size="9.5" letter-spacing="1.2" fill="#97917F" text-anchor="middle">D+200 &#8594; D+247 &#183; CONFIRMATION LAG = THE POSITION</text>
+            </symbol>
+          </defs>
+        </svg>
+
+        <div class="scrolly" data-dev="S4.5 · pinned scrollytelling (RULING)">
+          <!-- sticky pane: hidden in stacked base; shown ≥980px + motion OK -->
+          <div class="scrolly-sticky" aria-hidden="true">
+            <div class="schips" data-dev="S4.5b · manual state chips">
+              <button type="button" class="schip on" data-chip="sf-1" tabindex="-1">1</button>
+              <button type="button" class="schip" data-chip="sf-2" tabindex="-1">2</button>
+              <button type="button" class="schip" data-chip="sf-3" tabindex="-1">3</button>
+            </div>
+            <div class="sfig on" id="sf-1"><svg viewBox="0 0 520 380" role="img" aria-label="War-risk premia curve"><use href="#fig-premia"/></svg></div>
+            <div class="sfig" id="sf-2"><svg viewBox="0 0 520 380" role="img" aria-label="Freight rates lag premia"><use href="#fig-rates"/></svg></div>
+            <div class="sfig" id="sf-3"><svg viewBox="0 0 520 380" role="img" aria-label="Equities follow last"><use href="#fig-equities"/></svg></div>
+          </div>
+
+          <div class="scrolly-steps">
+            <div class="step" data-fig="sf-1">
+              <span class="stepk">Sequence &middot; 1 of 3</span>
+              <figure class="stepfig"><svg viewBox="0 0 520 380" role="img" aria-label="War-risk premia curve"><use href="#fig-premia"/></svg></figure>
+              <p><strong>Premia move first.</strong> The war-risk quote is a committee number &mdash; discrete, dated, published. When the June 15 reset lands it will not drift; it will gap. Across the fourteen-event incident set the first post-reset quote moved an average of 31 per cent, and in eleven of fourteen cases the direction was set within a single session. The quote is the cascade&rsquo;s clock.</p>
+            </div>
+            <div class="step" data-fig="sf-2">
+              <span class="stepk">Sequence &middot; 2 of 3</span>
+              <figure class="stepfig"><svg viewBox="0 0 520 380" role="img" aria-label="Freight rates lag premia"><use href="#fig-rates"/></svg></figure>
+              <p><strong>Freight follows within four sessions.</strong> Owners refuse the corridor until the new premium clears their charter math, then relist at rates that recover it. TD3C has lagged the quote by three to five sessions in every cycle since 2019, and the lag is structural: fixtures are negotiated, premiums are decreed.</p>
+            </div>
+            <div class="step" data-fig="sf-3">
+              <span class="stepk">Sequence &middot; 3 of 3</span>
+              <figure class="stepfig"><svg viewBox="0 0 520 380" role="img" aria-label="Equities follow last"><use href="#fig-equities"/></svg></figure>
+              <p><strong>Equities reprice last, and largest.</strong> Tanker owners, GCC insurers, the east-of-Suez refining complex &mdash; none of them move until the freight print confirms what the premium already said. That confirmation lag is where the position lives. By the time the strategy notes arrive, the desk wants to be done buying.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- D3.2 desk maxim, between chapters 2 and 3 — quiet centered register, short gold rule -->
+      <div class="maxim" data-dev="D3.2 · desk maxim (gold rule)">
+        <blockquote>The window is real. The price isn&rsquo;t yet.</blockquote>
+        <div class="cap">Desk maxim</div>
+      </div>
+
+      <hr class="oxford" data-dev="S1.1 · oxford rule">
+
+      <!-- ═══ CHAPTER 03 ═══ -->
+      <section id="ch3">
+        <!-- S4.6 sticky section eyebrow -->
+        <div class="stickyeyebrow" data-dev="S4.6 · sticky section eyebrow">03 &middot; The Position</div>
+
+        <p>The position follows from the sequence, not from a view on the war. Ahead of the 15th the desk is long the lag: long the instruments that reprice late, funded by the ones that reprice early. The early leg is already working &mdash; prompt Brent added <span data-dev="D3.8 · micro-notation (+bp)">+38<sup class="bp">bp</sup></span> this week on nothing more than reset chatter, and the war-risk forward market has begun quoting June transit cover above the spot &frac14; per cent. The late legs have barely stirred. Tanker equities trade where they did in April. The GCC insurers are priced for a ceasefire the incident log does not show.</p>
+
+        <p>We size it modestly, because the argument is asymmetry rather than probability. If the reset comes in soft &mdash; committees anchoring to the calm of May &mdash; the early hedge bleeds a little and the late legs go nowhere; the trade costs carry, nothing more. If the reset comes in hard, the cascade runs its fourteen-for-fourteen sequence and the late legs reprice by multiples of the early ones. The desk does not need to be right about Hormuz. It needs the market to stop being wrong in a particular order, and the order is the most reliable thing in this file.</p>
+
+        <hr class="swelled" data-dev="S1 · swelled rule (scope earned: legal-weight pause in unrelieved text)">
+
+        <p>What would change our mind is legible in advance. A formal extension of the naval corridor agreement before the 12th would justify the soft quote, and we would cut the late legs the same day &mdash; no averaging, no thesis-creep. A confirmed strike on tanker traffic &mdash; not a drone overflight, a hull &mdash; would collapse the lag entirely as everything repriced at once, and the trade would make its money badly, all in the hedge. Between those poles the position simply waits, which is what it was built to do.</p>
+
+        <p>Nine days, then. The committees meet, the quote gaps or it doesn&rsquo;t, and the cascade either runs or goes back to sleep until the next reset. Until then the desk&rsquo;s view is unchanged from the top of this note: the window is real, the meter is running at $4.2 million a day, and the market is still reading May&rsquo;s quote in June&rsquo;s strait.<span class="endmark" data-dev="D7.8 · end-mark">&nu;</span></p>
+      </section>
+
+      <!-- 11 · close: ONE signature, then ONE combined file card -->
+      <div class="sig" data-dev="D7.3 · signature block">
+        <div class="name">&mdash; the desk</div>
+        <div class="org">JCJ Investing &middot; 06:40 GST</div>
+      </div>
+
+      <div class="filed" data-dev="D2.10 · file card (filed under + colophon merged)">
+        <div><span class="k">Filed under</span><span class="v">Energy &middot; Chokepoints &middot; Insurance</span></div>
+        <div><span class="k">Day</span><span class="v">D+247</span>&ensp;<span class="k">Sources</span><span class="v">14</span>&ensp;<span class="k">Next review</span><span class="v">June 15</span></div>
+        <div class="compiled">Compiled from 14 sources &middot; 3 wires &middot; AIS reconciled &middot; reviewed by the desk</div>
+      </div>
+
+    </div><!-- /bodycol -->
+  </div><!-- /article -->
+  </div><!-- /plate -->
+</div><!-- /wrap -->
+
+<!-- 12 · footer -->
+<footer class="foot">
+  <div class="wrap">
+    <span>&copy; 2026 VegaReady &middot; The Edition</span>
+    <a href="#top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<!-- options panel (bottom-left) -->
+<div id="edpanel" role="group" aria-label="Display options">
+  <div class="ep-head">
+    <span class="ep-title">Options <span style="font-size:9px;letter-spacing:.06em;opacity:.8;color:#E0B262">V2 FROZEN</span> <a href="/edition-v1/brief.html" style="font-size:9px;letter-spacing:.06em;color:#E0B262;text-decoration:none">V1 &#8599;</a></span>
+    <button type="button" class="ep-toggle" id="eptoggle" aria-expanded="true" aria-label="Collapse options panel">&#8964;</button>
+  </div>
+  <div class="ep-body">
+    <div class="ep-presets" role="group" aria-label="Presets">
+      <button type="button" class="ep-preset" data-preset="p1">P1 Formula</button>
+      <button type="button" class="ep-preset" data-preset="p2">P2 Conservative</button>
+      <button type="button" class="ep-preset" data-preset="p3">P3 Baseline</button>
+    </div>
+    <div class="ep-field">
+      <label for="opt-theme">Canvas</label>
+      <select id="opt-theme">
+        <option value="t1" selected>T1 &middot; Oxford</option>
+        <option value="t2">T2 &middot; Abyss + navy cards</option>
+        <option value="t3">T3 &middot; Charcoal</option>
+        <option value="t4">T4 &middot; Pine</option>
+        <option value="t5">T5 &middot; Petrol</option>
+        <option value="t6">T6 &middot; Near-black + Oxford cards</option>
+        <option value="t7">T7 &middot; Gunmetal</option>
+        <option value="t8">T8 &middot; Light</option>
+        <option value="tm">M &middot; Matted paper plate</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-chroma">Chroma</label>
+      <select id="opt-chroma">
+        <option value="rich" selected>Rich (current)</option>
+        <option value="capped">Capped &middot; institutional</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-gold">Gold</label>
+      <select id="opt-gold">
+        <option value="g1">G1 &middot; Signature</option>
+        <option value="g2">G2 &middot; Whisper</option>
+        <option value="g3" selected>G3 &middot; Rich (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-grey">Grey</label>
+      <select id="opt-grey">
+        <option value="warm" selected>Warm (current)</option>
+        <option value="cool">Cool</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-sem">Semantic</label>
+      <select id="opt-sem">
+        <option value="s1">S1 &middot; Recipe&rsquo;d</option>
+        <option value="s2" selected>S2 &middot; Current</option>
+        <option value="s3">S3 &middot; Desk standard (TradingView/Coinbase pair)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-dialect">Dialect</label>
+      <select id="opt-dialect">
+        <option value="auto">Auto &middot; Cross-family</option>
+        <option value="fixed" selected>Fixed &middot; Teal (current)</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-deep">Deep bands</label>
+      <select id="opt-deep">
+        <option value="b1">B1 &middot; Guaranteed step</option>
+        <option value="b2" selected>B2 &middot; Current</option>
+      </select>
+    </div>
+    <div class="ep-field">
+      <label for="opt-ptone">Panels</label>
+      <select id="opt-ptone">
+        <option value="pa">Per-role</option>
+        <option value="pb">Unified</option>
+        <option value="pd">Raised</option>
+        <option value="pc1" selected>Sunken &middot; Canvas</option>
+        <option value="pc2">Sunken &middot; Desaturated</option>
+        <option value="pc3">Sunken &middot; Navy</option>
+        <option value="pc4">Sunken &middot; Neutral</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<button id="anno" type="button" aria-pressed="false">&#8857; Annotate</button>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ── options panel — six axes + presets + collapse (shared keys across The Edition) ── */
+  (function(){
+    var d = document.documentElement;
+    var AXES = [
+      { id:'opt-theme',   attr:'data-theme',   key:'ed-theme'   },
+      { id:'opt-gold',    attr:'data-gold',    key:'ed-gold'    },
+      { id:'opt-grey',    attr:'data-grey',    key:'ed-grey'    },
+      { id:'opt-sem',     attr:'data-sem',     key:'ed-sem'     },
+      { id:'opt-dialect', attr:'data-dialect', key:'ed-dialect' },
+      { id:'opt-deep',    attr:'data-deep',    key:'ed-deep'    },
+      { id:'opt-chroma',  attr:'data-chroma',  key:'ed-chroma'  },
+      { id:'opt-ptone',   attr:'data-ptone',   key:'ed-ptone'   }
+    ];
+    function syncSel(sel, v){
+      for (var i = 0; i < sel.options.length; i++){
+        if (sel.options[i].value === v){ sel.value = v; return; }
+      }
+    }
+    function setAxis(a, v){
+      d.setAttribute(a.attr, v);
+      try { localStorage.setItem(a.key, v); } catch(e){}
+      var sel = document.getElementById(a.id);
+      if (sel) syncSel(sel, v);
+    }
+    AXES.forEach(function(a){
+      var sel = document.getElementById(a.id);
+      if (!sel) return;
+      var cur = d.getAttribute(a.attr);
+      if (cur) syncSel(sel, cur);
+      sel.addEventListener('change', function(){ setAxis(a, sel.value); });
+    });
+    /* presets — style axes only; the canvas/theme is never touched */
+    var PRESETS = {
+      p1:{ 'data-gold':'g1','data-grey':'cool','data-sem':'s3','data-dialect':'auto','data-deep':'b1','data-ptone':'pc1','data-chroma':'capped' },
+      p2:{ 'data-gold':'g2','data-grey':'warm','data-sem':'s1','data-dialect':'auto','data-deep':'b1','data-ptone':'pc1','data-chroma':'rich' },
+      p3:{ 'data-gold':'g3','data-grey':'warm','data-sem':'s2','data-dialect':'fixed','data-deep':'b2','data-ptone':'pa' }
+    };
+    Array.prototype.forEach.call(document.querySelectorAll('.ep-preset'), function(b){
+      b.addEventListener('click', function(){
+        var p = PRESETS[b.getAttribute('data-preset')];
+        if (!p) return;
+        AXES.forEach(function(a){ if (p[a.attr]) setAxis(a, p[a.attr]); });
+      });
+    });
+    /* collapse — state on <html>; restored pre-paint by the head script */
+    var panel = document.getElementById('edpanel');
+    var tog = document.getElementById('eptoggle');
+    function paintToggle(){
+      var c = d.getAttribute('data-panel') === 'collapsed';
+      tog.textContent = c ? '⚙' : '⌄';
+      tog.setAttribute('aria-expanded', c ? 'false' : 'true');
+      tog.setAttribute('aria-label', c ? 'Expand options panel' : 'Collapse options panel');
+    }
+    function setCollapsed(c){
+      if (c) d.setAttribute('data-panel','collapsed'); else d.removeAttribute('data-panel');
+      try { localStorage.setItem('ed-panel', c ? 'collapsed' : 'open'); } catch(e){}
+      paintToggle();
+    }
+    tog.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      setCollapsed(d.getAttribute('data-panel') !== 'collapsed');
+    });
+    panel.addEventListener('click', function(){
+      if (d.getAttribute('data-panel') === 'collapsed') setCollapsed(false);
+    });
+    paintToggle();
+  })();
+
+  /* ── annotation mode ── */
+  var btn = document.getElementById('anno');
+  btn.addEventListener('click', function(){
+    var on = document.body.classList.toggle('anno-on');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.innerHTML = on ? '&#8857; Annotated' : '&#8857; Annotate';
+  });
+
+  /* ── S4.5 scrolly: enhancement only — base layout is the stacked figure+text ──
+     Sticky pane + IntersectionObserver run only when the viewport is ≥980px AND
+     the user has not requested reduced motion. Otherwise nothing observes and
+     the inline per-step figures (visible by default in the stacked layout) carry it.
+     Trigger band: a step activates when it crosses the upper-middle of the viewport
+     (rootMargin -35% top / -55% bottom). Manual chips on the pane jump states directly;
+     the next scroll trigger overrides, by design. */
+  var mq = window.matchMedia('(min-width:980px) and (prefers-reduced-motion: no-preference)');
+  var observer = null;
+
+  function showFig(id){
+    ['sf-1','sf-2','sf-3'].forEach(function(f){
+      var el = document.getElementById(f);
+      if (el) el.classList.toggle('on', f === id);
+    });
+    document.querySelectorAll('.schip').forEach(function(c){
+      c.classList.toggle('on', c.getAttribute('data-chip') === id);
+    });
+  }
+
+  document.querySelectorAll('.schip').forEach(function(c){
+    c.addEventListener('click', function(){ showFig(c.getAttribute('data-chip')); });
+  });
+
+  function enable(){
+    if (observer || !('IntersectionObserver' in window)) return;
+    observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) showFig(e.target.getAttribute('data-fig'));
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+    document.querySelectorAll('.step').forEach(function(s){ observer.observe(s); });
+  }
+  function disable(){
+    if (observer){ observer.disconnect(); observer = null; }
+    showFig('sf-1');
+  }
+  function sync(){ mq.matches ? enable() : disable(); }
+  if (mq.addEventListener) mq.addEventListener('change', sync);
+  sync();
+})();
+</script>
+</body>
+</html>
