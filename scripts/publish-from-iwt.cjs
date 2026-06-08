@@ -86,20 +86,42 @@ function scopeSize(v) {
   return 0;
 }
 
+// IWT event rows date themselves with a monotonic `day` counter (day 1 = Feb 28)
+// plus a short "Mon D" label (e.g. "Jun 8") — they are NOT ISO dates. So recency
+// must come from the max `day`, not an ISO scan (the old bug under-reported it).
+const MONTHS = { Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5, Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11 };
+function monDToDate(s) {
+  if (!s || typeof s !== 'string') return null;
+  const mm = /^([A-Za-z]{3})[A-Za-z]*\s+(\d{1,2})$/.exec(s.trim());
+  if (!mm) return null;
+  const mo = MONTHS[mm[1].slice(0, 3)];
+  if (mo == null) return null;
+  return new Date(Date.UTC(new Date().getUTCFullYear(), mo, parseInt(mm[2], 10)));
+}
+
 function metricsOf(obj, bytes) {
   const keys = Object.keys(obj);
   const arrays = keys.filter((k) => Array.isArray(obj[k]));
   let totalEntries = 0;
   const perScope = {};
+  let maxDay = 0, dayLabel = null;
   for (const k of keys) {
     perScope[k] = scopeSize(obj[k]);
-    if (Array.isArray(obj[k])) totalEntries += obj[k].length;
+    if (Array.isArray(obj[k])) {
+      totalEntries += obj[k].length;
+      for (const r of obj[k]) {
+        if (r && typeof r.day === 'number' && r.day > maxDay) { maxDay = r.day; dayLabel = r.date || null; }
+      }
+    }
   }
-  // newest date string anywhere in the data
-  let newest = null;
+  // ISO fallback (provenance/source timestamps) — reference only, not recency.
+  let newestISO = null;
   const m = JSON.stringify(obj).match(/\b20\d{2}-\d{2}-\d{2}\b/g);
-  if (m && m.length) newest = m.sort().slice(-1)[0];
-  return { keyCount: keys.length, arrayCount: arrays.length, totalEntries, bytes, perScope, newest, generatedAt: nowISO() };
+  if (m && m.length) newestISO = m.sort().slice(-1)[0];
+  return {
+    keyCount: keys.length, arrayCount: arrays.length, totalEntries, bytes, perScope,
+    maxDay, dayLabel, newestISO, newest: dayLabel || newestISO, generatedAt: nowISO(),
+  };
 }
 
 function daysBetween(dateStr, ref) {
@@ -230,10 +252,20 @@ function main() {
     }
   }
 
-  const staleDays = daysBetween(m.newest, new Date());
-  if (staleDays > STALE_DAYS) warns.push(`Newest data is ${m.newest || 'unknown'} (~${staleDays} days old).`);
+  // Recency + "has the data advanced?" via the monotonic day counter.
+  if (baseline && typeof baseline.maxDay === 'number' && baseline.maxDay > 0) {
+    if (m.maxDay < baseline.maxDay)
+      fails.push(`Latest day regressed from day ${baseline.maxDay} to day ${m.maxDay} (possible data loss).`);
+    else if (m.maxDay === baseline.maxDay)
+      warns.push(`Data has not advanced — still day ${m.maxDay} (${m.dayLabel || '?'}); the ingest ran but added no newer day.`);
+  }
+  const dayDate = monDToDate(m.dayLabel);
+  if (dayDate) {
+    const staleDays = Math.round((Date.now() - dayDate.getTime()) / 86400000);
+    if (staleDays > STALE_DAYS) warns.push(`Newest day (${m.dayLabel}) is ~${staleDays} days old.`);
+  }
 
-  const summaryMetrics = `${m.arrayCount} arrays · ${m.totalEntries} entries · ${(m.bytes / 1024).toFixed(0)}KB · newest ${m.newest || '?'}`;
+  const summaryMetrics = `${m.arrayCount} arrays · ${m.totalEntries} entries · ${(m.bytes / 1024).toFixed(0)}KB · day ${m.maxDay} (${m.dayLabel || '?'})`;
 
   // 4. Decide
   if (fails.length) {
@@ -270,8 +302,8 @@ function main() {
   // 4c. Save baseline metrics + status + log
   try { fs.writeFileSync(METRICS, JSON.stringify(m, null, 2)); } catch (e) {}
   writeStatus('ok', {
-    summary: `Data current as of ${m.newest || 'unknown'}.`,
-    dataDate: m.newest, publishedAt: nowISO(), metrics: m, warnings: warns,
+    summary: `Data current as of ${m.dayLabel || m.newestISO || 'unknown'}${m.maxDay ? ' (day ' + m.maxDay + ')' : ''}.`,
+    dataDate: m.dayLabel || m.newestISO, day: m.maxDay, publishedAt: nowISO(), metrics: m, warnings: warns,
   });
   appendLog('PUBLISHED', [`${summaryMetrics}`, `Snapshot: ${path.basename(snapPath)}`, ...warns.map((w) => 'warn ' + w)]);
 

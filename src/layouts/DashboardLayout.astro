@@ -62,7 +62,7 @@ const dashboardTabs = [
           var s = await r.json();
           var when = s.dataDate || (s.metrics && s.metrics.newest) || (s.baseline && s.baseline.newest) || '';
           if (s.state === 'ok') {
-            el.textContent = '● Data current as of ' + (when || '—') + (s.pushPending ? ' · sync pending' : '');
+            el.textContent = '● Data current as of ' + (when || '—') + (s.day ? ' · day ' + s.day : '') + (s.pushPending ? ' · sync pending' : '');
             el.className = 'dash-status' + (s.pushPending ? ' warn' : '');
           } else if (s.state === 'blocked' || s.state === 'error') {
             el.textContent = '⚠ Latest refresh blocked — showing last good data' + (when ? ' (' + when + ')' : '');
