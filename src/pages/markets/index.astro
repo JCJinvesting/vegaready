@@ -1,202 +1,361 @@
 ---
-import AnalysisLayout from '../../layouts/AnalysisLayout.astro';
-import { scenarios as scenStates, stateDefs } from '../../data/analysis/scenariostates.js';
-const stCol = { realized:'#ef4444', partial:'#f59e0b', elevated:'#f59e0b', normalizing:'#10b981', latent:'#8892a4', 'not-realized':'#22d3ee' };
-const stateKeys = ['physical','legal','insurance','market','economic'];
+import '../../styles/desk.css';
+import iwt from '../../data/iwt-bundle.json';
+import { freshness } from '../../data/analysis/freshness.js';
+import { metrics, summary, lastUpdated } from '../../data/analysis/watchmetrics.js';
+import { CATALYSTS, STATE_LABEL } from '../../data/catalysts';
+
+const anchors = freshness.anchors || [];
+const A = (k) => (anchors.find(a => a.k === k) || { v: '—' });
+
+// ---- real cross-asset board, wired to the watch registry (status-stamped, 3×/day) ----
+const byNo = {}; metrics.forEach(m => { if (m.signalNo) byNo[m.signalNo] = m; });
+const fmt = (m) => (m ? `${m.value}${m.unit && m.unit !== 'count' ? ' ' + m.unit : ''}` : '—');
+const LBL = {
+  '1.1': 'Gold-ETF flow', '1.2': 'DXY', '1.3': 'USD/JPY',
+  '2.1': 'EM sovereign · EMBI', '2.2': 'Flight-to-quality', '2.3': 'Gulf UST recycling',
+  '3.1': 'War-risk premium', '3.2': 'VLCC freight', '3.3': 'P&I cover',
+  '5.1': 'Urea', '7.1': 'Hormuz transit',
+  '8.1': 'Factor unwind', '8.2': 'Index dispersion', '8.3': 'GCC asymmetry',
+  '9.1': 'OVX · crude vol', '9.2': 'Stock–bond corr', '9.3': 'VXEEM · EM vol',
+  '10.1': 'Deribit skew', '10.2': 'Perp funding · OI', '10.3': 'BTC-ETF flow',
+};
+const sig = (no) => { const m = byNo[no]; return m ? { k: LBL[no] || m.metric, v: fmt(m), st: m.status, page: m.page, th: m.thresholds } : null; };
+const rowsFrom = (nos) => nos.map(sig).filter(Boolean);
+
+const tiles = [
+  { name: 'Equities', href: '/markets/equities', rows: rowsFrom(['8.1', '8.2', '8.3']) },
+  { name: 'Rates & Liquidity', href: '/markets/credit', pending: ['US 10y', '2s10s', 'Real yields'] },
+  { name: 'Credit & Funding', href: '/markets/credit', rows: rowsFrom(['2.1', '2.2', '2.3']) },
+  { name: 'Dollar & FX', href: '/markets/gold-fx', rows: rowsFrom(['1.2', '1.3', '1.1']) },
+  { name: 'Commodities & Energy', href: '/markets/energy',
+    rows: [{ k: 'Brent', v: A('Brent').v.replace('~', '') }, { k: 'JKM / TTF', v: A('JKM / TTF').v.replace('~', '') }, ...rowsFrom(['7.1'])],
+    more: rowsFrom(['5.1']) },
+  { name: 'Shipping & Insurance', href: '/markets/insurance', rows: rowsFrom(['3.2', '3.1', '3.3']) },
+  { name: 'Volatility', href: '/markets/cross-asset', rows: rowsFrom(['9.1', '9.3', '9.2']) },
+  { name: 'Crypto', href: '/markets/crypto', rows: rowsFrom(['10.3', '10.1', '10.2']) },
+];
+const rank = { critical: 0, alert: 1, watch: 2, ok: 3 };
+const worst = (t) => {
+  const rs = (t.rows || []).filter(r => r.st);
+  if (!rs.length) return t.pending ? 'pending' : null;
+  return rs.slice().sort((a, b) => rank[a.st] - rank[b.st])[0].st;
+};
+
+// ---- signals at the edge (the movers): critical first, then alert ----
+const shortName = (m) => LBL[m.signalNo] || (m.metric || '').split('(')[0].trim();
+const edge = metrics.filter(m => m.status === 'critical').concat(metrics.filter(m => m.status === 'alert')).slice(0, 10);
+
+// ---- catalysts as drivers ----
+const drivers = CATALYSTS.slice().sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+// ---- the desks ----
+const desks = [
+  ['Gold & FX', '/markets/gold-fx'], ['Energy', '/markets/energy'], ['Crypto', '/markets/crypto'],
+  ['Credit', '/markets/credit'], ['Insurance', '/markets/insurance'], ['Property', '/markets/property'],
+  ['Labor', '/markets/labor'], ['Food & Ag', '/markets/food-agriculture'], ['Water', '/markets/water'],
+  ['Defense', '/markets/defense'], ['Equities', '/markets/equities'], ['Cross-Asset', '/markets/cross-asset'],
+];
+
+// ---- repricing tape ----
+const catOf = (c) => { c = (c || '').toLowerCase();
+  if (/jkm|ttf|lng|\bgas\b/.test(c)) return 'Gas';
+  if (/urea|fertil/.test(c)) return 'Fertilizer';
+  if (/freight|ship|tanker|vlcc/.test(c)) return 'Freight';
+  if (/equit|index/.test(c)) return 'Equities';
+  if (/brent|wti|crude|\boil\b|osp|urals|vlsfo|refined|petro/.test(c)) return 'Oil';
+  return 'Other'; };
+const events = (iwt.MARKET_EVENT_RESPONSE || []).slice(0, 16).map(e => ({ ...e, cat: catOf(e.commodity) }));
+const cats = ['All', ...[...new Set(events.map(e => e.cat))]];
+const isNeg = (s) => typeof s === 'string' && (s.trim().startsWith('-') || s.trim().startsWith('−'));
+const dataThrough = lastUpdated || freshness.asOf || '—';
 ---
 
-<AnalysisLayout
-  title="Markets — VegaReady"
-  description="How global markets respond to geopolitical disruption. Gold, FX, energy, crypto, and credit — tracked from event to portfolio impact."
-  section="Overview"
-  area="markets"
->
-  <section class="hero">
-    <div class="label">Markets</div>
-    <h1>What's moving.<br/>And why.</h1>
-    <p class="lead">Markets are the destination — everything else is context. We track the financial response layer across gold, FX, energy, credit, and crypto, connecting each move back to the geopolitical transmission that caused it.</p>
-  </section>
+<!doctype html>
+<html lang="en" data-theme="t1">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markets — The Desk · VegaReady</title>
+  <meta name="description" content="VegaReady markets desk: equities, rates, credit, the dollar, commodities, volatility and crypto read as one regime — wired to the live signal registry." />
+</head>
+<body>
 
-  <section class="scenstate">
-    <div class="ss-label">Scenario state ledger — a scenario is never one switch</div>
-    <div style="overflow-x:auto"><table class="ss-tbl">
-      <thead><tr><th>Scenario</th>{stateKeys.map(k => (<th title={stateDefs[k]}>{k}</th>))}</tr></thead>
-      <tbody>
-        {scenStates.map(s => (
-          <tr>
-            <td class="ss-scn"><span class="ss-tag" style={`color:${s.tone};border-color:${s.tone}66`}>{s.label}</span><span class="ss-head">{s.headline}</span></td>
-            {stateKeys.map(k => (
-              <td class="ss-cell" title={s.states[k].note}><span class="ss-st" style={`color:${stCol[s.states[k].status]};border-color:${stCol[s.states[k].status]}55;background:${stCol[s.states[k].status]}11`}>{s.states[k].status}</span></td>
+<div class="utility">
+  <div class="wrap">
+    <div class="tickers">
+      <span><b>DXY</b> {fmt(byNo['1.2'])}</span>
+      <span><b>OVX</b> {fmt(byNo['9.1'])}</span>
+      <span><b>EMBI</b> {fmt(byNo['2.1'])}</span>
+      <span><b>BRENT</b> {A('Brent').v.replace('~','')}</span>
+      <span><b>BTC-ETF</b> {fmt(byNo['10.3'])}</span>
+    </div>
+    <div class="stamp-time">{summary.critical} critical · {summary.alert} alert · {summary.total} tracked</div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark" href="/today">VEGA<i>READY</i></a>
+    <nav class="mast-right" aria-label="Primary">
+      <a class="navlink" href="/today">Today</a>
+      <a class="navlink" href="/catalysts">Catalysts</a>
+      <a class="navlink on" href="/markets">Markets</a>
+      <a class="navlink" href="/structural/watch">Signals</a>
+      <a class="navlink" href="/about">About</a>
+      <span class="cmdk" aria-hidden="true">⌘K&ensp;Search the desk</span>
+    </nav>
+  </div>
+</header>
+
+<div class="freshbar">
+  <div class="wrap">
+    <span class="fb-i"><span class="fb-dot"></span>Data through <b>{dataThrough}</b></span>
+    <span class="fb-i">Next refresh <b>3× daily · 06:00 / 14:00 / 22:00 GST</b></span>
+    <span class="fb-i">Live as of <b id="liveAsOf">checking…</b></span>
+  </div>
+</div>
+
+<nav class="crumb" aria-label="Breadcrumb"><div class="wrap"><span><b>Markets</b> <span class="sep">▸</span> Cross-asset</span></div></nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Markets</div>
+      <h1>Every market, <em>one lens.</em></h1>
+      <p class="sub">Equities, rates, credit, the dollar, commodities, volatility and crypto — read as a single regime, wired to the live signal registry, with the catalysts moving them named.</p>
+      <span class="cta-frame cta-h"><a href="/structural/watch">Open the signal board →</a></span>
+    </div>
+    <div class="deskpanel">
+      <div class="ph"><b>Cross-Asset Regime</b><span>— from the registry</span></div>
+      <div class="reg-line"><span class="reg-big num">{summary.critical}</span><span class="reg-lab">signals critical</span><span class="reg-big num" style="margin-left:18px">{summary.alert}</span><span class="reg-lab">alert</span></div>
+      <div class="metric-row" style="margin-top:14px">
+        <div class="mcell"><div class="ml">Dollar</div><span class="mv mv-struct" style="font-size:13px">BID</span></div>
+        <div class="mcell"><div class="ml">Credit</div><span class="mv neg" style="font-size:13px">WIDER</span></div>
+        <div class="mcell"><div class="ml">Vol</div><span class="mv warn" style="font-size:13px">ELEVATED</span></div>
+      </div>
+      <div class="metric-row">
+        <div class="mcell"><div class="ml">Equities</div><span class="mv neg" style="font-size:13px">RISK-OFF</span></div>
+        <div class="mcell"><div class="ml">Crypto</div><span class="mv neg" style="font-size:13px">OUTFLOW</span></div>
+        <div class="mcell"><div class="ml">Rates</div><span class="mv latent" style="font-size:13px">PENDING</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNALS AT THE EDGE -->
+<section class="edge-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">At the edge</div><h2>What's screaming right now.</h2></div><a class="more" href="/structural/watch">All signals →</a></div>
+    <div class="edge-grid">
+      {edge.map((m) => (
+        <a class="echip" href={m.page || '/structural/watch'}>
+          <span class={`xt-st st-${m.status}`}>{m.status}</span>
+          <span class="ec-name">{shortName(m)}</span>
+          <span class="ec-val num">{fmt(m)}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-ASSET BOARD -->
+<section class="board-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">The board</div><h2>Where the pressure sits.</h2></div><span class="board-note">live registry · click a tile to expand · open the desk for the full read</span></div>
+    <div class="xa-grid">
+      {tiles.map((t) => (
+        <div class="card xatile" data-open="0">
+          <div class="xt-head">
+            <span class="xt-name">{t.name}</span>
+            {worst(t) ? <span class={`xt-st st-${worst(t)}`}>{worst(t) === 'pending' ? 'feed pending' : worst(t)}</span> : null}
+            <span class="xt-caret" aria-hidden="true">▾</span>
+          </div>
+          <div class="xt-rows">
+            {(t.rows || []).map((r) => (
+              <div class="xt-row"><span class="xt-k">{r.k}</span><span class="xt-v num">{r.v}</span>{r.st ? <span class={`xt-dot st-${r.st}`}></span> : null}</div>
             ))}
-          </tr>
-        ))}
-      </tbody>
-    </table></div>
-    <p class="ss-foot">Each scenario decomposed across five states. A ceasefire can end kinetic/physical risk while insurance and economic closure persist — note the ceasefire row's <b style="color:#22d3ee">not-realized</b> economic state. Hover any cell for detail.</p>
-  </section>
-
-  <div class="market-section">
-    <div class="group-label">Financial markets</div>
-    <div class="market-grid">
-    <a href="/markets/gold-fx" class="market-card">
-      <div class="market-icon" style="color:#f59e0b">Au</div>
-      <div class="market-title">Gold & FX</div>
-      <div class="market-stat">ATH $5,595 → trough $4,099 (–27%)</div>
-      <div class="market-desc">Safe-haven dynamics inverted: dollar captured the bid, gold corrected on real-yield repricing. Central banks net-purchased 243.7t Q1 2026. Yen carry ¥11.7T intervention. Petrodollar recycling disrupted.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/equities" class="market-card">
-      <div class="market-icon" style="color:#818cf8">EQ</div>
-      <div class="market-title">Global Equities &amp; Sector Rotation</div>
-      <div class="market-stat">S&P −8%→ATH · TASI +5% vs DFM −16% · MSCI EM −11%</div>
-      <div class="market-desc">The first-order equity layer: index shock map, sector winner/loser rotation, earnings transmission, factor rotation, country matrix, GCC asymmetry, flows, and a four-scenario trade map. Upstream of Cross-Asset.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/crypto" class="market-card">
-      <div class="market-icon" style="color:#6366f1">BTC</div>
-      <div class="market-title">Crypto & Digital Assets</div>
-      <div class="market-stat">BTC −11% YTD · ~0.50 equity beta · $344M USDT freeze · NOT a haven</div>
-      <div class="market-desc">JCJ's core domain — the terminal node of the risk chain. Tested safe-haven verdict, the scenario grid, stablecoins as shadow dollar rails, market-structure stress, mining, ETF flows, and a JCJ trading-signal framework.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/credit" class="market-card">
-      <div class="market-icon" style="color:#22d3ee">CDS</div>
-      <div class="market-title">Sovereign Credit & Plumbing</div>
-      <div class="market-stat">EMBI +35bps · IMF $20–50B pipeline · Gulf –$16.6B USTs</div>
-      <div class="market-desc">Capital flight to dollar cash, EM sovereign spread stress, the sukuk freeze, IMF emergency financing, sanctions plumbing, and the swap-line backstop debate.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/insurance" class="market-card">
-      <div class="market-icon" style="color:#ef4444">P&I</div>
-      <div class="market-title">Insurance & Shipping Finance</div>
-      <div class="market-stat">AWRP 0.2% → 1% → 7.5% peak · VLCC $423k/day</div>
-      <div class="market-desc">War-risk premiums, P&I club cancellations, VLCC freight records, Lloyd's marine-war capacity, and reinsurance backstops — the insurance market as the transmission mechanism for shipping disruption.</div>
-      <span class="market-status live">Live</span>
-    </a>
+            {t.pending ? t.pending.map((p) => (<div class="xt-row"><span class="xt-k">{p}</span><span class="xt-v pend">feed pending</span></div>)) : null}
+          </div>
+          <div class="xt-more">
+            {(t.rows || []).filter(r => r.th).map((r) => (
+              <div class="xt-th"><span class="xt-thk">{r.k}</span><span class="xt-thv num">now {r.v} · watch {r.th.watch} · alert {r.th.alert} · crit {r.th.critical}</span></div>
+            ))}
+            {(t.more || []).map((r) => (<div class="xt-th"><span class="xt-thk">{r.k}</span><span class="xt-thv num">{r.v}</span></div>))}
+            {t.pending ? <div class="xt-th"><span class="xt-thv pend">Live rates wire in with the D1 data layer.</span></div> : null}
+          </div>
+          <a class="xt-go" href={t.href}>Open the {t.name.split(' ')[0]} desk →</a>
+        </div>
+      ))}
     </div>
   </div>
+</section>
 
-  <div class="market-section">
-    <div class="group-label">Real economy</div>
-    <div class="market-grid">
-    <a href="/markets/energy" class="market-card">
-      <div class="market-icon" style="color:#ef4444">WTI</div>
-      <div class="market-title">Energy & Transition</div>
-      <div class="market-stat">$3.4T 2026 energy investment · Hormuz −30% YoY</div>
-      <div class="market-desc">The physical oil, LNG and refined-products shock plus the capital layer on top: the IEA's $3.4tn investment picture, renewables vs gas/coal lock-in, hydrogen, critical minerals, civilian nuclear, and carbon policy.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/property" class="market-card">
-      <div class="market-icon" style="color:#a78bfa">RE</div>
-      <div class="market-title">Property, Materials & Megaprojects</div>
-      <div class="market-stat">LME alu $3,546 · 12.6% construction inflation · NEOM deferred</div>
-      <div class="market-desc">Aluminum & metals supply shock, record construction-cost inflation, the Abu Dhabi–Dubai real-estate split, and NEOM megaproject restructuring.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/labor" class="market-card">
-      <div class="market-icon" style="color:#f472b6">L&M</div>
-      <div class="market-title">Labor, Migration & Remittances</div>
-      <div class="market-stat">24M migrant workers · India $51.4B · PH remits −7.7%</div>
-      <div class="market-desc">The 24M migrant workforce, remittance compression across India, the Philippines, Pakistan and Bangladesh, ILO labor projections, and the documented human impact.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/food-agriculture" class="market-card">
-      <div class="market-icon" style="color:#84cc16">FAO</div>
-      <div class="market-title">Food & Agriculture</div>
-      <div class="market-stat">Urea +80% to $850 · FAO index 130.7 · WFP +45M hungry</div>
-      <div class="market-desc">The fertilizer→food cascade in full: Gulf export blackout, urea price shock, the FAO Food Price Index, the WFP 45M hunger projection, and GCC food-reserve adequacy.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/water" class="market-card">
-      <div class="market-icon" style="color:#38bdf8">H₂O</div>
-      <div class="market-title">Water & Desalination</div>
-      <div class="market-stat">33% of global desal · Qatar 99% reliant · &lt;2 days reserve</div>
-      <div class="market-desc">The Gulf's existential tail risk: near-total drinking-water dependence on desalination, confirmed strikes on plants, and under two days of stored water.</div>
-      <span class="market-status live">Live</span>
-    </a>
-    <a href="/markets/defense" class="market-card">
-      <div class="market-icon" style="color:#94a3b8">DEF</div>
-      <div class="market-title">Defense & Security</div>
-      <div class="market-stat">~50% Patriot drawn down · $2.887T spend · backlog to 2030</div>
-      <div class="market-desc">The arsenal drawdown and procurement supercycle: CSIS Last Rounds, the production scale-up, named primes, and the new subsea-cable and mine-clearing chokepoints.</div>
-      <span class="market-status live">Live</span>
-    </a>
+<!-- THE DESKS -->
+<section class="desks-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">The desks</div><h2>Twelve markets, traced to the event.</h2></div></div>
+    <div class="desks-grid">{desks.map(([t, h]) => (<a class="deskpill" href={h}><span>{t}</span><i>→</i></a>))}</div>
+  </div>
+</section>
+
+<!-- DRIVERS -->
+<section class="drivers-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">What's driving it</div><h2>The catalysts behind the moves.</h2></div></div>
+    <div class="drivers-grid">
+      {drivers.map((c) => (
+        <a class={`card driver ${c.featured ? 'feat' : ''}`} href={c.route}>
+          <div class="dr-top"><span class={`pill ${c.state === 'active' ? 'realized' : 'latent'}`}>{STATE_LABEL[c.state]}</span><span class="dr-fam">{c.family}</span></div>
+          <div class="dr-title">{c.overviewTitle}</div>
+          <p class="dr-sum">{c.summary}</p>
+        </a>
+      ))}
     </div>
   </div>
+</section>
 
-  <div class="market-section">
-    <div class="group-label">Cross-asset</div>
-    <div class="market-grid">
-    <a href="/markets/cross-asset" class="market-card">
-      <div class="market-icon" style="color:#818cf8">CX</div>
-      <div class="market-title">Cross-Asset · Correlation &amp; Volatility</div>
-      <div class="market-stat">OVX 28→121 · stock-bond flip · vol bifurcated</div>
-      <div class="market-desc">The market-derivative layer: how correlations, volatility, term structure and positioning re-priced — plus a hedging playbook by scenario. The synthesis that sits across every asset page.</div>
-      <span class="market-status live">Live</span>
-    </a>
+<!-- REPRICING TAPE -->
+<section class="ledger-sec">
+  <div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">The tape</div><h2>Repricing, ruled and reconciled.</h2></div><div class="live-cluster"><span class="livedot"><span class="d"></span>LIVE · 3× daily</span></div></div>
+    <div class="lfilters" id="lfilters">{cats.map((c, i) => (<button class={`lfbtn${i === 0 ? ' on' : ''}`} data-cat={c}>{c}</button>))}</div>
+    <div class="ruled" id="ledger">
+      {events.map((e) => (
+        <div class="levent" data-cat={e.cat}>
+          <div class="lrow">
+            <span class="lday num">{e.date}</span>
+            <span class="ltext">{e.event}{e.facility ? ` — ${e.facility}` : ''}</span>
+            <span class="lpills"><span class={`pill ${e.conf === 'H' ? 'verified' : 'latent'}`}>{e.cat}</span><span class={`pill ${isNeg(e.change) ? 'anticipated' : 'realized'}`}>{e.change}</span></span>
+          </div>
+          <div class="ldetail"><b style="color:var(--ink)">{e.commodity}</b> · {e.pre} → {e.post}. {e.note}{e.source ? <span style="color:var(--struct)"> · {e.source}</span> : null}</div>
+        </div>
+      ))}
     </div>
   </div>
+</section>
 
-  <section class="context-section">
-    <div class="label">Connected analysis</div>
-    <p class="context-text">Markets don't move in isolation. Each market response connects to the physical cascade, regional exposure, and forward outlook:</p>
-    <div class="context-grid">
-      <a href="/transmission" class="context-card">
-        <div class="context-title">Transmission</div>
-        <div class="context-desc">13 sectors showing how the physical disruption flows through energy, petrochemicals, fertilizer, food, manufacturing, and more.</div>
-      </a>
-      <a href="/exposure" class="context-card">
-        <div class="context-title">Exposure</div>
-        <div class="context-desc">12 economies — winners, losers, and asymmetries. Who's on the other side of each trade.</div>
-      </a>
-      <a href="/outlook" class="context-card">
-        <div class="context-title">Outlook</div>
-        <div class="context-desc">Gap dynamics, substitution cycles, historical precedents. What fills the gap and what happens when it reopens.</div>
-      </a>
-      <a href="/structural" class="context-card">
-        <div class="context-title">Structural Risk</div>
-        <div class="context-desc">The standing-watch layer: chokepoint, weaponization, de-globalization, digital and food indices — the slow fault lines beneath the market response.</div>
-      </a>
+<!-- FUNNEL -->
+<section class="funnel">
+  <div class="wrap">
+    <div class="eyebrow">The brief</div>
+    <h2>The morning brief, free.</h2>
+    <p class="lede">One email at the open — what moved across every market, what's mispriced, what the desk is watching. No account, no paywall.</p>
+    <div class="perf-card">
+      <h3>The morning brief, daily.</h3>
+      <p class="pc-sub">Six paragraphs, one chart, no noise — on your desk by 06:40 GST.</p>
+      <hr class="tearline" />
+      <a class="sub-link" href="/briefings">Subscribe →</a>
+      <div class="pc-fine">Free · no account required</div>
     </div>
-  </section>
-</AnalysisLayout>
+    <div class="fundnote">
+      <div class="fn-label">About JCJ</div>
+      <p>VegaReady is the public regime filter of JCJ Investing — an algorithmic, event-driven trading fund. The intelligence is open; the engine is ours.</p>
+      <a href="/about">About the fund →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand"><span class="wordmark">VEGA<i>READY</i></span><p>Volatility isn't risk. It's signal. The public macro-intelligence layer of JCJ Investing.</p></div>
+      <div class="fcol"><h4>The desk</h4><a href="/today">Today</a><a href="/catalysts">Catalysts</a><a href="/markets">Markets</a><a href="/structural/watch">Signals</a></div>
+      <div class="fcol"><h4>The firm</h4><a href="/about">About JCJ</a><a href="/briefings">Briefings</a><a href="mailto:GP@jcjinvesting.com">Contact</a></div>
+    </div>
+    <div class="legal">© 2026 JCJ Investing LLC. All rights reserved. · VegaReady is research and intelligence, not investment advice. Figures marked “feed pending” are placeholders for live feeds wired in the data layer.</div>
+  </div>
+</footer>
 
 <style>
-  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
-  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
-  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
-  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:640px}
-  .market-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:3rem}
-  .market-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;padding:20px;text-decoration:none;color:inherit;transition:all 0.2s;position:relative}
-  .market-card:hover{border-color:var(--border-light);transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.2);opacity:1}
-  .market-card.coming{opacity:0.6}
-  .market-card.coming:hover{transform:none;box-shadow:none}
-  .market-icon{font-family:var(--font-mono);font-size:20px;font-weight:800;margin-bottom:8px}
-  .market-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
-  .market-stat{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:8px}
-  .market-desc{font-size:12px;color:var(--text-dim);line-height:1.5}
-  .market-status{position:absolute;top:16px;right:16px;font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px}
-  .market-status.live{color:#10b981;background:rgba(16,185,129,0.1)}
-  .market-status.building{color:#f59e0b;background:rgba(245,158,11,0.1)}
-  .context-section{margin-bottom:2rem}
-  .context-text{font-size:14px;color:var(--text-muted);margin-bottom:1.5rem}
-  .context-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-  .context-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px;text-decoration:none;color:inherit;transition:all 0.2s}
-  .context-card:hover{border-color:var(--cyan);opacity:1}
-  .context-title{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
-  .context-desc{font-size:11px;color:var(--text-dim);line-height:1.5}
-  @media(max-width:720px){.market-grid{grid-template-columns:1fr}.context-grid{grid-template-columns:1fr}}
-  .market-section{margin-bottom:2.5rem}
-  .group-label{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-  .scenstate{margin:0 0 2.5rem}
-  .ss-label{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-  .ss-tbl{width:100%;border-collapse:collapse;font-size:12px}
-  .ss-tbl th{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-dim);text-align:left;padding:7px 9px;border-bottom:1px solid var(--border-light);cursor:help}
-  .ss-tbl td{padding:9px;border-bottom:1px solid var(--border);vertical-align:top}
-  .ss-scn{min-width:180px}
-  .ss-tag{font-family:var(--font-mono);font-size:10px;font-weight:700;border:1px solid;border-radius:4px;padding:2px 8px;white-space:nowrap;display:inline-block;margin-bottom:5px}
-  .ss-head{display:block;font-size:11px;color:var(--text-muted);line-height:1.4}
-  .ss-cell{cursor:help}
-  .ss-st{font-family:var(--font-mono);font-size:10px;font-weight:700;border:1px solid;border-radius:4px;padding:2px 7px;white-space:nowrap}
-  .ss-foot{font-size:11px;color:var(--text-dim);line-height:1.55;margin-top:10px;max-width:880px}
+  .freshbar{border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,var(--canvas));background:color-mix(in srgb,#000 10%,var(--canvas))}
+  .freshbar .wrap{display:flex;gap:26px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px;font-family:'Lora',serif;font-size:11px;color:var(--muted)}
+  .fb-i{display:inline-flex;align-items:center;gap:7px}
+  .fb-i b{color:var(--body);font-weight:600}
+  .fb-dot{width:6px;height:6px;border-radius:50%;background:var(--pos);display:inline-block}
+  .reg-line{display:flex;align-items:baseline;gap:8px}
+  .reg-big{font-family:'Lora',serif;font-weight:700;font-size:30px;color:var(--ink)}
+  .reg-lab{font-family:'Lora',serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  .edge-sec,.board-sec,.desks-sec,.drivers-sec{padding:8px 0 52px}
+  .board-note{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.04em;color:var(--muted);max-width:34ch;text-align:right}
+  .edge-grid{display:flex;flex-wrap:wrap;gap:8px}
+  .echip{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--cardline);border-radius:7px;padding:7px 12px}
+  .echip:hover{border-color:var(--struct)}
+  .ec-name{font-family:'Fraunces',serif;font-size:12.5px;color:var(--body)}
+  .ec-val{font-family:'Lora',serif;font-weight:600;font-size:12.5px;color:var(--ink)}
+
+  .xt-st{font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:1px 6px;border-radius:3px;border:1px solid;white-space:nowrap}
+  .st-critical{color:var(--neg);border-color:color-mix(in srgb,var(--neg) 45%,transparent);background:color-mix(in srgb,var(--neg) 8%,transparent)}
+  .st-alert{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent);background:color-mix(in srgb,var(--warn) 8%,transparent)}
+  .st-watch{color:var(--latent);border-color:color-mix(in srgb,var(--latent) 38%,transparent);background:color-mix(in srgb,var(--latent) 7%,transparent)}
+  .st-ok{color:var(--struct);border-color:color-mix(in srgb,var(--struct) 40%,transparent);background:color-mix(in srgb,var(--struct) 8%,transparent)}
+  .st-pending{color:var(--latent);border-color:color-mix(in srgb,var(--latent) 30%,transparent)}
+
+  .xa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .xatile{padding:18px 20px;display:flex;flex-direction:column}
+  .xt-head{display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:12px}
+  .xt-name{font-family:'Playfair Display',serif;font-weight:700;font-size:15.5px;color:var(--ink);flex:1}
+  .xt-caret{color:var(--struct);font-size:10px;transition:transform .15s}
+  .xatile[data-open="1"] .xt-caret{transform:rotate(180deg)}
+  .xt-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 6%,transparent);font-size:12.5px}
+  .xt-k{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.03em;color:var(--muted);flex:1}
+  .xt-v{font-family:'Lora',serif;font-weight:600;color:var(--ink);text-align:right;white-space:nowrap}
+  .xt-v.pend{color:var(--latent);font-weight:400;font-style:italic}
+  .xt-dot{width:6px;height:6px;border-radius:50%;flex:none}
+  .xt-dot.st-critical{background:var(--neg)}.xt-dot.st-alert{background:var(--warn)}.xt-dot.st-watch{background:var(--latent)}.xt-dot.st-ok{background:var(--struct)}
+  .xt-more{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--ink) 14%,transparent)}
+  .xatile[data-open="1"] .xt-more{display:block}
+  .xt-th{margin-bottom:7px}
+  .xt-thk{display:block;font-family:'Lora',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .xt-thv{font-family:'Lora',serif;font-size:11px;color:var(--body)}
+  .xt-thv.pend{color:var(--latent);font-style:italic}
+  .xt-go{margin-top:auto;padding-top:14px;font-family:'Lora',serif;font-size:11px;letter-spacing:.05em;color:var(--eyeb)}
+  .xt-go:hover{color:var(--ink)}
+
+  .desks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .deskpill{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border:1px solid var(--cardline);border-radius:8px;padding:13px 16px;font-family:'Fraunces',serif;font-size:14px;color:var(--body)}
+  .deskpill:hover{border-color:var(--eyeb);color:var(--ink)}
+  .deskpill i{color:var(--struct);font-style:normal}
+  .drivers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .driver{display:block;padding:18px 20px}
+  .driver.feat{grid-column:span 2;border-left:3px solid var(--eyeb)}
+  .driver:hover{border-color:var(--struct)}
+  .dr-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .dr-fam{font-family:'Lora',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .dr-title{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--ink);margin-bottom:6px}
+  .dr-sum{font-size:12.5px;color:var(--body);line-height:1.5;margin:0}
+  #ledger.ruled{background-image:none}
+  .levent{border-bottom:1px solid color-mix(in srgb,var(--boxline) 65%,transparent)}
+  .levent[hidden]{display:none}
+  @media (max-width:1000px){.xa-grid{grid-template-columns:repeat(2,1fr)}.desks-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:920px){.drivers-grid{grid-template-columns:1fr}.driver.feat{grid-column:span 1}.board-note{display:none}}
+  @media (max-width:640px){.xa-grid,.desks-grid{grid-template-columns:1fr}}
 </style>
+
+<script is:inline>
+  // live "as of" from the data pipeline
+  (async function(){
+    var el=document.getElementById('liveAsOf');
+    try{var r=await fetch('/data-status.json',{cache:'no-store'});if(!r.ok){if(el)el.textContent='live';return;}
+      var s=await r.json();var w=s.dataDate||(s.metrics&&s.metrics.newest)||'';
+      if(el)el.textContent=(s.state==='ok'?(w||'live')+(s.day?' · day '+s.day:''):'last good data');}catch(e){if(el)el.textContent='live';}
+  })();
+  // board tiles: click header to expand
+  document.querySelectorAll('.xatile .xt-head').forEach(function(h){
+    h.addEventListener('click',function(){var t=h.closest('.xatile');t.setAttribute('data-open',t.getAttribute('data-open')==='1'?'0':'1');});
+  });
+  // tape: filter + expand
+  (function(){
+    var fil=document.getElementById('lfilters');
+    var rows=Array.prototype.slice.call(document.querySelectorAll('#ledger .levent'));
+    if(fil)fil.addEventListener('click',function(ev){var b=ev.target.closest('.lfbtn');if(!b)return;
+      fil.querySelectorAll('.lfbtn').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+      var cat=b.getAttribute('data-cat');rows.forEach(function(r){r.hidden=!(cat==='All'||r.getAttribute('data-cat')===cat)});});
+    rows.forEach(function(r){var lr=r.querySelector('.lrow');if(lr)lr.addEventListener('click',function(){lr.classList.toggle('open')});});
+  })();
+</script>
+
+</body>
+</html>

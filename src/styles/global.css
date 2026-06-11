@@ -128,6 +128,74 @@
   --title-zone-kicker: #F4C37D;
 }
 
+/* =========================================================================
+   PER-CONTENT CANVAS VARIANTS (opt-in via <html data-canvas="...">)
+   Assignments per _program/THEME-SCENARIO-MAP.md. Each block redeclares the
+   full token set (incl. legacy aliases) so existing components re-skin cleanly.
+   ========================================================================= */
+
+/* A4 Oxford Black — front door / LP showcase (map rank #1). Navy→Gold value arc. */
+[data-canvas="oxford"] {
+  --canvas: #0D1626;
+  --ink: #EAE7DF;                       /* Warm Parchment */
+  --surface: color-mix(in srgb, var(--ink) 5%, var(--canvas));
+  --raised: color-mix(in srgb, var(--ink) 9%, var(--canvas));
+  --elevated: color-mix(in srgb, var(--ink) 12%, var(--canvas));
+  --hairline: color-mix(in srgb, var(--ink) 14%, var(--canvas));
+  --hairline-strong: color-mix(in srgb, var(--ink) 18%, var(--canvas));
+  --body-ink: #D8D2C6;
+  --muted-ink: #A39B8C;
+  --faint-ink: #8E8779;
+  --card-border: transparent;
+  --main: #36BBA6;                      /* JCJ Teal — CTA/link only */
+  --accent: #F4C37D;                    /* JCJ Gold — ≤3%, beside evidence */
+  --cta-fill: var(--main);
+  --cta-text: #0D1626;
+  --link: var(--main);
+  --key-stat-underline: #F4C37D;
+  --chart-hero: #5FA897;                /* Verdigris (Teal banned as chart hero) */
+  --st-latent-text: #9AA5B1; --st-anticipated-text: #E0B262; --st-elevated-text: #D16D6D;
+  --st-alert-text: #E16470; --st-realized-text: #46C9A0;
+  --pos: #46C9A0; --neg: #E2725B;
+  --title-zone-fill: #0B2E4E; --title-zone-text: #FFFFFF; --title-zone-kicker: #F4C37D;
+  /* legacy aliases remapped */
+  --bg: var(--canvas); --bg-surface: var(--surface); --bg-card: var(--raised); --bg-elevated: var(--elevated);
+  --border: var(--hairline); --border-light: var(--hairline-strong);
+  --text: var(--body-ink); --text-muted: var(--muted-ink); --text-dim: var(--faint-ink);
+  --cyan: var(--main); --cyan-muted: rgba(54,187,166,.15); --green: var(--st-realized-text);
+  --gradient-bar: linear-gradient(90deg, #5FA897, #F4C37D);
+}
+
+/* WB5 Deep Desk — markets / analysis product (map: working-trust default). */
+[data-canvas="deep-desk"] {
+  --canvas: #0E1217;
+  --ink: #F2EBDC;                       /* Cream */
+  --surface: color-mix(in srgb, var(--ink) 5%, var(--canvas));
+  --raised: color-mix(in srgb, var(--ink) 9%, var(--canvas));
+  --elevated: color-mix(in srgb, var(--ink) 12%, var(--canvas));
+  --hairline: color-mix(in srgb, var(--ink) 14%, var(--canvas));
+  --hairline-strong: color-mix(in srgb, var(--ink) 18%, var(--canvas));
+  --body-ink: #E3DCCB;
+  --muted-ink: #A89F8C;
+  --faint-ink: #968F81;
+  --card-border: transparent;
+  --main: #36BBA6;
+  --accent: #C9A24A;                    /* Brass */
+  --cta-fill: var(--main);
+  --cta-text: #0E1217;
+  --link: var(--main);
+  --key-stat-underline: #C9A24A;
+  --chart-hero: #5FA897;
+  --st-latent-text: #9AA5B1; --st-anticipated-text: #E0B262; --st-elevated-text: #D16D6D;
+  --st-alert-text: #E16470; --st-realized-text: #46C9A0;
+  --pos: #46C9A0; --neg: #E2725B;
+  --bg: var(--canvas); --bg-surface: var(--surface); --bg-card: var(--raised); --bg-elevated: var(--elevated);
+  --border: var(--hairline); --border-light: var(--hairline-strong);
+  --text: var(--body-ink); --text-muted: var(--muted-ink); --text-dim: var(--faint-ink);
+  --cyan: var(--main); --cyan-muted: rgba(54,187,166,.15); --green: var(--st-realized-text);
+  --gradient-bar: linear-gradient(90deg, #E2725B, #C9A24A, #5FA897, #5E83D9);
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {

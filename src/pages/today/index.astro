@@ -1,0 +1,271 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ActiveCatalysts from '../../components/ActiveCatalysts.astro';
+import iwt from '../../data/iwt-bundle.json';
+import { summary, metrics } from '../../data/analysis/watchmetrics.js';
+import { catalysts as forward } from '../../data/analysis/catalysts.js';
+import { freshness } from '../../data/analysis/freshness.js';
+
+// --- What changed: top severity-ranked, most-recent War Room briefs ---
+const sevRank = { critical: 0, high: 1, medium: 2, low: 3 };
+const briefs = [...(iwt.WAR_ROOM_BRIEFS || [])]
+  .sort((a, b) => (b.day - a.day) || (sevRank[a.severity] - sevRank[b.severity]))
+  .slice(0, 6);
+
+// --- Markets reacting: most recent market-event responses ---
+const events = [...(iwt.MARKET_EVENT_RESPONSE || [])].slice(-6).reverse();
+
+// --- Signals at alert: live critical / alert metrics ---
+const alertSignals = metrics
+  .filter((m) => m.status === 'critical' || m.status === 'alert')
+  .slice(0, 8);
+
+// --- Upcoming: forward-catalyst register ---
+const fwd = (forward || []).slice(0, 4);
+const scen = freshness.scenarios || [];
+
+const sevTone = {
+  critical: { c: 'var(--st-alert-text)', g: '⬣', l: 'Critical' },
+  high:     { c: 'var(--st-elevated-text)', g: '△', l: 'High' },
+  medium:   { c: 'var(--st-anticipated-text)', g: '◇', l: 'Medium' },
+  low:      { c: 'var(--st-latent-text)', g: '○', l: 'Low' },
+};
+const stTone = { critical: 'var(--st-alert-text)', alert: 'var(--st-anticipated-text)', watch: 'var(--st-latent-text)', ok: 'var(--st-realized-text)' };
+const clip = (s, n) => (s && s.length > n ? s.slice(0, n).trim() + '…' : s);
+const moveSign = (s) => (typeof s === 'string' && s.trim().startsWith('-') ? 'neg' : (typeof s === 'string' && s.trim().startsWith('+') ? 'pos' : ''));
+---
+
+<!doctype html>
+<html lang="en" data-canvas="oxford">
+  <head>
+    <BaseHead
+      title="Today — VegaReady"
+      description="What changed across every catalyst and what it's moving in markets — the daily intelligence board."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main class="td">
+      <!-- Hero: a daily board header, not a splash -->
+      <section class="hero">
+        <div class="kicker">VegaReady · Daily Intelligence</div>
+        <h1 class="display">What changed,<br/>and what it's moving.</h1>
+        <div class="hero-foot">
+          <div class="stat"><span class="stat-num" id="dayStat">{summary.critical + summary.alert}</span><span class="stat-lab">signals at alert+</span></div>
+          <div class="asof"><span class="dot"></span><span id="asof">Loading latest data…</span></div>
+          <a class="link-cta" href="/dashboard">Open the live dashboard <span class="arr">→</span></a>
+        </div>
+      </section>
+
+      <!-- Current regime / 30-second situation -->
+      <section class="block">
+        <div class="rule"><span>The situation now</span></div>
+        <div class="regime">
+          <div class="regime-counts">
+            <span class="rc" style="--c:var(--st-alert-text)"><b>{summary.critical}</b> critical</span>
+            <span class="rc" style="--c:var(--st-anticipated-text)"><b>{summary.alert}</b> alert</span>
+            <span class="rc" style="--c:var(--st-latent-text)"><b>{summary.watch}</b> watch</span>
+            <span class="rc" style="--c:var(--st-realized-text)"><b>{summary.ok}</b> nominal</span>
+            <span class="rc rc-tot"><b>{summary.total}</b> tracked</span>
+          </div>
+          <div class="scen-row">
+            {scen.map((s) => (<span class:list={["scen", s.tone]}>{s.label}: <b>{s.status}</b></span>))}
+          </div>
+        </div>
+      </section>
+
+      <!-- What changed: top developments -->
+      <section class="block">
+        <div class="rule"><span>What changed — top developments</span><a class="more" href="/dashboard">War Room →</a></div>
+        <div class="briefs">
+          {briefs.map((b) => (
+            <a class="brief" href="/dashboard">
+              <span class="sev" style={`color:${sevTone[b.severity]?.c}`} title={sevTone[b.severity]?.l}>{sevTone[b.severity]?.g}</span>
+              <div class="brief-body">
+                <div class="brief-top"><span class="brief-sector">{b.sector}</span><span class="brief-day">Day {b.day}</span></div>
+                <div class="brief-head">{b.headline}</div>
+                <div class="brief-line">{clip(b.body, 150)}</div>
+                {b.sources && b.sources.length ? <div class="brief-src">{b.sources.length} source{b.sources.length > 1 ? 's' : ''} · {b.confidence === 'H' ? 'high' : b.confidence === 'M' ? 'medium' : 'low'} confidence</div> : null}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Markets reacting -->
+      <section class="block">
+        <div class="rule"><span>Markets reacting</span><a class="more" href="/markets">Markets →</a></div>
+        <div class="evtbl">
+          {events.map((e) => (
+            <a class="evt" href="/markets">
+              <div class="evt-event">{e.event}</div>
+              <div class="evt-mid"><span class="evt-comm">{e.commodity}</span><span class="evt-date">{e.date}</span></div>
+              <div class:list={["evt-move", moveSign(e.change)]}>{e.change}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Signals at alert -->
+      <section class="block">
+        <div class="rule"><span>Signals at alert</span><a class="more" href="/structural/watch">Signal board →</a></div>
+        <div class="sigs">
+          {alertSignals.map((m) => (
+            <a class="sig" href={m.page || '/structural/watch'}>
+              <span class="sig-badge" style={`color:${stTone[m.status]};border-color:${stTone[m.status]}55`}>{m.status}</span>
+              <span class="sig-name">{m.metric}</span>
+              <span class="sig-val">{m.value}{m.unit && m.unit !== 'count' ? ' ' + m.unit : ''}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Active catalysts -->
+      <section class="block">
+        <div class="rule"><span>Active catalysts</span><a class="more" href="/catalysts">All catalysts →</a></div>
+        <ActiveCatalysts only="active" />
+      </section>
+
+      <!-- Upcoming / forward catalysts -->
+      <section class="block">
+        <div class="rule"><span>Upcoming — what could move next</span></div>
+        <div class="fwd">
+          {fwd.map((c) => (
+            <div class="fwdcard">
+              <div class="fwd-item">{c.item}</div>
+              <div class="fwd-meta"><span class="fwd-k">If confirmed</span>{clip(c.ifConfirmed, 120)}</div>
+              <a class="fwd-foot" href={c.page || '/structural/watch'}>{c.section} →</a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Reader paths -->
+      <section class="block">
+        <div class="rule"><span>Choose your view</span></div>
+        <div class="paths">
+          <a class="path" href="/dashboard">
+            <div class="path-h">Understand the situation</div>
+            <p>Plain-language: what happened, why it matters, which markets are affected, and what to watch next.</p>
+            <span class="path-go">Start here <span class="arr">→</span></span>
+          </a>
+          <a class="path" href="/structural/watch">
+            <div class="path-h">Open the signal board</div>
+            <p>The dense view: live indicators, thresholds, status, and the transmission chain beneath them.</p>
+            <span class="path-go">Open signals <span class="arr">→</span></span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+
+    <script is:inline>
+      (async function () {
+        var asof = document.getElementById('asof');
+        try {
+          var r = await fetch('/data-status.json', { cache: 'no-store' });
+          if (!r.ok) { if (asof) asof.textContent = 'Live intelligence'; return; }
+          var s = await r.json();
+          var when = s.dataDate || (s.metrics && s.metrics.newest) || (s.baseline && s.baseline.newest) || '';
+          if (asof) asof.textContent = (s.state === 'ok')
+            ? ('Data current as of ' + (when || '—') + (s.day ? ' · day ' + s.day : ''))
+            : ('Showing last good data' + (when ? ' (' + when + ')' : ''));
+        } catch (e) { if (asof) asof.textContent = 'Live intelligence'; }
+      })();
+    </script>
+  </body>
+</html>
+
+<style>
+  .td { max-width: var(--max-width); margin: 0 auto; padding: 4rem 2rem 2rem; }
+
+  /* Hero */
+  .hero { padding-bottom: 2.25rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--hairline); }
+  .kicker { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.1rem; }
+  .display { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.06; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 1.6rem; }
+  .hero-foot { display: flex; align-items: flex-end; gap: 2rem; flex-wrap: wrap; }
+  .stat { display: flex; flex-direction: column; gap: 3px; }
+  .stat-num { font-family: var(--font-numerals); font-weight: 700; font-size: 46px; line-height: 1; color: var(--ink); border-bottom: 2px solid var(--key-stat-underline); padding-bottom: 3px; align-self: flex-start; }
+  .stat-lab { font-family: var(--font-mono); font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted-ink); }
+  .asof { font-family: var(--font-mono); font-size: 12px; color: var(--muted-ink); display: flex; align-items: center; gap: 8px; padding-bottom: 4px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--main); animation: p 2.4s infinite; }
+  @keyframes p { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .link-cta { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--link); padding-bottom: 4px; }
+  .arr { display: inline-block; }
+
+  /* Section rule */
+  .block { margin: 0 0 2.75rem; }
+  .rule { position: relative; border-top: 1px solid var(--hairline); margin-bottom: 1.4rem; display: flex; justify-content: space-between; align-items: flex-start; }
+  .rule > span { position: relative; top: -0.7em; display: inline-block; background: var(--canvas); padding-right: 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted-ink); }
+  .more { position: relative; top: -0.7em; background: var(--canvas); padding-left: 14px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--link); }
+
+  /* Regime */
+  .regime { display: flex; flex-direction: column; gap: 12px; }
+  .regime-counts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .rc { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted-ink); border: 1px solid var(--hairline); border-left: 3px solid var(--c); border-radius: 6px; padding: 7px 12px; }
+  .rc b { font-family: var(--font-numerals); font-size: 16px; color: var(--c); font-weight: 700; margin-right: 5px; }
+  .rc-tot { border-left-color: var(--hairline-strong); }
+  .rc-tot b { color: var(--ink); }
+  .scen-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .scen { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); border: 1px solid var(--hairline); border-radius: 4px; padding: 3px 9px; }
+  .scen b { color: var(--body-ink); font-weight: 700; }
+  .scen.red b { color: var(--st-alert-text); } .scen.amber b { color: var(--st-anticipated-text); } .scen.green b { color: var(--st-realized-text); }
+
+  /* Briefs */
+  .briefs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .brief { display: flex; gap: 12px; background: var(--surface); border-radius: var(--radius-card); padding: 16px 18px; transition: background .18s; }
+  .brief:hover { background: var(--raised); filter: none; }
+  .sev { font-size: 15px; line-height: 1.4; flex-shrink: 0; }
+  .brief-top { display: flex; gap: 10px; align-items: center; margin-bottom: 5px; }
+  .brief-sector { font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-ink); }
+  .brief-day { font-family: var(--font-mono); font-size: 10px; color: var(--faint-ink); }
+  .brief-head { font-family: var(--font-body); font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 5px; }
+  .brief-line { font-family: var(--font-body); font-size: 13px; color: var(--body-ink); line-height: 1.5; margin-bottom: 6px; }
+  .brief-src { font-family: var(--font-mono); font-size: 10px; color: var(--faint-ink); }
+
+  /* Market events */
+  .evtbl { display: flex; flex-direction: column; gap: 1px; background: var(--hairline); border-radius: var(--radius-card); overflow: hidden; }
+  .evt { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 16px; background: var(--surface); padding: 12px 18px; transition: background .15s; }
+  .evt:hover { background: var(--raised); filter: none; }
+  .evt-event { font-family: var(--font-body); font-size: 14px; color: var(--ink); font-weight: 600; }
+  .evt-mid { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+  .evt-comm { font-family: var(--font-mono); font-size: 11px; color: var(--muted-ink); }
+  .evt-date { font-family: var(--font-mono); font-size: 10px; color: var(--faint-ink); }
+  .evt-move { font-family: var(--font-numerals); font-size: 14px; font-weight: 700; color: var(--muted-ink); min-width: 120px; text-align: right; }
+  .evt-move.pos { color: var(--pos); } .evt-move.neg { color: var(--neg); }
+
+  /* Signals */
+  .sigs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sig { display: flex; align-items: center; gap: 12px; background: var(--surface); border-radius: 8px; padding: 10px 14px; transition: background .15s; }
+  .sig:hover { background: var(--raised); filter: none; }
+  .sig-badge { font-family: var(--font-mono); font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; border: 1px solid; border-radius: 4px; padding: 1px 7px; flex-shrink: 0; }
+  .sig-name { font-family: var(--font-body); font-size: 13.5px; color: var(--body-ink); flex: 1; }
+  .sig-val { font-family: var(--font-numerals); font-size: 13px; font-weight: 700; color: var(--ink); }
+
+  /* Forward catalysts */
+  .fwd { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .fwdcard { background: var(--surface); border-radius: var(--radius-card); border-left: 3px solid var(--accent); padding: 14px 18px; }
+  .fwd-item { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .fwd-meta { font-family: var(--font-body); font-size: 12.5px; color: var(--body-ink); line-height: 1.5; margin-bottom: 8px; }
+  .fwd-k { font-family: var(--font-mono); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--faint-ink); margin-right: 8px; }
+  .fwd-foot { font-family: var(--font-mono); font-size: 11px; color: var(--link); }
+
+  /* Reader paths */
+  .paths { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .path { display: block; background: var(--surface); border-radius: var(--radius-card); padding: 22px 24px; transition: background .2s; }
+  .path:hover { background: var(--raised); filter: none; }
+  .path-h { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; color: var(--ink); margin-bottom: 8px; }
+  .path p { font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--body-ink); margin: 0 0 14px; }
+  .path-go { font-family: var(--font-body); font-size: 14px; font-weight: 700; color: var(--link); }
+
+  @media (max-width: 760px) {
+    .td { padding: 2.5rem 1.2rem 1.5rem; }
+    .briefs, .sigs, .fwd, .paths { grid-template-columns: 1fr; }
+    .evt { grid-template-columns: 1fr auto; }
+    .evt-move { min-width: 0; }
+  }
+</style>

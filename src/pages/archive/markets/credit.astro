@@ -1,0 +1,198 @@
+---
+import AnalysisLayout from '../../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../../components/SignalPanel.astro';
+import { cards, cascade, winnersLosers, takeaways, nextSection, methodology } from '../../../data/analysis/credit.js';
+import { positioning, correlationMap, termMap } from '../../../data/analysis/crossasset.js';
+const ca_cash = positioning.find(p => p.channel.startsWith('Cash'));
+const ca_short = positioning.find(p => p.channel.startsWith('Short'));
+const ca_em = positioning.find(p => p.channel.startsWith('EM'));
+const ca_bondeq = correlationMap.find(c => c.pair.startsWith('Bonds'));
+const ca_ust = termMap.find(t => t.curve.startsWith('US Treasuries'));
+
+const scenarios = [
+  { key: 'hormuz',    label: 'Hormuz closure',  color: '#ef4444' },
+  { key: 'strike',    label: 'Oil strike',      color: '#f59e0b' },
+  { key: 'cable',     label: 'Cable severance', color: '#6366f1' },
+  { key: 'ceasefire', label: 'Ceasefire',       color: '#10b981' },
+];
+const catColor = { dynamic: '#22d3ee', sector: '#f59e0b', structural: '#a78bfa' };
+const posColor = { Beneficiary: '#10b981', Loser: '#ef4444', Mixed: '#f59e0b', 'Severe loser': '#b91c1c' };
+---
+
+<AnalysisLayout
+  title="Sovereign Credit & Financial Plumbing — VegaReady"
+  description="Phase 2 Section 2: capital flows, sovereign credit, and the financial plumbing underneath the 2026 Gulf conflict — Treasuries, money markets, EM spreads, sukuk, IMF stress, sanctions, swap lines."
+  section="Sovereign Credit"
+  area="markets"
+>
+  <section class="hero">
+    <div class="label">Markets · Capital & Credit</div>
+    <h1>Where the money went.<br/>And what it broke.</h1>
+    <p class="lead">The second-order financial architecture of the Feb–May 2026 Gulf conflict: where capital fled, which sovereigns cracked, and the plumbing — correspondent banking, sanctions, swap lines — straining underneath. Every figure carries a source tier; T3 claims were quarantined, not anchored.</p>
+  </section>
+
+  <SignalPanel page="/markets/credit" />
+
+  <section class="cascade">
+    <div class="dl">Physical → financial cascade</div>
+    <ol class="casc-list">
+      {cascade.map((step, i) => (
+        <li class="casc-step"><span class="casc-num">{String(i + 1).padStart(2, '0')}</span><span class="casc-text">{step}</span></li>
+      ))}
+    </ol>
+  </section>
+
+  <div class="sector-list">
+    {cards.map((c) => (
+      <details class="sector-detail">
+        <summary class="sector-summary">
+          <div class="sector-left">
+            <span class="sector-num">{c.icon}</span>
+            <div>
+              <div class="sector-title">{c.title}<span class="cat" style={`color:${catColor[c.category] || '#9ca3af'};border-color:${(catColor[c.category] || '#9ca3af')}40`}>{c.category}</span></div>
+              <div class="sector-blurb">{c.summary}</div>
+            </div>
+          </div>
+          <span class={`conf conf-${c.confidence}`}>{c.confidence}</span>
+        </summary>
+        <div class="sector-body">
+          <div class="ds"><div class="dl">Upstream trigger</div><p>{c.trigger}</p></div>
+          <div class="ds"><div class="dl">Transmission mechanism</div><p>{c.mechanism}</p></div>
+          <div class="ds">
+            <div class="dl">Scenario impact</div>
+            <div class="sg">
+              {scenarios.map((s) => (
+                <div class="si"><span class="sd" style={`background:${s.color}`}></span><span class="sn">{s.label}</span><div class="sv">{c[s.key]}</div></div>
+              ))}
+            </div>
+          </div>
+          <div class="ds"><div class="dl">Magnitude</div><p>{c.magnitude}</p></div>
+          <div class="dr">
+            <div class="ds"><div class="dl">Beneficiaries</div><p>{c.beneficiaries}</p></div>
+            <div class="ds"><div class="dl">Losers</div><p>{c.losers}</p></div>
+          </div>
+          <div class="ds"><div class="dl">Substitution / backstop</div><p>{c.substitution}</p></div>
+          <div class="dr">
+            <div class="ds"><div class="dl">Historical precedent</div><p>{c.precedent}</p></div>
+            <div class="ds"><div class="dl">Time horizon</div><p>{c.timeHorizon}</p></div>
+          </div>
+          <div class="ds"><div class="dl">Investment implications</div><p>{c.investment}</p></div>
+          {c.staleFlags && (<div class="ds"><div class="dl">Data caveats</div><p class="caveat">{c.staleFlags}</p></div>)}
+          <div class="ds"><div class="dl">Sources</div><p>{c.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener" style="color:#60a5fa;margin-right:10px;font-size:13px;text-decoration:none">[{i + 1}]</a>))}</p></div>
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <section class="wl-section">
+    <div class="dl">Who profits, who pays</div>
+    <div style="overflow-x:auto">
+      <table class="wl-table">
+        <thead><tr><th>Category</th><th>Position</th><th>Mechanism</th></tr></thead>
+        <tbody>
+          {winnersLosers.map(([cat, pos, mech]) => (
+            <tr>
+              <td class="wl-cat">{cat}</td>
+              <td><span class="wl-pos" style={`color:${posColor[pos] || '#9ca3af'}`}>{pos}</span></td>
+              <td class="wl-mech">{mech}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="takeaways">
+    <div class="dl">Section takeaways</div>
+    <ol class="tk-list">
+      {takeaways.map(([t, text]) => (
+        <li class="tk-item"><span class="tk-title">{t}.</span> <span class="tk-text">{text}</span></li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="mdr">
+    <div class="mdr-h">Market-derivative read <span>· Cross-Asset</span></div>
+    <div class="mdr-rows">
+      <div class="mdr-row"><span class="mdr-k">Flight to cash</span><span class="mdr-v">{ca_cash.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Short-duration USTs</span><span class="mdr-v">{ca_short.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">EM debt / equity</span><span class="mdr-v">{ca_em.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">EM stress (durable)</span><span class="mdr-v">VXEEM stuck ~2× (35.30) vs VIX below baseline; CDX.EM +69bps; importer FX (rupee 94+) vs exporter (BRL +10%)</span></div>
+      <div class="mdr-row"><span class="mdr-k">Bonds ↔ equities</span><span class="mdr-v">{ca_bondeq.verdict} — diversification failed; both fall on inflation surprises</span></div>
+      <div class="mdr-row"><span class="mdr-k">Treasuries term</span><span class="mdr-v">{ca_ust.shape} — {ca_ust.substitution}</span></div>
+    </div>
+    <a href="/markets/cross-asset" class="mdr-link">Full cross-asset view →</a> <span style="color:var(--text-dim)">·</span> <a href="/markets/equities" class="mdr-link">EM equities →</a>
+  </section>
+
+  <div class="foot-box">
+    <div class="dl">Sources & methodology</div>
+    <p>{methodology}</p>
+    <p class="next"><strong>Next:</strong> {nextSection}</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:680px}
+  .sector-list{display:flex;flex-direction:column;gap:8px;margin-bottom:3rem}
+  .sector-detail{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .sector-detail[open]{border-color:var(--border-light)}
+  .sector-detail[open] .sector-summary{border-bottom:1px solid var(--border)}
+  .sector-summary{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .sector-summary::-webkit-details-marker{display:none}
+  .sector-summary::marker{content:''}
+  .sector-summary:hover{background:rgba(255,255,255,0.02)}
+  .sector-left{display:flex;gap:14px;flex:1;min-width:0}
+  .sector-num{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .sector-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cat{font-family:var(--font-mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:4px}
+  .sector-blurb{font-size:12px;color:var(--text-dim);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .conf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .conf-high{color:#10b981;background:rgba(16,185,129,0.1)}
+  .conf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .conf-low{color:#ef4444;background:rgba(239,68,68,0.1)}
+  .sector-body{padding:16px 20px 20px}
+  .ds{margin-bottom:16px}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .ds p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .caveat{color:var(--text-dim);font-style:italic}
+  .dr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .sg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .si{padding:10px 14px;background:var(--bg-card);border-radius:6px;border:1px solid var(--border)}
+  .sd{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+  .sn{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text)}
+  .sv{font-size:12px;color:var(--text-dim);line-height:1.5;margin-top:4px}
+  @media(max-width:720px){.dr{grid-template-columns:1fr}.sg{grid-template-columns:1fr}.sector-blurb{display:none}}
+  .cascade{margin-bottom:3rem}
+  .casc-list{list-style:none;margin:12px 0 0;padding:0}
+  .casc-step{display:flex;gap:12px;align-items:flex-start;padding:7px 0 7px 14px;border-left:2px solid var(--border);margin-left:6px}
+  .casc-num{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);min-width:20px}
+  .casc-text{font-size:13px;color:var(--text-muted);line-height:1.5}
+  .wl-section{margin-bottom:3rem}
+  .wl-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:12px}
+  .wl-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .wl-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);line-height:1.4;vertical-align:top}
+  .wl-cat{font-weight:700;color:var(--text)}
+  .wl-pos{font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+  .wl-mech{font-size:12px}
+  .takeaways{margin-bottom:3rem}
+  .tk-list{margin:12px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:10px}
+  .tk-item{font-size:13px;line-height:1.6;color:var(--text-muted)}
+  .tk-title{color:var(--text);font-weight:700}
+  .foot-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin-bottom:1rem}
+  .foot-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0 0 8px}
+  .foot-box .next{margin:0}
+  .foot-box strong{color:var(--cyan)}
+  .mdr{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #818cf8;border-radius:8px;padding:14px 18px;margin:0 0 2rem;max-width:860px}
+  .mdr-h{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .mdr-h span{color:var(--text-dim)}
+  .mdr-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+  .mdr-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline}
+  .mdr-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px}
+  .mdr-v{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .mdr-note{font-size:11px;color:#f59e0b;margin:0 0 10px;line-height:1.4}
+  .mdr-link{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none}
+  @media(max-width:720px){.mdr-row{grid-template-columns:1fr;gap:2px}}
+</style>

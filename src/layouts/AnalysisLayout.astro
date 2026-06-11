@@ -71,15 +71,32 @@ const areaLabels: Record<string, string> = {
 
 const nav = navByArea[area] || navByArea.markets;
 const areaLabel = areaLabels[area] || 'Markets';
+
+// Archive-awareness: any page served under /archive/* renders as a read-only,
+// self-contained snapshot — labelled title, in-archive nav, and a banner.
+// Live pages are unaffected (isArchived === false leaves everything as-is).
+const isArchived = Astro.url.pathname.startsWith('/archive/');
+const navPrefix = isArchived ? '/archive' : '';
+const pageTitle = isArchived ? `Archived · ${title}` : title;
+const livePath = Astro.url.pathname.replace('/archive', '') || '/markets';
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={pageTitle} description={description} />
+    {isArchived && <meta name="robots" content="noindex, nofollow" />}
   </head>
   <body>
     <Header />
+
+    {isArchived && (
+      <div class="arch-banner"><div class="arch-inner">
+        <span class="arch-tag">Archived</span>
+        <span class="arch-txt">Original Iran–Gulf market &amp; sector analyses · legacy design · read-only snapshot.</span>
+        <a class="arch-link" href={livePath}>View the current page &rarr;</a>
+      </div></div>
+    )}
 
     <nav class="sc-nav">
       <div class="sc-nav-inner">
@@ -87,7 +104,7 @@ const areaLabel = areaLabels[area] || 'Markets';
         <div class="sc-nav-tabs">
           {nav.map(t => (
             <a
-              href={t.slug ? `${t.base}/${t.slug}` : t.base}
+              href={navPrefix + (t.slug ? `${t.base}/${t.slug}` : t.base)}
               class:list={['sc-tab', { active: section === t.label }]}
             >
               {t.label}
@@ -114,6 +131,18 @@ const areaLabel = areaLabels[area] || 'Markets';
 </html>
 
 <style>
+  .arch-banner { background: var(--bg-surface); border-bottom: 2px solid #d99a2b; }
+  .arch-inner {
+    max-width: 1080px; margin: 0 auto; padding: 8px 2rem;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .arch-tag {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #161106; background: #d99a2b; padding: 2px 8px; border-radius: 3px;
+  }
+  .arch-txt { font-family: var(--font-mono); font-size: 12px; color: var(--text-dim); }
+  .arch-link { font-family: var(--font-mono); font-size: 12px; color: #d99a2b; margin-left: auto; white-space: nowrap; }
   .sc-nav {
     background: var(--bg-surface);
     border-bottom: 1px solid var(--border);

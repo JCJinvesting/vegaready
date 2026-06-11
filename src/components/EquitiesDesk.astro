@@ -1,0 +1,605 @@
+---
+import '../styles/desk.css';
+import '../styles/desk-content.css';
+import '../styles/desk-v2.css';
+import { indexShock, indexNote, sectorMap, sectorScenario, sectorPrecedent, earningsSummary, passThrough, factorRotation, factorObservations, countryScenario, gcc, gccHedge, deleveraging, cryptoSpillover, scenarioTrades, cards, upgradedConfidence, proxyOnly, dataQuality, relatedSectors } from '../data/analysis/equities.js';
+import { metrics, lastUpdated } from '../data/analysis/watchmetrics.js';
+import { CATALYSTS, STATE_LABEL } from '../data/catalysts';
+
+const { mode = 'analyst' } = Astro.props;
+
+const byNo = {}; const byId = {}; metrics.forEach(m => { if (m.signalNo) byNo[m.signalNo] = m; byId[m.id] = m; });
+const fmt = (m) => (m ? `${m.value}${m.unit && m.unit !== 'count' ? ' ' + m.unit : ''}` : '—');
+const wvc = (m) => (m && m.status === 'critical' ? 'neg' : m && m.status === 'alert' ? 'warn' : m && m.status === 'watch' ? 'latent' : '');
+const eq = [{ k: 'Factor unwind', m: byNo['8.1'] }, { k: 'Index dispersion', m: byNo['8.2'] }, { k: 'GCC asymmetry', m: byNo['8.3'] }];
+const wl = (s) => { const u = (s || '').toUpperCase(); return u.startsWith('WINNER') ? 'win' : u.startsWith('LOSER') ? 'lose' : 'mix'; };
+const confCls = (c) => { const u = (c || '').toUpperCase(); return u.startsWith('HIGH') ? 'high' : u.startsWith('LOW') ? 'low' : 'medium'; };
+const dirCls = (x) => (x === 'Long' ? 'win' : x === 'Short' ? 'lose' : 'mix');
+const dataThrough = lastUpdated || 'recent';
+const breadthPct = byNo['8.2'] ? `${byNo['8.2'].value}%` : '—';
+
+// ── competing drivers (attribution buckets) ──
+const drivers = [
+  { d: 'AI / mega-cap capex cycle', b: 'primary', n: 'Insulates the index; widens the breadth gap' },
+  { d: 'Rates & liquidity', b: 'material', n: 'Discount-rate pressure on long-duration growth' },
+  { d: 'Earnings & revisions', b: 'material', n: 'Revision momentum leads price' },
+  { d: 'Positioning / crowding', b: 'secondary', n: 'Crowded-factor unwind risk' },
+  { d: 'Active catalyst (Iran–Gulf)', b: 'secondary', n: 'Overlay — see §Catalysts' },
+  { d: 'Residual / unexplained', b: 'uncertain', n: 'Explicitly named; never assumed zero' },
+];
+
+// ── what would change the call (falsifiability) ──
+const falsifiers = [
+  'Breadth broadens — % above the 200-DMA reclaims ~60%+ and the advance/decline line confirms new index highs.',
+  'The equity risk premium re-rates higher (earnings yield rises vs real yields), restoring a real return cushion.',
+  'Revision breadth rolls over — net downgrades begin to lead price lower.',
+  'The Iran–Gulf catalyst escalates onto a Hormuz-closure path, repricing energy higher and importers lower.',
+];
+
+// ── value types & source tiers (Part E) ──
+const valueTypes = [
+  ['Baseline', 'long-run norm / historical reference'], ['Current', 'latest observed print'],
+  ['Nowcast', 'model estimate of the present from incomplete data'], ['Forecast', 'forward model / consensus estimate'],
+  ['Scenario', 'conditional “if-then” path'],
+];
+const sourceTiers = [
+  ['T1', 'Primary / official', 'SEC EDGAR · CFTC · CBOE · FRED · S&P/MSCI GICS'],
+  ['T2', 'Reputable institutional', 'State Street SPDR · ICI · AAII · NAAIM · FT'],
+  ['T3', 'Academic / research', 'Kenneth French · Damodaran · Shiller'],
+  ['T4', 'Estimated / in-house', 'breadth composites · sentiment z-scores · regime label'],
+];
+
+// ── glossary (tooltips + page-level list) ──
+const gloss = [
+  ['ERP', 'Equity Risk Premium — equities’ excess return over the real risk-free yield; here earnings yield minus real yield.'],
+  ['CAPE', 'Cyclically-Adjusted P/E — price ÷ the 10-year average of inflation-adjusted earnings; smooths the cycle.'],
+  ['Breadth', 'How many stocks participate in a move — broad vs mega-cap-narrow.'],
+  ['Dispersion', 'How widely individual stock or sector returns scatter around the index.'],
+  ['Factor unwind', 'A crowded style factor (e.g. momentum) reversing as positioning is cut.'],
+  ['2s10s', 'The 10-year minus 2-year Treasury yield; negative = inverted curve, a classic recession lead.'],
+  ['OAS', 'Option-Adjusted Spread — a bond’s yield premium over Treasuries; wider = more credit stress.'],
+  ['NTM', 'Next-Twelve-Months — forward-looking consensus estimates for the coming year.'],
+  ['NIM', 'Net Interest Margin — a bank’s lending spread; steeper curves tend to help it.'],
+  ['FFO', 'Funds From Operations — a REIT’s core cash-earnings metric.'],
+  ['OVX', 'CBOE Crude Oil Volatility Index — the “oil VIX”; option-implied crude volatility.'],
+  ['VXEEM', 'CBOE Emerging-Markets ETF Volatility Index — EM equity implied volatility.'],
+  ['EMBI', 'Emerging Markets Bond Index spread — EM sovereign risk premium over Treasuries.'],
+  ['McClellan', 'A breadth oscillator built from the difference between advancing and declining issues.'],
+  ['Vol-control', 'Risk-parity / vol-control strategies cut exposure mechanically when volatility rises.'],
+  ['Beta', 'Sensitivity of an asset’s move to the broad market.'],
+];
+const G = {}; gloss.forEach(([t, d]) => { G[t] = d; });
+const gl = (term, label) => `<span class="gloss" data-def="${G[term]}">${label || term}</span>`;
+
+// ── topic specs (Part B) — now with glance KPIs + a hero chart per section ──
+const T = {
+  regime: { eye: '§1', h: 'Market Regime', q: 'What environment are we in?', fresh: 'daily', chart: 'regime',
+    lead: `The lens for everything below: trend, volatility and the macro backdrop set the prior for how to read every other module. We treat the regime label as a <b>prior, not a forecast</b>.`,
+    kpi: [['VIX (implied vol)', '—', 'feed pending', null], ['% from 200-DMA', '—', 'feed pending', null], ['Realized vs implied (20d)', '—', 'feed pending', null], ['Vol term structure', '—', 'feed pending', null]],
+    track: [['Index vs 50/200-day MA', 'M'], ['VIX level + ' + gl('Vol-control', 'vol term structure'), 'M'], ['Realized vs implied vol (20d)', 'M'], ['Macro nowcast backdrop', 'N'], ['Regime-switching model', 'N']],
+    lv: ['Medium-high', 'VIX and vol-term-structure inversion often precede drawdowns; trend breaks are coincident-to-lagging.'],
+    src: 'CBOE VIX (daily/intraday) · FRED macro series · index MAs', tier: 'T1',
+    feed: [['VIX + term structure', 'CBOE — wire in'], ['% from 200-DMA', 'index feed — wire in']] },
+  breadth: { eye: '§2', h: 'Breadth', q: 'Is the move real or narrow?', fresh: 'daily', chart: 'breadth',
+    lead: `The fastest way to detect a fragile tape: deteriorating ${gl('Breadth', 'breadth')} under a rising index is a classic pre-correction divergence.`,
+    kpi: [['% > 50-DMA', breadthPct, 'current', 'medium'], ['% > 200-DMA', '—', 'feed pending', null], ['Advance / decline', '—', 'feed pending', null], ['EW vs CW (RSP/SPY)', '—', 'feed pending', null]],
+    track: [['% of constituents > 200-DMA', 'M'], ['Advance / decline line', 'M'], ['Equal-weight vs cap-weight (RSP/SPY)', 'M'], ['New highs − new lows', 'N'], [gl('McClellan', 'McClellan oscillator'), 'N']],
+    lv: ['High', 'Narrowing leadership warns of corrections; broadening thrusts confirm uptrends.'],
+    src: 'Constituent prices (T1 feed) · S&P EW vs CW methodology · in-house composites', tier: 'T1/T4',
+    feed: [['% > 200-DMA', 'index feed'], ['A/D line', 'computed in-house'], ['EW/CW ratio', 'ETF feed']] },
+  valuation: { eye: '§3', h: 'Valuation & Return Engine', q: 'What are we paying, and what return is embedded?', fresh: 'monthly · daily ERP', chart: 'valuation',
+    lead: `Decomposes return into <b>earnings growth + multiple change + dividend/buyback yield</b>. ${gl('CAPE')} and ${gl('ERP')} are weak short-horizon timing tools but meaningful 7–10yr signals — labeled <i>baseline/context</i>, never nowcasts.`,
+    kpi: [['Forward P/E', '—', 'feed pending', null], ['Shiller CAPE', '—', 'feed pending', null], ['Equity risk premium', '≈3.2%', 'baseline', 'medium'], ['Div + buyback yield', '—', 'feed pending', null]],
+    track: [['Trailing & forward P/E vs history', 'M'], [gl('CAPE', 'Shiller CAPE'), 'M'], [gl('ERP', 'Equity risk premium') + ' (earnings yield − real yield)', 'M'], ['Return bridge: ΔPrice ≈ ΔEPS + ΔMultiple + Yield', 'M'], ['Regression-implied fair value', 'N']],
+    lv: ['Low for timing, high for 7–10yr return', 'CAPE/ERP have weak short-horizon power but meaningful long-horizon signal.'],
+    src: 'Shiller CAPE (monthly) · Damodaran implied ERP (monthly) · FRED real yields (daily) · forward multiples (T2)', tier: 'T3',
+    feed: [['Forward P/E', 'estimate feed'], ['Shiller CAPE', 'Shiller ie_data (monthly)'], ['Implied ERP', '≈3.2% (Q1’26 ref) — Damodaran / earnings-yield − 10Y']] },
+  earnings: { eye: '§4', h: 'Earnings & Revisions', q: 'Is the fundamental engine accelerating or stalling?', fresh: 'continuous · season', chart: 'earnings',
+    lead: `Revision <b>momentum</b> is among the most reliable short-to-medium equity signals — it leads price more consistently than valuation levels. Reported (GAAP) and estimate (pro-forma) are kept separate.`,
+    kpi: [['Fwd EPS growth', '—', 'feed pending', null], ['Revision breadth', '—', 'feed pending', null], ['Beat rate', '—', 'feed pending', null], ['Net margin trend', '—', 'feed pending', null]],
+    track: [[gl('NTM', 'NTM/forward EPS growth') + ' (consensus)', 'M'], ['Revision breadth (up vs down)', 'M'], ['EPS surprise % / beat rate', 'M'], ['Revision diffusion by sector', 'N'], ['Margin decomposition', 'N']],
+    lv: ['High', 'Revision momentum leads price more consistently than valuation.'],
+    src: 'Estimate vendor (T2) · SEC EDGAR XBRL company-facts for filed actuals (T1, real-time)', tier: 'T1/T2',
+    feed: [['Fwd EPS growth', 'estimate feed'], ['Revision breadth (4-wk)', 'estimate feed'], ['Beat rate', 'EDGAR + estimates']] },
+  positioning: { eye: '§7', h: 'Positioning & Sentiment', q: 'Is the trade crowded?', fresh: 'weekly', chart: 'gauge',
+    lead: `How much is already priced. Extremes are most informative; sentiment is a <b>conditioning variable, not a trigger</b> — NAAIM itself states its index is not predictive.`,
+    kpi: [['AAII bull−bear', '—', 'feed pending', null], ['NAAIM exposure', '—', 'feed pending', null], ['CFTC net (non-comm.)', '—', 'feed pending', null], ['Fund flows', '—', 'feed pending', null]],
+    track: [['AAII bull/bear', 'M'], ['NAAIM Exposure Index', 'M'], ['CFTC COT equity-index net positioning', 'M'], ['ICI fund flows / ETF net issuance', 'M'], ['Put/call ratios', 'N'], ['Positioning composite z-score', 'N']],
+    lv: ['Medium, contrarian', 'Extremes mark turns; treat as conditioning, not a trigger.'],
+    src: 'AAII (Thu, weekly) · NAAIM (Wed→Thu) · CFTC COT (Tue data, Fri 3:30pm ET) · ICI flows (weekly est. + monthly)', tier: 'T1/T2',
+    feed: [['AAII bull−bear', 'AAII (public)'], ['NAAIM exposure', 'NAAIM (public)'], ['COT net non-comm.', 'CFTC (3-day lag)'], ['Weekly flows', 'ICI (estimate)']] },
+  crossasset: { eye: '§8', h: 'Cross-Asset Linkages', q: 'What is the rest of the world saying about equities?', fresh: 'daily',
+    lead: `Rates, credit, FX, commodities and vol often lead equities. <b>Caveat:</b> correlations are regime-dependent and spike toward 1.0 in stress — exactly when diversification fails.`,
+    track: [['10y yield & ' + gl('2s10s', '2s10s curve'), 'M'], ['Credit spreads (IG/HY ' + gl('OAS') + ')', 'M'], ['USD (DXY)', 'M'], ['Oil / copper', 'M'], ['Gold · MOVE/VIX ratio', 'N'], ['Equity-bond correlation regime', 'N']],
+    lv: ['Medium-high', 'Credit spreads and the yield curve are well-established macro leads; rising HY OAS / curve inversion often precede equity stress.'],
+    src: 'FRED (yields, curves, OAS, USD, commodities — daily) · CBOE (vol) · live registry tiles below', tier: 'T1' },
+};
+
+// ── live cross-asset tiles (real registry data + honest feed-pending) ──
+const xa = [
+  { k: 'US Dollar (DXY)', m: byNo['1.2'], n: 'reserve-currency bid', live: true },
+  { k: gl('EMBI', 'EM credit (EMBI)') + ' spread', m: byNo['2.1'], n: 'sovereign risk premium', live: true },
+  { k: gl('OVX', 'Oil vol (OVX)'), m: byNo['9.1'], n: 'energy-shock gauge', live: true },
+  { k: gl('VXEEM', 'EM equity vol (VXEEM)'), m: byNo['9.3'], n: 'EM risk appetite', live: true },
+  { k: 'Stock–bond correlation', m: byNo['9.2'], n: 'diversification regime', live: true },
+  { k: 'USD/JPY carry', m: byNo['1.3'], n: 'carry-unwind tripwire', live: true },
+  { k: 'Gold spot', m: byId['gold.spot'], n: 'real-asset / haven bid', live: true },
+  { k: 'BTC-ETF flow', m: byId['crypto.btc_etf_flow'], n: 'downstream risk node', live: true },
+  { k: '10Y Treasury yield', m: null, n: 'discount-rate anchor', live: false },
+  { k: '2s10s curve', m: null, n: 'recession lead', live: false },
+  { k: 'HY credit OAS', m: null, n: 'credit-stress lead', live: false },
+  { k: 'Copper', m: null, n: 'global-growth pulse', live: false },
+];
+
+// ── illustrative hero charts (SVG; labeled feed-pending until D7 wires real series) ──
+const charts = {
+  regime: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: index trending up inside a moving-average band, with a vertical marker flagging the Iran–Gulf catalyst"><path d="M0,92 L60,86 L120,80 L180,60 L240,40 L320,26 L320,52 L240,66 L180,84 L120,98 L60,102 L0,104 Z" fill="var(--struct)" opacity="0.12"/><polyline points="0,92 60,87 120,82 160,88 180,62 240,40 320,26" fill="none" stroke="var(--struct)" stroke-width="2"/><line x1="170" y1="8" x2="170" y2="112" stroke="var(--eyeb)" stroke-width="1" stroke-dasharray="3 3"/><text x="174" y="16" fill="var(--eyeb)" font-size="8" font-family="Lora,serif">Iran–Gulf shock</text><text x="2" y="20" fill="var(--struct)" font-size="8" font-family="Lora,serif">Index + MA band</text></svg>`,
+  breadth: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: the index rises while breadth declines — a divergence"><polyline points="0,82 80,72 160,58 240,46 320,34" fill="none" stroke="var(--ink)" stroke-width="2"/><text x="2" y="30" fill="var(--ink)" font-size="8" font-family="Lora,serif">Index ↑</text><polyline points="0,52 80,60 160,72 240,86 320,98" fill="none" stroke="var(--neg)" stroke-width="2" stroke-dasharray="4 2"/><text x="232" y="112" fill="var(--neg)" font-size="8" font-family="Lora,serif">% &gt; 200-DMA ↓</text></svg>`,
+  valuation: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: equity risk premium drifting below its historical normal range"><rect x="0" y="38" width="320" height="40" fill="var(--data)" opacity="0.12"/><line x1="0" y1="58" x2="320" y2="58" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3"/><text x="2" y="52" fill="var(--muted)" font-size="8" font-family="Lora,serif">normal ERP range</text><polyline points="0,50 80,56 160,70 240,82 320,88" fill="none" stroke="var(--data)" stroke-width="2"/><circle cx="320" cy="88" r="3.5" fill="var(--data)"/><text x="226" y="104" fill="var(--data)" font-size="8" font-family="Lora,serif">ERP ≈3.2% — thin</text></svg>`,
+  returnbridge: `<svg viewBox="0 0 320 124" role="img" aria-label="Illustrative return bridge: dividend yield plus earnings growth minus multiple change equals total return"><line x1="0" y1="98" x2="320" y2="98" stroke="var(--cardline)"/><rect x="18" y="80" width="42" height="18" fill="var(--pos)"/><text x="18" y="112" fill="var(--muted)" font-size="7.5" font-family="Lora,serif">Div + b/back</text><rect x="92" y="48" width="42" height="32" fill="var(--struct)"/><text x="96" y="112" fill="var(--muted)" font-size="7.5" font-family="Lora,serif">EPS growth</text><rect x="166" y="48" width="42" height="22" fill="var(--neg)"/><text x="172" y="112" fill="var(--muted)" font-size="7.5" font-family="Lora,serif">ΔP/E</text><rect x="252" y="62" width="42" height="36" fill="var(--eyeb)"/><text x="262" y="112" fill="var(--muted)" font-size="7.5" font-family="Lora,serif">Total</text></svg>`,
+  earnings: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: net earnings-revision breadth oscillating around the zero line"><line x1="0" y1="60" x2="320" y2="60" stroke="var(--muted)" stroke-dasharray="2 3"/><text x="2" y="56" fill="var(--muted)" font-size="8" font-family="Lora,serif">net revisions = 0</text><polyline points="0,42 50,50 100,58 150,72 200,66 260,52 320,60" fill="none" stroke="var(--struct)" stroke-width="2"/><text x="250" y="40" fill="var(--struct)" font-size="8" font-family="Lora,serif">revision breadth</text></svg>`,
+  gauge: `<svg viewBox="0 0 320 132" role="img" aria-label="Illustrative sentiment gauge resting near neutral"><path d="M34,116 A126,126 0 0,1 98,32" fill="none" stroke="var(--neg)" stroke-width="13"/><path d="M98,32 A126,126 0 0,1 222,32" fill="none" stroke="var(--warn)" stroke-width="13"/><path d="M222,32 A126,126 0 0,1 286,116" fill="none" stroke="var(--pos)" stroke-width="13"/><line x1="160" y1="116" x2="150" y2="46" stroke="var(--ink)" stroke-width="2.5"/><circle cx="160" cy="116" r="5" fill="var(--ink)"/><text x="26" y="130" fill="var(--neg)" font-size="8.5" font-family="Lora,serif">Fear</text><text x="142" y="20" fill="var(--warn)" font-size="8.5" font-family="Lora,serif">Neutral</text><text x="262" y="130" fill="var(--pos)" font-size="8.5" font-family="Lora,serif">Greed</text></svg>`,
+};
+const chartCap = {
+  regime: 'Regime — index vs MA band, catalyst marked', breadth: 'Breadth divergence — index vs participation',
+  valuation: 'Valuation — ERP vs its normal range', earnings: 'Earnings — net revision breadth vs zero', gauge: 'Sentiment — composite dial',
+};
+
+// ── GICS sector profiles (Part C) ──
+const sectorProfiles = [
+  { s: 'Information Technology', etf: 'XLK', dr: 'Secular digitization, cloud/AI capex, R&D intensity, long-duration cash flows', sens: 'Rates High(−) · Cycle High · Oil Low · USD Med(−) · Infl Med(−)', kpis: 'Revenue growth · operating margin · R&D/sales · cloud growth · forward P/E', leads: 'Enterprise capex intent · semi billings/bookings · cloud backlog · ISM new orders', risks: 'Multiple compression from real yields · mega-cap concentration · capex pullbacks', ll: 'Leads early-cycle on falling rates; vulnerable late-cycle as rates/valuations bite' },
+  { s: 'Communication Services', etf: 'XLC', dr: 'Digital advertising, streaming/subscriptions, telecom infra; bifurcated (growth internet + defensive telecom)', sens: 'Rates Med(−) · Cycle Med · Oil Low · USD Med(−) · Infl Low–Med', kpis: 'Ad revenue growth · ARPU · subscriber net adds · EBITDA margin · churn', leads: 'Ad-spend surveys · ISM · consumer confidence · device/data trends', risks: 'Ad-budget cyclicality · antitrust · content-cost inflation · cord-cutting', ll: 'Internet/ad names track the cycle; telecom subset defensive and rate-sensitive' },
+  { s: 'Consumer Discretionary', etf: 'XLY', dr: 'Household non-essential spend, autos, e-commerce, travel/leisure; high beta to consumer health', sens: 'Rates High(−) · Cycle High · Oil Med(−) · USD Med · Infl High(−)', kpis: 'Comp sales · traffic · gross margin · inventory/sales · discretionary spend share', leads: 'Consumer confidence · real wages · retail sales · credit availability · auto/mortgage rates', risks: 'Recession demand shock · margin squeeze · inventory gluts', ll: 'Classic early-cycle leader; early to roll over late-cycle' },
+  { s: 'Consumer Staples', etf: 'XLP', dr: 'Inelastic food/beverage/household demand; pricing power, brand moats; defensive', sens: 'Rates Med(− bond-proxy) · Cycle Low (defensive) · Oil Low–Med · USD Med(−) · Infl Med (pass-through)', kpis: 'Organic sales · volume vs price · gross margin · FCF · dividend coverage', leads: 'Commodity input costs · FX · private-label share · real income', risks: 'Input inflation outpacing pricing · FX translation · volume loss to private label', ll: 'Outperforms late-cycle/recession; lags in early-cycle risk-on' },
+  { s: 'Health Care', etf: 'XLV', dr: 'Aging demographics, pharma/biotech innovation, managed care, devices; mixed defensive/growth', sens: 'Rates Med · Cycle Low–Med (defensive) · Oil Low · USD Med(−) · Infl Low–Med', kpis: 'Pipeline/R&D productivity · patent cliffs · medical-loss ratio · drug volume/pricing · FCF', leads: 'FDA approvals · utilization trends · policy/reimbursement · demographics', risks: 'Drug-pricing/policy reform · patent expiries · trial failures · litigation', ll: 'Defensive ballast late-cycle; policy headlines can override the cycle' },
+  { s: 'Financials', etf: 'XLF', dr: 'Banks (NIM, credit), insurers, capital markets, asset managers; geared to rates and the credit cycle', sens: 'Rates High(+ steeper curve) · Cycle High · Oil Low · USD Low–Med · Infl Med', kpis: 'Net interest margin · loan growth · credit-loss provisions/NPLs · ROE/ROTCE · trading/IB revenue', leads: '2s10s slope · credit spreads · loan-officer survey · deposit trends', risks: 'Credit losses in downturns · inversion compressing NIM · regulatory capital · deposit flight', ll: 'Early-cycle leader (steepening curve); vulnerable to inversion and recession credit losses' },
+  { s: 'Industrials', etf: 'XLI', dr: 'Capital goods, machinery, aerospace/defense, transports, construction; geared to global capex/trade', sens: 'Rates Med(−) · Cycle High · Oil Med (transports −) · USD Med(− exporters) · Infl Med', kpis: 'Order backlog / book-to-bill · capacity utilization · PMI exposure · operating leverage · freight volumes', leads: 'ISM/PMI new orders · durable-goods orders · capex intentions · global trade volumes', risks: 'Capex downturn · trade/tariff shocks · input inflation · defense-budget shifts', ll: 'Early/mid-cycle leader on rising PMIs; rolls over late-cycle as orders peak' },
+  { s: 'Materials', etf: 'XLB', dr: 'Chemicals, metals/mining, construction materials, packaging; commodity-price and global-demand driven', sens: 'Rates Med · Cycle High · Oil Med (input) · USD High(− commodities in USD) · Infl High(+ real-asset)', kpis: 'Commodity prices · capacity utilization · spreads/margins · volume growth · China-demand exposure', leads: 'China PMI/credit impulse · copper/industrial metals · global PMIs · USD trend', risks: 'Commodity-price collapse · China-demand shock · strong-USD headwind · overcapacity', ll: 'Early-cycle/reflation leader; inflation-hedge tilt; lags in disinflation' },
+  { s: 'Energy', etf: 'XLE', dr: 'Oil & gas E&P, integrated majors, refiners, services; crude/gas prices and supply discipline', sens: 'Rates Low–Med · Cycle High · Oil High(+) · USD High(− inverse) · Infl High(+ hedge)', kpis: 'Realized oil/gas price · production volumes · FCF/breakeven · capital discipline/buybacks · reserve replacement', leads: 'Crude inventories/EIA · OPEC+ supply decisions · rig counts · global demand/PMIs', risks: 'Oil-price crashes · demand destruction · capital-discipline lapses · energy-transition/stranded-asset risk', ll: 'Late-cycle/inflationary leader; strong geopolitical-shock hedge; lags in disinflation' },
+  { s: 'Utilities', etf: 'XLU', dr: 'Regulated electric/gas/water, rate-base growth, electrification/data-center demand; bond-proxy defensive', sens: 'Rates High(− bond-proxy) · Cycle Low (defensive) · Oil Low · USD Low · Infl Med(−)', kpis: 'Rate-base growth · allowed ROE · load/demand growth · dividend yield/coverage · capex plan', leads: 'Long real yields · regulatory rate-case outcomes · electricity-demand/load forecasts', risks: 'Rising long rates compressing the bond-proxy premium · adverse rate cases · high leverage', ll: 'Outperforms in slowdowns and falling-rate regimes; lags in risk-on/rising-rate phases' },
+  { s: 'Real Estate', etf: 'XLRE', dr: 'REITs (residential, industrial/logistics, data centers, retail, office), towers; rate- & credit-sensitive, income-oriented', sens: 'Rates High(−) · Cycle Med (by subsector) · Oil Low · USD Low · Infl Med (rent escalators hedge)', kpis: 'Funds from operations (FFO) · occupancy · same-store NOI · cap rates · leverage/debt maturities', leads: 'Long rates/financing costs · credit spreads · leasing/absorption · construction starts', risks: 'Rising rates raising cap rates and refi costs · office secular pressure · oversupply', ll: 'Leads when rates fall; office vs industrial/data-center dispersion is large; lags in rising-rate regimes' },
+];
+
+// ── durable sector sensitivity matrix (sortable summary) ──
+const sectors = [
+  { s: 'Energy', cyc: ['Cyclical', 4], rate: ['Low', 1, 'lo'], oil: ['High +', 5, 'hi'] },
+  { s: 'Materials', cyc: ['Cyclical', 4], rate: ['Moderate', 2, 'mid'], oil: ['Input', 3, 'mid'] },
+  { s: 'Industrials', cyc: ['Cyclical', 4], rate: ['Moderate', 2, 'mid'], oil: ['− input', 2, 'mid'] },
+  { s: 'Cons. Discretionary', cyc: ['Most cyclical', 5], rate: ['− High', 4, 'hi'], oil: ['− input', 2, 'mid'] },
+  { s: 'Financials', cyc: ['Cyclical', 4], rate: ['+ Benefit', 4, 'pos'], oil: ['Low', 1, 'lo'] },
+  { s: 'Info. Technology', cyc: ['Growth', 3], rate: ['− Duration', 4, 'hi'], oil: ['Low', 1, 'lo'] },
+  { s: 'Comm. Services', cyc: ['Mixed', 3], rate: ['− Duration', 3, 'mid'], oil: ['Low', 1, 'lo'] },
+  { s: 'Cons. Staples', cyc: ['Defensive', 1], rate: ['− Mild', 2, 'mid'], oil: ['− input', 2, 'mid'] },
+  { s: 'Health Care', cyc: ['Defensive', 1], rate: ['Low', 1, 'lo'], oil: ['Low', 1, 'lo'] },
+  { s: 'Utilities', cyc: ['Defensive', 1], rate: ['−− High', 5, 'hi'], oil: ['Low', 1, 'lo'] },
+  { s: 'Real Estate', cyc: ['Bond-proxy', 2], rate: ['−− High', 5, 'hi'], oil: ['Low', 1, 'lo'] },
+];
+const factors = [
+  { f: 'Value', nat: 'cyclical', cls: 'cyc', d: 'Discount to fundamentals; leads in reflation/early-cycle' },
+  { f: 'Growth', nat: 'long-duration', cls: 'cyc', d: 'Future earnings growth; rate-sensitive' },
+  { f: 'Quality', nat: 'defensive', cls: 'def', d: 'Stable, high-quality earnings; mitigates downside' },
+  { f: 'Momentum', nat: 'pro-cyclical', cls: 'cyc', d: 'Recent winners; crash-prone at turns' },
+  { f: 'Low / Min-vol', nat: 'defensive', cls: 'def', d: 'Lower fluctuation; defensive ballast' },
+  { f: 'Size', nat: 'cyclical', cls: 'cyc', d: 'Small-caps; leads when liquidity/cycle improve' },
+];
+
+// ── scenario table (Part D.2) ──
+const scenarios = [
+  { sc: 'Hawkish surprise', tr: 'Rates / real yields ↑', read: 'Long-duration & rate-sensitive pressured', tilt: 'Tech / Utilities / REITs (−); Financials (+ NIM/curve)' },
+  { sc: 'Dovish surprise', tr: 'Rates ↓, easing', read: 'Risk-on, multiple expansion', tilt: 'Discretionary / Tech (+); defensives lag' },
+  { sc: 'Growth re-accel', tr: 'PMIs / orders ↑', read: 'Cyclicals lead', tilt: 'Industrials / Materials / Financials (+)' },
+  { sc: 'Growth scare', tr: 'PMIs / credit ↓', read: 'Defensive rotation', tilt: 'Staples / Health Care / Utilities (+)' },
+];
+
+// ── forward catalyst calendar (Part D.1 / Section 9) ──
+const calendar = [
+  { d: 'FOMC decision', w: 'rates', tier: 'High', touches: 'Regime · Valuation · Financials / Utilities / REITs' },
+  { d: 'CPI release', w: 'inflation', tier: 'High', touches: 'Regime · rate-sensitive sectors' },
+  { d: 'Jobs report', w: 'growth', tier: 'Med-High', touches: 'Cyclicals vs defensives' },
+  { d: 'Earnings-season peak', w: 'fundamentals', tier: 'High', touches: 'Earnings · Sectors · Breadth' },
+  { d: 'OPEC+ meeting', w: 'energy', tier: 'Med', touches: 'Energy · Cross-asset (oil)' },
+];
+
+// ── catalysts ──
+const activeCats = CATALYSTS.filter(c => c.state === 'active');
+const monCats = CATALYSTS.filter(c => c.state !== 'active');
+const SCEN = ['Hormuz closure', 'Oil-infra strike', 'Cable severance', 'Ceasefire'];
+
+const sources = [
+  ['FRED', 'fred.stlouisfed.org/docs/api/fred/'], ['SEC EDGAR APIs', 'sec.gov/search-filings/edgar-application-programming-interfaces'],
+  ['CBOE VIX', 'cboe.com/tradable-products/vix/'], ['CFTC COT', 'cftc.gov/MarketReports/CommitmentsofTraders/index.htm'],
+  ['AAII Sentiment', 'aaii.com/sentimentsurvey'], ['NAAIM Exposure', 'naaim.org/programs/naaim-exposure-index/'],
+  ['ICI flows', 'ici.org/research/stats/flows'], ['Kenneth French Data', 'mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html'],
+  ['Damodaran ERP', 'pages.stern.nyu.edu/~adamodar/'], ['Shiller CAPE', 'econ.yale.edu/~shiller/data/ie_data.xls'],
+  ['S&P / MSCI GICS', 'spglobal.com/spdji/en/landing/topic/gics/'], ['State Street SPDR', 'ssga.com'],
+];
+
+const read30 = [
+  'The <b>index masks the damage</b>: the S&amp;P fell ~8% to a 6,316 trough, then made new highs on mega-cap AI insulation — breadth is the tell.',
+  'Leadership is <b>narrow and defensive-tilted</b>; value, defensives and energy led while crowded long-duration growth unwound.',
+  'Valuation is rich and the <b>equity risk premium thin</b> (≈3.2% Q1’26) — muted long-run return absent further multiple expansion.',
+  '<b>Revisions</b> are the engine to watch — they lead price more reliably than levels.',
+  'A live <b>Iran–Gulf catalyst</b> is overlaid (see §Catalysts), one driver among rates, AI-capex and positioning.',
+];
+
+const topicOrder = ['regime', 'breadth', 'valuation', 'earnings'];
+
+// ── plain-language winners/losers (Overview mode) ──
+const plain = (s) => (s || '').replace(/\s*\(.*?\)\s*/g, '').trim();
+const ovWin = sectorMap.filter(r => (r.status || '').toUpperCase().startsWith('WINNER')).slice(0, 3).map(r => plain(r.sector));
+const ovLose = sectorMap.filter(r => (r.status || '').toUpperCase().startsWith('LOSER')).slice(0, 3).map(r => plain(r.sector));
+const ovWinTxt = ovWin.length ? ovWin.join(', ') : 'energy and defense';
+const ovLoseTxt = ovLose.length ? ovLose.join(', ') : 'importers and rate-sensitive sectors';
+---
+
+<div class="utility"><div class="wrap">
+  <div class="tickers"><span><b>FACTOR</b> {fmt(byNo['8.1'])}</span><span><b>DISPERSION</b> {fmt(byNo['8.2'])}</span><span><b>GCC SPREAD</b> {fmt(byNo['8.3'])}</span><span><b>OVX</b> {fmt(byNo['9.1'])}</span><span><b>DXY</b> {fmt(byNo['1.2'])}</span></div>
+  <div class="stamp-time">equity signals · live registry</div>
+</div></div>
+
+<header class="masthead"><div class="wrap">
+  <a class="wordmark" href="/today">VEGA<i>READY</i></a>
+  <nav class="mast-right" aria-label="Primary"><a class="navlink" href="/today">Today</a><a class="navlink" href="/catalysts">Catalysts</a><a class="navlink on" href="/markets">Markets</a><a class="navlink" href="/structural/watch">Signals</a><a class="navlink" href="/about">About</a><span class="cmdk" aria-hidden="true">⌘K&ensp;Search</span></nav>
+</div></header>
+
+<div class="freshbar"><div class="wrap">
+  <span class="fb-i"><span class="fb-dot"></span>Data through <b>{dataThrough}</b></span>
+  <span class="fb-i">Next refresh <b>per-section (daily / weekly / structural)</b></span>
+  <span class="fb-i">Live as of <b id="liveAsOf">checking…</b></span>
+  <span class="fb-i" style="margin-left:auto">Read as <span class="modetoggle" role="group" aria-label="Reading mode"><a href="/layman/equities" class={mode === 'layman' ? 'on' : ''}>Layman</a><a href="/markets/equities" class={mode === 'analyst' ? 'on' : ''}>Analyst</a></span></span>
+</div></div>
+
+<nav class="secnav" aria-label="Sections"><div class="wrap" id="secnav">
+  <a href="#state">State</a><a href="#regime">Regime</a><a href="#breadth">Breadth</a><a href="#valuation">Valuation</a><a href="#earnings">Earnings</a><a href="#sectors">Sectors</a><a href="#factors">Factors</a><a href="#positioning">Positioning</a><a href="#crossasset">Cross-Asset</a><a href="#catalysts">Catalysts</a><a href="#evidence">Evidence</a>
+  <span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span>
+</div></nav>
+
+<!-- §0 STATE OF THE DESK -->
+<section class="hero" id="state"><div class="wrap">
+  <div>
+    <div class="eyebrow">Markets · Global Equities · State of the desk</div>
+    <h1>The same shock.<br/><em>Opposite outcomes.</em></h1>
+    <p class="sub"><b>The call:</b> a narrow, rich, defensively-led tape — mega-cap AI insulating the index while breadth thins and a live catalyst reprices the edges. <span class="dconf medium" style="vertical-align:middle">Medium confidence</span></p>
+    <span class="cta-frame cta-h"><a href="/structural/watch">Open the signal board →</a></span>
+  </div>
+  <div class="deskpanel">
+    <div class="ph"><b>Equity regime · live</b><span>— from the registry</span></div>
+    <div class="metric-row">{eq.map((s) => (<div class="mcell"><div class="ml">{s.k}</div><span class={`mv num ${wvc(s.m)}`}>{fmt(s.m)}</span></div>))}</div>
+    <p style="font-family:'Lora',serif;font-size:11px;color:var(--muted);margin-top:13px;line-height:1.6">Index masks the split: mega-cap-AI insulation up top, importer and crowded-factor pain underneath.</p>
+  </div>
+</div></section>
+
+<div class="wrap"><div class="orient">
+  <div class="read30"><div class="r30-h">The 30-second read</div><ul>{read30.map((x) => (<li set:html={x} />))}</ul></div>
+  <div class="falsify"><div class="fl-h">What would change this call</div><ul>{falsifiers.map((x) => (<li>{x}</li>))}</ul></div>
+</div></div>
+
+<!-- ░░ OVERVIEW MODE (plain language) ░░ -->
+<div class="ov-only">
+<section class="dsec ov-intro"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">In layman’s terms</div><h2>Equities, in plain words.</h2></div><span class="fresh-tag">data through {dataThrough}</span></div>
+  <div class="kpibar ov-kpi">
+    <div class="kpi"><div class="kpi-k">Market mood</div><div class="kpi-v sm">Narrow &amp; cautious</div><div class="kpi-meta"><span class="vt">read</span></div></div>
+    <div class="kpi"><div class="kpi-k">How broad is the rally</div><div class="kpi-v">{breadthPct}</div><div class="kpi-meta"><span class="vt">above 50-day</span></div></div>
+    <div class="kpi"><div class="kpi-k">Are stocks pricey?</div><div class="kpi-v sm">Yes — above norm</div><div class="kpi-meta"><span class="vt">baseline</span></div></div>
+    <div class="kpi"><div class="kpi-k">Reward for owning stocks</div><div class="kpi-v sm">Thin (≈3.2%)</div><div class="kpi-meta"><span class="vt">baseline</span></div></div>
+  </div>
+  <div class="ov-beats">
+    <div class="ov-beat"><div class="ovb-h">What equities are doing</div><p>The headline US index keeps hitting new highs — but <b>most individual stocks aren’t joining in</b>. A small group of giant, AI-linked companies is doing nearly all the lifting; only about <b>{breadthPct}</b> of stocks sit above their recent trend.</p></div>
+    <div class="ov-beat"><div class="ovb-h">Why it matters</div><p>A market that rises on fewer and fewer names is <b>more fragile</b> — if the leaders stumble, there’s less underneath to cushion a fall. And because stocks are already expensive, the extra reward for owning them instead of safe bonds (the <span class="gloss" data-def={G['ERP']}>equity risk premium</span>) is unusually thin.</p></div>
+    <div class="ov-beat"><div class="ovb-h">Who’s exposed — winners &amp; losers</div><p><b>It depends on what happens next.</b> If the Iran–Gulf conflict worsens, {ovWinTxt} tend to benefit, while {ovLoseTxt} tend to suffer — and those roles <b>flip</b> if there’s a ceasefire. “Winner” and “loser” here mean <i>relative to before the event, in the scenario that actually plays out</i>, not a forecast or a recommendation.</p><a class="ov-link" href="/markets/equities#catalysts">See the full winners &amp; losers table →</a></div>
+    <div class="ov-beat"><div class="ovb-h">What’s driving it now</div><p>Four lasting forces and one live event. The lasting forces: the <b>AI investment boom</b> (lifting the giants), <b>interest rates</b> (which weigh on pricey growth stocks), <b>company earnings</b>, and <b>how crowded</b> popular trades have become. On top sits the live event — the <b>Iran–Gulf conflict</b>, which reprices energy and the Gulf markets. No single force explains the move; we name them all, including what we can’t explain.</p></div>
+    <div class="ov-beat"><div class="ovb-h">What to watch</div><p>Signs the picture is changing: <b>more stocks</b> joining the rally, the reward-for-risk improving, company forecasts turning <b>down</b>, or the conflict escalating toward the Strait of Hormuz. On the calendar: <b>Fed meetings, inflation and jobs reports, earnings season, and OPEC oil decisions</b>.</p></div>
+  </div>
+  <div class="ov-foot">
+    <span class="dconf medium">Overall confidence: medium</span>
+    <a class="cta-frame cta-h" href="/markets/equities">Open the Analyst view — full data, tables &amp; sources →</a>
+  </div>
+  <p class="tnote">Hover any <span class="gloss" data-def="A specialist term, explained in plain language when you hover.">underlined term</span> for a plain definition. This is research and analysis, not investment advice.</p>
+</div></section>
+</div>
+
+<!-- ░░ ANALYST DESK (full framework) ░░ -->
+<div class="an-only">
+<!-- competing drivers -->
+<section class="dsec" style="padding-top:40px"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">What's moving equities</div><h2>Many drivers, named — never one.</h2></div><a class="more" href="/connections">Causal map →</a></div>
+  <p class="lead">Attribution shown as <b>buckets</b>, not invented weights, with an explicit residual.</p>
+  <div class="attrib">{drivers.map((x) => (<div class="attrib-row"><span class="attrib-d">{x.d}</span><span class={`attrib-b b-${x.b}`}>{x.b}</span><span class="attrib-n">{x.n}</span></div>))}</div>
+</div></section>
+
+<!-- §1–§4 durable framework -->
+{topicOrder.map((id) => { const t = T[id]; return (
+  <section class="dsec" id={id}><div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
+    <p class="lead" set:html={t.lead}></p>
+    <div class="snap">
+      <div class="kpibar">{t.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+      <figure class="snap-chart"><div class="cp-h"><b>{chartCap[t.chart]}</b><span class="cp-tag">illustrative</span></div><div class="sc-svg" set:html={charts[t.chart]}></div></figure>
+    </div>
+    {id === 'valuation' && (<figure class="snap-chart wide"><div class="cp-h"><b>Return bridge — ΔPrice ≈ Δearnings + ΔP/E + yield</b><span class="cp-tag">illustrative</span></div><div class="sc-svg" set:html={charts.returnbridge}></div></figure>)}
+    {id === 'regime' && (
+      <div class="obsint">
+        <div class="oi-row obs"><span class="oi-tag">Observed</span><p>The index has printed new highs, yet only about <b>{breadthPct}</b> of constituents sit above their 50-DMA. <span class="vt">current</span></p></div>
+        <div class="oi-row int"><span class="oi-tag int">Interpretation</span><p>The advance is mega-cap-led; breadth this narrow has historically preceded corrections — a <i>prior</i>, not a forecast. <span class="dconf medium">attribution: medium</span></p></div>
+      </div>
+    )}
+    {id === 'earnings' && (<div class="deep" style="margin:4px 0 14px">{passThrough.map((c) => (<div class="kvrow"><div class="kv-k">{c.channel}</div><p>{c.detail}</p></div>))}</div>)}
+    <div class="track-grid">
+      <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+      <div class="track-side">
+        <div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div>
+        <div class="srcline"><b>Sources</b> <span class="dconf" style="border-color:var(--cardline)">{t.tier}</span> {t.src}</div>
+      </div>
+    </div>
+    <div class="deep"><div class="feedph"><div class="fp-h">{t.h} — live numbers, feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div><div class="fp-note">Sources named above; wires in with the D7 data layer.</div></div></div>
+  </div></section>
+); })}
+
+<!-- §5 SECTORS -->
+<section class="dsec" id="sectors"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">§5 · Where is leadership, and does it fit the cycle?</div><h2>Sector rotation &amp; the business cycle.</h2></div><span class="fresh-tag">structural + daily RS</span></div>
+  <p class="lead">The <b>durable</b> sensitivity map — what each sector is structurally driven by. Click a column to sort. Live relative-strength and the cycle clock are feed-pending; the conflict winner/loser is the <i>overlay</i> in §Catalysts.</p>
+  <div style="overflow-x:auto"><table class="dtbl" id="sectbl">
+    <thead><tr><th>Sector</th><th class="sort" data-col="cyc">Cycle</th><th class="sort" data-col="rate">Rates</th><th class="sort" data-col="oil">Oil</th><th>ETF</th></tr></thead>
+    <tbody>{sectors.map((r, i) => (<tr data-cyc={r.cyc[1]} data-rate={r.rate[1]} data-oil={r.oil[1]}><td class="nm">{r.s}</td><td class="sens">{r.cyc[0]}</td><td class={`sens ${r.rate[2]}`}>{r.rate[0]}</td><td class={`sens ${r.oil[2]}`}>{r.oil[0]}</td><td class="mono">{sectorProfiles[i] ? sectorProfiles[i].etf : ''}</td></tr>))}</tbody>
+  </table></div>
+  <figure class="snap-chart clock" style="margin-top:14px"><div class="cp-h"><b>Business-cycle clock — where leadership sits</b><span class="cp-tag">illustrative</span></div>
+    <div class="sc-svg"><svg viewBox="0 0 320 150" role="img" aria-label="Illustrative business-cycle clock with early, mid, late and recession quadrants">
+      <circle cx="160" cy="78" r="62" fill="none" stroke="var(--cardline)" stroke-width="1.5"/>
+      <line x1="160" y1="16" x2="160" y2="140" stroke="var(--cardline)" stroke-width="1"/><line x1="98" y1="78" x2="222" y2="78" stroke="var(--cardline)" stroke-width="1"/>
+      <text x="176" y="44" fill="var(--struct)" font-size="9" font-family="Lora,serif">Early — Cyclicals</text>
+      <text x="176" y="116" fill="var(--muted)" font-size="9" font-family="Lora,serif">Late — Energy/Mat</text>
+      <text x="60" y="116" fill="var(--neg)" font-size="9" font-family="Lora,serif" text-anchor="end">Recession — Defensives</text>
+      <text x="60" y="44" fill="var(--muted)" font-size="9" font-family="Lora,serif" text-anchor="end">Mid — Tech/Inds</text>
+      <line x1="160" y1="78" x2="206" y2="50" stroke="var(--eyeb)" stroke-width="2.5"/><circle cx="160" cy="78" r="4" fill="var(--eyeb)"/>
+    </svg></div>
+  </figure>
+  <div class="deep">
+    <div class="tk-h" style="margin:20px 0 8px">Sector desk profiles — the 11 GICS sectors</div>
+    {sectorProfiles.map((p) => (
+      <details class="dcard"><summary><div><div class="dc-t">{p.s}<span class="dc-cat">{p.etf}</span></div><div class="dc-s">{p.dr}</div></div></summary>
+        <div class="dc-body">
+          <div class="prof-sens">{p.sens}</div>
+          <div class="prof-rows">
+            <div class="prof-r"><span class="prof-k">KPIs</span>{p.kpis}</div>
+            <div class="prof-r"><span class="prof-k">Leading indicators</span>{p.leads}</div>
+            <div class="prof-r"><span class="prof-k">Classic risks</span>{p.risks}</div>
+            <div class="prof-r"><span class="prof-k">Lead / lag</span>{p.ll}</div>
+          </div>
+        </div></details>
+    ))}
+    <p class="tnote">Sensitivity ratings are <b>framework priors for IA defaults, not forecasts</b>. Sector definitions per GICS (S&amp;P / MSCI); liquid proxies are the SPDR Select Sector ETFs.</p>
+  </div>
+</div></section>
+
+<!-- §6 FACTORS -->
+<section class="dsec" id="factors"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">§6 · What style is being rewarded?</div><h2>Equity factors.</h2></div><span class="fresh-tag">structural · weekly perf</span></div>
+  <p class="lead">Value/size/momentum/quality/low-vol explain the <span class="gloss" data-def={G['Dispersion']}>dispersion</span> the sector lens misses. Leadership rotates with the cycle.</p>
+  <div class="heat">{factors.map((f) => (<div class={`heat-cell ${f.cls}`}><div class="heat-f">{f.f}</div><div class="heat-nature">{f.nat}</div><div class="heat-d">{f.d}</div></div>))}</div>
+  <div class="deep"><div class="feedph" style="margin-top:12px"><div class="fp-h">Factor returns — feed pending</div><div class="fp-rows"><div class="fp-row"><span class="fp-k">Trailing factor returns (1m/3m/12m)</span><span class="fp-v">Kenneth French Data Library</span></div><div class="fp-row"><span class="fp-k">Value−growth spread · factor momentum</span><span class="fp-v">French / MSCI / AQR proxies</span></div></div><div class="fp-note">FF 3/5-factor + momentum, free daily/monthly files; investable proxies via MSCI/AQR.</div></div></div>
+</div></section>
+
+<!-- §7 POSITIONING -->
+<section class="dsec" id="positioning"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.positioning.eye} · {T.positioning.q}</div><h2>{T.positioning.h}.</h2></div><span class="fresh-tag">{T.positioning.fresh}</span></div>
+  <p class="lead" set:html={T.positioning.lead}></p>
+  <div class="snap">
+    <div class="kpibar">{T.positioning.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span></div></div>))}</div>
+    <figure class="snap-chart"><div class="cp-h"><b>{chartCap.gauge}</b><span class="cp-tag">illustrative</span></div><div class="sc-svg" set:html={charts.gauge}></div></figure>
+  </div>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.positioning.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.positioning.lv[0]}</div><p>{T.positioning.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf" style="border-color:var(--cardline)">{T.positioning.tier}</span> {T.positioning.src}</div></div>
+  </div>
+  <div class="deep"><div class="feedph"><div class="fp-h">Positioning — feed pending</div><div class="fp-rows">{T.positioning.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div></div></div>
+</div></section>
+
+<!-- §8 CROSS-ASSET (live registry tiles) -->
+<section class="dsec" id="crossasset"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.crossasset.eye} · {T.crossasset.q}</div><h2>{T.crossasset.h}.</h2></div><span class="fresh-tag">{T.crossasset.fresh}</span></div>
+  <p class="lead" set:html={T.crossasset.lead}></p>
+  <div class="xa">{xa.map((x) => (
+    <div class={`xa-tile ${x.live ? 'live' : 'pend'}`}>
+      <div class="xa-k" set:html={x.k}></div>
+      <div class={`xa-v ${x.live ? wvc(x.m) : ''}`} style={x.live ? '' : 'color:var(--latent);font-size:15px'}>{x.live ? fmt(x.m) : '—'}</div>
+      <div class="xa-n">{x.live ? x.n : x.n + ' · feed pending'}</div>
+    </div>
+  ))}</div>
+  <p class="tnote">Live tiles read from the watch registry (data through <b>{dataThrough}</b>); greyed tiles await the FRED rates/credit feed. <b>Caveat:</b> these correlations are regime-dependent — they converge toward 1.0 in stress, exactly when diversification is needed most.</p>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.crossasset.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.crossasset.lv[0]}</div><p>{T.crossasset.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf" style="border-color:var(--cardline)">{T.crossasset.tier}</span> {T.crossasset.src}</div></div>
+  </div>
+  <p class="tnote deep">{relatedSectors}</p>
+</div></section>
+
+<!-- §9 CATALYSTS & SCENARIOS -->
+<section class="dsec" id="catalysts"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">§9 · What changes the view, and when?</div><h2>Catalysts &amp; scenarios.</h2></div><span class="fresh-tag">3× daily</span></div>
+  <p class="lead">Catalysts <b>annotate</b> the framework above — they don't rewrite it. Scenario tilts are <span class="vt">scenario</span> framework priors, never recommendations.</p>
+
+  <div class="tk-h" style="margin:14px 0 6px">Forward catalyst calendar</div>
+  <div style="overflow-x:auto"><table class="dtbl">
+    <thead><tr><th>Event</th><th>Driver</th><th>Impact tier</th><th>Sections it touches</th><th>Date</th></tr></thead>
+    <tbody>{calendar.map((c) => (<tr><td class="nm">{c.d}</td><td class="mono">{c.w}</td><td><span class={`dconf ${c.tier === 'High' ? 'high' : c.tier === 'Med' ? 'low' : 'medium'}`}>{c.tier}</span></td><td>{c.touches}</td><td class="mono" style="color:var(--latent)">feed pending</td></tr>))}</tbody>
+  </table></div>
+  <p class="tnote">Dates wire in with the calendar feed; events shown are the standing high-impact set the desk always tracks.</p>
+
+  <div class="tk-h" style="margin:22px 0 6px">Scenario-conditional tilts</div>
+  <div style="overflow-x:auto"><table class="dtbl">
+    <thead><tr><th>Scenario</th><th>Trigger</th><th>Likely equity read</th><th>Sector / factor tilt (prior)</th></tr></thead>
+    <tbody>{scenarios.map((s) => (<tr><td class="nm">{s.sc}</td><td class="mono">{s.tr}</td><td>{s.read}</td><td>{s.tilt}</td></tr>))}</tbody>
+  </table></div>
+
+  <div class="tk-h" style="margin:22px 0 6px">Active catalysts affecting equities</div>
+  {activeCats.length === 0 && (<div class="emptycat">No active catalyst is materially moving equities right now — the durable framework above stands on its own.</div>)}
+  <div class="catstack">
+    {activeCats.map((c) => (
+      <details class="catmod active" open>
+        <summary><span class="cm-badge act">{STATE_LABEL[c.state]}</span><span class="cm-title">{c.overviewTitle}</span><span class="cm-chan">index bifurcation · sector rotation · GCC</span></summary>
+        <div class="cm-body">
+          <div class="eyebrow" style="margin:8px 0 6px">The bifurcation</div>
+          <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Index</th><th>Region</th><th>Peak decline <span class="vt">realized</span></th><th>Recovery</th><th>Conf</th></tr></thead>
+            <tbody>{indexShock.map((r) => (<tr><td class="nm">{r.index}</td><td class="mono">{r.region}</td><td>{r.decline}</td><td class="mono">{r.recovery}</td><td><span class={`dconf ${confCls(r.conf)}`}>{r.conf}</span></td></tr>))}</tbody></table></div>
+          <p class="tnote">{indexNote}</p>
+
+          <div class="eyebrow" style="margin:20px 0 4px">Winners &amp; losers under this catalyst</div>
+          <p class="tnote" style="margin:0 0 8px"><b>Definition:</b> winners/losers of <i>this catalyst's</i> repricing — vs the pre-catalyst baseline, sector-relative, over the repricing window, in the <b>currently realized scenario</b>. Sectors flip across scenarios — switch below.</p>
+          <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Sector</th><th>Status (realized)</th><th>Mechanism</th><th>ETF</th><th>Conf</th></tr></thead>
+            <tbody>{sectorMap.map((r) => (<tr><td class="nm">{r.sector}</td><td><span class={wl(r.status)}>{r.status}</span></td><td>{r.mechanism}</td><td class="mono">{r.etf}</td><td><span class={`dconf ${confCls(r.conf)}`}>{r.conf}</span></td></tr>))}</tbody></table></div>
+          <div class="scenchips" id="scenchips">{sectorScenario.map((s, i) => (<button class={`scenchip${i === 0 ? ' on' : ''}`} data-i={i}>{s.scenario}</button>))}</div>
+          {sectorScenario.map((s, i) => (<div class={`scenpane${i === 0 ? ' on' : ''}`} data-i={i}><p class="tnote" style="margin:0">{s.impact}</p></div>))}
+          <p class="tnote"><b>Precedent:</b> {sectorPrecedent}</p>
+
+          <div class="eyebrow" style="margin:20px 0 6px">GCC repricing</div>
+          <p class="tnote" style="margin:0 0 8px">{gcc.thesis}</p>
+          <div class="bisplit"><div class="bi-b win"><div class="bi-h">Saudi — oil-revenue winner</div><p>{gcc.saudi}</p></div><div class="bi-b lose"><div class="bi-h">UAE — security loser</div><p>{gcc.uae}</p></div><div class="bi-b mix"><div class="bi-h">Qatar — LNG casualty</div><p>{gcc.qatar}</p></div></div>
+
+          <div class="deep">
+            <div class="eyebrow" style="margin:20px 0 6px">Factor rotation under this catalyst</div>
+            <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Factor</th><th>vs market</th><th>Mechanism</th><th>Conf</th></tr></thead><tbody>{factorRotation.map((r) => (<tr><td class="nm">{r.factor}</td><td>{r.perf}</td><td>{r.mechanism}</td><td><span class={`dconf ${confCls(r.conf)}`}>{r.conf}</span></td></tr>))}</tbody></table></div>
+            <div class="takes">{factorObservations.map((t, i) => (<div class="take"><span class="tn">{i + 1}</span><p>{t}</p></div>))}</div>
+            <details class="dcard" style="margin-top:16px"><summary><span class="dc-t">Country × scenario matrix</span><span class="dc-cat">expand</span></summary><div class="dc-body"><div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Country</th><th>{SCEN[0]}</th><th>{SCEN[1]}</th><th>{SCEN[2]}</th><th>{SCEN[3]}</th></tr></thead><tbody>{countryScenario.map((r) => (<tr><td class="nm">{r.country}</td><td>{r.hormuz}</td><td>{r.oil_strike}</td><td>{r.cable}</td><td class="win">{r.ceasefire}</td></tr>))}</tbody></table></div></div></details>
+            <div class="dcallout" style="margin-top:14px"><div class="dc-h">Risk-parity / <span class="gloss" data-def={G['Vol-control']}>vol-control</span> deleveraging</div><p>{deleveraging}</p></div>
+            <div class="dcallout data"><div class="dc-h">Crypto spillover → the terminal node</div><p>{cryptoSpillover}</p></div>
+          </div>
+        </div>
+      </details>
+    ))}
+    {monCats.map((c) => (<details class="catmod"><summary><span class="cm-badge mon">{STATE_LABEL[c.state]}</span><span class="cm-title">{c.overviewTitle}</span><span class="cm-chan">{c.channels ? c.channels.slice(0, 2).join(' · ') : ''}</span></summary><div class="cm-body"><p class="tnote" style="margin:0">{c.summary}{c.watchingNote ? <span class="muted"> — {c.watchingNote}</span> : null}</p></div></details>))}
+  </div>
+  <p class="tnote deep"><b>Simultaneous catalysts:</b> when events cluster, we group them into one high-density window, name competing drivers + a residual when they conflict, and widen the affected sections' confidence rather than forcing one story. Charts anchor to multi-cycle history to fight recency bias.</p>
+</div></section>
+
+<!-- §10 EVIDENCE & METHODOLOGY -->
+<section class="dsec" id="evidence"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">§10 · Why should I believe this?</div><h2>Evidence &amp; methodology.</h2></div></div>
+  <p class="lead">Two confidences, kept distinct: <b>data confidence</b> (are the numbers sound) and <b>attribution confidence</b> (did the driver cause the move). Observed facts render in neutral type; interpretation is labeled and carries its own attribution chip — interpretation never inherits the data's confidence.</p>
+  <div class="legend-grid">
+    <div class="legendbox"><div class="lg-h">Value types</div>{valueTypes.map(([k, d]) => (<div class="lg-row"><span class="vt">{k}</span><span>{d}</span></div>))}</div>
+    <div class="legendbox"><div class="lg-h">Source tiers</div>{sourceTiers.map(([k, d, ex]) => (<div class="lg-row"><span class="dconf" style="border-color:var(--cardline)">{k}</span><span><b style="color:var(--ink)">{d}</b> — {ex}</span></div>))}</div>
+  </div>
+  <div class="deep">
+    <details class="dcard"><summary><span class="dc-t">Numbers upgraded to HIGH confidence ({upgradedConfidence.length})</span><span class="dc-cat">expand</span></summary><div class="dc-body"><ol style="margin:0;padding-left:20px">{upgradedConfidence.map((x) => (<li style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:6px">{x}</li>))}</ol></div></details>
+    <details class="dcard"><summary><span class="dc-t">Could not verify / proxy only ({proxyOnly.length})</span><span class="dc-cat">expand</span></summary><div class="dc-body"><ol style="margin:0;padding-left:20px">{proxyOnly.map((x) => (<li style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:6px">{x}</li>))}</ol></div></details>
+    <div class="eyebrow" style="margin:18px 0 6px">Scenario trade expressions</div>
+    <details class="atier"><summary><span class="at-lock">▣</span> Analyst desk · trade expressions <span class="at-tag">Analyst tier</span></summary><div class="at-body"><p class="at-bound">Scenario implications, not individualized advice. No price targets or buy/sell calls. Directional and instrument-level expressions are for the analyst audience only.</p>{scenarioTrades.map((s) => (<div class="tradeblock"><div class="tb-h" style="color:var(--eyeb)">{s.scenario} — {s.label}</div><p class="tb-r">{s.regime}</p><div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Dir.</th><th>Trade</th><th>Instrument</th><th>Rationale</th></tr></thead><tbody>{s.trades.map((t) => (<tr><td><span class={dirCls(t.direction)}>{t.direction}</span></td><td class="nm">{t.trade}</td><td class="mono">{t.instrument}</td><td>{t.rationale}</td></tr>))}</tbody></table></div></div>))}</div></details>
+    <div class="eyebrow" style="margin:18px 0 6px">Detail files</div>
+    {cards.map((c) => (<details class="dcard"><summary><div><div class="dc-t">{c.title}<span class="dc-cat">{c.category}</span></div><div class="dc-s">{c.summary}</div></div><span class={`dconf ${c.confidence}`}>{c.confidence}</span></summary><div class="dc-body"><div class="dc-mgrid">{c.metrics.map((mm) => (<div class="dc-m"><div class="dc-ml">{mm.label}</div><div class="dc-mv">{mm.value}</div></div>))}</div>{c.sources && c.sources.length > 0 && (<div class="dc-src">{c.sources.map((u, i) => (<a href={u.url} target="_blank" rel="noopener">[{i + 1}]</a>))}</div>)}</div></details>))}
+    <div class="dcallout" style="margin-top:14px"><div class="dc-h">Data quality</div><p><b class="win">HIGH</b> — {dataQuality.high}</p><p style="margin-top:6px"><b class="mix">MODERATE</b> — {dataQuality.moderate}</p><p style="margin-top:6px"><b style="color:var(--latent)">Quarantined</b> — {dataQuality.quarantined}</p></div>
+    <div class="tk-h" style="margin:18px 0 8px">Glossary</div>
+    <div class="glosslist">{gloss.map(([t, d]) => (<div><b>{t}</b> — {d}</div>))}</div>
+    <div class="tk-h" style="margin:18px 0 8px">Primary sources</div>
+    <div class="srcgrid">{sources.map(([n, u]) => (<a class="srcpill" href={`https://${u}`} target="_blank" rel="noopener">{n} ↗</a>))}</div>
+  </div>
+  <p class="tnote">Research and analysis only — no investment recommendations, price targets, or personalized advice. Scenario tilts are conditional framework priors. NAAIM states its index is not predictive; the business-cycle framework is a historical tendency, not a guarantee.</p>
+</div></section>
+</div>
+<!-- ░░ end Analyst Desk ░░ -->
+
+<section class="dsec"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Continue</div><h2>Related desks.</h2></div></div><div class="related-desks"><a class="rd-pill" href="/markets/cross-asset">Cross-Asset →</a><a class="rd-pill" href="/markets/energy">Energy →</a><a class="rd-pill" href="/markets/crypto">Crypto →</a><a class="rd-pill" href="/markets/credit">Credit →</a><a class="rd-pill" href="/markets">All markets →</a></div></div></section>
+
+<section class="funnel"><div class="wrap"><div class="eyebrow">The brief</div><h2>The morning brief, free.</h2><p class="lede">One email at the open — what moved across every market, what's mispriced, what the desk is watching.</p><div class="perf-card"><h3>The morning brief, daily.</h3><p class="pc-sub">Six paragraphs, one chart, no noise — by 06:40 GST.</p><hr class="tearline" /><a class="sub-link" href="/briefings">Subscribe →</a><div class="pc-fine">Free · no account required</div></div><div class="fundnote"><div class="fn-label">About JCJ</div><p>VegaReady is the public regime filter of JCJ Investing. The intelligence is open; the engine is ours.</p><a href="/about">About the fund →</a></div></div></section>
+
+<footer><div class="wrap"><div class="fgrid"><div class="fbrand"><span class="wordmark">VEGA<i>READY</i></span><p>Volatility isn't risk. It's signal. The public macro-intelligence layer of JCJ Investing.</p></div><div class="fcol"><h4>The desk</h4><a href="/today">Today</a><a href="/catalysts">Catalysts</a><a href="/markets">Markets</a><a href="/structural/watch">Signals</a></div><div class="fcol"><h4>The firm</h4><a href="/about">About JCJ</a><a href="/briefings">Briefings</a><a href="mailto:GP@jcjinvesting.com">Contact</a></div></div><div class="legal">© 2026 JCJ Investing LLC. Research and intelligence, not investment advice. Items marked "feed pending" are placeholders for live feeds.</div></div></footer>
+
+<style>
+  .orient{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-top:-6px}
+  .falsify{background:color-mix(in srgb,var(--neg) 6%,var(--card));border:1px solid color-mix(in srgb,var(--neg) 22%,var(--cardline));border-radius:12px;padding:16px 20px}
+  .fl-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--neg);margin-bottom:9px}
+  .falsify ul{margin:0;padding-left:17px;display:grid;gap:7px}
+  .falsify li{font-size:12.5px;color:var(--body);line-height:1.5}
+  .kpibar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:6px 0 14px}
+  .kpi{background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 13px}
+  .kpi-k{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.3;min-height:24px}
+  .kpi-v{font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);margin:4px 0 6px}
+  .kpi-v.pend{color:var(--latent);font-size:16px}
+  .kpi-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .kpi .vt{margin-left:0}
+  .snap{display:grid;grid-template-columns:1.25fr .82fr;gap:18px;align-items:stretch;margin:6px 0 16px}
+  .snap .kpibar{grid-template-columns:1fr 1fr;margin:0}
+  .snap-chart{margin:6px 0 16px;background:var(--card);border:1px solid var(--cardline);border-radius:10px;padding:11px 14px 12px;display:flex;flex-direction:column}
+  .snap .snap-chart{margin:0}
+  .snap-chart.wide,.snap-chart.clock{max-width:520px}
+  .snap-chart .cp-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:'Lora',serif;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .snap-chart .cp-h b{color:var(--ink);font-weight:600;font-size:10px;letter-spacing:.04em}
+  .sc-svg{flex:1;display:flex;align-items:center;justify-content:center;min-height:108px}
+  .sc-svg svg{height:122px;width:auto;max-width:100%;display:block}
+  .snap-chart.wide .sc-svg svg{height:108px}
+  .snap-chart.clock .sc-svg svg{height:150px}
+  .cp-tag{font-family:'Lora',serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--latent);border:1px dashed color-mix(in srgb,var(--latent) 40%,transparent);border-radius:3px;padding:1px 6px;white-space:nowrap;flex:none}
+  /* ── mode toggle + overview/analyst registers ── */
+  .modetoggle{display:inline-flex;gap:2px;border:1px solid var(--cardline);border-radius:6px;padding:2px;vertical-align:middle;margin-left:4px}
+  .modetoggle a{font-family:'Lora',serif;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-radius:4px;padding:3px 9px;cursor:pointer}
+  .modetoggle a:hover{color:var(--ink)}
+  .modetoggle a.on{color:var(--ink);background:color-mix(in srgb,var(--eyeb) 16%,transparent)}
+  .ov-only{display:none}
+  body[data-mode="overview"] .ov-only{display:block}
+  body[data-mode="overview"] .an-only{display:none}
+  body[data-mode="overview"] .secnav{display:none}
+  .ov-kpi{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+  .kpi-v.sm{font-size:17px}
+  .ov-beats{display:grid;gap:15px;margin:8px 0 18px}
+  .ov-beat{border-left:3px solid var(--cardline);padding:1px 0 1px 16px}
+  .ov-beat:nth-child(3){border-left-color:var(--eyeb)}
+  .ovb-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--eyeb);margin-bottom:5px}
+  .ov-beat p{margin:0;font-size:15px;color:var(--body);line-height:1.62;max-width:76ch}
+  .ov-beat p b{color:var(--ink)}
+  .ov-link{display:inline-block;margin-top:8px;font-family:'Lora',serif;font-size:12px;color:var(--struct)}
+  .ov-link:hover{color:var(--eyeb)}
+  .ov-foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:10px 0 6px}
+  .obsint{display:grid;gap:7px;margin:4px 0 16px}
+  .oi-row{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:start;background:var(--card);border:1px solid var(--cardline);border-radius:8px;padding:10px 14px}
+  .oi-row.int{border-left:3px solid var(--eyeb)}
+  .oi-tag{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .oi-tag.int{color:var(--eyeb)}
+  .oi-row p{margin:0;font-size:13px;color:var(--body);line-height:1.5}
+  .oi-row.int p{font-style:italic;color:var(--ink)}
+  .track-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin:6px 0}
+  .tk-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--eyeb);margin-bottom:8px}
+  .track ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  .track li{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:var(--body)}
+  .mn{font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.06em;border:1px solid;border-radius:3px;padding:0 5px;flex:none}
+  .mn-M{color:var(--eyeb);border-color:color-mix(in srgb,var(--eyeb) 45%,transparent)}
+  .mn-N{color:var(--latent);border-color:var(--cardline)}
+  .lvbox{background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:13px 16px;margin-bottom:10px}
+  .lv-h{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .lv-v{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--struct);margin:3px 0 6px}
+  .lvbox p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+  .srcline{font-size:11.5px;color:var(--muted);line-height:1.6}.srcline b{color:var(--body)}.srcline .dconf{margin:0 4px}
+  .bisplit2{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;align-items:start;margin:6px 0 14px}
+  .xa{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:6px 0 12px}
+  .xa-tile{background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 13px}
+  .xa-tile.live{border-top:3px solid var(--data)}
+  .xa-tile.pend{border-top:3px solid color-mix(in srgb,var(--latent) 35%,transparent)}
+  .xa-k{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.35;min-height:26px}
+  .xa-v{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:3px 0;color:var(--ink)}
+  .xa-v.neg{color:var(--neg)}.xa-v.warn{color:var(--warn)}.xa-v.latent{color:var(--latent)}
+  .xa-n{font-size:10.5px;color:var(--muted);font-style:italic}
+  .prof-sens{font-family:'Lora',serif;font-size:12px;color:var(--struct);background:color-mix(in srgb,var(--struct) 8%,transparent);border-radius:6px;padding:8px 12px;margin-bottom:12px}
+  .prof-rows{display:grid;gap:8px}
+  .prof-r{font-size:12.5px;color:var(--body);line-height:1.5}
+  .prof-k{display:inline-block;font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:130px;vertical-align:top}
+  .legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+  .legendbox{background:var(--card);border:1px solid var(--cardline);border-radius:10px;padding:14px 16px}
+  .lg-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--eyeb);margin-bottom:10px}
+  .lg-row{display:flex;gap:10px;align-items:baseline;font-size:12px;color:var(--muted);margin-bottom:7px;line-height:1.45}
+  .glosslist{display:grid;grid-template-columns:1fr 1fr;gap:7px 20px}
+  .glosslist div{font-size:11.5px;color:var(--muted);line-height:1.5}
+  .glosslist b{color:var(--struct);font-family:'Lora',serif}
+  .srcgrid{display:flex;flex-wrap:wrap;gap:7px}
+  .srcpill{font-family:'Lora',serif;font-size:11px;color:var(--muted);border:1px solid var(--cardline);border-radius:6px;padding:5px 11px;background:var(--card)}
+  .srcpill:hover{color:var(--struct);border-color:var(--struct)}
+  @media(max-width:920px){.orient,.track-grid,.legend-grid,.snap,.glosslist{grid-template-columns:1fr}.snap-chart.wide,.snap-chart.clock{max-width:none}.oi-row{grid-template-columns:1fr;gap:4px}.prof-k{width:auto;display:block;margin-bottom:2px}}
+  @media(max-width:560px){.snap .kpibar{grid-template-columns:1fr 1fr}}
+</style>
+
+<script is:inline>
+  (async function(){var el=document.getElementById('liveAsOf');try{var r=await fetch('/data-status.json',{cache:'no-store'});if(!r.ok){if(el)el.textContent='live';return;}var s=await r.json();var w=s.dataDate||(s.metrics&&s.metrics.newest)||'';if(el)el.textContent=(s.state==='ok'?(w||'live')+(s.day?' · day '+s.day:''):'last good data');}catch(e){if(el)el.textContent='live';}})();
+  document.querySelectorAll('.disc button').forEach(function(b){b.addEventListener('click',function(){document.body.setAttribute('data-disc',b.getAttribute('data-disc'));document.querySelectorAll('.disc button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');});});
+  (function(){var links=Array.prototype.slice.call(document.querySelectorAll('#secnav a'));var ids=links.map(function(a){return a.getAttribute('href').slice(1)});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=ids.indexOf(e.target.id);if(i>=0){links.forEach(function(x){x.classList.remove('on')});links[i].classList.add('on');}}});},{rootMargin:'-45% 0px -50% 0px'});ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
+  (function(){var tb=document.getElementById('sectbl');if(!tb)return;var body=tb.querySelector('tbody');tb.querySelectorAll('th.sort').forEach(function(th){th.addEventListener('click',function(){var col=th.getAttribute('data-col');var asc=!th.classList.contains('asc');tb.querySelectorAll('th.sort').forEach(function(x){x.classList.remove('asc','desc')});th.classList.add(asc?'asc':'desc');var rows=Array.prototype.slice.call(body.querySelectorAll('tr'));rows.sort(function(a,b){var av=+a.getAttribute('data-'+col),bv=+b.getAttribute('data-'+col);return asc?av-bv:bv-av;});rows.forEach(function(r){body.appendChild(r)});});});})();
+  (function(){var chips=document.getElementById('scenchips');if(!chips)return;var panes=document.querySelectorAll('.scenpane');chips.addEventListener('click',function(ev){var b=ev.target.closest('.scenchip');if(!b)return;var i=b.getAttribute('data-i');chips.querySelectorAll('.scenchip').forEach(function(x){x.classList.remove('on')});b.classList.add('on');panes.forEach(function(p){p.classList.toggle('on',p.getAttribute('data-i')===i)});});})();
+</script>
