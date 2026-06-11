@@ -118,13 +118,29 @@ From `package.json` scripts:
 
 ---
 
-## 8. Current state & open tracks (as of 2026-06-11)
+## 8. Upstream planning, specs & canonical data (in `…\IranWarTracker`)
+
+The VegaReady **plans, specs, and source data** live in the IranWarTracker project (the redesign grew out of it). Mount/read it; don't edit the war-tracker app itself.
+
+**Canonical data → generated modules.** `IranWarTracker\data\cascades\*.json` is the **single source of truth** for per-desk analysis content. `scripts/build-cascades.cjs` (in vegaready) reads these and generates `src/data/analysis/*.js`. So to change a desk's data, edit the cascade JSON here and re-run `node scripts/build-cascades.cjs` — never hand-edit the generated `.js`. Files: `credit.json`, `equities.json`, `crossasset.json`, `crypto.json`, `defense.json`, `energytransition.json`, `foodag.json`, `foodresilience.json`, `insurance.json`, `labor.json`, `nuclear.json`, `property.json`, `water.json`, `weaponization.json`, `chokepoints.json`, `deglobalization.json`, `digital.json`, `structuraloverview.json`, `catalysts.json`, **`watch-metrics.json`** (→ the live watch registry), `scenario-states.json` / `scenario-status.json`, `dynamics.json`, `regions.json`, `sectors.json`, `taxonomy.json` (+ `README.md`). The war-tracker data bundled into `iwt-bundle.json` by `build-data.cjs` also originates here.
+
+**Planning & spec docs** — relocated into **`vegaready\docs\VegaReady-*.md`** (copied out of `IranWarTracker\docs\`; read the ones relevant to the task):
+- *Vision / strategy:* `VegaReady-Vision-Audiences-Context.md`, `VegaReady-Restructure-Master-Plan.md`, `VegaReady-Execution-Plan.md`, `VegaReady-Master-Checklist.md`, `VegaReady-Site-Manifest.md` (IA / route map), `VegaReady-Master-Handoff-2026-06-08.md` (latest broad handoff; older `VegaReady-Master-Handoff.md` retained).
+- *Method / data discipline:* `VegaReady-Attribution-Method.md`, `VegaReady-Signal-Catalog.md` (the watch-registry signals + signalNos), `VegaReady-Trade-Expression-Draft.md`, `VegaReady-Phase0-Preflight.md`.
+- *Desk specs & research prompts:* `VegaReady-Credit-Desk-SubPlan.md`, `VegaReady-Credit-Desk-It2-Review.md`, `VegaReady-Credit-Research-Prompt.md`; **`VegaReady-Equities-Desk-Spec.md`** + **`VegaReady-Equities-Research-Prompt.md`** (the next desk). The research prompts are reusable — swap the asset class per desk and run in Perplexity deep-research.
+- *Deploy / process:* `VegaReady-Deploy-Runbook.md` (the ship method; the same method is in this folder's `INSTRUCTIONS.md`).
+- *Audits / reviews:* `VegaReady-UX-IA-Review.md`, `VegaReady-Audit-Findings-Report.md`, `VegaReady-Intelligence-Gap-Audit.md`, `VegaReady-FullSite-Design-Audit-Prompt.md`, `VegaReady-Reviewer-Context-Prompt.md`.
+- *Misc:* `VegaReady-Deep-Research-Phase2.md` (IWT root). Note: the `vegaready-*.bundle` files at the IWT root are **git-bundle backups/exports** of the repo (transfer/restore artifacts), not working files — ignore unless restoring.
+
+---
+
+## 9. Current state & open tracks (as of 2026-06-11)
 
 **Done & on staging (NOT on production):** the **credit desk** — Analyst `/markets/credit` + Layman `/layman/credit`, the **Warm Brass** skin, the §9 winners/losers de-duplication, the Skim/Deep model (Deep auto-expands the analyst detail cards), the deepened Layman content (worked example, misconceptions, dollar-plumbing chain), and the brand-aligned formatting (lead+bullets, stepped flows, pull-quotes, 15.5px/1.62 body). It lives only on the design branch + staging; **production is still on `main` without it.** The markets hub was re-homed; legacy `/markets/*` archived under `/archive/markets/`.
 
 **Open tracks (what the owner will pick next):**
 1. **Ship credit to production** — QC pass + `-X ours` merge to `main` + push.
-2. **Propagate the credit standard to Equities** (`EquitiesDesk.astro`, still navy) — brass + §9 de-dup + deeper Layman + Skim/Deep + formatting. Then build out the remaining real desks (Rates, FX/`gold-fx`, Commodities/`energy`, Crypto, Cross-Asset), each bespoke + dual-URL, with Layman twins.
+2. **Propagate the credit *patterns* to Equities** (`EquitiesDesk.astro`, still navy). The **reusable standard is the structure, not the look**: the dual-URL + Skim/Deep model, the §9 winners/losers de-dup, the deep-but-plain Layman approach, and the typography/formatting system. **The brass palette is NOT part of it — brass is credit-only** (the owner is lukewarm on it; it ships only because it works for that one page). Give equities its **own** palette, chosen fresh from the approved dark combos (show 2–3 options via `visualize`; its own `skin-*.css` + `data-skin`). Then the remaining real desks (Rates, FX/`gold-fx`, Commodities/`energy`, Crypto, Cross-Asset), each bespoke + dual-URL with a Layman twin and its **own** look.
 3. **Wire the live data** — replace "feed pending" tiles honestly via the data layer (FRED/scenario data; never invented).
 4. **Re-home the 6 conflict-sector pages** out of `/markets/*` to the Iran dossier (301s).
 5. **SEO** — per-desk meta/OG, sitemap, canonical strategy across the analyst/layman URL pair.

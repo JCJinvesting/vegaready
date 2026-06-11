@@ -1,0 +1,36 @@
+/* =============================================================================
+   Warm Brass skin — SCOPED to the credit desk via html[data-skin="brass"].
+   Overrides the desk.css :root (t1 Oxford) for these pages only, so no other
+   desk changes. Discipline: ONE warm accent (brass) + one cool data tone +
+   semantic pos/neg. Warm near-black canvas, cream ink, flat brass CTA.
+   ============================================================================= */
+html[data-skin="brass"]{
+  --canvas:#16130F;
+  --deep:#0E0B07;
+  --card:#211C16;          /* clearly lifted off the canvas */
+  --cardline:#3A3024;      /* visible hairline — clean separation */
+  --ink:#F3ECDD;
+  --body:#D8CDB9;
+  --muted:#9A8E78;
+  --eyeb:#C9A24A;          /* brass — the single brand accent */
+  --struct:#AE8C54;        /* bronze — structural lines/labels, same warm family */
+  --data:#7C8AA0;          /* muted slate — reserved strictly for data series */
+  --anchor:#241D12;
+  --bench:#E3C77E;
+  --pos:#8FA862;           /* warm olive-green (semantic only) */
+  --neg:#D2774F;           /* terracotta (semantic only) */
+  --warn:#D9A441;
+  --latent:#9A8E78;
+  --emph:#E3C77E;
+  --sx-anchor:#241D12; --sx-anchorline:#3A2F1E;
+  --ctagold:#C9A24A; --ctafh:#C9A24A; --ctafc:#C9A24A;
+  background:var(--canvas);
+}
+/* flat brass CTA — solid brass + dark text. Covers BOTH markup patterns:
+   <a class="cta-frame"> (bare anchor) AND <span class="cta-frame"><a> (wrapper). */
+html[data-skin="brass"] .cta-frame{background:var(--eyeb);color:#1F1606;border-radius:9px;padding:0;border:none}
+html[data-skin="brass"] a.cta-frame{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;font-family:'Fraunces',serif;font-size:15px;font-weight:600}
+html[data-skin="brass"] .cta-frame a{background:var(--eyeb);color:#1F1606;font-weight:600}
+html[data-skin="brass"] .cta-frame:hover,
+html[data-skin="brass"] a.cta-frame:hover,
+html[data-skin="brass"] .cta-frame a:hover{background:#D8B25C;color:#1F1606}

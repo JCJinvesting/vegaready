@@ -10,6 +10,8 @@
 
 We build **one page (one URL) at a time** and polish it across **multiple iterations** before moving on. Never spread effort thinly across many pages. Each desk is **bespoke and custom-tailored to its content at 100% effort** — there is no shared template; do not lazily clone another desk (owner decision).
 
+**What's reusable across desks is the *structure*, not the *look*.** Reuse: the dual-URL + Skim/Deep model, the §9 winners/losers de-dup pattern, the deep-but-plain Layman approach, the component architecture, and the typography/formatting system (`_program` spec). Do **not** reuse the palette: credit's **Warm Brass is credit-only** — the owner is lukewarm on it and it ships only because it works for that one page, *not* as the site theme. Each new desk gets its **own** palette, chosen fresh from the approved dark combos (`_program/APPROVED-THEMES.md`) and shown to the owner as 2–3 `visualize` options before building, via its own `skin-*.css` + `data-skin` on the route.
+
 The loop for every URL:
 1. **Build / edit** on the design branch (in the `vegaready` worktree).
 2. **Deploy to staging** with `npm run stage` (§4). Publishes to a *separate* staging URL, never production.
