@@ -1,0 +1,68 @@
+---
+// Renders the active / featured catalysts as cards. Featured first.
+// Used on /today and (later) on permanent library pages as the "active catalyst" module.
+import { CATALYSTS, STATE_LABEL } from '../data/catalysts';
+
+interface Props { only?: 'active' | 'all'; heading?: string; }
+const { only = 'active' } = Astro.props;
+
+const list = CATALYSTS
+  .filter(c => (only === 'active' ? c.state === 'active' || c.featured : true))
+  .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+---
+
+<div class="ac-grid">
+  {list.map(c => (
+    <a class:list={["ac-card", { featured: c.featured }]} href={c.route}>
+      <div class="ac-top">
+        <span class:list={["ac-state", c.state]}>{STATE_LABEL[c.state]}</span>
+        <span class="ac-fam">{c.family}</span>
+      </div>
+      <h3 class="ac-title">{c.overviewTitle}</h3>
+      <p class="ac-sum">{c.summary}</p>
+      <div class="ac-channels">
+        {c.channels.map(ch => <span class="ac-chip">{ch}</span>)}
+      </div>
+      <span class="ac-go">{c.featured ? 'Open the dossier' : 'View'} &rarr;</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .ac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ac-card {
+    display: block;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .ac-card:hover { border-color: var(--cyan); transform: translateY(-2px); opacity: 1; }
+  .ac-card.featured {
+    grid-column: 1 / -1;
+    border-left: 3px solid var(--cyan);
+  }
+  .ac-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .ac-state {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    padding: 2px 8px; border-radius: 4px;
+    color: var(--text-dim); border: 1px solid var(--border);
+  }
+  .ac-state.active { color: var(--green, #10b981); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); }
+  .ac-fam { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
+  .ac-title {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: 1.25rem; color: var(--text); margin: 0 0 8px;
+  }
+  .ac-sum { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0 0 14px; }
+  .ac-channels { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .ac-chip {
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--text-dim); padding: 2px 8px;
+    border: 1px solid var(--border); border-radius: 4px;
+  }
+  .ac-go { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--cyan); }
+  @media (max-width: 640px) { .ac-grid { grid-template-columns: 1fr; } }
+</style>

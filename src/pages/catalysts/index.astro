@@ -1,0 +1,123 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ActiveCatalysts from '../../components/ActiveCatalysts.astro';
+import { CATALYSTS, STATE_LABEL } from '../../data/catalysts';
+
+const monitoring = CATALYSTS.filter(c => c.state === 'monitoring' && !c.featured);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="Catalysts — VegaReady"
+      description="The catalysts moving markets — wars, tariffs, supply shocks, central-bank shifts. Each researched as a complete dossier, traced from event to market repricing."
+    />
+  </head>
+  <body>
+    <Header />
+
+    <main class="cat">
+      <section class="cat-hero">
+        <div class="cat-eyebrow">/ catalysts</div>
+        <h1>The catalysts<br/>moving markets.</h1>
+        <p class="cat-lead">
+          A catalyst can be a war, a tariff regime, a central-bank pivot, an OPEC+ decision,
+          a drought, a port closure, or an export restriction. We research each one as a
+          complete dossier — traced from the event, through the transmission path, to where
+          markets reprice. The Iran–Gulf conflict is the first.
+        </p>
+      </section>
+
+      <section class="cat-section">
+        <div class="cat-head"><span class="cat-dot active"></span>Active</div>
+        <ActiveCatalysts only="active" />
+      </section>
+
+      <section class="cat-section">
+        <div class="cat-head"><span class="cat-dot"></span>Monitoring</div>
+        <p class="cat-note">
+          Watched as standing drivers — not yet materially moving markets. Each is promoted to a
+          full dossier only when it crosses the qualification threshold.
+        </p>
+        <div class="mon-grid">
+          {monitoring.map(c => (
+            <div class="mon-card">
+              <div class="mon-top">
+                <span class="mon-state">{STATE_LABEL[c.state]}</span>
+                <span class="mon-fam">{c.family}</span>
+              </div>
+              <h3 class="mon-title">{c.overviewTitle}</h3>
+              <p class="mon-sum">{c.summary}</p>
+              {c.watchingNote && <p class="mon-why">{c.watchingNote}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="cat-lifecycle">
+        <div class="lc-label">How a catalyst graduates</div>
+        <div class="lc-chain">
+          <span>Monitoring</span><i>&rarr;</i>
+          <span>Developing</span><i>&rarr;</i>
+          <span>Active</span><i>&rarr;</i>
+          <span>Normalizing</span><i>&rarr;</i>
+          <span>Historical case study</span>
+        </div>
+        <p class="lc-desc">
+          Prominence follows the lifecycle, not the URL — an active catalyst sits up front; when
+          it cools it recedes into the library, with its address and research preserved.
+        </p>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .cat { max-width: 1080px; margin: 0 auto; padding: 4rem 2rem; }
+  .cat-hero { margin-bottom: 3.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+  .cat-eyebrow {
+    font-family: var(--font-mono); font-size: 11px; color: var(--cyan);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .cat-hero h1 {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(2rem, 4vw, 2.8rem); color: var(--text);
+    line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  .cat-lead { font-size: 16px; color: var(--text-muted); line-height: 1.7; max-width: 720px; }
+  .cat-section { margin-bottom: 3rem; }
+  .cat-head {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--text);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+  }
+  .cat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-dim); }
+  .cat-dot.active { background: var(--green, #10b981); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
+  .cat-note { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; max-width: 700px; }
+  .mon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .mon-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .mon-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .mon-state {
+    font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim);
+    padding: 2px 7px; border: 1px solid var(--border); border-radius: 4px;
+  }
+  .mon-fam { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--text-dim); }
+  .mon-title { font-family: var(--font-display); font-weight: 400; font-size: 1.05rem; color: var(--text); margin: 0 0 8px; }
+  .mon-sum { font-size: 12px; color: var(--text-muted); line-height: 1.55; margin: 0 0 10px; }
+  .mon-why { font-size: 11px; color: var(--text-dim); line-height: 1.5; font-style: italic; margin: 0; }
+  .cat-lifecycle { margin-top: 1rem; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; }
+  .lc-label { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); margin-bottom: 14px; }
+  .lc-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 13px; color: var(--text); margin-bottom: 12px; }
+  .lc-chain i { color: var(--cyan); font-style: normal; }
+  .lc-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0; max-width: 720px; }
+  @media (max-width: 720px) {
+    .cat { padding: 2.5rem 1rem; }
+    .mon-grid { grid-template-columns: 1fr; }
+  }
+</style>

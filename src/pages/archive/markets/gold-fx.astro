@@ -1,0 +1,363 @@
+---
+import AnalysisLayout from '../../../layouts/AnalysisLayout.astro';
+import SignalPanel from '../../../components/SignalPanel.astro';
+import { volRegime, volSurface, correlationMap, positioning } from '../../../data/analysis/crossasset.js';
+const ca_gvz = volRegime.find(v => v.index === 'GVZ');
+const ca_gvzsurf = volSurface.find(v => v.dimension.startsWith('Gold'));
+const ca_oilgold = correlationMap.find(c => c.pair.startsWith('Oil') && c.pair.includes('gold'));
+const ca_realrates = correlationMap.find(c => c.pair.startsWith('Gold') && c.pair.includes('real'));
+const ca_goldetf = positioning.find(p => p.channel.includes('gold'));
+
+const cards = [
+  {
+    id:'gold-safe-haven', title:'Gold: Safe-Haven Surge & Correction', icon:'01', confidence:'high',
+    summary:'Gold ATH ~$5,595/oz (Jan 29) corrected –27% to ~$4,099 mid-March as Hormuz oil shock transmitted through inflation and repriced Fed to zero cuts. April close: $4,611 (+5.6% YTD). Central banks net-purchased 243.7t Q1 2026 despite prices 81% above year-ago (WGC T1).',
+    fields: [
+      {label:'Price path', text:'ATH ~$5,595 intraday (Jan 29; WGC closing basis $5,405). Trough ~$4,099 mid-March (Lombard Odier/Kitco T2). April close $4,611 (+5.6% YTD USD). EUR: €3,933/oz. INR: ₹149,777/10g. COMEX net long April: ~$1B/5t "neutral territory" (all WGC April Commentary T1).'},
+      {label:'Transmission chain', text:'Hormuz partial closure → WTI peaked ~$115-116/bbl Mar 9 → March CPI 3.3% YoY (BLS T1) → April PCE 3.8% → CME FedWatch ~0bps cuts by Mar 23 → real yields repriced higher → dollar strengthened → gold sold off. North American ETFs: $12.7B outflows March (largest in 5+ years). US ETFs recovered +$0.83B April (WGC T1).'},
+      {label:'Why gold fell (non-obvious)', text:'The conflict did NOT produce standard "risk-off → buy gold." The USD captured the primary safe-haven bid because the US is a net energy exporter. Gold was subordinated to real-yield dynamics — a fundamental departure from 1979 and 1990 precedents. Mirrors the 2022 Russia-Ukraine pattern (gold initially rose then corrected as yields rose) but faster and deeper.'},
+      {label:'Scenario impacts', text:'Hormuz closure (realized): oil spike → inflation → higher real yields → gold pressure. Oil strike: additional volatility, competing dollar vs gold bids. Cable severance: physical gold bid surges vs paper — EFP spreads widen, paper-physical divergence becomes existential. Ceasefire: oil normalizes → inflation declining → rate-cut expectations return → removes principal headwind. Lombard Odier targets $5,400/oz within 12 months.'},
+      {label:'Historical precedent', text:'1979: gold $226→$850 (+276%) initially, then Volcker tightening collapsed it. 2022: gold +8% then corrected as energy-inflation raised yields. 2026 mirrors 2022 but deeper: ATH→trough –27% is the largest gold correction from a record since the 2013 taper tantrum.'},
+      {label:'Analyst targets (T2)', text:'Lombard Odier (Kiran Kowshik): gold "more than doubled in the year to January 2026," targets $5,400/oz within 12 months. UBS path $5,900 to $5,500; Capital Economics $5,000+ (analyst consensus, T2 — not directly confirmed). WGC full-year 2026 central-bank buying projection: 750–850t.'},
+    ],
+  },
+  {
+    id:'central-bank-gold', title:'Central Bank Gold: Strategic Reserve Diversification', icon:'02', confidence:'high',
+    summary:'243.7t net-purchased Q1 2026 (+3% YoY, +17% QoQ), fastest pace in a year despite prices 81% above year-ago. Poland led at 31t (700t target), Uzbekistan 25t (87% gold-to-reserves), China 7t (17+ consecutive months). Turkey largest seller: 70t net + 80t gold swaps. 2022 Russian reserve freeze ($300B) remains the structural catalyst.',
+    fields: [
+      {label:'Buyers', text:'Poland NBP 31t (formal 700t target Jan 2026). Uzbekistan CBU 25t (87% of reserves in gold). Kazakhstan 12t. China PBoC 7t (17+ consecutive months, 9% of reserves at 2,313t). Malaysia, Indonesia, Serbia: new/resumed buyers. WGC full-year projection: 700-900t. Since 2022, central banks have averaged 1,000+ tonnes annually, absorbing ~1/3 of global mine production (~3,500t/yr).'},
+      {label:'Sellers (forced)', text:'Turkey TCMB: –70t net outright, –80t via gold swaps — dollar-liquidity emergency. Russia CBR: –22t Q1, April was record monthly sale since 2005 (700k oz sold 2026 YTD per Mining.com T2). Azerbaijan SOFAZ: –22t. All sellers motivated by dollar-liquidity needs, not gold exit.'},
+      {label:'Structural driver', text:'2022 freezing of ~$300B Russian central bank reserves in Western institutions (Brookings T1) created the structural shift. Buying is price-inelastic (accelerated in Q1 2026 as prices fell). US gold position: $11,041M (Treasury T1, May 22). Central bank demand floor is materially higher than pre-2022 levels.'},
+      {label:'Buyer-seller bifurcation', text:'The 2026 conflict created a new dynamic: strategic buyers (Poland, China, Uzbekistan) accumulating while energy-importing central banks (Turkey, Russia, Azerbaijan) are forced to sell for dollar liquidity. Net was still firmly positive at 243.7t — structural demand overwhelms tactical selling.'},
+    ],
+  },
+  {
+    id:'physical-paper', title:'Physical vs Paper Gold Divergence', icon:'03', confidence:'high',
+    summary:'Largest North American gold ETF outflow in 5+ years ($12.7B March) alongside second-highest quarterly bar/coin demand on record (474t +42% YoY Q1). COMEX net longs at "neutral territory" (~$1B/5t April). Total demand value: record $193B (+74% YoY). Jewelry fabrication –23% YoY as record prices reduced volume.',
+    fields: [
+      {label:'ETF flows (WGC T1)', text:'March: $12.7B+ North American outflows — largest monthly redemption in 5+ years. April: US-listed ETFs +$0.83B net inflows (partial recovery). April inflows led by Europe; Asia and US contributed ~1/3 as much.'},
+      {label:'Physical demand (WGC T1)', text:'Bar and coin Q1 2026: 474t (+42% YoY) — 2nd highest quarterly ever. Total demand including OTC: 1,231t (+2% YoY); in value: record $193B (+74% YoY). Jewelry fabrication: –23% to 335t (record prices reduced volume).'},
+      {label:'COMEX positioning', text:'April managed-money net long: ~$1B (~5t) — "firmly in neutral territory" (WGC T1). Significant room for speculative re-entry when macro headwinds ease.'},
+      {label:'Cable severance scenario', text:'HIGHEST IMPACT for paper-physical divergence: SWIFT/clearing disruption → paper gold market loses settlement confidence → physical allocated gold in domestic vaults commands substantial premium over unallocated LBMA claims and futures. EFP spreads and lease rates for Feb-May period are NOT confirmed from T1 sources — open data gap.'},
+      {label:'EFP / London–NY dislocation', text:'The tariff-driven EFP dislocation of late 2024–early 2026 moved $135B+ of physical gold from London to New York. Post-conflict EFP spreads and lease rates are the single largest data gap in this analysis. Jewelry fabrication –23% YoY to 335t as record prices cut volume.'},
+    ],
+  },
+  {
+    id:'petrodollar', title:'Petrodollar Recycling Disruption', icon:'04', confidence:'medium',
+    summary:'Saudi cut US Treasuries by $10.8B to $149.6B and UAE by $5.8B to $114.1B in March 2026 (US Treasury TIC T1). Saudi posted highest-ever quarterly budget deficit in Q1. The petrodollar system is not collapsing — Gulf pegs intact, Saudi portfolio still +$18B YoY — but the automatic Treasury-backstop function is demonstrably impaired.',
+    fields: [
+      {label:'Treasury holdings (TIC T1)', text:'Saudi Arabia: –$10.8B, from $160.4B to $149.6B in March 2026. UAE: –$5.8B, from $119.9B to $114.1B. Combined: –$16.6B in one month. Saudi YoY still +$18B (up from $131.6B March 2025) — selling is not net negative annually.'},
+      {label:'Saudi paradox', text:'Aramco Q1 2026: +25% profit increase AND highest-ever quarterly budget deficit. Oil revenue consumed domestically by war spending rather than recycled outward. The petrodollar "automatic backstop" for US Treasuries is impaired during conflict.'},
+      {label:'UAE OPEC exit', text:'May 1, 2026: UAE exited OPEC (T1 official). Creates structural opening for Murban pricing in any currency. Project mBridge (BIS CBDC platform: UAE, China, HK, Thailand) enables CBDC settlement without correspondent banking.'},
+      {label:'Structural assessment', text:'Gulf News (T2): "The petrodollar is not collapsing. What is happening instead is more subtle — the global energy trade is fragmenting." S&P Global: petroyuan scaling will take decades. Gulf currency pegs remain intact: SAR 3.75/USD since 1986, AED 3.6725 since 1997.'},
+    ],
+  },
+  {
+    id:'yen-carry', title:'Yen Carry Under Pressure: ¥11.7T Intervention', icon:'05', confidence:'high',
+    summary:'Yen fell to 160.7/USD (April 30) triggering confirmed BOJ/MoF interventions totaling ¥11.7T (~$73.5B). A 300bp US-Japan rate gap sustains carry incentives that each intervention only temporarily disrupts. Swaps price ~80% probability of BOJ hike at June 16 meeting. BIS: 25bp tightening shock → ~10% yen move when carry positions are heavy.',
+    fields: [
+      {label:'Intervention data (T1/T2)', text:'USD/JPY peak: 160.7 (April 30). Total confirmed: ¥11.7T (~$73.5B) late Apr–late May (Bloomberg T2 citing MoF balance sheet T1). April 30 single-day: ~¥5.48T (~$35B, Reuters estimate). Goldman capacity estimate: ~30 more interventions possible. USD/JPY May 29: ~159.27.'},
+      {label:'Carry trade mechanics', text:'Speculators borrow yen (~0.75%) and invest in higher-yield assets (US Treasuries 3.50-3.75%). Oil-driven inflation adds BOJ dilemma (yen weakness is inflationary, hike risks recession). Each intervention is rapidly re-arbitraged. "Managed deterioration" — intervention prevents crash but doesn\'t resolve differential.'},
+      {label:'Unwind risk', text:'BIS Bulletin 124 (T1): 25bp tightening shock → ~10% yen move when carry-heavy. Capital Economics (May 28): "risks of sudden carry trade unwind are building." August 2024 precedent: unexpected BOJ hike caused ~10% yen appreciation in days.'},
+      {label:'Scenario impacts', text:'Extended closure → yen structural pressure intensifies → BOJ forced to choose hike (recession risk) vs continuous intervention (finite reserves). Ceasefire → oil normalizes → Japan terms of trade recover → yen pressure eases → USD/JPY likely returns 150-155.'},
+    ],
+  },
+  {
+    id:'emfx-stress', title:'EMFX: Energy-Importer Currency Stress', icon:'06', confidence:'high',
+    summary:'Turkey energy inflation +19pp to 47%, year-end CPI forecast raised 18%→26% (CBRT T1). Egypt EGP –10%, capital outflows >$10B. India INR at record lows, options: 18% probability of 100/USD. Indonesia IDR record lows, options: 33% probability of 18,000/USD. Sri Lanka fuel bill +74.7% to $630M/month.',
+    fields: [
+      {label:'Turkey (CBRT T1)', text:'Energy inflation surged 19pp to 47% in two months. Year-end CPI forecast raised from 18% to 26% (CBRT Q2 Inflation Report T1). Turkish central bank is the largest central bank gold seller (70t + 80t swaps).'},
+      {label:'Egypt', text:'~10% depreciation since end-February. Capital outflows >$10B (CBE/Fitch via Ahram Online T2). CBE inflation forecast raised to 16-17%. IMF program under stress.'},
+      {label:'Asia (Bloomberg T2)', text:'India: record lows; RBI opened oil-refiner dollar-swap window; banned offshore rupee instruments; options: 18% probability 100/USD in 3 months. Indonesia: record lows; BI intensified intervention; 33% probability 18,000/USD. South Korea: –1.80% in May. Sri Lanka: fuel bill +74.7% to $630M/month (CBSL T1).'},
+      {label:'Winners', text:'CNY +0.80% in May, 3-year highs vs USD (managed appreciation). AUD, NOK commodity-linked beneficiaries (Amundi June 2026 T2). US dollar: net-exporter safe-haven premium.'},
+      {label:'Asset-manager framing (T2)', text:'Amundi (June 2026): "the Middle East shock should now be treated as an ongoing risk regime." Janus Henderson (IMF Spring Meetings): EM resilience improved since 2013–2018 but Pakistan remains highly vulnerable. Framework: selective long EM with commodity-export exposure vs. short pure oil-importing EM.'},
+    ],
+  },
+  {
+    id:'yuan-dedollarization', title:'Yuan & De-Dollarization: Structural Trend vs Narrative', icon:'07', confidence:'medium',
+    summary:'Yuan at 3-year highs (~6.77/USD). But structural de-dollarization remains limited: CNY holds ~2.5-3% of SWIFT payments, ~2.5% of global reserves (IMF COFER T1). No confirmed GCC oil-for-yuan contract. UAE OPEC exit (May 1) creates the most significant structural opening since 2018 INE launch. This is a decades-long trend, not a conflict-period event.',
+    fields: [
+      {label:'Current state (T1)', text:'CNY SWIFT payments: ~2.5-3% (SWIFT T1). CNY global reserves: ~2.5% (IMF COFER T1). Oil priced in USD: ~80% of global transactions (S&P Global T2). Gulf pegs intact: SAR 3.75/USD since 1986. No confirmed GCC oil-for-yuan contract exists.'},
+      {label:'UAE OPEC exit', text:'May 1, 2026 (OPEC T1): frees Murban crude from cartel constraints. Project mBridge (BIS CBDC platform: UAE, China, HK, Thailand, Saudi observer) enables real-time CBDC settlement without correspondent banking. This is the most significant structural opening for petroyuan since the 2018 INE launch.'},
+      {label:'Dollar paradox', text:'Dollar is winning the short-run safe-haven competition (net exporter advantage, DXY ~99) while incrementally eroding its long-run reserve role (weaponization perception, mBridge alternatives). These two forces coexist — the dollar is simultaneously strengthening and structurally weakening.'},
+      {label:'Timeline', text:'Near-term: USD dominant. Medium-term (2-5yr): UAE exit + mBridge + Russian precedent could grow yuan energy settlement share. Long-term (10+yr): structural, generational shift. S&P Global: petroyuan scaling takes decades. Yuan reserve share: 2.0% (2022) → 2.5% (2026) — marginal over 4 years.'},
+    ],
+  },
+  {
+    id:'silver-platinum-palladium', title:'Silver, Platinum & Palladium', icon:'08', confidence:'medium',
+    summary:'Platinum heading for 4th consecutive annual supply deficit, aboveground stocks to fall to 1.747M oz (< 3 months demand) by end-2026 (WPIC T1). Gold:silver ratio near 62-65:1 in May. Silver "remains overvalued" per CNBC analysts. Palladium spot not T1-confirmed; Russia (~40% of global production) selling reserves at record pace.',
+    fields: [
+      {label:'Silver', text:'Gold:silver ratio near 62-65:1 in May 2026. CNBC (May 28, T2): analysts warn silver "remains overvalued," project ratio to widen further. Silver Institute reports structural six-year supply deficit (directionally accurate, requires annual survey confirmation). Specific spot prices ($73-76/oz range) are T2/T3 only — not T1 confirmed.'},
+      {label:'Platinum (WPIC T1)', text:'4th consecutive annual supply deficit projected. Aboveground stocks forecast to fall to 1.747M oz (< 3 months global demand) by year-end 2026. WPIC is T1-equivalent for platinum; reported via Investing News Network (May 25, T2). Most asymmetric upside of precious metals given structural deficit.'},
+      {label:'Palladium', text:'No T1-verified 2026 price confirmed. Russia ~40% of global production (historical WPIC/Johnson Matthey). Russian CBR selling gold/palladium reserves at record pace (700k oz gold sold 2026 YTD per Mining.com T2). Sanctions uncertainty on Russian PGM supply chains persists.'},
+      {label:'Mining cost impact', text:'Gold Fields Q1 2026: AISC $1,829/oz (+13% YoY). Diesel +30-70%, LNG +30%, freight +40%, explosives +10%, cyanide +10%. Sensitivity: $40-50/oz additional AISC per $100/bbl oil. Dore transport rerouted; refinery bottleneck risk at Singapore/Dubai/Swiss hubs.'},
+    ],
+  },
+  {
+    id:'gold-oil-ratio', title:'Gold-Oil Ratio: Structural Inversion', icon:'09', confidence:'medium',
+    summary:'Gold-oil ratio compressed from pre-conflict ~50-55:1 to ~35-40:1 at crisis trough (mid-March ~$4,100 gold / ~$115 WTI), recovering to ~43-46:1 by April ($4,611 / ~$100-105 WTI). A falling gold-oil ratio during a Middle East conflict is atypical — it signals oil-shock dominance over safe-haven demand and reflects the dollar\'s structural advantage as a net-exporter currency.',
+    fields: [
+      {label:'Oil anchors (EIA T1/T2)', text:'WTI Jan 8 low: ~$56.24/bbl. Conflict peak: ~$115.78 Mar 9 (Brent ~$116.29). Brent May 18: ~$105.38. EIA April STEO: full-year 2026 Brent forecast raised to $96/bbl (from $78.84 in March). Brent-WTI spread widened to avg $12/bbl in March (EIA April 7 STEO). Capital.com citing EIA/CME T2.'},
+      {label:'Ratio calculation', text:'April 2026: gold $4,611 / WTI ~$100-105 = ~43-46:1. Pre-conflict structural range: ~50-55:1 (2023-24 avg). Crisis trough: ~$4,100 / ~$115 = ~35-40:1. Compression from 50+ to 35 is the largest ratio move since the 2008 oil spike.'},
+      {label:'Signal interpretation', text:'A FALLING gold-oil ratio during a Middle East conflict is historically atypical. In 1979-80, gold rose from $226 to $850 while oil rose to $35, EXPANDING the ratio. In 2026, oil outperformed gold in ratio terms — reflecting the dollar\'s structural advantage as a net-exporter currency. This is an analytically non-obvious inversion of the historical template.'},
+      {label:'Trading implication', text:'The ratio compresses when oil shocks dominate safe-haven demand. Normalization requires either oil declining (ceasefire) or gold re-asserting safe-haven bid (Fed easing). A reversion to 50:1 at current oil ($100) implies gold at $5,000+. At pre-conflict oil ($72), implies gold at $3,600 — confirming structural floor.'},
+    ],
+  },
+  {
+    id:'dxy-chf-safe-haven', title:'DXY Path & Swiss Franc Safe Haven', icon:'10', confidence:'medium',
+    summary:'DXY rose from ~95.55 (Jan low) to ~99.54 (May high). Dollar +2.5% vs EUR/JPY in first week, +3% vs EUR by Mar 16. EUR CVOL spiked +30%. CHF was the ONLY G10 currency to appreciate materially against the dollar (USD/CHF 0.77-0.80 range, near 2011 highs). SNB rate at 0%, intervention rhetoric active. Swiss CPI rose to 0.6% (16-month high).',
+    fields: [
+      {label:'DXY path (CME/T2)', text:'Jan 2026 low: ~95.55. 2025 high: ~110.17. First week March: dollar +2.5% vs EUR and JPY. Mar 16: +3% vs EUR. EUR CVOL (COMEX Vol Index): spiked +30%. EUR/USD mid-April trough: ~$1.14. EUR/USD May 29: ~$1.1661. DXY May range: ~98.80-99.54. US 10yr yield: ~4.70% peak (May 19) → ~4.45% (May 30). Two-year inflation breakevens: 2.8% → 3.2%.'},
+      {label:'Swiss franc (FXStreet/SNB T1/T2)', text:'CHF was the ONLY G10 currency to appreciate materially against the dollar. USD/CHF: 0.77-0.80 range throughout conflict. YTD low: ~0.7600. May 29: 0.7816. SNB policy rate: 0% (unchanged since Sep 2025 after six consecutive cuts). Vice-President Martin cited Iran conflict safe-haven inflows as key driver. Swiss CPI: 0.6% April — 16-month high, energy-driven.'},
+      {label:'Dollar paradox', text:'The DXY benefit from the oil shock is structurally self-limiting: (a) headwinds gold by raising opportunity cost; (b) provides temporary Treasury market support; (c) BUT accelerates de-dollarization incentives among reserve managers uncomfortable with dollar "weaponization." The dollar is winning the short-run safe-haven competition while incrementally eroding its long-run reserve role.'},
+      {label:'CHF structural position', text:'CHF captured the "neutral geopolitical safe haven" bid that gold partially lost to the dollar. SNB is constrained: rate already at 0%, FX intervention is primary tool, but sustained CHF strength creates deflationary pressure on near-zero inflation economy. Unlike USD, CHF has no net-exporter energy advantage — its bid is pure neutrality premium.'},
+    ],
+  },
+  {
+    id:'gold-btc-bridge', title:'Gold–BTC Bridge: The Safe Haven That Did Not Hold', icon:'11', confidence:'medium',
+    summary:'Gold outperformed Bitcoin substantially YTD as BTC traded like a risk asset, not a safe haven. BTC correlation to the S&P 500 ran ~0.53 vs gold ~0.19 (BlackRock T1/T2) — through the conflict BTC moved with equities, not against them. The "digital gold" thesis did not hold under a real geopolitical shock.',
+    fields: [
+      {label:'Correlation evidence', text:'BTC–S&P 500 correlation ~0.53 vs gold–S&P ~0.19 (BlackRock, T1/T2). Through the Feb–May risk-off, BTC sold off with equities rather than catching the safe-haven bid that the dollar and (later) gold did.'},
+      {label:'Narrative vs reality', text:'Incoming Fed Chair Warsh has floated a "new gold" framing for crypto; the 2026 tape contradicts it — BTC did not act as a crisis hedge. Real safe-haven flow went to dollar cash and Treasuries first, gold second, BTC not at all.'},
+      {label:'Scope note', text:'Full crypto and digital-asset analysis — stablecoin stress, exchange connectivity, DeFi oracle latency — is deferred to the dedicated crypto section of Phase 2 (JCJ core domain). This card bridges the precious-metals safe-haven layer to that work.'},
+    ],
+  },
+];
+
+const sourceUrls = [
+  'https://www.gold.org/goldhub/research/gold-market-commentary-april-2026',
+  'https://www.kitco.com/news/article/2026-05-20/golds-rally-will-resume-after-iran-war-price-reaching-5400oz-h1-2027',
+  'https://www.institutionalinvestor.com/article/sponsored-content/dollar-reasserts-itself-global-tensions-shift-currency-markets',
+  'https://capital.com/en-int/market-updates/crude-oil-price-forecast-19-05-2026',
+  'https://www.blackrock.com/us/financial-professionals/insights/diversify-portfolio-bitcoin-gold-alternatives',
+  'https://www.cnbc.com/2026/05/07/japan-yen-intervention-boj-rate-gap-currency-pressure.html',
+  'https://www.gold.org/goldhub/data/gold-etfs-holdings-and-flows',
+  'https://home.treasury.gov/data/us-international-reserve-position/05262026',
+  'https://www.kitco.com/news/off-the-wire/2026-03-24/additional-central-banks-buy-gold-geopolitical-risks-wgc-says',
+  'https://investingnews.com/wgc-gold-market-forecast/',
+  'https://www.tradingkey.com/analysis/commodities/metal/261892590-us-gold-exports-number-one-what-efp-tells-you-tradingkey',
+  'https://www.arabnews.com/node/2644129/business-economy',
+  'https://arabcenterdc.org/resource/vision-2030-and-the-iran-war-saudi-arabias-resilience-under-strain/',
+  'https://gulfnews.com/opinion/op-eds/petrodollar-isnt-collapsing-but-iran-war-is-exposing-its-limits-1.500551553',
+  'https://asiatimes.com/2026/05/uaes-opec-exit-hands-asia-a-petroyuan-moment/',
+  'https://thesoufancenter.org/intelbrief-2026-may-14/',
+  'https://www.bloomberg.com/news/articles/2026-05-04/japan-can-conduct-30-more-yen-interventions-goldman-sachs-says',
+  'https://www.cnbc.com/2026/05/01/yen-steadies-after-japan-intervention-traders-brace-for-more-action.html',
+  'https://money.usnews.com/investing/news/articles/2026-05-29/yen-back-in-danger-zone-as-tokyo-officials-keep-investors-on-edge',
+  'https://www.bis.org/publ/bisbull124.pdf',
+  'https://www.capitaleconomics.com/publications/fx-markets-update/risks-sudden-carry-trade-unwind-are-building',
+  'https://www.actionforex.com/action-insight/market-overview/weekly-report/642307-us-iran-endgame-in-sight-markets-vote-for-peace-as-oil-yields-and-dollar-fall/',
+  'https://www.turkiyetoday.com/business/turkish-central-bank-raises-2026-inflation-forecast-to-26-amid-iran-war-risks-3219928',
+  'https://english.ahram.org.eg/News/569319.aspx',
+  'https://www.bworldonline.com/bloomberg/2026/04/30/746592/record-lows-sweep-asian-currencies-as-oil-spike-revives-risks/',
+  'https://www.nytimes.com/2026/05/22/business/asia-currency-iran-dollar.html',
+  'https://www.janushenderson.com/en-us/investor/article/imf-spring-meetings-emerging-markets-in-a-highly-uncertain-world/',
+  'https://research-center.amundi.com/article/global-investment-views-june-2026',
+  'https://themorningtelegraph.com/41987/',
+  'https://enterpriseam.com/egypt/issues/egypt-files-its-reform-credentials-ahead-of-imfs-last-review/',
+  'https://sustainableminingsystems.com/gold-fields-cost-increase-us-iran-war-2026/',
+  'https://skillings.net/gold-fields-flags-50-oz-oil-shock-as-energy-costs-surge-across-global-portfolio/',
+  'https://investingnews.com/wpic-platinum-market-forecast/'
+];
+---
+
+<AnalysisLayout
+  title="Gold, Precious Metals & FX — VegaReady Markets"
+  description="Gold safe-haven dynamics, central bank reserve diversification, yen carry unwind, petrodollar disruption, EMFX stress, and de-dollarization — the first liquid macro response layer to the 2026 Gulf conflict."
+  section="Gold & FX"
+  area="markets"
+>
+  <section class="hero">
+    <div class="label">Gold & FX</div>
+    <h1>The first liquid<br/>macro response.</h1>
+    <p class="lead">Gold, FX, and precious metals are the market's immediate response to geopolitical shocks — they move before equities, before credit, before commodities reprice fully. This section tracks the safe-haven layer: who's buying, who's selling, and why the 2026 pattern broke historical precedent.</p>
+    <div class="callout"><strong>Non-obvious finding:</strong> The 2026 conflict did NOT produce standard "risk-off → buy gold." The USD captured the primary safe-haven bid because the US is a net energy exporter. Gold was subordinated to real-yield dynamics — a fundamental inversion of 1979 and 1990 precedents.</div>
+  </section>
+
+  <SignalPanel page="/markets/gold-fx" />
+
+  <div class="scenario-bar">
+    <span class="sb-label">Scenario status · May 30 2026</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#ef4444"></span>Hormuz: constrained / partially realized</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#f59e0b"></span>Oil strike: partially realized</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#6366f1"></span>Cable: partially realized (2026 cuts unverified)</span>
+    <span class="sb-item"><span class="sb-dot" style="background:#10b981"></span>Ceasefire: military only, not economic</span>
+  </div>
+
+  <div class="card-list">
+    {cards.map((c) => (
+      <details class="cd">
+        <summary class="cs">
+          <div class="cl">
+            <span class="cn">{c.icon}</span>
+            <div>
+              <div class="ct">{c.title}</div>
+              <div class="cb">{c.summary}</div>
+            </div>
+          </div>
+          <span class={`cf cf-${c.confidence}`}>{c.confidence}</span>
+        </summary>
+        <div class="cy">
+          {c.fields.map(f => (
+            <div class="ds"><div class="dl">{f.label}</div><p>{f.text}</p></div>
+          ))}
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <!-- Historical precedent table -->
+  <section class="precedent-section">
+    <div class="dl">Historical precedent comparison</div>
+    <div style="overflow-x:auto">
+      <table class="prec-table">
+        <thead><tr><th>Precedent</th><th>Gold</th><th>FX</th><th>Oil</th><th>Key difference from 2026</th></tr></thead>
+        <tbody>
+          <tr><td class="prec-name">1979 Iranian Revolution</td><td>$226→$850 (+276%)</td><td>USD safe-haven; DXY volatile</td><td>~$14→~$35/bbl</td><td>US was net importer; Volcker tightening collapsed gold; Fed had massive rate room</td></tr>
+          <tr><td class="prec-name">1990 Gulf War</td><td>~$350-410; modest spike then reversion</td><td>Dollar strengthened moderately</td><td>$17→$46 (Oct peak)</td><td>Nine-month conflict; oil reversed quickly; no Hormuz closure</td></tr>
+          <tr><td class="prec-name">2008 Financial Crisis</td><td>Initially fell; then $750→$1,900 by 2011</td><td>DXY surged (dollar squeeze)</td><td>Oil fell $147→$35</td><td>Financial not geopolitical; Fed had unlimited easing room</td></tr>
+          <tr><td class="prec-name">2020 COVID</td><td>$1,580→$2,075 (+31%)</td><td>DXY spiked then fell</td><td>Oil briefly negative</td><td>No inflationary transmission; rapid normalization</td></tr>
+          <tr><td class="prec-name">2022 Russia-Ukraine</td><td>+8% initially then corrected as yields rose</td><td>DXY to ~114</td><td>Brent briefly ~$139</td><td>Gold fell as Fed hiking began; 2026 mirrors but faster and deeper</td></tr>
+          <tr><td class="prec-name">2026 Iran-US-Israel</td><td>ATH ~$5,595→trough ~$4,099 (–27%)</td><td>DXY ~99; CHF strongest; JPY weakest</td><td>WTI peaked ~$115.78</td><td>US net exporter; dollar captures safe-haven bid; gold subordinated</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+    <section class="mdr">
+    <div class="mdr-h">Market-derivative read <span>· Cross-Asset</span></div>
+    <div class="mdr-rows">
+      <div class="mdr-row"><span class="mdr-k">Gold vol · GVZ</span><span class="mdr-v">{ca_gvz.current} — {ca_gvz.verdict}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Vol surface (gold)</span><span class="mdr-v">{ca_gvzsurf.read}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Oil ↔ gold</span><span class="mdr-v">{ca_oilgold.verdict} — gold fell as Brent +55%, a monetary (not dollar) override</span></div>
+      <div class="mdr-row"><span class="mdr-k">Gold ↔ real rates</span><span class="mdr-v">{ca_realrates.verdict} — rising real yields crushed gold despite the war</span></div>
+      <div class="mdr-row"><span class="mdr-k">Western gold ETFs</span><span class="mdr-v">{ca_goldetf.data}</span></div>
+      <div class="mdr-row"><span class="mdr-k">Safe-haven rank</span><span class="mdr-v">USD cash &gt; short USTs &gt; gold — yet central banks net-bought 243.7t in Q1, so the weakness was monetary, not a lost structural bid</span></div>
+    </div>
+    <a href="/markets/cross-asset" class="mdr-link">Full cross-asset view →</a> <span style="color:var(--text-dim)">·</span> <a href="/markets/equities" class="mdr-link">Gold miners (equities) →</a>
+  </section>
+
+  <!-- Data quality transparency -->
+  <details class="dqe-section">
+    <summary class="dqe-summary">
+      <span class="dl">Data quality exceptions & open gaps</span>
+      <span style="font-size:11px;color:var(--text-dim);margin-left:8px">(click to expand)</span>
+    </summary>
+    <div class="dqe-body">
+      <div class="dqe-group">
+        <div class="dqe-label">Open data gaps — no T1/T2 figure available</div>
+        <ul class="dqe-list">
+          <li>COMEX EFP spreads (post-conflict, Feb-May 2026) — not confirmed from LBMA or CME</li>
+          <li>Gold lease rates / GOFO (Feb-May 2026) — no T1 LBMA data confirmed</li>
+          <li>COMEX gold inventory changes (not positioning) — not confirmed from CME T1</li>
+          <li>Silver spot price ($76/oz May 29) — Texas Precious Metals removed (T3); CME settlement is T1 but not confirmed</li>
+          <li>BTC price and YTD performance in 2026 — removed; no Bloomberg/Reuters T2 confirmed</li>
+          <li>Q2 2026 central bank gold data — WGC Q1 (April 29) is most recent T1</li>
+          <li>PKR and ZAR specific exchange rate levels — not confirmed from SBP/SARB T1</li>
+        </ul>
+      </div>
+      <div class="dqe-group">
+        <div class="dqe-label">Source discrepancies</div>
+        <ul class="dqe-list">
+          <li>Gold ATH: WGC closing $5,405 vs widely reported intraday $5,595 — discrepancy unresolved at T1</li>
+          <li>Mid-March trough: $4,099 is Lombard Odier T2, not WGC T1</li>
+          <li>BOJ April 30 spend: Reuters ¥5.48T vs Goldman ¥5T — both estimates; ¥11.7T total is official</li>
+          <li>Turkey 80t gold swap may not appear in IMF IFS official reserves — known reporting gap</li>
+          <li>Silver April–May 2026: $73–85 range — no T1 settlement price confirmed</li>
+          <li>Saudi PIF U.S. equity book: $35.5B → $12B reported — needs 13F verification</li>
+        </ul>
+      </div>
+      <div class="dqe-group">
+        <div class="dqe-label">T3 claims removed from analysis</div>
+        <ul class="dqe-list">
+          <li>Iran collecting Hormuz transit fees in yuan (~$1/barrel) — BankingNews.gr, T3, no verification</li>
+          <li>Gulf nations selling Treasuries to buy silver — YouTube rumor, T3</li>
+          <li>China activating gold-backed digital yuan — YouTube, T3, no institutional confirmation</li>
+          <li>Russia dollar halt for European energy — China Daily T2, not confirmed by Western sources</li>
+          <li>All retail bullion sites (GoldSilver.com, Texas Precious Metals, LiteFinance) — T3, removed</li>
+          <li>All social media sources (Facebook, LinkedIn, Instagram, Substack, Binance Square) — T3, removed</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <details class="dqe-section">
+    <summary class="dqe-summary">
+      <span class="dl">Full source list</span>
+      <span style="font-size:11px;color:var(--text-dim);margin-left:8px">({sourceUrls.length} URLs · click to expand)</span>
+    </summary>
+    <div class="dqe-body">
+      <ol class="src-list">
+        {sourceUrls.map((u) => (<li><a href={u} target="_blank" rel="noopener">{u}</a></li>))}
+      </ol>
+    </div>
+  </details>
+
+  <div class="sn-box">
+    <div class="dl">Sources & methodology</div>
+    <p>T1 primary: WGC Gold Demand Trends Q1 2026, WGC Market Commentary April 2026, US Treasury TIC, IMF COFER, BLS CPI/PCE, CME FedWatch, BOJ/MoF balance sheet, CBRT Inflation Report, BIS Bulletin 124, SWIFT messaging data, SNB policy communications, WPIC quarterly update. T2 press: Bloomberg, CNBC, Reuters, Kitco News, Arab News, Capital.com, Action Forex, FXStreet, Trading Economics, Investing News Network. Source-tiered with confidence ratings. T3 claims confined to Data Quality Exceptions section. v2 evidence-hygiene revision: weak/social-media sources removed; all numeric anchors T1/T2 or explicitly flagged.</p>
+  </div>
+</AnalysisLayout>
+
+<style>
+  .hero{margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+  .label{font-family:var(--font-mono);font-size:11px;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:1rem}
+  .lead{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:640px;margin-bottom:1.5rem}
+  .callout{font-size:13px;color:var(--text-muted);line-height:1.6;padding:12px 16px;background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:8px;max-width:640px}
+  .callout strong{color:var(--cyan);font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+  .card-list{display:flex;flex-direction:column;gap:8px;margin-bottom:2rem}
+  .cd{background:var(--bg-surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .cd[open]{border-color:var(--border-light)}
+  .cd[open] .cs{border-bottom:1px solid var(--border)}
+  .cs{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 20px;cursor:pointer;list-style:none;gap:12px}
+  .cs::-webkit-details-marker{display:none}
+  .cs::marker{display:none;content:''}
+  .cs:hover{background:rgba(255,255,255,0.02)}
+  .cl{display:flex;gap:14px;flex:1;min-width:0}
+  .cn{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan);min-width:22px;padding-top:2px}
+  .ct{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+  .cb{font-size:12px;color:var(--text-dim);line-height:1.5}
+  .cf{font-family:var(--font-mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+  .cf-high{color:#10b981;background:rgba(16,185,129,0.1)}
+  .cf-medium{color:#f59e0b;background:rgba(245,158,11,0.1)}
+  .cy{padding:16px 20px 20px}
+  .ds{margin-bottom:16px}
+  .dl{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+  .ds p{font-size:13px;color:var(--text-muted);line-height:1.6;margin:0}
+  .precedent-section{margin-bottom:2rem}
+  .prec-table{width:100%;border-collapse:collapse;font-size:11px}
+  .prec-table th{padding:8px 10px;text-align:left;border-bottom:2px solid var(--border);font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .prec-table td{padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);font-size:11px;line-height:1.4}
+  .prec-name{font-weight:700;color:var(--text);white-space:nowrap}
+  .prec-table tr:last-child td{color:var(--cyan);font-weight:600}
+  .dqe-section{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;margin-bottom:1rem;overflow:hidden}
+  .dqe-summary{padding:12px 16px;cursor:pointer;list-style:none;display:flex;align-items:center}
+  .dqe-summary::-webkit-details-marker{display:none}
+  .dqe-summary::marker{display:none;content:''}
+  .dqe-body{padding:0 16px 16px}
+  .dqe-group{margin-bottom:12px}
+  .dqe-label{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+  .dqe-list{margin:0;padding-left:16px;font-size:11px;color:var(--text-dim);line-height:1.6}
+  .dqe-list li{margin-bottom:3px}
+  .sn-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+  .sn-box p{font-size:12px;color:var(--text-dim);line-height:1.6;margin:0}
+  @media(max-width:720px){.cb{display:none}}
+  .scenario-bar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:10px 14px;margin-bottom:2rem;background:var(--bg-surface);border:1px solid var(--border);border-radius:8px;font-family:var(--font-mono);font-size:11px}
+  .sb-label{color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-weight:700}
+  .sb-item{display:inline-flex;align-items:center;gap:6px;color:var(--text-dim)}
+  .sb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .src-list{margin:0;padding-left:18px;font-size:11px;line-height:1.7;color:var(--text-dim)}
+  .src-list a{color:#60a5fa;text-decoration:none;word-break:break-all}
+  .src-list a:hover{text-decoration:underline}
+  .mdr{background:var(--bg-surface);border:1px solid var(--border);border-left:3px solid #818cf8;border-radius:8px;padding:14px 18px;margin:0 0 2rem;max-width:860px}
+  .mdr-h{font-family:var(--font-mono);font-size:10px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .mdr-h span{color:var(--text-dim)}
+  .mdr-rows{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+  .mdr-row{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:baseline}
+  .mdr-k{font-family:var(--font-mono);font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.5px}
+  .mdr-v{font-size:12px;color:var(--text-muted);line-height:1.5}
+  .mdr-note{font-size:11px;color:#f59e0b;margin:0 0 10px;line-height:1.4}
+  .mdr-link{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-decoration:none}
+  @media(max-width:720px){.mdr-row{grid-template-columns:1fr;gap:2px}}
+</style>

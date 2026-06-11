@@ -1,0 +1,5 @@
+# VegaReady
+User-agent: *
+Allow: /
+# Archived previous-design pages — kept reachable, kept out of search.
+Disallow: /archive/

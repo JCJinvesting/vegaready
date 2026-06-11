@@ -1,0 +1,34 @@
+---
+// Breadcrumb trail. Used for the dossier deep-link "back" path (three-grain
+// click-through) and any nested page. Pass a `trail` of { label, href? }.
+interface Crumb { label: string; href?: string; }
+interface Props { trail?: Crumb[]; }
+const { trail = [] } = Astro.props;
+---
+
+{trail.length > 0 && (
+  <nav class="bc" aria-label="Breadcrumb">
+    <div class="bc-inner">
+      {trail.map((c, i) => (
+        <span class="bc-item">
+          {c.href ? <a class="bc-link" href={c.href}>{c.label}</a> : <span class="bc-cur">{c.label}</span>}
+          {i < trail.length - 1 && <span class="bc-sep">/</span>}
+        </span>
+      ))}
+    </div>
+  </nav>
+)}
+
+<style>
+  .bc { border-bottom: 1px solid var(--border); }
+  .bc-inner {
+    max-width: 1080px; margin: 0 auto; padding: 8px 2rem;
+    font-family: var(--font-mono); font-size: 11px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  }
+  .bc-link { color: var(--text-dim); }
+  .bc-link:hover { color: var(--cyan); opacity: 1; }
+  .bc-cur { color: var(--text-muted); font-weight: 600; }
+  .bc-sep { color: var(--text-dim); opacity: 0.5; }
+  @media (max-width: 720px) { .bc-inner { padding: 8px 1rem; } }
+</style>

@@ -1,0 +1,96 @@
+/* =============================================================================
+   VegaReady — DESK content kit (shared by the /markets desk subpages)
+   Reusable analyst-content components on the t1 role tokens. No colour literals —
+   everything derives from --ink/--eyeb/--struct/--data/--pos/--neg/--warn/--card.
+   ============================================================================= */
+
+/* 30-second read */
+.read30{background:var(--card);border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:11px;padding:20px 24px}
+.read30 .r30-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--eyeb);margin-bottom:13px}
+.read30 ul{list-style:none;display:grid;gap:10px;margin:0;padding:0}
+.read30 li{display:flex;gap:11px;font-size:14.5px;color:var(--body);line-height:1.55}
+.read30 li::before{content:"—";color:var(--struct);flex:none}
+.read30 b{color:var(--ink);font-weight:600}
+
+/* analyst data table — zebra only, gold/ink head, role-token semantics */
+.dtbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.dtbl th{text-align:left;padding:9px 12px;border-bottom:2px solid var(--boxline);font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.dtbl td{padding:9px 12px;border-bottom:1px solid color-mix(in srgb,var(--ink) 6%,transparent);color:var(--body);vertical-align:top;line-height:1.5;min-width:64px}
+.dtbl tbody tr:nth-child(even){background:color-mix(in srgb,var(--ink) 3.5%,transparent)}
+.dtbl .nm{font-weight:600;color:var(--ink)}
+.dtbl .mono,.dtbl .num{font-family:'Lora',serif;font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.win{color:var(--pos);font-weight:700}.lose{color:var(--neg);font-weight:700}.mix{color:var(--warn);font-weight:700}
+.tnote{font-size:12px;color:var(--muted);line-height:1.6;margin-top:11px;max-width:80ch}
+.tnote b{color:var(--body)}
+
+/* callout (role-token left rule) */
+.dcallout{background:var(--card);border:1px solid var(--cardline);border-left:3px solid var(--struct);border-radius:10px;padding:14px 18px;margin-top:12px;font-size:13.5px;color:var(--body);line-height:1.62}
+.dcallout.gold{border-left-color:var(--eyeb)} .dcallout.data{border-left-color:var(--data)}
+.dcallout .dc-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--struct);margin-bottom:6px}
+.dcallout.gold .dc-h{color:var(--eyeb)} .dcallout.data .dc-h{color:var(--data)}
+.dcallout p{margin:0}
+
+/* key-value channel rows */
+.kvrow{background:var(--card);border:1px solid var(--cardline);border-radius:8px;padding:11px 16px;margin-bottom:8px}
+.kvrow .kv-k{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--struct);margin-bottom:4px}
+.kvrow p{font-size:13px;color:var(--body);line-height:1.55;margin:0}
+
+/* numbered takeaways */
+.takes{display:grid;gap:11px;margin-top:14px}
+.take{display:flex;gap:13px;align-items:flex-start}
+.take .tn{font-family:'Lora',serif;font-weight:700;font-size:15px;color:var(--eyeb);min-width:22px}
+.take p{font-size:13.5px;color:var(--body);line-height:1.6;margin:0}
+
+/* bifurcation panel (winner / loser / mixed) */
+.bisplit{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.bi-b{background:var(--card);border:1px solid var(--cardline);border-top:3px solid var(--struct);border-radius:11px;padding:16px 18px}
+.bi-b.win{border-top-color:var(--pos)} .bi-b.lose{border-top-color:var(--neg)} .bi-b.mix{border-top-color:var(--warn)}
+.bi-h{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.03em;margin-bottom:7px}
+.bi-b.win .bi-h{color:var(--pos)}.bi-b.lose .bi-h{color:var(--neg)}.bi-b.mix .bi-h{color:var(--warn)}
+.bi-b p{font-size:12.5px;color:var(--body);line-height:1.55;margin:0}
+
+/* expandable analyst cards */
+.dcard{background:var(--card);border:1px solid var(--cardline);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.dcard summary{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:14px 18px;cursor:pointer;list-style:none}
+.dcard summary::-webkit-details-marker{display:none}
+.dcard .dc-t{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--ink);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.dcard .dc-cat{font-family:'Lora',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--cardline);border-radius:3px;padding:1px 6px}
+.dcard .dc-s{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:5px}
+.dcard .dc-body{padding:0 18px 16px}
+.dcard .dc-mgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.dcard .dc-m{background:color-mix(in srgb,#000 18%,var(--card));border-radius:6px;padding:9px 12px}
+.dcard .dc-ml{font-family:'Lora',serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--struct);margin-bottom:3px}
+.dcard .dc-mv{font-size:12.5px;color:var(--body);line-height:1.45}
+.dcard .dc-src a{color:var(--struct);font-family:'Lora',serif;font-size:12px;margin-right:10px}
+
+/* confidence chip */
+.dconf{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:3px;border:1px solid;white-space:nowrap;flex:none}
+.dconf.high{color:var(--pos);border-color:color-mix(in srgb,var(--pos) 40%,transparent)}
+.dconf.medium{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+.dconf.low{color:var(--neg);border-color:color-mix(in srgb,var(--neg) 40%,transparent)}
+
+/* Analyst tier — gated detail (trade expressions) + boundary */
+.atier{background:color-mix(in srgb,#000 16%,var(--canvas));border:1px solid var(--cardline);border-radius:11px;overflow:hidden}
+.atier summary{display:flex;align-items:center;gap:11px;padding:16px 22px;cursor:pointer;list-style:none;font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--eyeb)}
+.atier summary::-webkit-details-marker{display:none}
+.atier .at-lock{color:var(--struct)}
+.atier .at-tag{margin-left:auto;font-size:9px;letter-spacing:.1em;color:var(--muted);border:1px solid var(--cardline);border-radius:4px;padding:2px 8px}
+.atier .at-body{padding:4px 22px 20px}
+.atier .at-bound{font-size:12.5px;font-style:italic;color:var(--muted);line-height:1.6;margin:0 0 16px;border-left:2px solid var(--warn);padding-left:13px}
+.tradeblock{margin-top:14px}
+.tradeblock .tb-h{font-family:'Lora',serif;font-size:12px;font-weight:700;margin-bottom:3px}
+.tradeblock .tb-r{font-size:12px;color:var(--muted);line-height:1.5;margin:0 0 8px}
+
+/* related desks */
+.related-desks{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.rd-pill{font-family:'Lora',serif;font-size:12.5px;color:var(--body);border:1px solid var(--cardline);border-radius:7px;padding:7px 14px;background:var(--card)}
+.rd-pill:hover{border-color:var(--struct);color:var(--ink)}
+
+/* generic desk section spacing */
+.dsec{margin:0 0 46px}
+
+@media (max-width:920px){
+  .bisplit{grid-template-columns:1fr}
+  .dcard .dc-mgrid{grid-template-columns:1fr}
+  .dtbl{font-size:12px}
+}

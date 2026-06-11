@@ -1,0 +1,24 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+// Interim: "Signals" is promoted to a top-level nav item. For now it forwards to the
+// existing Watch Board; at Phase 3 / cutover, /signals becomes the canonical home and
+// /structural/watch redirects here. (Redirecting avoids duplicating the board component.)
+const target = '/structural/watch';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title="Signals — VegaReady" description="The live signal board — monitored indicators, thresholds and status across every catalyst." />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+  </head>
+  <body>
+    <main style="max-width:680px;margin:0 auto;padding:6rem 2rem;font-family:var(--font-mono);">
+      <p style="color:var(--text-muted);font-size:14px;">
+        Opening the live signal board…
+      </p>
+      <p><a href={target} style="color:var(--cyan);font-size:14px;">Continue to Signals &rarr;</a></p>
+    </main>
+  </body>
+</html>
