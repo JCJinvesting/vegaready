@@ -49,12 +49,14 @@ const edge = metrics.filter(m => m.status === 'critical').concat(metrics.filter(
 // ---- catalysts as drivers ----
 const drivers = CATALYSTS.slice().sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
-// ---- the desks ----
-const desks = [
-  ['Gold & FX', '/markets/gold-fx'], ['Energy', '/markets/energy'], ['Crypto', '/markets/crypto'],
-  ['Credit', '/markets/credit'], ['Insurance', '/markets/insurance'], ['Property', '/markets/property'],
-  ['Labor', '/markets/labor'], ['Food & Ag', '/markets/food-agriculture'], ['Water', '/markets/water'],
-  ['Defense', '/markets/defense'], ['Equities', '/markets/equities'], ['Cross-Asset', '/markets/cross-asset'],
+// ---- the desks: real cross-asset market desks, separated from the Iran–Gulf catalyst sector analyses ----
+const marketDesks = [
+  ['Equities', '/markets/equities'], ['Credit', '/markets/credit'], ['Dollar & FX', '/markets/gold-fx'],
+  ['Commodities', '/markets/energy'], ['Crypto', '/markets/crypto'], ['Cross-Asset', '/markets/cross-asset'],
+];
+const conflictDesks = [
+  ['Shipping & Insurance', '/markets/insurance'], ['Property & Materials', '/markets/property'], ['Labor & Migration', '/markets/labor'],
+  ['Food & Agriculture', '/markets/food-agriculture'], ['Water', '/markets/water'], ['Defense', '/markets/defense'],
 ];
 
 // ---- repricing tape ----
@@ -195,8 +197,11 @@ const dataThrough = lastUpdated || freshness.asOf || '—';
 <!-- THE DESKS -->
 <section class="desks-sec">
   <div class="wrap">
-    <div class="sec-head"><div><div class="eyebrow">The desks</div><h2>Twelve markets, traced to the event.</h2></div></div>
-    <div class="desks-grid">{desks.map(([t, h]) => (<a class="deskpill" href={h}><span>{t}</span><i>→</i></a>))}</div>
+    <div class="sec-head"><div><div class="eyebrow">The desks</div><h2>The cross-asset market desks.</h2></div></div>
+    <div class="desks-grid">{marketDesks.map(([t, h]) => (<a class="deskpill" href={h}><span>{t}</span><i>→</i></a>))}</div>
+    <div class="sec-head" style="margin-top:40px"><div><div class="eyebrow">Iran–Gulf catalyst · sector impacts</div><h2>Conflict sector dossiers.</h2></div></div>
+    <p style="font-family:'Lora',serif;font-size:13.5px;color:var(--muted);line-height:1.6;max-width:72ch;margin:-2px 0 14px">How the Iran–Gulf conflict travels through specific sectors — catalyst analyses, not standalone market desks. These relocate under the Iran–Gulf dossier at the next URL cutover.</p>
+    <div class="desks-grid">{conflictDesks.map(([t, h]) => (<a class="deskpill" href={h}><span>{t}</span><i>→</i></a>))}</div>
   </div>
 </section>
 

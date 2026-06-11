@@ -1,0 +1,517 @@
+---
+import '../styles/desk.css';
+import '../styles/desk-content.css';
+import '../styles/desk-v2.css';
+import { cards, cascade, winnersLosers, takeaways } from '../data/analysis/credit.js';
+import { metrics, lastUpdated } from '../data/analysis/watchmetrics.js';
+import { CATALYSTS, STATE_LABEL } from '../data/catalysts';
+
+const { mode = 'analyst' } = Astro.props;
+
+const byNo = {}; metrics.forEach(m => { if (m.signalNo) byNo[m.signalNo] = m; });
+const fmt = (m) => (m ? `${m.value}${m.unit && m.unit !== 'count' ? ' ' + m.unit : ''}` : '—');
+const wvc = (m) => (m && m.status === 'critical' ? 'neg' : m && m.status === 'alert' ? 'warn' : m && m.status === 'watch' ? 'latent' : '');
+const confCls = (c) => { const u = (c || '').toUpperCase(); return u.startsWith('HIGH') ? 'high' : u.startsWith('LOW') ? 'low' : 'medium'; };
+const roleCls = (r) => { const u = (r || '').toUpperCase(); return u.startsWith('BENEF') || u.startsWith('WINNER') ? 'win' : u.startsWith('LOSER') || u.startsWith('CASUAL') ? 'lose' : 'mix'; };
+const dataThrough = lastUpdated || 'recent';
+
+// live credit-regime instruments (registry §2 = credit/funding)
+const eq = [{ k: 'EM sovereign · EMBI', m: byNo['2.1'] }, { k: 'Flight-to-quality cash', m: byNo['2.2'] }, { k: 'Gulf UST recycling', m: byNo['2.3'] }];
+
+// ── glossary ──
+const gloss = [
+  ['OAS', 'Option-Adjusted Spread — a bond’s extra yield over Treasuries after stripping out optionality; the market price of credit risk.'],
+  ['IG', 'Investment Grade — higher-quality issuers (BBB– and above); spreads driven more by rates than default.'],
+  ['HY', 'High Yield ("junk") — sub-investment-grade (BB+ and below); default-cycle sensitive.'],
+  ['Distress ratio', 'Share of high-yield bonds trading at distressed spreads (conventionally ≥1,000 bps over Treasuries) — an early stress gauge.'],
+  ['Fallen angel', 'A bond downgraded from Investment Grade into High Yield — a forced-seller, migration-risk event.'],
+  ['Rising star', 'A bond upgraded from High Yield into Investment Grade — the benign opposite of a fallen angel.'],
+  ['Spread duration', 'Sensitivity of a bond’s price to a move in its spread; DTS (duration × spread) is the standard risk budget.'],
+  ['Recovery rate', 'How much creditors get back after a default; pairs with the default rate to set expected loss.'],
+  ['Carry breakeven', 'How much the spread can widen before the carry cushion is wiped out over a horizon.'],
+  ['EMBI', 'Emerging Markets Bond Index — the price of EM sovereign USD-debt risk; a lead for EM corporate and global risk-off.'],
+  ['Cross-currency basis', 'The cost of swapping into dollars offshore; a deeply negative basis signals a dollar squeeze.'],
+  ['MMF', 'Money-Market Fund — where cash hides in risk-off; surging MMF inflows are a funding-demand tell.'],
+  ['CCC', 'The lowest high-yield rating band; distress-driven, illiquid, recovery-sensitive — the cycle’s sharp end.'],
+];
+const G = {}; gloss.forEach(([t, d]) => { G[t] = d; });
+const gl = (term, label) => `<span class="gloss" data-def="${G[term]}">${label || term}</span>`;
+
+// ── competing drivers (attribution buckets) ──
+const drivers = [
+  { d: 'Rates & duration', b: 'primary', n: 'IG is long-duration — rate moves dominate the high-grade spread' },
+  { d: 'Default & leverage cycle', b: 'material', n: 'The slow anchor; coverage + the maturity wall lead defaults' },
+  { d: 'Dollar-funding / liquidity', b: 'material', n: 'The sovereign/funding transmission belt — basis, MMF, swap lines' },
+  { d: 'Positioning / flows', b: 'secondary', n: 'Technicals can drive spreads for weeks independent of fundamentals' },
+  { d: 'Active catalyst (Iran–Gulf)', b: 'secondary', n: 'Overlay — see §Catalysts' },
+  { d: 'Residual / unexplained', b: 'uncertain', n: 'Named, never assumed zero' },
+];
+
+const read30 = [
+  'Spreads are <b>calm but stretched</b>: IG and HY OAS sit in the low percentiles of their own history — you’re not paid much extra for credit risk right now.',
+  'Stress shows <b>inside the market first</b> — watch ratings migration, the distress ratio and CCC share before the headline spread moves.',
+  'The Iran–Gulf catalyst is a <b>sovereign/funding story, not yet an IG/HY corporate one</b> — EMBI and dollar-funding reprice while US corporate spreads stay contained.',
+  '<b>Dollar liquidity is the tell</b> — MMF inflows and the cross-currency basis lead; a swap-line activation would cap the stress.',
+  '<b>Credit leads equities</b> — if HY OAS breaks wider, equities tend to follow. The durable frame below stands whether or not the catalyst is live.',
+];
+const falsifiers = [
+  'HY OAS breaks out of its low percentile and the distress ratio climbs — the cycle is turning.',
+  'Ratings migration flips — downgrades outrun upgrades and fallen-angel volume accelerates.',
+  'The maturity wall + eroding interest coverage force refinancing stress at higher rates.',
+  'The Gulf funding channel escalates — EMBI blows out, the basis turns deeply negative, and no swap-line relief arrives.',
+];
+
+// ── value types & source tiers (Part E) ──
+const valueTypes = [
+  ['Baseline', 'long-run norm / historical reference'], ['Current', 'latest observed print'],
+  ['Nowcast', 'model estimate of the present from incomplete data'], ['Forecast', 'forward agency/consensus estimate'],
+  ['Scenario', 'conditional “if-then” path'],
+];
+const sourceTiers = [
+  ['T1', 'Primary / official', 'FRED ICE BofA OAS · CFTC · Fed swap lines · FINRA TRACE · SIFMA · ICI'],
+  ['T2', 'Rating-agency / analytic', 'Moody’s · S&P Global · Fitch default/transition · Damodaran'],
+  ['T3', 'Editorial / commentary', 'FT · Economist · sell-side credit strategy'],
+  ['T4', 'Derived / VegaReady model', 'default-implied gap · net-effect attribution · residual'],
+];
+
+// ── durable topic specs (Part B) ──
+const T = {
+  regime: { eye: '§1', h: 'Spread Regime', q: 'Are spreads rich or cheap, and which way?', fresh: 'daily · close', chart: 'regime',
+    lead: `Spreads are the price of credit risk; their <b>level-vs-history and direction</b> are the fastest read on the cycle. The level alone is <i>coincident</i> — it prices, it doesn’t predict; direction + percentile lead moderately.`,
+    kpi: [['IG OAS', '—', 'feed pending', null], ['HY OAS', '—', 'feed pending', null], ['HY percentile vs 10y', '—', 'feed pending', null], [gl('EMBI', 'EM sovereign (EMBI)'), byNo['2.1'] ? fmt(byNo['2.1']) : '—', 'current', 'medium']],
+    track: [['IG OAS (ICE BofA, FRED BAMLC0A0CM)', 'M'], [gl('HY', 'HY OAS') + ' (FRED BAMLH0A0HYM2)', 'M'], ['Percentile vs 1/3/5/10y history', 'M'], ['Realized vol of daily OAS changes', 'N'], ['IG–HY compression / decompression', 'N']],
+    lv: ['Direction: moderate · Level: coincident', 'Widening from tight levels often precedes credit-event clusters; the level itself only prices risk.'],
+    src: 'FRED ICE BofA OAS (daily, close) · EMBI (live registry)', tier: 'T1',
+    feed: [['IG / HY OAS + percentile', 'FRED BAMLC0A0CM / BAMLH0A0HYM2'], ['Realized OAS vol', 'computed from FRED daily']] },
+  structure: { eye: '§2', h: 'Internal Structure', q: 'Is a benign index masking stress inside?', fresh: 'daily · agency periodic', chart: 'structure',
+    lead: `A calm headline spread can hide deterioration <b>inside</b> the market. Internal stress — rising downgrades, a climbing ${gl('Distress ratio', 'distress ratio')}, growing ${gl('CCC')} share — typically <b>leads</b> index-level widening. One of the strongest durable leading signals here.`,
+    kpi: [['Downgrade / upgrade ratio', '—', 'feed pending', null], ['Distress ratio', '—', 'feed pending', null], ['CCC share of HY', '—', 'feed pending', null], [gl('Fallen angel', 'Fallen angels (par)'), '—', 'feed pending', null]],
+    track: [['Upgrade vs downgrade ratio', 'M'], [gl('Distress ratio', 'Distress ratio') + ' (≥1,000 bps)', 'M'], [gl('CCC') + '-and-below share of HY', 'M'], [gl('Fallen angel', 'Fallen-angel') + ' / ' + gl('Rising star', 'rising-star') + ' volume', 'N'], ['Full ratings transition matrix', 'N']],
+    lv: ['High (leading)', 'Internal deterioration leads index-level widening and default upturns — stress shows inside before it reaches the headline.'],
+    src: 'FRED sub-index OAS (daily) · Moody’s / S&P / Fitch transition & default studies (annual + interim)', tier: 'T1/T2',
+    feed: [['Migration / distress / CCC share', 'Moody’s · S&P · Fitch'], ['BBB/BB/CCC OAS', 'FRED BAMLC0A4CBBB / BAMLH0A1HYBB / BAMLH0A3HYC']] },
+  valuation: { eye: '§3', h: 'Valuation & Fair Value', q: 'Am I paid for the risk I’m taking?', fresh: 'daily OAS · periodic assumptions', chart: 'valuation',
+    lead: `The gap between <b>market OAS</b> and a <b>default-implied</b> spread — expected default × (1 − ${gl('Recovery rate', 'recovery')}) — plus ${gl('Carry breakeven', 'carry breakevens')}. Extreme readings signal <i>asymmetry, not timing</i>: this is a margin-of-safety gauge, explicitly valuation, not a catalyst.`,
+    kpi: [['OAS vs default-implied', '—', 'feed pending', null], ['Spread per turn of leverage', '—', 'feed pending', null], ['Carry breakeven (1y)', '—', 'feed pending', null], ['Implied default rate', '—', 'feed pending', null]],
+    track: [['Market OAS − default-implied (breakeven) spread', 'M'], ['Carry breakeven = OAS ÷ spread-duration', 'M'], ['Spread-per-turn-of-net-leverage by cohort', 'N'], ['Recovery-rate sensitivity', 'N']],
+    lv: ['Moderate, mean-reverting', 'Extreme rich/cheap flags asymmetry; not a timing signal. Assumptions (recovery, horizon) shown inline.'],
+    src: 'FRED OAS (daily) · Moody’s/S&P/Fitch default & recovery · Damodaran default spreads', tier: 'T2/T4',
+    feed: [['Default-implied spread', 'agency default × (1−recovery)'], ['Spread-per-turn-of-leverage', 'issuer fundamentals feed']] },
+  fundamentals: { eye: '§4', h: 'Fundamental Drivers', q: 'What’s the slow anchor under spreads?', fresh: 'agency periodic · SIFMA monthly', chart: 'fundamentals',
+    lead: `The slow-moving anchor: default & recovery, net leverage, interest coverage, the <b>maturity wall</b>, and the earnings → credit link. <b>Coverage and the maturity wall lead</b> (refinancing pressure builds first); the <b>realized default rate lags</b> (it confirms the cycle). This is where “default rate is rising so sell” reasoning fails.`,
+    kpi: [['HY default rate (TTM)', '—', 'feed pending', null], ['Forecast default rate', '—', 'feed pending', null], ['Interest coverage', '—', 'feed pending', null], ['Near-term maturity wall', '—', 'feed pending', null]],
+    track: [['Trailing + forecast HY default rate', 'M'], ['Interest coverage (EBIT/EBITDA-to-interest)', 'M'], ['Maturity wall by year × rating', 'M'], ['Net debt/EBITDA', 'N'], [gl('Recovery rate', 'Recovery') + ' by seniority', 'N']],
+    lv: ['Coverage & wall lead · default rate lags', 'Refinancing pressure builds ahead of defaults; the realized rate confirms, it doesn’t predict.'],
+    src: 'Moody’s / S&P / Fitch default & recovery (annual + interim) · SIFMA issuance/maturity (monthly)', tier: 'T2/T1',
+    feed: [['Default rate (trailing + forecast)', 'Moody’s / S&P / Fitch'], ['Maturity wall', 'SIFMA US corporate statistics']] },
+  factors: { eye: '§6', h: 'Credit Factors', q: 'What style is being rewarded — and where’s the risk?', fresh: 'structural · weekly perf', chart: null,
+    lead: `Decomposes credit into <b>carry</b> (harvesting spread), <b>quality</b> (up vs down in quality) and <b>${gl('Spread duration', 'spread-duration')}</b> (DTS). Low value as a forecaster; high value as a <b>risk-budget</b> lens — a DTS spike flags where the book is most exposed before a spread move, not whether one is coming.`,
+    kpi: [['Carry (OAS − expected loss)', '—', 'feed pending', null], ['Quality factor (IG−HY)', '—', 'feed pending', null], ['Book DTS', '—', 'feed pending', null], ['Factor drawdown', '—', 'feed pending', null]],
+    track: [['Carry = OAS net of expected losses', 'M'], [gl('Spread duration', 'Spread-duration / DTS') + ' of the book', 'M'], ['Quality factor (IG-vs-HY or BB-vs-CCC)', 'N'], ['Factor momentum / drawdowns', 'N']],
+    lv: ['Risk-budgeting, not forecasting', 'DTS shows where exposure is concentrated; it doesn’t time the move.'],
+    src: 'FRED OAS (daily) · ETF duration/spread analytics (LQD/HYG/JNK issuer pages)', tier: 'T1',
+    feed: [['Carry / DTS / factor payoff', 'FRED OAS + ETF analytics']] },
+  positioning: { eye: '§7', h: 'Positioning & Flows', q: 'Can technicals override the fundamentals?', fresh: 'weekly', chart: 'positioning',
+    lead: `Demand/supply technicals — fund & ETF flows, ${gl('MMF')} cash, CDS positioning, primary issuance, dealer inventories. <b>High value over short horizons</b>: flows can drive spreads for weeks independent of fundamentals, and crowded positioning sets up sharp reversals. The page’s main “technical overrides fundamental” warning.`,
+    kpi: [['IG bond-fund flows', '—', 'feed pending', null], ['HY bond-fund flows', '—', 'feed pending', null], [gl('MMF', 'Flight-to-quality cash'), byNo['2.2'] ? fmt(byNo['2.2']) : '—', 'current', 'medium'], ['Primary issuance', '—', 'feed pending', null]],
+    track: [['ICI bond-fund flows (IG vs HY)', 'M'], ['Primary issuance volume + oversubscription', 'M'], ['Dealer inventory / TRACE volume & breadth', 'N'], ['CFTC CDS-index positioning', 'N']],
+    lv: ['High (short horizon)', 'Flows/positioning can move spreads for weeks; crowding precedes reversals.'],
+    src: 'ICI flows (weekly) · CFTC COT (Tue→Fri) · SIFMA issuance (monthly) · FINRA TRACE', tier: 'T1',
+    feed: [['IG/HY fund flows', 'ICI (weekly, estimated)'], ['Issuance / TRACE', 'SIFMA · FINRA']] },
+  crossasset: { eye: '§8', h: 'Cross-Asset Linkages', q: 'Does the rest of the macro complex confirm credit?', fresh: 'daily', chart: null,
+    lead: `How credit co-moves with the macro complex — equities (HY ~ equity stress), rates and the curve, the dollar (funding channel). <b>Caveat:</b> these correlations are <i>regime-dependent and not causal</i> — they spike toward 1 in stress, exactly when diversification is assumed. We show the rolling correlation so the regime dependence is visible.`,
+    kpi: [['US Dollar (DXY)', byNo['1.2'] ? fmt(byNo['1.2']) : '—', 'current', 'medium'], ['Stock–bond correlation', byNo['9.2'] ? fmt(byNo['9.2']) : '—', 'current', 'medium'], ['EM equity vol (VXEEM)', byNo['9.3'] ? fmt(byNo['9.3']) : '—', 'current', 'medium'], ['MOVE (rate vol)', '—', 'feed pending', null]],
+    track: [['HY OAS vs equity volatility + rolling correlation', 'M'], ['OAS vs Treasury level & 2s10s curve', 'M'], ['MOVE (rate-vol) regime', 'N'], ['OAS vs broad USD', 'N']],
+    lv: ['Moderate, unstable', 'Cross-asset divergences can lead; correlations converge to 1 in stress — never asserted as causal.'],
+    src: 'FRED HY/IG OAS (daily) · ICE MOVE · live registry (DXY, corr, VXEEM)', tier: 'T1' },
+};
+const chartCap = { regime: 'Spread regime — OAS vs its percentile band', structure: 'Internal stress — distress ratio vs threshold', valuation: 'Valuation — market OAS vs default-implied', fundamentals: 'Default rate — trailing + forecast', positioning: 'Flows — net fund flows, IG vs HY' };
+
+// ── cohort library (Part C) ──
+const ratingsBuckets = [
+  { s: 'IG (overall)', p: 'LQD · CDX IG', dr: 'High-quality issuers, capital-markets access, low default base rate; spread is rate & macro beta, not idiosyncratic default', sens: 'Rates High · Cycle Mod · Commod Low–Mod · USD Low', kpis: 'IG OAS + percentile · interest coverage · net leverage · downgrade/upgrade ratio', leads: 'Downgrade ratio rising · BBB share of IG · coverage erosion', risks: 'Rate shock · large fallen-angel migration · mega-issuer event', ll: 'Lags the cycle; leads via rate sensitivity in rate-driven episodes' },
+  { s: 'BBB', p: 'LQD (heavy) · CDX IG', dr: 'Lowest IG rung; the fallen-angel frontier; large share of the IG index; refinancing-sensitive', sens: 'Rates High · Cycle High (migration) · Commod sector-dep · USD Low–Mod', kpis: 'BBB OAS · BBB share of IG · downgrade-to-HY pipeline · coverage', leads: 'Fallen-angel watch / negative outlooks · coverage near covenant', risks: 'Downgrade to HY (forced sellers) · cliff risk', ll: 'Leads HY stress via migration; lags pure rate moves' },
+  { s: 'BB', p: 'HYG/JNK · CDX HY', dr: 'Top of HY; crossover buyers; better access than lower HY; compression beneficiary in risk-on', sens: 'Rates Mod · Cycle High · Commod sector-dep · USD Mod', kpis: 'BB OAS · rising-star pipeline · HY default rate · coverage', leads: 'Rising-star upgrades · BB–CCC compression · primary access', risks: 'Re-entry to IG fails · sentiment gap risk', ll: 'Coincident-to-leading in risk-on; leads compression' },
+  { s: 'B', p: 'HYG/JNK · CDX HY', dr: 'Core HY; default-cycle sensitive; refinancing-dependent; earnings-leverage exposed', sens: 'Rates Mod · Cycle High · Commod sector-dep · USD Mod', kpis: 'B OAS · HY default rate (trailing+forecast) · coverage · maturity-wall share', leads: 'Maturity-wall pressure · coverage deterioration · primary-market closure', risks: 'Refinancing wall · margin compression · liquidity gaps', ll: 'Coincident with the cycle; the maturity wall leads defaults' },
+  { s: 'CCC', p: 'JNK/HYG tail · CDX HY', dr: 'Deepest HY; distress-driven; idiosyncratic; recovery-rate sensitive; thin liquidity', sens: 'Rates Low · Cycle Very High · Commod sector-dep · USD High (EM-linked)', kpis: 'CCC OAS · distress ratio · CCC share of HY · recovery rate · default rate', leads: 'Distress-ratio climb · CCC-share rise · access shutdown', risks: 'Default & low recovery · liquidity evaporation · forced selling', ll: 'Leads the default cycle (distress precedes default); price lags fundamentals when illiquid' },
+];
+const sectors = [
+  { s: 'Banks / Financials', p: 'LQD · CDX IG', dr: 'Funding cost, net interest margin, asset quality, capital ratios; systemic linkage; deposit stability', sens: 'Rates High · Cycle High · Commod Low · USD Mod', kpis: 'Credit-loss provisioning · capital ratios · funding spreads · sector OAS', leads: 'Funding-spread widening · deposit outflows · cross-currency basis stress', risks: 'Deposit run / funding freeze · rate-mismatch losses · contagion', ll: 'Leads broad credit in funding-stress episodes — the transmission node' },
+  { s: 'Energy', p: 'HYG/JNK · CDX HY', dr: 'Commodity-price-driven cash flow; capex cyclicality; reserve coverage; high HY weight historically', sens: 'Rates Low–Mod · Cycle High · Commod Very High · USD Mod', kpis: 'Oil/gas price · sector OAS · FCF/coverage · sector default rate', leads: 'Commodity-price moves · rig/capex signals · hedging roll-offs', risks: 'Commodity collapse → default cluster · stranded-asset risk', ll: 'Leads HY default cycles when commodity-driven; lags when shock is exogenous' },
+  { s: 'Real Estate', p: 'LQD · HYG', dr: 'Property income, cap rates, refinancing reliance, rate-sensitivity of valuations; CRE vs residential', sens: 'Rates Very High · Cycle High · Commod Low · USD Low–Mod', kpis: 'Sector OAS · refi/maturity wall · occupancy/NOI · coverage', leads: 'Refi-wall pressure · cap-rate moves · vacancy/NOI · lender pullback', risks: 'Refinancing at higher rates · valuation markdowns · lender withdrawal', ll: 'Leads when rate-driven (refi stress precedes defaults); lags broad cycle otherwise' },
+  { s: 'Leveraged Tech / Telecom', p: 'HYG/JNK · CDX HY', dr: 'High leverage, large maturity towers, M&A/LBO history, capex intensity, disruption risk', sens: 'Rates Mod–High · Cycle High · Commod Low · USD Mod', kpis: 'Net leverage · maturity wall · coverage · sector OAS · FCF', leads: 'Maturity-wall concentration · coverage erosion · primary access · disruption', risks: 'Refinancing wall on heavy debt · disruption · aggressive financial policy', ll: 'Leads HY stress via concentrated maturity walls; idiosyncratic-event driven' },
+  { s: 'Retail', p: 'HYG/JNK · CDX HY', dr: 'Consumer-spend dependent, thin margins, lease/inventory obligations, e-commerce disruption', sens: 'Rates Low–Mod · Cycle Very High · Commod Mod · USD Low–Mod', kpis: 'Same-store/consumer-spend · sector OAS · coverage · sector default rate', leads: 'Consumer-spending data · margin compression · holiday signals · vendor-financing stress', risks: 'Demand shock · secular disruption · vendor/liquidity squeeze', ll: 'Coincident-to-leading on the consumer cycle; early margin compression leads defaults' },
+  { s: 'EM Sovereign / Quasi-sovereign', p: 'EMB · EMBI GD', dr: 'External funding reliance, USD-debt burden, reserves, IMF backstop, commodity-export dependence', sens: 'Rates High · Cycle High · Commod High · USD Very High', kpis: gl('EMBI', 'EMBI') + ' spread + percentile · FX reserves · current account · sovereign rating/CDS', leads: 'USD strength · cross-currency basis · reserve drawdown · IMF program news', risks: 'Dollar squeeze · capital flight · default/restructuring', ll: 'Leads corporate EM and global risk-off when USD-funding-driven' },
+];
+// sortable sensitivity matrix (durable)
+const cohortMatrix = [
+  { s: 'IG', rate: ['High', 5, 'hi'], cyc: ['Moderate', 2, 'mid'], usd: ['Low', 1, 'lo'] },
+  { s: 'BBB', rate: ['High', 5, 'hi'], cyc: ['High', 4, 'hi'], usd: ['Low–Mod', 2, 'mid'] },
+  { s: 'BB', rate: ['Moderate', 3, 'mid'], cyc: ['High', 4, 'hi'], usd: ['Moderate', 3, 'mid'] },
+  { s: 'B', rate: ['Moderate', 3, 'mid'], cyc: ['High', 4, 'hi'], usd: ['Moderate', 3, 'mid'] },
+  { s: 'CCC', rate: ['Low', 1, 'lo'], cyc: ['Very high', 5, 'hi'], usd: ['High', 4, 'hi'] },
+  { s: 'EM sovereign', rate: ['High', 5, 'hi'], cyc: ['High', 4, 'hi'], usd: ['Very high', 5, 'hi'] },
+];
+
+// ── scenario matrix (Part D2) ──
+const scenRows = [
+  { sc: 'Risk-off / flight-to-quality', sov: 'EM sovereign spreads widen (USD-funding); DM benefits', corp: 'Spreads widen broadly; quality outperforms', ig: 'Relatively resilient (rate-beta can help)', hy: 'Underperforms; CCC/distress most exposed' },
+  { sc: 'Rate shock higher', sov: 'EM with USD debt pressured; DM rate-sensitive', corp: 'Refinancing-sensitive issuers pressured', ig: 'Most exposed (long duration)', hy: 'Less rate-sensitive but refi wall bites' },
+  { sc: 'Growth re-accel / risk-on', sov: 'EM compresses (carry-seeking)', corp: 'Spreads tighten; compression', ig: 'Modest tightening', hy: 'Outperforms (compression, CCC leads)' },
+  { sc: 'Commodity shock', sov: 'Exporters benefit / importers hurt', corp: 'Energy & input-cost sectors diverge', ig: 'Sector-mix dependent', hy: 'Energy-heavy HY swings most' },
+];
+
+// ── sovereign / funding channel (Part D5) ── live where available
+const fundingChannel = [
+  { k: 'EM sovereign spreads (EMBI)', w: 'The price of EM sovereign risk — a lead for EM corporate & global risk-off.', m: byNo['2.1'], note: 'EMBI GD · EMB proxy' },
+  { k: 'Gulf official UST recycling', w: 'Gulf official selling of Treasuries — the petrodollar-recycling channel reversing.', m: byNo['2.3'], note: 'TIC data' },
+  { k: 'Flight-to-quality / MMF cash', w: 'Cash hoarding into money funds — a risk-off / funding-demand tell.', m: byNo['2.2'], note: 'ICI MMF flows' },
+  { k: 'Dollar funding / x-ccy basis', w: 'Stress obtaining USD offshore; a deeply negative basis = a dollar squeeze.', m: null, note: 'feed pending · funding markets' },
+  { k: 'Central-bank swap lines / FIMA', w: 'Official USD-liquidity backstops that cap funding stress; activation is the key relief catalyst.', m: null, note: 'status: standing (not drawn)' },
+  { k: 'IMF lending pipeline', w: 'Sovereign backstop; program news materially re-prices distressed sovereigns.', m: null, note: 'event-driven' },
+];
+
+// ── catalysts ──
+const activeCats = CATALYSTS.filter(c => c.state === 'active');
+const monCats = CATALYSTS.filter(c => c.state !== 'active');
+
+const sources = [
+  ['FRED ICE BofA OAS', 'fred.stlouisfed.org/series/BAMLC0A0CM'], ['FRED HY OAS', 'fred.stlouisfed.org/series/BAMLH0A0HYM2'],
+  ['Moody’s default/transition', 'moodys.com'], ['S&P credit research', 'spglobal.com/ratings/en/research/credit-market-research'],
+  ['Fitch transition & default', 'fitchratings.com'], ['ICI flows', 'ici.org/research/stats/flows'],
+  ['CFTC COT', 'cftc.gov/MarketReports/CommitmentsofTraders/index.htm'], ['SIFMA statistics', 'sifma.org/research/statistics/us-corporate-bonds-statistics'],
+  ['FINRA TRACE', 'finra.org/finra-data/fixed-income'], ['Damodaran default spreads', 'pages.stern.nyu.edu/~adamodar/'],
+  ['JPM EMBI GD', 'jpmorgan.com/markets/index-research/composition-docs'], ['Fed swap lines / FIMA', 'federalreserve.gov/monetarypolicy/central-bank-liquidity-swaps.htm'],
+  ['IMF lending', 'imf.org/en/About/Factsheets/IMF-Lending'], ['ICE MOVE', 'developer.ice.com'],
+];
+
+// ── plain winners/losers (Layman) from credit.js ──
+const plain = (s) => (s || '').replace(/\s*\(.*?\)\s*/g, '').trim();
+const ovWin = winnersLosers.filter(r => roleCls(r[1]) === 'win').slice(0, 3).map(r => plain(r[0]));
+const ovLose = winnersLosers.filter(r => roleCls(r[1]) === 'lose' || roleCls(r[1]) === 'mix').slice(0, 3).map(r => plain(r[0]));
+const ovWinTxt = ovWin.length ? ovWin.join(', ') : 'money-market funds, the US dollar and IG borrowers';
+const ovLoseTxt = ovLose.length ? ovLose.join(', ') : 'dollar-indebted emerging-market governments and trade-finance borrowers';
+
+const topicOrder = ['regime', 'structure', 'valuation', 'fundamentals'];
+
+// ── illustrative charts (SVG; feed-pending) ──
+const charts = {
+  regime: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: credit spread inside a low percentile band"><rect x="0" y="60" width="320" height="44" fill="var(--data)" opacity="0.10"/><line x1="0" y1="82" x2="320" y2="82" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3"/><text x="2" y="54" fill="var(--muted)" font-size="8" font-family="Lora,serif">normal range</text><polyline points="0,46 60,52 120,60 180,70 240,82 320,90" fill="none" stroke="var(--data)" stroke-width="2"/><circle cx="320" cy="90" r="3.5" fill="var(--data)"/><text x="232" y="104" fill="var(--data)" font-size="8" font-family="Lora,serif">OAS — low pctile</text></svg>`,
+  structure: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: distress ratio creeping toward its stress threshold"><line x1="0" y1="40" x2="320" y2="40" stroke="var(--neg)" stroke-width="1" stroke-dasharray="4 2"/><text x="2" y="34" fill="var(--neg)" font-size="8" font-family="Lora,serif">stress threshold</text><polyline points="0,96 80,90 160,82 240,72 320,64" fill="none" stroke="var(--warn)" stroke-width="2"/><text x="230" y="108" fill="var(--warn)" font-size="8" font-family="Lora,serif">distress ratio ↑</text></svg>`,
+  valuation: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: market OAS above the default-implied spread — paid for risk, thinly"><polyline points="0,60 80,58 160,62 240,66 320,64" fill="none" stroke="var(--ink)" stroke-width="2"/><text x="2" y="50" fill="var(--ink)" font-size="8" font-family="Lora,serif">market OAS</text><polyline points="0,78 80,80 160,76 240,74 320,76" fill="none" stroke="var(--struct)" stroke-width="2" stroke-dasharray="4 2"/><text x="210" y="94" fill="var(--struct)" font-size="8" font-family="Lora,serif">default-implied</text><rect x="0" y="60" width="320" height="16" fill="var(--pos)" opacity="0.12"/></svg>`,
+  fundamentals: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: default rate trailing then a forecast band"><polyline points="0,90 80,86 160,80 200,74" fill="none" stroke="var(--struct)" stroke-width="2"/><path d="M200,74 L260,66 L320,56 L320,82 L260,80 L200,74 Z" fill="var(--warn)" opacity="0.14"/><polyline points="200,74 320,68" fill="none" stroke="var(--warn)" stroke-width="2" stroke-dasharray="3 3"/><text x="2" y="106" fill="var(--struct)" font-size="8" font-family="Lora,serif">default rate — trailing</text><text x="232" y="50" fill="var(--warn)" font-size="8" font-family="Lora,serif">forecast band</text></svg>`,
+  positioning: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: weekly net fund flows, IG vs HY"><line x1="0" y1="70" x2="320" y2="70" stroke="var(--cardline)"/><rect x="20" y="46" width="26" height="24" fill="var(--struct)"/><rect x="60" y="40" width="26" height="30" fill="var(--struct)"/><rect x="100" y="70" width="26" height="16" fill="var(--neg)"/><rect x="150" y="52" width="26" height="18" fill="var(--struct)"/><rect x="190" y="70" width="26" height="22" fill="var(--neg)"/><rect x="230" y="58" width="26" height="12" fill="var(--struct)"/><text x="2" y="20" fill="var(--struct)" font-size="8" font-family="Lora,serif">inflow</text><text x="2" y="100" fill="var(--neg)" font-size="8" font-family="Lora,serif">outflow</text></svg>`,
+};
+---
+
+<div class="utility"><div class="wrap">
+  <div class="tickers"><span><b>IG OAS</b> feed</span><span><b>HY OAS</b> feed</span><span><b>EMBI</b> {fmt(byNo['2.1'])}</span><span><b>FTQ CASH</b> {fmt(byNo['2.2'])}</span><span><b>DXY</b> {fmt(byNo['1.2'])}</span></div>
+  <div class="stamp-time">credit & funding · live registry</div>
+</div></div>
+
+<header class="masthead"><div class="wrap">
+  <a class="wordmark" href="/today">VEGA<i>READY</i></a>
+  <nav class="mast-right" aria-label="Primary"><a class="navlink" href="/today">Today</a><a class="navlink" href="/catalysts">Catalysts</a><a class="navlink on" href="/markets">Markets</a><a class="navlink" href="/structural/watch">Signals</a><a class="navlink" href="/about">About</a><span class="cmdk" aria-hidden="true">⌘K&ensp;Search</span></nav>
+</div></header>
+
+<div class="freshbar"><div class="wrap">
+  <span class="fb-i"><span class="fb-dot"></span>Data through <b>{dataThrough}</b></span>
+  <span class="fb-i">Next refresh <b>per-section (daily OAS / weekly flows / structural)</b></span>
+  <span class="fb-i">Live as of <b id="liveAsOf">checking…</b></span>
+  <span class="fb-i" style="margin-left:auto">Read as <span class="modetoggle" role="group" aria-label="Reading mode"><a href="/layman/credit" class={mode === 'layman' ? 'on' : ''}>Layman</a><a href="/markets/credit" class={mode === 'analyst' ? 'on' : ''}>Analyst</a></span></span>
+</div></div>
+
+<nav class="secnav" aria-label="Sections"><div class="wrap" id="secnav">
+  <a href="#state">State</a><a href="#regime">Regime</a><a href="#structure">Structure</a><a href="#valuation">Valuation</a><a href="#fundamentals">Fundamentals</a><a href="#cohorts">Cohorts</a><a href="#factors">Factors</a><a href="#positioning">Positioning</a><a href="#crossasset">Cross-Asset</a><a href="#catalysts">Catalysts</a><a href="#evidence">Evidence</a>
+  <span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span>
+</div></nav>
+
+<!-- §0 STATE OF THE DESK -->
+<section class="hero" id="state"><div class="wrap">
+  <div>
+    <div class="eyebrow">Markets · Credit & Funding · State of the desk</div>
+    <h1>Calm spreads.<br/><em>A funding fault line.</em></h1>
+    <p class="sub"><b>The call:</b> mid-cycle, corporate spreads rich-vs-history and contained, while the Iran–Gulf shock reprices the sovereign/funding edge — EM and dollar-liquidity, not yet IG/HY. <span class="dconf medium" style="vertical-align:middle">Medium confidence</span></p>
+    <span class="cta-frame cta-h"><a href="/structural/watch">Open the signal board →</a></span>
+  </div>
+  <div class="deskpanel">
+    <div class="ph"><b>Credit regime · live</b><span>— from the registry</span></div>
+    <div class="metric-row">{eq.map((s) => (<div class="mcell"><div class="ml">{s.k}</div><span class={`mv num ${wvc(s.m)}`}>{fmt(s.m)}</span></div>))}</div>
+    <p style="font-family:'Lora',serif;font-size:11px;color:var(--muted);margin-top:13px;line-height:1.6">Sovereign and funding channels are repricing first; US corporate spreads stay contained — for now.</p>
+  </div>
+</div></section>
+
+<div class="wrap"><div class="orient">
+  <div class="read30"><div class="r30-h">The 30-second read</div><ul>{read30.map((x) => (<li set:html={x} />))}</ul></div>
+  <div class="falsify"><div class="fl-h">What would change this call</div><ul>{falsifiers.map((x) => (<li>{x}</li>))}</ul></div>
+</div></div>
+
+<!-- ░░ LAYMAN ░░ -->
+<div class="ov-only">
+<section class="dsec ov-intro"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">In layman’s terms</div><h2>Credit, in plain words.</h2></div><span class="fresh-tag">data through {dataThrough}</span></div>
+  <div class="kpibar ov-kpi">
+    <div class="kpi"><div class="kpi-k">Cost of risky borrowing</div><div class="kpi-v sm">Low — stretched</div><div class="kpi-meta"><span class="vt">baseline</span></div></div>
+    <div class="kpi"><div class="kpi-k">EM government risk (EMBI)</div><div class="kpi-v">{fmt(byNo['2.1'])}</div><div class="kpi-meta"><span class="vt">current</span></div></div>
+    <div class="kpi"><div class="kpi-k">Cash hiding in money funds</div><div class="kpi-v">{fmt(byNo['2.2'])}</div><div class="kpi-meta"><span class="vt">current</span></div></div>
+    <div class="kpi"><div class="kpi-k">Are lenders nervous?</div><div class="kpi-v sm">Not yet — at the edges</div><div class="kpi-meta"><span class="vt">read</span></div></div>
+  </div>
+  <div class="ov-beats">
+    <div class="ov-beat"><div class="ovb-h">What credit is doing</div><p>“Credit” is the market for lending to companies and governments, and <b>spreads</b> are the extra interest lenders charge for the risk. Right now spreads are <b>low</b> — lenders are relaxed — but stretched: there isn’t much cushion if things turn.</p></div>
+    <div class="ov-beat"><div class="ovb-h">Why it matters</div><p>Cheap credit funds everything — buybacks, building, payrolls. When spreads blow out, financing dries up fast, and it usually <b>hits the stock market next</b>. Credit is the canary.</p></div>
+    <div class="ov-beat"><div class="ovb-h">Who’s exposed</div><p>In the current Gulf-conflict episode, {ovWinTxt} <b>benefit</b> (safe-haven cash, a strong dollar), while {ovLoseTxt} <b>suffer</b> (a dollar squeeze). The pain is mostly at the <i>government/funding</i> edge so far, not big US companies.</p><a class="ov-link" href="/markets/credit#catalysts">See the full winners &amp; losers →</a></div>
+    <div class="ov-beat"><div class="ovb-h">What’s driving it now</div><p>Interest rates (which set the base cost), the slow <b>default cycle</b> (how many borrowers fail), and a <b>dollar-funding squeeze</b> from the Gulf conflict. No single cause — we name them all, including what we can’t explain.</p></div>
+    <div class="ov-beat"><div class="ovb-h">What to watch</div><p>High-yield (“junk”) spreads breaking wider, rising downgrades and defaults, money flooding out of bond funds, and whether central banks open <b>dollar swap lines</b> to relieve the squeeze.</p></div>
+  </div>
+  <div class="ov-foot"><span class="dconf medium">Overall confidence: medium</span><a class="cta-frame cta-h" href="/markets/credit">Open the Analyst view — full data, tables &amp; sources →</a></div>
+  <p class="tnote">Hover any <span class="gloss" data-def="A specialist term, explained in plain language when you hover.">underlined term</span> for a plain definition. Research and analysis, not investment advice.</p>
+</div></section>
+</div>
+
+<!-- ░░ ANALYST ░░ -->
+<div class="an-only">
+<!-- competing drivers -->
+<section class="dsec" style="padding-top:40px"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">What's moving credit</div><h2>Many drivers, named — never one.</h2></div><a class="more" href="/connections">Causal map →</a></div>
+  <p class="lead">Attribution shown as <b>buckets</b>, not invented weights, with an explicit residual.</p>
+  <div class="attrib">{drivers.map((x) => (<div class="attrib-row"><span class="attrib-d">{x.d}</span><span class={`attrib-b b-${x.b}`}>{x.b}</span><span class="attrib-n">{x.n}</span></div>))}</div>
+</div></section>
+
+<!-- §1–§4 durable spine -->
+{topicOrder.map((id) => { const t = T[id]; return (
+  <section class="dsec" id={id}><div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
+    <p class="lead" set:html={t.lead}></p>
+    <div class="snap">
+      <div class="kpibar">{t.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+      {t.chart && (<figure class="snap-chart"><div class="cp-h"><b>{chartCap[t.chart]}</b><span class="cp-tag">illustrative</span></div><div class="sc-svg" set:html={charts[t.chart]}></div></figure>)}
+    </div>
+    <div class="track-grid">
+      <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf" style="border-color:var(--cardline)">{t.tier}</span> {t.src}</div></div>
+    </div>
+    <div class="deep"><div class="feedph"><div class="fp-h">{t.h} — live numbers, feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div><div class="fp-note">Sources named above; wires in with the D7 data layer (FRED is free + public).</div></div></div>
+  </div></section>
+); })}
+
+<!-- §5 COHORTS -->
+<section class="dsec" id="cohorts"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">§5 · Who’s leading, who’s lagging?</div><h2>Cohort rotation — ratings &amp; sectors.</h2></div><span class="fresh-tag">structural + daily OAS</span></div>
+  <p class="lead">The durable sensitivity map by <b>ratings bucket</b> and <b>sector</b>. Click a column to sort. Compression (junk outperforming) vs decompression (quality outperforming) is the regime tell; live relative-strength is feed-pending. Lead/lag tags are <i>regime-conditional, not laws</i>.</p>
+  <div style="overflow-x:auto"><table class="dtbl" id="cohtbl">
+    <thead><tr><th>Cohort</th><th class="sort" data-col="rate">Rates</th><th class="sort" data-col="cyc">Cycle</th><th class="sort" data-col="usd">USD</th></tr></thead>
+    <tbody>{cohortMatrix.map((r) => (<tr data-rate={r.rate[1]} data-cyc={r.cyc[1]} data-usd={r.usd[1]}><td class="nm">{r.s}</td><td class={`sens ${r.rate[2]}`}>{r.rate[0]}</td><td class={`sens ${r.cyc[2]}`}>{r.cyc[0]}</td><td class={`sens ${r.usd[2]}`}>{r.usd[0]}</td></tr>))}</tbody>
+  </table></div>
+  <div class="deep">
+    <div class="tk-h" style="margin:20px 0 8px">Ratings buckets — IG → CCC</div>
+    {ratingsBuckets.map((p) => (
+      <details class="dcard"><summary><div><div class="dc-t">{p.s}<span class="dc-cat">{p.p}</span></div><div class="dc-s">{p.dr}</div></div></summary>
+        <div class="dc-body"><div class="prof-sens">{p.sens}</div><div class="prof-rows">
+          <div class="prof-r"><span class="prof-k">KPIs</span><span set:html={p.kpis}></span></div>
+          <div class="prof-r"><span class="prof-k">Leading indicators</span>{p.leads}</div>
+          <div class="prof-r"><span class="prof-k">Classic risks</span>{p.risks}</div>
+          <div class="prof-r"><span class="prof-k">Lead / lag</span>{p.ll}</div>
+        </div></div></details>
+    ))}
+    <div class="tk-h" style="margin:22px 0 8px">Sectors — the credit-sensitive set</div>
+    {sectors.map((p) => (
+      <details class="dcard"><summary><div><div class="dc-t">{p.s}<span class="dc-cat">{p.p}</span></div><div class="dc-s">{p.dr}</div></div></summary>
+        <div class="dc-body"><div class="prof-sens">{p.sens}</div><div class="prof-rows">
+          <div class="prof-r"><span class="prof-k">KPIs</span><span set:html={p.kpis}></span></div>
+          <div class="prof-r"><span class="prof-k">Leading indicators</span>{p.leads}</div>
+          <div class="prof-r"><span class="prof-k">Classic risks</span>{p.risks}</div>
+          <div class="prof-r"><span class="prof-k">Lead / lag</span>{p.ll}</div>
+        </div></div></details>
+    ))}
+    <p class="tnote">Sensitivities are <b>framework priors for IA defaults, not forecasts</b>. OAS proxies reference the FRED ICE BofA series family; ETF proxies are for orientation, not recommendations.</p>
+  </div>
+</div></section>
+
+<!-- §6 FACTORS + §7 POSITIONING + §8 CROSS-ASSET -->
+{['factors', 'positioning', 'crossasset'].map((id) => { const t = T[id]; return (
+  <section class="dsec" id={id}><div class="wrap">
+    <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
+    <p class="lead" set:html={t.lead}></p>
+    <div class="snap">
+      <div class="kpibar">{t.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+      {t.chart && (<figure class="snap-chart"><div class="cp-h"><b>{chartCap[t.chart]}</b><span class="cp-tag">illustrative</span></div><div class="sc-svg" set:html={charts[t.chart]}></div></figure>)}
+    </div>
+    <div class="track-grid">
+      <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf" style="border-color:var(--cardline)">{t.tier}</span> {t.src}</div></div>
+    </div>
+    {t.feed && (<div class="deep"><div class="feedph"><div class="fp-h">{t.h} — feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div></div></div>)}
+  </div></section>
+); })}
+
+<!-- §9 CATALYSTS & FUNDING CHANNEL -->
+<section class="dsec" id="catalysts"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">§9 · What changes the view, and when?</div><h2>Catalysts &amp; the funding channel.</h2></div><span class="fresh-tag">3× daily</span></div>
+  <p class="lead">Catalysts <b>annotate</b> the durable frame above — they don’t replace it. Effects are <span class="vt">scenario</span> tilts with a named channel, never forecasts of fact. The one exception: when the <b>funding channel</b> flashes stress across the board, it <i>becomes</i> the regime.</p>
+
+  <div class="tk-h" style="margin:14px 0 6px">Sovereign / funding channel — the macro-credit transmission belt</div>
+  <div class="xa">{fundingChannel.map((x) => (
+    <div class={`xa-tile ${x.m ? 'live' : 'pend'}`}>
+      <div class="xa-k">{x.k}</div>
+      <div class={`xa-v ${x.m ? wvc(x.m) : ''}`} style={x.m ? '' : 'color:var(--latent);font-size:14px'}>{x.m ? fmt(x.m) : '—'}</div>
+      <div class="xa-n">{x.w}</div>
+      <div class="xa-n" style="margin-top:3px;opacity:.75">{x.note}</div>
+    </div>
+  ))}</div>
+  <p class="tnote">When EMBI, MMF cash and the basis flash stress simultaneously <b>and</b> no swap-line relief arrives, the state-of-the-desk call elevates the funding narrative — the single case where a catalyst is allowed to lead.</p>
+
+  <div class="tk-h" style="margin:22px 0 6px">Scenario-conditional tilts</div>
+  <div style="overflow-x:auto"><table class="dtbl">
+    <thead><tr><th>Scenario</th><th>Sovereign</th><th>Corporate</th><th>IG</th><th>HY</th></tr></thead>
+    <tbody>{scenRows.map((s) => (<tr><td class="nm">{s.sc}</td><td>{s.sov}</td><td>{s.corp}</td><td>{s.ig}</td><td>{s.hy}</td></tr>))}</tbody>
+  </table></div>
+
+  <div class="tk-h" style="margin:22px 0 6px">Active catalysts affecting credit</div>
+  {activeCats.length === 0 && (<div class="emptycat">No active catalyst is materially moving credit right now — the durable framework above stands on its own.</div>)}
+  <div class="catstack">
+    {activeCats.map((c) => (
+      <details class="catmod active" open>
+        <summary><span class="cm-badge act">{STATE_LABEL[c.state]}</span><span class="cm-title">{c.overviewTitle}</span><span class="cm-chan">funding · sovereign · plumbing</span></summary>
+        <div class="cm-body">
+          <div class="eyebrow" style="margin:8px 0 6px">Winners &amp; losers under this catalyst</div>
+          <p class="tnote" style="margin:0 0 8px"><b>Definition:</b> beneficiaries/casualties of <i>this catalyst’s</i> credit repricing — vs the pre-catalyst baseline, in the currently realized scenario. From the credit cascade.</p>
+          <div style="overflow-x:auto"><table class="dtbl"><thead><tr><th>Party</th><th>Role</th><th>Mechanism</th></tr></thead>
+            <tbody>{winnersLosers.map((r) => (<tr><td class="nm">{r[0]}</td><td><span class={roleCls(r[1])}>{r[1]}</span></td><td>{r[2]}</td></tr>))}</tbody></table></div>
+
+          <div class="eyebrow" style="margin:20px 0 6px">Key observations</div>
+          <div class="takes">{takeaways.map((t, i) => (<div class="take"><span class="tn">{i + 1}</span><p><b style="color:var(--ink)">{t[0]}.</b> {t[1]}</p></div>))}</div>
+
+          <div class="deep">
+            <div class="eyebrow" style="margin:20px 0 6px">Detail files — the credit transmission cards</div>
+            {cards.map((c2) => (
+              <details class="dcard"><summary><div><div class="dc-t">{c2.title}<span class="dc-cat">{c2.category}</span></div><div class="dc-s">{c2.summary}</div></div><span class={`dconf ${confCls(c2.confidence)}`}>{c2.confidence}</span></summary>
+                <div class="dc-body">
+                  <div class="kvrow"><div class="kv-k">Mechanism</div><p>{c2.mechanism}</p></div>
+                  <div class="prof-rows" style="margin-top:8px">
+                    <div class="prof-r"><span class="prof-k">Magnitude</span>{c2.magnitude}</div>
+                    <div class="prof-r"><span class="prof-k">Beneficiaries</span>{c2.beneficiaries}</div>
+                    <div class="prof-r"><span class="prof-k">Losers</span>{c2.losers}</div>
+                    <div class="prof-r"><span class="prof-k">Precedent</span>{c2.precedent}</div>
+                  </div>
+                  {c2.sources && c2.sources.length > 0 && (<div class="dc-src">{c2.sources.map((u, i) => (<a href={u} target="_blank" rel="noopener">[{i + 1}]</a>))}</div>)}
+                </div></details>
+            ))}
+          </div>
+        </div>
+      </details>
+    ))}
+    {monCats.map((c) => (<details class="catmod"><summary><span class="cm-badge mon">{STATE_LABEL[c.state]}</span><span class="cm-title">{c.overviewTitle}</span><span class="cm-chan">{c.channels ? c.channels.slice(0, 2).join(' · ') : ''}</span></summary><div class="cm-body"><p class="tnote" style="margin:0">{c.summary}{c.watchingNote ? <span class="muted"> — {c.watchingNote}</span> : null}</p></div></details>))}
+  </div>
+  <p class="tnote deep"><b>Base rates &amp; decay:</b> each card weighs the event against history (median past move) and carries a shelf life — resolved catalysts archive to a timeline rather than lingering, structurally fighting recency bias.</p>
+</div></section>
+
+<!-- §10 EVIDENCE -->
+<section class="dsec" id="evidence"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">§10 · Why should I believe this?</div><h2>Evidence &amp; methodology.</h2></div></div>
+  <p class="lead">Two confidences, kept distinct: <b>data confidence</b> (is the input reliable/fresh) and <b>attribution confidence</b> (do we believe the causal story). A figure can be Tier-1 data with low attribution — “OAS widened” is high-data; <i>why</i> is low. Interpretation is labeled and carries its own chip — never inheriting the data’s confidence.</p>
+  <div class="legend-grid">
+    <div class="legendbox"><div class="lg-h">Value types</div>{valueTypes.map(([k, d]) => (<div class="lg-row"><span class="vt">{k}</span><span>{d}</span></div>))}</div>
+    <div class="legendbox"><div class="lg-h">Source tiers</div>{sourceTiers.map(([k, d, ex]) => (<div class="lg-row"><span class="dconf" style="border-color:var(--cardline)">{k}</span><span><b style="color:var(--ink)">{d}</b> — {ex}</span></div>))}</div>
+  </div>
+  <div class="deep">
+    <div class="dcallout" style="margin-top:14px"><div class="dc-h">Cadence discipline</div><p>Each module shows its own update clock — daily OAS series and weekly flows are never visually equated. A weekly flow next to a daily spread without cadence labels is a false-precision trap.</p></div>
+    <div class="tk-h" style="margin:18px 0 8px">Glossary</div>
+    <div class="glosslist">{gloss.map(([t, d]) => (<div><b>{t}</b> — {d}</div>))}</div>
+    <div class="tk-h" style="margin:18px 0 8px">Primary sources</div>
+    <div class="srcgrid">{sources.map(([n, u]) => (<a class="srcpill" href={`https://${u}`} target="_blank" rel="noopener">{n} ↗</a>))}</div>
+  </div>
+  <p class="tnote">Research and analysis only — no investment recommendations, price targets, or personalized advice. Scenario tilts are conditional framework priors; correlation panels show rolling correlation precisely because it’s regime-dependent, not causal. ICE BofA OAS on FRED is non-commercial-use; agency studies are copyrighted — linked, attributed, quoted sparingly.</p>
+</div></section>
+</div>
+<!-- ░░ end Analyst ░░ -->
+
+<section class="dsec"><div class="wrap"><div class="sec-head"><div><div class="eyebrow">Continue</div><h2>Related desks.</h2></div></div><div class="related-desks"><a class="rd-pill" href="/markets/equities">Equities →</a><a class="rd-pill" href="/markets/cross-asset">Cross-Asset →</a><a class="rd-pill" href="/markets/gold-fx">Dollar & FX →</a><a class="rd-pill" href="/markets/crypto">Crypto →</a><a class="rd-pill" href="/markets">All markets →</a></div></div></section>
+
+<section class="funnel"><div class="wrap"><div class="eyebrow">The brief</div><h2>The morning brief, free.</h2><p class="lede">One email at the open — what moved across every market, what's mispriced, what the desk is watching.</p><div class="perf-card"><h3>The morning brief, daily.</h3><p class="pc-sub">Six paragraphs, one chart, no noise — by 06:40 GST.</p><hr class="tearline" /><a class="sub-link" href="/briefings">Subscribe →</a><div class="pc-fine">Free · no account required</div></div><div class="fundnote"><div class="fn-label">About JCJ</div><p>VegaReady is the public regime filter of JCJ Investing. The intelligence is open; the engine is ours.</p><a href="/about">About the fund →</a></div></div></section>
+
+<footer><div class="wrap"><div class="fgrid"><div class="fbrand"><span class="wordmark">VEGA<i>READY</i></span><p>Volatility isn't risk. It's signal. The public macro-intelligence layer of JCJ Investing.</p></div><div class="fcol"><h4>The desk</h4><a href="/today">Today</a><a href="/catalysts">Catalysts</a><a href="/markets">Markets</a><a href="/structural/watch">Signals</a></div><div class="fcol"><h4>The firm</h4><a href="/about">About JCJ</a><a href="/briefings">Briefings</a><a href="mailto:GP@jcjinvesting.com">Contact</a></div></div><div class="legal">© 2026 JCJ Investing LLC. Research and intelligence, not investment advice. Items marked "feed pending" are placeholders for live feeds.</div></div></footer>
+
+<style>
+  .orient{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-top:-6px}
+  .falsify{background:color-mix(in srgb,var(--neg) 6%,var(--card));border:1px solid color-mix(in srgb,var(--neg) 22%,var(--cardline));border-radius:12px;padding:16px 20px}
+  .fl-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--neg);margin-bottom:9px}
+  .falsify ul{margin:0;padding-left:17px;display:grid;gap:7px}
+  .falsify li{font-size:12.5px;color:var(--body);line-height:1.5}
+  .modetoggle{display:inline-flex;gap:2px;border:1px solid var(--cardline);border-radius:6px;padding:2px;vertical-align:middle;margin-left:4px}
+  .modetoggle a{font-family:'Lora',serif;font-size:10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-radius:4px;padding:3px 9px;cursor:pointer}
+  .modetoggle a:hover{color:var(--ink)}
+  .modetoggle a.on{color:var(--ink);background:color-mix(in srgb,var(--eyeb) 16%,transparent)}
+  .ov-only{display:none}
+  body[data-mode="overview"] .ov-only{display:block}
+  body[data-mode="overview"] .an-only{display:none}
+  body[data-mode="overview"] .secnav{display:none}
+  .ov-kpi{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+  .kpi-v.sm{font-size:17px}
+  .ov-beats{display:grid;gap:15px;margin:8px 0 18px}
+  .ov-beat{border-left:3px solid var(--cardline);padding:1px 0 1px 16px}
+  .ov-beat:nth-child(3){border-left-color:var(--eyeb)}
+  .ovb-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--eyeb);margin-bottom:5px}
+  .ov-beat p{margin:0;font-size:15px;color:var(--body);line-height:1.62;max-width:76ch}
+  .ov-beat p b{color:var(--ink)}
+  .ov-link{display:inline-block;margin-top:8px;font-family:'Lora',serif;font-size:12px;color:var(--struct)}
+  .ov-link:hover{color:var(--eyeb)}
+  .ov-foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:10px 0 6px}
+  .snap{display:grid;grid-template-columns:1.25fr .82fr;gap:18px;align-items:stretch;margin:6px 0 16px}
+  .snap .kpibar{grid-template-columns:1fr 1fr;margin:0}
+  .snap-chart{margin:6px 0 16px;background:var(--card);border:1px solid var(--cardline);border-radius:10px;padding:11px 14px 12px;display:flex;flex-direction:column}
+  .snap .snap-chart{margin:0}
+  .snap-chart .cp-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-family:'Lora',serif;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .snap-chart .cp-h b{color:var(--ink);font-weight:600;font-size:10px;letter-spacing:.04em}
+  .sc-svg{flex:1;display:flex;align-items:center;justify-content:center;min-height:108px}
+  .sc-svg svg{height:122px;width:auto;max-width:100%;display:block}
+  .cp-tag{font-family:'Lora',serif;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--latent);border:1px dashed color-mix(in srgb,var(--latent) 40%,transparent);border-radius:3px;padding:1px 6px;white-space:nowrap;flex:none}
+  .kpibar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:6px 0 14px}
+  .kpi{background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 13px}
+  .kpi-k{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.3;min-height:24px}
+  .kpi-v{font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);margin:4px 0 6px}
+  .kpi-v.pend{color:var(--latent);font-size:16px}
+  .kpi-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.kpi .vt{margin-left:0}
+  .track-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin:6px 0}
+  .tk-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--eyeb);margin-bottom:8px}
+  .track ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  .track li{display:flex;align-items:baseline;gap:9px;font-size:13.5px;color:var(--body)}
+  .mn{font-family:'Lora',serif;font-size:8px;font-weight:700;letter-spacing:.06em;border:1px solid;border-radius:3px;padding:0 5px;flex:none}
+  .mn-M{color:var(--eyeb);border-color:color-mix(in srgb,var(--eyeb) 45%,transparent)}
+  .mn-N{color:var(--latent);border-color:var(--cardline)}
+  .lvbox{background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:13px 16px;margin-bottom:10px}
+  .lv-h{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .lv-v{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--struct);margin:3px 0 6px}
+  .lvbox p{font-size:12px;color:var(--muted);line-height:1.5;margin:0}
+  .srcline{font-size:11.5px;color:var(--muted);line-height:1.6}.srcline b{color:var(--body)}.srcline .dconf{margin:0 4px}
+  .xa{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:6px 0 12px}
+  .xa-tile{background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 13px}
+  .xa-tile.live{border-top:3px solid var(--data)}
+  .xa-tile.pend{border-top:3px solid color-mix(in srgb,var(--latent) 35%,transparent)}
+  .xa-k{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);line-height:1.35;min-height:26px}
+  .xa-v{font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin:3px 0;color:var(--ink)}
+  .xa-v.neg{color:var(--neg)}.xa-v.warn{color:var(--warn)}.xa-v.latent{color:var(--latent)}
+  .xa-n{font-size:10.5px;color:var(--muted);font-style:italic;line-height:1.4}
+  .prof-sens{font-family:'Lora',serif;font-size:12px;color:var(--struct);background:color-mix(in srgb,var(--struct) 8%,transparent);border-radius:6px;padding:8px 12px;margin-bottom:12px}
+  .prof-rows{display:grid;gap:8px}
+  .prof-r{font-size:12.5px;color:var(--body);line-height:1.5}
+  .prof-k{display:inline-block;font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:130px;vertical-align:top}
+  .legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+  .legendbox{background:var(--card);border:1px solid var(--cardline);border-radius:10px;padding:14px 16px}
+  .lg-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--eyeb);margin-bottom:10px}
+  .lg-row{display:flex;gap:10px;align-items:baseline;font-size:12px;color:var(--muted);margin-bottom:7px;line-height:1.45}
+  .glosslist{display:grid;grid-template-columns:1fr 1fr;gap:7px 20px}
+  .glosslist div{font-size:11.5px;color:var(--muted);line-height:1.5}
+  .glosslist b{color:var(--struct);font-family:'Lora',serif}
+  .srcgrid{display:flex;flex-wrap:wrap;gap:7px}
+  .srcpill{font-family:'Lora',serif;font-size:11px;color:var(--muted);border:1px solid var(--cardline);border-radius:6px;padding:5px 11px;background:var(--card)}
+  .srcpill:hover{color:var(--struct);border-color:var(--struct)}
+  @media(max-width:920px){.orient,.track-grid,.legend-grid,.snap,.glosslist{grid-template-columns:1fr}.prof-k{width:auto;display:block;margin-bottom:2px}}
+  @media(max-width:560px){.snap .kpibar{grid-template-columns:1fr 1fr}}
+</style>
+
+<script is:inline>
+  (async function(){var el=document.getElementById('liveAsOf');try{var r=await fetch('/data-status.json',{cache:'no-store'});if(!r.ok){if(el)el.textContent='live';return;}var s=await r.json();var w=s.dataDate||(s.metrics&&s.metrics.newest)||'';if(el)el.textContent=(s.state==='ok'?(w||'live')+(s.day?' · day '+s.day:''):'last good data');}catch(e){if(el)el.textContent='live';}})();
+  document.querySelectorAll('.disc button').forEach(function(b){b.addEventListener('click',function(){document.body.setAttribute('data-disc',b.getAttribute('data-disc'));document.querySelectorAll('.disc button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');});});
+  (function(){var links=Array.prototype.slice.call(document.querySelectorAll('#secnav a'));var ids=links.map(function(a){return a.getAttribute('href').slice(1)});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=ids.indexOf(e.target.id);if(i>=0){links.forEach(function(x){x.classList.remove('on')});links[i].classList.add('on');}}});},{rootMargin:'-45% 0px -50% 0px'});ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
+  (function(){var tb=document.getElementById('cohtbl');if(!tb)return;var body=tb.querySelector('tbody');tb.querySelectorAll('th.sort').forEach(function(th){th.addEventListener('click',function(){var col=th.getAttribute('data-col');var asc=!th.classList.contains('asc');tb.querySelectorAll('th.sort').forEach(function(x){x.classList.remove('asc','desc')});th.classList.add(asc?'asc':'desc');var rows=Array.prototype.slice.call(body.querySelectorAll('tr'));rows.sort(function(a,b){var av=+a.getAttribute('data-'+col),bv=+b.getAttribute('data-'+col);return asc?av-bv:bv-av;});rows.forEach(function(r){body.appendChild(r)});});});})();
+</script>
