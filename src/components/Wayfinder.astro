@@ -1,13 +1,16 @@
 ---
-// Wayfinder (Brand Kit §4e, pattern A3): crumb trail + always-visible sibling rail.
+// Wayfinder (Brand Kit §4e/§4f): crumb trail + always-visible sibling rail.
 // Backward-looking: the trail says where you are. Forward-looking: the rail shows
-// every lateral/forward move from here, one click away, no dropdowns, no JS.
+// every lateral/forward move from here, one click away, no dropdowns, no JS required.
 //   trail: [{ label, href? }]      — last item = current location (omit href)
 //   rail:  [{ label, href, current?, tag? }] — siblings/children; tag for honesty ('in build')
-const { trail = [], rail = [] } = Astro.props;
+//   deck:  true on pages WITHOUT a secnav/laydeck (hub, landing, stubs) — the Wayfinder
+//          then becomes the page's ONE frozen bar (kit §4f) and carries the ↑ Top chip.
+const { trail = [], rail = [], deck = false } = Astro.props;
 ---
-<nav class="wayfinder" aria-label="You are here">
+<nav class={`wayfinder${deck ? ' deck' : ''}`} aria-label="You are here">
   <div class="wrap wf-wrap">
+    {deck && <a class="wf-top" href="#" aria-label="Back to top">↑ Top</a>}
     <span class="wf-trail">
       {trail.map((c, i) => (
         <span class="wf-seg">
@@ -27,9 +30,14 @@ const { trail = [], rail = [] } = Astro.props;
     )}
   </div>
 </nav>
+{deck && <script is:inline>(function(){var raf=null;function upd(){document.body.classList.toggle('scrolled',window.scrollY>480);}window.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});upd();})();</script>}
 <style>
   .wayfinder{border-bottom:1px solid var(--cardline);background:color-mix(in srgb, var(--card) 55%, transparent)}
+  .wayfinder.deck{position:sticky;top:0;z-index:50;background:color-mix(in srgb, #000 12%, var(--canvas));backdrop-filter:saturate(1.1) blur(6px)}
   .wf-wrap{display:flex;align-items:center;gap:18px;min-height:34px;padding-top:4px;padding-bottom:4px}
+  .wf-top{flex:none;font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);text-decoration:none;border:1px solid var(--cardline);border-radius:999px;padding:3px 11px;margin-right:-6px;opacity:0;visibility:hidden;transition:opacity .2s ease-out,color .15s ease-out,border-color .15s ease-out}
+  :global(body.scrolled) .wf-top{opacity:1;visibility:visible}
+  .wf-top:hover{color:var(--ink);border-color:color-mix(in srgb, var(--eyeb) 38%, transparent)}
   .wf-trail{display:flex;align-items:center;gap:7px;flex:none;font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
   .wf-seg{display:inline-flex;align-items:center;gap:7px}
   .wf-trail a{color:var(--muted);text-decoration:none;transition:color .15s ease-out}

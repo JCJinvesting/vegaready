@@ -1,4 +1,4 @@
-# VegaReady — AGENT BRAND KIT v1.6
+# VegaReady — AGENT BRAND KIT v1.7
 
 **Status:** OPERATIVE brand law for any agent building or editing VegaReady pages. Drafted 2026-06-11 from the full `_program/` corpus + the as-built CSS; awaiting owner ratification (open items in §8).
 **Authority:** where this kit conflicts with `DESIGN-CONTRACT.md`, `APPROVED-THEMES.md`, or any trial doc, **this kit wins** — it exists because the corpus contradicts itself in ways that made agents fail. The corpus remains the historical register; consult it only for rationale, never for values.
@@ -147,6 +147,7 @@ On any scrolling desk page there is exactly **ONE sticky bar**, and it is never 
 4. **The Top chip** (`.sn-top`): first item in every deck. `href="#"` (native scroll-to-top with no JS), CSS-smooth, `prefers-reduced-motion` → instant (desk.css global). Hidden until `body.scrolled` (rAF-throttled scroll listener, threshold ~480px) via `opacity/visibility` — space reserved, so the deck never reflows. Never a floating bottom-corner FAB — chrome lives in the deck, content stays uncovered.
 5. **Anchors clear the deck:** `:where(section,div)[id]{scroll-margin-top:72px}` (desk-v2.css) — section/chapter jumps must land with their headings visible below the frozen bar.
 6. **Budget:** the deck is the page's whole persistent-chrome allowance (~40–80px wrapped). Do not stick the freshbar, the Wayfinder, or anything else alongside it.
+7. **Deck-less pages (v1.7):** pages with no secnav/laydeck (the hub, the layman landing, sub-page stubs) promote their **Wayfinder** to the deck — `<Wayfinder deck …/>` makes it sticky with the solid deck background, adds the `↑ Top` chip, and injects its own scroll script. Rule 6 still holds: the promoted Wayfinder is then the ONE frozen bar. A page is never deckless: every masthead-system page has exactly one frozen bar — secnav (analyst desk), laydeck (layman desk), or deck-Wayfinder (everything else).
 
 **Canonical component anatomies (copy these, don't reinvent):**
 - **Decoder row** (`.dec-row`): header line (Fraunces term + 7px struct square tick) → full-width plain body (14px/1.6) → optional full-width meta footer per the chip law. No side columns; no empty wells.
@@ -221,6 +222,7 @@ When you find a conflict between this kit and the reference component, **the kit
 **O-6 (note, owner-stated 2026-06-11):** desk palette picks are **stage approvals, not final brand lock** — the owner may re-pick from the 9 approved combos (or direct a new trial) at any point before a desk ships to production. Agents treat a chosen skin as current-working, keep it cleanly swappable (all colour in the skin file, none in the component), and never describe a palette as "final."
 
 **Changelog:**
+- v1.7 (2026-06-12) — §4f-7: deck-less pages (hub, landing, stubs) promote the Wayfinder to the frozen deck via the `deck` prop (sticky + Top chip + self-contained scroll script). Law: every masthead-system page has exactly ONE frozen bar.
 - v1.6 (2026-06-12) — added §4f frozen command deck (owner-ratified "the swap": masthead never sticky; secnav/laydeck is the ONE frozen bar with integrated Top chip; scroll-margin law). Cause: masthead and secnav both pinned at top:0 with masthead on top — the sticky section nav was invisible in practice; anchor jumps landed under the chrome.
 - v1.5 (2026-06-12) — added §4e Wayfinder law (owner-ratified pattern A3: crumb trail + always-visible sibling rail on every masthead-system page below root; honesty tags on in-build links; no-JS rule; legacy pages excluded until the front-door loop). Cause: site shipped with three coexisting header systems and a breadcrumb that existed on one page only.
 - v1.4 (2026-06-12) — added §4d anti-narrow-wrap laws (chip law, reading-measure law, stacked-label law, stepper minimums) + canonical anatomies for decoder rows, chapter-nav pills, section-header dashes and chapter accents. Cause: the dec-a header chip ragged-wrapped scale-length text; 3-across cards ran body prose at ~5 words/line.
