@@ -70,7 +70,7 @@ svg .tallyg{stroke:var(--body)}
 .tickers{display:flex;gap:22px;white-space:nowrap;overflow:hidden}
 .tickers span b{font-weight:600;color:var(--body)}
 .utility .stamp-time{color:var(--muted);letter-spacing:.08em;white-space:nowrap}
-.masthead{border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas));background:var(--sx-mastR);position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.1) blur(6px)}
+.masthead{border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,var(--canvas));background:var(--sx-mastR)} /* kit §4f: the masthead scrolls away — the secnav/laydeck is the ONE frozen bar */
 .masthead .wrap{display:flex;align-items:baseline;justify-content:space-between;padding-top:18px;padding-bottom:16px}
 .wordmark{font-family:'Playfair Display',serif;font-weight:800;font-size:23px;letter-spacing:.02em;color:var(--ink)}
 .wordmark i{font-style:normal;color:var(--eyeb)}

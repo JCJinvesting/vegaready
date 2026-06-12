@@ -1,4 +1,4 @@
-# VegaReady — AGENT BRAND KIT v1.5
+# VegaReady — AGENT BRAND KIT v1.6
 
 **Status:** OPERATIVE brand law for any agent building or editing VegaReady pages. Drafted 2026-06-11 from the full `_program/` corpus + the as-built CSS; awaiting owner ratification (open items in §8).
 **Authority:** where this kit conflicts with `DESIGN-CONTRACT.md`, `APPROVED-THEMES.md`, or any trial doc, **this kit wins** — it exists because the corpus contradicts itself in ways that made agents fail. The corpus remains the historical register; consult it only for rationale, never for values.
@@ -137,6 +137,17 @@ Every page below root in the masthead system carries a **Wayfinder** (`src/compo
 
 Legacy pages (`/today`, `/catalysts`, front door, `/dashboard`) keep their existing rails until the front-door loop migrates them to the masthead system — do not bolt the Wayfinder onto the old `Header.astro` design.
 
+### 4f · The frozen command deck (v1.6 — owner-ratified "the swap")
+
+On any scrolling desk page there is exactly **ONE sticky bar**, and it is never the masthead. The masthead scrolls away with the hero; the section deck swaps in and owns the frozen slot for the rest of the read.
+
+1. **The masthead is never `position:sticky`** on masthead-system pages (the v1.5-era bug: masthead z:60 and secnav z:50 both pinned at `top:0`, so the masthead *covered* the frozen secnav — readers had a section nav and couldn't see it).
+2. **Analyst pages:** `.secnav` is the deck (`sticky; top:0; z:50`) — section anchors + Skim/Deep `.disc` + the Top chip.
+3. **Layman pages:** `.secnav` is mode-hidden, so they get a `.laydeck` (same sticky recipe) at the top of `.ov-only` — chapter links where chapters exist (numerals carry the chapter accents) + a duplicated `.disc` (the shared `apply()` binds every `.disc button`) + the Top chip. Chapter links inherit the chnav smart-flip (clicking from Skim flips to Deep).
+4. **The Top chip** (`.sn-top`): first item in every deck. `href="#"` (native scroll-to-top with no JS), CSS-smooth, `prefers-reduced-motion` → instant (desk.css global). Hidden until `body.scrolled` (rAF-throttled scroll listener, threshold ~480px) via `opacity/visibility` — space reserved, so the deck never reflows. Never a floating bottom-corner FAB — chrome lives in the deck, content stays uncovered.
+5. **Anchors clear the deck:** `:where(section,div)[id]{scroll-margin-top:72px}` (desk-v2.css) — section/chapter jumps must land with their headings visible below the frozen bar.
+6. **Budget:** the deck is the page's whole persistent-chrome allowance (~40–80px wrapped). Do not stick the freshbar, the Wayfinder, or anything else alongside it.
+
 **Canonical component anatomies (copy these, don't reinvent):**
 - **Decoder row** (`.dec-row`): header line (Fraunces term + 7px struct square tick) → full-width plain body (14px/1.6) → optional full-width meta footer per the chip law. No side columns; no empty wells.
 - **Chapter nav pill** (`.chnav a`): body-ink text; ONLY the Playfair roman numeral carries the chapter accent; accent surfaces in the border on hover. Color as accent system, never rainbow text. Label line sits as its own block above the pills.
@@ -210,6 +221,7 @@ When you find a conflict between this kit and the reference component, **the kit
 **O-6 (note, owner-stated 2026-06-11):** desk palette picks are **stage approvals, not final brand lock** — the owner may re-pick from the 9 approved combos (or direct a new trial) at any point before a desk ships to production. Agents treat a chosen skin as current-working, keep it cleanly swappable (all colour in the skin file, none in the component), and never describe a palette as "final."
 
 **Changelog:**
+- v1.6 (2026-06-12) — added §4f frozen command deck (owner-ratified "the swap": masthead never sticky; secnav/laydeck is the ONE frozen bar with integrated Top chip; scroll-margin law). Cause: masthead and secnav both pinned at top:0 with masthead on top — the sticky section nav was invisible in practice; anchor jumps landed under the chrome.
 - v1.5 (2026-06-12) — added §4e Wayfinder law (owner-ratified pattern A3: crumb trail + always-visible sibling rail on every masthead-system page below root; honesty tags on in-build links; no-JS rule; legacy pages excluded until the front-door loop). Cause: site shipped with three coexisting header systems and a breadcrumb that existed on one page only.
 - v1.4 (2026-06-12) — added §4d anti-narrow-wrap laws (chip law, reading-measure law, stacked-label law, stepper minimums) + canonical anatomies for decoder rows, chapter-nav pills, section-header dashes and chapter accents. Cause: the dec-a header chip ragged-wrapped scale-length text; 3-across cards ran body prose at ~5 words/line.
 - v1.3 (2026-06-12) — added §4c Skim Completeness Law + `skim-only` primitive + affordance rules. Cause: equities layman Skim was a residual stub (7 thin sections) after Deep grew 10×. Pending application: credit layman Skim + both analyst Skims.

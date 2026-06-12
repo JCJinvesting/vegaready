@@ -356,6 +356,7 @@ const charts = {
 </div></div>
 
 <nav class="secnav" aria-label="Sections"><div class="wrap" id="secnav">
+  <a class="sn-top" href="#" aria-label="Back to top">↑ Top</a>
   <a href="#state">State</a><a href="#regime">Regime</a><a href="#structure">Structure</a><a href="#valuation">Valuation</a><a href="#fundamentals">Fundamentals</a><a href="#cohorts">Cohorts</a><a href="#factors">Factors</a><a href="#positioning">Positioning</a><a href="#crossasset">Cross-Asset</a><a href="#catalysts">Catalysts</a><a href="#evidence">Evidence</a>
   <span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span>
 </div></nav>
@@ -382,6 +383,10 @@ const charts = {
 
 <!-- ░░ LAYMAN ░░ -->
 <div class="ov-only">
+<nav class="laydeck" aria-label="Reading controls"><div class="wrap">
+  <a class="sn-top" href="#" aria-label="Back to top">↑ Top</a>
+  <span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span>
+</div></nav>
 <section class="lay-hero"><div class="wrap">
   <div class="lay-top"><div class="eyebrow">Markets · Credit · In plain words</div>
     <span class="lay-disc"><span class="ld-label">Detail</span><span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span></span>
@@ -821,6 +826,7 @@ const charts = {
       document.querySelectorAll('details.dcard').forEach(function(d){d.open=(mode==='deep');});
     }
     document.querySelectorAll('.disc button').forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-disc'));});});
+    (function(){var raf=null;function upd(){document.body.classList.toggle('scrolled',window.scrollY>480);}window.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});upd();})();
     var init=document.body.getAttribute('data-disc')||(document.body.getAttribute('data-mode')==='overview'?'skim':'deep');
     apply(init);
   })();
