@@ -242,6 +242,22 @@ const layWorld = [
   'The <b>Gulf itself splits</b>: oil revenue cushions Saudi while security risk hits the UAE hardest — neighbours, opposite trades.',
   'A <b>ceasefire flips nearly every sign on the board</b> — yesterday’s losers bounce hardest, and the windfall winners give theirs back.',
 ];
+// ── SKIM tier (the 3-minute miniature): chapter digest + closer ──
+const skimDigest = [
+  ['I', 'chA', 'Six free dials tell you the market’s true condition — and 55% participation says this rally is thinner than it looks.'],
+  ['II', 'chB', 'Forced sellers snap back; frightened forecasters grind lower. Telling those two apart is most of crisis-reading.'],
+  ['III', 'chC', 'Stocks are pricey and the extra reward over safe bonds is thin (~3.2%) — little cushion, not a crash forecast.'],
+  ['IV', 'chD', 'Eleven neighborhoods, four seasons, six teams — most “market” news is just money moving between them.'],
+  ['V', 'chE', 'When nearly everyone is bullish and fully invested, there’s no one left to buy. And the bond market smells trouble first.'],
+  ['VI', 'chF', 'The Gulf shock helps energy, hurts fuel-burners, splits the Gulf itself — and barely touches the index giants.'],
+  ['VII', 'chG', 'We write down in advance what would prove us wrong — six tripwires, all checkable with free data.'],
+];
+const remember3 = [
+  'Watch the <b>average stock</b>, not the index — participation is the rally’s health meter.',
+  'Ask <b>who is selling and why</b> — a margin call snaps back; a profit problem grinds on.',
+  'Let the <b>bond market confirm</b> — one alarm is noise, two alarms is a fire.',
+];
+
 // W7 · the week-by-week checklist (confirmation clock, plain steps)
 const layClock = [
   'Within <b>a week</b>: have risky companies’ borrowing costs actually jumped? Has the fear gauge actually spiked? If not — this probably isn’t a money-plumbing event at all.',
@@ -726,7 +742,7 @@ const ovKnow = [
 <div class="ov-only">
 <section class="lay-hero"><div class="wrap">
   <div class="lay-top"><div class="eyebrow">Markets · Equities · In plain words</div>
-    <span class="lay-disc"><span class="ld-label">Detail</span><span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span></span>
+    <span class="lay-disc"><span class="ld-label">Detail</span><span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim · 3 min</button><button data-disc="deep" class="on">Deep · 25 min</button></span></span>
   </div>
   <h1 class="lay-h1">Is the rally as healthy as it looks?</h1>
   <div class="lay-herogrid">
@@ -761,13 +777,35 @@ const ovKnow = [
   </div>
 </div></section>
 
-<section class="lay-sec deep"><div class="wrap">
-  <div class="chnav"><span class="cn-l">The deep read · seven chapters</span>
-    <a class="chA" href="#ch-1">I · Foundations</a><a class="chB" href="#ch-2">II · How crises work</a><a class="chC" href="#ch-3">III · Prices &amp; confessions</a><a class="chD" href="#ch-4">IV · The map</a><a class="chE" href="#ch-5">V · The crowd &amp; the bonds</a><a class="chF" href="#ch-6">VI · The conflict</a><a class="chG" href="#ch-7">VII · Our discipline</a>
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="skbanner">You’re reading the <b>Skim</b> — the 3-minute version. The Deep read adds seven full chapters (~25 minutes): timelines, decoders, and every claim’s source. <button class="sk-go" data-godeep>Switch to Deep →</button></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="sk60">
+    <div class="sk60-h">Today in 60 seconds</div>
+    <p class="sk60-call"><b>The call:</b> a narrow, rich, defensively-led market — records on top, thin underneath. The Iran–Gulf conflict is repricing the edges, not the giants.</p>
+    <div class="sk60-grid">
+      <div class="sk60-c"><span class="sk60-v">{breadthPct}</span><span class="sk60-l">of stocks above their own trend — the rally’s thin base</span></div>
+      <div class="sk60-c"><span class="sk60-v">{fmt(byNo['9.2'])}</span><span class="sk60-l">stocks &amp; safe bonds moving together — the watch item</span></div>
+      <div class="sk60-c"><span class="sk60-v">{fmt(byNo['9.3'])}</span><span class="sk60-l">emerging-market fear gauge — where stress shows first</span></div>
+    </div>
+    <p class="sk60-w"><b>Watch this week:</b> if stocks and safe bonds keep falling <i>together</i>, everyone is raising cash at once — and this desk’s whole read changes (see “What would change our mind”).</p>
   </div>
 </div></section>
 
-<section class="lay-sec deep"><div class="wrap">
+<section class="lay-sec"><div class="wrap">
+  <div class="chnav"><span class="cn-l">The deep read · seven chapters</span>
+    <a class="chA" href="#ch-1"><b>I</b>Foundations</a><a class="chB" href="#ch-2"><b>II</b>How crises work</a><a class="chC" href="#ch-3"><b>III</b>Prices &amp; confessions</a><a class="chD" href="#ch-4"><b>IV</b>The map</a><a class="chE" href="#ch-5"><b>V</b>The crowd &amp; the bonds</a><a class="chF" href="#ch-6"><b>VI</b>The conflict</a><a class="chG" href="#ch-7"><b>VII</b>Our discipline</a>
+  </div>
+</div></section>
+
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="lay-sech"><h2>The seven chapters, in seven lines</h2><p>The whole Deep read, compressed. Tap any chapter above to open the full version.</p></div>
+  <div class="skdigest">{skimDigest.map((d, i) => (<a class={`skd-row ${d[1]}`} href={`#ch-${i + 1}`}><span class="skd-n">{d[0]}</span><p>{d[2]}</p><span class="skd-go">open →</span></a>))}</div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
   <div class="laych chA" id="ch-1"><span class="lc-rom">I</span><div><span class="lc-bar"></span><div class="lc-t">Foundations</div><p>The dials, the units, and the ideas everything else builds on.</p></div></div>
   <div class="lay-sech"><h2>The six dials on this desk</h2><p>Our analyst page tracks six live numbers. Here is what each one actually measures — and when it should worry you.</p></div>
   <div class="decoder">{heroDecode.map((d) => (<div class="dec-row dec-3"><span class="dec-k">{d.k}</span><span class="dec-p">{d.p}</span><span class="dec-a">Alarming: {d.a}</span></div>))}</div>
@@ -822,6 +860,8 @@ const ovKnow = [
   <p class="srcfrom">Where this comes from: the Kenneth French Data Library (Dartmouth) — free daily files used by academics worldwide. We recomputed every number; the analyst page’s §2 table shows the precise figures.</p>
 </div></section>
 
+<div class="wrap deep"><blockquote class="lay-pq">Every crisis arrives calling itself unprecedented. The scoreboard says they rhyme.</blockquote></div>
+
 <section class="lay-sec deep"><div class="wrap">
   <div class="laych chC" id="ch-3"><span class="lc-rom">III</span><div><span class="lc-bar"></span><div class="lc-t">Prices &amp; confessions</div><p>What you’re paying, what you’re paid for the risk — and how slowly the truth reaches the forecasts.</p></div></div>
   <div class="lay-sech"><h2>What are we paying for stocks?</h2><p>Four ideas that turn “the market is expensive” from a vibe into something you can check yourself.</p></div>
@@ -861,12 +901,16 @@ const ovKnow = [
   <p class="srcfrom">Where this comes from: the factor data is the same free Kenneth French library as the scoreboard; the crisis findings are computed from it. Analyst §7 carries the playbook with exact percentages.</p>
 </div></section>
 
+<div class="wrap deep"><blockquote class="lay-pq">The index is one number. The market is eleven neighborhoods having different weather.</blockquote></div>
+
 <section class="lay-sec deep"><div class="wrap">
   <div class="laych chE" id="ch-5"><span class="lc-rom">V</span><div><span class="lc-bar"></span><div class="lc-t">The crowd &amp; the bond market</div><p>Who’s already leaning which way — and the neighbor whose alarm rings first.</p></div></div>
   <div class="lay-sech"><h2>How crowded is the boat?</h2><p>Markets are most fragile when everyone already agrees. Three free gauges measure the crowd — one of feelings, two of actual positions.</p></div>
   <div class="decoder">{layBoat.map((b) => (<div class="dec-row dec-3"><span class="dec-k">{b.k}</span><span class="dec-p">{b.p}</span><span class="dec-a">{b.src}</span></div>))}</div>
   <p class="srcfrom">The reading rule: extremes matter, and in reverse — when nearly everyone is bullish and fully invested, there’s no one left to buy. We treat all three as caution lights, never trade signals (analyst §9).</p>
 </div></section>
+
+<div class="wrap deep"><blockquote class="lay-pq">The most dangerous thing in a market is unanimous agreement.</blockquote></div>
 
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>Three handshakes with the bond market</h2><p>The smoke detector above is actually three distinct signals. Each one is checkable, free, daily.</p></div>
@@ -885,12 +929,12 @@ const ovKnow = [
 
 <section class="lay-sec"><div class="wrap">
   <div class="lay-sech"><h2>What to watch</h2><p>The signals that the picture is changing — all free, all checkable.</p></div>
-  <ul class="lay-watch">{ovWatch.map((r) => (<li><b>{r[0]}</b> — {r[1]}</li>))}{ovWatchDeep.map((r) => (<li class="deep"><b>{r[0]}</b> — {r[1]}</li>))}</ul>
+  <ul class="lay-watch">{ovWatch.map((r) => (<li><b>{r[0]}</b> — {r[1]}</li>))}{ovWatchDeep.map((r) => (<li><b>{r[0]}</b> — {r[1]}</li>))}</ul>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>If this happens, then…</h2><p>Four “what-ifs” and what each would mean.</p></div>
-  <div class="lay-scn">{ovScenarios.map((r) => (<div class="lay-scn-r"><div class="ls-if">{r[0]}</div><div class="ls-then" set:html={r[1]}></div></div>))}</div>
+  <div class="lay-scn lay-whatif">{ovScenarios.map((r) => (<div class="lay-scn-r"><div class="ls-if">{r[0]}</div><div class="ls-then" set:html={r[1]}></div></div>))}</div>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -916,7 +960,7 @@ const ovKnow = [
   <p class="srcfrom">The live table runs on the analyst page under §Catalysts, with a confidence chip on every row.</p>
 </div></section>
 
-<section class="lay-sec deep"><div class="wrap">
+<section class="lay-sec"><div class="wrap">
   <div class="laych chG" id="ch-7"><span class="lc-rom">VII</span><div><span class="lc-bar"></span><div class="lc-t">Our discipline</div><p>The misconceptions we guard against, the tripwires that would change our mind, and how to check our work.</p></div></div>
   <div class="lay-sech"><h2>Three things people get wrong</h2></div>
   <div class="lay-scn">{ovMisconceptions.map((r) => (<div class="lay-scn-r"><div class="ls-if">{r[0]}</div><div class="ls-then" set:html={r[1]}></div></div>))}</div>
@@ -952,6 +996,12 @@ const ovKnow = [
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>How we know — and what we don’t</h2></div>
   <div class="lay-ex">{ovKnow.map((b) => (<div class="lay-exc"><h3>{b[0]}</h3><p class="exc-lead" set:html={b[1]}></p><ul class="exc-pts">{b[2].map((p) => (<li set:html={p}></li>))}</ul></div>))}</div>
+</div></section>
+
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="lay-sech"><h2>If you remember three things</h2></div>
+  <ul class="remember">{remember3.map((r) => (<li><span set:html={r}></span></li>))}</ul>
+  <p class="srcfrom">The Deep read is seven chapters, about 25 minutes — every claim sourced, every number anchored. <button class="sk-go" data-godeep>Read it →</button></p>
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
@@ -1506,8 +1556,8 @@ const ovKnow = [
   .fc-n{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:var(--neg)}
   .fc-h{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--ink);flex:1}
   .fc-t{font-size:12.5px;line-height:1.55;color:var(--body);margin:0 0 8px}
-  .fc-row{font-size:11.5px;color:var(--body);line-height:1.5;margin-bottom:3px}
-  .fc-k{display:inline-block;font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:72px;vertical-align:top}
+  .fc-row{font-size:12px;color:var(--body);line-height:1.55;margin-bottom:6px}
+  .fc-k{display:block;font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
   .chanline{margin:0 0 14px;border-left:3px solid var(--eyeb);padding:2px 0 2px 14px;font-size:13px;color:var(--muted)}
   .chanline b{color:var(--ink);font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
   .chanline .keypts{gap:5px}
@@ -1622,12 +1672,61 @@ const ovKnow = [
   .doc-card{background:var(--card);border:1px solid var(--cardline);border-top:3px solid var(--eyeb);border-radius:11px;padding:13px 16px}
   .doc-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--eyeb);margin-bottom:7px}
   .doc-card p{font-size:13.5px;line-height:1.56;color:var(--body);margin:0}
+  /* ── SKIM tier: the inverse primitive + skim-built content (Skim Completeness Law) ── */
+  body[data-disc="deep"] .skim-only{display:none}
+  .skbanner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:color-mix(in srgb,var(--eyeb) 8%,var(--card));border:1px solid color-mix(in srgb,var(--eyeb) 30%,var(--cardline));border-radius:10px;padding:11px 16px;font-size:13.5px;line-height:1.55;color:var(--body);margin-bottom:16px}
+  .skbanner b{color:var(--ink)}
+  .sk-go{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#241A05;background:var(--eyeb);border:none;border-radius:7px;padding:7px 14px;cursor:pointer;margin-left:auto}
+  .sk-go:hover{background:#F8D49A}
+  .srcfrom .sk-go{margin-left:8px;vertical-align:middle}
+  .sk60{background:var(--card);border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 12px 12px 0;padding:16px 20px}
+  .sk60-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--eyeb);margin-bottom:9px}
+  .sk60-call{font-size:15.5px;line-height:1.6;color:var(--body);margin:0 0 13px;max-width:80ch}
+  .sk60-call b{color:var(--ink)}
+  .sk60-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:13px}
+  .sk60-c{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--cardline);border-radius:8px;padding:10px 13px}
+  .sk60-v{display:block;font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);margin-bottom:3px}
+  .sk60-l{font-size:11.5px;line-height:1.4;color:var(--muted)}
+  .sk60-w{font-size:14px;line-height:1.58;color:var(--body);margin:0;max-width:84ch}
+  .sk60-w b{color:var(--ink)}
+  .skdigest{display:grid;gap:8px}
+  .skd-row{display:grid;grid-template-columns:38px 1fr auto;gap:13px;align-items:start;background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 15px;text-decoration:none;transition:border-color .15s ease-out}
+  .skd-row:hover{border-color:var(--struct)}
+  .skd-go{font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);align-self:center;white-space:nowrap}
+  .skd-row:hover .skd-go{color:var(--eyeb)}
+  .skd-n{font-family:'Playfair Display',Georgia,serif;font-size:19px;font-weight:700;line-height:1.2}
+  .skd-row.chA .skd-n{color:var(--chA)}.skd-row.chB .skd-n{color:var(--chB)}.skd-row.chC .skd-n{color:var(--chC)}.skd-row.chD .skd-n{color:var(--chD)}.skd-row.chE .skd-n{color:var(--chE)}.skd-row.chF .skd-n{color:var(--chF)}.skd-row.chG .skd-n{color:var(--chG)}
+  .skd-row p{font-size:14.5px;line-height:1.58;color:var(--body);margin:0}
+  .remember{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .remember li{position:relative;padding-left:26px;font-size:16px;line-height:1.6;color:var(--body)}
+  .remember li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--eyeb)}
+  .remember b{color:var(--ink)}
+  /* ── cross-tier polish: accent beats, header dashes, semantic tints ── */
+  .lay-sech h2::before{content:"";display:inline-block;width:18px;height:3px;background:var(--eyeb);margin-right:11px;vertical-align:middle;border-radius:2px}
+  .lay-card{border-left:3px solid var(--cardline)}
+  .lay-cards .lay-card:nth-child(1){border-left-color:var(--chA)}.lay-cards .lay-card:nth-child(1) .lc-n{color:var(--chA)}
+  .lay-cards .lay-card:nth-child(2){border-left-color:var(--chC)}.lay-cards .lay-card:nth-child(2) .lc-n{color:var(--chC)}
+  .lay-cards .lay-card:nth-child(3){border-left-color:var(--chB)}.lay-cards .lay-card:nth-child(3) .lc-n{color:var(--chB)}
+  .lay-cards .lay-card:nth-child(4){border-left-color:var(--chF)}.lay-cards .lay-card:nth-child(4) .lc-n{color:var(--chF)}
+  .lay-cards .lay-card:nth-child(5){border-left-color:var(--chG)}.lay-cards .lay-card:nth-child(5) .lc-n{color:var(--chG)}
+  .lay-kpi{border-top:3px solid var(--cardline)}
+  .lay-kpis .lay-kpi:nth-child(1){border-top-color:var(--latent)}
+  .lay-kpis .lay-kpi:nth-child(2){border-top-color:var(--warn)}
+  .lay-kpis .lay-kpi:nth-child(3){border-top-color:var(--warn)}
+  .lay-kpis .lay-kpi:nth-child(4){border-top-color:var(--pos)}
+  .lay-whatif .lay-scn-r:nth-child(1){border-left-color:var(--neg)}
+  .lay-whatif .lay-scn-r:nth-child(2){border-left-color:var(--pos)}
+  .lay-whatif .lay-scn-r:nth-child(3){border-left-color:var(--warn)}
+  .lay-whatif .lay-scn-r:nth-child(4){border-left-color:var(--pos)}
+  @media(max-width:760px){.sk60-grid{grid-template-columns:1fr}.sk-go{margin-left:0}.skd-row{grid-template-columns:38px 1fr}.skd-go{display:none}}
   /* ── layman chapter system: jump-nav + dividers (accents = sanctioned skin tokens chA–chG) ── */
-  .chnav{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .cn-l{font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:6px}
-  .chnav a{font-family:'Lora',serif;font-size:11.5px;font-weight:700;text-decoration:none;border:1px solid var(--cardline);border-radius:999px;padding:5px 13px;background:var(--card);transition:border-color .15s ease-out}
-  .chnav a.chA{color:var(--chA)}.chnav a.chB{color:var(--chB)}.chnav a.chC{color:var(--chC)}.chnav a.chD{color:var(--chD)}.chnav a.chE{color:var(--chE)}.chnav a.chF{color:var(--chF)}.chnav a.chG{color:var(--chG)}
-  .chnav a:hover{border-color:currentColor}
+  .chnav{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  .cn-l{flex:0 0 100%;font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .chnav a{font-family:'Lora',serif;font-size:11.5px;font-weight:700;letter-spacing:.02em;text-decoration:none;color:var(--body);border:1px solid var(--cardline);border-radius:999px;padding:6px 15px;background:var(--card);transition:border-color .15s ease-out,color .15s ease-out}
+  .chnav a b{font-family:'Playfair Display',Georgia,serif;font-weight:700;margin-right:7px}
+  .chnav a.chA b{color:var(--chA)}.chnav a.chB b{color:var(--chB)}.chnav a.chC b{color:var(--chC)}.chnav a.chD b{color:var(--chD)}.chnav a.chE b{color:var(--chE)}.chnav a.chF b{color:var(--chF)}.chnav a.chG b{color:var(--chG)}
+  .chnav a:hover{color:var(--ink)}
+  .chnav a.chA:hover{border-color:var(--chA)}.chnav a.chB:hover{border-color:var(--chB)}.chnav a.chC:hover{border-color:var(--chC)}.chnav a.chD:hover{border-color:var(--chD)}.chnav a.chE:hover{border-color:var(--chE)}.chnav a.chF:hover{border-color:var(--chF)}.chnav a.chG:hover{border-color:var(--chG)}
   .laych{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;margin:8px 0 22px;scroll-margin-top:96px}
   .laych .lc-rom{font-family:'Playfair Display',Georgia,serif;font-size:34px;font-weight:700;line-height:1;padding-top:2px}
   .laych .lc-bar{display:block;width:36px;height:3px;margin-bottom:8px}
@@ -1657,21 +1756,23 @@ const ovKnow = [
   .srcfrom{font-size:12px;line-height:1.55;color:var(--muted);margin:10px 0 0;padding-left:12px;border-left:2px solid color-mix(in srgb,var(--struct) 50%,transparent)}
   .lay-exc .srcfrom{margin-top:8px;font-size:11px}
   .lx-ep{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.08em;color:var(--struct);margin-left:7px;vertical-align:middle}
-  .lay-ex3{grid-template-columns:repeat(3,1fr)}
+  .lay-ex3{grid-template-columns:1fr 1fr}
+  .lay-ex3 .lay-exc:last-child:nth-child(odd){grid-column:1 / -1}
   @media(max-width:920px){.lay-ex3{grid-template-columns:1fr}}
-  /* ── decoder rows (term → plain meaning → alarm/proof) ── */
-  .decoder{display:grid;gap:7px;margin:4px 0 10px}
-  .dec-row{display:grid;grid-template-columns:170px 1fr;gap:14px;background:var(--card);border:1px solid var(--cardline);border-radius:8px;padding:10px 14px;align-items:start}
-  .dec-row.dec-3{grid-template-columns:170px 1fr 200px}
-  .dec-k{font-family:'Fraunces',serif;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.4}
-  .dec-p{font-size:13.5px;line-height:1.56;color:var(--body)}
+  /* ── decoder rows: header → full-width body → full-width meta footer. NOTHING wraps narrow. ── */
+  .decoder{display:grid;gap:8px;margin:4px 0 10px}
+  .dec-row{display:grid;grid-template-columns:1fr;row-gap:7px;background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:12px 16px;align-items:start}
+  .dec-k{font-family:'Fraunces',serif;font-size:14.5px;font-weight:600;color:var(--ink);line-height:1.35}
+  .dec-k::before{content:"";display:inline-block;width:7px;height:7px;border-radius:2px;background:var(--struct);margin-right:9px;vertical-align:2px}
+  .dec-p{font-size:14px;line-height:1.6;color:var(--body)}
   .dec-p b{color:var(--ink)}
-  .dec-a{font-size:12px;line-height:1.5;color:var(--muted);font-style:italic}
+  .dec-a{border-top:1px dashed var(--cardline);padding-top:8px;margin-top:1px;font-family:'Lora',serif;font-size:11.5px;font-weight:600;letter-spacing:.03em;line-height:1.55;color:var(--muted)}
+  .dec-a::before{content:"";display:inline-block;width:14px;height:2px;background:var(--struct);margin-right:9px;vertical-align:4px}
   .herodecode{margin:10px 0 4px}
   /* ── timeline strips (phase rail + dated nodes) ── */
   .tline{background:var(--card);border:1px solid var(--cardline);border-radius:11px;padding:15px 19px 13px;margin:14px 0}
   .tl-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--eyeb);margin-bottom:13px}
-  .tl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+  .tl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:16px}
   .tl-step{position:relative;border-top:3px solid var(--cardline);padding-top:12px}
   .tl-step.pre{border-top-color:var(--struct)}
   .tl-step.warn{border-top-color:var(--warn)}
@@ -1752,7 +1853,7 @@ const ovKnow = [
   .glosslist div{font-size:12px}
   .lvbox p{font-size:12.5px}
   .dcallout p{font-size:14px;line-height:1.58}
-  @media(max-width:920px){.orient,.track-grid,.legend-grid,.snap,.glosslist,.taxgrid,.falsgrid{grid-template-columns:1fr}.triogrid,.doctrip{grid-template-columns:1fr}.snap-chart.wide,.snap-chart.clock{max-width:none}.oi-row{grid-template-columns:1fr;gap:4px}.prof-k{width:auto;display:block;margin-bottom:2px}.dec-row,.dec-row.dec-3{grid-template-columns:1fr;gap:5px}.scalebar{grid-template-columns:1fr;gap:6px}}
+  @media(max-width:920px){.orient,.track-grid,.legend-grid,.snap,.glosslist,.taxgrid,.falsgrid{grid-template-columns:1fr}.triogrid,.doctrip{grid-template-columns:1fr}.snap-chart.wide,.snap-chart.clock{max-width:none}.oi-row{grid-template-columns:1fr;gap:4px}.prof-k{width:auto;display:block;margin-bottom:2px}.scalebar{grid-template-columns:1fr;gap:6px}}
   @media(max-width:760px){.lay-wl,.lay-gloss,.lay-ex,.lay-herogrid{grid-template-columns:1fr}.lay-h1{font-size:29px}.lay-scn-r{grid-template-columns:1fr;gap:5px}.lay-gauge{justify-self:start}}
   @media(max-width:560px){.snap .kpibar{grid-template-columns:1fr 1fr}.reggrid{grid-template-columns:1fr 1fr}}
 </style>
@@ -1772,4 +1873,9 @@ const ovKnow = [
   (function(){var links=Array.prototype.slice.call(document.querySelectorAll('#secnav a'));var ids=links.map(function(a){return a.getAttribute('href').slice(1)});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=ids.indexOf(e.target.id);if(i>=0){links.forEach(function(x){x.classList.remove('on')});links[i].classList.add('on');}}});},{rootMargin:'-45% 0px -50% 0px'});ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
   (function(){['sectbl','cxstbl'].forEach(function(id){var tb=document.getElementById(id);if(!tb)return;var body=tb.querySelector('tbody');tb.querySelectorAll('th.sort').forEach(function(th){th.addEventListener('click',function(){var col=th.getAttribute('data-col');var asc=!th.classList.contains('asc');tb.querySelectorAll('th.sort').forEach(function(x){x.classList.remove('asc','desc')});th.classList.add(asc?'asc':'desc');var rows=Array.prototype.slice.call(body.querySelectorAll('tr'));rows.sort(function(a,b){var av=+a.getAttribute('data-'+col),bv=+b.getAttribute('data-'+col);return asc?av-bv:bv-av;});rows.forEach(function(r){body.appendChild(r)});});});});})();
   (function(){var chips=document.getElementById('scenchips');if(!chips)return;var panes=document.querySelectorAll('.scenpane');chips.addEventListener('click',function(ev){var b=ev.target.closest('.scenchip');if(!b)return;var i=b.getAttribute('data-i');chips.querySelectorAll('.scenchip').forEach(function(x){x.classList.remove('on')});b.classList.add('on');panes.forEach(function(p){p.classList.toggle('on',p.getAttribute('data-i')===i)});});})();
+  (function(){
+    function goDeep(){var btn=document.querySelector('.disc button[data-disc="deep"]');if(btn)btn.click();}
+    document.querySelectorAll('[data-godeep]').forEach(function(b){b.addEventListener('click',goDeep);});
+    document.querySelectorAll('.chnav a, .skdigest a').forEach(function(a){a.addEventListener('click',function(){if(document.body.getAttribute('data-disc')==='skim')goDeep();});});
+  })();
 </script>
