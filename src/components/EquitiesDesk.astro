@@ -735,6 +735,7 @@ const ovKnow = [
 </div></div>
 
 <nav class="secnav" aria-label="Sections"><div class="wrap" id="secnav">
+  <a class="sn-top" href="#" aria-label="Back to top">↑ Top</a>
   <a href="#state">State</a><a href="#regime">Regime</a><a href="#channel">Channel</a><a href="#breadth">Breadth</a><a href="#valuation">Valuation</a><a href="#earnings">Earnings</a><a href="#sectors">Sectors</a><a href="#factors">Factors</a><a href="#plumbing">Plumbing</a><a href="#positioning">Positioning</a><a href="#crossasset">Cross-Asset</a><a href="#catalysts">Catalysts</a><a href="#falsifiers">Falsifiers</a><a href="#evidence">Evidence</a>
   <span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span>
 </div></nav>
@@ -762,6 +763,11 @@ const ovKnow = [
 
 <!-- ░░ LAYMAN ░░ -->
 <div class="ov-only">
+<nav class="laydeck" aria-label="Chapters"><div class="wrap">
+  <a class="sn-top" href="#" aria-label="Back to top">↑ Top</a>
+  <a class="lk chA" href="#ch-1"><b>I</b>Foundations</a><a class="lk chB" href="#ch-2"><b>II</b>Crises</a><a class="lk chC" href="#ch-3"><b>III</b>Prices</a><a class="lk chD" href="#ch-4"><b>IV</b>The map</a><a class="lk chE" href="#ch-5"><b>V</b>The crowd</a><a class="lk chF" href="#ch-6"><b>VI</b>The conflict</a><a class="lk chG" href="#ch-7"><b>VII</b>Discipline</a>
+  <span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span>
+</div></nav>
 <section class="lay-hero"><div class="wrap">
   <div class="lay-top"><div class="eyebrow">Markets · Equities · In plain words</div>
     <span class="lay-disc"><span class="ld-label">Detail</span><span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim · 3 min</button><button data-disc="deep" class="on">Deep · 25 min</button></span></span>
@@ -1747,6 +1753,7 @@ const ovKnow = [
   .chnav a{font-family:'Lora',serif;font-size:11.5px;font-weight:700;letter-spacing:.02em;text-decoration:none;color:var(--body);border:1px solid var(--cardline);border-radius:999px;padding:6px 15px;background:var(--card);transition:border-color .15s ease-out,color .15s ease-out}
   .chnav a b{font-family:'Playfair Display',Georgia,serif;font-weight:700;margin-right:7px}
   .chnav a.chA b{color:var(--chA)}.chnav a.chB b{color:var(--chB)}.chnav a.chC b{color:var(--chC)}.chnav a.chD b{color:var(--chD)}.chnav a.chE b{color:var(--chE)}.chnav a.chF b{color:var(--chF)}.chnav a.chG b{color:var(--chG)}
+  .laydeck a.chA b{color:var(--chA)}.laydeck a.chB b{color:var(--chB)}.laydeck a.chC b{color:var(--chC)}.laydeck a.chD b{color:var(--chD)}.laydeck a.chE b{color:var(--chE)}.laydeck a.chF b{color:var(--chF)}.laydeck a.chG b{color:var(--chG)}
   .chnav a:hover{color:var(--ink)}
   .chnav a.chA:hover{border-color:var(--chA)}.chnav a.chB:hover{border-color:var(--chB)}.chnav a.chC:hover{border-color:var(--chC)}.chnav a.chD:hover{border-color:var(--chD)}.chnav a.chE:hover{border-color:var(--chE)}.chnav a.chF:hover{border-color:var(--chF)}.chnav a.chG:hover{border-color:var(--chG)}
   .laych{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;margin:8px 0 22px;scroll-margin-top:96px}
@@ -1898,6 +1905,7 @@ const ovKnow = [
   (function(){
     function goDeep(){var btn=document.querySelector('.disc button[data-disc="deep"]');if(btn)btn.click();}
     document.querySelectorAll('[data-godeep]').forEach(function(b){b.addEventListener('click',goDeep);});
-    document.querySelectorAll('.chnav a, .skdigest a').forEach(function(a){a.addEventListener('click',function(){if(document.body.getAttribute('data-disc')==='skim')goDeep();});});
+    document.querySelectorAll('.chnav a, .skdigest a, .laydeck a.lk').forEach(function(a){a.addEventListener('click',function(){if(document.body.getAttribute('data-disc')==='skim')goDeep();});});
+    (function(){var raf=null;function upd(){document.body.classList.toggle('scrolled',window.scrollY>480);}window.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});upd();})();
   })();
 </script>

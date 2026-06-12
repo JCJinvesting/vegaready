@@ -16,6 +16,19 @@
 .disc button{font-family:'Lora',serif;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:transparent;border:0;border-radius:4px;padding:3px 9px;cursor:pointer}
 .disc button.on{color:var(--ink);background:color-mix(in srgb,var(--ink) 8%,transparent)}
 body[data-disc="skim"] .deep{display:none}
+
+/* ── Frozen command deck (kit §4f): one sticky bar per page; anchors clear it; Top chip appears on scroll ── */
+:where(section,div)[id]{scroll-margin-top:72px}
+.sn-top{flex:none;font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);text-decoration:none;border:1px solid var(--cardline);border-radius:999px;padding:3px 11px;margin-right:8px;opacity:0;visibility:hidden;transition:opacity .2s ease-out,color .15s ease-out,border-color .15s ease-out}
+body.scrolled .sn-top{opacity:1;visibility:visible}
+.sn-top:hover{color:var(--ink);border-color:color-mix(in srgb,var(--eyeb) 38%,transparent)}
+.laydeck{position:sticky;top:0;z-index:50;background:color-mix(in srgb,#000 12%,var(--canvas));border-bottom:1px solid var(--cardline);backdrop-filter:saturate(1.1) blur(6px)}
+.laydeck .wrap{display:flex;align-items:center;gap:2px;min-height:40px;padding-top:5px;padding-bottom:5px;overflow-x:auto;scrollbar-width:none}
+.laydeck .wrap::-webkit-scrollbar{display:none}
+.laydeck a.lk{flex:none;font-family:'Lora',serif;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-decoration:none;color:var(--body);padding:4px 10px;border-radius:999px;white-space:nowrap}
+.laydeck a.lk:hover{color:var(--ink)}
+.laydeck a.lk b{font-family:'Playfair Display',Georgia,serif;font-weight:700;margin-right:6px}
+.laydeck .disc{margin-left:auto;flex:none}
 .lead{font-size:14px;color:var(--body);line-height:1.55;margin:0 0 10px;max-width:80ch}
 .lead b{color:var(--ink)}
 
