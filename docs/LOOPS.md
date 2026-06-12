@@ -11,7 +11,7 @@
 1. **Research** — if the desk has no ingested research return, run L2 first (prompt already exists or generate from the P-05 template).
 2. **Spec** — write/refresh `docs/VegaReady-<Desk>-Desk-SubPlan.md` (model: credit's): content spec per §1–§10, Layman plan, signals from the catalog, feed-pending list.
 3. **Palette** — pick 2–3 candidates from the 9 approved combos → show via `visualize` → owner picks → build `skin-<desk>.css` per AGENT-BRAND-KIT §3.
-4. **Build** — component + both routes, on the design branch. Structure from CreditDesk; content bespoke; kit laws throughout.
+4. **Build** — component + both routes, on the design branch. Structure from EquitiesDesk (the reference: chapters, designed Skim, plain-deep Layman); content bespoke; kit laws throughout. **Mandatory chrome:** `<Wayfinder trail rail />` after `.masthead` (kit §4e — analyst rail = the six desks, layman rail = layman siblings + "All editions"; `in build` tags on links to stub pages).
 5. **Stage** — compile-check → `npm run stage` → confirm `Uploaded vegaready-staging`.
 6. **QC** — run L3 (Brand-QC). Fix fails, restage.
 7. **Review** — owner reviews staging URL; critiques become standing requirements; iterate 4→7 until "approved".

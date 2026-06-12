@@ -50,11 +50,15 @@ The desk shape every desk follows: a **durable spine** (catalyst-neutral section
 
 | Route | Layman twin | Component? | Status |
 |---|---|---|---|
-| `/markets/credit` | `/layman/credit` | **`CreditDesk.astro`** | **Reference desk** — done on staging (brass skin, deep Layman, formatting). NOT yet on prod. |
-| `/markets/equities` | `/layman/equities` | **`EquitiesDesk.astro`** | Built earlier; **still old navy theme** — the next propagation target (apply the credit standard). |
+| `/markets/credit` | `/layman/markets/credit` | **`CreditDesk.astro`** | **SHIPPED to production** — brass skin, deep Layman, Skim/Deep, defect pass done. |
+| `/markets/equities` | `/layman/markets/equities` | **`EquitiesDesk.astro`** | **SHIPPED to production** — steel skin (Charcoal Blue WB8 + JCJ Gold), 7-chapter Layman deep, designed 3-min Skim, R-01 research integrated. The current reference standard. |
+| `/markets/equities/{episodes,factor-lab,plumbing}` | — | standalone `.astro` | Honest "in build" stubs, noindexed, steel skin. SHIPPED. |
+| `/layman` | (is the wing) | standalone `.astro` | Layman Edition landing ("prefix any URL with /layman"). SHIPPED. |
 | `/markets/cross-asset` · `/markets/crypto` · `/markets/energy` · `/markets/gold-fx` | — | standalone `.astro` | Older / placeholder desks; not yet rebuilt to the new standard or given Layman twins. |
 | `/markets/defense` · `/markets/water` · `/markets/food-agriculture` · `/markets/labor` · `/markets/property` · `/markets/insurance` | — | standalone `.astro` | **Conflict-sector dossiers** — catalyst pages, NOT true market desks. Slated to **re-home** out of `/markets` to the Iran dossier (with 301s). |
-| `/markets/index` | — | — | The markets hub (re-homed: "market desks" vs "conflict-sector dossiers" groups). |
+| `/markets/index` | — | — | The markets hub (re-homed: "market desks" vs "conflict-sector dossiers" groups; carries the Wayfinder rail of desks). |
+
+**Wayfinder (site-wide wayfinding law, kit §4e):** every masthead-system page below root carries `Wayfinder.astro` (crumb trail + always-visible sibling rail) directly after `.masthead`. Live on 9 URLs (hub, both analyst desks, /layman + 2 layman desks, 3 equities stubs). Legacy pages excluded until the front-door loop.
 
 **Archive** (`/archive/markets/*`, 13 files) — frozen legacy snapshots of every old `/markets/*` page; `noindex` (so `web_fetch`/link-checkers return empty for them — that's intended).
 
@@ -65,7 +69,7 @@ The desk shape every desk follows: a **durable spine** (catalyst-neutral section
 
 ## 5. Components, data modules, styles, scripts
 
-**Components** (`src/components/`): `CreditDesk.astro` and `EquitiesDesk.astro` (the dual-mode desk components — the pattern); plus shared `BaseHead`, `Header`, `HeaderLink`, `Footer`, `Breadcrumbs`, `FormattedDate`, `ActiveCatalysts`, `SignalPanel`.
+**Components** (`src/components/`): `CreditDesk.astro` and `EquitiesDesk.astro` (the dual-mode desk components — the pattern); **`Wayfinder.astro`** (the site-wide crumb-trail + sibling-rail nav, kit §4e — every new masthead page must include it); plus shared `BaseHead`, `Header` (legacy pages only), `HeaderLink`, `Footer`, `Breadcrumbs` (dormant — superseded by Wayfinder), `FormattedDate`, `ActiveCatalysts`, `SignalPanel`.
 
 **Generated analysis modules** (`src/data/analysis/`, ~27 files): per-desk content generated from IranWarTracker cascades by `scripts/build-cascades.cjs` — `credit.js`, `equities.js`, `crossasset.js`, `crypto.js`, `energytransition.js`, `defense.js`, `water.js`, `foodag.js`, `foodresilience.js`, `labor.js`, `property.js`, `insurance.js`, `weaponization.js`, `chokepoints.js`, `deglobalization.js`, `digital.js`, `nuclear.js`, `outlook.js`, `profits.js`, `exposure.js`, `transmission.js`, `connections.js`, `structuraloverview.js`, `scenariostates.js`, `catalysts.js`, plus **`watchmetrics.js`** (the live "watch registry") and `freshness.js`. **These are GENERATED — never hand-edit; edit the canonical cascade JSON in IranWarTracker and re-run `node scripts/build-cascades.cjs`.**
 
@@ -73,7 +77,7 @@ The desk shape every desk follows: a **durable spine** (catalyst-neutral section
 
 **Other `src/data/`:** `iwt-bundle.json` (54 arrays bundled from IranWarTracker by `build-data.cjs`), `catalysts.ts`, `naming.ts` (naming tokens), `CONTENT-INTAKE.md`, `README.md`.
 
-**Styles** (`src/styles/`): `desk.css` (the desk design language "t1 Oxford" — base tokens, fonts, masthead, hero, CTA), `desk-content.css` + `desk-v2.css` (desk components + the `body[data-disc="skim"] .deep{display:none}` rule), **`skin-brass.css`** (the Warm Brass skin, scoped to credit via `html[data-skin="brass"]`), `global.css` (site-wide tokens for non-desk pages).
+**Styles** (`src/styles/`): `desk.css` (the desk design language "t1 Oxford" — base tokens, fonts, masthead, hero, CTA), `desk-content.css` + `desk-v2.css` (desk components + the `body[data-disc="skim"] .deep{display:none}` rule and the inverse `body[data-disc="deep"] .skim-only{display:none}`), **`skin-brass.css`** (Warm Brass, credit-only, `html[data-skin="brass"]`), **`skin-steel.css`** (Charcoal Blue WB8 + JCJ Gold + chapter accents `--chA..--chG`, equities, `html[data-skin="steel"]`), `global.css` (site-wide tokens for non-desk pages).
 
 **Scripts** (`scripts/`): `build-data.cjs` (→ `iwt-bundle.json`), `build-cascades.cjs` (→ `src/data/analysis/*.js`), `publish-from-iwt.cjs`.
 
@@ -134,15 +138,23 @@ The VegaReady **plans, specs, and source data** live in the IranWarTracker proje
 
 ---
 
-## 9. Current state & open tracks (as of 2026-06-11)
+## 9. Current state & open tracks (as of 2026-06-12)
 
-**Done & on staging (NOT on production):** the **credit desk** — Analyst `/markets/credit` + Layman `/layman/credit`, the **Warm Brass** skin, the §9 winners/losers de-duplication, the Skim/Deep model (Deep auto-expands the analyst detail cards), the deepened Layman content (worked example, misconceptions, dollar-plumbing chain), and the brand-aligned formatting (lead+bullets, stepped flows, pull-quotes, 15.5px/1.62 body). It lives only on the design branch + staging; **production is still on `main` without it.** The markets hub was re-homed; legacy `/markets/*` archived under `/archive/markets/`.
+**SHIPPED TO PRODUCTION (vegaready.com), in four merges (`de5c1f9` → `4ab57f0` → `745a4be`):**
+- **Credit desk** — brass skin, deep Layman, Skim/Deep, defect pass (read30 wrapper, inline-style purge, confidence glyphs).
+- **Equities desk** — the new reference standard: steel skin (Charcoal Blue WB8 canvas + JCJ Gold + Steel Blue data + chapter accents), full R-01 multi-model research integrated, 7-chapter Layman deep (≥2× analyst volume, provenance, reference scales), **designed 3-minute Skim tier** (skim-only primitive, "Today in 60 seconds", chapter digest, remember-three closer), 43 decoder rows, anonymized council disagreements.
+- **Layman Edition wing (URL Option B)** — `/layman` landing + `/layman/markets/<desk>` mirrors; the rule "prefix any URL with /layman" is owner-locked ("layman is locked in").
+- **Equities sub-page stubs** — episodes / factor-lab / plumbing, honest, noindexed.
+- **Wayfinder** (owner-ratified pattern A3) — `Wayfinder.astro` crumb trail + always-visible sibling rail on all 9 masthead-system URLs; kit v1.5 §4e is the law; honesty tags on in-build links; no JS.
+- **AGENT-BRAND-KIT.md at v1.5** — the operative law: render-integrity (v1.2), Skim completeness (v1.3), anti-narrow-wrap + canonical anatomies (v1.4), Wayfinder (v1.5).
 
-**Open tracks (what the owner will pick next):**
-1. **Ship credit to production** — QC pass + `-X ours` merge to `main` + push.
-2. **Propagate the credit *patterns* to Equities** (`EquitiesDesk.astro`, still navy). The **reusable standard is the structure, not the look**: the dual-URL + Skim/Deep model, the §9 winners/losers de-dup, the deep-but-plain Layman approach, and the typography/formatting system. **The brass palette is NOT part of it — brass is credit-only** (the owner is lukewarm on it; it ships only because it works for that one page). Give equities its **own** palette, chosen fresh from the approved dark combos (show 2–3 options via `visualize`; its own `skin-*.css` + `data-skin`). Then the remaining real desks (Rates, FX/`gold-fx`, Commodities/`energy`, Crypto, Cross-Asset), each bespoke + dual-URL with a Layman twin and its **own** look.
-3. **Wire the live data** — replace "feed pending" tiles honestly via the data layer (FRED/scenario data; never invented).
-4. **Re-home the 6 conflict-sector pages** out of `/markets/*` to the Iran dossier (301s).
-5. **SEO** — per-desk meta/OG, sitemap, canonical strategy across the analyst/layman URL pair.
+Staging and production are in sync. The site still runs **three header systems** (legacy `Header.astro` on `/today`/`/catalysts`/front door; the masthead system on desks/hub/layman; dashboard tabs) — unification is the front-door loop, deliberately parked.
 
-Watch-outs carried from this build (all detailed in `INSTRUCTIONS.md`): the deploy type-ahead pitfall; `--name` not `--env`; don't fake data; one writer per file (re-read if another session touched it); show visual options on taste calls; verify the live URL before claiming done.
+**Open tracks (owner picks next):**
+1. **Next desk build** — Rates suggested, then FX/`gold-fx`, Commodities/`energy`, Crypto, Cross-Asset. Each bespoke: own palette from the approved combos (2–3 `visualize` options first), own `skin-*.css`, dual-URL + Layman twin + designed Skim + Wayfinder.
+2. **Wire the live data** — owner runs P-02 in Perplexity → validate FRED feeds → replace "feed pending" tiles honestly.
+3. **SEO** — P-03: canonicals across analyst/layman pairs, per-desk meta/OG, `BreadcrumbList` JSON-LD (pairs with the Wayfinder).
+4. **Credit parity pass** — credit still lacks the chapter system, plain-deep waves, and designed Skim that equities has (kit v1.3/v1.4/v1.5 apply).
+5. **Front-door loop** — migrate `/today`, `/catalysts`, `/` to the masthead system; make ⌘K real (command palette); re-home the 6 conflict-sector pages with 301s.
+
+Watch-outs carried from these builds (all detailed in `INSTRUCTIONS.md`): the deploy type-ahead pitfall; `--name` not `--env`; `-X ours` on every merge to main (protects live data); don't fake data; one writer per file (re-read if another session touched it); show visual options on taste calls; verify the live URL (curl greps on trailing-slash URLs — non-slash 307s) before claiming done.
