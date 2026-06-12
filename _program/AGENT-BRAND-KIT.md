@@ -1,4 +1,4 @@
-# VegaReady — AGENT BRAND KIT v1.2
+# VegaReady — AGENT BRAND KIT v1.4
 
 **Status:** OPERATIVE brand law for any agent building or editing VegaReady pages. Drafted 2026-06-11 from the full `_program/` corpus + the as-built CSS; awaiting owner ratification (open items in §8).
 **Authority:** where this kit conflicts with `DESIGN-CONTRACT.md`, `APPROVED-THEMES.md`, or any trial doc, **this kit wins** — it exists because the corpus contradicts itself in ways that made agents fail. The corpus remains the historical register; consult it only for rationale, never for values.
@@ -106,6 +106,30 @@ The spec's Body row (15.5–16px) was written for editorial prose; analyst desk 
 
 **Section-nav law:** the desk `secnav` must show every section AND the Skim/Deep control without horizontal scrolling — wrap to two rows (taller header) once a desk exceeds ~10 sections. Never let the disc control clip off-canvas.
 
+### 4c · The Skim Completeness Law (v1.3)
+
+**Skim is not fewer sections — it is the same journey at one-tenth the depth.** A residual Skim (whatever happens to lack a `deep` tag) is a defect. Every desk ships TWO designed reading products:
+
+1. **The `skim-only` primitive** is the inverse of `deep`: `body[data-disc="deep"] .skim-only{display:none}`. Deep hides skim-built content; Skim hides deep-built content. Write FOR each tier.
+2. **Skim must be a complete miniature**: an opening "Today in 60 seconds" (the call + 2–3 live numbers + the one watch item), one line per chapter/section (the digest — Skim inherits the full narrative spine), and a "If you remember three things" closer with honest CTAs to Deep and the analyst edition.
+3. **Affordance**: a skim-state banner telling the reader what Deep adds; reading-time labels on the toggle (`Skim · 3 min / Deep · 25 min`); chapter-nav clicks in Skim flip to Deep and scroll (`[data-godeep]` pattern).
+4. **Target ratio**: Skim ≈ 3–4 minutes regardless of how large Deep grows; re-audit Skim after every major Deep expansion.
+
+### 4d · Anti-narrow-wrap laws (v1.4 — each caused a live defect)
+
+The recurring failure: variable-length text squeezed into a narrow box ragged-wraps into an unreadable blob. Four laws kill the family:
+
+1. **The chip law:** an inline/header-line chip may hold **≤ ~4 words** of fixed text (status words, tickers, tiers). Variable-length meta — scale anchors, sources, alarm thresholds, "track it" lines — gets a **full-width footer line** instead (dashed top hairline + small accent dash prefix + text flowing left-aligned at full card width). Never right-align multi-line text; never `max-width` a chip below ~50% and pour sentences into it.
+2. **The reading-measure law:** card body prose needs **≥ ~45ch of measure**. At desk width (~1100px) that means content cards go at most **2-across** (~520px each); 3-across is reserved for label-and-number tiles only. When a 2-across set has an odd count, the **last card spans full width** (`:last-child:nth-child(odd){grid-column:1/-1}`) — a feature, not a hack: it gives the set a closing emphasis.
+3. **The stacked-label law:** key→value rows never use a fixed-width inline label (text hang-wraps beneath it). Labels render as small-caps **block** lines above their values.
+4. **Stepper minimums:** timeline/stepper columns need `minmax(≥185px, 1fr)`; let auto-fit wrap rather than crush captions.
+
+**Canonical component anatomies (copy these, don't reinvent):**
+- **Decoder row** (`.dec-row`): header line (Fraunces term + 7px struct square tick) → full-width plain body (14px/1.6) → optional full-width meta footer per the chip law. No side columns; no empty wells.
+- **Chapter nav pill** (`.chnav a`): body-ink text; ONLY the Playfair roman numeral carries the chapter accent; accent surfaces in the border on hover. Color as accent system, never rainbow text. Label line sits as its own block above the pills.
+- **Section-header dash:** every layman `lay-sech h2` carries an 18×3px gold dash `::before` — the scanning anchor across long pages.
+- **Chapter accents** (`--chA..--chG` in the skin): sanctioned hues only, low-salience duty (numerals, dividers, bars, dots) — never running text, never backgrounds at strength.
+
 ---
 
 ## 5 · Hard laws (the agent checklist — each is verifiable)
@@ -173,6 +197,8 @@ When you find a conflict between this kit and the reference component, **the kit
 **O-6 (note, owner-stated 2026-06-11):** desk palette picks are **stage approvals, not final brand lock** — the owner may re-pick from the 9 approved combos (or direct a new trial) at any point before a desk ships to production. Agents treat a chosen skin as current-working, keep it cleanly swappable (all colour in the skin file, none in the component), and never describe a palette as "final."
 
 **Changelog:**
+- v1.4 (2026-06-12) — added §4d anti-narrow-wrap laws (chip law, reading-measure law, stacked-label law, stepper minimums) + canonical anatomies for decoder rows, chapter-nav pills, section-header dashes and chapter accents. Cause: the dec-a header chip ragged-wrapped scale-length text; 3-across cards ran body prose at ~5 words/line.
+- v1.3 (2026-06-12) — added §4c Skim Completeness Law + `skim-only` primitive + affordance rules. Cause: equities layman Skim was a residual stub (7 thin sections) after Deep grew 10×. Pending application: credit layman Skim + both analyst Skims.
 - v1.2 (2026-06-11) — added §7 render-integrity laws (no HTML-string interpolation, set:html wrapper spans, no raw generated keys, status-tagged scenario chips) + built-page grep and fresh-eyes pass in the checklist. Cause: nine escaped gloss spans, a fragmented 30-second read, raw `hormuz_closure` chips and undefined scenario semantics reached the owner on staging.
 - v1.1 (2026-06-11) — added §4b analyst density ladder + lead+bullets law + section-nav law (gap found during equities QC pass: spec lacked floors for component prose and a long-secnav rule); added O-6 skin-provisional note.
 - v1.0 (2026-06-11) — initial cut, reconciling DESIGN-CONTRACT v2.0, APPROVED-THEMES (through v4.1.0 entries), Typography-Emphasis-Spec, Components/Charts specs, COLOR-RESERVE, and the as-built desk.css/skin-brass.css/CreditDesk.astro.
