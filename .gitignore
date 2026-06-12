@@ -209,6 +209,9 @@ src/data/iwt-bundle.json
 src/data/iwt-bundle.staging.json
 # Local-only run status / alert (the COMMITTED status lives at public/data-status.json).
 _status/
+# Feeds pipeline Layer-1 raw audit cache + history accumulator (R-02 W1).
+# The Layer-2 display JSON (src/data/feeds/credit.json) IS committed — CI builds use it.
+_data-cache/
 
 ### Repo backups & stray files (keep on disk, out of git) ###
 # Full-repo git bundle backups (e.g. vega.bundle) — belong outside the working tree
