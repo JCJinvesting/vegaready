@@ -1,0 +1,62 @@
+---
+import '../../styles/desk.css';
+import '../../styles/desk-content.css';
+import '../../styles/desk-v2.css';
+const editions = [
+  { t: 'Equities', href: '/layman/markets/equities', d: 'Is the rally as healthy as it looks? Seven chapters: the dials, how crises actually work, what stocks cost, the map of the market, the crowd, the conflict — and what would change our mind.', live: true },
+  { t: 'Credit', href: '/layman/markets/credit', d: 'How nervous are lenders? The market for borrowed money is the stock market’s early-warning system — spreads, the credit cycle, and the Gulf dollar squeeze, in plain words.', live: true },
+];
+const coming = ['Today — the regime, in plain words', 'Cross-Asset', 'Energy & Commodities', 'Crypto', 'The structural watch'];
+---
+<!doctype html>
+<html lang="en" data-theme="t1" data-disc="deep">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VegaReady, in plain words — The Layman Edition</title>
+  <meta name="description" content="Every VegaReady desk, retold in plain English — same intelligence, same sources, no jargon. Free, checkable, and honest about what we don't know." />
+</head>
+<body data-mode="analyst" data-disc="deep">
+  <header class="masthead"><div class="wrap">
+    <a class="wordmark" href="/today">VEGA<i>READY</i></a>
+    <nav class="mast-right" aria-label="Primary"><a class="navlink" href="/today">Today</a><a class="navlink" href="/catalysts">Catalysts</a><a class="navlink" href="/markets">Markets</a><a class="navlink" href="/structural/watch">Signals</a><a class="navlink" href="/about">About</a></nav>
+  </div></header>
+  <section class="dsec laytop"><div class="wrap">
+    <div class="eyebrow">The Layman Edition</div>
+    <h1 class="led-h1">VegaReady,<br/><em>in plain words.</em></h1>
+    <p class="lead led-lead">Everything on this site exists in two editions: the <b>analyst</b> version — dense, source-tiered, built for professionals — and this one. Same intelligence, same data, same honesty about what we don’t know — written so a smart reader with no finance background can understand it, <b>and check it</b>. Every plain page tells you where its numbers come from, for free.</p>
+    <p class="lead led-rule"><b>The rule:</b> add <span class="mono">/layman</span> in front of any VegaReady address to get its plain-English edition.</p>
+    <div class="led-grid">{editions.map((e) => (
+      <a class="led-card" href={e.href}>
+        <div class="led-t">{e.t} <span class="led-arrow">→</span></div>
+        <p>{e.d}</p>
+        <span class="led-tag">live</span>
+      </a>
+    ))}</div>
+    <div class="led-coming">
+      <div class="lc-h">Coming to this edition</div>
+      <p>{coming.join(' · ')} — each arrives as its analyst desk is rebuilt. No page ships here before it can teach honestly.</p>
+    </div>
+    <p class="tnote">Research and analysis in plain language — not investment advice. The analyst editions live under <a href="/markets">/markets</a> and carry the full tables, confidence chips and sources.</p>
+  </div></section>
+  <footer><div class="wrap"><div class="legal">© 2026 JCJ Investing LLC. Research and intelligence, not investment advice.</div></div></footer>
+  <style>
+    .laytop{padding-top:54px}
+    .led-h1{font-family:'Playfair Display',Georgia,serif;font-size:46px;font-weight:700;line-height:1.08;color:var(--ink);margin:10px 0 18px}
+    .led-h1 em{color:var(--eyeb);font-style:italic}
+    .led-lead{max-width:74ch;margin-bottom:14px}
+    .led-rule{max-width:74ch;margin-bottom:26px}
+    .led-rule .mono{color:var(--eyeb)}
+    .led-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 26px}
+    .led-card{display:block;background:var(--card);border:1px solid var(--cardline);border-top:3px solid var(--eyeb);border-radius:12px;padding:18px 22px;text-decoration:none;transition:border-color .15s ease-out}
+    .led-card:hover{border-color:var(--struct)}
+    .led-t{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--ink);margin-bottom:8px}
+    .led-arrow{color:var(--eyeb)}
+    .led-card p{font-size:14.5px;line-height:1.6;color:var(--body);margin:0 0 12px}
+    .led-tag{font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pos);border:1px solid color-mix(in srgb,var(--pos) 40%,transparent);border-radius:3px;padding:2px 7px}
+    .led-coming{background:var(--card);border:1px solid var(--cardline);border-radius:11px;padding:14px 18px;margin-bottom:14px}
+    .led-coming .lc-h{font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--latent);margin-bottom:6px}
+    .led-coming p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0}
+    @media(max-width:760px){.led-grid{grid-template-columns:1fr}.led-h1{font-size:34px}}
+  </style>
+</body>
+</html>

@@ -330,7 +330,7 @@ const charts = {
   <span class="fb-i"><span class="fb-dot"></span>Data through <b>{dataThrough}</b></span>
   <span class="fb-i">Next refresh <b>per-section (daily OAS / weekly flows / structural)</b></span>
   <span class="fb-i">Live as of <b id="liveAsOf">checking…</b></span>
-  <span class="fb-i" style="margin-left:auto">Read as <span class="modetoggle" role="group" aria-label="Reading mode"><a href="/layman/credit" class={mode === 'layman' ? 'on' : ''}>Layman</a><a href="/markets/credit" class={mode === 'analyst' ? 'on' : ''}>Analyst</a></span></span>
+  <span class="fb-i fb-right">Read as <span class="modetoggle" role="group" aria-label="Reading mode"><a href="/layman/markets/credit" class={mode === 'layman' ? 'on' : ''}>Layman</a><a href="/markets/credit" class={mode === 'analyst' ? 'on' : ''}>Analyst</a></span></span>
 </div></div>
 
 <nav class="secnav" aria-label="Sections"><div class="wrap" id="secnav">
@@ -343,18 +343,18 @@ const charts = {
   <div>
     <div class="eyebrow">Markets · Credit & Funding · State of the desk</div>
     <h1>Calm spreads.<br/><em>A funding fault line.</em></h1>
-    <p class="sub"><b>The call:</b> mid-cycle, corporate spreads rich-vs-history and contained, while the Iran–Gulf shock reprices the sovereign/funding edge — EM and dollar-liquidity, not yet IG/HY. <span class="dconf medium" style="vertical-align:middle">Medium confidence</span></p>
+    <p class="sub"><b>The call:</b> mid-cycle, corporate spreads rich-vs-history and contained, while the Iran–Gulf shock reprices the sovereign/funding edge — EM and dollar-liquidity, not yet IG/HY. <span class="dconf medium vmid">Medium confidence</span></p>
     <span class="cta-frame cta-h"><a href="/structural/watch">Open the signal board →</a></span>
   </div>
   <div class="deskpanel">
     <div class="ph"><b>Credit regime · live</b><span>— from the registry</span></div>
     <div class="metric-row">{eq.map((s) => (<div class="mcell"><div class="ml">{s.k}</div><span class={`mv num ${wvc(s.m)}`}>{fmt(s.m)}</span></div>))}</div>
-    <p style="font-family:'Lora',serif;font-size:11px;color:var(--muted);margin-top:13px;line-height:1.6">Sovereign and funding channels are repricing first; US corporate spreads stay contained — for now.</p>
+    <p class="panelnote">Sovereign and funding channels are repricing first; US corporate spreads stay contained — for now.</p>
   </div>
 </div></section>
 
 <div class="wrap an-block"><div class="orient">
-  <div class="read30"><div class="r30-h">The 30-second read</div><ul>{read30.map((x) => (<li set:html={x} />))}</ul></div>
+  <div class="read30"><div class="r30-h">The 30-second read</div><ul>{read30.map((x) => (<li><span class="r30t" set:html={x} /></li>))}</ul></div>
   <div class="falsify"><div class="fl-h">What would change this call</div><ul>{falsifiers.map((x) => (<li>{x}</li>))}</ul></div>
 </div></div>
 
@@ -424,7 +424,7 @@ const charts = {
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>The Gulf angle, in plain words</h2><p set:html={ovGulfLead}></p></div>
   <div class="lay-flow">{ovGulfChain.map((s, i) => (<div class="lf"><span class="lf-n">{i + 1}</span><div class="lf-t" set:html={s}></div></div>))}</div>
-  <p class="lay-prose" set:html={ovGulfClose} style="margin-top:16px"></p>
+  <p class="lay-prose mt16" set:html={ovGulfClose}></p>
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
@@ -461,7 +461,7 @@ const charts = {
 <!-- ░░ ANALYST ░░ -->
 <div class="an-only">
 <!-- competing drivers -->
-<section class="dsec" style="padding-top:40px"><div class="wrap">
+<section class="dsec pt40"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">What's moving credit</div><h2>Many drivers, named — never one.</h2></div><a class="more" href="/connections">Causal map →</a></div>
   <p class="lead">Attribution shown as <b>buckets</b>, not invented weights, with an explicit residual.</p>
   <div class="attrib">{drivers.map((x) => (<div class="attrib-row"><span class="attrib-d">{x.d}</span><span class={`attrib-b b-${x.b}`}>{x.b}</span><span class="attrib-n">{x.n}</span></div>))}</div>
@@ -478,7 +478,7 @@ const charts = {
     </div>
     <div class="track-grid">
       <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
-      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf" style="border-color:var(--cardline)">{t.tier}</span> {t.src}</div></div>
+      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{t.tier}</span> {t.src}</div></div>
     </div>
     <div class="deep"><div class="feedph"><div class="fp-h">{t.h} — live numbers, feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div><div class="fp-note">Sources named above; wires in with the D7 data layer (FRED is free + public).</div></div></div>
   </div></section>
@@ -488,12 +488,12 @@ const charts = {
 <section class="dsec" id="cohorts"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§5 · Who’s leading, who’s lagging?</div><h2>Cohort rotation — ratings &amp; sectors.</h2></div><span class="fresh-tag">structural + daily OAS</span></div>
   <p class="lead">The durable sensitivity map by <b>ratings bucket</b> and <b>sector</b>. Click a column to sort. Compression (junk outperforming) vs decompression (quality outperforming) is the regime tell; live relative-strength is feed-pending. Lead/lag tags are <i>regime-conditional, not laws</i>.</p>
-  <div style="overflow-x:auto"><table class="dtbl" id="cohtbl">
+  <div class="tblwrap"><table class="dtbl" id="cohtbl">
     <thead><tr><th>Cohort</th><th class="sort" data-col="rate">Rates</th><th class="sort" data-col="cyc">Cycle</th><th class="sort" data-col="usd">USD</th></tr></thead>
     <tbody>{cohortMatrix.map((r) => (<tr data-rate={r.rate[1]} data-cyc={r.cyc[1]} data-usd={r.usd[1]}><td class="nm">{r.s}</td><td class={`sens ${r.rate[2]}`}>{r.rate[0]}</td><td class={`sens ${r.cyc[2]}`}>{r.cyc[0]}</td><td class={`sens ${r.usd[2]}`}>{r.usd[0]}</td></tr>))}</tbody>
   </table></div>
   <div class="deep">
-    <div class="tk-h" style="margin:20px 0 8px">Ratings buckets — IG → CCC</div>
+    <div class="tk-h mt20a">Ratings buckets — IG → CCC</div>
     {ratingsBuckets.map((p) => (
       <details class="dcard"><summary><div><div class="dc-t">{p.s}<span class="dc-cat">{p.p}</span></div><div class="dc-s">{p.dr}</div></div></summary>
         <div class="dc-body"><div class="prof-sens">{p.sens}</div><div class="prof-rows">
@@ -503,7 +503,7 @@ const charts = {
           <div class="prof-r"><span class="prof-k">Lead / lag</span>{p.ll}</div>
         </div></div></details>
     ))}
-    <div class="tk-h" style="margin:22px 0 8px">Sectors — the credit-sensitive set</div>
+    <div class="tk-h mt22a">Sectors — the credit-sensitive set</div>
     {sectors.map((p) => (
       <details class="dcard"><summary><div><div class="dc-t">{p.s}<span class="dc-cat">{p.p}</span></div><div class="dc-s">{p.dr}</div></div></summary>
         <div class="dc-body"><div class="prof-sens">{p.sens}</div><div class="prof-rows">
@@ -528,7 +528,7 @@ const charts = {
     </div>
     <div class="track-grid">
       <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
-      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf" style="border-color:var(--cardline)">{t.tier}</span> {t.src}</div></div>
+      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{t.tier}</span> {t.src}</div></div>
     </div>
     {t.feed && (<div class="deep"><div class="feedph"><div class="fp-h">{t.h} — feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div></div></div>)}
   </div></section>
@@ -539,48 +539,48 @@ const charts = {
   <div class="sec-head"><div><div class="eyebrow">§9 · What changes the view, and when?</div><h2>Catalysts &amp; the funding channel.</h2></div><span class="fresh-tag">3× daily</span></div>
   <p class="lead">Catalysts <b>annotate</b> the durable frame above — they don’t replace it. Effects are <span class="vt">scenario</span> tilts with a named channel, never forecasts of fact. The one exception: when the <b>funding channel</b> flashes stress across the board, it <i>becomes</i> the regime.</p>
 
-  <div class="tk-h" style="margin:14px 0 6px">Sovereign / funding channel — the macro-credit transmission belt</div>
+  <div class="tk-h mt14">Sovereign / funding channel — the macro-credit transmission belt</div>
   <div class="xa">{fundingChannel.map((x) => (
     <div class={`xa-tile ${x.m ? 'live' : 'pend'}`}>
       <div class="xa-k">{x.k}</div>
-      <div class={`xa-v ${x.m ? wvc(x.m) : ''}`} style={x.m ? '' : 'color:var(--latent);font-size:14px'}>{x.m ? fmt(x.m) : '—'}</div>
+      <div class={`xa-v ${x.m ? wvc(x.m) : 'pendv'}`}>{x.m ? fmt(x.m) : '—'}</div>
       <div class="xa-n">{x.w}</div>
-      <div class="xa-n" style="margin-top:3px;opacity:.75">{x.note}</div>
+      <div class="xa-n xan2">{x.note}</div>
     </div>
   ))}</div>
   <p class="tnote">When EMBI, MMF cash and the basis flash stress simultaneously <b>and</b> no swap-line relief arrives, the state-of-the-desk call elevates the funding narrative — the single case where a catalyst is allowed to lead.</p>
 
-  <div class="tk-h" style="margin:22px 0 6px">If–then: how credit behaves by scenario <span class="frame-tag">durable framework</span></div>
-  <div style="overflow-x:auto"><table class="dtbl">
+  <div class="tk-h mt22">If–then: how credit behaves by scenario <span class="frame-tag">durable framework</span></div>
+  <div class="tblwrap"><table class="dtbl">
     <thead><tr><th>Scenario</th><th>Sovereign</th><th>Corporate</th><th>IG</th><th>HY</th></tr></thead>
     <tbody>{scenRows.map((s) => (<tr><td class="nm">{s.sc}</td><td>{s.sov}</td><td>{s.corp}</td><td>{s.ig}</td><td>{s.hy}</td></tr>))}</tbody>
   </table></div>
 
-  <div class="tk-h" style="margin:22px 0 6px">Active catalysts affecting credit</div>
+  <div class="tk-h mt22">Active catalysts affecting credit</div>
   {activeCats.length === 0 && (<div class="emptycat">No active catalyst is materially moving credit right now — the durable framework above stands on its own.</div>)}
   <div class="catstack">
     {activeCats.map((c) => (
       <details class="catmod active" open>
         <summary><span class="cm-badge act">{STATE_LABEL[c.state]}</span><span class="cm-title">{c.overviewTitle}</span><span class="cm-chan">funding · sovereign · plumbing</span></summary>
         <div class="cm-body">
-          <div class="eyebrow" style="margin:8px 0 6px">Winners &amp; losers under this catalyst <span class="frame-tag live">live</span></div>
-          <p class="tnote" style="margin:0 0 10px"><b>Definition:</b> beneficiaries and casualties of <i>this catalyst’s</i> credit repricing — vs the pre-catalyst baseline, in the currently-realized scenario. Shown once, from the credit cascade.</p>
+          <div class="eyebrow mt8">Winners &amp; losers under this catalyst <span class="frame-tag live">live</span></div>
+          <p class="tnote mb10"><b>Definition:</b> beneficiaries and casualties of <i>this catalyst’s</i> credit repricing — vs the pre-catalyst baseline, in the currently-realized scenario. Shown once, from the credit cascade.</p>
           <div class="wl3">
             <div class="wl-lane wl-win"><div class="wl-h">Beneficiaries</div><ul>{wlWin.map((r) => (<li><b>{r[0]}</b><span>{r[2]}</span></li>))}</ul></div>
             <div class="wl-lane wl-mix"><div class="wl-h">Mixed</div><ul>{wlMix.map((r) => (<li><b>{r[0]}</b><span>{r[2]}</span></li>))}</ul></div>
             <div class="wl-lane wl-lose"><div class="wl-h">Exposed</div><ul>{wlLose.map((r) => (<li><b>{r[0]}{r[1] !== 'Loser' ? <span class="wl-tag">{r[1]}</span> : null}</b><span>{r[2]}</span></li>))}</ul></div>
           </div>
 
-          <div class="eyebrow" style="margin:20px 0 6px">Key observations</div>
-          <div class="takes">{takeaways.map((t, i) => (<div class="take"><span class="tn">{i + 1}</span><p><b style="color:var(--ink)">{t[0]}.</b> {t[1]}</p></div>))}</div>
+          <div class="eyebrow mt20">Key observations</div>
+          <div class="takes">{takeaways.map((t, i) => (<div class="take"><span class="tn">{i + 1}</span><p><b class="inkb">{t[0]}.</b> {t[1]}</p></div>))}</div>
 
           <div class="deep">
-            <div class="eyebrow" style="margin:20px 0 6px">The 10 transmission cards — sourced evidence</div>
+            <div class="eyebrow mt20">The 10 transmission cards — sourced evidence</div>
             {cards.map((c2) => (
               <details class="dcard"><summary><div><div class="dc-t">{c2.title}<span class="dc-cat">{c2.category}</span></div><div class="dc-s">{c2.summary}</div></div><span class={`dconf ${confCls(c2.confidence)}`}>{c2.confidence}</span></summary>
                 <div class="dc-body">
                   <div class="kvrow"><div class="kv-k">Mechanism</div><p>{c2.mechanism}</p></div>
-                  <div class="prof-rows" style="margin-top:8px">
+                  <div class="prof-rows mt8t">
                     <div class="prof-r"><span class="prof-k">Magnitude</span>{c2.magnitude}</div>
                     <div class="prof-r"><span class="prof-k">Precedent</span>{c2.precedent}</div>
                   </div>
@@ -591,7 +591,7 @@ const charts = {
         </div>
       </details>
     ))}
-    {monCats.map((c) => (<details class="catmod"><summary><span class="cm-badge mon">{STATE_LABEL[c.state]}</span><span class="cm-title">{c.overviewTitle}</span><span class="cm-chan">{c.channels ? c.channels.slice(0, 2).join(' · ') : ''}</span></summary><div class="cm-body"><p class="tnote" style="margin:0">{c.summary}{c.watchingNote ? <span class="muted"> — {c.watchingNote}</span> : null}</p></div></details>))}
+    {monCats.map((c) => (<details class="catmod"><summary><span class="cm-badge mon">{STATE_LABEL[c.state]}</span><span class="cm-title">{c.overviewTitle}</span><span class="cm-chan">{c.channels ? c.channels.slice(0, 2).join(' · ') : ''}</span></summary><div class="cm-body"><p class="tnote m0">{c.summary}{c.watchingNote ? <span class="muted"> — {c.watchingNote}</span> : null}</p></div></details>))}
   </div>
   <p class="tnote deep"><b>Base rates &amp; decay:</b> each card weighs the event against history (median past move) and carries a shelf life — resolved catalysts archive to a timeline rather than lingering, structurally fighting recency bias.</p>
 </div></section>
@@ -602,13 +602,13 @@ const charts = {
   <p class="lead">Two confidences, kept distinct: <b>data confidence</b> (is the input reliable/fresh) and <b>attribution confidence</b> (do we believe the causal story). A figure can be Tier-1 data with low attribution — “OAS widened” is high-data; <i>why</i> is low. Interpretation is labeled and carries its own chip — never inheriting the data’s confidence.</p>
   <div class="legend-grid">
     <div class="legendbox"><div class="lg-h">Value types</div>{valueTypes.map(([k, d]) => (<div class="lg-row"><span class="vt">{k}</span><span>{d}</span></div>))}</div>
-    <div class="legendbox"><div class="lg-h">Source tiers</div>{sourceTiers.map(([k, d, ex]) => (<div class="lg-row"><span class="dconf" style="border-color:var(--cardline)">{k}</span><span><b style="color:var(--ink)">{d}</b> — {ex}</span></div>))}</div>
+    <div class="legendbox"><div class="lg-h">Source tiers</div>{sourceTiers.map(([k, d, ex]) => (<div class="lg-row"><span class="dconf tierchip">{k}</span><span><b class="inkb">{d}</b> — {ex}</span></div>))}</div>
   </div>
   <div class="deep">
-    <div class="dcallout" style="margin-top:14px"><div class="dc-h">Cadence discipline</div><p>Each module shows its own update clock — daily OAS series and weekly flows are never visually equated. A weekly flow next to a daily spread without cadence labels is a false-precision trap.</p></div>
-    <div class="tk-h" style="margin:18px 0 8px">Glossary</div>
+    <div class="dcallout mt14t"><div class="dc-h">Cadence discipline</div><p>Each module shows its own update clock — daily OAS series and weekly flows are never visually equated. A weekly flow next to a daily spread without cadence labels is a false-precision trap.</p></div>
+    <div class="tk-h mt18a">Glossary</div>
     <div class="glosslist">{gloss.map(([t, d]) => (<div><b>{t}</b> — {d}</div>))}</div>
-    <div class="tk-h" style="margin:18px 0 8px">Primary sources</div>
+    <div class="tk-h mt18a">Primary sources</div>
     <div class="srcgrid">{sources.map(([n, u]) => (<a class="srcpill" href={`https://${u}`} target="_blank" rel="noopener">{n} ↗</a>))}</div>
   </div>
   <p class="tnote">Research and analysis only — no investment recommendations, price targets, or personalized advice. Scenario tilts are conditional framework priors; correlation panels show rolling correlation precisely because it’s regime-dependent, not causal. ICE BofA OAS on FRED is non-commercial-use; agency studies are copyrighted — linked, attributed, quoted sparingly.</p>
@@ -623,6 +623,21 @@ const charts = {
 <footer><div class="wrap"><div class="fgrid"><div class="fbrand"><span class="wordmark">VEGA<i>READY</i></span><p>Volatility isn't risk. It's signal. The public macro-intelligence layer of JCJ Investing.</p></div><div class="fcol"><h4>The desk</h4><a href="/today">Today</a><a href="/catalysts">Catalysts</a><a href="/markets">Markets</a><a href="/structural/watch">Signals</a></div><div class="fcol"><h4>The firm</h4><a href="/about">About JCJ</a><a href="/briefings">Briefings</a><a href="mailto:GP@jcjinvesting.com">Contact</a></div></div><div class="legal">© 2026 JCJ Investing LLC. Research and intelligence, not investment advice. Items marked "feed pending" are placeholders for live feeds.</div></div></footer>
 
 <style>
+  /* O-4 cleanup: utility classes replacing inline styles (values preserved exactly) */
+  .fb-right{margin-left:auto}
+  .vmid{vertical-align:middle}
+  .panelnote{font-family:'Lora',serif;font-size:11px;color:var(--muted);margin-top:13px;line-height:1.6}
+  .mt8{margin:8px 0 6px}.mt14{margin:14px 0 6px}.mt16{margin-top:16px}.mt20{margin:20px 0 6px}.mt20a{margin:20px 0 8px}.mt22{margin:22px 0 6px}.mt22a{margin:22px 0 8px}.mb10{margin:0 0 10px}.m0{margin:0}.mt8t{margin-top:8px}.mt14t{margin-top:14px}.mt18a{margin:18px 0 8px}
+  .pt40{padding-top:40px}
+  .tierchip{border-color:var(--cardline)}
+  .tblwrap{overflow-x:auto}
+  .inkb{color:var(--ink)}
+  .xan2{margin-top:3px;opacity:.75}
+  .xa-v.pendv{color:var(--latent);font-size:14px}
+  /* confidence chips: colour + shape + text (never colour alone — O-4 glyph law) */
+  .dconf.high::before{content:"●";margin-right:4px;font-size:8px;vertical-align:1px}
+  .dconf.medium::before{content:"◐";margin-right:4px;font-size:8px;vertical-align:1px}
+  .dconf.low::before{content:"○";margin-right:4px;font-size:8px;vertical-align:1px}
   .orient{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-top:-6px}
   .falsify{background:color-mix(in srgb,var(--neg) 6%,var(--card));border:1px solid color-mix(in srgb,var(--neg) 22%,var(--cardline));border-radius:12px;padding:16px 20px}
   .fl-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--neg);margin-bottom:9px}
