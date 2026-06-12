@@ -1,0 +1,47 @@
+/* =============================================================================
+   Charcoal Steel skin — SCOPED to the equities desk via html[data-skin="steel"].
+   Owner pick 2026-06-11: approved combo WB8 "Charcoal Blue" (#13171D · Cream ·
+   Steel Blue · JCJ Gold). Overrides the desk.css :root (t1 Oxford) for these
+   pages only. Discipline: ONE warm accent (JCJ Gold) + one cool data tone
+   (Steel Blue, reserved strictly for data series) + semantic pos/neg.
+   Neutral charcoal canvas, cream ink, flat gold CTA with dark text.
+   ============================================================================= */
+html[data-skin="steel"]{
+  --canvas:#13171D;
+  --deep:#0C0F14;
+  --card:#1A202A;          /* clearly lifted off the canvas */
+  --cardline:#2B3442;      /* visible hairline — clean separation */
+  --ink:#F2EBDC;
+  --body:#D9D4C8;
+  --muted:#939BA8;
+  --eyeb:#F4C37D;          /* JCJ Gold — the single brand accent */
+  --struct:#6E89A8;        /* graphite steel — structural lines/labels, canvas family */
+  --data:#7C97B8;          /* Steel Blue — reserved strictly for data series */
+  --anchor:#1A2330;
+  --bench:#EDD3A1;         /* champagne benchmark */
+  --pos:#46C9A0;           /* semantic only */
+  --neg:#E2725B;           /* semantic only */
+  --warn:#E0B262;
+  --latent:#9AA5B1;
+  --emph:#EDD3A1;
+  --sx-anchor:#1A2330; --sx-anchorline:#2C3A4D;
+  --ctagold:#F4C37D; --ctafh:#F4C37D; --ctafc:#F4C37D;
+  /* layman chapter accents — all sanctioned palette hues (contract chart/role tokens), low-salience duty:
+     dividers, kickers and rules only — never running text, never backgrounds at strength */
+  --chA:#6E89A8;  /* I   Foundations — graphite steel (struct) */
+  --chB:#9D8CC4;  /* II  How crises work — annotation plum (retrospective duty per COLOR-RESERVE) */
+  --chC:#E0B262;  /* III Prices & confessions — desk amber (warn family) */
+  --chD:#5FA897;  /* IV  The map — verdigris */
+  --chE:#7C97B8;  /* V   The crowd & the bond market — steel blue (data) */
+  --chF:#F4C37D;  /* VI  The conflict — JCJ gold (the catalyst chapter owns the accent) */
+  --chG:#46C9A0;  /* VII Our discipline — verification green (pos) */
+  background:var(--canvas);
+}
+/* flat gold CTA — solid JCJ Gold + dark text. Covers BOTH markup patterns:
+   <a class="cta-frame"> (bare anchor) AND <span class="cta-frame"><a> (wrapper). */
+html[data-skin="steel"] .cta-frame{background:var(--eyeb);color:#241A05;border-radius:9px;padding:0;border:none}
+html[data-skin="steel"] a.cta-frame{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;font-family:'Fraunces',serif;font-size:15px;font-weight:600}
+html[data-skin="steel"] .cta-frame a{background:var(--eyeb);color:#241A05;font-weight:600}
+html[data-skin="steel"] .cta-frame:hover,
+html[data-skin="steel"] a.cta-frame:hover,
+html[data-skin="steel"] .cta-frame a:hover{background:#F8D49A;color:#241A05}
