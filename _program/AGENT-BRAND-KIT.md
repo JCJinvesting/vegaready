@@ -1,4 +1,4 @@
-# VegaReady — AGENT BRAND KIT v1.4
+# VegaReady — AGENT BRAND KIT v1.5
 
 **Status:** OPERATIVE brand law for any agent building or editing VegaReady pages. Drafted 2026-06-11 from the full `_program/` corpus + the as-built CSS; awaiting owner ratification (open items in §8).
 **Authority:** where this kit conflicts with `DESIGN-CONTRACT.md`, `APPROVED-THEMES.md`, or any trial doc, **this kit wins** — it exists because the corpus contradicts itself in ways that made agents fail. The corpus remains the historical register; consult it only for rationale, never for values.
@@ -124,6 +124,19 @@ The recurring failure: variable-length text squeezed into a narrow box ragged-wr
 3. **The stacked-label law:** key→value rows never use a fixed-width inline label (text hang-wraps beneath it). Labels render as small-caps **block** lines above their values.
 4. **Stepper minimums:** timeline/stepper columns need `minmax(≥185px, 1fr)`; let auto-fit wrap rather than crush captions.
 
+### 4e · The Wayfinder law (v1.5 — owner-ratified pattern A3)
+
+Every page below root in the masthead system carries a **Wayfinder** (`src/components/Wayfinder.astro`) directly after `.masthead`, before the freshbar. It is the site's forward-looking breadcrumb: the **trail** (left) says where you are; the **sibling rail** (right) shows every lateral/forward move from here, always visible, one click away.
+
+1. **Anatomy is fixed:** one 34px row inside `.wrap` — Lora small-caps crumb trail (links muted → ink on hover, current segment bold ink, `▸` separators in `--latent`) + a right-aligned pill rail (transparent pills, hairline on hover; current pill gets `--eyeb` tinted fill + border + `aria-current="page"`). No JS, no dropdowns — every pill is a plain `<a>`.
+2. **Rail content by level:** on a hub, the rail lists its **children** (the desks). On a desk, its **siblings** (the other desks, same edition). On a sub-page, its sibling sub-pages. The layman wing rails only within the layman edition plus an "All editions" exit.
+3. **Honesty tags ride the rail:** any pill pointing at an in-build page carries the dashed `in build` tag — navigation never oversells a destination (§5-13 extends to links).
+4. **Edition stays in the freshbar:** the Layman⇄Analyst toggle does NOT move into the Wayfinder; one row, one job.
+5. **Mobile:** rail scrolls horizontally (hidden scrollbar); trail drops its first segment when 3+ deep, keeping parent + current.
+6. **Skins style it for free:** all colour comes from desk tokens (`--cardline/--muted/--ink/--latent/--eyeb`) — never add per-desk Wayfinder colour rules.
+
+Legacy pages (`/today`, `/catalysts`, front door, `/dashboard`) keep their existing rails until the front-door loop migrates them to the masthead system — do not bolt the Wayfinder onto the old `Header.astro` design.
+
 **Canonical component anatomies (copy these, don't reinvent):**
 - **Decoder row** (`.dec-row`): header line (Fraunces term + 7px struct square tick) → full-width plain body (14px/1.6) → optional full-width meta footer per the chip law. No side columns; no empty wells.
 - **Chapter nav pill** (`.chnav a`): body-ink text; ONLY the Playfair roman numeral carries the chapter accent; accent surfaces in the border on hover. Color as accent system, never rainbow text. Label line sits as its own block above the pills.
@@ -197,6 +210,7 @@ When you find a conflict between this kit and the reference component, **the kit
 **O-6 (note, owner-stated 2026-06-11):** desk palette picks are **stage approvals, not final brand lock** — the owner may re-pick from the 9 approved combos (or direct a new trial) at any point before a desk ships to production. Agents treat a chosen skin as current-working, keep it cleanly swappable (all colour in the skin file, none in the component), and never describe a palette as "final."
 
 **Changelog:**
+- v1.5 (2026-06-12) — added §4e Wayfinder law (owner-ratified pattern A3: crumb trail + always-visible sibling rail on every masthead-system page below root; honesty tags on in-build links; no-JS rule; legacy pages excluded until the front-door loop). Cause: site shipped with three coexisting header systems and a breadcrumb that existed on one page only.
 - v1.4 (2026-06-12) — added §4d anti-narrow-wrap laws (chip law, reading-measure law, stacked-label law, stepper minimums) + canonical anatomies for decoder rows, chapter-nav pills, section-header dashes and chapter accents. Cause: the dec-a header chip ragged-wrapped scale-length text; 3-across cards ran body prose at ~5 words/line.
 - v1.3 (2026-06-12) — added §4c Skim Completeness Law + `skim-only` primitive + affordance rules. Cause: equities layman Skim was a residual stub (7 thin sections) after Deep grew 10×. Pending application: credit layman Skim + both analyst Skims.
 - v1.2 (2026-06-11) — added §7 render-integrity laws (no HTML-string interpolation, set:html wrapper spans, no raw generated keys, status-tagged scenario chips) + built-page grep and fresh-eyes pass in the checklist. Cause: nine escaped gloss spans, a fragmented 30-second read, raw `hormuz_closure` chips and undefined scenario semantics reached the owner on staging.

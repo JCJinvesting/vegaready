@@ -6,8 +6,28 @@ import '../styles/skin-steel.css';
 import { indexShock, indexNote, sectorMap, sectorScenario, sectorPrecedent, earningsSummary, passThrough, factorRotation, factorObservations, countryScenario, gcc, gccHedge, deleveraging, cryptoSpillover, scenarioTrades, cards, upgradedConfidence, proxyOnly, dataQuality, relatedSectors } from '../data/analysis/equities.js';
 import { metrics, lastUpdated } from '../data/analysis/watchmetrics.js';
 import { CATALYSTS, STATE_LABEL } from '../data/catalysts';
+import Wayfinder from './Wayfinder.astro';
 
 const { mode = 'analyst' } = Astro.props;
+
+// Wayfinder (kit §4e): trail = where you are; rail = every lateral move from here.
+const wfTrail = mode === 'layman'
+  ? [{ label: 'Layman', href: '/layman' }, { label: 'Markets', href: '/markets' }, { label: 'Equities' }]
+  : [{ label: 'Markets', href: '/markets' }, { label: 'Equities' }];
+const wfRail = mode === 'layman'
+  ? [
+      { label: 'Equities', href: '/layman/markets/equities', current: true },
+      { label: 'Credit', href: '/layman/markets/credit' },
+      { label: 'All editions', href: '/layman' },
+    ]
+  : [
+      { label: 'Equities', href: '/markets/equities', current: true },
+      { label: 'Credit', href: '/markets/credit' },
+      { label: 'Dollar & FX', href: '/markets/gold-fx' },
+      { label: 'Commodities', href: '/markets/energy' },
+      { label: 'Crypto', href: '/markets/crypto' },
+      { label: 'Cross-asset', href: '/markets/cross-asset' },
+    ];
 
 const byNo = {}; const byId = {}; metrics.forEach(m => { if (m.signalNo) byNo[m.signalNo] = m; byId[m.id] = m; });
 const fmt = (m) => (m ? `${m.value}${m.unit && m.unit !== 'count' ? ' ' + m.unit : ''}` : '—');
@@ -704,6 +724,8 @@ const ovKnow = [
   <a class="wordmark" href="/today">VEGA<i>READY</i></a>
   <nav class="mast-right" aria-label="Primary"><a class="navlink" href="/today">Today</a><a class="navlink" href="/catalysts">Catalysts</a><a class="navlink on" href="/markets">Markets</a><a class="navlink" href="/structural/watch">Signals</a><a class="navlink" href="/about">About</a><span class="cmdk" aria-hidden="true">⌘K&ensp;Search</span></nav>
 </div></header>
+
+<Wayfinder trail={wfTrail} rail={wfRail} />
 
 <div class="freshbar"><div class="wrap">
   <span class="fb-i"><span class="fb-dot"></span>Data through <b>{dataThrough}</b></span>

@@ -1,5 +1,6 @@
 ---
 import '../../styles/desk.css';
+import Wayfinder from '../../components/Wayfinder.astro';
 import iwt from '../../data/iwt-bundle.json';
 import { freshness } from '../../data/analysis/freshness.js';
 import { metrics, summary, lastUpdated } from '../../data/analysis/watchmetrics.js';
@@ -110,6 +111,18 @@ const dataThrough = lastUpdated || freshness.asOf || '—';
   </div>
 </header>
 
+<Wayfinder
+  trail={[{ label: 'Markets' }]}
+  rail={[
+    { label: 'Equities', href: '/markets/equities' },
+    { label: 'Credit', href: '/markets/credit' },
+    { label: 'Dollar & FX', href: '/markets/gold-fx' },
+    { label: 'Commodities', href: '/markets/energy' },
+    { label: 'Crypto', href: '/markets/crypto' },
+    { label: 'Cross-asset', href: '/markets/cross-asset' },
+  ]}
+/>
+
 <div class="freshbar">
   <div class="wrap">
     <span class="fb-i"><span class="fb-dot"></span>Data through <b>{dataThrough}</b></span>
@@ -117,8 +130,6 @@ const dataThrough = lastUpdated || freshness.asOf || '—';
     <span class="fb-i">Live as of <b id="liveAsOf">checking…</b></span>
   </div>
 </div>
-
-<nav class="crumb" aria-label="Breadcrumb"><div class="wrap"><span><b>Markets</b> <span class="sep">▸</span> Cross-asset</span></div></nav>
 
 <!-- HERO -->
 <section class="hero">

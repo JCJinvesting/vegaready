@@ -3,6 +3,7 @@ import '../../../styles/desk.css';
 import '../../../styles/desk-content.css';
 import '../../../styles/desk-v2.css';
 import '../../../styles/skin-steel.css';
+import Wayfinder from '../../../components/Wayfinder.astro';
 const modules = [
   ['Episode dossiers', 'One page per funding-stress window — 1998 LTCM · 2007 Quant Quake · 2008 GFC · 2011 euro sovereign · 2020 dash-for-cash · 2022 LDI · 2023 SVB — with full factor prints, the plumbing record, timeline, and the falsifier that ended each read.'],
   ['Factor-print explorer', 'Market / SMB / HML / RMW / CMA and defensive-vs-cyclical ETF spreads per episode, recomputed from the public Kenneth French dailies so every number is reproducible.'],
@@ -23,6 +24,14 @@ const modules = [
     <a class="wordmark" href="/today">VEGA<i>READY</i></a>
     <nav class="mast-right" aria-label="Primary"><a class="navlink" href="/today">Today</a><a class="navlink" href="/catalysts">Catalysts</a><a class="navlink on" href="/markets">Markets</a><a class="navlink" href="/structural/watch">Signals</a><a class="navlink" href="/about">About</a></nav>
   </div></header>
+  <Wayfinder
+    trail={[{ label: 'Markets', href: '/markets' }, { label: 'Equities', href: '/markets/equities' }, { label: 'Episode library' }]}
+    rail={[
+      { label: 'Episodes', href: '/markets/equities/episodes', current: true, tag: 'in build' },
+      { label: 'Factor lab', href: '/markets/equities/factor-lab', tag: 'in build' },
+      { label: 'Plumbing', href: '/markets/equities/plumbing', tag: 'in build' },
+    ]}
+  />
   <section class="dsec stubtop"><div class="wrap">
     <div class="eyebrow">Markets · Equities · Episode library</div>
     <h1 class="stub-h1">The case files.</h1>

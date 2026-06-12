@@ -2,6 +2,7 @@
 import '../../styles/desk.css';
 import '../../styles/desk-content.css';
 import '../../styles/desk-v2.css';
+import Wayfinder from '../../components/Wayfinder.astro';
 const editions = [
   { t: 'Equities', href: '/layman/markets/equities', d: 'Is the rally as healthy as it looks? Seven chapters: the dials, how crises actually work, what stocks cost, the map of the market, the crowd, the conflict — and what would change our mind.', live: true },
   { t: 'Credit', href: '/layman/markets/credit', d: 'How nervous are lenders? The market for borrowed money is the stock market’s early-warning system — spreads, the credit cycle, and the Gulf dollar squeeze, in plain words.', live: true },
@@ -20,6 +21,14 @@ const coming = ['Today — the regime, in plain words', 'Cross-Asset', 'Energy &
     <a class="wordmark" href="/today">VEGA<i>READY</i></a>
     <nav class="mast-right" aria-label="Primary"><a class="navlink" href="/today">Today</a><a class="navlink" href="/catalysts">Catalysts</a><a class="navlink" href="/markets">Markets</a><a class="navlink" href="/structural/watch">Signals</a><a class="navlink" href="/about">About</a></nav>
   </div></header>
+  <Wayfinder
+    trail={[{ label: 'Layman' }]}
+    rail={[
+      { label: 'Equities', href: '/layman/markets/equities' },
+      { label: 'Credit', href: '/layman/markets/credit' },
+      { label: 'Analyst editions', href: '/markets' },
+    ]}
+  />
   <section class="dsec laytop"><div class="wrap">
     <div class="eyebrow">The Layman Edition</div>
     <h1 class="led-h1">VegaReady,<br/><em>in plain words.</em></h1>
