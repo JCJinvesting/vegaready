@@ -1,6 +1,7 @@
 # VegaReady Data Backend Architecture · v3
 
 **Status:** LOCKED, build-ready (owner decisions O-14…O-17, 2026-06-13).
+**Sequencing (O-18):** this backend is built **after** the website is textually complete across desks — order is text/content first, backend second, cleanup/context-improvement third. It migrates underneath the unchanged JSON contract, so deferring it costs nothing. Tiles whose data is already fetched (FRED) are wired in the text phase; the R-06 connectors (DTCC/ETF/publications) are built here in the backend phase to avoid Node→Python rework.
 **Audience:** any agent or model that builds, extends, or operates the data layer. **This document is self-contained — you should not need the originating chat to act correctly.** If something here conflicts with your instinct, this doc and the canon in §2 win.
 
 > **NEW-AGENT READ-ME (the 60-second orientation).** VegaReady is a public, dual-audience, catalyst-neutral cross-asset market-intelligence website (Astro → Cloudflare Workers, static). Its *product* is **integrity**: it never invents a number, never shows a stale number as fresh, always labels methodology, and shows an honest "feed pending" rather than a fabricated value. This backend feeds the desks' data tiles. **The website reads exactly one small committed JSON file per desk and nothing else** — that file is a sacred contract (§9). Everything else here (Postgres, Neo4j, Python, Docker) runs on the owner's machine and never touches the Cloudflare deploy path. Build behind that JSON contract and you cannot break the live site.
@@ -199,7 +200,7 @@ Per desk, the backend writes `src/data/feeds/<desk>.json` that the Astro compone
   "generatedAt": "ISO",
   "posture": "O-14 attribution-only",
   "series": {
-    "hyOas": { "id","label","attr","display","state",        // state: live|latest_published|feed_pending|stale
+    "hyOas": { "id","label","attr","display","state",        // state: live|latest_published|feed_pending|stale|source_identified
                "asOf","value","bp","prevClose","chgBp","chg1w","chg1m",
                "revised","percentile","z","window":{start,end,n,label},
                "hist60":[[date,value]], "unitsNote" }
@@ -212,6 +213,8 @@ Per desk, the backend writes `src/data/feeds/<desk>.json` that the Astro compone
 ```
 
 Rules: every series/derived item carries `attr` (attribution) + `asOf`; `state` drives the tile chip; nulls never render as `0` or `.`. Adding `schemaVersion` is the one change W1.6 makes — it future-proofs the contract. Consumers (the desk components) read via a thin `src/data/feeds/<desk>.js` helper, not the JSON directly.
+
+**Two extensions from R-06 (add when those tiles are built):** (1) a fifth `state` value **`source_identified`** — a fetch path is known but the connector isn't built yet (the text phase uses this for the four R-06 tiles; more specific than `feed_pending`). (2) a **two-row composite tile** shape for "named figure + daily proxy": `{ named:{value,asOf,source}, proxy:{value,asOf,formula,caveat} }` — rendered as two labeled rows, never merged, the proxy always carrying its "not the canonical index" caveat.
 
 ## 10 · Derived metrics & data-quality assertions
 

@@ -52,6 +52,21 @@ R-06 (`_research/RETURNS/R-06-*`, ingested 2026-06-13) found honest fetch paths 
 
 **Operational gotchas (carry into the connectors):** asset-manager PDFs return **403 to non-browser user-agents** (send a browser UA); per-period filenames vary (poll the landing/tag page, not one URL); varnish-api is an internal endpoint (medium-high fragility — wrap in the §10 gates + `stale` fallback). All values still pass the §5/§10 bitemporal + DQ gates; all carry attribution + as-of per O-14.
 
+### 2.6.1 · Refinements from the second deep-dive pass (integrate these into the connectors)
+
+1. **CDX — resolve on-the-run dynamically; never hardcode the UPI.** The UPIs (`QZ3WVVQG5T8K` IG / `QZHH8NT767RX` HY) are series-specific and **change every roll** (IG 20-Mar/Sep, HY 27-Mar/Sep). Hardcoding repeats the S&P/LSTA silent-staleness trap. The connector must each run pick the dominant `Expiration Date` + dominant-UPI cluster, and **alert if the dominant expiration shifts or the prior UPI returns zero rows** (= a roll happened). Use `Cleared='I'` prints, **median** `Spread-Leg 1` (one 1,082,450bp malformed print was seen), and surface the `Index factor` (<1 ⇒ the series has taken defaults — same defaulted-exit honesty as the cash HY index).
+2. **CDX — cadence is build-bounded.** The site rebuilds 3×/day, so there is **no value polling DTCC every 120s** for a static page — capture the latest cumulative/ticker value at each build; label "as of [time], 15-min delayed." (120s polling only matters if we later add live features.) Fallback source: **ICE Trade Vault** SDR ticker if DTCC's format breaks.
+3. **CDX — ground-truth acceptance test.** The backend connector's acceptance gate is to **reproduce IG ≈ 50.7bp / HY ≈ 108bp from the 2026-06-12 file** — converts the tile from a research bet to a verified pipeline.
+4. **Distress proxy — match the Treasury, and label exactly what it is.** Compute the HYG proxy as MV-weighted share with (`yieldToWorst` − **maturity-matched** CMT Treasury) ≥ 1000bp, not a flat benchmark — so add the CMT curve to the FRED series (`DGS1`/`DGS2`/`DGS3`/`DGS5`/`DGS7`/`DGS20`/`DGS30`, joining the existing `DGS10`). Label precisely: "a **yield-spread** proxy, not the OAS-based distress ratio" — it is a proxy of a proxy and the contract must say so.
+5. **Holdings files may unlock bonus tiles — verify the rating field.** If the HYG/EMB BlackRock holdings JSON exposes a per-bond **credit-rating** field, the *same daily fetch* yields honest proxies for **CCC-share-of-HY** and **fallen-angel** monitoring (both currently feed-pending in §2 §4), and EMB's `Location`/`countryOfRisk` yields an **EM-sovereign-spread-by-country** view. Verify the field at build; if present, these are near-free additions.
+6. **Complete the HY rating ladder (optional).** FRED also carries **Single-B OAS `BAMLH0A2HYB`** — adding it gives the full BB→B→CCC cohort ladder (we already fetch BB and CCC), a cleaner decompression read.
+7. **Named-publication connectors = redundant panels, not single sources.** For distress, EMBI-GD, default rate, and loan DM, poll a **panel** of 2–3 publications (e.g. Fridson/S&P + Eaton Vance; TCW + Fort Washington + SSGA) and take the freshest with cross-check — no single fragile URL is load-bearing. These are the **highest-fragility** connectors (per-period filenames, 403-UA, PDF parsing) → strongest candidates for O-9 human-assisted refresh and for the backend phase rather than the current Node pipeline.
+8. **The two-row tile is a new display primitive.** "Named figure + daily proxy" needs a composite shape in the JSON contract (backend doc §9) — a `named` block (value/asOf/source) and a `proxy` block (value/asOf/formula/caveat), rendered as two labeled rows, never merged. Add to the contract before W2 writes these tiles' structure.
+
+### 2.6.2 · Still genuinely pending after R-06 (→ future prompt P-07)
+
+R-06 covered only the four named tiles. These credit tiles remain feed-pending for **availability** and are out of R-06's scope: downgrade/upgrade ratio, CCC-migration, fallen-angels (unless §2.6.1-5 holdings-rating unlocks it), IG/HY fund flows (ICI), MOVE (rate vol), and dollar x-ccy basis. Honest `feed_pending` with reason tooltips; bundle into a **P-07** research prompt later. Do not imply R-06 solved more than its four.
+
 ## 3 · Production-risk facts (unchanged — all accuracy, all still coded)
 
 1. ICE OAS publishes in **percent** — ×100, label bps (the #1 deployment bug).
@@ -83,6 +98,14 @@ R-06 (`_research/RETURNS/R-06-*`, ingested 2026-06-13) found honest fetch paths 
 | IG/HY fund flows (§6) · MOVE (§7) · x-ccy basis (§8) | not researched — P-02b |
 | EMBI (§1 KPI, live) | variant label + attribution text |
 | fp-note copy | corrected to name attribution as the policy ("sources named on every tile") |
+
+## 4.5 · Program sequencing (O-18, owner-set 2026-06-13): text-complete first, backend last
+
+The Postgres/Neo4j backend is sequenced **after all desk content is textually complete.** Order: **(1)** finish the website's text/content across desks (credit data tiles + remaining desks) on the existing Node+JSON pipeline; **(2)** then build the data backend (it migrates underneath the unchanged JSON contract); **(3)** then a cleanup/context-improvement pass.
+
+What this means concretely for the credit data tiles, to avoid Node→Python rework:
+- **Now (no backend):** wire the tiles whose data we **already fetch** (FRED IG/HY/cohort OAS, compression, percentile, Treasury) — pure frontend, zero rework, the JSON contract is unchanged by the future backend. **Write the full TEXT/structure for *all* data tiles**, including the four R-06 ones: labels, methodology notes, two-row scaffolds, tooltips, and the layman plain-words explainers ("what CDX/the distress ratio/EMBI/loan spreads even are"). The four R-06 tiles render an honest **`source_identified`** state — more specific than `feed_pending`: it names the source (DTCC / HYG proxy / EVLN) and says "live figure wires in with the data backend." The desk is then *textually complete and honest* without building fragile scrapers now.
+- **Backend phase (later):** build the R-06 connectors (DTCC, ETF varnish-api, publication panels) + SIFMA + migrate the FRED connectors, in the Python/Postgres world where the gates, bitemporal store, and fragility-handling belong. Flip the four tiles from `source_identified` to `live`/`latest_published` with no text changes.
 
 ## 5 · Architecture — the accuracy-gated pipeline
 
@@ -178,6 +201,7 @@ Equities plumbing feeds, ICI flows, MOVE, x-ccy basis, interest coverage, CDX en
 ---
 
 ### Changelog
+- **v10 (2026-06-13)** — Second deep-dive pass on R-06 + **O-18 sequencing** (text-complete first, backend last). Added §4.5 sequencing (FRED tiles wired now + all tile TEXT now incl. four R-06 tiles in a new honest `source_identified` state; connectors built in the backend phase to avoid Node→Python rework). Added §2.6.1 refinements (dynamic on-the-run UPI resolution + roll alert, build-bounded CDX cadence, ground-truth acceptance test, maturity-matched-Treasury distress proxy + exact "yield-spread proxy" label, holdings-rating bonus tiles, Single-B `BAMLH0A2HYB` ladder, redundant publication panels, two-row tile JSON primitive) and §2.6.2 (still-pending → P-07).
 - **v9 (2026-06-13)** — **R-06 ingested.** All four formerly-pending tiles now have honest fetch paths (new §2.6 connector specs); verdict board updated: **CDX 🔴→🟢 LIVE** (DTCC public dissemination, empirically verified IG≈50.7/HY≈108bp), **HY distress 🔴→🟢** (HYG proxy + named, drop JNK), **EMBI-GD upgraded** (EMB Core proxy + named two-row), **loan 🟡→🟢** (Morningstar screener level — verify — + EVLN PDF spread). Concrete endpoints/fields/labels/gotchas captured. Two disputes flagged for manual verification (Morningstar broad-index public path; already-resolved HY-as-spread). P-06 → ingested in INDEX.
 - **v8 (2026-06-13)** — Backend doc rewritten to **v3 (self-contained for any agent/model)**: added vision/context/goals, non-negotiable guardrails (integrity contract, sacred JSON contract, never-break-build, Postgres-sole-truth, secrets, staging/collision protocols, dual-audience), canon cross-refs, repo layout + Docker-image reality + schema migrations, the missing `series` registry table, the connector interface for future feeds, the versioned display-JSON contract spec, data-quality assertions, idempotency/continuity/backup/timezone notes, and a glossary. No engine change — fills handoff gaps.
 - **v7 (2026-06-13)** — Owner decision **O-17**: backend engine locked to two-engine Postgres(Timescale+AGE+pgvector)+Neo4j on Docker, local-first→managed, full ML stack (XGBoost/LightGBM+SHAP, HMM, pgvector analog, LLM curator). Backend doc rewritten to v2 (concrete bitemporal DDL, event-table schema with constraints replacing YAML, ML sequence, daily-ops RACI, machine probe). Backend waves now W1.6–W1.9.
