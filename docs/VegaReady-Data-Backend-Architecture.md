@@ -122,5 +122,25 @@ Data volume reality check: daily macro series are featherweight (~50 KB/yr for a
 
 These slot *before* the visible W2 credit tiles only if you want the backend first; otherwise W2 ships on the current JSON and the backend migrates underneath it later (the contract makes either order safe).
 
+## 8 · Authoring robustness + the substrate upgrade path (O-16)
+
+**Why not just raw YAML for events.** YAML is whitespace-fragile, has type-coercion footguns (the "Norway problem": `no`→false, mangled dates/versions), and enforces no schema — errors surface late and silently. But its readability is the point for human-curated events. So we *harden* rather than replace: **author in YAML (or TOML), validate on load with a JSON Schema + referential-integrity checks** (linked `series_id` must exist; enums/dates legal; required fields present — fail loudly). The file is the human interface; the DuckDB store is the source of truth for querying. This kills ~90% of YAML's footguns without losing git-reviewability.
+
+**The substrate ladder — each rung is free/open and added only when its trigger fires (paid tiers buy managed-ops/scale we don't need, not capability):**
+
+| Need that triggers it | Add | Notes |
+|---|---|---|
+| (now) analytical store, daily data | **DuckDB + Parquet** | confirmed; embedded, no ops |
+| live server / concurrent writes | PostgreSQL + TimescaleDB | only if we leave the static-site model — we don't plan to |
+| intraday tick / high-freq holdings | QuestDB or **ArcticDB** | daily cadence doesn't need these |
+| the connection-graph becomes the primary object (fuse credit events with the `/connections` causal map + IWT cascades) | **KùzuDB** (embedded, Cypher) or Neo4j (server, richer ecosystem) | start with DuckDB link-tables + recursive queries; graduate when the network is large/dense |
+| "what does today resemble?" analog retrieval | **LanceDB** (embedded vector DB) + episode embeddings | honest by construction — retrieves real precedents, doesn't fabricate; pgvector if on Postgres |
+| anomaly detection / regime ID | robust z-scores, STL, **Hidden Markov / Markov-switching** | interpretable workhorses, not black boxes |
+| tabular prediction (if wanted) | **XGBoost/LightGBM + SHAP** | beat LSTMs on our data size and stay explainable |
+| draft notes / weekly digest / tag suggestions | **LLM as curator-assistant** | human ratifies; aligns with the research loop |
+| deep-learning forecasters | (defer) temporal models | only with bitemporal-correct backtests; presented as one input with uncertainty, never "the answer" |
+
+**Integrity guardrail for all ML:** the site's brand is explainable, humble reasoning. ML *assists* the human curator and *retrieves precedents*; it never replaces the "why" with an opaque prediction. The bitemporal store (§2) is the prerequisite that makes any honest ML evaluation possible (no look-ahead bias). Forecasts are always "resembles / historically followed," never "will."
+
 ---
-*Recorded under O-15. The R-02 credit-feeds plan (`docs/VegaReady-R02-Credit-Feeds-Plan.md`) references this as its data layer. Engine details live here; desk-specific tile work lives in each desk's plan.*
+*Recorded under O-15 (backend) and O-16 (authoring robustness + substrate ladder). The R-02 credit-feeds plan (`docs/VegaReady-R02-Credit-Feeds-Plan.md`) references this as its data layer. Engine details live here; desk-specific tile work lives in each desk's plan.*
