@@ -605,6 +605,18 @@ const charts = {
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>The ladder of risk</h2><p>Every borrower gets a grade. The lower the grade, the more they pay — and the harder they fall when the mood turns.</p></div>
+  <div class="lay-ladder">
+    <div class="ld-rung r1"><div class="ld-rate">AAA–A</div><div class="ld-body"><div class="ld-name">Blue-chip — the sturdiest borrowers</div><div class="ld-anchor">pays almost nothing extra; first place money hides in a scare</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r2"><div class="ld-rate">BBB</div><div class="ld-body"><div class="ld-name">The edge of “investment-grade”</div><div class="ld-anchor">one downgrade from junk — the “fallen-angel” line everyone watches</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r3"><div class="ld-rate">BB</div><div class="ld-body"><div class="ld-name">Top of high-yield — decent, not safe</div><div class="ld-anchor">the best of the junk tier; first to be bought when nerve returns</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r4"><div class="ld-rate">B</div><div class="ld-body"><div class="ld-name">Mid high-yield — real risk</div><div class="ld-anchor">needs open markets to keep refinancing its debt</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r5"><div class="ld-rate">CCC</div><div class="ld-body"><div class="ld-name">Distressed — the shakiest, near the edge</div><div class="ld-anchor">paid hugely — <i>if</i> they survive; where stress shows up first</div><div class="ld-bar"></div></div></div>
+  </div>
+  <p class="lay-prov">The lower the rung, the wider the spread — and the bigger the swing in a sell-off. <a class="lay-go" href="/markets/credit#cohorts">See the live spread for each rating →</a></p>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
   <div class="lay-sech"><h2>Who’s helped, who’s exposed</h2><p>Under the current Gulf-conflict episode — and mostly at the government/funding edge so far, not big US companies.</p></div>
   <div class="lay-wl">
     <div class="lw-col lw-help"><div class="lw-h">Helped</div><ul>{ovHelped.map((r) => (<li><b>{r[0]}</b>{r[1]}</li>))}{ovHelpedDeep.map((r) => (<li class="deep"><b>{r[0]}</b>{r[1]}</li>))}</ul></div>
@@ -1046,6 +1058,18 @@ const charts = {
   .lay-twin{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
   .lay-twin .lay-call{margin-top:0}
   @media (max-width:640px){ .lay-twin{grid-template-columns:1fr} }
+  /* CW4-L4: ratings ladder */
+  .lay-ladder{display:grid;gap:8px;margin:6px 0 0}
+  .ld-rung{display:grid;grid-template-columns:66px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--cardline);border-radius:10px;padding:11px 16px}
+  .ld-rate{font-family:'Fraunces',serif;font-size:16px;font-weight:700;text-align:center}
+  .ld-name{font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.3}
+  .ld-anchor{font-size:12px;color:var(--muted);font-style:italic;margin-top:1px;line-height:1.4}
+  .ld-bar{height:6px;border-radius:3px;margin-top:8px;max-width:560px}
+  .ld-rung.r1 .ld-rate{color:var(--pos)} .ld-rung.r1 .ld-bar{width:14%;background:var(--pos)}
+  .ld-rung.r2 .ld-rate{color:var(--bench)} .ld-rung.r2 .ld-bar{width:32%;background:var(--bench)}
+  .ld-rung.r3 .ld-rate{color:var(--warn)} .ld-rung.r3 .ld-bar{width:50%;background:var(--warn)}
+  .ld-rung.r4 .ld-rate{color:var(--neg)} .ld-rung.r4 .ld-bar{width:70%;background:color-mix(in srgb,var(--neg) 80%,#000)}
+  .ld-rung.r5 .ld-rate{color:var(--neg)} .ld-rung.r5 .ld-bar{width:94%;background:var(--neg)}
   .lay-call{margin-top:14px;background:color-mix(in srgb,var(--eyeb) 7%,var(--card));border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;line-height:1.62;color:var(--body)}
   .lay-call b{color:var(--ink)}
   @media (max-width:560px){ .laych{grid-template-columns:1fr;gap:6px} .laych .lc-rom{font-size:26px} .lr-row{grid-template-columns:1fr;gap:6px} .lr-v{text-align:left} }
