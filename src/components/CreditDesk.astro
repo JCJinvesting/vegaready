@@ -50,6 +50,23 @@ const compBpTxt = (hyBp != null && igBp != null) ? (hyBp - igBp) : null; // gap,
 const bpToX = (b) => 40 + Math.min(Math.max(b, 0), 1200) / 1200 * 600;
 const hyX = (hyBp != null) ? bpToX(hyBp) : null;
 const igX = (igBp != null) ? bpToX(igBp) : null;
+// ── Layman SKIM tier (CW5): 9-chapter digest + remember-three closer ──
+const skimDigest = [
+  ['I', 'chA', 'A spread is the extra rent on risky borrowing. Today it’s low — calm, but stretched, with little cushion if the mood turns.'],
+  ['II', 'chB', 'Boom → confidence → stress → defaults → repair. Defaults come last, so the quiet early warnings — refinancing strain, downgrades, outflows — matter most.'],
+  ['III', 'chC', 'Today’s spread sits in the “calm” band, far from crisis levels — but you’re paid little for the risk, and the shaky tail is quietly widening.'],
+  ['IV', 'chD', 'From blue-chip to CCC, the lower the grade the more they pay and the harder they fall. Stress always shows at the bottom first.'],
+  ['V', 'chE', 'Carry, quality and momentum drive returns — but chasing yield, value and carry is often one bet. Quality and momentum are what truly diversify.'],
+  ['VI', 'chF', 'Dealers’ shock-absorber shrank after 2008. When the safest bonds are the cheapest, it’s a cash scramble — not a default scare.'],
+  ['VII', 'chG', 'Stocks and bonds usually move opposite — until they don’t (2022). Each shock picks different winners; in a true panic, everything moves as one.'],
+  ['VIII', 'chH', 'A faraway conflict reaches US credit through the plumbing of dollars — hitting emerging markets, sparing US blue-chips. Watch for central-bank swap lines.'],
+  ['IX', 'chI', 'We write down what would prove us wrong, what we’re watching, and — honestly — what we can’t yet show you live.'],
+];
+const remember3 = [
+  'Watch the <b>gap between risky and safe borrowing</b> — a widening spread is the first alarm.',
+  'Ask whether a sell-off is a <b>cash scramble or real default fear</b> — when the safest bonds are cheapest, it’s the plumbing, not the companies.',
+  '<b>Defaults confirm trouble, they don’t predict it</b> — the quiet early signs always come first.',
+];
 
 // live credit-regime instruments (registry §2 = credit/funding)
 const eq = [{ k: 'EM sovereign · EMBI', m: byNo['2.1'] }, { k: 'Flight-to-quality cash', m: byNo['2.2'] }, { k: 'Gulf UST recycling', m: byNo['2.3'] }];
@@ -494,6 +511,25 @@ const charts = {
   </div>
 </div></section>
 
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="skbanner">You’re reading the <b>Skim</b> — the 3-minute version. The Deep read opens all nine chapters (~20 minutes): the visuals, the worked examples, and where every number comes from. <button class="sk-go" data-godeep>Switch to Deep →</button></div>
+  <div class="sk60">
+    <div class="sk60-h">Credit in 60 seconds</div>
+    <p class="sk60-call"><b>The call:</b> lenders are calm but stretched. The extra interest charged on risky borrowing is low — there’s little cushion if the mood turns. The Gulf strain is landing on emerging-market funding, not big US companies.</p>
+    <div class="sk60-grid">
+      <div class="sk60-c"><span class="sk60-v">{hyBp != null ? `${hyBp} bp` : '—'}</span><span class="sk60-l">extra interest on risky borrowing — low, near the calm end</span></div>
+      <div class="sk60-c"><span class="sk60-v">{compBpTxt != null ? `${compBpTxt} bp` : '—'}</span><span class="sk60-l">the gap between risky &amp; safe — narrow means relaxed lenders</span></div>
+      <div class="sk60-c"><span class="sk60-v">{fmt(byNo['2.1'])}</span><span class="sk60-l">emerging-market government risk — where stress shows first</span></div>
+    </div>
+    <p class="sk60-w"><b>Watch this week:</b> if that gap starts widening week over week, money is fleeing to safety — and this desk’s whole read changes (see “What would change our mind”).</p>
+  </div>
+</div></section>
+
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="lay-sech"><h2>The nine chapters, in nine lines</h2><p>The whole Deep read, compressed. Tap any chapter to open the full version.</p></div>
+  <div class="skdigest">{skimDigest.map((d, i) => (<a class={`skd-row ${d[1]}`} href={`#ch-${i + 1}`}><span class="skd-n">{d[0]}</span><p>{d[2]}</p><span class="skd-go">open →</span></a>))}</div>
+</div></section>
+
 <section class="lay-sec lay-chap"><div class="wrap">
   <div class="laych chA" id="ch-1"><span class="lc-rom">I</span><div><span class="lc-bar"></span><div class="lc-t">Foundations</div><p>What credit is, what a spread actually tells you, and where lenders stand today.</p></div></div>
 </div></section>
@@ -632,6 +668,7 @@ const charts = {
 
 <section class="lay-sec lay-chap"><div class="wrap">
   <div class="laych chE" id="ch-5"><span class="lc-rom">V</span><div><span class="lc-bar"></span><div class="lc-t">What drives returns</div><p>What actually moves a bond portfolio — and the “diversified” book that's secretly one bet.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> chasing yield, value and carry is usually one bet; quality and momentum are what truly diversify. <span class="bl-go">Open Deep for the full picture ↓</span></p>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -659,6 +696,7 @@ const charts = {
 
 <section class="lay-sec lay-chap"><div class="wrap">
   <div class="laych chF" id="ch-6"><span class="lc-rom">VI</span><div><span class="lc-bar"></span><div class="lc-t">The plumbing — who's forced to sell</div><p>Sometimes a sell-off isn't about the companies at all. It's about who <i>has</i> to sell, right now.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> when the safest bonds are the cheapest, it's a cash scramble, not a default scare. <span class="bl-go">Open Deep for the full picture ↓</span></p>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -697,6 +735,7 @@ const charts = {
 
 <section class="lay-sec lay-chap"><div class="wrap">
   <div class="laych chG" id="ch-7"><span class="lc-rom">VII</span><div><span class="lc-bar"></span><div class="lc-t">When the rules break</div><p>The comforting rules of thumb hold — until they don't. Knowing <i>when</i> they break is the whole game.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> the stock-bond hedge broke in 2022; each shock picks different winners, and in a true panic everything moves as one. <span class="bl-go">Open Deep for the full picture ↓</span></p>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -734,6 +773,7 @@ const charts = {
 
 <section class="lay-sec lay-chap"><div class="wrap">
   <div class="laych chH" id="ch-8"><span class="lc-rom">VIII</span><div><span class="lc-bar"></span><div class="lc-t">The Gulf angle</div><p>Why a faraway conflict reaches US credit through the plumbing of dollars — and the relief valve to watch.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> the strain reaches US credit through dollar funding — hitting emerging markets, sparing US blue-chips. Watch for central-bank swap lines. <span class="bl-go">Open Deep for the full picture ↓</span></p>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -777,6 +817,11 @@ const charts = {
       <div class="lg-row"><b>The leveraged-loan index</b><span>we've found a trustworthy source and are wiring it up — not live on the page yet.</span></div>
     </div>
   </div>
+</div></section>
+
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="lay-sech"><h2>If you remember three things</h2></div>
+  <ul class="remember">{remember3.map((r) => (<li><span set:html={r}></span></li>))}</ul>
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
@@ -1186,6 +1231,34 @@ const charts = {
   .lg-row b{color:var(--ink)}
   .lg-row span{color:var(--muted)}
   @media (max-width:560px){ .lg-row{grid-template-columns:1fr;gap:2px} }
+  /* CW5: Layman Skim tier — banner, 60-second block, chapter digest, remember-three */
+  .skbanner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:color-mix(in srgb,var(--eyeb) 8%,var(--card));border:1px solid color-mix(in srgb,var(--eyeb) 30%,var(--cardline));border-radius:10px;padding:11px 16px;font-size:13.5px;line-height:1.55;color:var(--body);margin-bottom:16px}
+  .skbanner b{color:var(--ink)}
+  .sk-go{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--eyeb);background:transparent;border:1px solid color-mix(in srgb,var(--eyeb) 45%,transparent);border-radius:999px;padding:5px 13px;cursor:pointer;margin-left:auto;white-space:nowrap}
+  .sk-go:hover{background:color-mix(in srgb,var(--eyeb) 14%,transparent);color:var(--ink)}
+  .sk60{background:var(--card);border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 12px 12px 0;padding:16px 20px}
+  .sk60-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--eyeb);margin-bottom:9px}
+  .sk60-call{font-size:15.5px;line-height:1.6;color:var(--body);margin:0 0 13px;max-width:80ch}
+  .sk60-call b{color:var(--ink)}
+  .sk60-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:13px}
+  .sk60-c{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--cardline);border-radius:8px;padding:10px 13px}
+  .sk60-v{display:block;font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);margin-bottom:3px}
+  .sk60-l{font-size:11.5px;line-height:1.4;color:var(--muted)}
+  .sk60-w{font-size:14px;line-height:1.58;color:var(--body);margin:0;max-width:84ch}
+  .sk60-w b{color:var(--ink)}
+  .skdigest{display:grid;gap:8px}
+  .skd-row{display:grid;grid-template-columns:38px 1fr auto;gap:13px;align-items:start;background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 15px;text-decoration:none;transition:border-color .15s ease-out}
+  .skd-row:hover{border-color:var(--struct)}
+  .skd-go{font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);align-self:center;white-space:nowrap}
+  .skd-row:hover .skd-go{color:var(--eyeb)}
+  .skd-n{font-family:'Playfair Display',Georgia,serif;font-size:19px;font-weight:700;line-height:1.2}
+  .skd-row.chA .skd-n{color:var(--chA)}.skd-row.chB .skd-n{color:var(--chB)}.skd-row.chC .skd-n{color:var(--chC)}.skd-row.chD .skd-n{color:var(--chD)}.skd-row.chE .skd-n{color:var(--chE)}.skd-row.chF .skd-n{color:var(--chF)}.skd-row.chG .skd-n{color:var(--chG)}.skd-row.chH .skd-n{color:var(--chH)}.skd-row.chI .skd-n{color:var(--chI)}
+  .skd-row p{font-size:14px;line-height:1.55;color:var(--body);margin:0}
+  .remember{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .remember li{position:relative;padding-left:26px;font-size:16px;line-height:1.6;color:var(--body)}
+  .remember li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--eyeb)}
+  .remember b{color:var(--ink)}
+  @media(max-width:760px){.sk60-grid{grid-template-columns:1fr}.sk-go{margin-left:0}.skd-row{grid-template-columns:38px 1fr}.skd-go{display:none}}
   .lay-call{margin-top:14px;background:color-mix(in srgb,var(--eyeb) 7%,var(--card));border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;line-height:1.62;color:var(--body)}
   .lay-call b{color:var(--ink)}
   .lay-call.go{border-left-color:var(--pos);background:color-mix(in srgb,var(--pos) 7%,var(--card))}
@@ -1303,7 +1376,8 @@ const charts = {
     (function(){var raf=null;function upd(){document.body.classList.toggle('scrolled',window.scrollY>480);}window.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});upd();})();
     var init=document.body.getAttribute('data-disc')||(document.body.getAttribute('data-mode')==='overview'?'skim':'deep');
     apply(init);
-    document.querySelectorAll('.chnav a, .laydeck a.lk').forEach(function(a){a.addEventListener('click',function(){if(document.body.getAttribute('data-disc')==='skim')apply('deep');});});
+    document.querySelectorAll('[data-godeep]').forEach(function(b){b.addEventListener('click',function(){apply('deep');});});
+    document.querySelectorAll('.chnav a, .skdigest a, .laydeck a.lk').forEach(function(a){a.addEventListener('click',function(){if(document.body.getAttribute('data-disc')==='skim')apply('deep');});});
   })();
   (function(){var links=Array.prototype.slice.call(document.querySelectorAll('#secnav a'));var ids=links.map(function(a){return a.getAttribute('href').slice(1)});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=ids.indexOf(e.target.id);if(i>=0){links.forEach(function(x){x.classList.remove('on')});links[i].classList.add('on');}}});},{rootMargin:'-45% 0px -50% 0px'});ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
   (function(){var tb=document.getElementById('cohtbl');if(!tb)return;var body=tb.querySelector('tbody');tb.querySelectorAll('th.sort').forEach(function(th){th.addEventListener('click',function(){var col=th.getAttribute('data-col');var asc=!th.classList.contains('asc');tb.querySelectorAll('th.sort').forEach(function(x){x.classList.remove('asc','desc')});th.classList.add(asc?'asc':'desc');var rows=Array.prototype.slice.call(body.querySelectorAll('tr'));rows.sort(function(a,b){var av=+a.getAttribute('data-'+col),bv=+b.getAttribute('data-'+col);return asc?av-bv:bv-av;});rows.forEach(function(r){body.appendChild(r)});});});})();
