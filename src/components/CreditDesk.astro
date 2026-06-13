@@ -606,6 +606,7 @@ const charts = {
 <section class="dsec" id="factors"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">{T.factors.eye} · {T.factors.q}</div><h2>{T.factors.h}.</h2></div><span class="fresh-tag">{T.factors.fresh}</span></div>
   <p class="lead" set:html={T.factors.lead}></p>
+  <p class="skim-bl skim-only"><b>Bottom line —</b> quality and momentum are the only real diversifiers of a long-credit book; carry, value and reach-for-yield are mostly one trade (systematic spread beta). The risk unit is <b>DTS</b>, not duration. <span class="bl-go">Open Deep for the rotation tables ↓</span></p>
   <div class="snap">
     <div class="kpibar">{T.factors.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
   </div>
@@ -633,6 +634,7 @@ const charts = {
 <section class="dsec" id="positioning"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">{T.positioning.eye} · {T.positioning.q}</div><h2>{T.positioning.h}.</h2></div><span class="fresh-tag">{T.positioning.fresh}</span></div>
   <p class="lead" set:html={T.positioning.lead}></p>
+  <p class="skim-bl skim-only"><b>Bottom line —</b> read dealer inventory as a <i>change</i>, not a level; the cleanest stress tell is the cross-section — when the <b>safest</b> bonds are the cheapest, it's a plumbing scramble, not a default scare. <span class="bl-go">Open Deep for the diagnostic ↓</span></p>
   <div class="snap">
     <div class="kpibar">{T.positioning.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
   </div>
@@ -659,6 +661,7 @@ const charts = {
 <section class="dsec" id="crossasset"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">{T.crossasset.eye} · {T.crossasset.q}</div><h2>{T.crossasset.h}.</h2></div><span class="fresh-tag">{T.crossasset.fresh}</span></div>
   <p class="lead" set:html={T.crossasset.lead}></p>
+  <p class="skim-bl skim-only"><b>Bottom line —</b> every cross-asset correlation here is <i>regime-conditional</i>, not structural: stocks and bonds re-correlated positively in 2022, and in a dash-for-cash they all converge to ~1. <span class="bl-go">Open Deep for the scenario map ↓</span></p>
   <div class="snap">
     <div class="kpibar">{T.crossasset.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
   </div>
@@ -967,6 +970,10 @@ const charts = {
   .dtbl td.sc-neg{background:color-mix(in srgb,var(--neg) 9%,transparent)}
   .dtbl td.sc-pos{background:color-mix(in srgb,var(--pos) 9%,transparent)}
   .dtbl td.sc-mix{background:color-mix(in srgb,var(--latent) 7%,transparent)}
+  /* CW3 analyst-skim bottom-line: compressed takeaway shown only in Skim */
+  .skim-bl{font-family:'Lora',serif;font-size:13px;line-height:1.6;color:var(--body);background:color-mix(in srgb,var(--eyeb) 7%,transparent);border-left:3px solid var(--eyeb);border-radius:0 7px 7px 0;padding:9px 14px;margin:0 0 14px;max-width:80ch}
+  .skim-bl b{color:var(--ink)}
+  .skim-bl .bl-go{display:block;margin-top:4px;font-size:10.5px;letter-spacing:.04em;color:var(--muted)}
 </style>
 
 <script is:inline>
