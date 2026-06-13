@@ -331,6 +331,17 @@ const wlLose = winnersLosers.filter(r => wlRole(r[1]) === 'lose');
 
 const topicOrder = ['regime', 'structure', 'valuation', 'fundamentals'];
 
+// ── §6 Factors — R-08 sourced content (historical/attributed, not live data) ──
+const factorVix = [['HY carry', '+1.41', '−1.35'], ['HY quality', '−2.51', '+3.32'], ['IG carry', '+2.17', '−1.46'], ['IG quality', '−3.48', '+2.50']];
+const factorRegime = [['High quality', '−0.14', '+0.11', '+0.19', '—'], ['High carry', '+0.69', '−0.06', '−0.18', '+0.70']];
+const factorCrisis = [
+  ['2008 · GFC', 'Quality protected; carry &amp; value broke; DTS exploded', 'HY OAS 2,023 bp (21 Nov ’08); HY/IG amplitude ~3.5×'],
+  ['2015–16 · energy', 'Up-in-quality + momentum led; CCC &amp; carry broke', 'CCC −15% vs BB −0.4% (2015); distressed loans −41%'],
+  ['2020 · COVID', 'Quality led the drop — then the Fed inverted it: value/fallen-angels led the rebound, momentum crashed', 'MSCI Q1: low-risk +3.3%, quality +1.8%'],
+  ['2022 · rate shock', 'Not a credit event — DTS missed it; floating-rate loans beat long-duration IG', 'HY −14% vs loans −4.4% (1H ’22)'],
+];
+const fvTone = (v) => (v === '—' ? '' : (v.trim().startsWith('−') || v.trim().startsWith('-')) ? 'fv-neg' : 'fv-pos');
+
 // ── illustrative charts (SVG; feed-pending) ──
 const charts = {
   regime: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: credit spread inside a low percentile band"><rect x="0" y="60" width="320" height="44" fill="var(--data)" opacity="0.10"/><line x1="0" y1="82" x2="320" y2="82" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3"/><text x="2" y="54" fill="var(--muted)" font-size="8" font-family="Lora,serif">normal range</text><polyline points="0,46 60,52 120,60 180,70 240,82 320,90" fill="none" stroke="var(--data)" stroke-width="2"/><circle cx="320" cy="90" r="3.5" fill="var(--data)"/><text x="232" y="104" fill="var(--data)" font-size="8" font-family="Lora,serif">OAS — low pctile</text></svg>`,
@@ -561,8 +572,35 @@ const charts = {
   </div>
 </div></section>
 
-<!-- §6 FACTORS + §7 POSITIONING + §8 CROSS-ASSET -->
-{['factors', 'positioning', 'crossasset'].map((id) => { const t = T[id]; return (
+<!-- §6 FACTORS (enriched · R-08) -->
+<section class="dsec" id="factors"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.factors.eye} · {T.factors.q}</div><h2>{T.factors.h}.</h2></div><span class="fresh-tag">{T.factors.fresh}</span></div>
+  <p class="lead" set:html={T.factors.lead}></p>
+  <div class="snap">
+    <div class="kpibar">{T.factors.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+  </div>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.factors.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.factors.lv[0]}</div><p>{T.factors.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{T.factors.tier}</span> {T.factors.src}</div></div>
+  </div>
+  <div class="deep">
+    <div class="dcallout mt20a"><div class="dc-h">DTS is the risk unit — and DTS is destiny</div><p>Spread volatility scales with the spread <b>level</b>, not duration alone, so the risk unit of credit is <b>DTS = duration × spread</b> (the post-2007 industry standard, Ben Dor–Dynkin). A 1y bond at 500 bp and a 5y bond at 100 bp carry the <i>same</i> DTS of 500. The corollary the desk lives by: if spreads widen 50%, a book's DTS rises ~50% <b>with no trades placed</b> — you become mechanically <i>longer</i> risk in a sell-off, exactly when you'd want less.</p></div>
+    <div class="dcallout mt14t"><div class="dc-h">Carry is not clean alpha</div><p>A "diversified multi-factor" sleeve is often <b>one trade</b>: carry, value and reach-for-yield all load on the same systematic spread beta. Robeco's own researchers find carry's risk-adjusted edge over the market is <i>statistically insignificant</i> and a carry book "behaves very similarly to a value portfolio." The genuine diversifiers are <b>momentum</b> (which can go short high-beta names) and <b>up-in-quality / low-risk</b> — the only factor reliably <i>short</i> DTS.</p></div>
+    <div class="tk-h mt22a">Factor rotation by volatility regime — information ratio</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Factor</th><th>Low-VIX (calm)</th><th>High-VIX (stress)</th></tr></thead>
+      <tbody>{factorVix.map((r) => (<tr><td class="nm">{r[0]}</td><td class={`sens ${fvTone(r[1])}`}>{r[1]}</td><td class={`sens ${fvTone(r[2])}`}>{r[2]}</td></tr>))}</tbody></table></div>
+    <div class="tk-h mt18a">IG factor return by regime — % per month</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Factor</th><th>Expansion</th><th>Contraction</th><th>Downturn</th><th>Repair</th></tr></thead>
+      <tbody>{factorRegime.map((r) => (<tr><td class="nm">{r[0]}</td><td class={`sens ${fvTone(r[1])}`}>{r[1]}</td><td class={`sens ${fvTone(r[2])}`}>{r[2]}</td><td class={`sens ${fvTone(r[3])}`}>{r[3]}</td><td class={`sens ${fvTone(r[4])}`}>{r[4]}</td></tr>))}</tbody></table></div>
+    <div class="tk-h mt22a">How credit factors behaved in stress</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Episode</th><th>What led / what broke</th><th>Sourced magnitude</th></tr></thead>
+      <tbody>{factorCrisis.map((r) => (<tr><td class="nm" set:html={r[0]}></td><td set:html={r[1]}></td><td class="num-cell">{r[2]}</td></tr>))}</tbody></table></div>
+    <p class="tnote">Information ratios: Invesco, Jan 2001–Jul 2023. Regime returns: Northern Trust, Jan 2004–Dec 2023. "Carry ≈ value": Robeco (Houweling et&nbsp;al. 2017). DTS: Ben Dor–Dynkin (2007). Crisis magnitudes: MSCI, Angelo Gordon, Guggenheim, Eco3min/FRED. Sourced historical readings, not forecasts; IR = information ratio.</p>
+  </div>
+</div></section>
+
+<!-- §7 POSITIONING + §8 CROSS-ASSET -->
+{['positioning', 'crossasset'].map((id) => { const t = T[id]; return (
   <section class="dsec" id={id}><div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
     <p class="lead" set:html={t.lead}></p>
@@ -854,6 +892,10 @@ const charts = {
   .oascell .ov{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--ink);display:block;margin:2px 0}
   .oascell .opc{font-family:'Lora',serif;font-size:10px;color:var(--muted)}
   .attrib-foot{border-top:1px dashed var(--cardline);margin-top:11px;padding-top:7px;font-family:'Lora',serif;font-size:9px;letter-spacing:.03em;color:var(--latent)}
+  /* §6 factor tables (R-08): signed IR/return tone + magnitude cell */
+  .dtbl td.fv-pos{color:var(--pos);font-variant-numeric:tabular-nums;text-align:center}
+  .dtbl td.fv-neg{color:var(--neg);font-variant-numeric:tabular-nums;text-align:center}
+  .dtbl td.num-cell{font-size:11px;color:var(--muted);line-height:1.45}
 </style>
 
 <script is:inline>
