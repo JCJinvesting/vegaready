@@ -20,14 +20,37 @@
 | 2 | HY corporate OAS — FRED `BAMLH0A0HYM2` | 🟢 LIVE | Same | Same + defaulted-exit tooltip |
 | 2b | BBB/BB/CCC OAS — `BAMLC0A4CBBB` / `BAMLH0A1HYBB` / `BAMLH0A3HYC` | 🟢 LIVE | §2 cohort row + compression/decompression read | Same family |
 | 2c | HY percentile vs history (§1) | 🟢 computed | From cached daily OAS | Honest label: "vs 3-yr window" until our cache outgrows FRED's truncation |
-| 3 | HY distress ratio | 🔴 availability | `latest_published` quote at best (Fridson/fund-literature, dated, convention-labeled) | Constituent-level data is not published anywhere free, full stop |
+| 3 | HY distress ratio | 🟢 **proxy + named** (was 🔴 — R-06) | **Two-row tile:** named figure (FridsonVision/Eaton Vance monthly) + daily HYG-derived proxy via BlackRock varnish-api; drop JNK | Proxy understates true ratio (HYG ~1,300 vs ~1,800 names) — label honestly |
 | 4 | TTM HY default rate | 🟡 | `latest_published` tile — agency + month + methodology label | Monthly publication cadence is the physical limit |
 | 5 | IG/HY new-issue volume | 🟢 LIVE | SIFMA monthly tile + YTD/Y/Y, attributed + link-back | .xls parsing fragility |
-| 6 | CDX IG / CDX HY | 🔴 availability | `feed_pending` | Levels live behind registered-user walls; the one free "CDX" page is a different construct (would misrepresent the index) |
-| 7 | EMBI Global Diversified | ✅ ours | Registry feed (signal 2.1) + variant label; optional EMB-ETF proxy tile | No free live feed exists; ours is the source |
-| 8 | Leveraged-loan index | 🟡 | `latest_published` weekly 3-yr discount-margin, attributed; "never labeled S&P/LSTA" | Public pages gate the level; weekly commentary is the available cadence |
+| 6 | CDX IG / CDX HY | 🟢 **LIVE via DTCC** (was 🔴 — R-06, **empirically verified**) | DTCC PPD CREDITS feed; median `Spread-Leg 1` of on-the-run UPI cluster; label "median SDR trade print, cleared, 15-min delayed; not the Markit fixing" | HY disseminates as **spread** (verified, contra prior); block-cap masking; median not mean (one 1,082,450bp outlier seen) |
+| 7 | EMBI Global Diversified | 🟢 **proxy + ours + named** (upgraded — R-06) | **Two-row:** named EMBI-GD spread (SSGA/TCW/Fort Washington monthly) + daily EMB portfolio `optionAdjustedSpread` via BlackRock varnish-api | EMB tracks EMBI Global **Core**, not Diversified — label as cousin proxy |
+| 8 | Leveraged-loan index | 🟢 **level + spread** (was 🟡 — R-06) | Daily level from Morningstar screener (**verify broad-index path first**); 3-yr discount margin from Morgan Stanley/Eaton Vance EVLN monthly PDF / S&P LCD | Broad-vs-Loan-100 dispute (verify screener); never label ~99 bid price as the level; never "S&P/LSTA" post-Aug-2022 |
 | + | EM corporate OAS — `BAMLEMCBPIOAS` | 🟢 optional | Context tile, labeled "EM corporate — not sovereign EMBI" | Mislabeling risk only |
 | + | Rates & liquidity (hub) — `DGS10` / `T10Y2Y` / `DFII10` | 🟢 (O-13) | Hub tile via same pipeline | None — Treasury data |
+
+## 2.6 · P-06 outcome — the four formerly-pending tiles are now fetchable (connector specs)
+
+R-06 (`_research/RETURNS/R-06-*`, ingested 2026-06-13) found honest fetch paths for **all four** previously-blocked tiles. Headline: **CDX moved from "firmest no" to LIVE** via U.S. swap-data public dissemination, with ground-truth values empirically recovered. Each becomes a §8-interface connector:
+
+**`cdx` connector — DTCC public price dissemination (CFTC Part 43).** No auth.
+- Cumulative EOD: `https://pddata.dtcc.com/ppd/api/report/cumulative/cftc/CFTC_CUMULATIVE_CREDITS_{YYYY}_{MM}_{DD}.zip` (zipped CSV, ~150 cols); intraday via `/ppd/api/slice/CFTC/CR` → S3 `kgc0418-tdw-data-0.s3.amazonaws.com/cftc/...`; live ticker `/ppd/api/ticker/CFTC/CREDITS`.
+- Filter: `Asset Class='CR'`, `UPI Underlier Name='CDX.NA.IG'|'CDX.NA.HY'`, dominant `Expiration Date` cluster, `Cleared='I'`; take **median `Spread-Leg 1`** (decimal ×10000 = bp). On-the-run UPIs observed: IG `QZ3WVVQG5T8K`, HY `QZHH8NT767RX` (re-resolve at each roll: IG 20-Mar/Sep, HY 27-Mar/Sep). **Median not mean** (1,082,450bp malformed print seen); HY `Price` empty → **disseminate spread**, convert to price only if displayed. Verified 2026-06-12: IG ≈ 50.7bp, HY ≈ 108bp. 15-min delay; poll ~120s. Label: "CDX.NA.IG/HY 5Y on-the-run — median SDR trade print (spread, bp), cleared, 15-min delayed; DTCC public dissemination, not the Markit/S&P fixing."
+- Block/cap (don't sum notional): IG block $200M/cap $250M; HY block $50M/cap $76M.
+
+**`hyg_distress` connector — ETF-derived proxy + named fallback.**
+- Daily proxy: BlackRock varnish-api `…/get-product-data?...component=holdings…portfolioId=239565…ticker=HYG` (JSON; fields `yieldToWorst`, `holdingPercent`). Distress proxy = MV-weighted share with (`yieldToWorst` − matched-Treasury) ≥ 1000bp. **Legacy iShares `.ajax?fileType=csv` is now consent-wrapped HTML — use the varnish-api JSON.** **Drop JNK** (SSGA file has no yield/YTW/spread — verified).
+- Named (top row): FridsonVision / S&P-LCD monthly ("% of ICE BofA US HY issues with OAS ≥ 1000bp") + Eaton Vance/Morgan Stanley HY Market Monitor quarterly PDF. Two-row tile; proxy labeled "ETF-derived, understates true ratio, not the J.P. Morgan/ICE figure."
+
+**`emb_embigd` connector — ETF proxy + named.**
+- Daily: BlackRock varnish-api `…component=fundamentalsAndRisk…portfolioId=239572…ticker=EMB` → portfolio `optionAdjustedSpread` (single number; EMB page showed 170.24bp on 04-Jun-2026). Label: "EMB tracks EMBI Global **Core**, not Diversified — cousin proxy."
+- Named (top row): SSGA EM-debt commentary ("EMBI GD Spread"), TCW EIF characteristics ("EMBI Global Diversified Sovereign Spreads"), Fort Washington (quarterly). Monthly cadence.
+
+**`lsta_loan` connector — level + spread.**
+- Level (daily): Morningstar Indexes screener `https://indexes.morningstar.com/indexes/screener?filterPattern=Leveraged+Loan` (broad `FS0000HS4A` vs Loan-100 `FS0000HS44`). **DISPUTE to resolve first:** one source recovered the broad level (4,351.35) login-free; another saw "performance data not available" on the broad detail page. **Manually verify the screener exposes the broad level before relying;** Loan-100 is reliably public.
+- Spread (monthly): Morgan Stanley/Eaton Vance EVLN review PDF row **"Spread-to-3-Year (bps) — All Loans"** (`…/monthlyreview_etf_eatonvancefloatingrate_us.pdf`); S&P-LCD daily news as the daily DM. Never relabel the ~99 average bid price as the index level; never "S&P/LSTA" (rebranded Morningstar, Aug 29 2022).
+
+**Operational gotchas (carry into the connectors):** asset-manager PDFs return **403 to non-browser user-agents** (send a browser UA); per-period filenames vary (poll the landing/tag page, not one URL); varnish-api is an internal endpoint (medium-high fragility — wrap in the §10 gates + `stale` fallback). All values still pass the §5/§10 bitemporal + DQ gates; all carry attribution + as-of per O-14.
 
 ## 3 · Production-risk facts (unchanged — all accuracy, all still coded)
 
@@ -155,6 +178,7 @@ Equities plumbing feeds, ICI flows, MOVE, x-ccy basis, interest coverage, CDX en
 ---
 
 ### Changelog
+- **v9 (2026-06-13)** — **R-06 ingested.** All four formerly-pending tiles now have honest fetch paths (new §2.6 connector specs); verdict board updated: **CDX 🔴→🟢 LIVE** (DTCC public dissemination, empirically verified IG≈50.7/HY≈108bp), **HY distress 🔴→🟢** (HYG proxy + named, drop JNK), **EMBI-GD upgraded** (EMB Core proxy + named two-row), **loan 🟡→🟢** (Morningstar screener level — verify — + EVLN PDF spread). Concrete endpoints/fields/labels/gotchas captured. Two disputes flagged for manual verification (Morningstar broad-index public path; already-resolved HY-as-spread). P-06 → ingested in INDEX.
 - **v8 (2026-06-13)** — Backend doc rewritten to **v3 (self-contained for any agent/model)**: added vision/context/goals, non-negotiable guardrails (integrity contract, sacred JSON contract, never-break-build, Postgres-sole-truth, secrets, staging/collision protocols, dual-audience), canon cross-refs, repo layout + Docker-image reality + schema migrations, the missing `series` registry table, the connector interface for future feeds, the versioned display-JSON contract spec, data-quality assertions, idempotency/continuity/backup/timezone notes, and a glossary. No engine change — fills handoff gaps.
 - **v7 (2026-06-13)** — Owner decision **O-17**: backend engine locked to two-engine Postgres(Timescale+AGE+pgvector)+Neo4j on Docker, local-first→managed, full ML stack (XGBoost/LightGBM+SHAP, HMM, pgvector analog, LLM curator). Backend doc rewritten to v2 (concrete bitemporal DDL, event-table schema with constraints replacing YAML, ML sequence, daily-ops RACI, machine probe). Backend waves now W1.6–W1.9.
 - **v6 (2026-06-13)** — Owner decision **O-15**: adopt best-in-class free data backend (DuckDB + Parquet + bitemporal + Python/Polars). Spun the engine design into its own cross-cutting doc `VegaReady-Data-Backend-Architecture.md`, including the failure taxonomy (11 ways analytics goes wrong + coded treatments) and the **event-intelligence layer** for outlier tagging → clean baselines, regime-conditioned stats, and analog/precedent forecasting. Added §8.6 + backend waves W1.6/W1.7.
