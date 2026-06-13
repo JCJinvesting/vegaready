@@ -7,6 +7,7 @@ import { cards, cascade, winnersLosers, takeaways } from '../data/analysis/credi
 import { metrics, lastUpdated } from '../data/analysis/watchmetrics.js';
 import { CATALYSTS, STATE_LABEL } from '../data/catalysts';
 import Wayfinder from './Wayfinder.astro';
+import * as feed from '../data/feeds/credit.js';
 
 const { mode = 'analyst' } = Astro.props;
 
@@ -35,6 +36,10 @@ const wvc = (m) => (m && m.status === 'critical' ? 'neg' : m && m.status === 'al
 const confCls = (c) => { const u = (c || '').toUpperCase(); return u.startsWith('HIGH') ? 'high' : u.startsWith('LOW') ? 'low' : 'medium'; };
 const roleCls = (r) => { const u = (r || '').toUpperCase(); return u.startsWith('BENEF') || u.startsWith('WINNER') ? 'win' : u.startsWith('LOSER') || u.startsWith('CASUAL') ? 'lose' : 'mix'; };
 const dataThrough = lastUpdated || 'recent';
+// ── live credit feed (CW2): compression headline + OAS chips ──
+const comp = feed.compression();
+const creg = feed.regime();
+const chipHY = feed.chipFor(feed.tile('hyOas').state);
 
 // live credit-regime instruments (registry §2 = credit/funding)
 const eq = [{ k: 'EM sovereign · EMBI', m: byNo['2.1'] }, { k: 'Flight-to-quality cash', m: byNo['2.2'] }, { k: 'Gulf UST recycling', m: byNo['2.3'] }];
@@ -326,6 +331,47 @@ const wlLose = winnersLosers.filter(r => wlRole(r[1]) === 'lose');
 
 const topicOrder = ['regime', 'structure', 'valuation', 'fundamentals'];
 
+// ── §6 Factors — R-08 sourced content (historical/attributed, not live data) ──
+const factorVix = [['HY carry', '+1.41', '−1.35'], ['HY quality', '−2.51', '+3.32'], ['IG carry', '+2.17', '−1.46'], ['IG quality', '−3.48', '+2.50']];
+const factorRegime = [['High quality', '−0.14', '+0.11', '+0.19', '—'], ['High carry', '+0.69', '−0.06', '−0.18', '+0.70']];
+const factorCrisis = [
+  ['2008 · GFC', 'Quality protected; carry &amp; value broke; DTS exploded', 'HY OAS 2,023 bp (21 Nov ’08); HY/IG amplitude ~3.5×'],
+  ['2015–16 · energy', 'Up-in-quality + momentum led; CCC &amp; carry broke', 'CCC −15% vs BB −0.4% (2015); distressed loans −41%'],
+  ['2020 · COVID', 'Quality led the drop — then the Fed inverted it: value/fallen-angels led the rebound, momentum crashed', 'MSCI Q1: low-risk +3.28%, quality +1.77%'],
+  ['2022 · rate shock', 'Not a credit event — DTS missed it; floating-rate loans beat long-duration IG', 'HY −14% vs loans −4.4% (1H ’22)'],
+];
+const fvTone = (v) => (v === '—' ? '' : (v.trim().startsWith('−') || v.trim().startsWith('-')) ? 'fv-neg' : 'fv-pos');
+
+// ── §7 Positioning — R-08 sourced content ──
+const dealerCells = [
+  ['Inventory build ↑', 'Spreads widening', 'Dealers still warehousing — buffer intact, usually early', 'mix'],
+  ['Inventory drawdown ↓', 'Spreads widening', 'Balance-sheet channel binding — forced sellers, fire-sale risk · technical', 'lose'],
+  ['Inventory build ↑', 'Spreads tightening', 'Dealers positioning for the recovery — bullish confirmation', 'win'],
+  ['Inventory flat', 'Spreads widening', 'Pure fundamental repricing — dealers not the marginal player', 'mix'],
+];
+const techFund = [
+  ['Dispersion', 'Low — everything widens together', 'High — concentrated in deteriorating names'],
+  ['Dealer inventory', 'Drawdown — dealers refusing risk', 'Roughly flat'],
+  ['ETF vs NAV', 'ETF at a discount to NAV — worse on the <i>safest</i> bonds', 'ETF ≈ NAV'],
+  ['Speed', 'Fast, violent; mean-reverts on a backstop or flow turn', 'Grinding; persists'],
+  ['Default rate', 'Does not follow', 'Rises ex-post — confirms it'],
+];
+
+// ── §8 Cross-Asset — R-08 sourced content ──
+const scenCohort = [
+  { s: 'Risk-off / flight-to-quality', c: [['Widen modestly; UST rally cushions; best relative', 'neg'], ['Widen 3–3.5× IG; CCC worst', 'neg'], ['Widen, but floating-coupon cushion; beat HY ex-recession', 'mix'], ['Widen most if the dollar rallies', 'neg']] },
+  { s: 'Rate / inflation shock', c: [['Hurt via <i>duration</i>, not spread — long IG worst', 'neg'], ['Relatively protected — short duration, spread-driven', 'pos'], ['Best cohort — floating-rate, ~zero duration', 'pos'], ['Hurt — higher UST + stronger dollar', 'neg']] },
+  { s: 'Growth re-acceleration', c: [['Tighten modestly — limited from a tight base', 'pos'], ['Tighten most — high-beta, carry harvested', 'pos'], ['Tighten + high carry as base rates hold', 'pos'], ['Tighten if the dollar softens; inflows resume', 'pos']] },
+  { s: 'Commodity / energy shock', c: [['Limited unless energy-heavy; sector-dispersed', 'mix'], ['Sector blow-up — energy/metals lead defaults', 'neg'], ['Energy/mining loans hit; recovery-rate fears', 'neg'], ['Diverges — exporters stable, importers widen', 'mix']] },
+  { s: 'Dollar-funding squeeze', c: [['Widen on liquidity premium; <i>safest</i> can cheapen most', 'neg'], ['Widen sharply; primary market shuts', 'neg'], ['CLO/loan-fund forced selling; thin secondary', 'neg'], ['Most exposed — dollar liabilities, capital flight', 'neg']] },
+];
+const corrPairs = [
+  ['HY OAS ↔ VIX', 'Tight (~0.7–0.85); <i>strengthens</i> in stress (β +0.587 → +0.901)', 'Vol suppressed (short-vol / 0DTE) or an idiosyncratic default wave'],
+  ['Stock ↔ bond', 'Negative 2000–2021; <b>positive since 2022</b>', 'Whole inflation-regime shifts — "bad inflation" kills the hedge'],
+  ['OAS ↔ Treasury', 'Growth regimes: spreads fall as yields rise (Baa &gt; Aaa)', 'Inflation/rate shock &amp; fiscal-credibility (2022) — both rise together'],
+  ['OAS ↔ broad $', 'Stronger dollar widens spreads, most for EM', 'Oil-exporters &amp; EM-led shocks; LatAm held but EM-Asia reversed ’22–23'],
+];
+
 // ── illustrative charts (SVG; feed-pending) ──
 const charts = {
   regime: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: credit spread inside a low percentile band"><rect x="0" y="60" width="320" height="44" fill="var(--data)" opacity="0.10"/><line x1="0" y1="82" x2="320" y2="82" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3"/><text x="2" y="54" fill="var(--muted)" font-size="8" font-family="Lora,serif">normal range</text><polyline points="0,46 60,52 120,60 180,70 240,82 320,90" fill="none" stroke="var(--data)" stroke-width="2"/><circle cx="320" cy="90" r="3.5" fill="var(--data)"/><text x="232" y="104" fill="var(--data)" font-size="8" font-family="Lora,serif">OAS — low pctile</text></svg>`,
@@ -337,7 +383,7 @@ const charts = {
 ---
 
 <div class="utility"><div class="wrap">
-  <div class="tickers"><span><b>IG OAS</b> feed</span><span><b>HY OAS</b> feed</span><span><b>EMBI</b> {fmt(byNo['2.1'])}</span><span><b>FTQ CASH</b> {fmt(byNo['2.2'])}</span><span><b>DXY</b> {fmt(byNo['1.2'])}</span></div>
+  <div class="tickers"><span><b>IG OAS</b> {feed.bp('igOas') || 'feed'}</span><span><b>HY OAS</b> {feed.bp('hyOas') || 'feed'}</span><span><b>EMBI</b> {fmt(byNo['2.1'])}</span><span><b>FTQ CASH</b> {fmt(byNo['2.2'])}</span><span><b>DXY</b> {fmt(byNo['1.2'])}</span></div>
   <div class="stamp-time">credit & funding · live registry</div>
 </div></div>
 
@@ -349,7 +395,7 @@ const charts = {
 <Wayfinder trail={wfTrail} rail={wfRail} />
 
 <div class="freshbar"><div class="wrap">
-  <span class="fb-i"><span class="fb-dot"></span>Data through <b>{dataThrough}</b></span>
+  <span class="fb-i"><span class="fb-dot"></span>Registry data through <b>{dataThrough}</b></span>
   <span class="fb-i">Next refresh <b>per-section (daily OAS / weekly flows / structural)</b></span>
   <span class="fb-i">Live as of <b id="liveAsOf">checking…</b></span>
   <span class="fb-i fb-right">Read as <span class="modetoggle" role="group" aria-label="Reading mode"><a href="/layman/markets/credit" class={mode === 'layman' ? 'on' : ''}>Layman</a><a href="/markets/credit" class={mode === 'analyst' ? 'on' : ''}>Analyst</a></span></span>
@@ -370,9 +416,21 @@ const charts = {
     <span class="cta-frame cta-h"><a href="/structural/watch">Open the signal board →</a></span>
   </div>
   <div class="deskpanel">
-    <div class="ph"><b>Credit regime · live</b><span>— from the registry</span></div>
+    <div class="ph"><b>Credit regime · live</b><span>— FRED + registry</span></div>
+    {comp && (
+    <div class="comp-head">
+      <div class="comp-top"><span class="comp-k">HY − IG compression{comp.percentile != null && (<span class="comp-pctl">{comp.percentile}th pct · 3y</span>)}</span><span class={`st-chip ${chipHY.cls}`}>{chipHY.glyph} {chipHY.word}</span></div>
+      <div class="comp-v num">{comp.bp}<span class="comp-u">bp</span>{comp.chg1wBp != null && (<span class={`comp-chg ${feed.compTone()}`}>{comp.chg1wBp > 0 ? '+' : ''}{comp.chg1wBp} bp/wk</span>)}</div>
+      {creg && <div class="comp-note">{creg.detail}</div>}
+    </div>
+    )}
+    <div class="oas-row">
+      <div class="oascell"><div class="ol">IG OAS</div><span class="ov num">{feed.bp('igOas') || '—'}</span><span class="opc">{feed.pctLabel('igOas') || 'feed pending'}</span></div>
+      <div class="oascell" title="The HY index ejects defaulted bonds, so the level can tighten mechanically when a large issuer finally defaults — not always an improvement."><div class="ol">HY OAS</div><span class="ov num">{feed.bp('hyOas') || '—'}</span><span class="opc">{feed.pctLabel('hyOas') || 'feed pending'}</span></div>
+    </div>
     <div class="metric-row">{eq.map((s) => (<div class="mcell"><div class="ml">{s.k}</div><span class={`mv num ${wvc(s.m)}`}>{fmt(s.m)}</span></div>))}</div>
     <p class="panelnote">Sovereign and funding channels are repricing first; US corporate spreads stay contained — for now.</p>
+    {comp && <div class="attrib-foot">— ICE BofA US IG &amp; HY Index OAS · via FRED · as of {feed.asOf('hyOas') || feed.asOf('igOas')}</div>}
   </div>
 </div></section>
 
@@ -507,7 +565,7 @@ const charts = {
       <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
       <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{t.tier}</span> {t.src}</div></div>
     </div>
-    <div class="deep"><div class="feedph"><div class="fp-h">{t.h} — live numbers, feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div><div class="fp-note">Sources named above; wires in with the D7 data layer (FRED is free + public).</div></div></div>
+    <div class="deep"><div class="feedph"><div class="fp-h">{t.h} — live numbers, feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div><div class="fp-note">Sources named above; each tile names its source and as-of date. FRED delivers the data — ICE BofA licenses it — so values publish with attribution, never as our own.</div></div></div>
   </div></section>
 ); })}
 
@@ -544,22 +602,82 @@ const charts = {
   </div>
 </div></section>
 
-<!-- §6 FACTORS + §7 POSITIONING + §8 CROSS-ASSET -->
-{['factors', 'positioning', 'crossasset'].map((id) => { const t = T[id]; return (
-  <section class="dsec" id={id}><div class="wrap">
-    <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
-    <p class="lead" set:html={t.lead}></p>
-    <div class="snap">
-      <div class="kpibar">{t.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
-      {t.chart && (<figure class="snap-chart"><div class="cp-h"><b>{chartCap[t.chart]}</b><span class="cp-tag">illustrative</span></div><div class="sc-svg" set:html={charts[t.chart]}></div></figure>)}
-    </div>
-    <div class="track-grid">
-      <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
-      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{t.tier}</span> {t.src}</div></div>
-    </div>
-    {t.feed && (<div class="deep"><div class="feedph"><div class="fp-h">{t.h} — feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div></div></div>)}
-  </div></section>
-); })}
+<!-- §6 FACTORS (enriched · R-08) -->
+<section class="dsec" id="factors"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.factors.eye} · {T.factors.q}</div><h2>{T.factors.h}.</h2></div><span class="fresh-tag">{T.factors.fresh}</span></div>
+  <p class="lead" set:html={T.factors.lead}></p>
+  <div class="snap">
+    <div class="kpibar">{T.factors.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+  </div>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.factors.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.factors.lv[0]}</div><p>{T.factors.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{T.factors.tier}</span> {T.factors.src}</div></div>
+  </div>
+  <div class="deep">
+    <div class="dcallout mt20a"><div class="dc-h">DTS is the risk unit — and DTS is destiny</div><p>Spread volatility scales with the spread <b>level</b>, not duration alone, so the risk unit of credit is <b>DTS = duration × spread</b> (the post-2007 industry standard, Ben Dor–Dynkin). A 1y bond at 500 bp and a 5y bond at 100 bp carry the <i>same</i> DTS of 500. The corollary the desk lives by: if spreads widen 50%, a book's DTS rises ~50% <b>with no trades placed</b> — you become mechanically <i>longer</i> risk in a sell-off, exactly when you'd want less.</p></div>
+    <div class="dcallout mt14t"><div class="dc-h">Carry is not clean alpha</div><p>A "diversified multi-factor" sleeve is often <b>one trade</b>: carry, value and reach-for-yield all load on the same systematic spread beta. Robeco's own researchers find carry's risk-adjusted edge over the market is <i>statistically insignificant</i> and a carry book "behaves very similarly to a value portfolio." The genuine diversifiers are <b>momentum</b> (which can go short high-beta names) and <b>up-in-quality / low-risk</b> — the only factor reliably <i>short</i> DTS.</p></div>
+    <div class="tk-h mt22a">Factor rotation by volatility regime — information ratio</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Factor</th><th>Low-VIX (calm)</th><th>High-VIX (stress)</th></tr></thead>
+      <tbody>{factorVix.map((r) => (<tr><td class="nm">{r[0]}</td><td class={`sens ${fvTone(r[1])}`}>{r[1]}</td><td class={`sens ${fvTone(r[2])}`}>{r[2]}</td></tr>))}</tbody></table></div>
+    <div class="tk-h mt18a">IG factor return by regime — % per month</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Factor</th><th>Expansion</th><th>Contraction</th><th>Downturn</th><th>Repair</th></tr></thead>
+      <tbody>{factorRegime.map((r) => (<tr><td class="nm">{r[0]}</td><td class={`sens ${fvTone(r[1])}`}>{r[1]}</td><td class={`sens ${fvTone(r[2])}`}>{r[2]}</td><td class={`sens ${fvTone(r[3])}`}>{r[3]}</td><td class={`sens ${fvTone(r[4])}`}>{r[4]}</td></tr>))}</tbody></table></div>
+    <div class="tk-h mt22a">How credit factors behaved in stress</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Episode</th><th>What led / what broke</th><th>Sourced magnitude</th></tr></thead>
+      <tbody>{factorCrisis.map((r) => (<tr><td class="nm" set:html={r[0]}></td><td set:html={r[1]}></td><td class="num-cell">{r[2]}</td></tr>))}</tbody></table></div>
+    <p class="tnote">Information ratios: Invesco, Jan 2001–Jul 2023. Regime returns: Northern Trust, Jan 2004–Dec 2023. "Carry ≈ value": Robeco (Houweling et&nbsp;al. 2017). DTS: Ben Dor–Dynkin (2007). Crisis magnitudes: MSCI, Angelo Gordon, Guggenheim, Eco3min/FRED. Northern Trust regimes: expansion/contraction are economic, downturn/repair credit. Sourced historical readings, not forecasts; IR = information ratio.</p>
+  </div>
+</div></section>
+
+<!-- §7 POSITIONING (enriched · R-08) -->
+<section class="dsec" id="positioning"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.positioning.eye} · {T.positioning.q}</div><h2>{T.positioning.h}.</h2></div><span class="fresh-tag">{T.positioning.fresh}</span></div>
+  <p class="lead" set:html={T.positioning.lead}></p>
+  <div class="snap">
+    <div class="kpibar">{T.positioning.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+  </div>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.positioning.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.positioning.lv[0]}</div><p>{T.positioning.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{T.positioning.tier}</span> {T.positioning.src}</div></div>
+  </div>
+  <div class="deep">
+    <div class="dcallout mt20a"><div class="dc-h">The dealer buffer shrank — read inventory as a change, not a level</div><p>Post-2008 the dealer shock-absorber structurally contracted: dealer assets ~<b>$5T → $3.5T</b>, leverage <b>48 → 25</b>, and dealer ownership of corporates <b>2.7% → 1.2%</b> (NY Fed SR 796). The leverage ratio taxes the balance sheet regardless of risk, so in stress dealers shed <i>even safe</i> inventory. He-Kelly-Manela quantify the channel: a 1-standard-deviation dealer-inventory shock lifts quarterly spreads ~<b>3–40 bp</b> (an intermediary-distress shock ~4–70 bp), more for lower-rated bonds. The NY Fed primary-dealer series is the free gauge — but it is net of hedges and the corporate split only begins April 2013 (pre-2013 inventory is reconstructed from trade flow, not observed), so read the weekly <i>change</i>, not the level.</p></div>
+    <div class="tk-h mt22a">Dealer inventory × spreads — reading the pair</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Inventory</th><th>Spreads</th><th>What it means</th></tr></thead>
+      <tbody>{dealerCells.map((r) => (<tr class={`dlr-${r[3]}`}><td class="nm">{r[0]}</td><td>{r[1]}</td><td class="dlr-read" set:html={r[2]}></td></tr>))}</tbody></table></div>
+    <div class="dcallout mt22a"><div class="dc-h">"When the safest bonds are the cheapest, it's a liquidity scramble — not a default scare"</div><p>The cleanest technical-vs-fundamental tell (Haddad-Moreira-Muir, March 2020): IG bonds traded cheap to their own CDS and bond ETFs fell to discounts to NAV — <i>most</i> on the safest paper. Transaction costs ran <b>30 → 90 bp</b> on IG and <b>24 → 150+ bp</b> on blocks; the Fed's 23 March backstop <i>announcement</i> cut eligible-bond costs ~21 → 15 → 9 bp over the first three weeks — before a single purchase, the effect already fading. A fundamental default scare cheapens the <i>worst</i> paper first; a plumbing scramble cheapens the <i>safest</i>.</p></div>
+    <div class="tk-h mt18a">Technical vs fundamental — the diagnostic</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Tell</th><th>Technical (forced-seller / plumbing)</th><th>Fundamental (repricing default)</th></tr></thead>
+      <tbody>{techFund.map((r) => (<tr><td class="nm">{r[0]}</td><td set:html={r[1]}></td><td set:html={r[2]}></td></tr>))}</tbody></table></div>
+    <div class="dcallout mt14t"><div class="dc-h">What TRACE shows — and hides</div><p>Read TRACE for <b>breadth and transaction cost, not depth</b>. It hides three things: dealer identity, true block size (capped to "5MM+" IG / "1MM+" HY), and positions — it is <i>transactions</i>, not inventory, so even academics reconstruct dealer inventory from signed flow. And it cannot see <b>unexecuted demand</b>: stress is understated when investors simply can't find a bid.</p></div>
+    <div class="dcallout mt14t"><div class="dc-h">Flows &amp; index-option hedging</div><p><b>ICI weekly flows</b> is the only fully-free, methodology-documented US series (~98% of industry assets); EPFR and Lipper headlines are free but the underlying data is paid — we cite the headline, not an implied precision. For hedging pressure, <b>CDX payer-swaption skew</b> is the cleanest concept (payers are ~63% of CDX-option volume; CDX-vs-SPX weekly correlation −0.80) — but there is <i>no free live feed</i>, so we describe the signal and never publish a skew number we can't source. <b>Crowding</b> has no free real-time index either: we triangulate it from flow concentration, the CDS-cash basis and the Greenwood-Hanson issuer-quality signal (a 1-SD rise in issuance-quality deterioration has preceded ~4.5 pp lower following-year HY excess returns) — a vendor "crowding score" is proprietary and uncheckable, so we state the inference, not a number.</p></div>
+    <p class="tnote">Sources: NY Fed Staff Report 796 &amp; Primary Dealer Statistics · He, Kelly &amp; Manela (NBER w26494) · Fed FEDS Note (Oct 2020) · Haddad, Moreira &amp; Muir (RFS 2021) · ICI · Collin-Dufresne, Junge &amp; Trolle · Greenwood-Hanson (NBER w17197). Sourced/academic readings, not forecasts.</p>
+  </div>
+</div></section>
+
+<!-- §8 CROSS-ASSET (enriched · R-08) -->
+<section class="dsec" id="crossasset"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.crossasset.eye} · {T.crossasset.q}</div><h2>{T.crossasset.h}.</h2></div><span class="fresh-tag">{T.crossasset.fresh}</span></div>
+  <p class="lead" set:html={T.crossasset.lead}></p>
+  <div class="snap">
+    <div class="kpibar">{T.crossasset.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+  </div>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.crossasset.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.crossasset.lv[0]}</div><p>{T.crossasset.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{T.crossasset.tier}</span> {T.crossasset.src}</div></div>
+  </div>
+  <div class="deep">
+    <div class="tk-h mt20a">Scenario × cohort — the directional map</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Scenario</th><th>IG</th><th>HY</th><th>Loans</th><th>EM sovereign</th></tr></thead>
+      <tbody>{scenCohort.map((r) => (<tr><td class="nm">{r.s}</td>{r.c.map((cell) => (<td class={`sc-cell sc-${cell[1]}`} set:html={cell[0]}></td>))}</tr>))}</tbody></table></div>
+    <div class="dcallout mt22a"><div class="dc-h">The regime fact that matters most: stocks and bonds re-correlated in 2022</div><p>The single biggest cross-asset shift for a credit-plus-duration book: stock–bond correlation was <b>negative through 2000–2021 and flipped positive in 2022</b>. It's an inflation-regime story — under "good inflation" (growth surprises) Treasuries hedged risk assets; under "bad inflation" (rate surprises) both legs fall together. The daily three-month correlation averaged <b>−0.30 (2004–2023)</b> but spiked to ~<b>+0.50</b> at end-2022. For credit: in a rate/inflation shock the Treasury hedge is <i>gone</i> — IG suffers most through duration, while HY (short duration) and floating-rate loans hold up.</p></div>
+    <div class="tk-h mt18a">Regime correlations — and when they break</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Pair</th><th>Typical relationship</th><th>Breaks when…</th></tr></thead>
+      <tbody>{corrPairs.map((r) => (<tr><td class="nm" set:html={r[0]}></td><td set:html={r[1]}></td><td set:html={r[2]}></td></tr>))}</tbody></table></div>
+    <div class="dcallout mt14t"><div class="dc-h">The kill-switch</div><p>In a dash-for-cash, <b>every correlation goes to ~1</b> and diversification fails exactly when it's needed. Treat each pair above as <i>regime-conditional, never structural</i> — the rolling correlation is shown precisely because it moves.</p></div>
+    <p class="tnote">Sources: McAlley &amp; Soper (JBES) · Fed FEDS 2025-002 · ECB FSR (Nov 2022) · FAJ 2024 (Brixton et&nbsp;al.) · Duffee (FEDS) · BIS Bulletin 79 · ING · Hofmann-Shim-Shin. Scenario cells are framework priors with sourced precedents, not forecasts.</p>
+  </div>
+</div></section>
 
 <!-- §9 CATALYSTS & FUNDING CHANNEL -->
 <section class="dsec" id="catalysts"><div class="wrap">
@@ -815,6 +933,40 @@ const charts = {
   .lay-exc .exc-pts li{position:relative;padding-left:16px;font-size:14.5px;line-height:1.5;color:var(--body)}
   .lay-exc .exc-pts li::before{content:"";position:absolute;left:1px;top:8px;width:5px;height:5px;border-radius:50%;background:var(--eyeb)}
   .lay-exc .exc-pts li b{color:var(--ink)}
+  /* ── CW2: live-feed tile-state chips (Option A) + compression headline + attribution footer ── */
+  .st-chip{display:inline-flex;align-items:center;gap:5px;font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 9px;white-space:nowrap}
+  .st-chip.st-live{color:var(--pos);background:color-mix(in srgb,var(--pos) 12%,transparent);border:1px solid color-mix(in srgb,var(--pos) 35%,transparent)}
+  .st-chip.st-pub{color:var(--eyeb);background:color-mix(in srgb,var(--eyeb) 12%,transparent);border:1px solid color-mix(in srgb,var(--eyeb) 35%,transparent)}
+  .st-chip.st-stale{color:var(--warn);background:color-mix(in srgb,var(--warn) 12%,transparent);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent)}
+  .st-chip.st-src{color:var(--struct);background:color-mix(in srgb,var(--struct) 12%,transparent);border:1px solid color-mix(in srgb,var(--struct) 35%,transparent)}
+  .st-chip.st-pending{color:var(--latent);background:color-mix(in srgb,var(--latent) 10%,transparent);border:1px solid color-mix(in srgb,var(--latent) 30%,transparent)}
+  .comp-head{margin:4px 0 11px;padding-bottom:11px;border-bottom:1px solid var(--cardline)}
+  .comp-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .comp-k{font-family:'Lora',serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .comp-v{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--ink);line-height:1.1;margin-top:5px}
+  .comp-u{font-size:14px;color:var(--muted);margin-left:3px}
+  .comp-chg{font-family:'Lora',serif;font-size:12px;font-weight:600;margin-left:9px}
+  .comp-chg.up{color:var(--neg)}.comp-chg.dn{color:var(--pos)}.comp-chg.flat{color:var(--muted)}
+  .comp-pctl{font-family:'Lora',serif;font-size:9px;font-weight:600;letter-spacing:.04em;color:var(--latent);margin-left:8px;text-transform:none}
+  .comp-note{font-family:'Lora',serif;font-size:11px;color:var(--muted);line-height:1.55;margin-top:5px}
+  .oas-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:11px}
+  .oascell{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--cardline);border-radius:8px;padding:9px 11px}
+  .oascell .ol{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .oascell .ov{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--ink);display:block;margin:2px 0}
+  .oascell .opc{font-family:'Lora',serif;font-size:10px;color:var(--muted)}
+  .attrib-foot{border-top:1px dashed var(--cardline);margin-top:11px;padding-top:7px;font-family:'Lora',serif;font-size:9px;letter-spacing:.03em;color:var(--latent)}
+  /* §6 factor tables (R-08): signed IR/return tone + magnitude cell */
+  .dtbl td.fv-pos{color:var(--pos);font-variant-numeric:tabular-nums;text-align:center}
+  .dtbl td.fv-neg{color:var(--neg);font-variant-numeric:tabular-nums;text-align:center}
+  .dtbl td.num-cell{font-size:11px;color:var(--muted);line-height:1.45}
+  /* §7 dealer-inventory read: tone the interpretation cell */
+  .dtbl tr.dlr-lose td.dlr-read{color:var(--neg)}
+  .dtbl tr.dlr-win td.dlr-read{color:var(--pos)}
+  /* §8 scenario × cohort matrix: terse cells with directional tint */
+  .dtbl td.sc-cell{font-size:10.5px;line-height:1.42;vertical-align:top}
+  .dtbl td.sc-neg{background:color-mix(in srgb,var(--neg) 9%,transparent)}
+  .dtbl td.sc-pos{background:color-mix(in srgb,var(--pos) 9%,transparent)}
+  .dtbl td.sc-mix{background:color-mix(in srgb,var(--latent) 7%,transparent)}
 </style>
 
 <script is:inline>
