@@ -378,14 +378,14 @@ const charts = {
     <div class="ph"><b>Credit regime · live</b><span>— FRED + registry</span></div>
     {comp && (
     <div class="comp-head">
-      <div class="comp-top"><span class="comp-k">HY − IG compression</span><span class={`st-chip ${chipHY.cls}`}>{chipHY.glyph} {chipHY.word}</span></div>
-      <div class="comp-v num">{comp.bp}<span class="comp-u">bp</span>{comp.chg1wBp != null && (<span class={`comp-chg ${comp.chg1wBp > 0 ? 'up' : comp.chg1wBp < 0 ? 'dn' : ''}`}>{comp.chg1wBp > 0 ? '+' : ''}{comp.chg1wBp} bp/wk</span>)}</div>
+      <div class="comp-top"><span class="comp-k">HY − IG compression{comp.percentile != null && (<span class="comp-pctl">{comp.percentile}th pct · 3y</span>)}</span><span class={`st-chip ${chipHY.cls}`}>{chipHY.glyph} {chipHY.word}</span></div>
+      <div class="comp-v num">{comp.bp}<span class="comp-u">bp</span>{comp.chg1wBp != null && (<span class={`comp-chg ${feed.compTone()}`}>{comp.chg1wBp > 0 ? '+' : ''}{comp.chg1wBp} bp/wk</span>)}</div>
       {creg && <div class="comp-note">{creg.detail}</div>}
     </div>
     )}
     <div class="oas-row">
-      <div class="oascell"><div class="ol">IG OAS</div><span class="ov num">{feed.bp('igOas') || '—'}</span><span class="opc">{feed.pct('igOas') || 'feed pending'}</span></div>
-      <div class="oascell"><div class="ol">HY OAS</div><span class="ov num">{feed.bp('hyOas') || '—'}</span><span class="opc">{feed.pct('hyOas') || 'feed pending'}</span></div>
+      <div class="oascell"><div class="ol">IG OAS</div><span class="ov num">{feed.bp('igOas') || '—'}</span><span class="opc">{feed.pctLabel('igOas') || 'feed pending'}</span></div>
+      <div class="oascell" title="The HY index ejects defaulted bonds, so the level can tighten mechanically when a large issuer finally defaults — not always an improvement."><div class="ol">HY OAS</div><span class="ov num">{feed.bp('hyOas') || '—'}</span><span class="opc">{feed.pctLabel('hyOas') || 'feed pending'}</span></div>
     </div>
     <div class="metric-row">{eq.map((s) => (<div class="mcell"><div class="ml">{s.k}</div><span class={`mv num ${wvc(s.m)}`}>{fmt(s.m)}</span></div>))}</div>
     <p class="panelnote">Sovereign and funding channels are repricing first; US corporate spreads stay contained — for now.</p>
@@ -845,7 +845,8 @@ const charts = {
   .comp-v{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--ink);line-height:1.1;margin-top:5px}
   .comp-u{font-size:14px;color:var(--muted);margin-left:3px}
   .comp-chg{font-family:'Lora',serif;font-size:12px;font-weight:600;margin-left:9px}
-  .comp-chg.up{color:var(--neg)}.comp-chg.dn{color:var(--pos)}
+  .comp-chg.up{color:var(--neg)}.comp-chg.dn{color:var(--pos)}.comp-chg.flat{color:var(--muted)}
+  .comp-pctl{font-family:'Lora',serif;font-size:9px;font-weight:600;letter-spacing:.04em;color:var(--latent);margin-left:8px;text-transform:none}
   .comp-note{font-family:'Lora',serif;font-size:11px;color:var(--muted);line-height:1.55;margin-top:5px}
   .oas-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:11px}
   .oascell{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--cardline);border-radius:8px;padding:9px 11px}
