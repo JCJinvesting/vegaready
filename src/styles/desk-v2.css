@@ -16,6 +16,7 @@
 .disc button{font-family:'Lora',serif;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:transparent;border:0;border-radius:4px;padding:3px 9px;cursor:pointer}
 .disc button.on{color:var(--ink);background:color-mix(in srgb,var(--ink) 8%,transparent)}
 body[data-disc="skim"] .deep{display:none}
+body[data-disc="deep"] .skim-only{display:none} /* skim-only primitive (kit §4c): the compressed-tier essence, hidden when Deep shows the full apparatus */
 
 /* ── Frozen command deck (kit §4f): one sticky bar per page; anchors clear it; Top chip appears on scroll ── */
 :where(section,div)[id]{scroll-margin-top:72px}

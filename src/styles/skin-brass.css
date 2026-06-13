@@ -24,6 +24,18 @@ html[data-skin="brass"]{
   --emph:#E3C77E;
   --sx-anchor:#241D12; --sx-anchorline:#3A2F1E;
   --ctagold:#C9A24A; --ctafh:#C9A24A; --ctafc:#C9A24A;
+  /* layman chapter accents (CW4) — Option A "warm earthen sweep": gold→rust→plum.
+     All within the brass family, anchored on --eyeb. Low-salience duty: chapter
+     numerals, dividers and pill kickers only — never running text or fill. */
+  --chA:#C9A24A;  /* I   Foundations         — brass gold (= --eyeb anchor) */
+  --chB:#C2853A;  /* II  The credit cycle    — amber-bronze */
+  --chC:#BB7032;  /* III Reading the signals — copper */
+  --chD:#B45C30;  /* IV  Ratings ladder      — terracotta */
+  --chE:#AE5040;  /* V   What drives returns — burnt sienna */
+  --chF:#A24A4A;  /* VI  The plumbing        — clay red */
+  --chG:#984E5C;  /* VII When rules break    — muted oxblood */
+  --chH:#8E5470;  /* VIII The Gulf angle     — wine-plum */
+  --chI:#7E5A82;  /* IX  How we know         — deep plum (reflective close) */
   background:var(--canvas);
 }
 /* flat brass CTA — solid brass + dark text. Covers BOTH markup patterns:

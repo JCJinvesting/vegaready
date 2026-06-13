@@ -40,6 +40,33 @@ const dataThrough = lastUpdated || 'recent';
 const comp = feed.compression();
 const creg = feed.regime();
 const chipHY = feed.chipFor(feed.tile('hyOas').state);
+// ── layman anchors (CW4): live numbers + their fixed plain-English yardsticks ──
+const hyBp = feed.tile('hyOas').bp;
+const igBp = feed.tile('igOas').bp;
+const hyPctTxt = (hyBp != null) ? (hyBp / 100).toFixed(1) : null;     // 278bp → "2.8"
+const igPctTxt = (igBp != null) ? (igBp / 100).toFixed(2) : null;     // 75bp → "0.75"
+const compBpTxt = (hyBp != null && igBp != null) ? (hyBp - igBp) : null; // gap, transparently derived
+// spread-thermometer scale: bp → x on a 40..640 track spanning 0..1200 bp (HY-scale)
+const bpToX = (b) => 40 + Math.min(Math.max(b, 0), 1200) / 1200 * 600;
+const hyX = (hyBp != null) ? bpToX(hyBp) : null;
+const igX = (igBp != null) ? bpToX(igBp) : null;
+// ── Layman SKIM tier (CW5): 9-chapter digest + remember-three closer ──
+const skimDigest = [
+  ['I', 'chA', 'A spread is the extra rent on risky borrowing. Today it’s low — calm, but stretched, with little cushion if the mood turns.'],
+  ['II', 'chB', 'Boom → confidence → stress → defaults → repair. Defaults come last, so the quiet early warnings — refinancing strain, downgrades, outflows — matter most.'],
+  ['III', 'chC', 'Today’s spread sits in the “calm” band, far from crisis levels — but you’re paid little for the risk, and the shaky tail is quietly widening.'],
+  ['IV', 'chD', 'From blue-chip to CCC, the lower the grade the more they pay and the harder they fall. Stress always shows at the bottom first.'],
+  ['V', 'chE', 'Carry, quality and momentum drive returns — but chasing yield, value and carry is often one bet. Quality and momentum are what truly diversify.'],
+  ['VI', 'chF', 'Dealers’ shock-absorber shrank after 2008. When the safest bonds are the cheapest, it’s a cash scramble — not a default scare.'],
+  ['VII', 'chG', 'Stocks and bonds usually move opposite — until they don’t (2022). Each shock picks different winners; in a true panic, everything moves as one.'],
+  ['VIII', 'chH', 'A faraway conflict reaches US credit through the plumbing of dollars — hitting emerging markets, sparing US blue-chips. Watch for central-bank swap lines.'],
+  ['IX', 'chI', 'We write down what would prove us wrong, what we’re watching, and — honestly — what we can’t yet show you live.'],
+];
+const remember3 = [
+  'Watch the <b>gap between risky and safe borrowing</b> — a widening spread is the first alarm.',
+  'Ask whether a sell-off is a <b>cash scramble or real default fear</b> — when the safest bonds are cheapest, it’s the plumbing, not the companies.',
+  '<b>Defaults confirm trouble, they don’t predict it</b> — the quiet early signs always come first.',
+];
 
 // live credit-regime instruments (registry §2 = credit/funding)
 const eq = [{ k: 'EM sovereign · EMBI', m: byNo['2.1'] }, { k: 'Flight-to-quality cash', m: byNo['2.2'] }, { k: 'Gulf UST recycling', m: byNo['2.3'] }];
@@ -247,6 +274,11 @@ const ovGlossDeep = [
   ['Investment-grade', 'the big, reliable borrowers lenders trust most — the opposite end of the scale from “junk”.'],
   ['Swap line', 'an emergency dollar tap between central banks. Switching it on is the fastest way to calm a global dollar squeeze.'],
   ['Risk-off', 'market shorthand for “everyone wants safety” — money rushes out of risky assets into cash and government bonds.'],
+  ['Carry', 'the steady extra yield you earn just for holding a bond. Most of the time, it’s where the return comes from — and the first thing to vanish in a scare.'],
+  ['Quality (as a strategy)', 'tilting toward stronger borrowers and away from the shakiest. Costs a little yield in good times; it’s the cushion in a bad one.'],
+  ['Dealer', 'the middleman — usually a big bank — that buys bonds from sellers and holds them until a buyer appears. The market’s shock-absorber.'],
+  ['Duration × spread', 'how lenders size up risk: how long your money is lent out, times how risky the borrower is. A dollar in a shaky borrower risks more than a dollar in a blue-chip.'],
+  ['Correlation', 'whether two things move together or opposite. Stocks and safe bonds usually move opposite — but not always, as 2022 showed.'],
 ];
 
 // ── Layman DEEP tier — expanded plain-language content (authored) ──
@@ -474,8 +506,86 @@ const charts = {
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
+  <div class="chnav"><span class="cn-l">The deep read · nine chapters</span>
+    <a class="chA" href="#ch-1"><b>I</b>Foundations</a><a class="chB" href="#ch-2"><b>II</b>The credit cycle</a><a class="chC" href="#ch-3"><b>III</b>Reading the signals</a><a class="chD" href="#ch-4"><b>IV</b>The ratings ladder</a><a class="chE" href="#ch-5"><b>V</b>What drives returns</a><a class="chF" href="#ch-6"><b>VI</b>The plumbing</a><a class="chG" href="#ch-7"><b>VII</b>When the rules break</a><a class="chH" href="#ch-8"><b>VIII</b>The Gulf angle</a><a class="chI" href="#ch-9"><b>IX</b>How we know</a>
+  </div>
+</div></section>
+
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="skbanner">You’re reading the <b>Skim</b> — the 3-minute version. The Deep read opens all nine chapters (~20 minutes): the visuals, the worked examples, and where every number comes from. <button class="sk-go" data-godeep>Switch to Deep →</button></div>
+  <div class="sk60">
+    <div class="sk60-h">Credit in 60 seconds</div>
+    <p class="sk60-call"><b>The call:</b> lenders are calm but stretched. The extra interest charged on risky borrowing is low — there’s little cushion if the mood turns. The Gulf strain is landing on emerging-market funding, not big US companies.</p>
+    <div class="sk60-grid">
+      <div class="sk60-c"><span class="sk60-v">{hyBp != null ? `${hyBp} bp` : '—'}</span><span class="sk60-l">extra interest on risky borrowing — low, near the calm end</span></div>
+      <div class="sk60-c"><span class="sk60-v">{compBpTxt != null ? `${compBpTxt} bp` : '—'}</span><span class="sk60-l">the gap between risky &amp; safe — narrow means relaxed lenders</span></div>
+      <div class="sk60-c"><span class="sk60-v">{fmt(byNo['2.1'])}</span><span class="sk60-l">emerging-market government risk — where stress shows first</span></div>
+    </div>
+    <p class="sk60-w"><b>Watch this week:</b> if that gap starts widening week over week, money is fleeing to safety — and this desk’s whole read changes (see “What would change our mind”).</p>
+  </div>
+</div></section>
+
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="lay-sech"><h2>The nine chapters, in nine lines</h2><p>The whole Deep read, compressed. Tap any chapter to open the full version.</p></div>
+  <div class="skdigest">{skimDigest.map((d, i) => (<a class={`skd-row ${d[1]}`} href={`#ch-${i + 1}`}><span class="skd-n">{d[0]}</span><p>{d[2]}</p><span class="skd-go">open →</span></a>))}</div>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chA" id="ch-1"><span class="lc-rom">I</span><div><span class="lc-bar"></span><div class="lc-t">Foundations</div><p>What credit is, what a spread actually tells you, and where lenders stand today.</p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
   <div class="lay-sech"><h2>The five things to understand</h2></div>
   <ol class="lay-cards">{ovBeats.map((b, i) => (<li class="lay-card"><span class="lc-n">{i + 1}</span><div><h3>{b[0]}</h3><p set:html={b[1]}></p></div></li>))}</ol>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>What the number is saying today</h2><p>The one figure this whole desk turns on — translated into plain money.</p></div>
+  <div class="lay-read">
+    <div class="lr-row"><span class="lr-k">Risky borrowers<br/><i>“high-yield”, or junk</i></span><span class="lr-v">{hyBp != null ? `${hyBp} bp` : '—'}</span><span class="lr-a">≈ <b>{hyPctTxt}% extra interest</b> a year over a government bond. For scale: <b>~3% is calm</b>, and the 2008 panic blew past <b>10%</b>. So today reads calm.</span></div>
+    <div class="lr-row"><span class="lr-k">Blue-chip borrowers<br/><i>“investment-grade”</i></span><span class="lr-v">{igBp != null ? `${igBp} bp` : '—'}</span><span class="lr-a">≈ <b>{igPctTxt}% extra</b> — the sturdiest companies pay almost nothing over the government to borrow.</span></div>
+    <div class="lr-row"><span class="lr-k">The gap between them<br/><i>the master signal</i></span><span class="lr-v">{compBpTxt != null ? `${compBpTxt} bp` : '—'}</span><span class="lr-a">A <b>narrow</b> gap, like today, means lenders are relaxed and reaching for yield. A <b>widening</b> gap is money fleeing to safety — the first thing to watch.</span></div>
+  </div>
+  <p class="lay-prov">Where this comes from: the ICE BofA spread indices, published daily by the St. Louis Fed (FRED). <a class="lay-go" href="/markets/credit#regime">See the analyst read →</a></p>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chB" id="ch-2"><span class="lc-rom">II</span><div><span class="lc-bar"></span><div class="lc-t">The credit cycle</div><p>Boom to confidence to bust to repair — and why defaults are the last thing to move, not the first.</p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>The credit cycle, in one picture</h2><p>Every credit story walks the same loop. The failures come at the end — not the start.</p></div>
+  <figure class="lay-cycle">
+    <div class="lc-svg"><svg viewBox="0 0 680 128" role="img" aria-label="The credit cycle in five stages — boom, confidence, stress, defaults, repair — with today sitting early, at confidence.">
+      <text x="212" y="13" text-anchor="middle" fill="var(--ink)" font-size="11.5" font-family="Fraunces,serif" font-weight="600">You are here</text>
+      <path d="M212 18 L205 28 L219 28 Z" fill="var(--eyeb)"/>
+      <g font-family="Lora,serif">
+        <rect x="26" y="34" width="116" height="48" rx="8" fill="var(--pos)" fill-opacity="0.14" stroke="var(--pos)" stroke-opacity="0.55"/>
+        <text x="84" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Boom</text>
+        <text x="84" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">cheap money</text>
+        <rect x="154" y="34" width="116" height="48" rx="8" fill="var(--eyeb)" fill-opacity="0.18" stroke="var(--eyeb)" stroke-opacity="0.7"/>
+        <text x="212" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Confidence</text>
+        <text x="212" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">risk piles up</text>
+        <rect x="282" y="34" width="116" height="48" rx="8" fill="var(--warn)" fill-opacity="0.15" stroke="var(--warn)" stroke-opacity="0.6"/>
+        <text x="340" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Stress</text>
+        <text x="340" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">a shock hits</text>
+        <rect x="410" y="34" width="116" height="48" rx="8" fill="var(--neg)" fill-opacity="0.15" stroke="var(--neg)" stroke-opacity="0.6"/>
+        <text x="468" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Defaults</text>
+        <text x="468" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">failures show</text>
+        <rect x="538" y="34" width="116" height="48" rx="8" fill="var(--struct)" fill-opacity="0.16" stroke="var(--struct)" stroke-opacity="0.6"/>
+        <text x="596" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Repair</text>
+        <text x="596" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">healing</text>
+      </g>
+      <g fill="var(--muted)" font-family="Lora,serif" font-size="14">
+        <text x="148" y="61" text-anchor="middle">›</text><text x="276" y="61" text-anchor="middle">›</text><text x="404" y="61" text-anchor="middle">›</text><text x="532" y="61" text-anchor="middle">›</text>
+      </g>
+      <path d="M596 86 C606 116 74 116 84 94" fill="none" stroke="var(--struct)" stroke-opacity="0.75" stroke-width="1.2" stroke-dasharray="3 4"/>
+      <path d="M84 87 L79 96 L89 96 Z" fill="var(--struct)"/>
+      <text x="340" y="124" text-anchor="middle" fill="var(--muted)" font-size="10.5" font-family="Lora,serif" font-style="italic">…and the loop repeats</text>
+    </svg></div>
+    <figcaption>Today: lenders are relaxed but stretched — early in the loop, with little cushion if a shock lands. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
+  <div class="lay-call"><b>The trap:</b> defaults are the <i>last</i> thing to move. By the time companies are visibly failing, the damage is already done. The quiet early warnings come first — <b>refinancing gets harder, downgrades outpace upgrades, and money leaves bond funds</b>. That's why this desk watches the spread, not the default count.</div>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -490,6 +600,40 @@ const charts = {
   <div class="lay-flow">{ovExampleSteps.map((s, i) => (<div class="lf"><span class="lf-n">{i + 1}</span><div class="lf-t" set:html={s}></div></div>))}</div>
 </div></section>
 
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chC" id="ch-3"><span class="lc-rom">III</span><div><span class="lc-bar"></span><div class="lc-t">Reading the signals</div><p>How to read the spread numbers — is the calm surface hiding rot, and are you being paid enough for the risk?</p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>Where today sits on the fear scale</h2><p>The same spread, placed against the moments everyone remembers.</p></div>
+  <figure class="lay-fig">
+    <div class="lc-svg"><svg viewBox="0 0 680 132" role="img" aria-label="A spread fear-scale from calm to distress, with high-yield at 278 basis points sitting in the calm band and investment-grade lower still.">
+      <g font-family="Lora,serif">
+        <rect x="40" y="66" width="175" height="18" rx="3" fill="var(--pos)" fill-opacity="0.16"/>
+        <rect x="215" y="66" width="125" height="18" fill="var(--warn)" fill-opacity="0.16"/>
+        <rect x="340" y="66" width="200" height="18" fill="var(--neg)" fill-opacity="0.14"/>
+        <rect x="540" y="66" width="100" height="18" rx="3" fill="var(--neg)" fill-opacity="0.32"/>
+        <text x="127" y="104" text-anchor="middle" fill="var(--pos)" font-size="11" font-weight="700">Calm</text>
+        <text x="277" y="104" text-anchor="middle" fill="var(--warn)" font-size="11" font-weight="700">Caution</text>
+        <text x="440" y="104" text-anchor="middle" fill="var(--neg)" font-size="11" font-weight="700">Stress</text>
+        <text x="590" y="104" text-anchor="middle" fill="var(--neg)" font-size="11" font-weight="700">Distress</text>
+        <g fill="var(--muted)" font-size="9.5">
+          <text x="215" y="120" text-anchor="middle">~350 bp</text>
+          <text x="340" y="120" text-anchor="middle">~600</text>
+          <text x="540" y="120" text-anchor="middle">~1,000</text>
+        </g>
+        {igX != null && (<g><line x1={igX} y1="60" x2={igX} y2="84" stroke="var(--data)" stroke-width="1.5"/><circle cx={igX} cy="60" r="3" fill="var(--data)"/><text x={igX} y="52" text-anchor="middle" fill="var(--data)" font-size="10">IG {igBp}</text></g>)}
+        {hyX != null && (<g><line x1={hyX} y1="50" x2={hyX} y2="84" stroke="var(--ink)" stroke-width="2"/><circle cx={hyX} cy="50" r="4" fill="var(--eyeb)"/><text x={hyX} y="42" text-anchor="middle" fill="var(--ink)" font-size="11.5" font-weight="700" font-family="Fraunces,serif">HY today · {hyBp} bp</text></g>)}
+      </g>
+    </svg></div>
+    <figcaption>High-yield sits firmly in the calm band; investment-grade lower still. For scale, COVID-2020 spiked near 1,100 bp and the 2008 panic ran past 1,700 — off the right of this chart. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
+  <div class="lay-twin">
+    <div class="lay-call"><b>Are you paid enough?</b> At {hyBp} bp, high-yield pays about {hyPctTxt}% a year over a government bond. In a calm world that's a <i>thin cushion</i> — if even a few percent of borrowers fail, that extra yield is wiped out. Today you're paid little to take the risk. That's the whole meaning of “calm, but stretched.”</div>
+    <div class="lay-call"><b>Is the calm hiding rot?</b> Averages mislead. The gap between the shakiest borrowers and the merely-risky ones is near its widest in years — trouble is concentrated at the bottom even while the headline looks fine. A benign average can sit on top of a quietly deteriorating tail.</div>
+  </div>
+</div></section>
+
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>Why this desk is the early warning</h2></div>
   <p class="lay-prose" set:html={ovCanary}></p>
@@ -497,6 +641,22 @@ const charts = {
 </div></section>
 
 <div class="wrap deep"><blockquote class="lay-pq">Even if you only own shares, credit tells you when the ground is shifting.</blockquote></div>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chD" id="ch-4"><span class="lc-rom">IV</span><div><span class="lc-bar"></span><div class="lc-t">The ratings ladder &amp; who's exposed</div><p>From blue-chip to the shakiest borrowers — the rungs of rising risk, and which neighborhoods feel a shock first.</p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>The ladder of risk</h2><p>Every borrower gets a grade. The lower the grade, the more they pay — and the harder they fall when the mood turns.</p></div>
+  <div class="lay-ladder">
+    <div class="ld-rung r1"><div class="ld-rate">AAA–A</div><div class="ld-body"><div class="ld-name">Blue-chip — the sturdiest borrowers</div><div class="ld-anchor">pays almost nothing extra; first place money hides in a scare</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r2"><div class="ld-rate">BBB</div><div class="ld-body"><div class="ld-name">The edge of “investment-grade”</div><div class="ld-anchor">one downgrade from junk — the “fallen-angel” line everyone watches</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r3"><div class="ld-rate">BB</div><div class="ld-body"><div class="ld-name">Top of high-yield — decent, not safe</div><div class="ld-anchor">the best of the junk tier; first to be bought when nerve returns</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r4"><div class="ld-rate">B</div><div class="ld-body"><div class="ld-name">Mid high-yield — real risk</div><div class="ld-anchor">needs open markets to keep refinancing its debt</div><div class="ld-bar"></div></div></div>
+    <div class="ld-rung r5"><div class="ld-rate">CCC</div><div class="ld-body"><div class="ld-name">Distressed — the shakiest, near the edge</div><div class="ld-anchor">paid hugely — <i>if</i> they survive; where stress shows up first</div><div class="ld-bar"></div></div></div>
+  </div>
+  <p class="lay-prov">The lower the rung, the wider the spread — and the bigger the swing in a sell-off. <a class="lay-go" href="/markets/credit#cohorts">See the live spread for each rating →</a></p>
+</div></section>
 
 <section class="lay-sec"><div class="wrap">
   <div class="lay-sech"><h2>Who’s helped, who’s exposed</h2><p>Under the current Gulf-conflict episode — and mostly at the government/funding edge so far, not big US companies.</p></div>
@@ -506,10 +666,124 @@ const charts = {
   </div>
 </div></section>
 
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chE" id="ch-5"><span class="lc-rom">V</span><div><span class="lc-bar"></span><div class="lc-t">What drives returns</div><p>What actually moves a bond portfolio — and the “diversified” book that's secretly one bet.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> chasing yield, value and carry is usually one bet; quality and momentum are what truly diversify. <span class="bl-go">Open Deep for the full picture ↓</span></p>
+</div></section>
+
+<section class="lay-sec deep"><div class="wrap">
+  <div class="lay-sech"><h2>The three forces that move credit</h2><p>Strip away the jargon and almost everything comes down to these.</p></div>
+  <div class="lay-ex">
+    <div class="lay-exc"><h3>Carry — getting paid to wait</h3><p class="exc-lead">The extra yield a bond pays you simply for holding it. Most of the time, this steady income <i>is</i> the return.</p><ul class="exc-pts"><li>In calm markets, reaching for more carry — owning riskier, higher-paying bonds — usually wins.</li><li>But carry is the first thing to vanish when fear arrives.</li></ul></div>
+    <div class="lay-exc"><h3>Quality — owning the sturdier borrowers</h3><p class="exc-lead">Tilting toward stronger balance sheets and away from the shakiest names.</p><ul class="exc-pts"><li>Looks boring in good times — you give up some yield.</li><li>It's the cushion that pays off in a scare, when the weak names crater.</li></ul></div>
+    <div class="lay-exc"><h3>Momentum — riding what's working</h3><p class="exc-lead">Leaning toward bonds whose prices have been improving, away from those sliding.</p><ul class="exc-pts"><li>It's a genuinely different bet from carry.</li><li>Helps sidestep the slow-motion blow-ups.</li></ul></div>
+  </div>
+</div></section>
+
+<section class="lay-sec deep"><div class="wrap">
+  <div class="lay-call"><b>The real risk isn't time — it's size × spread.</b> Lenders measure risk as <i>“duration times spread”</i>: how long your money is lent out, multiplied by how risky the borrower is. In plain terms, a dollar lent to a shaky borrower carries far more risk than a dollar lent to a blue-chip — even for the same number of years. <b>Worked example:</b> take a BB bond paying 250 bp. If its spread widens by 100 bp, a typical 4-year bond loses about <b>4% of its value</b> — before anyone has actually defaulted.</div>
+  <div class="lay-call"><b>The diversification trap.</b> Chasing carry, buying “cheap” bonds, and reaching for yield <i>feel</i> like three different strategies. They're mostly the same bet — they all win in calm and all sink together in a scare. The things that genuinely diversify a credit book are <b>quality</b> and <b>momentum</b>, because they lean against the crowd.</div>
+</div></section>
+
+<section class="lay-sec deep"><div class="wrap">
+  <div class="lay-sech"><h2>What works when</h2><p>The same strategy is a hero or a victim depending on the weather.</p></div>
+  <div class="lay-twin">
+    <div class="lay-call go"><b>When markets are calm →</b> reaching for yield pays. The riskier, higher-carry bonds beat the safe ones, and there's little penalty for stretching. The temptation to reach is strongest right here.</div>
+    <div class="lay-call warn"><b>When fear spikes →</b> quality pays. Sturdier borrowers hold their value; the high-carry, reach-for-yield names are punished hardest. The cushion you gave up in calm is what saves you now.</div>
+  </div>
+  <p class="lay-prov">Patterns drawn from decades of factor studies across calm and crisis regimes. <a class="lay-go" href="/markets/credit#factors">See the analyst factor tables →</a></p>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chF" id="ch-6"><span class="lc-rom">VI</span><div><span class="lc-bar"></span><div class="lc-t">The plumbing — who's forced to sell</div><p>Sometimes a sell-off isn't about the companies at all. It's about who <i>has</i> to sell, right now.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> when the safest bonds are the cheapest, it's a cash scramble, not a default scare. <span class="bl-go">Open Deep for the full picture ↓</span></p>
+</div></section>
+
+<section class="lay-sec deep"><div class="wrap">
+  <div class="lay-sech"><h2>The middlemen, and their shrinking buffer</h2><p>Bonds don't trade on a tidy exchange like shares. Dealers sit in the middle.</p></div>
+  <p class="lay-prose">When you want to sell a bond, a <b>dealer</b> — usually a big bank — often buys it from you and holds it until a buyer turns up. That inventory is the market's <b>shock-absorber</b>: it lets people trade even when buyers and sellers don't show up at the same moment. The catch: after 2008, rules made it far more expensive for dealers to hold big piles of bonds, so that buffer is a fraction of what it once was. When everyone tries to sell at once, there's less cushion — and prices lurch further than the actual news warrants.</p>
+  <figure class="lay-fig">
+    <div class="lc-svg"><svg viewBox="0 0 680 138" role="img" aria-label="Sellers pass bonds to dealers, who pass them to buyers; the dealers' buffer is much smaller than before 2008.">
+      <g font-family="Lora,serif">
+        <rect x="34" y="30" width="170" height="48" rx="9" fill="var(--card)" stroke="var(--cardline)"/>
+        <text x="119" y="52" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Sellers</text>
+        <text x="119" y="68" text-anchor="middle" fill="var(--muted)" font-size="10.5">need cash now</text>
+        <rect x="255" y="30" width="170" height="48" rx="9" fill="var(--card)" stroke="var(--eyeb)" stroke-opacity="0.7"/>
+        <text x="340" y="52" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Dealers</text>
+        <text x="340" y="68" text-anchor="middle" fill="var(--muted)" font-size="10.5">the shock-absorber</text>
+        <rect x="476" y="30" width="170" height="48" rx="9" fill="var(--card)" stroke="var(--cardline)"/>
+        <text x="561" y="52" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Buyers</text>
+        <text x="561" y="68" text-anchor="middle" fill="var(--muted)" font-size="10.5">waiting for a deal</text>
+        <g stroke="var(--muted)" stroke-width="1.5" fill="none"><path d="M210 54 L249 54"/><path d="M431 54 L470 54"/></g>
+        <g fill="var(--muted)"><path d="M249 54 L242 50 L242 58 Z"/><path d="M470 54 L463 50 L463 58 Z"/></g>
+        <text x="340" y="104" text-anchor="middle" fill="var(--muted)" font-size="10.5" font-family="Lora,serif">Their buffer — then vs now</text>
+        <rect x="255" y="112" width="170" height="9" rx="2" fill="var(--struct)" fill-opacity="0.5"/>
+        <rect x="255" y="112" width="46" height="9" rx="2" fill="var(--eyeb)"/>
+        <text x="431" y="120" fill="var(--muted)" font-size="9">2007</text>
+        <text x="306" y="120" fill="var(--eyeb)" font-size="9">today</text>
+      </g>
+    </svg></div>
+    <figcaption>The middle box is smaller than it used to be — so the same wave of selling pushes prices around more than it once did. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
+</div></section>
+
+<section class="lay-sec deep"><div class="wrap">
+  <div class="lay-call"><b>The tell: when the safest bonds are the cheapest.</b> Here's the giveaway that a sell-off is plumbing, not panic about defaults. If the <i>safest, easiest-to-sell</i> bonds are the ones going at the biggest discount, it means people are selling whatever they easily can to raise cash — not betting those rock-solid borrowers will fail. That's a <b>cash scramble</b>, and it usually mends quickly once the rush passes. When instead the <i>shakiest</i> bonds are leading the fall, that's the market genuinely re-pricing the risk of failure — a slower, deeper kind of trouble.</div>
+  <div class="lay-call"><b>Always ask: forced, or fundamental?</b> Is the move about who's <i>forced</i> to trade — flows, redemptions, positioning — or about the borrowers actually getting weaker? Plumbing scrambles snap back. Fundamental rot doesn't. Telling them apart is most of the job.</div>
+  <p class="lay-prov">Built on intermediary-capital research and dealer-inventory data. <a class="lay-go" href="/markets/credit#positioning">See the analyst plumbing read →</a></p>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chG" id="ch-7"><span class="lc-rom">VII</span><div><span class="lc-bar"></span><div class="lc-t">When the rules break</div><p>The comforting rules of thumb hold — until they don't. Knowing <i>when</i> they break is the whole game.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> the stock-bond hedge broke in 2022; each shock picks different winners, and in a true panic everything moves as one. <span class="bl-go">Open Deep for the full picture ↓</span></p>
+</div></section>
+
+<section class="lay-sec deep"><div class="wrap">
+  <div class="lay-sech"><h2>The hedge that stopped hedging</h2><p>The most trusted rule in investing — and the year it failed.</p></div>
+  <p class="lay-prose">Normally, stocks and government bonds move in <b>opposite</b> directions: when stocks fall, safe bonds rise and soften the blow. That's why owning both feels safe. But it's a tendency, not a law. In <b>2022</b> they fell <i>together</i> — because the problem was inflation and rising rates, not a growth scare, and rising rates hurt both at once. The bond “hedge” stopped hedging exactly when people needed it.</p>
+  <figure class="lay-fig">
+    <div class="lc-svg"><svg viewBox="0 0 680 126" role="img" aria-label="A scale from 'move opposite, a good hedge' to 'move together, no protection', with the usual relationship on the hedge side and 2022 on the no-protection side.">
+      <g font-family="Lora,serif">
+        <rect x="40" y="60" width="300" height="18" rx="3" fill="var(--pos)" fill-opacity="0.16"/>
+        <rect x="340" y="60" width="300" height="18" rx="3" fill="var(--neg)" fill-opacity="0.16"/>
+        <text x="190" y="98" text-anchor="middle" fill="var(--pos)" font-size="10.5" font-weight="700">Move opposite — bonds cushion stocks</text>
+        <text x="490" y="98" text-anchor="middle" fill="var(--neg)" font-size="10.5" font-weight="700">Move together — no protection</text>
+        <line x1="340" y1="56" x2="340" y2="82" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3"/>
+        <g><line x1="250" y1="52" x2="250" y2="78" stroke="var(--ink)" stroke-width="1.5"/><circle cx="250" cy="52" r="3.5" fill="var(--pos)"/><text x="250" y="44" text-anchor="middle" fill="var(--ink)" font-size="11" font-weight="700" font-family="Fraunces,serif">Usual</text></g>
+        <g><line x1="490" y1="52" x2="490" y2="78" stroke="var(--ink)" stroke-width="1.5"/><circle cx="490" cy="52" r="3.5" fill="var(--neg)"/><text x="490" y="44" text-anchor="middle" fill="var(--ink)" font-size="11" font-weight="700" font-family="Fraunces,serif">2022</text></g>
+      </g>
+    </svg></div>
+    <figcaption>The relationship isn't fixed — it's weather, and the weather changes. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
+</div></section>
+
+<section class="lay-sec deep"><div class="wrap">
+  <div class="lay-sech"><h2>Who wins, who loses — by type of shock</h2><p>Different troubles hurt different borrowers. The mistake is assuming one playbook fits all.</p></div>
+  <div class="lay-smap">
+    <div class="sm-row sm-head"><span>The shock</span><span>Who gets hit</span><span>What holds up</span></div>
+    <div class="sm-row"><span class="sm-s">Fear spike</span><span>junk &amp; emerging markets</span><span>blue-chip, government bonds, cash</span></div>
+    <div class="sm-row"><span class="sm-s">Rates jump</span><span>long-dated high-grade bonds</span><span>short-dated &amp; floating; junk holds up better</span></div>
+    <div class="sm-row"><span class="sm-s">Recession scare</span><span>cyclical &amp; junk borrowers</span><span>quality, defensive names</span></div>
+    <div class="sm-row"><span class="sm-s">Inflation surprise</span><span>the stock-bond hedge itself — both fall</span><span>real assets, short duration</span></div>
+    <div class="sm-row"><span class="sm-s">Dollar squeeze</span><span>emerging-market &amp; overseas dollar borrowers</span><span>US blue-chip, the dollar itself</span></div>
+  </div>
+  <div class="lay-call"><b>When the rules collapse entirely.</b> In a true panic — a “dash for cash” — none of this holds. Investors sell everything at once, good and bad together, just to hold cash, and every relationship rushes toward moving as one. There's no hiding place in the moment; the only protection is the caution you carried in beforehand.</div>
+  <p class="lay-prov">Scenario patterns drawn from how each cohort behaved across past shocks. <a class="lay-go" href="/markets/credit#crossasset">See the analyst cross-asset matrix →</a></p>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chH" id="ch-8"><span class="lc-rom">VIII</span><div><span class="lc-bar"></span><div class="lc-t">The Gulf angle</div><p>Why a faraway conflict reaches US credit through the plumbing of dollars — and the relief valve to watch.</p></div></div>
+  <p class="skim-bl skim-only"><b>In short —</b> the strain reaches US credit through dollar funding — hitting emerging markets, sparing US blue-chips. Watch for central-bank swap lines. <span class="bl-go">Open Deep for the full picture ↓</span></p>
+</div></section>
+
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>The Gulf angle, in plain words</h2><p set:html={ovGulfLead}></p></div>
   <div class="lay-flow">{ovGulfChain.map((s, i) => (<div class="lf"><span class="lf-n">{i + 1}</span><div class="lf-t" set:html={s}></div></div>))}</div>
   <p class="lay-prose mt16" set:html={ovGulfClose}></p>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chI" id="ch-9"><span class="lc-rom">IX</span><div><span class="lc-bar"></span><div class="lc-t">What would change our mind &amp; how we know</div><p>The signals we watch, the “what-ifs” and what each would mean, the things people get wrong, and an honest account of our sources and gaps.</p></div></div>
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
@@ -535,6 +809,19 @@ const charts = {
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>How we know — and what we don’t</h2></div>
   <div class="lay-ex">{ovKnow.map((b) => (<div class="lay-exc"><h3>{b[0]}</h3><p class="exc-lead" set:html={b[1]}></p><ul class="exc-pts">{b[2].map((p) => (<li set:html={p}></li>))}</ul></div>))}</div>
+  <div class="lay-call"><b>What we can't show you live — yet.</b> A few things we name on the analyst page but don't display as a live number, because no free, reliable feed exists. Where a figure isn't live, we say so and reason from what is — never a guess dressed up as data.
+    <div class="lay-gaps">
+      <div class="lg-row"><b>The share of junk in distress</b><span>no free live feed — we read the same story from spreads.</span></div>
+      <div class="lg-row"><b>Live default-insurance (CDS) prices</b><span>tradable, but not freely published minute-to-minute — we reason from cash-bond spreads.</span></div>
+      <div class="lg-row"><b>Emerging-market bond stress</b><span>the official gauge is monthly, not a live tick — we label it as last-published.</span></div>
+      <div class="lg-row"><b>The leveraged-loan index</b><span>we've found a trustworthy source and are wiring it up — not live on the page yet.</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="lay-sec skim-only"><div class="wrap">
+  <div class="lay-sech"><h2>If you remember three things</h2></div>
+  <ul class="remember">{remember3.map((r) => (<li><span set:html={r}></span></li>))}</ul>
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
@@ -606,6 +893,7 @@ const charts = {
 <section class="dsec" id="factors"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">{T.factors.eye} · {T.factors.q}</div><h2>{T.factors.h}.</h2></div><span class="fresh-tag">{T.factors.fresh}</span></div>
   <p class="lead" set:html={T.factors.lead}></p>
+  <p class="skim-bl skim-only"><b>Bottom line —</b> quality and momentum are the only real diversifiers of a long-credit book; carry, value and reach-for-yield are mostly one trade (systematic spread beta). The risk unit is <b>DTS</b>, not duration. <span class="bl-go">Open Deep for the rotation tables ↓</span></p>
   <div class="snap">
     <div class="kpibar">{T.factors.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
   </div>
@@ -633,6 +921,7 @@ const charts = {
 <section class="dsec" id="positioning"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">{T.positioning.eye} · {T.positioning.q}</div><h2>{T.positioning.h}.</h2></div><span class="fresh-tag">{T.positioning.fresh}</span></div>
   <p class="lead" set:html={T.positioning.lead}></p>
+  <p class="skim-bl skim-only"><b>Bottom line —</b> read dealer inventory as a <i>change</i>, not a level; the cleanest stress tell is the cross-section — when the <b>safest</b> bonds are the cheapest, it's a plumbing scramble, not a default scare. <span class="bl-go">Open Deep for the diagnostic ↓</span></p>
   <div class="snap">
     <div class="kpibar">{T.positioning.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
   </div>
@@ -659,6 +948,7 @@ const charts = {
 <section class="dsec" id="crossasset"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">{T.crossasset.eye} · {T.crossasset.q}</div><h2>{T.crossasset.h}.</h2></div><span class="fresh-tag">{T.crossasset.fresh}</span></div>
   <p class="lead" set:html={T.crossasset.lead}></p>
+  <p class="skim-bl skim-only"><b>Bottom line —</b> every cross-asset correlation here is <i>regime-conditional</i>, not structural: stocks and bonds re-correlated positively in 2022, and in a dash-for-cash they all converge to ~1. <span class="bl-go">Open Deep for the scenario map ↓</span></p>
   <div class="snap">
     <div class="kpibar">{T.crossasset.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
   </div>
@@ -873,6 +1163,107 @@ const charts = {
   .lay-sech{margin-bottom:14px}
   .lay-sech h2{font-family:'Fraunces',serif;font-size:23px;font-weight:600;color:var(--ink);margin:0}
   .lay-sech p{font-size:13px;color:var(--muted);margin:5px 0 0;line-height:1.55;max-width:74ch}
+  /* ── CW4 chapter system: chnav numeral pills + laych dividers (warm-earthen accents from skin-brass --chA..--chI) ── */
+  .chnav{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  .chnav .cn-l{font-family:'Lora',serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+  .chnav a{font-family:'Lora',serif;font-size:11.5px;font-weight:700;letter-spacing:.02em;text-decoration:none;color:var(--body);border:1px solid var(--cardline);border-radius:999px;padding:6px 15px;background:var(--card);transition:border-color .15s ease-out,color .15s ease-out}
+  .chnav a b{font-family:'Playfair Display',Georgia,serif;font-weight:700;margin-right:7px}
+  .chnav a.chA b{color:var(--chA)}.chnav a.chB b{color:var(--chB)}.chnav a.chC b{color:var(--chC)}.chnav a.chD b{color:var(--chD)}.chnav a.chE b{color:var(--chE)}.chnav a.chF b{color:var(--chF)}.chnav a.chG b{color:var(--chG)}.chnav a.chH b{color:var(--chH)}.chnav a.chI b{color:var(--chI)}
+  .chnav a:hover{color:var(--ink)}
+  .chnav a.chA:hover{border-color:var(--chA)}.chnav a.chB:hover{border-color:var(--chB)}.chnav a.chC:hover{border-color:var(--chC)}.chnav a.chD:hover{border-color:var(--chD)}.chnav a.chE:hover{border-color:var(--chE)}.chnav a.chF:hover{border-color:var(--chF)}.chnav a.chG:hover{border-color:var(--chG)}.chnav a.chH:hover{border-color:var(--chH)}.chnav a.chI:hover{border-color:var(--chI)}
+  .laych{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;margin:2px 0 22px;scroll-margin-top:96px}
+  .laych .lc-rom{font-family:'Playfair Display',Georgia,serif;font-size:34px;font-weight:700;line-height:1;padding-top:2px}
+  .laych .lc-bar{display:block;width:36px;height:3px;margin-bottom:8px}
+  .laych .lc-t{font-family:'Lora',serif;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+  .laych p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:64ch}
+  .laych.chA .lc-rom,.laych.chA .lc-t{color:var(--chA)}.laych.chA .lc-bar{background:var(--chA)}
+  .laych.chB .lc-rom,.laych.chB .lc-t{color:var(--chB)}.laych.chB .lc-bar{background:var(--chB)}
+  .laych.chC .lc-rom,.laych.chC .lc-t{color:var(--chC)}.laych.chC .lc-bar{background:var(--chC)}
+  .laych.chD .lc-rom,.laych.chD .lc-t{color:var(--chD)}.laych.chD .lc-bar{background:var(--chD)}
+  .laych.chE .lc-rom,.laych.chE .lc-t{color:var(--chE)}.laych.chE .lc-bar{background:var(--chE)}
+  .laych.chF .lc-rom,.laych.chF .lc-t{color:var(--chF)}.laych.chF .lc-bar{background:var(--chF)}
+  .laych.chG .lc-rom,.laych.chG .lc-t{color:var(--chG)}.laych.chG .lc-bar{background:var(--chG)}
+  .laych.chH .lc-rom,.laych.chH .lc-t{color:var(--chH)}.laych.chH .lc-bar{background:var(--chH)}
+  .laych.chI .lc-rom,.laych.chI .lc-t{color:var(--chI)}.laych.chI .lc-bar{background:var(--chI)}
+  .lay-soon{font-style:italic;color:var(--struct)}
+  .lay-soon::before{content:"○ ";font-style:normal}
+  .lay-chap{padding-bottom:0}
+  .lay-chap + .lay-sec{border-top:none}
+  /* CW4-L2: anchored "reading the number" panel */
+  .lay-read{display:grid;gap:10px}
+  .lr-row{display:grid;grid-template-columns:190px 88px 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--cardline);border-radius:11px;padding:13px 18px}
+  .lr-k{font-family:'Lora',serif;font-size:13px;font-weight:700;color:var(--ink);line-height:1.3}
+  .lr-k i{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:2px}
+  .lr-v{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--eyeb);text-align:center}
+  .lr-a{font-size:13.5px;line-height:1.55;color:var(--body)}
+  .lr-a b{color:var(--ink)}
+  .lay-prov{font-size:11.5px;color:var(--muted);margin:12px 0 0;line-height:1.5}
+  .lay-go{color:var(--eyeb);text-decoration:none;font-weight:600;white-space:nowrap}
+  .lay-go:hover{text-decoration:underline}
+  /* CW4-L2: credit-cycle figure + lesson callout */
+  .lay-cycle,.lay-fig{margin:6px 0 0;background:var(--card);border:1px solid var(--cardline);border-radius:12px;padding:16px 18px 12px}
+  .lay-cycle .lc-svg svg,.lay-fig .lc-svg svg{width:100%;height:auto;display:block}
+  .lay-cycle figcaption,.lay-fig figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .lay-twin{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .lay-twin .lay-call{margin-top:0}
+  @media (max-width:640px){ .lay-twin{grid-template-columns:1fr} }
+  /* CW4-L4: ratings ladder */
+  .lay-ladder{display:grid;gap:8px;margin:6px 0 0}
+  .ld-rung{display:grid;grid-template-columns:66px 1fr;gap:14px;align-items:center;background:var(--card);border:1px solid var(--cardline);border-radius:10px;padding:11px 16px}
+  .ld-rate{font-family:'Fraunces',serif;font-size:16px;font-weight:700;text-align:center}
+  .ld-name{font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.3}
+  .ld-anchor{font-size:12px;color:var(--muted);font-style:italic;margin-top:1px;line-height:1.4}
+  .ld-bar{height:6px;border-radius:3px;margin-top:8px;max-width:560px}
+  .ld-rung.r1 .ld-rate{color:var(--pos)} .ld-rung.r1 .ld-bar{width:14%;background:var(--pos)}
+  .ld-rung.r2 .ld-rate{color:var(--bench)} .ld-rung.r2 .ld-bar{width:32%;background:var(--bench)}
+  .ld-rung.r3 .ld-rate{color:var(--warn)} .ld-rung.r3 .ld-bar{width:50%;background:var(--warn)}
+  .ld-rung.r4 .ld-rate{color:var(--neg)} .ld-rung.r4 .ld-bar{width:70%;background:color-mix(in srgb,var(--neg) 80%,#000)}
+  .ld-rung.r5 .ld-rate{color:var(--neg)} .ld-rung.r5 .ld-bar{width:94%;background:var(--neg)}
+  /* CW4-L7: scenario map */
+  .lay-smap{display:grid;gap:7px;margin:6px 0 0}
+  .sm-row{display:grid;grid-template-columns:128px 1fr 1fr;gap:14px;background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 15px;font-size:13px;line-height:1.45;color:var(--body)}
+  .sm-row.sm-head{background:transparent;border:0;padding:2px 15px;font-family:'Lora',serif;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .sm-s{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--eyeb)}
+  @media (max-width:600px){ .sm-row{grid-template-columns:1fr;gap:3px} .sm-row.sm-head{display:none} }
+  /* CW4-L8: honest-gaps list */
+  .lay-gaps{display:grid;gap:7px;margin-top:11px}
+  .lg-row{display:grid;grid-template-columns:228px 1fr;gap:14px;font-size:12.5px;line-height:1.45;padding-top:7px;border-top:1px solid var(--cardline)}
+  .lg-row b{color:var(--ink)}
+  .lg-row span{color:var(--muted)}
+  @media (max-width:560px){ .lg-row{grid-template-columns:1fr;gap:2px} }
+  /* CW5: Layman Skim tier — banner, 60-second block, chapter digest, remember-three */
+  .skbanner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:color-mix(in srgb,var(--eyeb) 8%,var(--card));border:1px solid color-mix(in srgb,var(--eyeb) 30%,var(--cardline));border-radius:10px;padding:11px 16px;font-size:13.5px;line-height:1.55;color:var(--body);margin-bottom:16px}
+  .skbanner b{color:var(--ink)}
+  .sk-go{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--eyeb);background:transparent;border:1px solid color-mix(in srgb,var(--eyeb) 45%,transparent);border-radius:999px;padding:5px 13px;cursor:pointer;margin-left:auto;white-space:nowrap}
+  .sk-go:hover{background:color-mix(in srgb,var(--eyeb) 14%,transparent);color:var(--ink)}
+  .sk60{background:var(--card);border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 12px 12px 0;padding:16px 20px}
+  .sk60-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--eyeb);margin-bottom:9px}
+  .sk60-call{font-size:15.5px;line-height:1.6;color:var(--body);margin:0 0 13px;max-width:80ch}
+  .sk60-call b{color:var(--ink)}
+  .sk60-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:13px}
+  .sk60-c{background:color-mix(in srgb,var(--ink) 4%,transparent);border:1px solid var(--cardline);border-radius:8px;padding:10px 13px}
+  .sk60-v{display:block;font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--ink);margin-bottom:3px}
+  .sk60-l{font-size:11.5px;line-height:1.4;color:var(--muted)}
+  .sk60-w{font-size:14px;line-height:1.58;color:var(--body);margin:0;max-width:84ch}
+  .sk60-w b{color:var(--ink)}
+  .skdigest{display:grid;gap:8px}
+  .skd-row{display:grid;grid-template-columns:38px 1fr auto;gap:13px;align-items:start;background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:11px 15px;text-decoration:none;transition:border-color .15s ease-out}
+  .skd-row:hover{border-color:var(--struct)}
+  .skd-go{font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);align-self:center;white-space:nowrap}
+  .skd-row:hover .skd-go{color:var(--eyeb)}
+  .skd-n{font-family:'Playfair Display',Georgia,serif;font-size:19px;font-weight:700;line-height:1.2}
+  .skd-row.chA .skd-n{color:var(--chA)}.skd-row.chB .skd-n{color:var(--chB)}.skd-row.chC .skd-n{color:var(--chC)}.skd-row.chD .skd-n{color:var(--chD)}.skd-row.chE .skd-n{color:var(--chE)}.skd-row.chF .skd-n{color:var(--chF)}.skd-row.chG .skd-n{color:var(--chG)}.skd-row.chH .skd-n{color:var(--chH)}.skd-row.chI .skd-n{color:var(--chI)}
+  .skd-row p{font-size:14px;line-height:1.55;color:var(--body);margin:0}
+  .remember{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .remember li{position:relative;padding-left:26px;font-size:16px;line-height:1.6;color:var(--body)}
+  .remember li::before{content:"";position:absolute;left:2px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--eyeb)}
+  .remember b{color:var(--ink)}
+  @media(max-width:760px){.sk60-grid{grid-template-columns:1fr}.sk-go{margin-left:0}.skd-row{grid-template-columns:38px 1fr}.skd-go{display:none}}
+  .lay-call{margin-top:14px;background:color-mix(in srgb,var(--eyeb) 7%,var(--card));border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;line-height:1.62;color:var(--body)}
+  .lay-call b{color:var(--ink)}
+  .lay-call.go{border-left-color:var(--pos);background:color-mix(in srgb,var(--pos) 7%,var(--card))}
+  .lay-call.warn{border-left-color:var(--neg);background:color-mix(in srgb,var(--neg) 7%,var(--card))}
+  @media (max-width:560px){ .laych{grid-template-columns:1fr;gap:6px} .laych .lc-rom{font-size:26px} .lr-row{grid-template-columns:1fr;gap:6px} .lr-v{text-align:left} }
   .lay-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
   .lay-kpi{background:var(--card);border:1px solid var(--cardline);border-radius:11px;padding:13px 16px}
   .lk-k{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);min-height:25px;line-height:1.3}
@@ -967,6 +1358,10 @@ const charts = {
   .dtbl td.sc-neg{background:color-mix(in srgb,var(--neg) 9%,transparent)}
   .dtbl td.sc-pos{background:color-mix(in srgb,var(--pos) 9%,transparent)}
   .dtbl td.sc-mix{background:color-mix(in srgb,var(--latent) 7%,transparent)}
+  /* CW3 analyst-skim bottom-line: compressed takeaway shown only in Skim */
+  .skim-bl{font-family:'Lora',serif;font-size:13px;line-height:1.6;color:var(--body);background:color-mix(in srgb,var(--eyeb) 7%,transparent);border-left:3px solid var(--eyeb);border-radius:0 7px 7px 0;padding:9px 14px;margin:0 0 14px;max-width:80ch}
+  .skim-bl b{color:var(--ink)}
+  .skim-bl .bl-go{display:block;margin-top:4px;font-size:10.5px;letter-spacing:.04em;color:var(--muted)}
 </style>
 
 <script is:inline>
@@ -981,6 +1376,8 @@ const charts = {
     (function(){var raf=null;function upd(){document.body.classList.toggle('scrolled',window.scrollY>480);}window.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});upd();})();
     var init=document.body.getAttribute('data-disc')||(document.body.getAttribute('data-mode')==='overview'?'skim':'deep');
     apply(init);
+    document.querySelectorAll('[data-godeep]').forEach(function(b){b.addEventListener('click',function(){apply('deep');});});
+    document.querySelectorAll('.chnav a, .skdigest a, .laydeck a.lk').forEach(function(a){a.addEventListener('click',function(){if(document.body.getAttribute('data-disc')==='skim')apply('deep');});});
   })();
   (function(){var links=Array.prototype.slice.call(document.querySelectorAll('#secnav a'));var ids=links.map(function(a){return a.getAttribute('href').slice(1)});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=ids.indexOf(e.target.id);if(i>=0){links.forEach(function(x){x.classList.remove('on')});links[i].classList.add('on');}}});},{rootMargin:'-45% 0px -50% 0px'});ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
   (function(){var tb=document.getElementById('cohtbl');if(!tb)return;var body=tb.querySelector('tbody');tb.querySelectorAll('th.sort').forEach(function(th){th.addEventListener('click',function(){var col=th.getAttribute('data-col');var asc=!th.classList.contains('asc');tb.querySelectorAll('th.sort').forEach(function(x){x.classList.remove('asc','desc')});th.classList.add(asc?'asc':'desc');var rows=Array.prototype.slice.call(body.querySelectorAll('tr'));rows.sort(function(a,b){var av=+a.getAttribute('data-'+col),bv=+b.getAttribute('data-'+col);return asc?av-bv:bv-av;});rows.forEach(function(r){body.appendChild(r)});});});})();
