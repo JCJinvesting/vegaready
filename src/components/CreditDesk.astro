@@ -40,6 +40,12 @@ const dataThrough = lastUpdated || 'recent';
 const comp = feed.compression();
 const creg = feed.regime();
 const chipHY = feed.chipFor(feed.tile('hyOas').state);
+// ── layman anchors (CW4): live numbers + their fixed plain-English yardsticks ──
+const hyBp = feed.tile('hyOas').bp;
+const igBp = feed.tile('igOas').bp;
+const hyPctTxt = (hyBp != null) ? (hyBp / 100).toFixed(1) : null;     // 278bp → "2.8"
+const igPctTxt = (igBp != null) ? (igBp / 100).toFixed(2) : null;     // 75bp → "0.75"
+const compBpTxt = (hyBp != null && igBp != null) ? (hyBp - igBp) : null; // gap, transparently derived
 
 // live credit-regime instruments (registry §2 = credit/funding)
 const eq = [{ k: 'EM sovereign · EMBI', m: byNo['2.1'] }, { k: 'Flight-to-quality cash', m: byNo['2.2'] }, { k: 'Gulf UST recycling', m: byNo['2.3'] }];
@@ -488,8 +494,52 @@ const charts = {
   <ol class="lay-cards">{ovBeats.map((b, i) => (<li class="lay-card"><span class="lc-n">{i + 1}</span><div><h3>{b[0]}</h3><p set:html={b[1]}></p></div></li>))}</ol>
 </div></section>
 
+<section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>What the number is saying today</h2><p>The one figure this whole desk turns on — translated into plain money.</p></div>
+  <div class="lay-read">
+    <div class="lr-row"><span class="lr-k">Risky borrowers<br/><i>“high-yield”, or junk</i></span><span class="lr-v">{hyBp != null ? `${hyBp} bp` : '—'}</span><span class="lr-a">≈ <b>{hyPctTxt}% extra interest</b> a year over a government bond. For scale: <b>~3% is calm</b>, and the 2008 panic blew past <b>10%</b>. So today reads calm.</span></div>
+    <div class="lr-row"><span class="lr-k">Blue-chip borrowers<br/><i>“investment-grade”</i></span><span class="lr-v">{igBp != null ? `${igBp} bp` : '—'}</span><span class="lr-a">≈ <b>{igPctTxt}% extra</b> — the sturdiest companies pay almost nothing over the government to borrow.</span></div>
+    <div class="lr-row"><span class="lr-k">The gap between them<br/><i>the master signal</i></span><span class="lr-v">{compBpTxt != null ? `${compBpTxt} bp` : '—'}</span><span class="lr-a">A <b>narrow</b> gap, like today, means lenders are relaxed and reaching for yield. A <b>widening</b> gap is money fleeing to safety — the first thing to watch.</span></div>
+  </div>
+  <p class="lay-prov">Where this comes from: the ICE BofA spread indices, published daily by the St. Louis Fed (FRED). <a class="lay-go" href="/markets/credit#regime">See the analyst read →</a></p>
+</div></section>
+
 <section class="lay-sec lay-chap"><div class="wrap">
   <div class="laych chB" id="ch-2"><span class="lc-rom">II</span><div><span class="lc-bar"></span><div class="lc-t">The credit cycle</div><p>Boom to confidence to bust to repair — and why defaults are the last thing to move, not the first.</p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>The credit cycle, in one picture</h2><p>Every credit story walks the same loop. The failures come at the end — not the start.</p></div>
+  <figure class="lay-cycle">
+    <div class="lc-svg"><svg viewBox="0 0 680 116" role="img" aria-label="The credit cycle in five stages — boom, confidence, stress, defaults, repair — with today sitting early, at confidence.">
+      <text x="212" y="13" text-anchor="middle" fill="var(--ink)" font-size="11.5" font-family="Fraunces,serif" font-weight="600">You are here</text>
+      <path d="M212 18 L205 28 L219 28 Z" fill="var(--eyeb)"/>
+      <g font-family="Lora,serif">
+        <rect x="26" y="34" width="116" height="48" rx="8" fill="var(--pos)" fill-opacity="0.14" stroke="var(--pos)" stroke-opacity="0.55"/>
+        <text x="84" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Boom</text>
+        <text x="84" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">cheap money</text>
+        <rect x="154" y="34" width="116" height="48" rx="8" fill="var(--eyeb)" fill-opacity="0.18" stroke="var(--eyeb)" stroke-opacity="0.7"/>
+        <text x="212" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Confidence</text>
+        <text x="212" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">risk piles up</text>
+        <rect x="282" y="34" width="116" height="48" rx="8" fill="var(--warn)" fill-opacity="0.15" stroke="var(--warn)" stroke-opacity="0.6"/>
+        <text x="340" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Stress</text>
+        <text x="340" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">a shock hits</text>
+        <rect x="410" y="34" width="116" height="48" rx="8" fill="var(--neg)" fill-opacity="0.15" stroke="var(--neg)" stroke-opacity="0.6"/>
+        <text x="468" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Defaults</text>
+        <text x="468" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">failures show</text>
+        <rect x="538" y="34" width="116" height="48" rx="8" fill="var(--struct)" fill-opacity="0.16" stroke="var(--struct)" stroke-opacity="0.6"/>
+        <text x="596" y="56" text-anchor="middle" fill="var(--ink)" font-size="13" font-weight="700">Repair</text>
+        <text x="596" y="72" text-anchor="middle" fill="var(--muted)" font-size="10.5">healing</text>
+      </g>
+      <g fill="var(--muted)" font-family="Lora,serif" font-size="14">
+        <text x="148" y="61" text-anchor="middle">›</text><text x="276" y="61" text-anchor="middle">›</text><text x="404" y="61" text-anchor="middle">›</text><text x="532" y="61" text-anchor="middle">›</text>
+      </g>
+      <path d="M596 88 C596 104 84 104 84 90" fill="none" stroke="var(--cardline)" stroke-width="1" stroke-dasharray="3 4"/>
+      <text x="340" y="110" text-anchor="middle" fill="var(--muted)" font-size="10" font-family="Lora,serif" font-style="italic">…and the loop repeats</text>
+    </svg></div>
+    <figcaption>Today: lenders are relaxed but stretched — early in the loop, with little cushion if a shock lands. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
+  <div class="lay-call"><b>The trap:</b> defaults are the <i>last</i> thing to move. By the time companies are visibly failing, the damage is already done. The quiet early warnings come first — <b>refinancing gets harder, downgrades outpace upgrades, and money leaves bond funds</b>. That's why this desk watches the spread, not the default count.</div>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -944,7 +994,24 @@ const charts = {
   .lay-soon::before{content:"○ ";font-style:normal}
   .lay-chap{padding-bottom:0}
   .lay-chap + .lay-sec{border-top:none}
-  @media (max-width:560px){ .laych{grid-template-columns:1fr;gap:6px} .laych .lc-rom{font-size:26px} }
+  /* CW4-L2: anchored "reading the number" panel */
+  .lay-read{display:grid;gap:10px}
+  .lr-row{display:grid;grid-template-columns:190px 88px 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--cardline);border-radius:11px;padding:13px 18px}
+  .lr-k{font-family:'Lora',serif;font-size:13px;font-weight:700;color:var(--ink);line-height:1.3}
+  .lr-k i{display:block;font-weight:400;font-size:11px;color:var(--muted);margin-top:2px}
+  .lr-v{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--eyeb);text-align:center}
+  .lr-a{font-size:13.5px;line-height:1.55;color:var(--body)}
+  .lr-a b{color:var(--ink)}
+  .lay-prov{font-size:11.5px;color:var(--muted);margin:12px 0 0;line-height:1.5}
+  .lay-go{color:var(--eyeb);text-decoration:none;font-weight:600;white-space:nowrap}
+  .lay-go:hover{text-decoration:underline}
+  /* CW4-L2: credit-cycle figure + lesson callout */
+  .lay-cycle{margin:6px 0 0;background:var(--card);border:1px solid var(--cardline);border-radius:12px;padding:16px 18px 12px}
+  .lay-cycle .lc-svg svg{width:100%;height:auto;display:block}
+  .lay-cycle figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .lay-call{margin-top:14px;background:color-mix(in srgb,var(--eyeb) 7%,var(--card));border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;line-height:1.62;color:var(--body)}
+  .lay-call b{color:var(--ink)}
+  @media (max-width:560px){ .laych{grid-template-columns:1fr;gap:6px} .laych .lc-rom{font-size:26px} .lr-row{grid-template-columns:1fr;gap:6px} .lr-v{text-align:left} }
   .lay-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
   .lay-kpi{background:var(--card);border:1px solid var(--cardline);border-radius:11px;padding:13px 16px}
   .lk-k{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);min-height:25px;line-height:1.3}
