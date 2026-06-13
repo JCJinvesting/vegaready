@@ -257,6 +257,11 @@ const ovGlossDeep = [
   ['Investment-grade', 'the big, reliable borrowers lenders trust most — the opposite end of the scale from “junk”.'],
   ['Swap line', 'an emergency dollar tap between central banks. Switching it on is the fastest way to calm a global dollar squeeze.'],
   ['Risk-off', 'market shorthand for “everyone wants safety” — money rushes out of risky assets into cash and government bonds.'],
+  ['Carry', 'the steady extra yield you earn just for holding a bond. Most of the time, it’s where the return comes from — and the first thing to vanish in a scare.'],
+  ['Quality (as a strategy)', 'tilting toward stronger borrowers and away from the shakiest. Costs a little yield in good times; it’s the cushion in a bad one.'],
+  ['Dealer', 'the middleman — usually a big bank — that buys bonds from sellers and holds them until a buyer appears. The market’s shock-absorber.'],
+  ['Duration × spread', 'how lenders size up risk: how long your money is lent out, times how risky the borrower is. A dollar in a shaky borrower risks more than a dollar in a blue-chip.'],
+  ['Correlation', 'whether two things move together or opposite. Stocks and safe bonds usually move opposite — but not always, as 2022 showed.'],
 ];
 
 // ── Layman DEEP tier — expanded plain-language content (authored) ──
@@ -761,6 +766,14 @@ const charts = {
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>How we know — and what we don’t</h2></div>
   <div class="lay-ex">{ovKnow.map((b) => (<div class="lay-exc"><h3>{b[0]}</h3><p class="exc-lead" set:html={b[1]}></p><ul class="exc-pts">{b[2].map((p) => (<li set:html={p}></li>))}</ul></div>))}</div>
+  <div class="lay-call"><b>What we can't show you live — yet.</b> A few things we name on the analyst page but don't display as a live number, because no free, reliable feed exists. Where a figure isn't live, we say so and reason from what is — never a guess dressed up as data.
+    <div class="lay-gaps">
+      <div class="lg-row"><b>The share of junk in distress</b><span>no free live feed — we read the same story from spreads.</span></div>
+      <div class="lg-row"><b>Live default-insurance (CDS) prices</b><span>tradable, but not freely published minute-to-minute — we reason from cash-bond spreads.</span></div>
+      <div class="lg-row"><b>Emerging-market bond stress</b><span>the official gauge is monthly, not a live tick — we label it as last-published.</span></div>
+      <div class="lg-row"><b>The leveraged-loan index</b><span>we've found a trustworthy source and are wiring it up — not live on the page yet.</span></div>
+    </div>
+  </div>
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
@@ -1164,6 +1177,12 @@ const charts = {
   .sm-row.sm-head{background:transparent;border:0;padding:2px 15px;font-family:'Lora',serif;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
   .sm-s{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--eyeb)}
   @media (max-width:600px){ .sm-row{grid-template-columns:1fr;gap:3px} .sm-row.sm-head{display:none} }
+  /* CW4-L8: honest-gaps list */
+  .lay-gaps{display:grid;gap:7px;margin-top:11px}
+  .lg-row{display:grid;grid-template-columns:228px 1fr;gap:14px;font-size:12.5px;line-height:1.45;padding-top:7px;border-top:1px solid var(--cardline)}
+  .lg-row b{color:var(--ink)}
+  .lg-row span{color:var(--muted)}
+  @media (max-width:560px){ .lg-row{grid-template-columns:1fr;gap:2px} }
   .lay-call{margin-top:14px;background:color-mix(in srgb,var(--eyeb) 7%,var(--card));border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;line-height:1.62;color:var(--body)}
   .lay-call b{color:var(--ink)}
   .lay-call.go{border-left-color:var(--pos);background:color-mix(in srgb,var(--pos) 7%,var(--card))}
