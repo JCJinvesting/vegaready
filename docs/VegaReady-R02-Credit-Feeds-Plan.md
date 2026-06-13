@@ -140,6 +140,14 @@ State chips (colour + glyph + word; latent never red) · live OAS tiles in desk 
 - **Reflect** via the daily digest: a future micro-task (W5 or a scheduled task) reads `digest-credit.ndjson` and writes a weekly "credit, what moved" note — the first genuinely automated piece of *analysis*, not just display.
 - **Extend** every new feed (SIFMA, P-06 sources, equities plumbing) through the same gates → same derived patterns → same chip states. The framework is the moat, not any single series.
 
+## 8.6 · Data backend (O-15) — see the dedicated architecture doc
+
+The pipeline's storage + analytics engine is now its own cross-cutting design: **`docs/VegaReady-Data-Backend-Architecture.md`** (owner decision O-15, the best-in-class free stack: DuckDB working store + Parquet open archive + bitemporal schema + Python/Polars when analysis deepens; Node keeps fetching; the site keeps reading one small JSON). It adds two capabilities that matter for credit specifically:
+- **Accuracy by construction** — bitemporal storage (value-date + vintage + retrieved-at, never overwrite) so revisions are caught, look-ahead bias is impossible, and any tile traces to its exact source response.
+- **Event-intelligence layer** — a git-tracked `_data/events.yaml` of plain-English outlier notes (COVID, SVB, the Morningstar rebrand, mechanical defaulter-exits…) with treatment tags (`exclude_from_baseline`, `regime_break`, `mechanical`, …) that clean the baselines and power analog/precedent forecasting. This is the structured spine under the desks' episode dossiers and shock-channel calls.
+
+Backend waves **W1.6** (DuckDB/bitemporal/Parquet foundation) and **W1.7** (event layer) execute behind the unchanged JSON contract — runnable before the visible W2 tiles or migrated underneath them later; the contract makes either order safe.
+
 ## 9 · Out of scope
 
 Equities plumbing feeds, ICI flows, MOVE, x-ccy basis, interest coverage, CDX engineering-if-sourced (runbook-documented), front-door/dashboard data — all P-02b, landing in the same pipeline later.
@@ -147,6 +155,7 @@ Equities plumbing feeds, ICI flows, MOVE, x-ccy basis, interest coverage, CDX en
 ---
 
 ### Changelog
+- **v6 (2026-06-13)** — Owner decision **O-15**: adopt best-in-class free data backend (DuckDB + Parquet + bitemporal + Python/Polars). Spun the engine design into its own cross-cutting doc `VegaReady-Data-Backend-Architecture.md`, including the failure taxonomy (11 ways analytics goes wrong + coded treatments) and the **event-intelligence layer** for outlier tagging → clean baselines, regime-conditioned stats, and analog/precedent forecasting. Added §8.6 + backend waves W1.6/W1.7.
 - **v5 (2026-06-13)** — Post-W1 reflection. Recorded W1 + **W1.5 analytics/hygiene** as DONE (derived compression spreads + regime read + deltas/z-score; raw-cache pruning; research digest log). Rewrote **W2 into 9 explicit steps** (consumer module → chip pilot → §1 cells → HY−IG headline → ticker → FRED notice → freshbar honesty → layman twin → verify). Added **§8.5 "how this capability compounds"** (website/research/storage/extend). Gap fixes folded in: unbounded raw cache, missing analytics layer, missing consumer module, no research-reflection artifact.
 - **v4 (2026-06-12)** — Owner decision **O-14**: licensing caution dropped; attribution-only posture; risk acceptance recorded as the owner's. Verdicts re-cut on availability+accuracy: OAS family → live bare-number tiles (+cohort row, +percentile, +EM-corporate option); widget/light-well track deleted (design problem dissolves); SIFMA caveat dissolved; license gate → attribution metadata; O-7/O-10 dissolved; distress/CDX/EMBI-free/loan-level remain constrained **by availability, not law**. Accuracy machinery unchanged.
 - **v3** — micro-loop discipline (section-at-a-time, pilot→ratify→propagate, W4 split, W6 verification-only); layman parity in every data wave; light-on-dark chart problem named; freshness-honesty rule; runbook micro-details.
