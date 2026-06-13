@@ -342,6 +342,21 @@ const factorCrisis = [
 ];
 const fvTone = (v) => (v === '—' ? '' : (v.trim().startsWith('−') || v.trim().startsWith('-')) ? 'fv-neg' : 'fv-pos');
 
+// ── §7 Positioning — R-08 sourced content ──
+const dealerCells = [
+  ['Inventory build ↑', 'Spreads widening', 'Dealers still warehousing — buffer intact, usually early', 'mix'],
+  ['Inventory drawdown ↓', 'Spreads widening', 'Balance-sheet channel binding — forced sellers, fire-sale risk · technical', 'lose'],
+  ['Inventory build ↑', 'Spreads tightening', 'Dealers positioning for the recovery — bullish confirmation', 'win'],
+  ['Inventory flat', 'Spreads widening', 'Pure fundamental repricing — dealers not the marginal player', 'mix'],
+];
+const techFund = [
+  ['Dispersion', 'Low — everything widens together', 'High — concentrated in deteriorating names'],
+  ['Dealer inventory', 'Drawdown — dealers refusing risk', 'Roughly flat'],
+  ['ETF vs NAV', 'ETF at a discount to NAV — worse on the <i>safest</i> bonds', 'ETF ≈ NAV'],
+  ['Speed', 'Fast, violent; mean-reverts on a backstop or flow turn', 'Grinding; persists'],
+  ['Default rate', 'Does not follow', 'Rises ex-post — confirms it'],
+];
+
 // ── illustrative charts (SVG; feed-pending) ──
 const charts = {
   regime: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: credit spread inside a low percentile band"><rect x="0" y="60" width="320" height="44" fill="var(--data)" opacity="0.10"/><line x1="0" y1="82" x2="320" y2="82" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3"/><text x="2" y="54" fill="var(--muted)" font-size="8" font-family="Lora,serif">normal range</text><polyline points="0,46 60,52 120,60 180,70 240,82 320,90" fill="none" stroke="var(--data)" stroke-width="2"/><circle cx="320" cy="90" r="3.5" fill="var(--data)"/><text x="232" y="104" fill="var(--data)" font-size="8" font-family="Lora,serif">OAS — low pctile</text></svg>`,
@@ -599,8 +614,34 @@ const charts = {
   </div>
 </div></section>
 
-<!-- §7 POSITIONING + §8 CROSS-ASSET -->
-{['positioning', 'crossasset'].map((id) => { const t = T[id]; return (
+<!-- §7 POSITIONING (enriched · R-08) -->
+<section class="dsec" id="positioning"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.positioning.eye} · {T.positioning.q}</div><h2>{T.positioning.h}.</h2></div><span class="fresh-tag">{T.positioning.fresh}</span></div>
+  <p class="lead" set:html={T.positioning.lead}></p>
+  <div class="snap">
+    <div class="kpibar">{T.positioning.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+  </div>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.positioning.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.positioning.lv[0]}</div><p>{T.positioning.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{T.positioning.tier}</span> {T.positioning.src}</div></div>
+  </div>
+  <div class="deep">
+    <div class="dcallout mt20a"><div class="dc-h">The dealer buffer shrank — read inventory as a change, not a level</div><p>Post-2008 the dealer shock-absorber structurally contracted: dealer assets ~<b>$5T → $3.5T</b>, leverage <b>48 → 25</b>, and dealer ownership of corporates <b>2.7% → 1.2%</b> (NY Fed SR 796). The leverage ratio taxes the balance sheet regardless of risk, so in stress dealers shed <i>even safe</i> inventory. He-Kelly-Manela quantify the channel: a 1-standard-deviation dealer-inventory shock lifts quarterly spreads ~<b>3–40 bp</b> (an intermediary-distress shock ~4–70 bp), more for lower-rated bonds. The NY Fed primary-dealer series is the free gauge — but it is net of hedges and the corporate split only begins April 2013, so read the weekly <i>change</i>, not the level.</p></div>
+    <div class="tk-h mt22a">Dealer inventory × spreads — reading the pair</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Inventory</th><th>Spreads</th><th>What it means</th></tr></thead>
+      <tbody>{dealerCells.map((r) => (<tr class={`dlr-${r[3]}`}><td class="nm">{r[0]}</td><td>{r[1]}</td><td class="dlr-read" set:html={r[2]}></td></tr>))}</tbody></table></div>
+    <div class="dcallout mt22a"><div class="dc-h">"When the safest bonds are the cheapest, it's a liquidity scramble — not a default scare"</div><p>The cleanest technical-vs-fundamental tell (Haddad-Moreira-Muir, March 2020): IG bonds traded cheap to their own CDS and bond ETFs fell to discounts to NAV — <i>most</i> on the safest paper. Transaction costs ran <b>30 → 90 bp</b> on IG and <b>24 → 150+ bp</b> on blocks; the Fed's 23 March backstop <i>announcement</i> cut eligible-bond costs ~21 bp in the first week, before a single purchase. A fundamental default scare cheapens the <i>worst</i> paper first; a plumbing scramble cheapens the <i>safest</i>.</p></div>
+    <div class="tk-h mt18a">Technical vs fundamental — the diagnostic</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Tell</th><th>Technical (forced-seller / plumbing)</th><th>Fundamental (repricing default)</th></tr></thead>
+      <tbody>{techFund.map((r) => (<tr><td class="nm">{r[0]}</td><td set:html={r[1]}></td><td set:html={r[2]}></td></tr>))}</tbody></table></div>
+    <div class="dcallout mt14t"><div class="dc-h">What TRACE shows — and hides</div><p>Read TRACE for <b>breadth and transaction cost, not depth</b>. It hides three things: dealer identity, true block size (capped to "5MM+" IG / "1MM+" HY), and positions — it is <i>transactions</i>, not inventory, so even academics reconstruct dealer inventory from signed flow. And it cannot see <b>unexecuted demand</b>: stress is understated when investors simply can't find a bid.</p></div>
+    <div class="dcallout mt14t"><div class="dc-h">Flows &amp; index-option hedging</div><p><b>ICI weekly flows</b> is the only fully-free, methodology-documented US series (~98% of industry assets); EPFR and Lipper headlines are free but the underlying data is paid — we cite the headline, not an implied precision. For hedging pressure, <b>CDX payer-swaption skew</b> is the cleanest concept (payers are ~63% of CDX-option volume; CDX-vs-SPX weekly correlation −0.80) — but there is <i>no free live feed</i>, so we describe the signal and never publish a skew number we can't source.</p></div>
+    <p class="tnote">Sources: NY Fed Staff Report 796 &amp; Primary Dealer Statistics · He, Kelly &amp; Manela (NBER w26494) · Fed FEDS Note (Oct 2020) · Haddad, Moreira &amp; Muir (RFS 2021) · ICI · Collin-Dufresne, Junge &amp; Trolle. Sourced/academic readings, not forecasts.</p>
+  </div>
+</div></section>
+
+<!-- §8 CROSS-ASSET -->
+{['crossasset'].map((id) => { const t = T[id]; return (
   <section class="dsec" id={id}><div class="wrap">
     <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
     <p class="lead" set:html={t.lead}></p>
@@ -896,6 +937,9 @@ const charts = {
   .dtbl td.fv-pos{color:var(--pos);font-variant-numeric:tabular-nums;text-align:center}
   .dtbl td.fv-neg{color:var(--neg);font-variant-numeric:tabular-nums;text-align:center}
   .dtbl td.num-cell{font-size:11px;color:var(--muted);line-height:1.45}
+  /* §7 dealer-inventory read: tone the interpretation cell */
+  .dtbl tr.dlr-lose td.dlr-read{color:var(--neg)}
+  .dtbl tr.dlr-win td.dlr-read{color:var(--pos)}
 </style>
 
 <script is:inline>
