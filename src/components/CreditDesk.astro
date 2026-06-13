@@ -474,8 +474,22 @@ const charts = {
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
+  <div class="chnav"><span class="cn-l">The deep read · nine chapters</span>
+    <a class="chA" href="#ch-1"><b>I</b>Foundations</a><a class="chB" href="#ch-2"><b>II</b>The credit cycle</a><a class="chC" href="#ch-3"><b>III</b>Reading the signals</a><a class="chD" href="#ch-4"><b>IV</b>The ratings ladder</a><a class="chE" href="#ch-5"><b>V</b>What drives returns</a><a class="chF" href="#ch-6"><b>VI</b>The plumbing</a><a class="chG" href="#ch-7"><b>VII</b>When the rules break</a><a class="chH" href="#ch-8"><b>VIII</b>The Gulf angle</a><a class="chI" href="#ch-9"><b>IX</b>How we know</a>
+  </div>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chA" id="ch-1"><span class="lc-rom">I</span><div><span class="lc-bar"></span><div class="lc-t">Foundations</div><p>What credit is, what a spread actually tells you, and where lenders stand today.</p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
   <div class="lay-sech"><h2>The five things to understand</h2></div>
   <ol class="lay-cards">{ovBeats.map((b, i) => (<li class="lay-card"><span class="lc-n">{i + 1}</span><div><h3>{b[0]}</h3><p set:html={b[1]}></p></div></li>))}</ol>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chB" id="ch-2"><span class="lc-rom">II</span><div><span class="lc-bar"></span><div class="lc-t">The credit cycle</div><p>Boom to confidence to bust to repair — and why defaults are the last thing to move, not the first.</p></div></div>
 </div></section>
 
 <section class="lay-sec deep"><div class="wrap">
@@ -490,6 +504,10 @@ const charts = {
   <div class="lay-flow">{ovExampleSteps.map((s, i) => (<div class="lf"><span class="lf-n">{i + 1}</span><div class="lf-t" set:html={s}></div></div>))}</div>
 </div></section>
 
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chC" id="ch-3"><span class="lc-rom">III</span><div><span class="lc-bar"></span><div class="lc-t">Reading the signals</div><p>How to read the spread numbers — is the calm surface hiding rot, and are you being paid enough for the risk?</p></div></div>
+</div></section>
+
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>Why this desk is the early warning</h2></div>
   <p class="lay-prose" set:html={ovCanary}></p>
@@ -497,6 +515,10 @@ const charts = {
 </div></section>
 
 <div class="wrap deep"><blockquote class="lay-pq">Even if you only own shares, credit tells you when the ground is shifting.</blockquote></div>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chD" id="ch-4"><span class="lc-rom">IV</span><div><span class="lc-bar"></span><div class="lc-t">The ratings ladder &amp; who's exposed</div><p>From blue-chip to the shakiest borrowers — the rungs of rising risk, and which neighborhoods feel a shock first.</p></div></div>
+</div></section>
 
 <section class="lay-sec"><div class="wrap">
   <div class="lay-sech"><h2>Who’s helped, who’s exposed</h2><p>Under the current Gulf-conflict episode — and mostly at the government/funding edge so far, not big US companies.</p></div>
@@ -506,10 +528,30 @@ const charts = {
   </div>
 </div></section>
 
+<section class="lay-sec"><div class="wrap">
+  <div class="laych chE" id="ch-5"><span class="lc-rom">V</span><div><span class="lc-bar"></span><div class="lc-t">What drives returns</div><p>What actually moves a bond portfolio — getting paid to wait, owning the sturdier borrowers, and the “diversified” book that's secretly one bet. <span class="lay-soon">Plain-English chapter being written in this build.</span></p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="laych chF" id="ch-6"><span class="lc-rom">VI</span><div><span class="lc-bar"></span><div class="lc-t">The plumbing — who's forced to sell</div><p>The middlemen who hold bonds between buyers and sellers, why their shock-absorber shrank, and the tell that says “cash scramble” not “default scare.” <span class="lay-soon">Plain-English chapter being written in this build.</span></p></div></div>
+</div></section>
+
+<section class="lay-sec"><div class="wrap">
+  <div class="laych chG" id="ch-7"><span class="lc-rom">VII</span><div><span class="lc-bar"></span><div class="lc-t">When the rules break</div><p>Why the usual “stocks down, bonds up” can flip, what 2022 taught, and who wins or loses in each kind of shock. <span class="lay-soon">Plain-English chapter being written in this build.</span></p></div></div>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chH" id="ch-8"><span class="lc-rom">VIII</span><div><span class="lc-bar"></span><div class="lc-t">The Gulf angle</div><p>Why a faraway conflict reaches US credit through the plumbing of dollars — and the relief valve to watch.</p></div></div>
+</div></section>
+
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>The Gulf angle, in plain words</h2><p set:html={ovGulfLead}></p></div>
   <div class="lay-flow">{ovGulfChain.map((s, i) => (<div class="lf"><span class="lf-n">{i + 1}</span><div class="lf-t" set:html={s}></div></div>))}</div>
   <p class="lay-prose mt16" set:html={ovGulfClose}></p>
+</div></section>
+
+<section class="lay-sec lay-chap"><div class="wrap">
+  <div class="laych chI" id="ch-9"><span class="lc-rom">IX</span><div><span class="lc-bar"></span><div class="lc-t">What would change our mind &amp; how we know</div><p>The signals we watch, the “what-ifs” and what each would mean, the things people get wrong, and an honest account of our sources and gaps.</p></div></div>
 </div></section>
 
 <section class="lay-sec"><div class="wrap">
@@ -876,6 +918,33 @@ const charts = {
   .lay-sech{margin-bottom:14px}
   .lay-sech h2{font-family:'Fraunces',serif;font-size:23px;font-weight:600;color:var(--ink);margin:0}
   .lay-sech p{font-size:13px;color:var(--muted);margin:5px 0 0;line-height:1.55;max-width:74ch}
+  /* ── CW4 chapter system: chnav numeral pills + laych dividers (warm-earthen accents from skin-brass --chA..--chI) ── */
+  .chnav{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+  .chnav .cn-l{font-family:'Lora',serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+  .chnav a{font-family:'Lora',serif;font-size:11.5px;font-weight:700;letter-spacing:.02em;text-decoration:none;color:var(--body);border:1px solid var(--cardline);border-radius:999px;padding:6px 15px;background:var(--card);transition:border-color .15s ease-out,color .15s ease-out}
+  .chnav a b{font-family:'Playfair Display',Georgia,serif;font-weight:700;margin-right:7px}
+  .chnav a.chA b{color:var(--chA)}.chnav a.chB b{color:var(--chB)}.chnav a.chC b{color:var(--chC)}.chnav a.chD b{color:var(--chD)}.chnav a.chE b{color:var(--chE)}.chnav a.chF b{color:var(--chF)}.chnav a.chG b{color:var(--chG)}.chnav a.chH b{color:var(--chH)}.chnav a.chI b{color:var(--chI)}
+  .chnav a:hover{color:var(--ink)}
+  .chnav a.chA:hover{border-color:var(--chA)}.chnav a.chB:hover{border-color:var(--chB)}.chnav a.chC:hover{border-color:var(--chC)}.chnav a.chD:hover{border-color:var(--chD)}.chnav a.chE:hover{border-color:var(--chE)}.chnav a.chF:hover{border-color:var(--chF)}.chnav a.chG:hover{border-color:var(--chG)}.chnav a.chH:hover{border-color:var(--chH)}.chnav a.chI:hover{border-color:var(--chI)}
+  .laych{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;margin:2px 0 22px;scroll-margin-top:96px}
+  .laych .lc-rom{font-family:'Playfair Display',Georgia,serif;font-size:34px;font-weight:700;line-height:1;padding-top:2px}
+  .laych .lc-bar{display:block;width:36px;height:3px;margin-bottom:8px}
+  .laych .lc-t{font-family:'Lora',serif;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:5px}
+  .laych p{font-size:13.5px;line-height:1.55;color:var(--muted);margin:0;max-width:64ch}
+  .laych.chA .lc-rom,.laych.chA .lc-t{color:var(--chA)}.laych.chA .lc-bar{background:var(--chA)}
+  .laych.chB .lc-rom,.laych.chB .lc-t{color:var(--chB)}.laych.chB .lc-bar{background:var(--chB)}
+  .laych.chC .lc-rom,.laych.chC .lc-t{color:var(--chC)}.laych.chC .lc-bar{background:var(--chC)}
+  .laych.chD .lc-rom,.laych.chD .lc-t{color:var(--chD)}.laych.chD .lc-bar{background:var(--chD)}
+  .laych.chE .lc-rom,.laych.chE .lc-t{color:var(--chE)}.laych.chE .lc-bar{background:var(--chE)}
+  .laych.chF .lc-rom,.laych.chF .lc-t{color:var(--chF)}.laych.chF .lc-bar{background:var(--chF)}
+  .laych.chG .lc-rom,.laych.chG .lc-t{color:var(--chG)}.laych.chG .lc-bar{background:var(--chG)}
+  .laych.chH .lc-rom,.laych.chH .lc-t{color:var(--chH)}.laych.chH .lc-bar{background:var(--chH)}
+  .laych.chI .lc-rom,.laych.chI .lc-t{color:var(--chI)}.laych.chI .lc-bar{background:var(--chI)}
+  .lay-soon{font-style:italic;color:var(--struct)}
+  .lay-soon::before{content:"○ ";font-style:normal}
+  .lay-chap{padding-bottom:0}
+  .lay-chap + .lay-sec{border-top:none}
+  @media (max-width:560px){ .laych{grid-template-columns:1fr;gap:6px} .laych .lc-rom{font-size:26px} }
   .lay-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
   .lay-kpi{background:var(--card);border:1px solid var(--cardline);border-radius:11px;padding:13px 16px}
   .lk-k{font-family:'Lora',serif;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);min-height:25px;line-height:1.3}
@@ -988,6 +1057,7 @@ const charts = {
     (function(){var raf=null;function upd(){document.body.classList.toggle('scrolled',window.scrollY>480);}window.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});upd();})();
     var init=document.body.getAttribute('data-disc')||(document.body.getAttribute('data-mode')==='overview'?'skim':'deep');
     apply(init);
+    document.querySelectorAll('.chnav a, .laydeck a.lk').forEach(function(a){a.addEventListener('click',function(){if(document.body.getAttribute('data-disc')==='skim')apply('deep');});});
   })();
   (function(){var links=Array.prototype.slice.call(document.querySelectorAll('#secnav a'));var ids=links.map(function(a){return a.getAttribute('href').slice(1)});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=ids.indexOf(e.target.id);if(i>=0){links.forEach(function(x){x.classList.remove('on')});links[i].classList.add('on');}}});},{rootMargin:'-45% 0px -50% 0px'});ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
   (function(){var tb=document.getElementById('cohtbl');if(!tb)return;var body=tb.querySelector('tbody');tb.querySelectorAll('th.sort').forEach(function(th){th.addEventListener('click',function(){var col=th.getAttribute('data-col');var asc=!th.classList.contains('asc');tb.querySelectorAll('th.sort').forEach(function(x){x.classList.remove('asc','desc')});th.classList.add(asc?'asc':'desc');var rows=Array.prototype.slice.call(body.querySelectorAll('tr'));rows.sort(function(a,b){var av=+a.getAttribute('data-'+col),bv=+b.getAttribute('data-'+col);return asc?av-bv:bv-av;});rows.forEach(function(r){body.appendChild(r)});});});})();
