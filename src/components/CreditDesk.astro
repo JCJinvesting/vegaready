@@ -46,6 +46,10 @@ const igBp = feed.tile('igOas').bp;
 const hyPctTxt = (hyBp != null) ? (hyBp / 100).toFixed(1) : null;     // 278bp → "2.8"
 const igPctTxt = (igBp != null) ? (igBp / 100).toFixed(2) : null;     // 75bp → "0.75"
 const compBpTxt = (hyBp != null && igBp != null) ? (hyBp - igBp) : null; // gap, transparently derived
+// spread-thermometer scale: bp → x on a 40..640 track spanning 0..1200 bp (HY-scale)
+const bpToX = (b) => 40 + Math.min(Math.max(b, 0), 1200) / 1200 * 600;
+const hyX = (hyBp != null) ? bpToX(hyBp) : null;
+const igX = (igBp != null) ? bpToX(igBp) : null;
 
 // live credit-regime instruments (registry §2 = credit/funding)
 const eq = [{ k: 'EM sovereign · EMBI', m: byNo['2.1'] }, { k: 'Flight-to-quality cash', m: byNo['2.2'] }, { k: 'Gulf UST recycling', m: byNo['2.3'] }];
@@ -558,6 +562,36 @@ const charts = {
   <div class="laych chC" id="ch-3"><span class="lc-rom">III</span><div><span class="lc-bar"></span><div class="lc-t">Reading the signals</div><p>How to read the spread numbers — is the calm surface hiding rot, and are you being paid enough for the risk?</p></div></div>
 </div></section>
 
+<section class="lay-sec"><div class="wrap">
+  <div class="lay-sech"><h2>Where today sits on the fear scale</h2><p>The same spread, placed against the moments everyone remembers.</p></div>
+  <figure class="lay-fig">
+    <div class="lc-svg"><svg viewBox="0 0 680 132" role="img" aria-label="A spread fear-scale from calm to distress, with high-yield at 278 basis points sitting in the calm band and investment-grade lower still.">
+      <g font-family="Lora,serif">
+        <rect x="40" y="66" width="175" height="18" rx="3" fill="var(--pos)" fill-opacity="0.16"/>
+        <rect x="215" y="66" width="125" height="18" fill="var(--warn)" fill-opacity="0.16"/>
+        <rect x="340" y="66" width="200" height="18" fill="var(--neg)" fill-opacity="0.14"/>
+        <rect x="540" y="66" width="100" height="18" rx="3" fill="var(--neg)" fill-opacity="0.32"/>
+        <text x="127" y="104" text-anchor="middle" fill="var(--pos)" font-size="11" font-weight="700">Calm</text>
+        <text x="277" y="104" text-anchor="middle" fill="var(--warn)" font-size="11" font-weight="700">Caution</text>
+        <text x="440" y="104" text-anchor="middle" fill="var(--neg)" font-size="11" font-weight="700">Stress</text>
+        <text x="590" y="104" text-anchor="middle" fill="var(--neg)" font-size="11" font-weight="700">Distress</text>
+        <g fill="var(--muted)" font-size="9.5">
+          <text x="215" y="120" text-anchor="middle">~350 bp</text>
+          <text x="340" y="120" text-anchor="middle">~600</text>
+          <text x="540" y="120" text-anchor="middle">~1,000</text>
+        </g>
+        {igX != null && (<g><line x1={igX} y1="60" x2={igX} y2="84" stroke="var(--data)" stroke-width="1.5"/><circle cx={igX} cy="60" r="3" fill="var(--data)"/><text x={igX} y="52" text-anchor="middle" fill="var(--data)" font-size="10">IG {igBp}</text></g>)}
+        {hyX != null && (<g><line x1={hyX} y1="50" x2={hyX} y2="84" stroke="var(--ink)" stroke-width="2"/><circle cx={hyX} cy="50" r="4" fill="var(--eyeb)"/><text x={hyX} y="42" text-anchor="middle" fill="var(--ink)" font-size="11.5" font-weight="700" font-family="Fraunces,serif">HY today · {hyBp} bp</text></g>)}
+      </g>
+    </svg></div>
+    <figcaption>High-yield sits firmly in the calm band; investment-grade lower still. For scale, COVID-2020 spiked near 1,100 bp and the 2008 panic ran past 1,700 — off the right of this chart. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
+  <div class="lay-twin">
+    <div class="lay-call"><b>Are you paid enough?</b> At {hyBp} bp, high-yield pays about {hyPctTxt}% a year over a government bond. In a calm world that's a <i>thin cushion</i> — if even a few percent of borrowers fail, that extra yield is wiped out. Today you're paid little to take the risk. That's the whole meaning of “calm, but stretched.”</div>
+    <div class="lay-call"><b>Is the calm hiding rot?</b> Averages mislead. The gap between the shakiest borrowers and the merely-risky ones is near its widest in years — trouble is concentrated at the bottom even while the headline looks fine. A benign average can sit on top of a quietly deteriorating tail.</div>
+  </div>
+</div></section>
+
 <section class="lay-sec deep"><div class="wrap">
   <div class="lay-sech"><h2>Why this desk is the early warning</h2></div>
   <p class="lay-prose" set:html={ovCanary}></p>
@@ -1006,9 +1040,12 @@ const charts = {
   .lay-go{color:var(--eyeb);text-decoration:none;font-weight:600;white-space:nowrap}
   .lay-go:hover{text-decoration:underline}
   /* CW4-L2: credit-cycle figure + lesson callout */
-  .lay-cycle{margin:6px 0 0;background:var(--card);border:1px solid var(--cardline);border-radius:12px;padding:16px 18px 12px}
-  .lay-cycle .lc-svg svg{width:100%;height:auto;display:block}
-  .lay-cycle figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .lay-cycle,.lay-fig{margin:6px 0 0;background:var(--card);border:1px solid var(--cardline);border-radius:12px;padding:16px 18px 12px}
+  .lay-cycle .lc-svg svg,.lay-fig .lc-svg svg{width:100%;height:auto;display:block}
+  .lay-cycle figcaption,.lay-fig figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .lay-twin{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .lay-twin .lay-call{margin-top:0}
+  @media (max-width:640px){ .lay-twin{grid-template-columns:1fr} }
   .lay-call{margin-top:14px;background:color-mix(in srgb,var(--eyeb) 7%,var(--card));border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;line-height:1.62;color:var(--body)}
   .lay-call b{color:var(--ink)}
   @media (max-width:560px){ .laych{grid-template-columns:1fr;gap:6px} .laych .lc-rom{font-size:26px} .lr-row{grid-template-columns:1fr;gap:6px} .lr-v{text-align:left} }
