@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-06-12T14:25:59.302Z",
+ "generatedAt": "2026-06-13T13:10:22.222Z",
  "posture": "O-14 attribution-only",
  "series": {
   "igOas": {
@@ -8,24 +8,23 @@
    "attr": "ICE BofA US Corporate Index OAS · via FRED",
    "display": true,
    "state": "live",
-   "asOf": "2026-06-10",
+   "asOf": "2026-06-11",
    "value": 0.75,
    "bp": 75,
    "prevClose": 0.75,
    "chgBp": 0,
+   "chg1w": 1,
+   "chg1m": -1,
    "revised": false,
    "percentile": 6,
+   "z": -1.13,
    "window": {
     "start": "2023-06-12",
-    "end": "2026-06-10",
-    "n": 786,
+    "end": "2026-06-11",
+    "n": 787,
     "label": "2023–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-20",
-     0.88
-    ],
     [
      "2026-03-23",
      0.88
@@ -261,6 +260,10 @@
     [
      "2026-06-10",
      0.75
+    ],
+    [
+     "2026-06-11",
+     0.75
     ]
    ],
    "unitsNote": "FRED publishes percent; 1.00 = 100bp"
@@ -271,24 +274,23 @@
    "attr": "ICE BofA US High Yield Index OAS · via FRED",
    "display": true,
    "state": "live",
-   "asOf": "2026-06-10",
-   "value": 2.8,
-   "bp": 280,
-   "prevClose": 2.78,
-   "chgBp": 2,
+   "asOf": "2026-06-11",
+   "value": 2.78,
+   "bp": 278,
+   "prevClose": 2.8,
+   "chgBp": -2,
+   "chg1w": 4,
+   "chg1m": 2,
    "revised": false,
-   "percentile": 17,
+   "percentile": 14,
+   "z": -0.96,
    "window": {
     "start": "2023-06-12",
-    "end": "2026-06-10",
-    "n": 787,
+    "end": "2026-06-11",
+    "n": 788,
     "label": "2023–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-20",
-     3.24
-    ],
     [
      "2026-03-23",
      3.19
@@ -524,6 +526,10 @@
     [
      "2026-06-10",
      2.8
+    ],
+    [
+     "2026-06-11",
+     2.78
     ]
    ],
    "unitsNote": "FRED publishes percent; 1.00 = 100bp"
@@ -534,24 +540,23 @@
    "attr": "ICE BofA BBB US Corporate Index OAS · via FRED",
    "display": true,
    "state": "live",
-   "asOf": "2026-06-10",
+   "asOf": "2026-06-11",
    "value": 0.94,
    "bp": 94,
-   "prevClose": 0.93,
-   "chgBp": 1,
+   "prevClose": 0.94,
+   "chgBp": 0,
+   "chg1w": 1,
+   "chg1m": -1,
    "revised": false,
    "percentile": 4,
+   "z": -1.16,
    "window": {
     "start": "2023-06-12",
-    "end": "2026-06-10",
-    "n": 787,
+    "end": "2026-06-11",
+    "n": 788,
     "label": "2023–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-20",
-     1.11
-    ],
     [
      "2026-03-23",
      1.11
@@ -787,6 +792,10 @@
     [
      "2026-06-10",
      0.94
+    ],
+    [
+     "2026-06-11",
+     0.94
     ]
    ],
    "unitsNote": "FRED publishes percent; 1.00 = 100bp"
@@ -797,24 +806,23 @@
    "attr": "ICE BofA BB US High Yield Index OAS · via FRED",
    "display": true,
    "state": "live",
-   "asOf": "2026-06-10",
-   "value": 1.7,
-   "bp": 170,
-   "prevClose": 1.68,
-   "chgBp": 2,
+   "asOf": "2026-06-11",
+   "value": 1.69,
+   "bp": 169,
+   "prevClose": 1.7,
+   "chgBp": -1,
+   "chg1w": 4,
+   "chg1m": 3,
    "revised": false,
-   "percentile": 16,
+   "percentile": 15,
+   "z": -0.86,
    "window": {
     "start": "2023-06-12",
-    "end": "2026-06-10",
-    "n": 787,
+    "end": "2026-06-11",
+    "n": 788,
     "label": "2023–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-20",
-     2
-    ],
     [
      "2026-03-23",
      1.97
@@ -1050,6 +1058,10 @@
     [
      "2026-06-10",
      1.7
+    ],
+    [
+     "2026-06-11",
+     1.69
     ]
    ],
    "unitsNote": "FRED publishes percent; 1.00 = 100bp"
@@ -1060,24 +1072,23 @@
    "attr": "ICE BofA CCC & Lower US High Yield Index OAS · via FRED",
    "display": true,
    "state": "live",
-   "asOf": "2026-06-10",
-   "value": 9.57,
-   "bp": 957,
-   "prevClose": 9.51,
-   "chgBp": 6,
+   "asOf": "2026-06-11",
+   "value": 9.56,
+   "bp": 956,
+   "prevClose": 9.57,
+   "chgBp": -1,
+   "chg1w": 10,
+   "chg1m": 34,
    "revised": false,
    "percentile": 84,
+   "z": 0.86,
    "window": {
     "start": "2023-06-12",
-    "end": "2026-06-10",
-    "n": 787,
+    "end": "2026-06-11",
+    "n": 788,
     "label": "2023–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-20",
-     9.79
-    ],
     [
      "2026-03-23",
      9.75
@@ -1313,6 +1324,10 @@
     [
      "2026-06-10",
      9.57
+    ],
+    [
+     "2026-06-11",
+     9.56
     ]
    ],
    "unitsNote": "FRED publishes percent; 1.00 = 100bp"
@@ -1323,24 +1338,23 @@
    "attr": "ICE BofA EM Corporate Plus Index OAS · via FRED",
    "display": false,
    "state": "live",
-   "asOf": "2026-06-10",
-   "value": 1.44,
-   "bp": 144,
-   "prevClose": 1.43,
-   "chgBp": 1,
+   "asOf": "2026-06-11",
+   "value": 1.48,
+   "bp": 148,
+   "prevClose": 1.44,
+   "chgBp": 4,
+   "chg1w": 4,
+   "chg1m": 4,
    "revised": false,
-   "percentile": 3,
+   "percentile": 6,
+   "z": -1.1,
    "window": {
     "start": "2023-06-12",
-    "end": "2026-06-10",
-    "n": 787,
+    "end": "2026-06-11",
+    "n": 788,
     "label": "2023–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-20",
-     1.68
-    ],
     [
      "2026-03-23",
      1.75
@@ -1576,6 +1590,10 @@
     [
      "2026-06-10",
      1.44
+    ],
+    [
+     "2026-06-11",
+     1.48
     ]
    ],
    "unitsNote": "FRED publishes percent; 1.00 = 100bp"
@@ -1586,24 +1604,23 @@
    "attr": "Board of Governors H.15 · via FRED",
    "display": false,
    "state": "live",
-   "asOf": "2026-06-10",
-   "value": 4.55,
+   "asOf": "2026-06-11",
+   "value": 4.45,
    "bp": null,
-   "prevClose": 4.53,
+   "prevClose": 4.55,
    "chgBp": null,
+   "chg1w": -0.019999999999999574,
+   "chg1m": -0.009999999999999787,
    "revised": false,
-   "percentile": 40,
+   "percentile": 39,
+   "z": -0.46,
    "window": {
     "start": "1962-01-02",
-    "end": "2026-06-10",
-    "n": 16095,
+    "end": "2026-06-11",
+    "n": 16096,
     "label": "1962–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-18",
-     4.26
-    ],
     [
      "2026-03-19",
      4.25
@@ -1839,6 +1856,10 @@
     [
      "2026-06-10",
      4.55
+    ],
+    [
+     "2026-06-11",
+     4.45
     ]
    ],
    "unitsNote": "Percent"
@@ -1849,24 +1870,23 @@
    "attr": "FRB St. Louis from H.15 · via FRED",
    "display": false,
    "state": "live",
-   "asOf": "2026-06-11",
-   "value": 0.4,
+   "asOf": "2026-06-12",
+   "value": 0.39,
    "bp": null,
-   "prevClose": 0.42,
+   "prevClose": 0.4,
    "chgBp": null,
+   "chg1w": 0.010000000000000009,
+   "chg1m": -0.08999999999999997,
    "revised": false,
    "percentile": 34,
+   "z": -0.5,
    "window": {
     "start": "1976-06-01",
-    "end": "2026-06-11",
-    "n": 12504,
+    "end": "2026-06-12",
+    "n": 12505,
     "label": "1976–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-19",
-     0.46
-    ],
     [
      "2026-03-20",
      0.51
@@ -2102,6 +2122,10 @@
     [
      "2026-06-11",
      0.4
+    ],
+    [
+     "2026-06-12",
+     0.39
     ]
    ],
    "unitsNote": "Percent"
@@ -2112,24 +2136,23 @@
    "attr": "Board of Governors H.15 · via FRED",
    "display": false,
    "state": "live",
-   "asOf": "2026-06-10",
-   "value": 2.21,
+   "asOf": "2026-06-11",
+   "value": 2.16,
    "bp": null,
-   "prevClose": 2.2,
+   "prevClose": 2.21,
    "chgBp": null,
+   "chg1w": 0.050000000000000266,
+   "chg1m": 0.17000000000000015,
    "revised": false,
-   "percentile": 91,
+   "percentile": 89,
+   "z": 1.16,
    "window": {
     "start": "2003-01-02",
-    "end": "2026-06-10",
-    "n": 5864,
+    "end": "2026-06-11",
+    "n": 5865,
     "label": "2003–2026 window"
    },
    "hist60": [
-    [
-     "2026-03-18",
-     1.86
-    ],
     [
      "2026-03-19",
      1.88
@@ -2365,13 +2388,55 @@
     [
      "2026-06-10",
      2.21
+    ],
+    [
+     "2026-06-11",
+     2.16
     ]
    ],
    "unitsNote": "Percent"
   }
  },
+ "derived": {
+  "hyMinusIg": {
+   "key": "hyMinusIg",
+   "label": "HY − IG (compression)",
+   "note": "Narrowing = compression / risk-on; widening = decompression / quality bid",
+   "bp": 203,
+   "chg1wBp": 3,
+   "percentile": 19,
+   "z": -0.84,
+   "asOf": "2026-06-11"
+  },
+  "cccMinusBb": {
+   "key": "cccMinusBb",
+   "label": "CCC − BB (junk dispersion)",
+   "note": "Widening = stress concentrating in the lowest tier",
+   "bp": 787,
+   "chg1wBp": 6,
+   "percentile": 98,
+   "z": 1.52,
+   "asOf": "2026-06-11"
+  },
+  "bbbMinusIg": {
+   "key": "bbbMinusIg",
+   "label": "BBB − IG (the cliff edge)",
+   "note": "The fallen-angel frontier within investment grade",
+   "bp": 19,
+   "chg1wBp": 0,
+   "percentile": 3,
+   "z": -1.29,
+   "asOf": "2026-06-11"
+  },
+  "regime": {
+   "tag": "flat",
+   "detail": "HY−IG is tight vs its own history and flat (+3bp/wk)",
+   "basis": "Rule-based read of the HY−IG compression spread vs its cached window — not a forecast",
+   "asOf": "2026-06-11"
+  }
+ },
  "feedStatus": {
-  "checkedAt": "2026-06-12T14:26:08.885Z",
+  "checkedAt": "2026-06-13T13:10:30.240Z",
   "degraded": false,
   "alerts": []
  }
