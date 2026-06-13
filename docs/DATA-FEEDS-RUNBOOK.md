@@ -11,6 +11,12 @@
 ## The gates (all accuracy)
 units == Percent (ICE family) · frequency Daily · freshness ≤ 2 business days (weekend prints allowed only at month-end) · `"."` → null, never rendered · notes-hash change → **alert for human review** (alert-only, not a halt: FRED edits notes text routinely; a halt would cause false outages) · in-place value revision → `revised` flag for the tile badge.
 
+## Derived layer (the intelligence — read THIS, not raw levels)
+`credit.json → derived`: **hyMinusIg** (compression/decompression master tell), **cccMinusBb** (junk-tier dispersion), **bbbMinusIg** (fallen-angel cliff) — each bp + 1w change + percentile + z over the cached window; plus **regime** (rule-based one-liner, never a forecast). Per-series: `chgBp` (1d), `chg1w` (5bd), `chg1m` (21bd), `z`, `percentile`, `hist60` (powers our own SVG thumbnails — no iframes). Tiles should read the derived block first; raw levels are inputs.
+
+## Research reflection
+`_data-cache/digest-credit.ndjson` (gitignored) appends one dated row per data-date (IG, HY, HY−IG, regime) — a growing proprietary timeseries. Future weekly "what moved in credit" note reads this. Raw audit cache auto-pruned to last 2 files/series.
+
 ## States
 `live` → fresh, gate-passing. `stale` → carried last good value + badge (script failed or budget exceeded). `feed_pending` → no value ever fetched. Script **never breaks the build** (exit 0 always; selftest mode excepted).
 

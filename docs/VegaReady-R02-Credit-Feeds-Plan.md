@@ -1,6 +1,6 @@
-# R-02 Implementation Plan — Credit Desk Live Data (P-02) · v4
+# R-02 Implementation Plan — Credit Desk Live Data (P-02) · v5
 
-**Status:** DRAFT v4 — awaiting owner go on the remaining decisions (§8). Staging-first; L5 ship after approval.
+**Status:** W1 + W1.5 SHIPPED to design branch (pipeline + analytics, no visual change yet). W2 (first visible tiles) awaiting owner go on the remaining decisions (§8). Staging-first; L5 ship after approval.
 **Inputs:** the unified P-02 synthesis (`_research/RETURNS/R-02-credit-feeds.md`) + three research streams (conservative / methodology / engineering angles), all read in full.
 **Governing owner decision (O-14, 2026-06-12):** licensing caution is dropped. The site publishes any fetchable figure **with source attribution for legitimacy**; the licensing analysis in R-02 is noted for the record and the risk acceptance is the owner's. The operative constraints are now exactly two: **availability** (a real, programmatic or reliably-published source exists) and **accuracy** (the integrity contract — never invent, never stale-as-fresh, methodology labeled).
 
@@ -82,9 +82,26 @@
 
 **W0 · Owner prereqs.** `FRED_API_KEY` env secret (O-8) + remaining decisions (§8).
 
-**W1 · Pipeline foundation.** *[Scripts + data only; zero visual diff.]* Fetcher, both layers, five gates, alerts, runbook. Acceptance: poisoned-fixture tests (wrong units, ".", drifted schema, stale dates); cache accrual verified across two builds.
+**W1 · Pipeline foundation. ✅ DONE (commit `471b65e`).** Fetcher, two-layer cache, gates, alerts, runbook; 9 series live, 11 selftests green.
 
-**W2 · First live tiles — §1 Regime + ticker.** *[Section: analyst §1 + utility ticker; layman gets its anchored plain-words twin in the same loop.]* IG + HY OAS live (bps, as-of, attribution footer). **State-anatomy pilot lands here** (live chip + as-of + full-width footer per kit §4d) for ratification. Ticker chips switch from "feed" to real values. Layman: "lenders' nervousness gauge" line with reference scale anchors (e.g., what 278bp means vs calm/stress markers — anchors per the plain-language law).
+**W1.5 · Analytics + hygiene layer. ✅ DONE (commit `c82f608`).** *[Scripts + data only; zero visual diff.]* Added now that we have the capability, because the raw series are inputs and the desk's intelligence is in the *relationships*:
+- **Derived compression spreads** computed once at build, read by every tile: HY−IG (the master compression/decompression regime tell), CCC−BB (junk-tier dispersion), BBB−IG (the fallen-angel cliff edge) — each with bp, 1-week change, percentile and z-score over our cached window.
+- **A rule-based, labeled regime read** from the data itself ("HY−IG is tight vs its own history and flat") — honest, never a forecast.
+- **Per-series deltas + z-score**: 1-day, ~1-week (5bd), ~1-month (21bd) changes; standardized score for "how unusual is this level."
+- **Hygiene/correctness fixes**: raw audit cache now **pruned to last 2 per series** (was unbounded — would have hit ~10k files/yr); heavy helper arrays stripped before serialization; live-count in build log.
+- **Research reflection seed**: `_data-cache/digest-credit.ndjson` appends one dated row per data-date (IG, HY, HY−IG, regime) — a growing proprietary timeseries we own, feeding the research loop (§ below).
+- *First insight it produced unprompted:* CCC−BB at the 98th percentile while HY−IG sits at the 19th — the desk's "calm on top, stress at the bottom" thesis, now evidenced by our own computation rather than asserted.
+
+**W2 · First live tiles — §1 Regime + ticker (step-by-step).** *[Section: analyst §1 + utility ticker; layman §1 twin in the same loop. One commit. Gate: §1 ratified on staging before W3.]*
+1. **Consumer module** — add `src/data/feeds/credit.js` (mirrors the `analysis/*.js` import pattern) that loads `credit.json`, exposes `series`, `derived`, `feedStatus`, and small helpers (`tile(key)`, `chip(state)`, `fmtBp`, `asOf`). One import line in `CreditDesk.astro`; nothing else reads the JSON directly.
+2. **State-chip anatomy pilot** — build the four-state chip (live ●/latest_published ◐/feed_pending ○/stale ◬ — colour+glyph+word, kit §5-4) ONCE here. 2–3 `visualize` options first (taste-call law); owner ratifies the anatomy on this tile before it propagates in W5.
+3. **§1 regime KPI cells** — IG OAS and HY OAS flip from "feed pending" to live: value in bp, 1d/1w deltas, percentile-vs-window with honest "3-yr window" label, `revised`/`stale` badges wired to the data flags, full-width attribution footer ("ICE BofA US … OAS · via FRED · as of <date>", kit §4d chip law).
+4. **The HY−IG compression headline** — surface the derived spread + its one-line regime read as the §1 panel's lead stat (this is the single most valuable number the data gives us; it belongs at the top, not buried).
+5. **Utility ticker** — `IG OAS`/`HY OAS` chips switch from the literal word "feed" to real values + tiny delta arrows.
+6. **FRED attribution notice** — place the TOS-required "This product uses the FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis." in the methodology/footer block (one-time, satisfies §8 obligation).
+7. **Freshbar honesty** — add "registry data through …" qualifier so the page stamp never implies the feed tiles share its date.
+8. **Layman §1 twin** — same loop: "how nervous are lenders?" gauge with the HY−IG number translated and **anchored** ("203bp — closer to the calm end; panic looked like 1,000bp+ in 2008"), per the locked plain-language law.
+9. **Verify** — compile → stage → curl/DOM check (live values render, no "."/null, attribution + as-of present, chip states correct, layman no-leak) → owner eyeballs §1 on staging → ratify.
 
 **W3 · §2 cohort row + percentile.** *[Section: analyst §2; layman crises chapter line.]* BBB/BB/CCC live row + compression/decompression read; §1 percentile tile (honest window label). Our **own SVG thumbnails** from cached history (kit chart law: ~122px, whisper grid, ≤3 colours) replace the dropped iframe idea.
 
@@ -109,6 +126,20 @@ State chips (colour + glyph + word; latent never red) · live OAS tiles in desk 
 - **O-13 — Hub rates tile (W-bonus):** yes *(recommended — cheap, clean)* / no.
 - *(O-7 and O-10 dissolved by O-14. O-14 recorded above.)*
 
+## 8.5 · How this capability compounds (reflection)
+
+**How it works, in one line:** a build-time script pulls a fixed set of FRED series, gates them for accuracy, accumulates them into a private history cache that defeats FRED's 3-year truncation, computes the cross-series relationships that carry the real signal, and writes one committed JSON the site reads — so production never holds the API key and never makes a live call.
+
+**How it improves the *website*.** (1) The desk stops saying "feed pending" on its most important numbers and starts showing live spreads with provenance — the integrity contract turns from a limitation into a visible strength. (2) The derived layer means we display *intelligence*, not just levels: a reader sees "compression, 19th percentile" not a bare "203bp." (3) The same `credit.json` can feed the **equities desk's credit-hooks section** and the **hub's cross-asset board** — one fetch, many tiles, all consistent. (4) `hist60` in the JSON already powers our own SVG thumbnails (no third-party iframes), so charts match the brass skin exactly.
+
+**How it improves the *research*.** (1) `digest-credit.ndjson` is now a growing **proprietary timeseries we own** — every build appends one dated row. Over weeks it becomes the backbone of a "what changed this week / this month" reflection and a factual record we can cite. (2) It closes the loop with the Perplexity workflow: P-06's findings (SDR-derived CDX, ETF-holdings-derived distress/EMBI) drop into the *same* gates and *same* derived layer — research output becomes live tiles without re-architecting. (3) The regime read + z-scores give us a cheap, honest **falsifier monitor**: the credit desk's pre-committed falsifiers include spread thresholds, and the pipeline can now flag when one trips.
+
+**Best way to use / store / reflect, codified:**
+- **Use** the *derived* block as the source of truth for tiles, not raw levels — relationships first.
+- **Store** raw audit (pruned, gitignored), full history (gitignored, the accumulator), and the committed display JSON (the only thing the site reads). Three tiers, one direction.
+- **Reflect** via the daily digest: a future micro-task (W5 or a scheduled task) reads `digest-credit.ndjson` and writes a weekly "credit, what moved" note — the first genuinely automated piece of *analysis*, not just display.
+- **Extend** every new feed (SIFMA, P-06 sources, equities plumbing) through the same gates → same derived patterns → same chip states. The framework is the moat, not any single series.
+
 ## 9 · Out of scope
 
 Equities plumbing feeds, ICI flows, MOVE, x-ccy basis, interest coverage, CDX engineering-if-sourced (runbook-documented), front-door/dashboard data — all P-02b, landing in the same pipeline later.
@@ -116,6 +147,7 @@ Equities plumbing feeds, ICI flows, MOVE, x-ccy basis, interest coverage, CDX en
 ---
 
 ### Changelog
+- **v5 (2026-06-13)** — Post-W1 reflection. Recorded W1 + **W1.5 analytics/hygiene** as DONE (derived compression spreads + regime read + deltas/z-score; raw-cache pruning; research digest log). Rewrote **W2 into 9 explicit steps** (consumer module → chip pilot → §1 cells → HY−IG headline → ticker → FRED notice → freshbar honesty → layman twin → verify). Added **§8.5 "how this capability compounds"** (website/research/storage/extend). Gap fixes folded in: unbounded raw cache, missing analytics layer, missing consumer module, no research-reflection artifact.
 - **v4 (2026-06-12)** — Owner decision **O-14**: licensing caution dropped; attribution-only posture; risk acceptance recorded as the owner's. Verdicts re-cut on availability+accuracy: OAS family → live bare-number tiles (+cohort row, +percentile, +EM-corporate option); widget/light-well track deleted (design problem dissolves); SIFMA caveat dissolved; license gate → attribution metadata; O-7/O-10 dissolved; distress/CDX/EMBI-free/loan-level remain constrained **by availability, not law**. Accuracy machinery unchanged.
 - **v3** — micro-loop discipline (section-at-a-time, pilot→ratify→propagate, W4 split, W6 verification-only); layman parity in every data wave; light-on-dark chart problem named; freshness-honesty rule; runbook micro-details.
 - **v2** — first QC: engineering spec, fallback ladder, proxies, convention labels, tooltips, budgets, quarterly review, W-bonus rates, visuals section, O-11..O-13; research streams described by angle.
