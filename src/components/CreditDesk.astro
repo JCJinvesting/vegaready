@@ -357,6 +357,21 @@ const techFund = [
   ['Default rate', 'Does not follow', 'Rises ex-post — confirms it'],
 ];
 
+// ── §8 Cross-Asset — R-08 sourced content ──
+const scenCohort = [
+  { s: 'Risk-off / flight-to-quality', c: [['Widen modestly; UST rally cushions; best relative', 'neg'], ['Widen 3–3.5× IG; CCC worst', 'neg'], ['Widen, but floating-coupon cushion; beat HY ex-recession', 'mix'], ['Widen most if the dollar rallies', 'neg']] },
+  { s: 'Rate / inflation shock', c: [['Hurt via <i>duration</i>, not spread — long IG worst', 'neg'], ['Relatively protected — short duration, spread-driven', 'pos'], ['Best cohort — floating-rate, ~zero duration', 'pos'], ['Hurt — higher UST + stronger dollar', 'neg']] },
+  { s: 'Growth re-acceleration', c: [['Tighten modestly — limited from a tight base', 'pos'], ['Tighten most — high-beta, carry harvested', 'pos'], ['Tighten + high carry as base rates hold', 'pos'], ['Tighten if the dollar softens; inflows resume', 'pos']] },
+  { s: 'Commodity / energy shock', c: [['Limited unless energy-heavy; sector-dispersed', 'mix'], ['Sector blow-up — energy/metals lead defaults', 'neg'], ['Energy/mining loans hit; recovery-rate fears', 'neg'], ['Diverges — exporters stable, importers widen', 'mix']] },
+  { s: 'Dollar-funding squeeze', c: [['Widen on liquidity premium; <i>safest</i> can cheapen most', 'neg'], ['Widen sharply; primary market shuts', 'neg'], ['CLO/loan-fund forced selling; thin secondary', 'neg'], ['Most exposed — dollar liabilities, capital flight', 'neg']] },
+];
+const corrPairs = [
+  ['HY OAS ↔ VIX', 'Tight (~0.7–0.85); <i>strengthens</i> in stress (β +0.587 → +0.901)', 'Vol suppressed (short-vol / 0DTE) or an idiosyncratic default wave'],
+  ['Stock ↔ bond', 'Negative 2000–2021; <b>positive since 2022</b>', 'Whole inflation-regime shifts — "bad inflation" kills the hedge'],
+  ['OAS ↔ Treasury', 'Growth regimes: spreads fall as yields rise (Baa &gt; Aaa)', 'Inflation/rate shock &amp; fiscal-credibility (2022) — both rise together'],
+  ['OAS ↔ broad $', 'Stronger dollar widens spreads, most for EM', 'Oil-exporters &amp; EM-led shocks; LatAm held but EM-Asia reversed ’22–23'],
+];
+
 // ── illustrative charts (SVG; feed-pending) ──
 const charts = {
   regime: `<svg viewBox="0 0 320 120" role="img" aria-label="Illustrative: credit spread inside a low percentile band"><rect x="0" y="60" width="320" height="44" fill="var(--data)" opacity="0.10"/><line x1="0" y1="82" x2="320" y2="82" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3"/><text x="2" y="54" fill="var(--muted)" font-size="8" font-family="Lora,serif">normal range</text><polyline points="0,46 60,52 120,60 180,70 240,82 320,90" fill="none" stroke="var(--data)" stroke-width="2"/><circle cx="320" cy="90" r="3.5" fill="var(--data)"/><text x="232" y="104" fill="var(--data)" font-size="8" font-family="Lora,serif">OAS — low pctile</text></svg>`,
@@ -640,22 +655,29 @@ const charts = {
   </div>
 </div></section>
 
-<!-- §8 CROSS-ASSET -->
-{['crossasset'].map((id) => { const t = T[id]; return (
-  <section class="dsec" id={id}><div class="wrap">
-    <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
-    <p class="lead" set:html={t.lead}></p>
-    <div class="snap">
-      <div class="kpibar">{t.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
-      {t.chart && (<figure class="snap-chart"><div class="cp-h"><b>{chartCap[t.chart]}</b><span class="cp-tag">illustrative</span></div><div class="sc-svg" set:html={charts[t.chart]}></div></figure>)}
-    </div>
-    <div class="track-grid">
-      <div class="track"><div class="tk-h">What we track</div><ul>{t.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
-      <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{t.lv[0]}</div><p>{t.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{t.tier}</span> {t.src}</div></div>
-    </div>
-    {t.feed && (<div class="deep"><div class="feedph"><div class="fp-h">{t.h} — feed pending</div><div class="fp-rows">{t.feed.map(([k, v]) => (<div class="fp-row"><span class="fp-k">{k}</span><span class="fp-v">{v}</span></div>))}</div></div></div>)}
-  </div></section>
-); })}
+<!-- §8 CROSS-ASSET (enriched · R-08) -->
+<section class="dsec" id="crossasset"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">{T.crossasset.eye} · {T.crossasset.q}</div><h2>{T.crossasset.h}.</h2></div><span class="fresh-tag">{T.crossasset.fresh}</span></div>
+  <p class="lead" set:html={T.crossasset.lead}></p>
+  <div class="snap">
+    <div class="kpibar">{T.crossasset.kpi.map((k) => (<div class="kpi"><div class="kpi-k" set:html={k[0]}></div><div class={`kpi-v${k[1] === '—' ? ' pend' : ''}`}>{k[1]}</div><div class="kpi-meta"><span class="vt">{k[2]}</span>{k[3] && (<span class={`dconf ${k[3]}`}>{k[3]}</span>)}</div></div>))}</div>
+  </div>
+  <div class="track-grid">
+    <div class="track"><div class="tk-h">What we track</div><ul>{T.crossasset.track.map(([x, m]) => (<li><span class={`mn mn-${m}`}>{m}</span><span set:html={x}></span></li>))}</ul></div>
+    <div class="track-side"><div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v">{T.crossasset.lv[0]}</div><p>{T.crossasset.lv[1]}</p></div><div class="srcline"><b>Sources</b> <span class="dconf tierchip">{T.crossasset.tier}</span> {T.crossasset.src}</div></div>
+  </div>
+  <div class="deep">
+    <div class="tk-h mt20a">Scenario × cohort — the directional map</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Scenario</th><th>IG</th><th>HY</th><th>Loans</th><th>EM sovereign</th></tr></thead>
+      <tbody>{scenCohort.map((r) => (<tr><td class="nm">{r.s}</td>{r.c.map((cell) => (<td class={`sc-cell sc-${cell[1]}`} set:html={cell[0]}></td>))}</tr>))}</tbody></table></div>
+    <div class="dcallout mt22a"><div class="dc-h">The regime fact that matters most: stocks and bonds re-correlated in 2022</div><p>The single biggest cross-asset shift for a credit-plus-duration book: stock–bond correlation was <b>negative through 2000–2021 and flipped positive in 2022</b>. It's an inflation-regime story — under "good inflation" (growth surprises) Treasuries hedged risk assets; under "bad inflation" (rate surprises) both legs fall together. The daily three-month correlation averaged <b>−0.30 (2004–2023)</b> but spiked to ~<b>+0.50</b> at end-2022. For credit: in a rate/inflation shock the Treasury hedge is <i>gone</i> — IG suffers most through duration, while HY (short duration) and floating-rate loans hold up.</p></div>
+    <div class="tk-h mt18a">Regime correlations — and when they break</div>
+    <div class="tblwrap"><table class="dtbl"><thead><tr><th>Pair</th><th>Typical relationship</th><th>Breaks when…</th></tr></thead>
+      <tbody>{corrPairs.map((r) => (<tr><td class="nm" set:html={r[0]}></td><td set:html={r[1]}></td><td set:html={r[2]}></td></tr>))}</tbody></table></div>
+    <div class="dcallout mt14t"><div class="dc-h">The kill-switch</div><p>In a dash-for-cash, <b>every correlation goes to ~1</b> and diversification fails exactly when it's needed. Treat each pair above as <i>regime-conditional, never structural</i> — the rolling correlation is shown precisely because it moves.</p></div>
+    <p class="tnote">Sources: McAlley &amp; Soper (JBES) · Fed FEDS 2025-002 · ECB FSR (Nov 2022) · FAJ 2024 (Brixton et&nbsp;al.) · Duffee (FEDS) · BIS Bulletin 79 · ING · Hofmann-Shim-Shin. Scenario cells are framework priors with sourced precedents, not forecasts.</p>
+  </div>
+</div></section>
 
 <!-- §9 CATALYSTS & FUNDING CHANNEL -->
 <section class="dsec" id="catalysts"><div class="wrap">
@@ -940,6 +962,11 @@ const charts = {
   /* §7 dealer-inventory read: tone the interpretation cell */
   .dtbl tr.dlr-lose td.dlr-read{color:var(--neg)}
   .dtbl tr.dlr-win td.dlr-read{color:var(--pos)}
+  /* §8 scenario × cohort matrix: terse cells with directional tint */
+  .dtbl td.sc-cell{font-size:10.5px;line-height:1.42;vertical-align:top}
+  .dtbl td.sc-neg{background:color-mix(in srgb,var(--neg) 9%,transparent)}
+  .dtbl td.sc-pos{background:color-mix(in srgb,var(--pos) 9%,transparent)}
+  .dtbl td.sc-mix{background:color-mix(in srgb,var(--latent) 7%,transparent)}
 </style>
 
 <script is:inline>
