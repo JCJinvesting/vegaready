@@ -1,0 +1,50 @@
+/* =============================================================================
+   Heritage Juniper skin — SCOPED to the Dollar, FX & Gold desk via
+   html[data-skin="juniper"]. Overrides the desk.css :root for these pages only.
+   Identity (owner pick 2026-06-14): juniper green-black canvas + ivory ink +
+   verdigris cool data tone + ONE warm OLD-GOLD accent. "Established house /
+   gold heritage." Distinct from credit's warm brass and equities' charcoal steel.
+   Discipline: one warm accent (old gold) + one cool data tone (verdigris) +
+   semantic pos/neg. Warm-ivory ink against a green-black canvas; flat gold CTA.
+   ============================================================================= */
+html[data-skin="juniper"]{
+  --canvas:#10201A;          /* deep juniper green-black */
+  --deep:#0A1611;
+  --card:#1A2C24;            /* clearly lifted off the canvas */
+  --cardline:#2D4135;        /* visible hairline — clean separation */
+  --ink:#F0EAD8;             /* ivory */
+  --body:#CAD2C4;            /* cool sage-light body */
+  --muted:#8FA396;           /* muted sage */
+  --eyeb:#C8AC63;            /* OLD GOLD — the single brand accent (antique, distinct from credit brass) */
+  --struct:#A08A52;          /* muted bronze-gold — structural lines/labels, same warm family */
+  --data:#5FA897;            /* verdigris — the cool data-series tone (desk signature) */
+  --anchor:#15281F;
+  --bench:#D8C07E;           /* light old-gold — benchmark/emphasis */
+  --pos:#46C9A0;             /* realized teal-green (semantic only) */
+  --neg:#D2774F;             /* terracotta (semantic only; GCC-safe) */
+  --warn:#D9A441;            /* amber */
+  --latent:#8FA396;
+  --emph:#D8C07E;
+  --sx-anchor:#15281F; --sx-anchorline:#274034;
+  --ctagold:#C8AC63; --ctafh:#C8AC63; --ctafc:#C8AC63;
+  /* layman chapter accents (for the future layman wing) — juniper→gold heritage sweep.
+     Low-salience: chapter numerals, dividers and pill kickers only. */
+  --chA:#5FA897;  /* verdigris */
+  --chB:#6FB58A;  /* sea-green */
+  --chC:#86B97A;  /* sage-leaf */
+  --chD:#A8B266;  /* moss-gold */
+  --chE:#C2AC5E;  /* old gold */
+  --chF:#C89A52;  /* amber-bronze */
+  --chG:#B58A6A;  /* clay-bronze */
+  --chH:#8E9C84;  /* lichen */
+  --chI:#6E9A86;  /* deep verdigris */
+  background:var(--canvas);
+}
+/* flat old-gold CTA — solid gold + dark text. Covers BOTH markup patterns:
+   <a class="cta-frame"> (bare anchor) AND <span class="cta-frame"><a> (wrapper). */
+html[data-skin="juniper"] .cta-frame{background:var(--eyeb);color:#16130A;border-radius:9px;padding:0;border:none}
+html[data-skin="juniper"] a.cta-frame{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;font-family:'Fraunces',serif;font-size:15px;font-weight:600}
+html[data-skin="juniper"] .cta-frame a{background:var(--eyeb);color:#16130A;font-weight:600}
+html[data-skin="juniper"] .cta-frame:hover,
+html[data-skin="juniper"] a.cta-frame:hover,
+html[data-skin="juniper"] .cta-frame a:hover{background:#D4BA74;color:#16130A}

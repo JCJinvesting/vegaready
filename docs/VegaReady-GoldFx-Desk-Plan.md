@@ -57,10 +57,10 @@ Recommendation: **#1 (Sovereign Navy + JCJ Gold)** — strongest thematic fit fo
 GF-L1 scaffold + chosen skin + Wayfinder + secnav. → GF-L2 §0 State + §1 Regime (data-wired). → GF-L3 §5 Cohorts (crosses + EM-FX + metals). → GF-L4 §6 Factors (carry) + §7 Positioning (intervention/plumbing). → GF-L5 §8 Cross-asset + §9 Catalyst (petrodollar/de-dollarization). → GF-L6 §2/§3/§4 (structure/valuation/fundamentals — most P-10-dependent; placeholders until P-10). → GF-L7 §10 Evidence + analyst-Deep QC. Then (later tiers) analyst Skim → layman Deep → layman Skim.
 
 ---
-## 7 · Owner decisions needed
-1. **Palette** — pick from the three `visualize` options.
-2. **Desk name** — "Dollar, FX & Gold" (recommended)?
-3. **P-10 timing** — confirm the FX/Gold council dossier is coming, so I know how much to placeholder vs build now (and that I should NOT trust the old page's gold numbers).
+## 7 · Owner decisions — LOCKED (2026-06-14)
+1. **Palette → Heritage Juniper + Old Gold.** Built as `src/styles/skin-juniper.css` (`html[data-skin="juniper"]`): juniper green-black canvas, ivory ink, verdigris cool data tone, old-gold accent, `--chA..--chI` heritage sweep for the future layman wing.
+2. **Desk name → "Dollar, FX & Gold."** Route stays `/markets/gold-fx`; component `GoldFxDesk.astro`; `data-skin="juniper"`.
+3. **P-10 timing → build now with honest placeholders.** Build the spine + the R-09.1/grounding-backed sections; `research pending (P-10)` placeholders elsewhere; never carry the legacy page's unverified gold numbers.
 
 ---
 *Drafted 2026-06-14. Rebuild of the legacy gold-fx page to the desk standard; Analyst Deep master first; built from R-09.1 + grounding with honest placeholders pending P-10.*
