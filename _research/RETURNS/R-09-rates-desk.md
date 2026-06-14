@@ -625,3 +625,48 @@ The US Rates desk is operating in a **restrictive, dis-inverted, positive-term-p
 ---
 
 *Synthesis register: sober, no hype. Disagreement preserved as a standing council, not resolved. All live-environment parameters treated as given and cross-checked against FRED/H.15/BLS/EIA/Fed sources where a public series exists. The "best of all three" approach: GPT-5.5's quantitative spine (duration math, auction microstructure, historical-analogue dates), Claude Opus 4.8's methodological depth (ACM vs KW, MBS-convexity Beast, swap-spread mechanics, gold-decoupling signal), and Gemini 3.1 Pro's pedagogical labels (named scenarios, plain-language framing). Prepared as the Model Council synthesis for the US Rates desk build, R-09 v2.*
+
+
+---
+
+## L · CURATOR'S QC & GAP-FILL (VegaReady, 2026-06-14 — not model content)
+A content-QC pass over the council synthesis found it complete and internally consistent on the curve, term premium, valuation, plumbing (swap spreads / SOFR / QT-RRP / MBS convexity), the catalyst chains, and the layman kit. Four genuine positioning/plumbing gaps were identified and are filled below from current free sources so the §7 build is not thin. Each is tagged in-house and slots into **§2.7 Positioning/plumbing** (and the noted scenarios / data board).
+
+### L.1 — The Treasury cash-futures BASIS TRADE (the missing systemic amplifier) — belongs in §2.7 + Scenario 6
+The single biggest omission. Hedge funds run a **long-cash / short-futures** arbitrage on the small price gap, **financed in repo and levered heavily** — and it is now a first-order financial-stability risk the desk must track. `[DIR]` (H)
+- **Scale:** hedge funds reached **10.3% of the Treasury cash market in Q1 2025** (above the 9.4% pre-pandemic peak); official data **undercounts basis positions by ~$1.4tn (end-2024)**, concentrated in Cayman-domiciled funds. `[HARD]` (M) ([Fed FEDS Notes on HF Treasury/repo positions, 2023–25](https://www.federalreserve.gov/econres/notes/feds-notes/recent-developments-in-hedge-funds-treasury-futures-and-repo-positions-20230830.html); [Fed cross-border basis-trail note 2025-10-15](https://www.federalreserve.gov/econres/notes/feds-notes/the-cross-border-trail-of-the-treasury-basis-trade-20251015.html))
+- **Leverage/fragility:** **~73.8% of HF repo borrowing is at zero or negative haircuts** — extreme leverage with thin loss-absorption; a sharp move can force rapid unwind. `[HARD]` (M)
+- **Official warning:** Fed Gov. Lisa Cook flagged that the growing basis trade can make the **$30tn market "more vulnerable to stress"** and disrupt functioning in extremis. `[DIR]` (H) ([Hedgeweek](https://www.hedgeweek.com/us-fed-official-flags-hedge-fund-basis-trades-as-risk-to-30tn-treasury-market/))
+- **Precedent:** the trade's unwind was central to the **March 2020 "dash-for-cash"** Treasury dislocation. `[DIR]` (H)
+- **Structural catalyst:** the **SEC Treasury central-clearing mandate** (cash by **31 Dec 2026**, repo by **30 Jun 2027**) will reshape basis-trade economics and is a dated event the desk should put on its calendar. `[HARD]` (M) ([Chicago Fed primer 2026](https://www.chicagofed.org/publications/chicago-fed-letter/2026/516))
+- **Why it matters here:** it is the leverage channel that turns the dossier's **Scenario 6 (plumbing accident)** from tail to plausible — a basis unwind hits SOFR/repo and the long end simultaneously, on top of the MBS-convexity amplifier. Add it to §2.7 and to Scenario 6's triggers/lead-indicators.
+
+### L.2 — Live POSITIONING read via CFTC COT (the synthesis listed it as a source but never read it) — §2.7
+The free **CFTC Commitments of Traders** report (weekly, ~3-day lag) is the desk's positioning gauge: **leveraged funds' large net SHORT in Treasury futures is the basis-trade footprint**, while **asset managers run the offsetting net LONG**. Record leveraged-short extremes = crowded basis trade = elevated unwind risk; a sudden COT short-covering is the tell that a deleveraging is underway. `[DIR]` (M) Free, but `latest_published` (weekly lag), so a position read, not an intraday signal. ([CFTC COT](https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm)) **Build-time action:** pull the latest leveraged-fund net-position extreme and state it.
+
+### L.3 — FOREIGN DEMAND via TIC (the term-premium "reduced foreign demand" driver had no hard source) — §2.7 / §2.9 + data board
+Foreign holders fund a large slice of the deficit, so their behavior is core to the term-premium story the dossier leans on. The free **Treasury International Capital (TIC)** system (monthly, ~6-week lag) is the source. `[HARD]` (M) ([Treasury TIC](https://home.treasury.gov/data/treasury-international-capital-tic-system))
+- **Foreign holdings ~$9.5tn (Feb 2026), +6% y/y** from ~$8.9tn — foreign demand is *growing in absolute terms*, complicating the simple "foreigners are leaving" narrative. `[HARD]` (M)
+- **Top holders (Dec 2025): Japan ~$1.2tn · UK ~$0.9tn · China ~$0.7tn.** China is **falling** (nominal and share) — the de-dollarization-at-the-margin signal; Japan stable in a $1.0–1.2tn band. `[HARD]` (M) ([CRS Major Foreign Holders](https://www.congress.gov/crs_external_products/RS/HTML/RS22331.web.html))
+- **Connective tissue:** the TIC **"Caribbean Banking Centres" line is a known proxy for hedge-fund (Cayman) basis-trade holdings** — so TIC and L.1/L.2 corroborate each other. `[DIR]` (M) **Add a data-board row** (TIC, `latest_published`, free) and use it to anchor the foreign-demand leg of Chains C/§2.9.
+
+### L.4 — ISSUANCE COMPOSITION / "activist Treasury" (ATI) bill-share debate — §2.7
+The dossier covers *supply quantity* but not *supply mix*. The Treasury's **skew toward T-bill issuance** (vs coupons) is argued to **suppress term premium** by minimizing duration added to the market — the "Activist Treasury Issuance" critique. The free source is the quarterly **Treasury Refunding Announcement (QRA)** + the TBAC bill-share recommendation (~15–20% of marketable debt). `[DIR]` (M) A *shift back toward heavy coupon issuance* would be a term-premium catalyst — a dated, free, watchable event. ([Treasury Quarterly Refunding](https://home.treasury.gov/policy-issues/financing-the-government/quarterly-refunding)) **Add QRA dates to the desk calendar.**
+
+### L.5 — Minor reconciliations (no errors, just tightening)
+- **Hormuz state vs STEO:** §2.9 cites the May EIA STEO assuming "resumption in June," but the realized live environment (UAE: full flows only by **2027**) is *more severe*. Build with the realized state; treat the STEO line as a now-stale forecast. `[DIR]` (M)
+- **10y 4.45 (FRED) vs 4.49 (desk):** already reconciled in §1 as EOD-publication noise — keep the live print as the anchor and footnote FRED. ✓
+- **Layman kit has 11 concepts** (9 + 2 bonus); the desk's layman wing uses ~9 chapters — select/merge at build (e.g. fold Repo/SOFR into the QT/plumbing chapter).
+
+### L.6 — Data-board additions (append to Section C)
+| Tile | Best FREE series | Cadence | Feed-state | Note |
+|---|---|---|---|---|
+| Foreign UST holdings | **Treasury TIC** (Major Foreign Holders) | Monthly (~6wk lag) | latest_published | Japan/UK/China; Caribbean line = basis-trade proxy |
+| Leveraged-fund positioning | **CFTC COT** (Treasury futures) | Weekly (~3-day lag) | latest_published | Lev-fund net short = basis-trade footprint |
+| Issuance mix / refunding | **Treasury QRA + TBAC** | Quarterly (event) | source_identified | Bill-share vs coupon skew; term-premium driver |
+| Central-clearing milestone | SEC mandate dates | Event | n/a (calendar) | Cash 31-Dec-2026 · repo 30-Jun-2027 |
+
+### L.7 — Build-time re-verify list (live values move)
+Re-pull at build: DGS10/DGS2/DGS3MO/DGS5/DGS30, T10Y2Y/T10Y3M, DFII10, T10YIE/T5YIFR, SOFR/IORB, RRPONTSYD/WRESBAL/WALCL, ACM & THREEFYTP10, MORTGAGE30US, the latest two auctions (Fiscal Data API), latest CPI (BLS), latest COT lev-fund net, latest TIC top-holders, Brent (de-escalation may have moved it materially). The dossier's **framing, mechanisms, scenario map, anchor scales, and source IDs are the durable deliverable**; the point-in-time numbers are a snapshot to refresh.
+
+*Curator QC by VegaReady, 2026-06-14. Gap-fills sourced to free Fed/Treasury/CFTC/Chicago-Fed material and tagged in-house; they extend, not overwrite, the model council's content above.*
