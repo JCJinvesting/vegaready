@@ -316,6 +316,46 @@ const sources = [
   ['RBI weekly statistical supplement', 'rbi.org.in'],
 ];
 const tierOf = (t) => `<span class="tierchip">${t}</span>`;
+
+// ── designed Skim tier: the 60-second read + per-section bottom lines ──
+const sk60cells = [
+  ['~100', 'Broad dollar — firm'],
+  ['+2.16%', 'Real 10y — restrictive'],
+  ['~$4,365', 'Gold — −22% off the ATH'],
+  ['~157', 'USD/JPY — yen weak'],
+];
+const blOf = {
+  regime: 'The dollar is firm because it pays the highest safe real yield <i>and</i> catches the haven bid — both legs of the smile at once.',
+  structure: 'Haven order this cycle: <b>dollar &gt; franc &gt; gold &gt; yen</b>. The yen is funding, not a refuge.',
+  valuation: 'The dollar is rich on REER; gold’s inverse to real yields bends but doesn’t break — it reasserted in the correction.',
+  fundamentals: 'Rate differentials drive the dollar day to day; the twin deficits and a positive term premium are the slow anchor underneath.',
+  cohorts: 'Majors read by which defence each country reaches for; EM-FX splits by the energy bill; gold trades on real yields plus a central-bank floor.',
+  factors: 'Carry pays steadily then snaps; the dollar is now a funding <i>destination</i>, squeezing EM carry from both sides.',
+  positioning: 'Watch who is a forced seller of dollars — and the cross-currency basis / SRF spread, which leads the stress before the headline.',
+  crossasset: 'The dollar sits under everything; in a true dash-for-cash every correlation goes to one.',
+  catalysts: 'Hormuz feeds the dollar (carry + haven) and gold; de-dollarization is real but glacial — the shock raises the temperature, it doesn’t break the order.',
+};
+// ── winners & losers in this regime ──
+const winnersLosers = [
+  ['win', 'US dollar & cash', 'Both smile legs active; ~5% cash yields reward sitting in dollars'],
+  ['win', 'Commodity exporters', 'BRL, NOK, Saudi — a terms-of-trade cushion in an oil shock, and carry-attractive'],
+  ['win', 'Gold & its central-bank buyers', 'Off the record, but floored by ~29t/month of price-inelastic official buying'],
+  ['mix', 'The yen & carry funders', 'Weak now — but the violent winner the day a carry unwind forces covering'],
+  ['mix', 'Gold vs Bitcoin', 'Gold caught the haven bid; BTC traded like risk (~0.5 correlation to equities)'],
+  ['lose', 'EM energy importers', 'INR, TRY, IDR — squeezed by high US real rates and the oil-import bill'],
+  ['lose', 'Dollar debtors / EM sovereigns', 'Pricier debt and an offshore-funding squeeze while the dollar stays firm'],
+  ['lose', 'EM carry trades', 'Funding-side squeeze from a high-real-yield dollar, plus unwind risk'],
+];
+const wlLane = (k) => winnersLosers.filter((r) => r[0] === k);
+// ── dated catalyst watchlist ──
+const watchlist = [
+  ['Aug 2026', 'Treasury quarterly refunding (QRA)', 'Issuance + bill-mix guidance; a shift back to coupons lifts term premium and pressures the dollar’s anchor', 'cal'],
+  ['Sep 2026', 'Quarter-end tax date', 'A Treasury cash bump — a reserve-drain stress test now that the RRP buffer is gone', 'cal'],
+  ['31 Dec 2026', 'SEC Treasury cash central-clearing', 'Reshapes the basis-trade economics under the dollar’s plumbing', 'cal'],
+  ['30 Jun 2027', 'Repo central-clearing (phase two)', 'Completes the mandate; watch for basis-trade deleveraging', 'cal'],
+  ['Escalation', 'Brent &gt;$95–100 · 5y/5y inflation &gt;2.5% · an actual Fed hike', 'Flips the regime more dollar-firm and gold-bid', 'up'],
+  ['De-escalation', 'Brent &lt;$80 · cut odds returning · broad dollar &lt;100', 'Dollar softens; EM carry re-attracts inflows', 'dn'],
+];
 ---
 
 <div class="utility"><div class="wrap">
@@ -344,6 +384,14 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 </div></nav>
 
 <div class="an-only">
+
+<!-- designed Skim digest (skim-only) -->
+<section class="sk60 skim-only"><div class="wrap">
+  <div class="sk60-h">The 60-second read</div>
+  <p class="sk60-call">Firm dollar, off-record gold, and a plumbing-first stress map — the live question is which channel meets global dollar demand, and whether it forces or relieves Treasury selling.</p>
+  <div class="sk60-grid">{sk60cells.map((c) => (<div class="sk60-c"><div class="sk60-v">{c[0]}</div><div class="sk60-l">{c[1]}</div></div>))}</div>
+  <div class="sk60-w"><b>The one rule:</b> in FX the plumbing leads the price — watch the cross-currency basis and the forced sellers, not the headline. <span class="bl-go">Switch to Deep for the full desk ↓</span></div>
+</div></section>
 
 <!-- §0 STATE -->
 <section class="hero an-block" id="state"><div class="wrap">
@@ -379,7 +427,7 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 </div></section>
 
 <!-- COMPETING DRIVERS -->
-<section class="dsec" id="drivers-blk"><div class="wrap">
+<section class="dsec deep" id="drivers-blk"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">Attribution · what is moving the dollar</div><h2>Competing drivers.</h2></div></div>
   <p class="lead">No single force sets the dollar. We name the buckets and their weight-of-evidence — and we never assume the residual is zero.</p>
   <div class="attrib">{drivers.map((d) => (<div class="attrib-row"><div class="attrib-d">{d.d}</div><span class={`attrib-b b-${d.b}`}>{d.b}</span><div class="attrib-n">{d.n}</div></div>))}</div>
@@ -390,6 +438,7 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 <section class="dsec" id={key}><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">{t.eye} · {t.q}</div><h2>{t.h}.</h2></div><span class="fresh-tag">{t.fresh}</span></div>
   <p class="lead" set:html={t.lead}></p>
+  {blOf[key] && <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf[key]}></span> <span class="bl-go">Open Deep ↓</span></p>}
   <div class="snap">
     <div class="kpibar">
       {t.kpi.map((k) => { const c = chipFor(k[2]); return (
@@ -434,6 +483,7 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 <section class="dsec" id="cohorts"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§5 · Who moves, and why</div><h2>Cohorts: crosses, EM blocs &amp; the metals.</h2></div><span class="fresh-tag">daily</span></div>
   <p class="lead">Three sub-markets tell different stories. The <b>major crosses</b> read through the sovereign-response lens (which tool each country reaches for); <b>EM-FX</b> splits cleanly by energy balance; and the <b>monetary metals</b> trade on real yields plus a central-bank floor. Click a column to sort the sensitivity matrix.</p>
+  <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf['cohorts']}></span> <span class="bl-go">Open Deep ↓</span></p>
   <table class="dtbl sortable" id="cohtbl"><thead><tr><th>Cohort</th><th class="sort" data-col="rate">Rate-diff sensitivity ▲▼</th><th class="sort" data-col="carry">Carry role ▲▼</th><th class="sort" data-col="usd">USD-funding vuln ▲▼</th></tr></thead><tbody>
     {cohortMatrix.map((r) => (<tr data-rate={r.rate[1]} data-carry={r.carry[1]} data-usd={r.usd[1]}><td class="prec-name">{r.s}</td><td><span class={`sens ${r.rate[2]}`}>{r.rate[0]}</span></td><td><span class={`sens ${r.carry[2]}`}>{r.carry[0]}</span></td><td><span class={`sens ${r.usd[2]}`}>{r.usd[0]}</span></td></tr>))}
   </tbody></table>
@@ -479,11 +529,16 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 <section class="dsec" id="factors"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§6 · What style is being rewarded</div><h2>Factors &amp; the carry complex.</h2></div><span class="fresh-tag">structural · weekly</span></div>
   <p class="lead">FX returns decompose into <span set:html={gl('Carry', 'carry')}></span>, value (<span set:html={gl('REER', 'REER')}></span>), momentum, and the dollar-smile risk factor. The defining feature of 2026: the dollar’s +2.16% real yield has turned it into a partial funding <i>destination</i>, squeezing the classic EM carry trade from the funding side — while the global funding-cost floor itself is rising.</p>
+  <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf['factors']}></span> <span class="bl-go">Open Deep ↓</span></p>
   <div class="deep dcallout"><div class="dc-h">Carry is not clean alpha</div><p>The profit on a carry trade is the rate spread minus hedging cost (if hedged) or the FX move (if not). It pays steadily — then gives it all back at once. <b>The funding currency need not be touched by any policy change for the carry to unwind: leverage forces the hand</b> (the 1998 LTCM lesson). A major unwind = the funding currency appreciates 5–12% versus high-beta recipients within 3–10 days, the VIX spikes above 35, and 10%+ of global equity market cap is erased before a central bank stabilises it.</p></div>
   <h3 class="dl deep">The carry configuration, mid-2026</h3>
   <table class="dtbl deep"><thead><tr><th>Leg</th><th>Rates</th><th>The read</th></tr></thead><tbody>
     {carryConfig.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
   </tbody></table>
+  <figure class="snap-chart deep"><div class="cp-h"><span>The carry gauge</span><span class="cp-tag">illustrative</span></div>
+    <div class="sc-svg" set:html={`<svg viewBox="0 0 340 96" role="img" aria-label="Funding currencies near zero, the dollar now a mid-curve funding destination, EM recipients high-yield, with an unwind-risk band"><line x1="20" y1="60" x2="320" y2="60" stroke="var(--cardline)" stroke-width="1"/><text x="20" y="80" fill="var(--data)" font-size="8" font-family="Lora,serif">JPY/CHF ~0%</text><circle cx="40" cy="60" r="4" fill="var(--data)"/><text x="150" y="80" fill="var(--eyeb)" font-size="8" font-family="Fraunces,serif">USD +2.16% real</text><circle cx="170" cy="60" r="5" fill="var(--eyeb)"/><text x="270" y="80" fill="var(--neg)" font-size="8" font-family="Lora,serif">EM 14–37%</text><circle cx="300" cy="60" r="4" fill="var(--neg)"/><rect x="150" y="22" width="170" height="14" fill="var(--warn)" opacity="0.16"/><text x="156" y="32" fill="var(--warn)" font-size="8" font-family="Lora,serif">unwind risk — recipients dumped, funders bid</text></svg>`}></div>
+    <figcaption>The dollar has slid up the funding curve into a <i>destination</i>, squeezing carry from the funding side. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
   <h3 class="dl deep">Carry-unwind crisis history — the dated ledger</h3>
   <table class="dtbl deep"><thead><tr><th>Episode</th><th>Trigger</th><th>Magnitude &amp; speed</th><th></th></tr></thead><tbody>
     {carryHistory.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td class="num-cell">{r[2]}</td><td>{tierOf(r[3])}</td></tr>))}
@@ -495,6 +550,7 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 <section class="dsec" id="positioning"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§7 · The plumbing &amp; the forced seller</div><h2>Positioning, intervention &amp; funding.</h2></div><span class="fresh-tag">weekly · monthly</span></div>
   <p class="lead">This is where FX stress shows first. When a sovereign faces a strong dollar or a funding shock, it has <b>eight tools</b> (plus a ninth, private channel) — and each leaves a different footprint on the Treasury market. The central question of the desk: <b>which responses force more Treasury selling, and which substitute for it?</b></p>
+  <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf['positioning']}></span> <span class="bl-go">Open Deep ↓</span></p>
   <table class="dtbl"><thead><tr><th>Tool</th><th>What it does</th><th>UST effect</th><th>Hard figures</th></tr></thead><tbody>
     {tools.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td><span class={`wl-tag wl-${r[4]}`}>{r[2]}</span></td><td class="num-cell">{r[3]}</td></tr>))}
   </tbody></table>
@@ -519,6 +575,7 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 <section class="dsec" id="crossasset"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§8 · Does the macro complex confirm?</div><h2>Cross-asset linkages.</h2></div><span class="fresh-tag">daily</span></div>
   <p class="lead">The dollar sits under every other asset class; gold and the yen are the cross-asset tells. These relationships are <b>regime-dependent, not causal</b> — the “what breaks it” column is the point, because in a true dash-for-cash every correlation converges toward one.</p>
+  <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf['crossasset']}></span> <span class="bl-go">Open Deep ↓</span></p>
   <table class="dtbl"><thead><tr><th>Pair</th><th>Normal relationship</th><th>What breaks it</th></tr></thead><tbody>
     {corrPairs.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
   </tbody></table>
@@ -533,6 +590,7 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 <section class="dsec" id="catalysts"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§9 · The live overlay</div><h2>Catalysts: Hormuz, petrodollar &amp; the reserve order.</h2></div><span class="fresh-tag">event</span></div>
   <p class="lead">Catalysts <i>annotate</i> the durable frame, they don’t replace it. The realized Hormuz shock transmits through four chains and bleeds into the slow de-dollarization drift.</p>
+  <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf['catalysts']}></span> <span class="bl-go">Open Deep ↓</span></p>
   <div class="xa">{hormuzTiles.map((t) => { const c = chipFor(t.chip); return (
     <div class={`xa-tile ${t.chip === 'pub' ? 'live' : 'pend'}`}><div class="xa-k">{t.k}</div><div class="xa-v">{t.v}</div><div class="xa-n">{t.n}</div></div>
   );})}</div>
@@ -544,6 +602,19 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
     {dedollar.map((r) => (<tr><td class="prec-name" set:html={r[0]}></td><td>{r[1]}</td><td set:html={r[2]}></td><td>{tierOf(r[3])}</td></tr>))}
   </tbody></table>
   <p class="srcline deep">De-dollarization is real but <b>glacial</b> — the dollar’s share is at a 25-year low yet no alternative has Treasuries’ depth, liquidity and legal protection. The shock raises the temperature on a multi-decade shift; it does not break the order. <span class="dconf low">low confidence on pace.</span> {tierOf('T1/T2')}</p>
+  <h3 class="dl">What to watch — the dated map</h3>
+  <div class="cal">{watchlist.map((r) => (<div class={`cal-row cal-${r[3]}`}><div class="cal-when">{r[0]}</div><div class="cal-what"><b>{r[1]}</b><span set:html={r[2]}></span></div></div>))}</div>
+</div></section>
+
+<!-- WINNERS & LOSERS -->
+<section class="dsec" id="winners"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">The regime, scored</div><h2>Winners &amp; losers.</h2></div></div>
+  <p class="lead">Who a firm dollar, restrictive real rates, and the oil shock help — and who they squeeze.</p>
+  <div class="wl3">
+    <div class="wl-lane wl-win"><div class="wl-h">Winners</div>{wlLane('win').map((r) => (<div class="wl-item"><b>{r[1]}</b><span>{r[2]}</span></div>))}</div>
+    <div class="wl-lane wl-mix"><div class="wl-h">It depends</div>{wlLane('mix').map((r) => (<div class="wl-item"><b>{r[1]}</b><span>{r[2]}</span></div>))}</div>
+    <div class="wl-lane wl-lose"><div class="wl-h">Losers</div>{wlLane('lose').map((r) => (<div class="wl-item"><b>{r[1]}</b><span>{r[2]}</span></div>))}</div>
+  </div>
 </div></section>
 
 <!-- §10 EVIDENCE -->
@@ -718,6 +789,40 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
   .st-src{color:var(--bench);background:color-mix(in srgb,var(--bench) 13%,transparent)}
   .st-pending{color:var(--muted);background:color-mix(in srgb,var(--muted) 12%,transparent)}
   body[data-disc="skim"] .deep{display:none}
+  /* designed Skim tier */
+  .sk60{background:var(--anchor);border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 13px 13px 0;padding:16px 20px;margin-bottom:8px}
+  .sk60-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--eyeb);margin-bottom:8px}
+  .sk60-call{font-family:'Fraunces',serif;font-size:17px;line-height:1.45;color:var(--ink);margin:0 0 12px;max-width:80ch}
+  .sk60-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:12px}
+  .sk60-c{background:var(--card);border:1px solid var(--cardline);border-radius:9px;padding:9px 12px}
+  .sk60-v{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--ink)}
+  .sk60-l{font-size:10.5px;color:var(--muted);line-height:1.35;margin-top:2px}
+  .sk60-w{font-size:13px;color:var(--body);line-height:1.55}
+  .sk60-w b{color:var(--ink)}
+  .skim-bl{font-size:13.5px;line-height:1.55;color:var(--body);background:var(--anchor);border:1px solid var(--cardline);border-radius:9px;padding:10px 14px;margin:10px 0 0}
+  .skim-bl b{color:var(--eyeb)}
+  .bl-go{display:inline-block;margin-left:6px;font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.03em;color:var(--muted)}
+  /* winners & losers lanes */
+  .wl3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:6px}
+  @media(max-width:760px){.wl3{grid-template-columns:1fr}}
+  .wl-lane{background:var(--card);border:1px solid var(--cardline);border-top:2px solid var(--cardline);border-radius:10px;padding:12px 14px}
+  .wl-win{border-top-color:var(--pos)}
+  .wl-mix{border-top-color:var(--struct)}
+  .wl-lose{border-top-color:var(--neg)}
+  .wl-h{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:9px}
+  .wl-win .wl-h{color:var(--pos)}.wl-mix .wl-h{color:var(--struct)}.wl-lose .wl-h{color:var(--neg)}
+  .wl-item{padding:7px 0;border-bottom:1px solid var(--cardline)}
+  .wl-item:last-child{border-bottom:none}
+  .wl-item b{display:block;font-family:'Fraunces',serif;font-size:13px;color:var(--ink);margin-bottom:1px}
+  .wl-item span{font-size:11.5px;color:var(--body);line-height:1.4}
+  /* dated catalyst watchlist */
+  .cal{display:grid;gap:0;margin-top:4px}
+  .cal-row{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:baseline;padding:9px 0 9px 12px;border-bottom:1px solid var(--cardline);border-left:2px solid var(--cardline)}
+  .cal-cal{border-left-color:var(--data)}.cal-up{border-left-color:var(--neg)}.cal-dn{border-left-color:var(--pos)}
+  @media(max-width:680px){.cal-row{grid-template-columns:1fr;gap:2px}}
+  .cal-when{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--eyeb)}
+  .cal-what b{font-family:'Fraunces',serif;font-size:13px;color:var(--ink);display:block;margin-bottom:1px}
+  .cal-what span{font-size:12px;color:var(--body);line-height:1.45}
 </style>
 
 <script is:inline>
