@@ -1,8 +1,10 @@
 # VegaReady — Session Instructions & Working Agreement
 
-**Purpose:** how to work with the owner (JCJ Investing GP, `GP@jcjinvesting.com`) on the VegaReady build. This is the *how we work*. Read it with `PROJECT-CONTEXT-AND-FILES.md` (vision, file map, access, deploy mechanics) and the root `CLAUDE.md` (auto-loaded short version) before touching anything.
+**Purpose:** how to work with the owner (JCJ Investing GP, `GP@jcjinvesting.com`) on the VegaReady build. This is the *how we work*. Read it with `PROJECT-CONTEXT-AND-FILES.md` (vision, file map, access, deploy mechanics), `docs/VegaReady-Desk-Build-Playbook.md` (**the repeatable per-desk standard — tiers, content laws, visual system, QC gate, ship runbook**), `docs/LOOPS.md` (the operating loops), and the root `CLAUDE.md` (auto-loaded short version) before touching anything.
 
-**Last updated:** 2026-06-11, after the credit desk was rebuilt (content, Warm Brass skin, Skim/Deep model, brand-aligned formatting) and deployed to staging.
+**Last updated:** 2026-06-14, after the **credit desk shipped complete to production** — all four tiers (analyst Deep + Skim, layman Deep [9 chapters] + Skim) — and the reusable Desk Build Playbook was written. The build cadence (tier-dependency order, one-unit-per-loop, curl-grep verification, the ship safeguards below) is now codified in the Playbook; this file holds the deploy/verify mechanics and the owner working-agreement.
+
+**The tier-dependency law (Playbook §1):** build **master first, then derive** — Analyst Deep → Analyst Skim → Layman Deep → Layman Skim. Never compress or translate unfinished content.
 
 ---
 
@@ -56,7 +58,7 @@ The loop for every URL:
 cd C:\Users\cwm4t\ClaudeCode\vegaready
 npm run stage
 ```
-`stage` = `node scripts/build-data.cjs && astro build && wrangler deploy --name vegaready-staging`. Review at **https://vegaready-staging.royal-rice-7384.workers.dev** (optional custom domain `test.vegaready.com`). Confirm the output says **`Uploaded vegaready-staging`** (NOT `vegaready`).
+`stage` = `node scripts/build-data.cjs && node scripts/fetch-feeds.cjs && astro build && wrangler deploy --name vegaready-staging`. Review at **https://vegaready-staging.royal-rice-7384.workers.dev** (optional custom domain `test.vegaready.com`). Confirm the output says **`Uploaded vegaready-staging`** (NOT `vegaready`).
 
 - **`--name vegaready-staging` is mandatory and the ONLY override that works.** The Astro CF adapter's `dist/client/wrangler.json` + `.wrangler/deploy/config.json` redirect makes wrangler ignore `--env staging` and any root `env.staging` block — it would deploy to `name:"vegaready"` = PRODUCTION. `--name` overrides post-resolution. **Never use `--env staging` or a bare `wrangler deploy` for staging.**
 - **TYPE-AHEAD PITFALL (hit twice):** pasting `npm run build` and the wrangler line as two separate lines makes Windows `cmd` type-ahead the deploy line into stdin *during* the build, so it never runs — build succeeds, nothing uploads, staging stays on the OLD build. Tell-tale: output ends at `[build] Complete!` with no `⛅️ wrangler` / `Uploaded vegaready-staging`. Fix: single `npm run stage`, or run the deploy line alone after the build, or run via Desktop Commander.
@@ -71,6 +73,13 @@ git merge -X ours p0-s01-design-tokens -m "Merge <feature> into main"
 git push origin main                             :: the deploy; ~1–3 min build
 ```
 **`-X ours` is mandatory** — keeps main's live data/pipeline files on conflict (`src/data/iwt-bundle.json`, `public/data-status.json`, `scripts/build-data.cjs`, `src/pages/dashboard/*`, `data-history/*`); redesign code merges cleanly (0 conflicts). vegaready.com shows the OLD build for ~60s while rebuilding — not a failure.
+
+**Three safeguards the credit ship taught us (do not skip):**
+1. **★ Verify the merge carried your code BEFORE pushing.** `-X ours` resolves *conflicting* hunks in main's favour and can therefore **silently drop your changes**. After the merge, `findstr`/`grep` the **`vegaready-main` worktree's** files for your new markers (a class, heading, token) — only push once they're confirmed present.
+2. **★ Discard any local data regen before pushing.** The worktree has **no `node_modules`**, so a local `npm run build` fails at `astro` (expected — CI builds on push) — but `build-data`/`fetch-feeds` run first and **rewrite `src/data/feeds/credit.json` + `src/data/iwt-bundle.json`**. `git checkout -- src/data/…` to revert them so only the committed merge (with `-X ours`-preserved live data) ships.
+3. **★ Verify production by curl** after the build (~1–3 min) on **trailing-slash** URLs: new-content markers present, **no escaped HTML**, and the *sibling tier still intact* (don't break analyst shipping layman, or vice-versa).
+
+**Commit-message shell hygiene (cmd via Desktop Commander):** use **single `&` separators** (not `&&`), **plain-ASCII messages with no `%` and no inner double-quotes** — these caused repeated "Access is denied"/mangled commits. Em-dashes and other unicode in the message are fine.
 
 ### Recovery
 - **Design build pushed to prod by mistake** (output said `Uploaded vegaready`): dashboard → `vegaready` → Deployments → newest **`main`-tagged** version → ⋯ → Roll back. Instant.
@@ -90,6 +99,10 @@ git push origin main                             :: the deploy; ~1–3 min build
   Run via Desktop Commander (host) or the sandbox bash from the repo root. The bash mount sometimes corrupts reads (a bogus "package.json invalid" error) — that's the mount, not your code; Desktop Commander or the Read tool see the real file.
 - **See the real page:** Claude-in-Chrome — `tabs_context_mcp` → `navigate(stagingURL)` → `get_page_text` (read all content) / `screenshot` (judge layout). This is the reliable way to review and to confirm a deploy landed.
 - **`web_fetch` caveats:** it returns markdown that **includes hidden (`display:none`) content**, so it can't distinguish skim from deep, and it has returned **stale** results between calls (a deploy can land mid-conversation). Use a cache-buster (`?cb=…`) and grep the saved result for a *new-build marker string*.
+- **curl-grep is the workhorse (fastest, most reliable render check).** From the sandbox bash: `curl -s <trailing-slash URL>` then grep for content markers, **escaped HTML** (`&lt;(div|span|svg|path|b|i)&gt;` — MUST be empty), **leaked template expressions** (`{x.`, `!= null`, `.map(` — must be empty in markup), **data wiring** (the live numbers), and **element counts** (`grep -o … | wc -l`). Note: Astro extracts the component `<style>` to `/_astro/*.css` (not inlined), so a class-name count in the page HTML reflects **markup occurrences only**.
+- **JS layout measurement settles "is it actually broken?"** — Claude-in-Chrome `javascript_tool` reading `getBoundingClientRect()` on figures/sections confirms rendered heights are sane. Use it to **debunk false layout alarms** before changing anything.
+- **⚠ Chrome screenshot paint-timing glitch (real, wasted time — know it):** standalone `screenshot`, `scroll_to`, and **scroll-UP** actions frequently capture a **pre-paint BLACK frame**; **scroll-DOWN** actions paint reliably, and a `wait` (1–1.5 s) before capture helps. **A black frame is almost always this glitch, not a layout bug** — confirm via curl / JS-measure before "fixing" a non-problem. (Layman pages default to `data-disc="deep"`; click SKIM or measure `offsetParent` via JS to inspect the Skim tier.)
+- **Verify audit/subagent claims against the file:** when an audit reports an omission, **grep the source to confirm before acting** — a content audit this cycle flagged two "critical omissions" that were already present.
 
 ---
 
@@ -186,8 +199,10 @@ Before you say a change is ready or hand over a command:
 - [ ] No invented data; "feed pending" left honest.
 - [ ] Formatting honors the type spec (word caps, bullets, pull-quote rules).
 - [ ] The exact command is the single `npm run stage` (no two-line paste), or you ran it via Desktop Commander and saw `Uploaded vegaready-staging`.
-- [ ] You verified the live staging page (Chrome) rather than assuming.
+- [ ] **curl-grep render check:** content present, **no escaped HTML**, no leaked expressions, live numbers wired (don't assume from a screenshot).
+- [ ] You verified the live staging page rather than asserting it (a black screenshot is the paint glitch, not a bug — confirm via curl/JS).
 - [ ] Production changes are owner-approved before any `main` push.
+- [ ] **Before pushing `main`:** the merge **carried your code** (grepped the main worktree), local **data regen discarded**, and after CI you **curl-verified production** (incl. the sibling tier).
 
 ---
 
