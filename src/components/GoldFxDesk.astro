@@ -66,9 +66,9 @@ const chipFor = (c) => c === 'live' ? { cls: 'st-live', g: '●', w: 'Live' }
 
 // ── §0 desk panel tiles (mix of live + source-ready; gold corrected) ──
 const panelTiles = [
-  { k: gl('Broad dollar', 'Broad dollar') + ' (' + gl('DXY', 'DXY≈') + ')', v: '~100', s: 'Firm — both legs of the smile active', chip: 'live', src: 'FRED DTWEXBGS · official DXY paywalled', tier: 'T1/T4' },
+  { k: gl('Broad dollar', 'Broad dollar') + ' (DTWEXBGS)', v: '~120', s: 'Firm, not euphoric — ~5% below the 2025 peak; the six-currency ' + gl('DXY', 'DXY') + ' is a separate gauge near 99.8', chip: 'live', src: 'FRED DTWEXBGS (Jan-2006=100) · ICE DXY paywalled', tier: 'T1/T4' },
   { k: gl('Real yield', 'Real 10y'), v: '+2.16%', s: 'Firmly restrictive — a dollar magnet', chip: 'live', src: 'FRED DFII10', tier: 'T1' },
-  { k: 'USD/JPY', v: '~157', s: 'Yen pinned weak; intervention live', chip: 'live', src: 'FRED DEXJPUS', tier: 'T1' },
+  { k: 'USD/JPY', v: '~160', s: 'Yen pinned weak; intervention live', chip: 'live', src: 'FRED DEXJPUS', tier: 'T1' },
   { k: 'Gold (LBMA)', v: '~$4,365', s: '−22% off the Jan ATH $5,595; CB bid floors it', chip: 'src', src: 'LBMA fix · live spot paywalled', tier: 'T1' },
 ];
 
@@ -77,10 +77,10 @@ const read30 = [
   'The dollar is firm because the US offers <b>both legs of the “dollar smile” at once</b> — high real carry (real 10y +2.16%) <i>and</i> a haven premium on the oil shock. It has become a partial funding <i>destination</i>, not a funding source.',
   '<b>Gold is off its January record</b> (~$4,365 vs the $5,595 all-time high) after a real-yield-driven correction — but a price-inelastic central-bank bid (~29t/month) is the structural floor.',
   'Stress shows in the <b>plumbing first</b>: the cross-currency basis and the Fed’s backstop spread lead; who is a <b>forced seller</b> of dollars (and therefore Treasuries) is the whole game.',
-  'De-dollarization is <b>real but glacial</b> — the dollar’s reserve share is at a 25-year low (~57%), yet no alternative has Treasuries’ depth. The Gulf shock raises the temperature; it does not break the order.',
+  'De-dollarization is <b>real but glacial</b> — the dollar’s reserve share is at a 25-year low (56.77%, Q4-2025), yet no alternative has Treasuries’ depth. The Gulf shock raises the temperature; it does not break the order.',
 ];
 const falsifiers = [
-  'The dollar-firm read is wrong if the broad dollar sustains <b>below ~100 into de-escalation</b>, rate-cut odds return, and foreign-official Treasury buying resumes.',
+  'The dollar-firm read is wrong if the broad dollar (DXY) sustains <b>below ~100 into de-escalation</b>, rate-cut odds return, and foreign-official Treasury buying resumes.',
   'The gold-decoupling read snaps back if <b>real yields rise faster than the geopolitical risk premium</b> — gold’s rate sensitivity reasserts.',
   'The forced-seller thesis is falsified if a country’s <b>diaspora-deposit drive succeeds and reserves stabilize</b> — substitution replaces UST sales.',
   'The de-dollarization-is-glacial read breaks if <b>Gulf oil starts pricing in non-dollars</b> and official gold-buying accelerates past a steady ~29t/month.',
@@ -100,9 +100,9 @@ const drivers = [
 const T = {
   regime: {
     eye: '§1', q: 'How strong is the dollar, and why now?', h: 'The Dollar Regime & the “Smile”', fresh: 'daily · FRED', chart: 'smile',
-    lead: `The broad dollar is <b>firm (~100)</b> because the US offers <i>both</i> legs of the ${gl('Dollar smile', 'dollar smile')} at once: a <b>high real-rate bid</b> (${gl('Real yield', 'real 10y')} +2.16%, the most restrictive in years) and a <b>safe-haven bid</b> (a net-energy-exporter routing the oil shock toward the dollar). At a restrictive real rate the dollar has become a partial funding <i>destination</i> — pulling marginal carry capital away from emerging markets rather than financing it.`,
+    lead: `The broad dollar (DTWEXBGS ~120, Jan-2006=100) is <b>firm but not euphoric</b> — about 5% below its 2025 peak, and a different gauge from the six-currency ICE DXY near 99.8 — because the US offers <i>both</i> legs of the ${gl('Dollar smile', 'dollar smile')} at once: a <b>high real-rate bid</b> (${gl('Real yield', 'real 10y')} +2.16%, the most restrictive in years) and a <b>safe-haven bid</b> (a net-energy-exporter routing the oil shock toward the dollar). At a restrictive real rate the dollar has become a partial funding <i>destination</i> — pulling marginal carry capital away from emerging markets rather than financing it.`,
     kpi: [
-      [gl('Broad dollar', 'Broad dollar'), '~100', 'live', 'medium'],
+      [gl('Broad dollar', 'Broad dollar') + ' (DTWEXBGS)', '~120', 'live', 'medium'],
       [gl('Real yield', 'Real 10y'), '+2.16%', 'live', 'high'],
       ['Fed funds (effective)', '3.62%', 'live', 'high'],
       ['2026 cut odds priced', '~0', 'src', 'medium'],
@@ -112,15 +112,15 @@ const T = {
       ['Fed-path expectations (hike vs cut odds)', 'M'],
       ['Which smile quadrant is active (haven vs carry vs benign)', 'M'],
       ['Oil → CPI → Fed transmission (the live driver)', 'M'],
-      [gl('Broad dollar', 'Broad-dollar') + ' level vs the ~100 inflection line', 'N'],
+      ['DXY level vs its ~100 psychological line (a separate 6-ccy gauge)', 'N'],
     ],
-    lv: ['Real-yield differential leads the dollar level', 'The dollar prices the regime in real time; a sustained break of the ~100 line tends to lead cross-asset stress. Above 100 with a hawkish Fed = continued EM dollar stress; below 100 = pressure eases.'],
+    lv: ['Real-yield differential leads the dollar level', 'The dollar prices the regime in real time; a sustained break of the DXY ~100 line tends to lead cross-asset stress (DXY ~99.8 today, versus its 164.72 Plaza-era high in 1985 and the 114.78 wrecking-ball peak of Sep-2022). Above 100 with a hawkish Fed = continued EM dollar stress; below 100 = pressure eases.'],
     src: 'FRED DTWEXBGS, DFII10, DFF · CME FedWatch (Fed path)', tier: 'T1/T4',
     feed: [['Broad dollar (DXY proxy)', 'FRED DTWEXBGS — official ICE DXY paywalled'], ['Real 10y / Fed funds', 'FRED DFII10 / DFF'], ['Fed-path odds', 'CME FedWatch / Atlanta Fed Mkt-Prob Tracker (no FRED real-time)']],
   },
   structure: {
     eye: '§2', q: 'Is the strength broad — and who is the haven?', h: 'Haven Hierarchy & Breadth', fresh: 'daily · monthly TIC', chart: 'ladder',
-    lead: `The haven hierarchy this cycle runs <b>USD &gt; CHF &gt; gold &gt; JPY</b> — an inversion of the 1979/1990 template where gold led and the yen was a refuge. The dollar took the primary bid (net-energy-exporter advantage); the franc took the neutral-haven flow; gold led the <i>monetary</i> haven before its correction; and the yen — now the carry funding leg — is no longer a refuge but the largest concentrated tail. Beneath the surface, dollar strength is an <b>official-sector-selling, private-sector-absorbing</b> story (see the breadth read).`,
+    lead: `The haven hierarchy this cycle runs <b>USD &gt; CHF &gt; gold &gt; JPY</b> — an inversion of the 1979/1990 template where gold led and the yen was a refuge. The dollar took the primary bid (net-energy-exporter advantage); the franc took the neutral-haven flow; gold led the <i>monetary</i> haven before its correction; and the yen — now the carry funding leg — is no longer a refuge but the largest concentrated tail. Beneath the surface, dollar strength is an <b>official-sector-selling, private-sector-absorbing</b> story (see the breadth read). The dispersion shows in the gauges: the all-partners index (DTWEXBGS 120.08) sits ~7 points above the advanced-economy cut (DTWEXAFEGS 112.68), with the EM cut (DTWEXEMEGS 129.38) heaviest — and the advanced-economy dollar is up YTD while the EM dollar is flat-to-down, so the 2026 shock is concentrated on <b>energy importers</b>, not EM broadly.`,
     kpi: [
       ['VIX (stress gauge)', '—', 'src', null],
       ['Foreign-official UST, y/y', '−$21.2bn', 'pub', 'high'],
@@ -140,7 +140,7 @@ const T = {
   },
   valuation: {
     eye: '§3', q: 'Is the dollar rich — and why did gold decouple?', h: 'Valuation: REER & Gold vs Real Yields', fresh: 'daily · monthly REER', chart: 'goldpath',
-    lead: `Two valuation questions sit on this desk. The <b>dollar is rich on most ${gl('REER', 'REER')} measures</b> — a medium-term headwind masked by the haven bid; reversion is a direction, not a timing signal, with the ~100 broad-dollar line the practical tell. And <b>gold’s textbook inverse to ${gl('Real yield', 'real yields')} is regime-dependent, not dead</b>: it ran to an all-time high, corrected hard when real yields spiked, then found a central-bank floor — the decoupling is a risk-premium overlay on a real-rate anchor, not a repeal of it.`,
+    lead: `Two valuation questions sit on this desk. The <b>dollar is rich on most ${gl('REER', 'REER')} measures</b> — a medium-term headwind masked by the haven bid; reversion is a direction, not a timing signal, with the DXY ~100 line the practical tell. And <b>gold’s textbook inverse to ${gl('Real yield', 'real yields')} is regime-dependent, not dead</b>: it ran to an all-time high, corrected hard when real yields spiked, then found a central-bank floor — the decoupling is a risk-premium overlay on a real-rate anchor, not a repeal of it.`,
     kpi: [
       [gl('Real yield', 'Real 10y'), '+2.16%', 'live', 'high'],
       ['Gold (LBMA)', '~$4,365', 'src', 'medium'],
@@ -293,7 +293,7 @@ const chains = [
   ['Chain D — Petrodollar recycling', 'contested', 'Sustained Brent $87+ enlarges Gulf surpluses (more potential recycling), but disrupted flows cut revenue and raise the willingness question. The fracture is partial — capacity intact, willingness now politically conditional.'],
 ];
 const dedollar = [
-  [gl('COFER', 'USD reserve share'), '~57%', 'A 25-year low, down from a 72% peak in 2001 — slow erosion, not flight', 'T1'],
+  [gl('COFER', 'USD reserve share'), '56.77%', 'Q4-2025, a 25-yr low from a 72% peak (2001) — but ~92% of the 2025 fall was FX valuation; at constant FX the share barely moved (~57.7%). Diversification, not flight', 'T1'],
   ['Central-bank gold', '~29t/month', 'A price-inelastic post-2022-freeze bid; ~$49bn/yr diverted from Treasuries at the current price', 'T2'],
   [gl('mBridge', 'mBridge + BRICS'), 'scaling', 'Local-currency settlement rails that can bypass the dollar leg — small but growing', 'T3'],
   [gl('Petrodollar', 'Petrodollar recycling'), 'conditional', 'Gulf oil-export recycling becoming more politically contingent; Saudi still a y/y Treasury buyer', 'T1/T3'],
@@ -319,7 +319,8 @@ const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 
 // ── live-data board: every input the desk leans on, its free source, cadence, value-type, feed-state ──
 const dataBoard = [
-  ['Broad dollar (DXY proxy)', 'FRED DTWEXBGS', 'daily · prior close', 'Current', 'live'],
+  ['Broad dollar', 'FRED DTWEXBGS (Jan-2006=100)', 'daily · prior close', 'Current', 'live'],
+  ['Broad dollar — AFE / EM cuts', 'FRED DTWEXAFEGS · DTWEXEMEGS', 'daily', 'Current', 'live'],
   ['Real 10y', 'FRED DFII10', 'daily', 'Current', 'live'],
   ['US curve (2y/10y/2s10s)', 'FRED DGS2 · DGS10 · T10Y2Y', 'daily', 'Current', 'live'],
   ['Breakevens (5y5y / 10y)', 'FRED T5YIFR · T10YIE', 'daily', 'Current', 'live'],
@@ -340,10 +341,10 @@ const dataBoard = [
 
 // ── designed Skim tier: the 60-second read + per-section bottom lines ──
 const sk60cells = [
-  ['~100', 'Broad dollar — firm'],
+  ['~120', 'Broad dollar (DTWEXBGS) — firm'],
   ['+2.16%', 'Real 10y — restrictive'],
   ['~$4,365', 'Gold — −22% off the ATH'],
-  ['~157', 'USD/JPY — yen weak'],
+  ['~160', 'USD/JPY — yen weak'],
 ];
 const blOf = {
   regime: 'The dollar is firm because it pays the highest safe real yield <i>and</i> catches the haven bid — both legs of the smile at once.',
@@ -380,7 +381,7 @@ const watchlist = [
 ---
 
 <div class="utility"><div class="wrap">
-  <div class="tickers"><span><b>BROAD $</b> ~100</span><span><b>GOLD</b> ~$4,365</span><span><b>USD/JPY</b> ~157</span><span><b>REAL 10y</b> +2.16%</span><span><b>BRENT</b> ~$87</span></div>
+  <div class="tickers"><span><b>BROAD $</b> ~120</span><span><b>DXY</b> ~99.8</span><span><b>GOLD</b> ~$4,365</span><span><b>USD/JPY</b> ~160</span><span><b>REAL 10y</b> +2.16%</span><span><b>BRENT</b> ~$87</span></div>
   <div class="stamp-time">dollar, fx & gold · {SNAP}</div>
 </div></div>
 
@@ -420,7 +421,7 @@ const watchlist = [
     <div>
       <div class="eyebrow">Markets · Dollar, FX & Gold · State of the desk</div>
       <h1>The dollar wins the day.<br/><em>Its throne erodes by the decade.</em></h1>
-      <p class="sub"><b>The call:</b> the dollar is firm (~100) because the US offers both legs of the “smile” at once — high real carry and a haven bid on the oil shock. Gold sits off its January record after a real-yield correction, floored by a price-inelastic central-bank bid. The live question is which channel meets global dollar demand — and whether it forces or relieves Treasury selling. <span class="dconf medium vmid">Medium confidence</span></p>
+      <p class="sub"><b>The call:</b> the dollar is firm (the broad trade-weighted dollar near 120; the six-currency DXY near 99.8) because the US offers both legs of the “smile” at once — high real carry and a haven bid on the oil shock. Gold sits off its January record after a real-yield correction, floored by a price-inelastic central-bank bid. The live question is which channel meets global dollar demand — and whether it forces or relieves Treasury selling. <span class="dconf medium vmid">Medium confidence</span></p>
       <a class="cta-frame" href="#regime">Read the regime →</a>
     </div>
     <div class="deskpanel">
@@ -495,7 +496,7 @@ const watchlist = [
     </div>
   )}
   {key === 'valuation' && (
-    <div class="deep dcallout"><div class="dc-h">Gold, set straight</div><p>Gold’s January 2026 all-time high of <b>$5,595/oz</b> is real (it broke $5,000 on Jan 26 and peaked the 29th). It then <b>corrected ~19%</b> to a ~$4,170 floor in March on the real-yield spike, and is consolidating ~$4,300–4,540 now — so today’s ~$4,365 is <b>off the record, not a new one</b>. The textbook gold↔real-yield inverse bent on the way up and reasserted in the correction: a risk-premium overlay on a real-rate anchor, not a repeal of it. The decoupling has a clean falsifier: gold loses on <i>both</i> legs only if real yields rise and the geopolitical premium eases at the same time.</p></div>
+    <div class="deep dcallout"><div class="dc-h">Gold, set straight</div><p>Gold’s January 2026 all-time high of <b>$5,595/oz</b> is real (it broke $5,000 on Jan 26 and peaked the 29th). It then <b>corrected ~19%</b> to a ~$4,170 floor in March on the real-yield spike, and is consolidating ~$4,300–4,540 now — so today’s ~$4,365 is <b>off the record, not a new one</b>. The textbook gold↔real-yield inverse bent on the way up and reasserted in the correction: a risk-premium overlay on a real-rate anchor, not a repeal of it. The decoupling has a clean falsifier: gold loses on <i>both</i> legs only if real yields rise and the geopolitical premium eases at the same time — concretely, watch central-bank buying fall below ~400t/quarter <i>while</i> the real 10y holds above +2%. Whether the decoupling is permanent is genuinely contested: read it as a level-shift that dampens, not erases, the real-rate signal — a durable ceasefire is the experiment that settles it (if gold holds the premium on a real de-escalation, the “permanent regime change” camp wins; if it gives the premium back, the “conditional” camp does).</p></div>
   )}
 </div></section>
 );})}
@@ -589,7 +590,7 @@ const watchlist = [
 
   <div class="deep dcallout"><div class="dc-h">The “17%” diaspora explainer — what India’s FCNR(B) drive really pays</div><p>India’s 2026 FCNR(B) program (announced 5 Jun) has the RBI bearing the <i>entire</i> hedging cost (the swap is at par), versus a concessional 3.5% in 2013 — a structural upgrade that offsets the much thinner 2026 rate differential. The headline <b>“17%” is NOT the deposit coupon</b> (~5.5–7% in dollars). It is a <b>leveraged dollar IRR</b>: an NRI putting $100k of equity, borrowing $700k at ~5% and depositing $800k at ~6.5% earns ~$52k − $35k = <b>$17k on $100k = a 17% USD IRR</b> — currency risk sits with the RBI, not the depositor. A successful $25–50bn raise would more than offset both India’s FY26 spot intervention and reserve drawdown — substitution (tool d) replacing UST sales (tool a). Mechanically it is a <b>covered intervention</b>: the absorbed dollars are reinvested in Treasuries while the rupee leg is monetary creation at no financial cost — so it substitutes for selling USTs and can even buy them (in 2013 the rupee recovered 68.85→62 and the current-account deficit compressed from 4.8% to 0.9% of GDP). The bear case to weigh: realized inflows historically land nearer $25–50bn than the $50–70bn headline, round-tripping shrinks the net dollars, and the effective cost is ~4.35% over Treasuries — it time-shifts the adjustment, it doesn’t cancel it. It is the live behavioural answer, not free money.</p></div>
 
-  <div class="deep dcallout"><div class="dc-h">The master tell — funding stress before it’s a headline</div><p>The single best early warning is <b>not</b> the FIMA balance ($1mn drawn now) — it is the <i>spread</i> between offshore-dollar funding stress (the <span set:html={gl('Cross-currency basis', 'cross-currency basis')}></span>, FRA/OIS) and the Fed’s <span set:html={gl('FIMA repo', 'FIMA')}></span>/<span set:html={gl('SRF', 'SRF')}></span> administered rate. The option value of the backstop swamps the observed draw. With QT having pushed reserves toward the “ample” boundary, <span set:html={gl('SRF', 'SRF')}></span> take-up — paired with the <b>SOFR–IORB spread</b> — is now the single best real-time read on genuine funding stress, far more diagnostic than the FIMA balance. Watch the basis widen and the <span set:html={gl('SRF', 'SRF')}></span> take-up tick up — those lead; TIC lags two months.</p></div>
+  <div class="deep dcallout"><div class="dc-h">The master tell — funding stress before it’s a headline</div><p>The single best early warning is <b>not</b> the FIMA balance ($1mn drawn now) — it is the <i>spread</i> between offshore-dollar funding stress (the <span set:html={gl('Cross-currency basis', 'cross-currency basis')}></span>, FRA/OIS) and the Fed’s <span set:html={gl('FIMA repo', 'FIMA')}></span>/<span set:html={gl('SRF', 'SRF')}></span> administered rate. The option value of the backstop swamps the observed draw. With QT having pushed reserves toward the “ample” boundary, <span set:html={gl('SRF', 'SRF')}></span> take-up — paired with the <b>SOFR–IORB spread</b> — is now the single best real-time read on genuine funding stress, far more diagnostic than the FIMA balance. Watch the basis widen and the <span set:html={gl('SRF', 'SRF')}></span> take-up tick up — those lead; TIC lags two months. The unambiguous flip is a <b>conjunction</b>: a cross-currency basis at −50bp <i>and</i> rising swap-line use <i>and</i> falling EM-FX <i>and</i> a gold bid, together, means the regime has moved from haven premium to balance-sheet liquidation — not any one of them alone.</p></div>
   <div class="deep dcallout"><div class="dc-h">Why a dollar squeeze bites harder now — the reserve buffer is gone</div><p>The cushion that used to absorb funding shocks has drained: the Fed’s overnight reverse-repo facility fell from a <b>&gt;$2.5tn peak to near-zero</b> domestic balances. So a Treasury cash rebuild — the operating account is assumed to climb toward <b>~$1tn</b> at the late-April and late-July peaks — now drains bank reserves <b>first-order</b> and pushes repo rates up (in the 2025 rebuild, reserves fell ~$350bn as the account reached ~$800bn). Post-QT, a dollar-funding squeeze transmits more violently than in the QE-flush era — which is exactly when the swap lines, FIMA and the SRF become the only thing that matters.</p></div>
   <p class="srcline deep">Free sources: Treasury TIC (monthly) · CFTC COT (weekly) · Japan MOF CSV · NY Fed SRF + Fed H.4.1 (daily/weekly) · WGC (monthly) · RBI weekly prints. The live cross-currency basis has no free feed — scaffolded honestly. {tierOf('T1')}</p>
 </div></section>
@@ -631,7 +632,7 @@ const watchlist = [
   </tbody></table>
   <p class="srcline deep">De-dollarization is real but <b>glacial</b> — the dollar’s share is at a 25-year low yet no alternative has Treasuries’ depth, liquidity and legal protection. The shock raises the temperature on a multi-decade shift; it does not break the order. <span class="dconf low">low confidence on pace.</span> {tierOf('T1/T2')}</p>
   <figure class="snap-chart deep"><div class="cp-h"><span>The dollar’s reserve share</span><span class="cp-tag">illustrative</span></div>
-    <div class="sc-svg" set:html={`<svg viewBox="0 0 340 92" role="img" aria-label="The dollar's share of global reserves sliding from about 72 percent in 2001 to about 57 percent now"><polyline points="12,22 120,38 210,50 300,58" fill="none" stroke="var(--eyeb)" stroke-width="2"/><circle cx="12" cy="22" r="3" fill="var(--eyeb)"/><text x="16" y="18" fill="var(--muted)" font-size="8" font-family="Lora,serif">72% (2001)</text><circle cx="300" cy="58" r="3" fill="var(--eyeb)"/><text x="298" y="54" text-anchor="end" fill="var(--muted)" font-size="8" font-family="Lora,serif">~57% (now)</text><line x1="12" y1="76" x2="328" y2="76" stroke="var(--cardline)"/></svg>`}></div>
+    <div class="sc-svg" set:html={`<svg viewBox="0 0 340 92" role="img" aria-label="The dollar's share of global reserves sliding from about 72 percent in 2001 to about 57 percent now"><polyline points="12,22 120,38 210,50 300,58" fill="none" stroke="var(--eyeb)" stroke-width="2"/><circle cx="12" cy="22" r="3" fill="var(--eyeb)"/><text x="16" y="18" fill="var(--muted)" font-size="8" font-family="Lora,serif">72% (2001)</text><circle cx="300" cy="58" r="3" fill="var(--eyeb)"/><text x="298" y="54" text-anchor="end" fill="var(--muted)" font-size="8" font-family="Lora,serif">56.77% (now)</text><line x1="12" y1="76" x2="328" y2="76" stroke="var(--cardline)"/></svg>`}></div>
     <figcaption>A 25-year slide — erosion, not collapse; no rival has Treasuries’ depth, liquidity and legal protection. <span class="dconf low">low confidence on pace</span></figcaption>
   </figure>
   <h3 class="dl">What to watch — the dated map</h3>
