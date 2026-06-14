@@ -93,3 +93,29 @@ R-09.2 is primarily a **Rates-desk** dossier; only its data-wiring audit touches
 
 ### 8d · Still pending for FX (unchanged)
 P-10 (the FX/Gold core dossier) fills §2 breadth decomposition, §3 REER/PPP, §4 quantified differential map, and wires the live gold/COT tiles. Then the lower tiers: analyst Skim → layman Deep → layman Skim.
+
+---
+## 9 · Analyst-Deep depth rebuild (2026-06-14, v2) — the REAL master
+
+Owner feedback after the first densify pass: the page still **read as a thin draft** — leaning on user-facing "research pending / see R-09.1" placeholders (meaningless to a public reader) and nowhere near the **length/thoroughness of the shipped Credit & Equities analyst Deep pages**. This rebuild fixes that to the proven depth standard.
+
+### 9a · The load-bearing principle (from a full audit of CreditDesk + EquitiesDesk)
+**Zero empty "research pending" sections.** Every section is saturated with durable, sourced, framework-grade content authored from the research. The ONLY thing ever marked pending is the **live numeric value of an individual tile** — and even those tiles are fully built (label + value-type chip + source + meaning), with just the number showing a state chip. A `.feedph` "data wiring" block at each spine section names the exact source series coming. No internal research references on the page (no "R-09.1", "P-10", "council") — all presented as the desk's own analysis; only data SOURCES (FRED series, LBMA, TIC, MOF…) are cited.
+
+### 9b · The depth architecture now built (mirrors the reference desks)
+- **§0 State** — headline call + live **desk panel** (mix of live + source-ready tiles) + **"30-second read"** (5 framed bullets) + **"What would change this call"** falsifiers (4).
+- **Competing-drivers** attribution block (6 buckets incl. a named residual).
+- **§1–§4 spine** via a `T{}` topic-spec object map — each = rich lead (with hover-glossary spans) + 4 KPI tiles + illustrative inline **SVG** + **"what we track"** list (M/N badges) + **leading-indicator-value** box + source line + **data-wiring** mapping. (Regime/dollar-smile, Structure/haven-hierarchy + dated crisis-template table, Valuation/gold-vs-real-yield + the "gold set straight" callout, Fundamentals/Triffin + privilege.)
+- **§5 Cohorts** — sortable sensitivity matrix (cohort × rate-diff/carry-role/USD-vuln) + **dcard cohort libraries** ×3 (major crosses JPY/CNY/CHF/EUR; EM importer vs exporter blocs; metals gold/silver/PGMs), each card = drivers/sensitivities/KPIs/leads/risks/lead-lag.
+- **§6 Factors** — carry/value/momentum + "carry is not clean alpha" callout + carry-configuration table + **carry-unwind crisis-history ledger** (1994/1998/2007–08/2013/Aug-2024) + the 2026 synchronized-squeeze tail.
+- **§7 Positioning** — the flagship: the **8+1-tool forced-seller taxonomy** table (UST effect + hard figures), the **DV01 ruler** callout, the **TIC scoreboard** (Japan→Saudi + official/total, m/m + y/y, tinted), the **"17%" FCNR(B) explainer** callout, and the **master-tell** (basis/SRF spread) callout.
+- **§8 Cross-asset** — correlation "normal vs what-breaks-it" pairs + **scenario→asset matrix** (5 scenarios × dollar/gold/EM-FX/USTs, tone-tinted) + the dash-for-cash **kill-switch** callout.
+- **§9 Catalysts** — Hormuz transmission tile grid (live/pending) + the **four chains** + petrodollar partial-fracture callout + the **reserve-order scoreboard** (COFER/gold/mBridge/petrodollar).
+- **§10 Evidence** — value-type + source-tier + feed-state **decoders** + full **glossary list** + **primary-sources pill grid** + the two-confidence lead.
+- **~19 hover-glossary terms** wired via `gl()`; sortable cohort matrix; juniper skin retained.
+
+### 9c · Content provenance
+Authored from the validated research mined into `outputs/fx-content-blueprint.md` (R-09.1 primary + R-09.2 + R-09) cross-referenced with the depth target in `outputs/depth-spec.md`. Gaps the research didn't cover (REER/PPP per cross, silver/PGM specifics, gold↔BTC, the gold record-then-correction arc) are written from durable domain analysis + the independently-verified gold path (public reporting), each clearly evergreen, never an invented live number. Live point-in-time values remain build-time re-verify items; the mechanisms/taxonomy/history are the durable deliverable.
+
+### 9d · Next tiers (unchanged order)
+Analyst master (this) → analyst **Skim** (designed digest tier) → **layman Deep** (the `/layman/markets/gold-fx` wing — currently a graceful placeholder per the tier law) → layman Skim. P-10 fills the remaining REER/breadth/differential tiles and wires live gold/COT.
