@@ -317,6 +317,27 @@ const sources = [
 ];
 const tierOf = (t) => `<span class="tierchip">${t}</span>`;
 
+// ── live-data board: every input the desk leans on, its free source, cadence, value-type, feed-state ──
+const dataBoard = [
+  ['Broad dollar (DXY proxy)', 'FRED DTWEXBGS', 'daily · prior close', 'Current', 'live'],
+  ['Real 10y', 'FRED DFII10', 'daily', 'Current', 'live'],
+  ['US curve (2y/10y/2s10s)', 'FRED DGS2 · DGS10 · T10Y2Y', 'daily', 'Current', 'live'],
+  ['Breakevens (5y5y / 10y)', 'FRED T5YIFR · T10YIE', 'daily', 'Current', 'live'],
+  ['Majors (USD/JPY, EUR/USD…)', 'FRED DEXJPUS · DEXUSEU', 'daily', 'Current', 'live'],
+  ['Gold', 'LBMA AM/PM fix', '1–2×/day (a fix, not live spot)', 'Current', 'src'],
+  ['Term premium (10y)', 'NY Fed ACM · FRED THREEFYTP10', 'daily', 'Current', 'pub'],
+  ['Fed-path odds', 'Atlanta Fed Mkt-Prob Tracker (wireable) · CME FedWatch (display)', 'daily', 'Nowcast', 'src'],
+  ['Spec positioning (COT)', 'CFTC Commitments of Traders', 'weekly · Tue→Fri', 'Current', 'src'],
+  ['FX intervention (Japan)', 'Japan MOF operations CSV', 'monthly', 'Latest pub.', 'pub'],
+  ['Foreign UST holdings (TIC)', 'Treasury TIC MFH', 'monthly · ~2-mo lag', 'Latest pub.', 'pub'],
+  ['Central-bank gold', 'World Gold Council', 'monthly', 'Latest pub.', 'pub'],
+  ['USD reserve share (COFER)', 'IMF COFER', 'quarterly', 'Latest pub.', 'pub'],
+  ['Funding stress (SRF / SOFR–IORB)', 'NY Fed SRF results + reference rates', 'daily · prior-day', 'Current', 'src'],
+  ['TGA / reserves / RRP', 'Fiscal Data DTS · Fed H.4.1 (WTREGEN, RRPONTSYD)', 'daily / weekly', 'Current', 'src'],
+  ['Oil / Hormuz', 'EIA STEO', 'monthly / event', 'Latest pub.', 'pub'],
+  ['Official DXY · live spot gold · gold vol (GVZ) · live x-ccy basis', 'ICE · CME · Cboe (licensed)', '—', '—', 'nofeed'],
+];
+
 // ── designed Skim tier: the 60-second read + per-section bottom lines ──
 const sk60cells = [
   ['~100', 'Broad dollar — firm'],
@@ -379,7 +400,7 @@ const watchlist = [
 
 <nav class="secnav" aria-label="Sections"><div class="wrap" id="secnav">
   <a class="sn-top" href="#" aria-label="Back to top">↑ Top</a>
-  <a href="#state">State</a><a href="#regime">Regime</a><a href="#structure">Structure</a><a href="#valuation">Valuation</a><a href="#fundamentals">Fundamentals</a><a href="#cohorts">Cohorts</a><a href="#factors">Factors</a><a href="#positioning">Positioning</a><a href="#crossasset">Cross-Asset</a><a href="#catalysts">Catalysts</a><a href="#evidence">Evidence</a>
+  <a href="#state">State</a><a href="#regime">Regime</a><a href="#structure">Structure</a><a href="#valuation">Valuation</a><a href="#fundamentals">Fundamentals</a><a href="#cohorts">Cohorts</a><a href="#factors">Factors</a><a href="#positioning">Positioning</a><a href="#crossasset">Cross-Asset</a><a href="#catalysts">Catalysts</a><a href="#winners">Winners</a><a href="#evidence">Evidence</a>
   <span class="disc" role="group" aria-label="Detail level"><button data-disc="skim">Skim</button><button data-disc="deep" class="on">Deep</button></span>
 </div></nav>
 
@@ -523,6 +544,7 @@ const watchlist = [
       </div></div>
     </details>
   ))}</div>
+  <p class="srcline deep">Free sources: FRED bilateral FX (daily) · CFTC COT (weekly) · LBMA gold fix · World Gold Council monthly central-bank gold · Japan MOF intervention CSV. Per-cross fair value (REER/PPP) and silver/PGM microstructure are sourced at the next data layer. {tierOf('T1/T2')}</p>
 </div></section>
 
 <!-- §6 FACTORS -->
@@ -544,6 +566,7 @@ const watchlist = [
     {carryHistory.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td class="num-cell">{r[2]}</td><td>{tierOf(r[3])}</td></tr>))}
   </tbody></table>
   <div class="deep dcallout warn"><div class="dc-h">The 2026 tail</div><p>If the BoJ and ECB hike <i>simultaneously</i> into a hawkish Fed, carry compresses at all three funding legs at once. August 2024 unwound only 10–15% of the yen book in 72 hours and still triggered crisis-level vol; if 25–40% of the remaining ~$4tn book unwound under a synchronized squeeze, the transmission could exceed any post-2008 event. Whether that is bearish or bullish for Treasuries is <b>genuinely ambiguous</b> — a flight-to-quality bid and forced official selling can coexist (in 1998 the 10y troughed at 4.16%) — but either way the VIX clears 35.</p></div>
+  <p class="srcline deep">Free sources: CFTC COT net positioning (weekly) · FRED policy-rate differentials · BIS crisis bulletins. Named FX factor premia (carry/value/momentum/dollar) are sourced at the next data layer; the live cross-currency basis has no free feed. {tierOf('T1/T2')}</p>
 </div></section>
 
 <!-- §7 POSITIONING -->
@@ -579,11 +602,16 @@ const watchlist = [
   <table class="dtbl"><thead><tr><th>Pair</th><th>Normal relationship</th><th>What breaks it</th></tr></thead><tbody>
     {corrPairs.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
   </tbody></table>
+  <figure class="snap-chart deep"><div class="cp-h"><span>The dollar sits under everything</span><span class="cp-tag">illustrative</span></div>
+    <div class="sc-svg" set:html={`<svg viewBox="0 0 340 152" role="img" aria-label="The dollar as the central hub transmitting to rates, commodities, gold, EM-FX and crypto"><line x1="170" y1="76" x2="66" y2="34" stroke="var(--cardline)"/><line x1="170" y1="76" x2="276" y2="34" stroke="var(--cardline)"/><line x1="170" y1="76" x2="298" y2="114" stroke="var(--cardline)"/><line x1="170" y1="76" x2="170" y2="136" stroke="var(--cardline)"/><line x1="170" y1="76" x2="44" y2="114" stroke="var(--cardline)"/><g fill="var(--data)"><circle cx="66" cy="34" r="3"/><circle cx="276" cy="34" r="3"/><circle cx="298" cy="114" r="3"/><circle cx="170" cy="136" r="3"/><circle cx="44" cy="114" r="3"/></g><circle cx="170" cy="76" r="24" fill="var(--eyeb)"/><text x="170" y="80" text-anchor="middle" fill="#16130A" font-size="11" font-family="Fraunces,serif" font-weight="600">USD</text><g font-size="8.5" font-family="Lora,serif" fill="var(--body)"><text x="66" y="26" text-anchor="middle">Rates</text><text x="276" y="26" text-anchor="middle">Commodities</text><text x="312" y="118" text-anchor="end">Gold</text><text x="170" y="150" text-anchor="middle">EM-FX</text><text x="30" y="118">Crypto</text></g></svg>`}></div>
+    <figcaption>Rate differentials feed in; commodities, gold, EM-FX and crypto read off it. In a dash-for-cash the spokes collapse inward — every correlation to one. <span class="dconf medium">medium confidence</span></figcaption>
+  </figure>
   <h3 class="dl deep">Scenario → asset map (a durable framework, not a forecast)</h3>
   <table class="dtbl deep"><thead><tr><th>Scenario</th><th>Dollar</th><th>Gold</th><th>EM-FX</th><th>USTs</th></tr></thead><tbody>
     {scenMatrix.map((r) => (<tr><td class="prec-name">{r.sc}</td><td><span class={`sc-cell sc-${r.d[1]}`}>{r.d[0]}</span></td><td><span class={`sc-cell sc-${r.g[1]}`}>{r.g[0]}</span></td><td><span class={`sc-cell sc-${r.e[1]}`}>{r.e[0]}</span></td><td><span class={`sc-cell sc-${r.u[1]}`}>{r.u[0]}</span></td></tr>))}
   </tbody></table>
   <div class="deep dcallout warn"><div class="dc-h">The kill-switch</div><p>In a genuine dash-for-cash the diversification you assumed evaporates: the dollar, Treasuries and gold can all be sold at once for liquidity, and every cross-asset correlation snaps toward one. That is exactly when the funding plumbing in §7 — swap lines, FIMA, the SRF — becomes the only thing that matters.</p></div>
+  <p class="srcline deep">Free sources: FRED rates family (DGS2 / DGS10 / DFII10 / T10YIE, daily) · LBMA gold fix · CBOE VIX. Official DXY, live spot gold and MOVE have no free feed — scaffolded. {tierOf('T1')}</p>
 </div></section>
 
 <!-- §9 CATALYSTS -->
@@ -602,6 +630,10 @@ const watchlist = [
     {dedollar.map((r) => (<tr><td class="prec-name" set:html={r[0]}></td><td>{r[1]}</td><td set:html={r[2]}></td><td>{tierOf(r[3])}</td></tr>))}
   </tbody></table>
   <p class="srcline deep">De-dollarization is real but <b>glacial</b> — the dollar’s share is at a 25-year low yet no alternative has Treasuries’ depth, liquidity and legal protection. The shock raises the temperature on a multi-decade shift; it does not break the order. <span class="dconf low">low confidence on pace.</span> {tierOf('T1/T2')}</p>
+  <figure class="snap-chart deep"><div class="cp-h"><span>The dollar’s reserve share</span><span class="cp-tag">illustrative</span></div>
+    <div class="sc-svg" set:html={`<svg viewBox="0 0 340 92" role="img" aria-label="The dollar's share of global reserves sliding from about 72 percent in 2001 to about 57 percent now"><polyline points="12,22 120,38 210,50 300,58" fill="none" stroke="var(--eyeb)" stroke-width="2"/><circle cx="12" cy="22" r="3" fill="var(--eyeb)"/><text x="16" y="18" fill="var(--muted)" font-size="8" font-family="Lora,serif">72% (2001)</text><circle cx="300" cy="58" r="3" fill="var(--eyeb)"/><text x="298" y="54" text-anchor="end" fill="var(--muted)" font-size="8" font-family="Lora,serif">~57% (now)</text><line x1="12" y1="76" x2="328" y2="76" stroke="var(--cardline)"/></svg>`}></div>
+    <figcaption>A 25-year slide — erosion, not collapse; no rival has Treasuries’ depth, liquidity and legal protection. <span class="dconf low">low confidence on pace</span></figcaption>
+  </figure>
   <h3 class="dl">What to watch — the dated map</h3>
   <div class="cal">{watchlist.map((r) => (<div class={`cal-row cal-${r[3]}`}><div class="cal-when">{r[0]}</div><div class="cal-what"><b>{r[1]}</b><span set:html={r[2]}></span></div></div>))}</div>
 </div></section>
@@ -632,6 +664,11 @@ const watchlist = [
     </div>
   </div>
   <div class="deep">
+    <h3 class="dl">The data board — every live input, its source &amp; state <span class="db-asof">values as of {SNAP}</span></h3>
+    <table class="dtbl"><thead><tr><th>Tile</th><th>Free source / series</th><th>Cadence</th><th>Value type</th><th>State</th></tr></thead><tbody>
+      {dataBoard.map((r) => { const c = chipFor(r[4]); return (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td>{r[3] === '—' ? '—' : (<span class="vt">{r[3]}</span>)}</td><td><span class={`st-chip ${c.cls}`}>{c.g} {c.w}</span></td></tr>); })}
+    </tbody></table>
+    <p class="srcline">All inputs are free and attribution-only; only the four licensed tiles in the last row require paid data, and those we proxy or leave blank. When the FX feed module lands, every “source ready” row wires to the series named here — no value is invented in the meantime. {tierOf('T1')}</p>
     <h3 class="dl">Glossary</h3>
     <div class="glosslist">{gloss.map((g) => (<div class="gl-row"><b>{g[0]}</b><span>{g[1]}</span></div>))}</div>
     <h3 class="dl">Primary sources</h3>
@@ -823,6 +860,7 @@ const watchlist = [
   .cal-when{font-family:'Lora',serif;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--eyeb)}
   .cal-what b{font-family:'Fraunces',serif;font-size:13px;color:var(--ink);display:block;margin-bottom:1px}
   .cal-what span{font-size:12px;color:var(--body);line-height:1.45}
+  .db-asof{font-family:'Lora',serif;font-weight:400;font-size:9.5px;text-transform:none;letter-spacing:0;color:var(--muted);font-style:italic;margin-left:8px}
 </style>
 
 <script is:inline>
