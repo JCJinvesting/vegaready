@@ -34,6 +34,8 @@ I'm building a research-grade public market-intelligence page for the **{ASSET C
 
 **8 · THE COUNCIL & HONEST GAPS.** Where credible experts genuinely disagree (2–3 camps, who holds each), and a consolidated list of every metric with **no free reliable feed** (so we scaffold an honest placeholder).
 
+**9 · OPEN FLOOR (your own agenda — REQUIRED).** This prompt is a floor, not a ceiling. Beyond everything asked above, identify the material topics, mechanisms, risks, instruments, data sources, or second-order linkages this prompt did **not** request but that a desk/page on this subject genuinely must cover. Be specific, say why each matters *now*, and propose the **2–3 highest-value follow-up research questions** (future-prompt candidates). Treat this as your explicit mandate to surface blind spots in the prompt itself — we would rather discover an unknown unknown here than ship without it.
+
 **Desk-specific edges to weave in (§6/§7/§9 especially):** {WRITE 4–6 questions unique to this desk's mechanics — see the per-desk files for examples; never reuse another desk's verbatim.}
 
 === RULES ===
@@ -41,3 +43,4 @@ I'm building a research-grade public market-intelligence page for the **{ASSET C
 - Every claim: source link + confidence (well-established / contested / anecdotal).
 - **Prefer free, attribution-only sources** (FRED, agency APIs, exchange/issuer disclosures). **Explicitly flag any metric with no free reliable source** — the site shows honest placeholders, never invented numbers.
 - Where experts disagree, **present the disagreement** (the council); don't resolve it artificially. Keep the analyst register sober; no hype.
+- **Use the open floor (Section 9).** Do not confine yourself to the scaffold above — actively flag what the prompt missed and what to research next.
