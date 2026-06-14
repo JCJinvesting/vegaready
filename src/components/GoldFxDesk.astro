@@ -20,57 +20,129 @@ const wfRail = [
   { label: 'Cross-asset', href: '/markets/cross-asset' },
 ];
 
-// ── Headline tiles (§0). Snapshot reads — sourced (R-09.1 + grounding, mid-Jun 2026),
-//    NOT yet auto-wired (no FX feed module until P-10). Honest "source ready" chips. ──
 const SNAP = 'as of 2026-06-12';
-const tiles = [
-  { k: 'Broad dollar (DXY≈)', v: '~100', s: 'Firm — safe-haven + high-real-rate bid', src: 'FRED DTWEXBGS (DXY itself paywalled)', chip: 'src' },
-  { k: 'Gold', v: '~$4,365', s: 'Record — bid despite +2% real yields (decoupled)', src: 'LBMA / FRED', chip: 'src' },
-  { k: 'USD/JPY', v: '~157', s: 'Yen pinned weak; MOF intervention live', src: 'FRED DEXJPUS', chip: 'src' },
-  { k: 'Real 10y', v: '+2.16%', s: 'Restrictive — gold rose anyway', src: 'FRED DFII10', chip: 'live' },
+
+// ── glossary (hover defs; .gloss is shared desk CSS) ──
+const gloss = [
+  ['DXY', 'US Dollar Index — the dollar vs a fixed basket of six majors (EUR-heavy). ICE-administered; no free live feed, so this desk uses a broad-dollar proxy.'],
+  ['Broad dollar', 'A trade-weighted dollar index (FRED DTWEXBGS) covering far more currencies than DXY; the wireable free proxy for "the dollar".'],
+  ['Real yield', 'Nominal yield minus expected inflation (TIPS). The opportunity cost of holding gold; the dollar’s real-rate magnet.'],
+  ['Dollar smile', 'The pattern that the dollar is bid in both a global boom (rate/growth bid) and a global panic (haven bid), and sags only in the benign rate-cutting middle.'],
+  ['REER', 'Real Effective Exchange Rate — a currency’s trade-weighted, inflation-adjusted value; the standard over/undervaluation gauge.'],
+  ['Carry', 'Borrow a low-yield funding currency (JPY, CHF), invest in a higher-yield one; you earn the rate differential until the FX move erases it.'],
+  ['Carry unwind', 'A disorderly exit from carry trades when the funding currency surges — self-reinforcing as losses force more covering. Aug-2024 is the template.'],
+  ['Cross-currency basis', 'The extra cost of borrowing dollars via the FX-swap market vs onshore; a deeply negative basis signals an offshore-dollar squeeze.'],
+  ['FIMA repo', 'The Fed’s repo facility for foreign official accounts — lets central banks raise dollars against their USTs instead of selling them. The designed alternative to dumping Treasuries.'],
+  ['COT', 'CFTC Commitments of Traders — weekly futures positioning by trader type; the read on speculative crowding and reversal risk.'],
+  ['TIC', 'Treasury International Capital — monthly US data on foreign holdings and flows of Treasuries; the official scoreboard for who is buying or selling USTs.'],
+  ['COFER', 'IMF Currency Composition of Official FX Reserves — the quarterly series tracking the dollar’s share of global reserves.'],
+  ['DV01', 'Dollar value of one basis point — how much a bond position’s value moves per 0.01% yield change; the unit for sizing a reserve sale’s UST-market footprint.'],
+  ['mBridge', 'Project mBridge — a multi-central-bank digital-currency platform for cross-border settlement that can bypass the dollar leg.'],
+  ['Petrodollar recycling', 'The flow whereby oil exporters earn dollars and reinvest them into US assets (esp. Treasuries) — the structural USD-demand pillar from the 1970s.'],
 ];
+const G = {}; gloss.forEach(([t, d]) => { G[t] = d; });
+const gl = (term, label) => `<span class="gloss" data-def="${G[term]}">${label || term}</span>`;
+
+// ── decoders: feed-states, value-types, source-tiers (analyst signature) ──
 const chipFor = (c) => c === 'live' ? { cls: 'st-live', g: '●', w: 'Live' }
   : c === 'pub' ? { cls: 'st-pub', g: '◐', w: 'Latest pub.' }
   : c === 'src' ? { cls: 'st-src', g: '◌', w: 'Source ready' }
+  : c === 'scaffold' ? { cls: 'st-pending', g: '○', w: 'No free feed' }
   : { cls: 'st-pending', g: '○', w: 'Feed pending' };
+const feedLegend = [
+  ['●', 'Live', 'auto-refreshed from a free official series'],
+  ['◐', 'Latest pub.', 'newest official print, refreshed on its cadence'],
+  ['◌', 'Source ready', 'sourced & verified, wiring lands with the FX feed module (P-10)'],
+  ['○', 'No free feed', 'licensed-only (ICE/dealer); shown as honest proxy or left blank — never faked'],
+];
+const valueTypes = [
+  ['Current', 'latest observed print'], ['Baseline', 'long-run norm / historical reference'],
+  ['Nowcast', 'estimate of the present from incomplete data'], ['Forecast', 'forward agency/consensus estimate'],
+  ['Scenario', 'conditional “if-then” path'],
+];
+const sourceTiers = [
+  ['T1', 'Primary / official', 'FRED · LBMA · CFTC COT · IMF COFER · BIS · MOF intervention · US TIC · Fed H.4.1'],
+  ['T2', 'Industry / analytic', 'World Gold Council · sell-side FX strategy · metals councils'],
+  ['T3', 'Editorial / commentary', 'FT · Reuters · Economist'],
+  ['T4', 'Derived / VegaReady model', 'broad-dollar proxy · gold–real-yield gap · reserve-sale DV01'],
+];
 
-// ── §5 Cohorts — the crosses, EM-FX stress, the metals (R-09.1 + grounding; verify at P-10) ──
+// ── §0 headline tiles. Gold CORRECTED: ATH $5,595 (Jan 29) → −19% correction → consolidating. ──
+const tiles = [
+  { k: gl('Broad dollar', 'Broad dollar') + ' (' + gl('DXY', 'DXY≈') + ')', v: '~100', s: 'Firm — safe-haven + high-real-rate bid', src: 'FRED DTWEXBGS · official DXY paywalled', tier: 'T1/T4', chip: 'live' },
+  { k: 'Gold (LBMA)', v: '~$4,365', s: '−22% off the Jan ATH $5,595; central-bank bid stabilizing', src: 'LBMA fix · live spot paywalled', tier: 'T1', chip: 'src' },
+  { k: 'USD/JPY', v: '~157', s: 'Yen pinned weak; MOF intervention live', src: 'FRED DEXJPUS', tier: 'T1', chip: 'live' },
+  { k: 'Real 10y', v: '+2.16%', s: 'Restrictive — drove the gold correction', src: 'FRED DFII10', tier: 'T1', chip: 'live' },
+];
+
+// ── §2 haven hierarchy scoreboard ──
+const havens = [
+  ['US dollar', '1', 'Primary bid — net-energy-exporter advantage routes the oil shock TO the dollar; +2.16% real rate magnet', 'pos'],
+  ['Swiss franc', '2', 'The cleanest non-dollar haven — the only G10 to firm vs USD this cycle; SNB tolerates strength', 'pos'],
+  ['Gold', '3', 'Subordinated to real yields on the way up, then the central-bank bid reasserted after the correction', 'mix'],
+  ['Japanese yen', '4', 'Haven status impaired — the funding leg of carry; weak ~157 with intervention, not a refuge this cycle', 'neg'],
+];
+
+// ── §5 cohorts: crosses, EM-FX, metals ──
 const crosses = [
-  ['EUR/USD', 'The anti-dollar; ECB ~2.4% vs hawkish Fed keeps it soft', 'mix'],
-  ['USD/JPY', 'Yen the funding leg — weak ~157, intervention + carry tug-of-war', 'neg'],
-  ['USD/CHF', 'Franc the cleanest non-dollar haven — the only G10 to firm vs USD this cycle', 'pos'],
-  ['GBP/USD', 'Twin-deficit beta to risk + rate differentials', 'mix'],
-  ['USD/CNY', 'Managed; yuan at multi-year firm levels, PBOC fixing the anchor', 'mix'],
+  ['EUR/USD', '~1.07', 'The anti-dollar; ECB ~2.4% vs a hawkish Fed keeps it soft', 'neg'],
+  ['USD/JPY', '~157', 'Yen the funding leg — weak, intervention + carry tug-of-war', 'neg'],
+  ['USD/CHF', '~0.86', 'Franc the cleanest non-dollar haven — the G10 outperformer vs USD', 'pos'],
+  ['GBP/USD', '~1.26', 'Twin-deficit beta to risk + rate differentials', 'mix'],
+  ['USD/CNY', '~7.25', 'Managed; PBOC daily fix the anchor, yuan held firm-to-stable', 'mix'],
 ];
 const emfx = [
-  ['Energy importers (TRY, EGP, INR, IDR)', 'Squeezed by high US real rates + the oil-import bill; reserves drawn down, rate-defense or diaspora-deposit tools deployed', 'neg'],
-  ['Commodity exporters (BRL, NOK, AUD, MXN)', 'Cushioned by terms-of-trade; the relative winners in an oil shock', 'pos'],
+  ['Energy importers', 'TRY, EGP, INR, IDR, PKR', 'High US real rates + the oil-import bill drain reserves; defended with rate hikes, FX sales, capital controls or diaspora-deposit drives (see §7)', 'neg'],
+  ['Commodity exporters', 'BRL, NOK, MXN, ZAR, COP', 'Cushioned by terms-of-trade — the relative winners in an oil shock; carry-attractive while real rates stay high', 'pos'],
 ];
 const metals = [
-  ['Gold', 'The haven that decoupled from real yields — central-bank buying is price-inelastic; the 2022 reserve-freeze is the structural driver', 'pos'],
-  ['Silver / PGMs', 'Higher-beta industrial-monetary hybrid; platinum running structural supply deficits', 'mix'],
+  ['Gold', 'ATH $5,595 → ~$4,365', 'Hit a record then corrected −19% on the real-yield spike; the price-inelastic central-bank bid (WGC sees 750–850t of official buying in 2026) is the structural floor', 'mix'],
+  ['Silver', 'high-beta', 'The industrial-monetary hybrid — amplifies gold both ways; the gold/silver ratio is the risk-appetite tell', 'mix'],
+  ['Platinum / PGMs', 'supply-deficit', 'Structural mine-supply deficits; auto-catalyst demand the swing factor; thinner, more idiosyncratic than gold', 'pos'],
 ];
 
-// ── §6 Factors — the carry complex (R-09.1 §2) ──
+// ── §6 factors ──
 const factors = [
-  ['Carry', 'Borrow low-yield (JPY ~0.5–0.75%, CHF ~0%), buy high-yield. The dollar at +2.16% real has become a partial funding destination, squeezing EM carry.'],
-  ['Value (REER)', 'Mean-reversion to fair value; the dollar is rich on most REER measures — a medium-term headwind masked by the haven bid.'],
-  ['Momentum / risk', 'The dollar-smile factor: USD bid in both boom and panic. Trend + risk-off dominate in a realized shock.'],
+  ['Carry', 'High value (short horizon)', 'Borrow JPY (~0.5–0.75%) / CHF (~0%), buy higher-yielders. The dollar at +2.16% real is now a partial funding DESTINATION — squeezing the classic EM carry trade from the funding side.'],
+  ['Value (REER)', 'Mean-reverting, slow', 'The dollar is rich on most REER measures — a medium-term headwind masked by the haven bid. Reversion is a direction, not a timing signal.'],
+  ['Momentum / risk', 'High in stress', 'The dollar-smile factor: USD bid in both boom and panic. In a realized geopolitical shock, trend + risk-off dominate carry and value.'],
 ];
 
-// ── §7 Positioning / plumbing (R-09.1 §1/§7) ──
-const plumbing = [
-  ['FX intervention (the forced seller)', 'MOF ran ~¥11.7tn of operations Apr–May 2026; selling USD reserves = selling USTs. The cleanest UST-demand reducer at the margin.', 'neg'],
-  ['Cross-currency basis & dollar funding', 'The offshore-dollar squeeze; FIMA repo + Fed swap lines are the designed alternative to selling USTs. FIMA usage ~$0 now — the signal is the spread, not the balance.', 'mix'],
-  ['CFTC COT positioning', 'Spec positioning in DXY/gold — crowding & reversal risk; the carry-unwind footprint shows in lev-fund yen shorts.', 'mix'],
+// ── §7 the forced-seller taxonomy (R-09.1 §1): 8 sovereign dollar-defense tools ──
+const defenseTools = [
+  ['FX intervention', 'MOF ran ~¥11.7tn of yen-buying Apr–May 2026 — selling USD reserves means selling USTs. The cleanest at-the-margin UST-demand reducer.', 'neg'],
+  ['Rate defense', 'EM central banks hold or hike to defend the currency — importing US tightness; growth-negative, the diaspora alternative avoids it.', 'mix'],
+  ['Diaspora deposits / bonds', 'India’s FCNR(B)-style drives pull in non-resident dollars. The much-cited ‘17%’ is a 7–10× LEVERAGED USD IRR (Jefferies), not a coupon — a bank-funding arb, not free money.', 'mix'],
+  ['Swap lines / FIMA repo', 'The designed alternative to selling USTs — raise dollars against collateral. FIMA drawn ~$0 now: the signal is the cross-currency basis spread, not the balance.', 'mix'],
+  ['Reserve drawdown', 'Direct UST sales. Sizing: ~$50bn of 10y-equivalent reserves ≈ ~$40.5mn DV01 — the footprint a forced seller leaves on the curve.', 'neg'],
+  ['Gold accumulation', 'Reserve managers diversifying out of dollars since the 2022 reserve freeze — the price-inelastic, politically-motivated bid under gold.', 'pos'],
 ];
 
-// ── §8 Cross-asset (R-09.1 §8) ──
+// ── §8 cross-asset correlation pairs ──
 const xasset = [
-  ['Dollar ↔ commodities', 'Inverse — a firm dollar caps commodity upside, but the oil shock overrode it this cycle.'],
-  ['Dollar ↔ rates', 'Rate differentials are the engine; high US real yields draw capital in.'],
-  ['Gold ↔ real yields', 'The textbook inverse broke — gold at a record despite +2.16% real, on safe-haven + central-bank + de-dollarization bids.'],
-  ['Gold ↔ Bitcoin', 'The haven that did NOT hold: BTC traded like a risk asset (corr ~0.5 to equities), gold caught the bid. See Crypto desk.'],
+  ['Dollar ↔ commodities', 'Inverse — a firm dollar caps commodity upside', 'Overridden this cycle: the oil shock lifted both Brent and the dollar together'],
+  ['Dollar ↔ rates', 'Rate differentials are the engine — high US real yields draw capital in', 'A dovish Fed pivot or a faster-cutting US vs ROW'],
+  ['Gold ↔ real yields', 'Textbook inverse — higher real yields = higher opportunity cost', 'It broke on the way up (gold + real yields both rose), then RE-ASSERTED in the correction — regime-dependent, not dead'],
+  ['Gold ↔ Bitcoin', 'Both pitched as “hard money” havens', 'In the shock BTC traded like risk (corr ~0.5 to equities); gold caught the haven bid — see Crypto desk'],
+];
+
+// ── §9 reserve-order metrics ──
+const reserveOrder = [
+  [gl('COFER', 'COFER USD share'), '<57%', 'A ~30-year low — a slow erosion, not a break; diversification not flight', 'T1'],
+  ['Central-bank gold buying', '~750–850t (2026e)', 'WGC forecast; the price-inelastic, post-2022-freeze structural bid', 'T2'],
+  [gl('mBridge', 'mBridge settlement'), '~$55bn', 'Multi-CBDC cross-border rail that can bypass the dollar leg — small but scaling', 'T3'],
+  ['Petrodollar recycling', 'more conditional', 'Gulf oil-export flows + their UST recycling becoming more politically contingent', 'T1/T3'],
+];
+
+// ── §10 data-wiring verdicts (from R-09.2 §3 audit, applied to FX tiles) ──
+const wiring = [
+  ['Broad dollar', 'Wire — free', 'FRED DTWEXBGS (daily, lagged). Official ICE DXY is licensed; we label the proxy honestly, never call it “DXY”.'],
+  ['Gold', 'Source ready', 'LBMA AM/PM fix is free but delayed; production-grade live spot is licensed. Analyst spine uses the fix; no faked live tick.'],
+  ['USD/JPY, EUR/USD, majors', 'Wire — free', 'FRED bilateral series (DEXJPUS, DEXUSEU…), daily.'],
+  ['Real 10y', 'Wire — free', 'FRED DFII10, daily.'],
+  ['CFTC COT positioning', 'Wire — free', 'CFTC, weekly (Tue→Fri).'],
+  ['MOF intervention', 'Wire — free', 'Japan MOF operations CSV, monthly.'],
+  ['Gold vol (GVZ), cross-ccy basis', 'No free feed', 'Cboe GVZ / dealer basis are licensed-only — scaffolded with honest placeholders, not synthesized.'],
 ];
 ---
 
@@ -87,8 +159,8 @@ const xasset = [
 <Wayfinder trail={wfTrail} rail={wfRail} />
 
 <div class="freshbar"><div class="wrap">
-  <span class="fb-i"><span class="fb-dot"></span>Snapshot reads <b>{SNAP}</b> — sourced, wiring pending (P-10)</span>
-  <span class="fb-i">Next refresh <b>per-section (daily FX/gold / weekly flows / monthly intervention)</b></span>
+  <span class="fb-i"><span class="fb-dot"></span>Snapshot reads <b>{SNAP}</b> — majors/real-yield live; gold & flows source-ready</span>
+  <span class="fb-i">Next refresh <b>daily FX/gold · weekly flows · monthly intervention</b></span>
   <span class="fb-i">Live as of <b id="liveAsOf">checking…</b></span>
   <span class="fb-i fb-right">Read as <span class="modetoggle" role="group" aria-label="Reading mode"><a href="/layman/markets/gold-fx" class={mode === 'layman' ? 'on' : ''}>Layman</a><a href="/markets/gold-fx" class={mode === 'analyst' ? 'on' : ''}>Analyst</a></span></span>
 </div></div>
@@ -105,131 +177,180 @@ const xasset = [
 <section class="hero an-block" id="state"><div class="wrap">
   <div class="eyebrow">Markets · Dollar, FX & Gold · State of the desk</div>
   <h1>The dollar wins the day.<br/><em>Its throne erodes by the decade.</em></h1>
-  <p class="sub"><b>The call:</b> a firm dollar (~100) on a safe-haven + high-real-rate bid; record gold despite +2% real yields (the old link broke); the yen pinned weak with live intervention; the dollar is winning the short-run haven race while its long-run reserve role erodes. <span class="dconf medium vmid">Medium confidence</span></p>
+  <p class="sub"><b>The call:</b> a firm dollar (~100) on a twin safe-haven + high-real-rate bid; the yen pinned weak with live intervention; gold <b>off its January record</b> after a real-yield-driven correction, held up by a price-inelastic central-bank bid. The dollar is winning the short-run haven race while its long-run reserve role slowly erodes. <span class="dconf medium vmid">Medium confidence</span></p>
   <div class="kpibar">
     {tiles.map((t) => { const c = chipFor(t.chip); return (
       <div class="kpi">
-        <div class="kpi-top"><span class="kpi-k">{t.k}</span><span class={`st-chip ${c.cls}`}>{c.g} {c.w}</span></div>
+        <div class="kpi-top"><span class="kpi-k" set:html={t.k}></span><span class={`st-chip ${c.cls}`}>{c.g} {c.w}</span></div>
         <div class="kpi-v">{t.v}</div>
         <div class="kpi-s">{t.s}</div>
-        <div class="srcline">{t.src}</div>
+        <div class="srcline">{t.src} <span class="tiertag">{t.tier}</span></div>
       </div>
     );})}
   </div>
-  <p class="fp-note">Snapshot values are sourced (FRED/LBMA, {SNAP}) but not yet auto-refreshed — the FX feed module lands with P-10. No invented numbers; honest placeholders where a section needs the full FX/Gold dossier.</p>
+  <!-- decoder strip: the analyst contract -->
+  <div class="decoder deep">
+    <div class="dec-col">
+      <div class="dec-h">Feed state</div>
+      {feedLegend.map((r) => (<div class="dec-row"><span class="dec-g">{r[0]}</span><b>{r[1]}</b> {r[2]}</div>))}
+    </div>
+    <div class="dec-col">
+      <div class="dec-h">Value type</div>
+      {valueTypes.map((r) => (<div class="dec-row"><b>{r[0]}</b> {r[1]}</div>))}
+    </div>
+    <div class="dec-col">
+      <div class="dec-h">Source tier</div>
+      {sourceTiers.map((r) => (<div class="dec-row"><span class="tiertag">{r[0]}</span> <b>{r[1]}</b> — {r[2]}</div>))}
+    </div>
+  </div>
+  <p class="fp-note">Majors and real yields are wired from free official series; gold and positioning are sourced & verified with wiring pending the FX feed module (P-10). Where only a licensed feed exists (official DXY, gold vol, the cross-currency basis), we show an honest proxy or a blank — never an invented number.</p>
 </div></section>
 
 <!-- §1 REGIME -->
 <section class="dsec" id="regime"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§1 · Regime</div><h2>The dollar's level &amp; the "dollar smile".</h2></div><span class="fresh-tag">daily · FRED</span></div>
-  <p class="lead">The broad dollar is <b>firm (~100)</b> and range-bound at an elevated level. Two forces hold it up at once: a <b>safe-haven bid</b> (the US is a net energy exporter, so the oil shock flows <i>to</i> the dollar) and a <b>high real-rate bid</b> (real 10y +2.16% draws capital in). That is the "dollar smile" — the dollar tends to be bid in both a global boom and a global panic, and sags only in a benign, rate-cutting middle.</p>
+  <p class="lead">The broad dollar is <b>firm (~100)</b> and range-bound at an elevated level. Two forces hold it up at once: a <b>safe-haven bid</b> (the US is a net energy exporter, so the oil shock flows <i>to</i> the dollar) and a <b>high real-rate bid</b> (<span set:html={gl('Real yield', 'real 10y')}></span> +2.16% draws capital in). That is the <span set:html={gl('Dollar smile', '“dollar smile”')}></span> — the dollar is bid in both a global boom and a global panic, and sags only in a benign, rate-cutting middle.</p>
   <ul class="takes deep">
-    <li><b>Why it's firm now:</b> the realized Iran/Hormuz shock is dollar-positive — energy-importer currencies weaken, oil-exporter and US flows favour the dollar, and the Fed stays hawkish.</li>
-    <li><b>The two-sided risk:</b> escalation → stronger dollar (haven + funding squeeze); a durable ceasefire + disinflation → the dollar softens as cuts return to the table.</li>
+    <li><b>Why it's firm now:</b> the realized Iran/Hormuz shock is dollar-positive — energy-importer currencies weaken, oil-exporter and US flows favour the dollar, and the Fed stays hawkish at a +2.16% real policy stance.</li>
+    <li><b>The two-sided risk:</b> escalation → stronger dollar (haven + funding squeeze); a durable ceasefire + disinflation → the dollar softens as cuts return to the table and the "benign middle" of the smile takes over.</li>
   </ul>
   <figure class="chartph">
     <div class="cp-h"><span>The dollar smile</span><b>bid in boom &amp; panic</b></div>
     <svg viewBox="0 0 320 120" role="img" aria-label="The dollar smile: dollar strong in global panic and global boom, weak in the benign middle, with today on the panic side"><path d="M16,40 C70,110 250,110 304,40" fill="none" stroke="var(--data)" stroke-width="2"/><text x="6" y="30" fill="var(--muted)" font-size="8" font-family="Lora,serif">panic (haven)</text><text x="250" y="30" fill="var(--muted)" font-size="8" font-family="Lora,serif">boom (rates)</text><text x="130" y="116" fill="var(--muted)" font-size="8" font-family="Lora,serif">benign middle</text><circle cx="40" cy="74" r="4" fill="var(--eyeb)"/><text x="30" y="96" fill="var(--eyeb)" font-size="8" font-family="Fraunces,serif">today</text></svg>
     <figcaption>Today sits on the left (panic/haven) cheek — a realized geopolitical + real-rate bid. <span class="dconf medium">medium confidence</span></figcaption>
   </figure>
+  <div class="lvrow deep"><span class="lv-k">Lead / lag</span><span class="lv-v"><b>Level coincident; direction moderate-lead.</b> The dollar prices the regime in real time; a sustained break of the range tends to lead cross-asset stress.</span><span class="lv-s">FRED DTWEXBGS, DFII10 · daily <span class="tiertag">T1</span></span></div>
 </div></section>
 
 <!-- §2 STRUCTURE -->
 <section class="dsec" id="structure"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§2 · Structure</div><h2>Is dollar strength broad — and who's the haven?</h2></div><span class="fresh-tag">daily</span></div>
-  <p class="lead">The haven hierarchy this cycle is <b>USD &gt; CHF &gt; gold</b> — a notable inversion of the 1979/1990 template where gold led. The dollar captured the primary bid (net-energy-exporter advantage); the Swiss franc took the "neutral" haven flow; gold was subordinated to real-yield dynamics before its central-bank bid reasserted.</p>
+  <p class="lead">The haven hierarchy this cycle is <b>USD &gt; CHF &gt; gold &gt; JPY</b> — a notable inversion of the 1979/1990 template where gold led and the yen was a refuge. The dollar captured the primary bid (net-energy-exporter advantage); the franc took the neutral-haven flow; gold was subordinated to real yields before its central-bank bid reasserted; the yen, as carry funding, is no longer a refuge.</p>
+  <table class="dtbl deep"><thead><tr><th>Haven</th><th>Rank</th><th>This cycle</th><th></th></tr></thead><tbody>
+    {havens.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td set:html={r[2]}></td><td><span class={`wl-tag wl-${r[3]}`}>{r[3] === 'pos' ? 'firm' : r[3] === 'neg' ? 'impaired' : 'mixed'}</span></td></tr>))}
+  </tbody></table>
   <div class="feedph deep">
-    <div class="fp-h">Research pending — P-10 (breadth of dollar strength)</div>
+    <div class="fp-h">Source ready — P-10 (breadth decomposition)</div>
     <div class="fp-rows">
-      <div class="fp-row"><span class="fp-k">DXY breadth (broad vs narrow)</span><span class="fp-v">awaiting FX/Gold dossier</span></div>
-      <div class="fp-row"><span class="fp-k">Haven-rank scoreboard (USD/CHF/JPY/gold)</span><span class="fp-v">awaiting FX/Gold dossier</span></div>
+      <div class="fp-row"><span class="fp-k">DXY breadth (broad vs narrow advance)</span><span class="fp-v">computed at P-10 from bilateral series</span></div>
+      <div class="fp-row"><span class="fp-k">Quantified haven-rank scoreboard (rolling)</span><span class="fp-v">computed at P-10</span></div>
     </div>
-    <p class="fp-note">The hierarchy read is solid (R-09.1 + grounding); the full breadth decomposition lands with P-10.</p>
+    <p class="fp-note">The hierarchy read is solid (R-09.1 + grounding); the quantified breadth decomposition lands with the FX/Gold dossier.</p>
   </div>
 </div></section>
 
 <!-- §3 VALUATION -->
 <section class="dsec" id="valuation"><div class="wrap">
-  <div class="sec-head"><div><div class="eyebrow">§3 · Valuation</div><h2>Gold vs real yields — the link that broke.</h2></div><span class="fresh-tag">daily</span></div>
-  <p class="lead">Gold's textbook inverse to real yields has <b>decoupled</b>: it sits at a record (~$4,365) <i>despite</i> a +2.16% real 10y that should be a headwind. The decoupling is itself the signal — the market is pricing geopolitical / fiat-trust / de-dollarization risk above the ordinary opportunity-cost calculus.</p>
+  <div class="sec-head"><div><div class="eyebrow">§3 · Valuation</div><h2>Gold vs real yields — the link that bent, broke, then reasserted.</h2></div><span class="fresh-tag">daily</span></div>
+  <p class="lead">Gold's textbook inverse to <span set:html={gl('Real yield', 'real yields')}></span> is <b>regime-dependent, not dead</b>. Through 2025 into January it <i>decoupled</i> — climbing to an all-time high of <b>$5,595/oz (Jan 29, 2026)</b> even as real yields rose, on a geopolitical / fiat-trust / de-dollarization bid. Then the Hormuz oil shock pushed inflation expectations and real yields higher still, and gold <b>corrected ~19%</b> to a ~$4,170 floor by March — the old inverse <i>reasserted</i>. A price-inelastic central-bank bid has since stabilized it ~$4,300–4,540. The lesson: the decoupling is a risk-premium overlay on top of the real-yield anchor, not a repeal of it.</p>
   <figure class="chartph deep">
-    <div class="cp-h"><span>Gold vs real yield</span><b>decoupled</b></div>
-    <svg viewBox="0 0 320 120" role="img" aria-label="Gold rising while real yields also rise — the two have decoupled"><polyline points="0,96 80,80 160,58 240,40 320,26" fill="none" stroke="var(--eyeb)" stroke-width="2"/><text x="232" y="20" fill="var(--eyeb)" font-size="8" font-family="Lora,serif">gold ↑</text><polyline points="0,86 80,80 160,72 240,66 320,60" fill="none" stroke="var(--data)" stroke-width="2" stroke-dasharray="4 2"/><text x="232" y="54" fill="var(--data)" font-size="8" font-family="Lora,serif">real yield ↑</text></svg>
-    <figcaption>Both rising together breaks the textbook inverse — a regime signal, not noise. <span class="dconf medium">medium confidence</span></figcaption>
+    <div class="cp-h"><span>Gold's 2026 path</span><b>record → correction → base</b></div>
+    <svg viewBox="0 0 320 120" role="img" aria-label="Gold rose to a January record near 5595, corrected about 19 percent into March, then based around 4300 to 4540"><polyline points="0,86 70,40 110,28 170,84 230,92 320,80" fill="none" stroke="var(--eyeb)" stroke-width="2"/><circle cx="110" cy="28" r="3.5" fill="var(--eyeb)"/><text x="70" y="22" fill="var(--eyeb)" font-size="8" font-family="Fraunces,serif">$5,595 ATH (Jan)</text><circle cx="190" cy="90" r="3" fill="var(--neg)"/><text x="150" y="108" fill="var(--neg)" font-size="8" font-family="Lora,serif">−19% (Mar floor)</text><text x="270" y="72" fill="var(--muted)" font-size="8" font-family="Lora,serif">~$4,365</text></svg>
+    <figcaption>The record was real; so was the correction. Both fit a real-yield anchor with a risk-premium overlay. <span class="dconf medium">medium confidence</span></figcaption>
   </figure>
   <div class="feedph deep">
-    <div class="fp-h">Research pending — P-10 (REER / PPP valuation)</div>
-    <div class="fp-rows"><div class="fp-row"><span class="fp-k">Dollar REER over/undervaluation</span><span class="fp-v">awaiting FX/Gold dossier</span></div><div class="fp-row"><span class="fp-k">Major-cross PPP fair value</span><span class="fp-v">awaiting FX/Gold dossier</span></div></div>
+    <div class="fp-h">Source ready — P-10 (REER / PPP valuation)</div>
+    <div class="fp-rows"><div class="fp-row"><span class="fp-k">Dollar <span set:html={gl('REER', 'REER')}></span> over/undervaluation</span><span class="fp-v">awaiting FX/Gold dossier</span></div><div class="fp-row"><span class="fp-k">Major-cross PPP fair value</span><span class="fp-v">awaiting FX/Gold dossier</span></div></div>
   </div>
 </div></section>
 
 <!-- §4 FUNDAMENTALS -->
 <section class="dsec" id="fundamentals"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§4 · Fundamentals</div><h2>Rate differentials, deficits, terms of trade.</h2></div><span class="fresh-tag">monthly</span></div>
-  <p class="lead">The dollar's engine is <b>real rate differentials</b> (the US at +2.16% real vs a slower-normalizing ROW), offset over the medium term by the <b>twin deficits</b> and a rich REER. The oil shock shifts <b>terms of trade</b> toward exporters and against importers — the FX dividing line of this regime.</p>
+  <p class="lead">The dollar's engine is <b>real rate differentials</b> (the US at +2.16% real vs a slower-normalizing rest-of-world), offset over the medium term by the <b>twin deficits</b> and a rich <span set:html={gl('REER', 'REER')}></span>. The oil shock shifts <b>terms of trade</b> toward exporters and against importers — the FX dividing line of this regime, and the reason EM-FX splits cleanly by energy balance (§5).</p>
+  <ul class="takes deep">
+    <li><b>The carry of being reserve currency:</b> deep, liquid UST demand lets the US run twin deficits at a lower funding cost than fundamentals alone would imply — the "exorbitant privilege" that the §9 reserve-order erosion slowly chips at.</li>
+    <li><b>What leads vs lags:</b> rate differentials lead the dollar in real time; the twin-deficit / REER overvaluation is a slow, mean-reverting anchor that only bites once the haven bid fades.</li>
+  </ul>
   <div class="feedph deep">
-    <div class="fp-h">Research pending — P-10 (fundamentals depth)</div>
-    <div class="fp-rows"><div class="fp-row"><span class="fp-k">Rate-differential map (US vs G10/EM)</span><span class="fp-v">awaiting FX/Gold dossier</span></div><div class="fp-row"><span class="fp-k">Current-account / twin-deficit read</span><span class="fp-v">awaiting FX/Gold dossier</span></div></div>
-    <p class="fp-note">Framing is solid; the quantified differential map + flow data land with P-10.</p>
+    <div class="fp-h">Source ready — P-10 (quantified differential map)</div>
+    <div class="fp-rows"><div class="fp-row"><span class="fp-k">Rate-differential map (US vs G10/EM)</span><span class="fp-v">computed at P-10</span></div><div class="fp-row"><span class="fp-k">Current-account / twin-deficit read</span><span class="fp-v">BEA + Treasury (P-10)</span></div></div>
   </div>
 </div></section>
 
 <!-- §5 COHORTS -->
 <section class="dsec" id="cohorts"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§5 · Cohorts</div><h2>The crosses, EM-FX, and the metals.</h2></div><span class="fresh-tag">daily</span></div>
-  <p class="lead">Three sub-markets tell different stories: the <b>major crosses</b>, <b>EM-FX</b> (split by energy balance), and the <b>monetary metals</b>.</p>
+  <p class="lead">Three sub-markets tell different stories: the <b>major crosses</b>, <b>EM-FX</b> (split by energy balance), and the <b>monetary metals</b>. Levels are indicative snapshots ({SNAP}).</p>
   <h3 class="dl">Major crosses</h3>
-  <table class="dtbl"><tbody>
-    {crosses.map((r) => (<tr><td class="prec-name">{r[0]}</td><td set:html={r[1]}></td><td><span class={`wl-tag wl-${r[2]}`}>{r[2] === 'pos' ? 'firm' : r[2] === 'neg' ? 'soft' : 'mixed'}</span></td></tr>))}
+  <table class="dtbl"><thead><tr><th>Cross</th><th>Level</th><th>Driver</th><th></th></tr></thead><tbody>
+    {crosses.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td set:html={r[2]}></td><td><span class={`wl-tag wl-${r[3]}`}>{r[3] === 'pos' ? 'firm' : r[3] === 'neg' ? 'soft' : 'mixed'}</span></td></tr>))}
   </tbody></table>
   <h3 class="dl deep">EM-FX — split by the energy bill</h3>
-  <ul class="takes deep">{emfx.map((r) => (<li><b>{r[0]}</b> — {r[1]}</li>))}</ul>
+  <table class="dtbl deep"><thead><tr><th>Bloc</th><th>Examples</th><th>The mechanism</th><th></th></tr></thead><tbody>
+    {emfx.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td set:html={r[2]}></td><td><span class={`wl-tag wl-${r[3]}`}>{r[3] === 'pos' ? 'cushioned' : 'squeezed'}</span></td></tr>))}
+  </tbody></table>
   <h3 class="dl deep">The monetary metals</h3>
-  <ul class="takes deep">{metals.map((r) => (<li><b>{r[0]}</b> — {r[1]}</li>))}</ul>
+  <table class="dtbl deep"><thead><tr><th>Metal</th><th>Read</th><th>Why</th><th></th></tr></thead><tbody>
+    {metals.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td set:html={r[2]}></td><td><span class={`wl-tag wl-${r[3]}`}>{r[3] === 'pos' ? 'firm' : 'mixed'}</span></td></tr>))}
+  </tbody></table>
 </div></section>
 
 <!-- §6 FACTORS -->
 <section class="dsec" id="factors"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§6 · Factors</div><h2>Carry, value, momentum — and the carry trade.</h2></div><span class="fresh-tag">structural</span></div>
-  <p class="lead">FX returns decompose into carry, value (REER), and momentum/risk. The defining feature of 2026: the dollar's <b>+2.16% real yield has turned it into a partial funding destination</b>, squeezing the traditional EM carry trade from the funding side.</p>
-  <div class="heat">{factors.map((f) => (<div class="heat-cell"><div class="heat-f">{f[0]}</div><div class="heat-d">{f[1]}</div></div>))}</div>
+  <p class="lead">FX returns decompose into <span set:html={gl('Carry', 'carry')}></span>, value (<span set:html={gl('REER', 'REER')}></span>) and momentum/risk. The defining feature of 2026: the dollar's <b>+2.16% real yield has turned it into a partial funding destination</b>, squeezing the traditional EM carry trade from the funding side.</p>
+  <table class="dtbl deep"><thead><tr><th>Factor</th><th>Forecast value</th><th>The read</th></tr></thead><tbody>
+    {factors.map((f) => (<tr><td class="prec-name">{f[0]}</td><td>{f[1]}</td><td>{f[2]}</td></tr>))}
+  </tbody></table>
   <div class="attrib deep" style="margin-top:14px">
-    <div class="attrib-row"><div class="attrib-d">The yen carry unwind</div><span class="attrib-b b-primary">tail risk</span><div class="attrib-n">Aug-2024 precedent: a BoJ hawkish hike unwound only ~10–15% of the book yet crashed global vol (VIX intraday 65.73) in 72 hours. The 2026 tail is a <b>synchronized BoJ + ECB squeeze</b> into a hawkish Fed.</div></div>
+    <div class="attrib-row"><div class="attrib-d">The yen <span set:html={gl('Carry unwind', 'carry unwind')}></span></div><span class="attrib-b b-primary">tail risk</span><div class="attrib-n">Aug-2024 precedent: a BoJ hawkish hike unwound only <b>~10–15% of the book</b> yet crashed global vol (VIX intraday <b>65.73</b>) inside 72 hours. The 2026 tail is a <b>synchronized BoJ + ECB squeeze</b> into a hawkish Fed — small position shifts, outsized vol.</div></div>
+    <div class="attrib-row"><div class="attrib-d">The "17%" diaspora myth</div><span class="attrib-b b-secondary">decoder</span><div class="attrib-n">India's FCNR(B)-style headline "17%" is a <b>7–10× leveraged USD IRR</b> (Jefferies), not a deposit coupon — a bank-funding arbitrage, not free yield. The kind of number that looks like alpha and is actually leverage.</div></div>
   </div>
 </div></section>
 
 <!-- §7 POSITIONING -->
 <section class="dsec" id="positioning"><div class="wrap">
-  <div class="sec-head"><div><div class="eyebrow">§7 · Positioning</div><h2>Intervention, funding plumbing &amp; the COT.</h2></div><span class="fresh-tag">weekly · monthly</span></div>
-  <p class="lead">The plumbing layer is where FX stress shows first: who is a <b>forced seller</b> of dollars (and therefore Treasuries), and where the <b>offshore-dollar funding</b> squeeze is biting.</p>
-  <ul class="takes">{plumbing.map((r) => (<li><b>{r[0]}</b> — {r[1]}</li>))}</ul>
-  <p class="srcline deep">Free sources: MOF intervention CSV (monthly), CFTC COT (weekly), Fed H.4.1 FIMA/swaps. Cross-currency basis (real-time) — no free feed.</p>
+  <div class="sec-head"><div><div class="eyebrow">§7 · Positioning</div><h2>The forced-seller plumbing &amp; the COT.</h2></div><span class="fresh-tag">weekly · monthly</span></div>
+  <p class="lead">The plumbing layer is where FX stress shows first: who is a <b>forced seller</b> of dollars (and therefore Treasuries), and where the offshore-dollar funding squeeze is biting. A sovereign defending its currency has <b>eight tools</b> — each leaves a different footprint on the UST market.</p>
+  <table class="dtbl"><thead><tr><th>Tool</th><th>What it does &amp; the footprint</th><th></th></tr></thead><tbody>
+    {defenseTools.map((r) => (<tr><td class="prec-name" set:html={r[0]}></td><td set:html={r[1]}></td><td><span class={`wl-tag wl-${r[2]}`}>{r[2] === 'pos' ? 'USD-neg' : r[2] === 'neg' ? 'UST-seller' : 'neutral'}</span></td></tr>))}
+  </tbody></table>
+  <ul class="takes deep" style="margin-top:14px">
+    <li><b><span set:html={gl('COT', 'CFTC COT')}></span> positioning</b> — spec crowding in DXY/gold and the lev-fund yen-short is the reversal-risk read; the carry-unwind footprint shows here first.</li>
+    <li><b><span set:html={gl('TIC', 'TIC')}></span> scoreboard</b> — the monthly official read on who holds USTs (Japan the largest foreign holder; China’s holdings in secular decline). Official sales are the slow de-dollarization tell; private buying often offsets.</li>
+  </ul>
+  <p class="srcline deep">Free sources: MOF intervention CSV (monthly) <span class="tiertag">T1</span> · CFTC COT (weekly) <span class="tiertag">T1</span> · US TIC (monthly) <span class="tiertag">T1</span> · Fed H.4.1 FIMA/swaps <span class="tiertag">T1</span>. The live <span set:html={gl('Cross-currency basis', 'cross-currency basis')}></span> has no free feed — scaffolded honestly.</p>
 </div></section>
 
 <!-- §8 CROSS-ASSET -->
 <section class="dsec" id="crossasset"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§8 · Cross-Asset</div><h2>The dollar sits under everything.</h2></div><span class="fresh-tag">daily</span></div>
-  <p class="lead">The dollar is the master transmission variable; gold and the yen are the cross-asset tells.</p>
-  <ul class="takes">{xasset.map((r) => (<li><b>{r[0]}</b> — {r[1]}</li>))}</ul>
+  <p class="lead">The dollar is the master transmission variable; gold and the yen are the cross-asset tells. These correlations are <b>regime-dependent, not causal</b> — the "what breaks it" column is the point.</p>
+  <table class="dtbl"><thead><tr><th>Pair</th><th>Normal relationship</th><th>What breaks it</th></tr></thead><tbody>
+    {xasset.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td set:html={r[2]}></td></tr>))}
+  </tbody></table>
 </div></section>
 
 <!-- §9 CATALYSTS -->
 <section class="dsec" id="catalysts"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">§9 · Catalysts</div><h2>Iran / Hormuz → the dollar, gold &amp; the reserve order.</h2></div><span class="fresh-tag">event</span></div>
-  <p class="lead">The realized Hormuz shock transmits to this desk through three live chains.</p>
+  <p class="lead">The realized Hormuz shock transmits to this desk through three live chains: a <b>haven dollar bid + offshore funding squeeze</b>, a <b>gold + petrodollar</b> channel, and a slow <b>de-dollarization</b> drift the shock warms but does not break.</p>
   <ul class="takes">
     <li><b>Safe-haven dollar bid + funding squeeze</b> — the US net-exporter advantage pulls the haven flow to the dollar; the offshore-dollar squeeze hits importers (the credit desk's "Gulf angle" twin).</li>
     <li><b>Gold &amp; petrodollar recycling</b> — gold bid on haven + central-bank demand; Gulf oil-export flows and their UST recycling become more <i>politically conditional</i>.</li>
-    <li><b>De-dollarization (structural, slow)</b> — COFER USD share &lt;57% (a ~30-yr low), record central-bank gold, BRICS local-currency settlement, mBridge ~$55bn — a glacial shift the shock raises the temperature on, not a break. <span class="dconf low">low-confidence on pace</span></li>
+    <li><b>Private dollarization</b> — dollar-pegged stablecoins are now a real offshore-dollar demand channel (a new petrodollar-adjacent pillar); detailed on the stablecoins page (P-14, pending).</li>
   </ul>
-  <p class="srcline deep">Detailed reserve-order analysis is the de-dollarization page (P-17, pending). Diaspora-deposit / FX-defense mechanics: R-09.1.</p>
+  <h3 class="dl deep">The reserve-order scoreboard</h3>
+  <table class="dtbl deep"><thead><tr><th>Metric</th><th>Reading</th><th>Interpretation</th><th></th></tr></thead><tbody>
+    {reserveOrder.map((r) => (<tr><td class="prec-name" set:html={r[0]}></td><td>{r[1]}</td><td set:html={r[2]}></td><td><span class="tiertag">{r[3]}</span></td></tr>))}
+  </tbody></table>
+  <p class="srcline deep">De-dollarization is a glacial shift the shock raises the temperature on, not a break. <span class="dconf low">low confidence on pace.</span> Detailed reserve-order analysis: the de-dollarization page (P-17, pending). Diaspora-deposit / FX-defense mechanics: R-09.1.</p>
 </div></section>
 
 <!-- §10 EVIDENCE -->
 <section class="dsec" id="evidence"><div class="wrap">
-  <div class="sec-head"><div><div class="eyebrow">§10 · Evidence</div><h2>Sources &amp; honesty.</h2></div></div>
-  <p class="lead">Built from the validated <b>R-09.1</b> council (the Rates⇄FX bridge) plus June-2026 grounding. The legacy gold-fx page's numbers were <b>not</b> carried — they conflicted with the verified record (it claimed a $5,595 gold ATH vs the verified ~$4,365 June record). The authoritative FX/Gold dossier is <b>P-10 (pending)</b>; sections marked "research pending" fill on its return.</p>
-  <p class="srcline">FRED (DTWEXBGS, DFII10, DEXJPUS, DEXUSEU), LBMA gold, CFTC COT, IMF COFER, BIS, World Gold Council, MOF intervention CSV, Fed H.4.1. DXY (ICE) and the live cross-currency basis: no free feed — honest placeholders.</p>
+  <div class="sec-head"><div><div class="eyebrow">§10 · Evidence</div><h2>Sources, honesty &amp; what we can't wire.</h2></div></div>
+  <p class="lead">Built from the validated <b>R-09.1</b> council (the Rates⇄FX bridge), the <b>R-09.2</b> data-wiring audit, and June-2026 grounding. The authoritative FX/Gold dossier is <b>P-10 (pending)</b>; sections marked "source ready" fill on its return.</p>
+  <div class="callout deep">
+    <div class="co-h">Gold, set straight</div>
+    <p>The Jan-2026 ATH of <b>$5,595/oz</b> is real (verified: gold broke $5,000 on Jan 26, peaked Jan 29). Gold then <b>corrected ~19%</b> into a ~$4,170 floor in March on the real-yield spike, and is consolidating ~$4,300–4,540 now — so the current level is <b>off the record, not a new one</b>. An earlier draft wrongly framed $5,595 as a rejected figure; the accurate story (record → real-yield-driven correction → central-bank-supported base) is both more honest and more interesting.</p>
+  </div>
+  <h3 class="dl deep">Data-wiring verdicts (R-09.2 audit, applied to this desk)</h3>
+  <table class="dtbl deep"><thead><tr><th>Tile</th><th>Verdict</th><th>Detail</th></tr></thead><tbody>
+    {wiring.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
+  </tbody></table>
+  <p class="srcline">FRED (DTWEXBGS, DFII10, DEXJPUS, DEXUSEU) <span class="tiertag">T1</span> · LBMA gold fix <span class="tiertag">T1</span> · CFTC COT · IMF COFER · BIS · World Gold Council <span class="tiertag">T2</span> · MOF intervention CSV · US TIC · Fed H.4.1. Official ICE DXY, gold vol (GVZ) and the live cross-currency basis: no free feed — honest proxies or blanks, never invented.</p>
 </div></section>
 
 </div>
@@ -251,20 +372,37 @@ const xasset = [
   .kpi-v{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--ink);margin:2px 0}
   .kpi-s{font-size:11.5px;color:var(--body);line-height:1.4}
   .srcline{font-size:10px;color:var(--muted);font-style:italic;margin-top:6px}
+  .tiertag{font-family:'Lora',serif;font-style:normal;font-size:8.5px;font-weight:700;letter-spacing:.04em;color:var(--struct);border:1px solid color-mix(in srgb,var(--struct) 40%,transparent);border-radius:3px;padding:0 4px;vertical-align:middle}
+  .decoder{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px;padding:14px 16px;background:var(--anchor);border:1px solid var(--cardline);border-radius:11px}
+  .dec-h{font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--eyeb);margin-bottom:7px}
+  .dec-row{font-size:10.5px;color:var(--muted);line-height:1.5;margin-bottom:3px}
+  .dec-row b{color:var(--body)}
+  .dec-g{display:inline-block;width:13px;color:var(--data)}
   .dl{font-family:'Lora',serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--struct);margin:16px 0 8px}
   .takes{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-  .takes li{font-size:14px;line-height:1.6;color:var(--body);padding-left:16px;position:relative;max-width:84ch}
+  .takes li{font-size:14px;line-height:1.6;color:var(--body);padding-left:16px;position:relative;max-width:88ch}
   .takes li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--eyeb)}
   .takes b{color:var(--ink)}
-  .dtbl{width:100%;border-collapse:collapse;font-size:13px}
+  .dtbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+  .dtbl th{text-align:left;font-family:'Lora',serif;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:6px 12px;border-bottom:1px solid var(--struct)}
   .dtbl td{padding:8px 12px;border-bottom:1px solid var(--cardline);color:var(--body);line-height:1.5;vertical-align:top}
   .dtbl .prec-name{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);white-space:nowrap}
-  .wl-tag{font-family:'Lora',serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:4px;border:1px solid}
+  .wl-tag{font-family:'Lora',serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:4px;border:1px solid;white-space:nowrap}
   .wl-pos{color:var(--pos);border-color:color-mix(in srgb,var(--pos) 45%,transparent)}
   .wl-neg{color:var(--neg);border-color:color-mix(in srgb,var(--neg) 45%,transparent)}
   .wl-mix{color:var(--struct);border-color:color-mix(in srgb,var(--struct) 45%,transparent)}
+  .lvrow{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;margin-top:14px;padding:10px 14px;background:var(--anchor);border-left:2px solid var(--data);border-radius:0 8px 8px 0}
+  .lv-k{font-family:'Lora',serif;font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--data)}
+  .lv-v{font-size:12.5px;color:var(--body);line-height:1.5;flex:1;min-width:240px}
+  .lv-v b{color:var(--ink)}
+  .lv-s{font-size:10px;color:var(--muted);font-style:italic}
+  .callout{background:var(--anchor);border:1px solid var(--cardline);border-left:3px solid var(--eyeb);border-radius:0 10px 10px 0;padding:13px 16px;margin:14px 0}
+  .co-h{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--eyeb);margin-bottom:5px}
+  .callout p{font-size:13px;color:var(--body);line-height:1.6;margin:0;max-width:90ch}
+  .callout b{color:var(--ink)}
   .chartph figcaption{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .chartph svg{width:100%;max-width:340px;height:auto;display:block;margin-top:6px}
+  @media(max-width:720px){.decoder{grid-template-columns:1fr}}
 </style>
 
 <script is:inline>

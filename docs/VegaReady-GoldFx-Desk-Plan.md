@@ -64,3 +64,32 @@ GF-L1 scaffold + chosen skin + Wayfinder + secnav. → GF-L2 §0 State + §1 Reg
 
 ---
 *Drafted 2026-06-14. Rebuild of the legacy gold-fx page to the desk standard; Analyst Deep master first; built from R-09.1 + grounding with honest placeholders pending P-10.*
+
+---
+## 8 · P-09.2 integration + analyst-density upgrade (2026-06-14)
+
+After GF-L1, the owner flagged two issues and delivered R-09.2: (a) the first build **read too layman** for an analyst Deep; (b) the gold **$5,595** figure was wrongly framed as a rejection. Both fixed in this pass, plus R-09.2 filed and mapped.
+
+### 8a · Gold, set straight (verified 2026-06-14)
+Independent research confirms the legacy page's ATH was **correct**: gold broke $5,000 on Jan 26, **peaked $5,595/oz on Jan 29, 2026**, then **corrected ~19%** to a ~$4,170 floor by March (Hormuz oil shock → inflation/real-yields up → position unwind), and is **consolidating ~$4,300–4,540** now. So the current ~$4,365 is **off the record, not a new one**. The desk now tells the accurate arc (record → real-yield-driven correction → price-inelastic central-bank base; WGC sees 750–850t official buying in 2026) in §0/§3/§5/§10 — and the §10 "Gold, set straight" callout retires the false-rejection note. The gold↔real-yield "decoupling" is reframed as **regime-dependent** (broke on the way up, reasserted in the correction), which is both honest and more interesting.
+
+### 8b · Analyst-density upgrade (addresses "reads layman")
+GoldFxDesk.astro rebuilt to the CreditDesk register: **source-tier (T1–T4) + value-type + feed-state decoder strip** in §0; a **hover glossary** (DXY, real yield, dollar smile, REER, carry/unwind, x-ccy basis, FIMA, COT, TIC, COFER, DV01, mBridge, petrodollar); and **quantified tables in every section** instead of light bullets — §2 haven-hierarchy scoreboard, §5 crosses/EM-FX/metals tables with levels, §6 factor table + the Aug-2024 unwind attribution (10–15% of book, VIX 65.73) + the "17% = leveraged USD IRR" decoder, §7 the **8-tool forced-seller taxonomy** (MOF ¥11.7tn, FIMA ~$0, reserve-sale DV01 $50bn≈$40.5mn/bp, COT, TIC), §8 cross-asset correlation pairs with a "what breaks it" column, §9 reserve-order scoreboard (COFER <57%, CB gold 750–850t, mBridge $55bn). Lead/lag row added to §1. Mined from R-09.1 (the Rates⇄FX bridge).
+
+### 8c · R-09.2 content map — where each piece lands (no gaps)
+R-09.2 is primarily a **Rates-desk** dossier; only its data-wiring audit touches FX directly. Routing:
+
+| R-09.2 content | Destination | Status |
+|---|---|---|
+| **Data-wiring audit** (DXY=scaffold→DTWEXBGS proxy; gold=scaffold→LBMA fix; GVZ/x-ccy basis=no free feed) | **FX desk §10** "data-wiring verdicts" table + §0 tile feed-states | **DONE this pass** — DXY/gold honestly labelled, no faked live |
+| Treasury **buybacks** (two buckets, caps, U-shaped demand, signal-reading rule, NOT-QE/not-stress) | **Future Rates desk** §2.7 plumbing (new buyback tile + sector offer-to-max/fill baseline) | Queued for Rates build (per O-18) |
+| **Debt ceiling NOT LIVE 2026** (OBBBA $41.1tn, ~$1.88tn cushion, 2027 flashpoint) | **Future Rates desk** §2.9 catalysts — *correct stale X-date framing* | Queued; also a cross-asset/catalyst note |
+| **2026 shutdowns** (two; coupons keep paying; data blackout) | Future Rates §2.9 + Cross-Asset catalyst calendar | Queued |
+| **TGA / RRP** (~$800bn rebuilt; ON RRP ~0 → reserve-drain first-order; ~$1tn late-Jul peak) | Future Rates §2.7 (TGA tile via DTS API) | Queued — highest-value plumbing change |
+| **SRF take-up = true acute-stress gauge** (§4.1 open floor #1) | Future Rates §2.7 — **build the SRF tile** (free NY Fed daily) | Queued — flagged as the #1 follow-up |
+| WAM/bill-skew quantified; SOMA/MMF-reform | Future Rates §4 / P-16 fiscal page | Queued |
+
+**Net:** FX desk consumes R-09.2's data-wiring verdicts now; the buybacks/fiscal/TGA/SRF body is the spine of the **Rates desk** build (next target per O-18) and must carry the "debt ceiling not live in 2026" correction + the SRF tile.
+
+### 8d · Still pending for FX (unchanged)
+P-10 (the FX/Gold core dossier) fills §2 breadth decomposition, §3 REER/PPP, §4 quantified differential map, and wires the live gold/COT tiles. Then the lower tiers: analyst Skim → layman Deep → layman Skim.
