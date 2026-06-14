@@ -427,7 +427,6 @@ const watchlist = [
 
 <!-- §0 STATE -->
 <section class="hero an-block" id="state"><div class="wrap">
-  <div class="hero-grid">
     <div>
       <div class="eyebrow">Markets · Dollar, FX & Gold · State of the desk</div>
       <h1>The dollar wins the day.<br/><em>Its throne erodes by the decade.</em></h1>
@@ -445,18 +444,18 @@ const watchlist = [
       );})}
       <div class="attrib-foot">— FRED · LBMA · Treasury · {SNAP}; majors live, gold/flows source-ready</div>
     </div>
-  </div>
-  <div class="orient">
-    <div class="read30">
-      <div class="r30t">The 30-second read</div>
-      <ul>{read30.map((r) => (<li set:html={r}></li>))}</ul>
-    </div>
-    <div class="falsify">
-      <div class="fl-h">What would change this call</div>
-      <ul>{falsifiers.map((r) => (<li set:html={r}></li>))}</ul>
-    </div>
-  </div>
 </div></section>
+
+<div class="wrap an-block"><div class="orient">
+  <div class="read30">
+    <div class="r30t">The 30-second read</div>
+    <ul>{read30.map((r) => (<li set:html={r}></li>))}</ul>
+  </div>
+  <div class="falsify">
+    <div class="fl-h">What would change this call</div>
+    <ul>{falsifiers.map((r) => (<li set:html={r}></li>))}</ul>
+  </div>
+</div></div>
 
 <!-- COMPETING DRIVERS -->
 <section class="dsec deep" id="drivers-blk"><div class="wrap">
@@ -568,7 +567,7 @@ const watchlist = [
   <table class="dtbl deep"><thead><tr><th>Leg</th><th>Rates</th><th>The read</th></tr></thead><tbody>
     {carryConfig.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
   </tbody></table>
-  <figure class="snap-chart deep"><div class="cp-h"><span>The carry gauge</span><span class="cp-tag">illustrative</span></div>
+  <figure class="snap-chart deep figfix"><div class="cp-h"><span>The carry gauge</span><span class="cp-tag">illustrative</span></div>
     <div class="sc-svg" set:html={`<svg viewBox="0 0 340 96" role="img" aria-label="Funding currencies near zero, the dollar now a mid-curve funding destination, EM recipients high-yield, with an unwind-risk band"><line x1="20" y1="60" x2="320" y2="60" stroke="var(--cardline)" stroke-width="1"/><text x="20" y="80" fill="var(--data)" font-size="8" font-family="Lora,serif">JPY/CHF ~0%</text><circle cx="40" cy="60" r="4" fill="var(--data)"/><text x="150" y="80" fill="var(--eyeb)" font-size="8" font-family="Fraunces,serif">USD +2.16% real</text><circle cx="170" cy="60" r="5" fill="var(--eyeb)"/><text x="270" y="80" fill="var(--neg)" font-size="8" font-family="Lora,serif">EM 14–37%</text><circle cx="300" cy="60" r="4" fill="var(--neg)"/><rect x="150" y="22" width="170" height="14" fill="var(--warn)" opacity="0.16"/><text x="156" y="32" fill="var(--warn)" font-size="8" font-family="Lora,serif">unwind risk — recipients dumped, funders bid</text></svg>`}></div>
     <figcaption>The dollar has slid up the funding curve into a <i>destination</i>, squeezing carry from the funding side. <span class="dconf medium">medium confidence</span></figcaption>
   </figure>
@@ -620,7 +619,7 @@ const watchlist = [
   <table class="dtbl deep"><thead><tr><th>Pair</th><th>Normal relationship</th><th>What breaks it</th></tr></thead><tbody>
     {corrPairs.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
   </tbody></table>
-  <figure class="snap-chart deep"><div class="cp-h"><span>The dollar sits under everything</span><span class="cp-tag">illustrative</span></div>
+  <figure class="snap-chart deep figfix"><div class="cp-h"><span>The dollar sits under everything</span><span class="cp-tag">illustrative</span></div>
     <div class="sc-svg" set:html={`<svg viewBox="0 0 340 152" role="img" aria-label="The dollar as the central hub transmitting to rates, commodities, gold, EM-FX and crypto"><line x1="170" y1="76" x2="66" y2="34" stroke="var(--cardline)"/><line x1="170" y1="76" x2="276" y2="34" stroke="var(--cardline)"/><line x1="170" y1="76" x2="298" y2="114" stroke="var(--cardline)"/><line x1="170" y1="76" x2="170" y2="136" stroke="var(--cardline)"/><line x1="170" y1="76" x2="44" y2="114" stroke="var(--cardline)"/><g fill="var(--data)"><circle cx="66" cy="34" r="3"/><circle cx="276" cy="34" r="3"/><circle cx="298" cy="114" r="3"/><circle cx="170" cy="136" r="3"/><circle cx="44" cy="114" r="3"/></g><circle cx="170" cy="76" r="24" fill="var(--eyeb)"/><text x="170" y="80" text-anchor="middle" fill="#16130A" font-size="11" font-family="Fraunces,serif" font-weight="600">USD</text><g font-size="8.5" font-family="Lora,serif" fill="var(--body)"><text x="66" y="26" text-anchor="middle">Rates</text><text x="276" y="26" text-anchor="middle">Commodities</text><text x="312" y="118" text-anchor="end">Gold</text><text x="170" y="150" text-anchor="middle">EM-FX</text><text x="30" y="118">Crypto</text></g></svg>`}></div>
     <figcaption>Rate differentials feed in; commodities, gold, EM-FX and crypto read off it. In a dash-for-cash the spokes collapse inward — every correlation to one. <span class="dconf medium">medium confidence</span></figcaption>
   </figure>
@@ -648,7 +647,7 @@ const watchlist = [
     {dedollar.map((r) => (<tr><td class="prec-name" set:html={r[0]}></td><td>{r[1]}</td><td set:html={r[2]}></td><td><span class="tierchip">{r[3]}</span></td></tr>))}
   </tbody></table>
   <p class="srcline deep">De-dollarization is real but <b>glacial</b> — the dollar’s share is at a 25-year low yet no alternative has Treasuries’ depth, liquidity and legal protection. The shock raises the temperature on a multi-decade shift; it does not break the order. <span class="dconf low">low confidence on pace.</span> <span class="tierchip">T1/T2</span></p>
-  <figure class="snap-chart deep"><div class="cp-h"><span>The dollar’s reserve share</span><span class="cp-tag">illustrative</span></div>
+  <figure class="snap-chart deep figfix"><div class="cp-h"><span>The dollar’s reserve share</span><span class="cp-tag">illustrative</span></div>
     <div class="sc-svg" set:html={`<svg viewBox="0 0 340 92" role="img" aria-label="The dollar's share of global reserves sliding from about 72 percent in 2001 to about 57 percent now"><polyline points="12,22 120,38 210,50 300,58" fill="none" stroke="var(--eyeb)" stroke-width="2"/><circle cx="12" cy="22" r="3" fill="var(--eyeb)"/><text x="16" y="18" fill="var(--muted)" font-size="8" font-family="Lora,serif">72% (2001)</text><circle cx="300" cy="58" r="3" fill="var(--eyeb)"/><text x="298" y="54" text-anchor="end" fill="var(--muted)" font-size="8" font-family="Lora,serif">56.77% (now)</text><line x1="12" y1="76" x2="328" y2="76" stroke="var(--cardline)"/></svg>`}></div>
     <figcaption>A 25-year slide — erosion, not collapse; no rival has Treasuries’ depth, liquidity and legal protection. <span class="dconf low">low confidence on pace</span></figcaption>
   </figure>
@@ -690,7 +689,7 @@ const watchlist = [
     <h3 class="dl">Glossary</h3>
     <div class="glosslist">{gloss.map((g) => (<div class="gl-row"><b>{g[0]}</b><span>{g[1]}</span></div>))}</div>
     <h3 class="dl">Primary sources</h3>
-    <div class="srcgrid">{sources.map((s) => (<a class="srcpill" href={`https://${s[1]}`} target="_blank" rel="noopener">{s[0]}</a>))}</div>
+    <div class="srcgrid">{sources.map((s, i) => (<a class="srcpill" href={`https://${s[1]}`} target="_blank" rel="noopener"><span class="srcnum">[{i + 1}]</span> {s[0]}</a>))}</div>
   </div>
   <p class="tnote">VegaReady is catalyst-neutral market intelligence, not investment advice. We show what is moving, the range of what could happen, and how sure we are — the decision is yours. Data is free, public and attributed; where only a licensed feed exists (official DXY, live spot gold, gold vol, the live cross-currency basis), we show an honest proxy or leave the tile blank rather than fabricate a value. We also treat “free” precisely: most free official feeds are prior-business-day benchmarks, not intraday-live (the LBMA gold print is a once- or twice-daily fix, not live spot), and we never synthesize a gold-volatility reading from price changes and label it gold vol.</p>
 </div></section>
@@ -828,6 +827,8 @@ const watchlist = [
   .tierchip{font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.04em;color:var(--struct);border:1px solid color-mix(in srgb,var(--struct) 40%,transparent);border-radius:3px;padding:0 4px;white-space:nowrap;display:inline-block}
   .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .dtbl.wide{min-width:600px}
+  .snap-chart.figfix{max-width:520px}
+  .srcnum{color:var(--eyeb);font-family:'Lora',serif;font-weight:700;font-size:10px;margin-right:1px}
   .legend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
   @media(max-width:860px){.legend-grid{grid-template-columns:1fr}}
   .legendbox{background:var(--anchor);border:1px solid var(--cardline);border-radius:10px;padding:13px 15px}
@@ -892,6 +893,7 @@ const watchlist = [
     document.querySelectorAll('.disc button').forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-disc'));});});
     var init=document.body.getAttribute('data-disc')||(document.body.getAttribute('data-mode')==='overview'?'skim':'deep');apply(init);
   })();
+  (function(){var raf=null;function upd(){document.body.classList.toggle('scrolled',window.scrollY>360);}window.addEventListener('scroll',function(){if(raf)return;raf=requestAnimationFrame(function(){raf=null;upd();});},{passive:true});upd();})();
   (function(){var links=Array.prototype.slice.call(document.querySelectorAll('#secnav a'));var ids=links.map(function(a){return a.getAttribute('href').slice(1)});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=ids.indexOf(e.target.id);if(i>=0){links.forEach(function(x){x.classList.remove('on')});links[i].classList.add('on');}}});},{rootMargin:'-45% 0px -50% 0px'});ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
   (function(){var tbl=document.getElementById('cohtbl');if(!tbl)return;var ths=tbl.querySelectorAll('th.sort');ths.forEach(function(th){th.addEventListener('click',function(){var col=th.getAttribute('data-col');var dir=th.getAttribute('data-dir')==='asc'?-1:1;th.setAttribute('data-dir',dir===1?'asc':'desc');var tb=tbl.querySelector('tbody');var rows=Array.prototype.slice.call(tb.querySelectorAll('tr'));rows.sort(function(a,b){return (parseFloat(a.getAttribute('data-'+col))-parseFloat(b.getAttribute('data-'+col)))*dir;});rows.forEach(function(r){tb.appendChild(r);});});});})();
 </script>
