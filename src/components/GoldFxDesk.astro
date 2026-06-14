@@ -120,7 +120,7 @@ const T = {
   },
   structure: {
     eye: '§2', q: 'Is the strength broad — and who is the haven?', h: 'Haven Hierarchy & Breadth', fresh: 'daily · monthly TIC', chart: 'ladder',
-    lead: `The haven hierarchy this cycle runs <b>USD &gt; CHF &gt; gold &gt; JPY</b> — an inversion of the 1979/1990 template where gold led and the yen was a refuge. The dollar took the primary bid (net-energy-exporter advantage); the franc took the neutral-haven flow; gold led the <i>monetary</i> haven before its correction; and the yen — now the carry funding leg — is no longer a refuge but the largest concentrated tail. Beneath the surface, dollar strength is an <b>official-sector-selling, private-sector-absorbing</b> story (see the breadth read). The dispersion shows in the gauges: the all-partners index (DTWEXBGS 120.08) sits ~7 points above the advanced-economy cut (DTWEXAFEGS 112.68), with the EM cut (DTWEXEMEGS 129.38) heaviest — and the advanced-economy dollar is up YTD while the EM dollar is flat-to-down, so the 2026 shock is concentrated on <b>energy importers</b>, not EM broadly.`,
+    lead: `The haven hierarchy this cycle runs <b>USD &gt; CHF &gt; gold &gt; JPY</b> — an inversion of the 1979/1990 template where gold led and the yen was a refuge. The dollar took the primary bid (net-energy-exporter advantage); the franc took the neutral-haven flow; gold led the <i>monetary</i> haven before its correction; and the yen — now the carry funding leg — is no longer a refuge but the largest concentrated tail. Beneath the surface, dollar strength is an <b>official-sector-selling, private-sector-absorbing</b> story (see the breadth read). The dispersion shows in the gauges: the all-partners index (DTWEXBGS 120.08) sits ~7 points above the advanced-economy cut (DTWEXAFEGS 112.68), with the EM cut (DTWEXEMEGS 129.38) heaviest — and the advanced-economy dollar is up YTD while the EM dollar is flat-to-down, so the 2026 shock is concentrated on <b>energy importers</b>, not EM broadly. The cleanest one-line split: the dollar remains the <i>liquidity</i> haven, while gold is gaining share as the <i>political-reserve</i> haven.`,
     kpi: [
       ['VIX (stress gauge)', '—', 'src', null],
       ['Foreign-official UST, y/y', '−$21.2bn', 'pub', 'high'],
@@ -191,7 +191,7 @@ const charts = {
 // ── historical haven/crisis templates (§2) ──
 const havenTemplates = [
   ['1990', 'Gulf War', 'Gold spiked on the oil shock as equities plunged — the live 2026 analogue for a geopolitical gold bid', 'T3'],
-  ['1994', '“Bond massacre”', 'Fed 3.0%→5.5%; the Mexican peso broke that December with a ~10-month lag — tightening transmits to EM late', 'T1'],
+  ['1994', '“Bond massacre”', 'Fed 3.0%→5.5%; the Mexican peso broke that December (3.5→5.75/$ in days, a ~$50bn bailout) with a ~10-month lag — tightening transmits to EM late', 'T1'],
   ['1998', 'LTCM / Russia default', 'Yen +15–20% in days; 10y UST troughed 4.16% (flight-to-quality won); VIX peaked 49.53 — systemic in under two weeks', 'T1'],
   ['2008', 'GFC / yen-carry unwind', 'Yen +15%, Swiss franc +9% over the 10 months to Apr 2008; AUD/JPY −7.7% in a single day (Aug 2007)', 'T1'],
   ['2020', 'COVID dash-for-cash', 'Fed dollar-swap lines peaked ~$450bn (May 2020) — the backstop that capped the offshore-dollar squeeze', 'T1'],
@@ -272,11 +272,12 @@ const corrPairs = [
   ['Dollar ↔ EM equities', 'Strong dollar = EM-equity headwind (tighter $ liquidity, carry outflows)', 'A carry unwind crushes EM regardless; de-escalation reverses it as carry inflows resume'],
 ];
 const scenMatrix = [
-  { sc: 'Hormuz escalation (risk-off)', d: ['Dollar bid (haven)', 'pos'], g: ['Gold bid', 'pos'], e: ['EM-FX sells off', 'neg'], u: ['Long-end UST rally (flight-to-quality)', 'pos'] },
-  { sc: 'Oil → inflation → hawkish Fed', d: ['Dollar firm (carry)', 'pos'], g: ['Gold pressured (real yields up)', 'neg'], e: ['Importers squeezed', 'neg'], u: ['Front-end pinned, bear-steepening', 'neg'] },
-  { sc: 'Durable de-escalation', d: ['Dollar softens (<100)', 'neg'], g: ['Gold eases', 'neg'], e: ['EM carry re-attracts inflows', 'pos'], u: ['Cut odds return, curve bull-steepens', 'pos'] },
-  { sc: 'Fiscal “buyer’s strike”', d: ['Dollar weak despite high rates', 'neg'], g: ['Gold + real yields rise together (doom-loop)', 'neg'], e: ['Broad EM stress', 'neg'], u: ['Term premium blows out', 'neg'] },
-  { sc: 'Carry unwind', d: ['Funding legs (¥/CHF) surge', 'mix'], g: ['Mixed — haven vs deleveraging', 'mix'], e: ['EM recipients crushed', 'neg'], u: ['Ambiguous — flight-to-quality vs forced selling', 'mix'] },
+  { sc: 'Hormuz escalation (risk-off)', d: ['Dollar bid (haven)', 'pos'], g: ['Gold bid', 'pos'], e: ['EM-FX sells off', 'neg'], u: ['Long-end UST rally (flight-to-quality)', 'pos'], a: '2022 DXY-114 shock + 2020 dash-for-dollars' },
+  { sc: 'Oil → inflation → hawkish Fed', d: ['Dollar firm (carry)', 'pos'], g: ['Gold pressured (real yields up)', 'neg'], e: ['Importers squeezed', 'neg'], u: ['Front-end pinned, bear-steepening', 'neg'], a: '1970s oil shocks (directionally)' },
+  { sc: 'Grinding stagflation (Fed paralysed)', d: ['Range-bound, firm', 'mix'], g: ['Supported, choppy', 'mix'], e: ['Importers grind weaker', 'neg'], u: ['Flat &amp; elevated (10y ~4.25–4.75%)', 'mix'], a: 'mid-1970s · 2011–12' },
+  { sc: 'Durable de-escalation', d: ['Dollar softens (DXY <100)', 'neg'], g: ['Gold eases', 'neg'], e: ['EM carry re-attracts inflows', 'pos'], u: ['Cut odds return, curve bull-steepens', 'pos'], a: '1991 Gulf War quick resolution' },
+  { sc: 'Fiscal “buyer’s strike”', d: ['Dollar weak despite high rates', 'neg'], g: ['Gold + real yields rise together (doom-loop)', 'neg'], e: ['Broad EM stress', 'neg'], u: ['Term premium blows out', 'neg'], a: 'no clean analogue — nearest post-WWII reserve shifts' },
+  { sc: 'Carry unwind', d: ['Funding legs (¥/CHF) surge', 'mix'], g: ['Mixed — haven vs deleveraging', 'mix'], e: ['EM recipients crushed', 'neg'], u: ['Ambiguous — flight-to-quality vs forced selling', 'mix'], a: '2008 GFC freeze · Aug-2024 yen unwind' },
 ];
 
 // ── §9 catalysts ──
@@ -297,6 +298,15 @@ const dedollar = [
   ['Central-bank gold', '~29t/month', 'A price-inelastic post-2022-freeze bid; ~$49bn/yr diverted from Treasuries at the current price', 'T2'],
   [gl('mBridge', 'mBridge + BRICS'), 'scaling', 'Local-currency settlement rails that can bypass the dollar leg — small but growing', 'T3'],
   [gl('Petrodollar', 'Petrodollar recycling'), 'conditional', 'Gulf oil-export recycling becoming more politically contingent; Saudi still a y/y Treasury buyer', 'T1/T3'],
+  ['CB gold — the tonnage ladder', '~863t (2025)', '2022 record 1,082t · 2023 1,037t · 2024 record 1,086t · 2025 ~863t · Q1-2026 244t; ~95% of central banks expect to add more over the next year', 'T2'],
+  ['Reserve composition', 'USD 56.77% · EUR 20.25% · RMB 1.95%', 'The renminbi is still sub-2% despite the headlines — diversification runs into gold and many small currencies, not one rival', 'T1'],
+];
+const diasporaPeers = [
+  ['Israel — diaspora bonds (DCI)', '>$54bn cumulative; ~$8bn record (2024)', 'The only structural program — an annual development-finance channel, not a crisis tool', 'pos'],
+  ['India — IDB→RIB→IMD→FCNR(B)', '$1.6bn (1991) → $4.2bn (1998) → $5.5bn (2000) → $26bn (2013)', 'Episodic crisis tool — repeated and effective, but reactive', 'mix'],
+  ['Pakistan — Roshan Digital', '$11.31bn cumulative by Oct-2025 (~$200m/mo)', 'Moderate, steady digital channel', 'mix'],
+  ['Nigeria — diaspora bond (2017)', '$300m, 130% oversubscribed, redeemed on time', 'Small, but a clean success', 'pos'],
+  ['Sri Lanka — SL Development Bonds', 'rolled for years → swept into the 2022 default', 'Cautionary — did not prevent the default', 'neg'],
 ];
 
 // ── §10 sources ──
@@ -376,7 +386,7 @@ const watchlist = [
   ['31 Dec 2026', 'SEC Treasury cash central-clearing', 'Reshapes the basis-trade economics under the dollar’s plumbing', 'cal'],
   ['30 Jun 2027', 'Repo central-clearing (phase two)', 'Completes the mandate; watch for basis-trade deleveraging', 'cal'],
   ['Escalation', 'Brent &gt;$95–100 · 5y/5y inflation &gt;2.5% · an actual Fed hike', 'Flips the regime more dollar-firm and gold-bid', 'up'],
-  ['De-escalation', 'Brent &lt;$80 · cut odds returning · broad dollar &lt;100', 'Dollar softens; EM carry re-attracts inflows', 'dn'],
+  ['De-escalation', 'Brent &lt;$80 · cut odds returning · broad dollar &lt;100 · INR/KRW recovering faster than NOK/CAD', 'Dollar softens; EM carry re-attracts inflows', 'dn'],
 ];
 ---
 
@@ -430,7 +440,7 @@ const watchlist = [
         <div class="dp-tile">
           <div class="dp-top"><span class="dp-k" set:html={t.k}></span><span class={`st-chip ${c.cls}`}>{c.g} {c.w}</span></div>
           <div class="dp-v">{t.v}</div>
-          <div class="dp-s">{t.s}</div>
+          <div class="dp-s" set:html={t.s}></div>
         </div>
       );})}
       <div class="attrib-foot">— FRED · LBMA · Treasury · {SNAP}; majors live, gold/flows source-ready</div>
@@ -480,7 +490,7 @@ const watchlist = [
     </div>
     <div>
       <div class="lvbox"><div class="lv-h">Leading-indicator value</div><div class="lv-v"><b set:html={t.lv[0]}></b><br/><span set:html={t.lv[1]}></span></div></div>
-      <div class="srcline">{t.src} {tierOf(t.tier)}</div>
+      <div class="srcline">{t.src} <span class="tierchip">{t.tier}</span></div>
     </div>
   </div>
   <div class="deep feedph">
@@ -491,12 +501,12 @@ const watchlist = [
     <div class="deep">
       <h3 class="dl">Crisis & haven templates — the dated set</h3>
       <table class="dtbl"><thead><tr><th>Year</th><th>Event</th><th>Haven behaviour &amp; magnitude</th><th></th></tr></thead><tbody>
-        {havenTemplates.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td>{tierOf(r[3])}</td></tr>))}
+        {havenTemplates.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td><span class="tierchip">{r[3]}</span></td></tr>))}
       </tbody></table>
     </div>
   )}
   {key === 'valuation' && (
-    <div class="deep dcallout"><div class="dc-h">Gold, set straight</div><p>Gold’s January 2026 all-time high of <b>$5,595/oz</b> is real (it broke $5,000 on Jan 26 and peaked the 29th). It then <b>corrected ~19%</b> to a ~$4,170 floor in March on the real-yield spike, and is consolidating ~$4,300–4,540 now — so today’s ~$4,365 is <b>off the record, not a new one</b>. The textbook gold↔real-yield inverse bent on the way up and reasserted in the correction: a risk-premium overlay on a real-rate anchor, not a repeal of it. The decoupling has a clean falsifier: gold loses on <i>both</i> legs only if real yields rise and the geopolitical premium eases at the same time — concretely, watch central-bank buying fall below ~400t/quarter <i>while</i> the real 10y holds above +2%. Whether the decoupling is permanent is genuinely contested: read it as a level-shift that dampens, not erases, the real-rate signal — a durable ceasefire is the experiment that settles it (if gold holds the premium on a real de-escalation, the “permanent regime change” camp wins; if it gives the premium back, the “conditional” camp does).</p></div>
+    <div class="deep dcallout"><div class="dc-h">Gold, set straight</div><p>Gold’s January 2026 all-time high of <b>$5,595/oz</b> is real (it broke $5,000 on Jan 26 and peaked the 29th). It then <b>corrected ~19%</b> to a ~$4,170 floor in March on the real-yield spike, and is consolidating ~$4,300–4,540 now — so today’s ~$4,365 is <b>off the record, not a new one</b>. The textbook gold↔real-yield inverse bent on the way up and reasserted in the correction: a risk-premium overlay on a real-rate anchor, not a repeal of it. The decoupling has a clean falsifier: gold loses on <i>both</i> legs only if real yields rise and the geopolitical premium eases at the same time — concretely, watch central-bank buying fall below ~400t/quarter <i>while</i> the real 10y holds above +2%. Whether the decoupling is permanent is genuinely contested: read it as a level-shift that dampens, not erases, the real-rate signal — a durable ceasefire is the experiment that settles it (if gold holds the premium on a real de-escalation, the “permanent regime change” camp wins; if it gives the premium back, the “conditional” camp does). A third reading splits the difference — <b>decoupled in level, not in impulse</b>: the central-bank bid lifts gold’s fair-value floor, but a sudden real-yield jump can still force a drawdown. And mind the venue — the “price” spans ~$4,218 retail, ~$4,240 futures and ~$4,365 on the LBMA tape, roughly double the 2020 record of $1,940.9 (LBMA PM, 28 Jul 2020) — so read the tape, not a single screen.</p></div>
   )}
 </div></section>
 );})}
@@ -545,7 +555,7 @@ const watchlist = [
       </div></div>
     </details>
   ))}</div>
-  <p class="srcline deep">Free sources: FRED bilateral FX (daily) · CFTC COT (weekly) · LBMA gold fix · World Gold Council monthly central-bank gold · Japan MOF intervention CSV. Per-cross fair value (REER/PPP) and silver/PGM microstructure are sourced at the next data layer. {tierOf('T1/T2')}</p>
+  <p class="srcline deep">Free sources: FRED bilateral FX (daily) · CFTC COT (weekly) · LBMA gold fix · World Gold Council monthly central-bank gold · Japan MOF intervention CSV. Per-cross fair value (REER/PPP) and silver/PGM microstructure are sourced at the next data layer. <span class="tierchip">T1/T2</span></p>
 </div></section>
 
 <!-- §6 FACTORS -->
@@ -564,10 +574,10 @@ const watchlist = [
   </figure>
   <h3 class="dl deep">Carry-unwind crisis history — the dated ledger</h3>
   <table class="dtbl deep"><thead><tr><th>Episode</th><th>Trigger</th><th>Magnitude &amp; speed</th><th></th></tr></thead><tbody>
-    {carryHistory.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td class="num-cell">{r[2]}</td><td>{tierOf(r[3])}</td></tr>))}
+    {carryHistory.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td class="num-cell">{r[2]}</td><td><span class="tierchip">{r[3]}</span></td></tr>))}
   </tbody></table>
   <div class="deep dcallout warn"><div class="dc-h">The 2026 tail</div><p>If the BoJ and ECB hike <i>simultaneously</i> into a hawkish Fed, carry compresses at all three funding legs at once. August 2024 unwound only 10–15% of the yen book in 72 hours and still triggered crisis-level vol; if 25–40% of the remaining ~$4tn book unwound under a synchronized squeeze, the transmission could exceed any post-2008 event. Whether that is bearish or bullish for Treasuries is <b>genuinely ambiguous</b> — a flight-to-quality bid and forced official selling can coexist (in 1998 the 10y troughed at 4.16%) — but either way the VIX clears 35.</p></div>
-  <p class="srcline deep">Free sources: CFTC COT net positioning (weekly) · FRED policy-rate differentials · BIS crisis bulletins. Named FX factor premia (carry/value/momentum/dollar) are sourced at the next data layer; the live cross-currency basis has no free feed. {tierOf('T1/T2')}</p>
+  <p class="srcline deep">Free sources: CFTC COT net positioning (weekly) · FRED policy-rate differentials · BIS crisis bulletins. Named FX factor premia (carry/value/momentum/dollar) are sourced at the next data layer; the live cross-currency basis has no free feed. <span class="tierchip">T1/T2</span></p>
 </div></section>
 
 <!-- §7 POSITIONING -->
@@ -575,24 +585,31 @@ const watchlist = [
   <div class="sec-head"><div><div class="eyebrow">§7 · The plumbing &amp; the forced seller</div><h2>Positioning, intervention &amp; funding.</h2></div><span class="fresh-tag">weekly · monthly</span></div>
   <p class="lead">This is where FX stress shows first. When a sovereign faces a strong dollar or a funding shock, it has <b>eight tools</b> (plus a ninth, private channel) — and each leaves a different footprint on the Treasury market. The central question of the desk: <b>which responses force more Treasury selling, and which substitute for it?</b></p>
   <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf['positioning']}></span> <span class="bl-go">Open Deep ↓</span></p>
-  <table class="dtbl"><thead><tr><th>Tool</th><th>What it does</th><th>UST effect</th><th>Hard figures</th></tr></thead><tbody>
+  <div class="tblwrap deep"><table class="dtbl wide"><thead><tr><th>Tool</th><th>What it does</th><th>UST effect</th><th>Hard figures</th></tr></thead><tbody>
     {tools.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td><span class={`wl-tag wl-${r[4]}`}>{r[2]}</span></td><td class="num-cell">{r[3]}</td></tr>))}
-  </tbody></table>
+  </tbody></table></div>
 
   <div class="deep dcallout"><div class="dc-h">The DV01 ruler — sizing a forced seller</div><p>At a 10y yield of 4.45% and duration ~8.1, <span set:html={gl('DV01', 'DV01')}></span> ≈ <b>$0.81mn per $1bn per basis point</b> ($0.081 per $100 face). A $50bn 10-year-equivalent sale ≈ <b>$40.5mn/bp</b>; at a street clearing elasticity of ~1bp per $7.5bn, that is ~6–7bp of mechanical term-premium pressure. Japan and China’s combined March drop of $88.7bn ≈ <b>~$72mn/bp dropped on the market in a single month</b>. Scaled over six months: a central +$60bn of net foreign demand ≈ $49mn/bp of support, while a −$200bn official-selling stress ≈ $162mn/bp supplied ≈ <b>+15–25bp on the long end</b> if it lands with weak auctions and basis deleveraging. This is how a reserve sale becomes a rate move.</p></div>
 
   <h3 class="dl deep">The Treasury scoreboard — who holds, who is selling (TIC, Mar 2026)</h3>
-  <table class="dtbl deep"><thead><tr><th>Holder</th><th>Holdings</th><th>m/m</th><th>y/y</th><th>Flow read</th></tr></thead><tbody>
+  <div class="tblwrap"><table class="dtbl wide deep"><thead><tr><th>Holder</th><th>Holdings</th><th>m/m</th><th>y/y</th><th>Flow read</th></tr></thead><tbody>
     {ticBoard.map((r) => (<tr class={r[0].startsWith('Foreign') || r[0].startsWith('Total') ? 'tr-tot' : ''}><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td class={parseFloat(r[2]) < 0 ? 'neg-c' : 'pos-c'}>{r[2]}</td><td class={parseFloat(r[3]) < 0 ? 'neg-c' : 'pos-c'}>{r[3]}</td><td>{r[4]}</td></tr>))}
-  </tbody></table>
-  <p class="srcline deep">TIC is collected from US-based custodians — m/m mixes flow, valuation and custody-location, not pure transactions. The UK + Cayman lines are heavily <b>basis-trade leverage</b> (long cash UST / short futures): fragile if repo haircuts rise. {tierOf('T1')}</p>
+  </tbody></table></div>
+  <p class="srcline deep">TIC is collected from US-based custodians — m/m mixes flow, valuation and custody-location, not pure transactions. The UK + Cayman lines are heavily <b>basis-trade leverage</b> (long cash UST / short futures): fragile if repo haircuts rise. <span class="tierchip">T1</span></p>
   <div class="deep dcallout warn"><div class="dc-h">The basis trade — the leverage that turns a Treasury wobble into a dollar event</div><p>Those UK and Cayman lines are largely the Treasury <b>basis trade</b> (long cash Treasuries, short futures, financed in repo), and its scale is now systemic: hedge funds reached <b>~10.3% of the cash Treasury market</b> (Q1 2025), official data <b>undercounts the positions by ~$1.4tn</b>, and <b>~73.8% of the repo funding it carries zero or negative haircuts</b> — thin loss-absorption. The Fed’s Lisa Cook has flagged that the trade can make the <b>$30tn Treasury market “more vulnerable to stress”</b>; its unwind was central to the March-2020 dash-for-cash. This is the channel that converts a Treasury dislocation into a forced-seller, dollar-funding event — and why the basis is the tell, not the balance.</p></div>
+  <div class="deep dcallout"><div class="dc-h">Negative swap spreads — the dealer-capacity gauge</div><p>Treasury yields now sit <i>above</i> matched-maturity swap rates across the curve — the <b>5y swap spread ~−29bp, the 30y ~−78bp</b>. Post-2008 leverage rules (SLR/eSLR, G-SIB surcharges) make it capital-expensive for dealers to warehouse Treasuries, so they charge a “balance-sheet rental fee” that pushes UST yields above swaps; the long-end negativity is deepened by pension and insurer pay-fixed hedging. The more negative the spread, the <b>thinner dealer capacity</b> — and the faster a Treasury wobble converts into a dollar-funding event. <span class="srcline">Live swap-spread levels need licensed data (the classic free FRED series is discontinued); read this as a lagged stress gauge. <span class="tierchip">T4</span></span></p></div>
+  <div class="deep dcallout"><div class="dc-h">What positioning says — crowded, or not?</div><p>Two free CFTC reads matter. In <b>Treasury futures</b>, leveraged funds run a large net <b>short</b> — that <i>is</i> the basis-trade footprint, with asset managers the offsetting net long; a sudden short-cover is the deleveraging tell. In <b>gold</b>, non-commercials are net long <b>+173,837 contracts (52.25% of open interest) but only the ~32nd percentile of the past year</b> — long, <i>not</i> stretched: the rally is demand-driven (central banks, not Western specs), which is why it hasn’t tripped a crowded-long reversal. The <b>dollar-index</b> net long sits at the ~79th percentile but is tiny in absolute terms (~+1,384 contracts). <span class="srcline">CFTC Commitments of Traders · weekly (Tue positions, published Fri) · free. <span class="tierchip">T1</span></span></p></div>
 
   <div class="deep dcallout"><div class="dc-h">The “17%” diaspora explainer — what India’s FCNR(B) drive really pays</div><p>India’s 2026 FCNR(B) program (announced 5 Jun) has the RBI bearing the <i>entire</i> hedging cost (the swap is at par), versus a concessional 3.5% in 2013 — a structural upgrade that offsets the much thinner 2026 rate differential. The headline <b>“17%” is NOT the deposit coupon</b> (~5.5–7% in dollars). It is a <b>leveraged dollar IRR</b>: an NRI putting $100k of equity, borrowing $700k at ~5% and depositing $800k at ~6.5% earns ~$52k − $35k = <b>$17k on $100k = a 17% USD IRR</b> — currency risk sits with the RBI, not the depositor. A successful $25–50bn raise would more than offset both India’s FY26 spot intervention and reserve drawdown — substitution (tool d) replacing UST sales (tool a). Mechanically it is a <b>covered intervention</b>: the absorbed dollars are reinvested in Treasuries while the rupee leg is monetary creation at no financial cost — so it substitutes for selling USTs and can even buy them (in 2013 the rupee recovered 68.85→62 and the current-account deficit compressed from 4.8% to 0.9% of GDP). The bear case to weigh: realized inflows historically land nearer $25–50bn than the $50–70bn headline, round-tripping shrinks the net dollars, and the effective cost is ~4.35% over Treasuries — it time-shifts the adjustment, it doesn’t cancel it. It is the live behavioural answer, not free money.</p></div>
+  <div class="deep"><h3 class="dl">Diaspora deposits have a track record — the base rate</h3>
+  <table class="dtbl"><thead><tr><th>Program</th><th>Sized track record</th><th>Read</th><th></th></tr></thead><tbody>
+    {diasporaPeers.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td><span class={`wl-tag wl-${r[3]}`}>{r[3] === 'pos' ? 'works' : r[3] === 'neg' ? 'failed' : 'episodic'}</span></td></tr>))}
+  </tbody></table>
+  <p class="srcline deep">Success needs a large, wealthy, <i>attached</i> diaspora + competitive rates with the FX risk removed + credible institutions. Israel’s is structural; India’s are episodic crisis tools; the rest small-to-moderate. This is the base rate behind the FCNR bet. <span class="tierchip">T1</span></p></div>
 
   <div class="deep dcallout"><div class="dc-h">The master tell — funding stress before it’s a headline</div><p>The single best early warning is <b>not</b> the FIMA balance ($1mn drawn now) — it is the <i>spread</i> between offshore-dollar funding stress (the <span set:html={gl('Cross-currency basis', 'cross-currency basis')}></span>, FRA/OIS) and the Fed’s <span set:html={gl('FIMA repo', 'FIMA')}></span>/<span set:html={gl('SRF', 'SRF')}></span> administered rate. The option value of the backstop swamps the observed draw. With QT having pushed reserves toward the “ample” boundary, <span set:html={gl('SRF', 'SRF')}></span> take-up — paired with the <b>SOFR–IORB spread</b> — is now the single best real-time read on genuine funding stress, far more diagnostic than the FIMA balance. Watch the basis widen and the <span set:html={gl('SRF', 'SRF')}></span> take-up tick up — those lead; TIC lags two months. The unambiguous flip is a <b>conjunction</b>: a cross-currency basis at −50bp <i>and</i> rising swap-line use <i>and</i> falling EM-FX <i>and</i> a gold bid, together, means the regime has moved from haven premium to balance-sheet liquidation — not any one of them alone.</p></div>
-  <div class="deep dcallout"><div class="dc-h">Why a dollar squeeze bites harder now — the reserve buffer is gone</div><p>The cushion that used to absorb funding shocks has drained: the Fed’s overnight reverse-repo facility fell from a <b>&gt;$2.5tn peak to near-zero</b> domestic balances. So a Treasury cash rebuild — the operating account is assumed to climb toward <b>~$1tn</b> at the late-April and late-July peaks — now drains bank reserves <b>first-order</b> and pushes repo rates up (in the 2025 rebuild, reserves fell ~$350bn as the account reached ~$800bn). Post-QT, a dollar-funding squeeze transmits more violently than in the QE-flush era — which is exactly when the swap lines, FIMA and the SRF become the only thing that matters.</p></div>
-  <p class="srcline deep">Free sources: Treasury TIC (monthly) · CFTC COT (weekly) · Japan MOF CSV · NY Fed SRF + Fed H.4.1 (daily/weekly) · WGC (monthly) · RBI weekly prints. The live cross-currency basis has no free feed — scaffolded honestly. {tierOf('T1')}</p>
+  <div class="deep dcallout"><div class="dc-h">Why a dollar squeeze bites harder now — the reserve buffer is gone</div><p>The cushion that used to absorb funding shocks has drained: quantitative tightening formally ended <b>1 Dec 2025</b> and the Fed has run a technical “reserve-management” regime since January 2026 (not new QE), with the overnight reverse-repo facility down from a <b>&gt;$2.5tn peak to near-zero</b> domestic balances and reserves (~$3.08tn) now the marginal cushion. So a Treasury cash rebuild — the operating account is assumed to climb toward <b>~$1tn</b> at the late-April and late-July peaks — now drains bank reserves <b>first-order</b> and pushes repo rates up (in the 2025 rebuild, reserves fell ~$350bn as the account reached ~$800bn). Post-QT, a dollar-funding squeeze transmits more violently than in the QE-flush era — which is exactly when the swap lines, FIMA and the SRF become the only thing that matters.</p></div>
+  <p class="srcline deep">Free sources: Treasury TIC (monthly) · CFTC COT (weekly) · Japan MOF CSV · NY Fed SRF + Fed H.4.1 (daily/weekly) · WGC (monthly) · RBI weekly prints. The live cross-currency basis has no free feed — scaffolded honestly. <span class="tierchip">T1</span></p>
 </div></section>
 
 <!-- §8 CROSS-ASSET -->
@@ -600,7 +617,7 @@ const watchlist = [
   <div class="sec-head"><div><div class="eyebrow">§8 · Does the macro complex confirm?</div><h2>Cross-asset linkages.</h2></div><span class="fresh-tag">daily</span></div>
   <p class="lead">The dollar sits under every other asset class; gold and the yen are the cross-asset tells. These relationships are <b>regime-dependent, not causal</b> — the “what breaks it” column is the point, because in a true dash-for-cash every correlation converges toward one.</p>
   <p class="skim-bl skim-only"><b>In short —</b> <span set:html={blOf['crossasset']}></span> <span class="bl-go">Open Deep ↓</span></p>
-  <table class="dtbl"><thead><tr><th>Pair</th><th>Normal relationship</th><th>What breaks it</th></tr></thead><tbody>
+  <table class="dtbl deep"><thead><tr><th>Pair</th><th>Normal relationship</th><th>What breaks it</th></tr></thead><tbody>
     {corrPairs.map((r) => (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>))}
   </tbody></table>
   <figure class="snap-chart deep"><div class="cp-h"><span>The dollar sits under everything</span><span class="cp-tag">illustrative</span></div>
@@ -608,11 +625,11 @@ const watchlist = [
     <figcaption>Rate differentials feed in; commodities, gold, EM-FX and crypto read off it. In a dash-for-cash the spokes collapse inward — every correlation to one. <span class="dconf medium">medium confidence</span></figcaption>
   </figure>
   <h3 class="dl deep">Scenario → asset map (a durable framework, not a forecast)</h3>
-  <table class="dtbl deep"><thead><tr><th>Scenario</th><th>Dollar</th><th>Gold</th><th>EM-FX</th><th>USTs</th></tr></thead><tbody>
-    {scenMatrix.map((r) => (<tr><td class="prec-name">{r.sc}</td><td><span class={`sc-cell sc-${r.d[1]}`}>{r.d[0]}</span></td><td><span class={`sc-cell sc-${r.g[1]}`}>{r.g[0]}</span></td><td><span class={`sc-cell sc-${r.e[1]}`}>{r.e[0]}</span></td><td><span class={`sc-cell sc-${r.u[1]}`}>{r.u[0]}</span></td></tr>))}
-  </tbody></table>
+  <div class="tblwrap"><table class="dtbl wide deep"><thead><tr><th>Scenario</th><th>Dollar</th><th>Gold</th><th>EM-FX</th><th>USTs</th><th>Historical analogue</th></tr></thead><tbody>
+    {scenMatrix.map((r) => (<tr><td class="prec-name">{r.sc}</td><td><span class={`sc-cell sc-${r.d[1]}`} set:html={r.d[0]}></span></td><td><span class={`sc-cell sc-${r.g[1]}`}>{r.g[0]}</span></td><td><span class={`sc-cell sc-${r.e[1]}`}>{r.e[0]}</span></td><td><span class={`sc-cell sc-${r.u[1]}`} set:html={r.u[0]}></span></td><td class="sc-an">{r.a}</td></tr>))}
+  </tbody></table></div>
   <div class="deep dcallout warn"><div class="dc-h">The kill-switch</div><p>In a genuine dash-for-cash the diversification you assumed evaporates: the dollar, Treasuries and gold can all be sold at once for liquidity, and every cross-asset correlation snaps toward one. That is exactly when the funding plumbing in §7 — swap lines, FIMA, the SRF — becomes the only thing that matters.</p></div>
-  <p class="srcline deep">Free sources: FRED rates family (DGS2 / DGS10 / DFII10 / T10YIE, daily) · LBMA gold fix · CBOE VIX. Official DXY, live spot gold and MOVE have no free feed — scaffolded. {tierOf('T1')}</p>
+  <p class="srcline deep">Free sources: FRED rates family (DGS2 / DGS10 / DFII10 / T10YIE, daily) · LBMA gold fix · CBOE VIX. Official DXY, live spot gold and MOVE have no free feed — scaffolded. <span class="tierchip">T1</span></p>
 </div></section>
 
 <!-- §9 CATALYSTS -->
@@ -628,9 +645,9 @@ const watchlist = [
   <div class="deep dcallout"><div class="dc-h">Petrodollar recycling — a partial fracture, not a break</div><p>The 1974 arrangement made oil exporters perpetual Treasury buyers. Hormuz cuts both ways: sustained Brent $87+ enlarges Gulf surpluses (Saudi holdings rose ~$18bn y/y), but disrupted flows cut revenue and a yuan-pricing threat raised the willingness question. The honest read: what shifted is the <b>willingness</b> to recycle (now politically conditional), not the <b>capacity</b> (revenue is intact or higher). The bear case to weigh — which the base case overrides on the data — is a full fracture: exporters turning net sellers to fund deficits and military spend, importers actively selling, and the offshore-dollar pool contracting. The restraint: Saudi was a net y/y Treasury buyer (+$18bn) and Brent $87+ keeps revenue per barrel up.</p></div>
   <h3 class="dl deep">The reserve-order scoreboard</h3>
   <table class="dtbl deep"><thead><tr><th>Metric</th><th>Reading</th><th>Interpretation</th><th></th></tr></thead><tbody>
-    {dedollar.map((r) => (<tr><td class="prec-name" set:html={r[0]}></td><td>{r[1]}</td><td set:html={r[2]}></td><td>{tierOf(r[3])}</td></tr>))}
+    {dedollar.map((r) => (<tr><td class="prec-name" set:html={r[0]}></td><td>{r[1]}</td><td set:html={r[2]}></td><td><span class="tierchip">{r[3]}</span></td></tr>))}
   </tbody></table>
-  <p class="srcline deep">De-dollarization is real but <b>glacial</b> — the dollar’s share is at a 25-year low yet no alternative has Treasuries’ depth, liquidity and legal protection. The shock raises the temperature on a multi-decade shift; it does not break the order. <span class="dconf low">low confidence on pace.</span> {tierOf('T1/T2')}</p>
+  <p class="srcline deep">De-dollarization is real but <b>glacial</b> — the dollar’s share is at a 25-year low yet no alternative has Treasuries’ depth, liquidity and legal protection. The shock raises the temperature on a multi-decade shift; it does not break the order. <span class="dconf low">low confidence on pace.</span> <span class="tierchip">T1/T2</span></p>
   <figure class="snap-chart deep"><div class="cp-h"><span>The dollar’s reserve share</span><span class="cp-tag">illustrative</span></div>
     <div class="sc-svg" set:html={`<svg viewBox="0 0 340 92" role="img" aria-label="The dollar's share of global reserves sliding from about 72 percent in 2001 to about 57 percent now"><polyline points="12,22 120,38 210,50 300,58" fill="none" stroke="var(--eyeb)" stroke-width="2"/><circle cx="12" cy="22" r="3" fill="var(--eyeb)"/><text x="16" y="18" fill="var(--muted)" font-size="8" font-family="Lora,serif">72% (2001)</text><circle cx="300" cy="58" r="3" fill="var(--eyeb)"/><text x="298" y="54" text-anchor="end" fill="var(--muted)" font-size="8" font-family="Lora,serif">56.77% (now)</text><line x1="12" y1="76" x2="328" y2="76" stroke="var(--cardline)"/></svg>`}></div>
     <figcaption>A 25-year slide — erosion, not collapse; no rival has Treasuries’ depth, liquidity and legal protection. <span class="dconf low">low confidence on pace</span></figcaption>
@@ -656,7 +673,7 @@ const watchlist = [
   <p class="lead">We separate two questions that are easy to conflate: <b>is the number reliable?</b> (data confidence) and <b>do we believe the story behind it?</b> (interpretation confidence). A figure can be rock-solid while its explanation is a judgement call. We show what is wired live, what is sourced and pending, and what has no free feed — and we never invent a number.</p>
   <div class="legend-grid">
     <div class="legendbox"><div class="lg-h">Value type</div>{valueTypes.map((r) => (<div class="lg-row"><span class="vt">{r[0]}</span><span>{r[1]}</span></div>))}</div>
-    <div class="legendbox"><div class="lg-h">Source tier</div>{sourceTiers.map((r) => (<div class="lg-row">{tierOf(r[0])}<span><b>{r[1]}</b> — {r[2]}</span></div>))}</div>
+    <div class="legendbox"><div class="lg-h">Source tier</div>{sourceTiers.map((r) => (<div class="lg-row"><span class="tierchip">{r[0]}</span><span><b>{r[1]}</b> — {r[2]}</span></div>))}</div>
     <div class="legendbox"><div class="lg-h">Feed state</div>
       <div class="lg-row"><span class="st-chip st-live">● Live</span><span>auto-refreshed daily from a free official series (prior-session close)</span></div>
       <div class="lg-row"><span class="st-chip st-pub">◐ Latest pub.</span><span>newest official print, refreshed on cadence</span></div>
@@ -666,10 +683,10 @@ const watchlist = [
   </div>
   <div class="deep">
     <h3 class="dl">The data board — every live input, its source &amp; state <span class="db-asof">values as of {SNAP}</span></h3>
-    <table class="dtbl"><thead><tr><th>Tile</th><th>Free source / series</th><th>Cadence</th><th>Value type</th><th>State</th></tr></thead><tbody>
+    <div class="tblwrap"><table class="dtbl wide"><thead><tr><th>Tile</th><th>Free source / series</th><th>Cadence</th><th>Value type</th><th>State</th></tr></thead><tbody>
       {dataBoard.map((r) => { const c = chipFor(r[4]); return (<tr><td class="prec-name">{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td><td>{r[3] === '—' ? '—' : (<span class="vt">{r[3]}</span>)}</td><td><span class={`st-chip ${c.cls}`}>{c.g} {c.w}</span></td></tr>); })}
-    </tbody></table>
-    <p class="srcline">All inputs are free and attribution-only; only the four licensed tiles in the last row require paid data, and those we proxy or leave blank. When the FX feed module lands, every “source ready” row wires to the series named here — no value is invented in the meantime. {tierOf('T1')}</p>
+    </tbody></table></div>
+    <p class="srcline">All inputs are free and attribution-only; only the four licensed tiles in the last row require paid data, and those we proxy or leave blank. When the FX feed module lands, every “source ready” row wires to the series named here — no value is invented in the meantime. <span class="tierchip">T1</span></p>
     <h3 class="dl">Glossary</h3>
     <div class="glosslist">{gloss.map((g) => (<div class="gl-row"><b>{g[0]}</b><span>{g[1]}</span></div>))}</div>
     <h3 class="dl">Primary sources</h3>
@@ -807,6 +824,10 @@ const watchlist = [
   .sc-pos{color:var(--pos);background:color-mix(in srgb,var(--pos) 12%,transparent)}
   .sc-neg{color:var(--neg);background:color-mix(in srgb,var(--neg) 12%,transparent)}
   .sc-mix{color:var(--struct);background:color-mix(in srgb,var(--struct) 12%,transparent)}
+  .sc-an{font-size:10.5px;color:var(--muted);font-style:italic;line-height:1.35}
+  .tierchip{font-family:'Lora',serif;font-size:8.5px;font-weight:700;letter-spacing:.04em;color:var(--struct);border:1px solid color-mix(in srgb,var(--struct) 40%,transparent);border-radius:3px;padding:0 4px;white-space:nowrap;display:inline-block}
+  .tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .dtbl.wide{min-width:600px}
   .legend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
   @media(max-width:860px){.legend-grid{grid-template-columns:1fr}}
   .legendbox{background:var(--anchor);border:1px solid var(--cardline);border-radius:10px;padding:13px 15px}
